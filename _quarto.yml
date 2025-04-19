@@ -1,0 +1,16 @@
+project:
+  type: website
+
+website:
+  title: "Steven Goni"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Inicio
+      - about.qmd
+        text: Acerca de
+
+format:
+  html:
+    theme: cosmo
+    toc: true
