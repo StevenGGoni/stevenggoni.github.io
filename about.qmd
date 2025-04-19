@@ -1,0 +1,10 @@
+---
+title: "Acerca de"
+format: html
+---
+
+About this site
+
+```{r}
+1 + 1
+```
