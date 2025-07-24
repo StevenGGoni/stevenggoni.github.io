@@ -1,20 +1,26 @@
 ---
 title: "Steven García Goñi"
+subtitle: |
+  Ingeniero industrial y MSc Estadística
 image: images\profile.jpg
 about: 
   id: hero-heading
-  template: trestles
+  template: solana
   image-shape: round
+  image-width: 9em
   links:
   - icon: github
     text: Github
     href: https://github.com/StevenGGoni
   - icon: linkedin
     text: LinkedIn
-    href: www.linkedin.com/in/sggoni
-  - icon: mortarboard-fill
-    text: Google Académico
+    href: https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile
+  - text: '{{< iconify fa6-brands:google-scholar>}} Google Académico'
     href: https://scholar.google.com/citations?user=X_3YTJ0AAAAJ&hl=es
+  - text: '{{< iconify simple-icons:orcid >}} Orcid'
+    href: https://orcid.org/0000-0002-1822-5465
+  - text: '{{< iconify academicons:researchgate-square >}} ResearchGate'
+    href: https://www.researchgate.net/profile/Steven-Garcia-Goni
 ---
 
 :::{#hero-heading}
