@@ -32,7 +32,7 @@ about:
 
 :::{#hero-heading}
 
-Hola!
+¡Hola!
 
 Soy Steven García Goñi, licenciado en ingeniería industrial y M.Sc. en Estadística en la Universidad de Costa Rica. Apasionado por la estadística, el análisis de datos, el diseño estadístico de experimentos y la ingeniería de manufactura. 
 
