@@ -27,7 +27,7 @@ about:
   - text: '{{< iconify academicons:researchgate-square title="ResearchGate" >}}'
     href: https://www.researchgate.net/profile/Steven-Garcia-Goni
   - text: '{{< iconify academicons:cv-square title="CV" >}}'
-    href: https://github.com/StevenGGoni
+    href: https://stevenggoni.github.io/resume.pdf
 ---
 
 :::{#hero-heading}
