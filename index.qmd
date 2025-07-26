@@ -1,7 +1,7 @@
 ---
 title: "Steven García Goñi"
 subtitle: |
-  Ingeniero industrial y M.Sc. Estadística
+  Ingeniero Industrial y M.Sc. en Estadística
 image: images\profile.jpg
 format:
   html:
@@ -45,3 +45,11 @@ Ha colaborado como director, asesor y lector en Trabajos Finales de Graduación 
 Tengo más de 6 años de experiencia en la creación, implementación y mantenimiento de Sistemas de Gestión de Calidad Aeroespaciales, además de fungir como consultor independiente en esta área. Es miembro desde el año 2020 del Comité Técnico Nacional INTE/CTN 061 “Aeroespacial” de INTECO para la normalización y adaptación de normas internacionales aeroespaciales para Costa Rica y la región.
 
 Me gusta la lectura de libros clásicos y filosofía, mi autor favorito es Dostoievski.  
+
+# Intereses
+
+* Diseño estadístico de experimentos
+
+* Modelos de regresión
+
+* Estadística bayesiana

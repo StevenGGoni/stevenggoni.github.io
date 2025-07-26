@@ -3,8 +3,4 @@ title: "Acerca de"
 format: html
 ---
 
-About this site
-
-```{r}
-1 + 1
-```
+“La estadística es el arte de contar bien una historia con datos. A veces, también es saber cuándo callar.”

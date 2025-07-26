@@ -4,13 +4,29 @@ project:
 
 website:
   title: "Steven García Goñi"
+  description: "Un sitio para compartir ingeniería y estadística"
+  favicon: images\hex_logo.png
   navbar:
+    logo: images\hex_logo.png
     left:
       - href: index.qmd
         text: Inicio
-      - about.qmd
+      - href: about.qmd
+        text: Acerca de
+      - href: resume.qmd
+        text: CV
+  page-footer: 
+    border: true
+    left: |
+      Creado con [{{< iconify simple-icons:quarto title="Quarto Logo" label="Quarto Logo" >}} Quarto](https://quarto.org).
+    right: |
+      License: [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
+        
 
 format:
   html:
-    theme: cosmo
-    toc: true
+    theme: flatly
+    toc: false
+    lang: es-ES
+    
+    
