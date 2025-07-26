@@ -167,7 +167,7 @@ tibble::tribble(
   "Universidad de Costa Rica", "", "Tesis", "2025",
   c("\\href{https://www.kerwa.ucr.ac.cr/items/9f121a2f-9871-4d27-b7cf-3efc8fb30494}{Algoritmo para la reducción de tratamientos en diseños experimentales con mezclas de vértices extremos, basado en la recuperación de la forma regular de un simplex}"),
   
-  "Revista de Iniciación Científica", "Artículo",  "", "2024", 
+  "Revista de Iniciación Científica", "",  "Artículo", "2024", 
   c("\\href{https://doi.org/10.33412/rev-ric.v10.1.4001}{Diseño de parcelas divididas para el desarrollo de una harina mejorada y funcional de granos germinados de lenteja o arveja}"), 
   
   "UNICIENCIA", "", "Artículo",  "2023", 
