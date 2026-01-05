@@ -1,8 +1,61 @@
 ---
-title: "Steven Goni"
-format: html
+title: "Steven García Goñi"
+subtitle: |
+  Ingeniero Industrial y M.Sc. en Estadística
+image: images\profile.jpg
+format:
+  html:
+    grid:
+      body-width: 1200px
+about: 
+  id: hero-heading
+  template: solana
+  image-shape: round
+  image-width: 11em
+  links:
+  - text: '{{< iconify fa6-solid:envelope title="Correo electrónico">}}'
+    href: mailto:steven.garciagoni@ucr.ac.cr
+    aria-label: "Correo electrónico"
+  - text: '{{< iconify mdi:github title="GitHub" >}}'
+    href: https://github.com/StevenGGoni
+  - text: '{{< iconify mdi:linkedin title="LinkedIn" >}}'
+    href: https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile
+  - text: '{{< iconify fa6-brands:google-scholar title="Google Académico" >}}'
+    href: https://scholar.google.com/citations?user=X_3YTJ0AAAAJ&hl=es
+  - text: '{{< iconify simple-icons:orcid title="Orcid" >}}'
+    href: https://orcid.org/0000-0002-1822-5465
+  - text: '{{< iconify academicons:researchgate-square title="ResearchGate" >}}'
+    href: https://www.researchgate.net/profile/Steven-Garcia-Goni
+  - text: '{{< iconify academicons:cv-square title="CV" >}}'
+    href: https://stevenggoni.github.io/resume.pdf
 ---
 
-# Bienvenido
+:::{#hero-heading}
 
-Este es mi sitio personal. Aquí compartiré proyectos, recursos de enseñanza y artículos sobre R, estadística e ingeniería.
+¡Hola!
+
+Soy Steven García Goñi, licenciado en ingeniería industrial y M.Sc. en Estadística en la Universidad de Costa Rica. Apasionado por la estadística, el análisis de datos, el diseño estadístico de experimentos y la ingeniería de manufactura. 
+
+El objetivo de este sitio personal es compartir mis proyectos, algunos recursos de enseñanza y artículos sobre R, ingeniería y estadística. 
+
+Actualmente enseño para la Escuela de Ingeniería Industrial los cursos de Probabilidad y estadística, Diseño de experimentos básico y avanzado y otros relacionados con Machine Learning. 
+
+He colaborado como director, asesor y lector en Trabajos Finales de Graduación (TFG) para la Escuela de Ingeniería Industrial y como asesor voluntario en TFG que guardan relación con el diseño de experimentos para estudiantes de Ingeniería Industrial, Ingeniería Química e Ingeniería de Alimentos de diferentes sedes de la UCR. 
+
+Tengo más de 6 años de experiencia en la creación, implementación y mantenimiento de Sistemas de Gestión de Calidad Aeroespaciales, además de fungir como consultor independiente en esta área. Es miembro desde el año 2020 del Comité Técnico Nacional INTE/CTN 061 “Aeroespacial” de INTECO para la normalización y adaptación de normas internacionales aeroespaciales para Costa Rica y la región.
+
+Me gusta la lectura de libros clásicos y filosofía, mi autor favorito es Dostoievski.  
+
+> **All models are wrong, but some are useful** - *George Box*
+
+> **It's easy to lie with statistics, but it's hard to tell the truth without them** - *Andrejs Dunkels*
+
+> **Without data, you’re just another person with an opinion** - *W. Edwards Deming*
+
+# Intereses
+
+* Diseño estadístico de experimentos
+
+* Modelos de regresión
+
+* Estadística bayesiana

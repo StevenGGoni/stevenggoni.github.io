@@ -1,0 +1,225 @@
+---
+author: Steven García Goñi
+title: Ingeniero Industrial (II-38999) y M.Sc en Estadística
+format:
+  classic-cv-pdf: default
+cvfooter:
+  left: "https://stevenggoni.github.io/"
+  right: "https://github.com/StevenGGoni"
+cvcolor: 331114 #without `#`
+bgcolor: 9BA1AB
+cvfont: raleway #texlive fonts like raleway,fetamont,gillius,comfortaa
+cvmeta:
+  - title: Estado
+    left: Docente e investigador para la EII de la UCR
+    right: San José, Costa Rica
+  - title: Campo
+    left: Ingeniería industrial, diseño de experimentos, estadística
+    right: https://stevenggoni.github.io/
+  - title: Tecnologías
+    left: R/RStudio, Excel, Minitab, Phyton
+    right: steven.garciagoni@ucr.ac.cr - 8774 8919
+execute:
+  echo: false
+---
+
+```{r}
+#| label: cvevents
+cvevents <- function(tbl, when, what, where, details) {
+  
+  command_start <- "\\cvevent"
+  
+  res <- paste0(
+    command_start, "{", tbl[[when]], "}", 
+    "{", tbl[[what]], "}",
+    "{", tbl[[where]], "}")
+  
+  tbl[[details]] <- sapply(tbl[[details]], function(x) paste0("{", x, "}", collapse = ","))
+  res <- paste0(res, "{",tbl[[details]],"}")
+  
+  cat(res, sep = "\n")
+}
+```
+
+# Resumen
+
+Apasionado por la estadística, la ingeniería de calidad, de manufactura y la mejora continua. Estoy siempre en búsqueda de nuevos retos así como de formas de aplicar los conocimientos adquiridos en la resolución de problemas y oportunidades de mejora. 
+
+Mis áreas de interés académico son el diseño estadístico de experimentos, la estadística industrial, la ingeniería de calidad y sus aplicaciones. Además de aplicaciones de Machine learning en la industria. 
+
+Entre mis pasatiempos se encuentra la literatura, en especial el realismo ruso.  
+
+# Educación
+
+```{r }
+#| label: education
+#| output: asis
+tibble::tribble(
+  ~degree, ~uni, ~loc, ~dates, ~details,
+  "M.Sc. en Estadística", "Universidad de Costa Rica", "San José, Costa Rica", "2020 - 2025",
+  c("Tesis: Algoritmo para la reducción de tratamientos en diseños experimentales con mezclas de vértices extremos, basado en la recuperación de la forma regular de un simplex",
+    "Graduación con honores"),
+  
+  "Lic. en Ingeniería Industrial", "Universidad de Costa Rica", "San José, Costa Rica", "2012 - 2020", 
+  c("Trabajo Final de Graduación: Desarrollo de una materia prima para alimentos, a partir de granos germinados, basado en diseño de experimentos", 
+    "Trabajo aprobado con honores")
+) |>
+  cvevents(when = "dates", what = "degree", where = "loc", details = "details")
+```
+
+# Experiencia profesional
+
+```{r results='asis'}
+#| label: experience
+#| output: asis
+tibble::tribble(
+  ~role, ~institution, ~dates, ~tasks,
+  "Docente universitario e investigador", "UCR | Escuela de Ingeniería Industrial", "Mar. 2022 - Actualidad", 
+  c("Docente de los cursos de Probabilidad y estadística, Ingeniería de Calidad, Diseño de experimentos básico, Diseño de experimentos avanzado y otros relacionados con estadística multivariada y Machine Learning", 
+    "Docente de cursos extracurriculares y de extensión docente en temas como: Excel como herramienta para la automatización de tareas repetitivas, Metrología aplicada a la toma efectiva de decisiones y Métodos cuantitativos para la Mejora de procesos (MCMP)",
+    "\\href{https://vinv.ucr.ac.cr/sigpro/web/researchers/115790137}{Investigador asociado} en tópicos relativos a la estadística e ingeniería industrial", 
+    "Docente tutor y asesor de Trabajos Finales de Graduación de la Escuela de Ingeniería Industrial",
+    "Miembro de distintas comisiones de la EII, incluyendo Acción Social y Asuntos Estudiantiles"),
+  
+  "Instructor - Servicios profesionales (bajo demanda)", "School of Medical Devices (SMD)", "2024 - Actualidad", 
+  c("Invención y creación del material pedagógico formativo concerniente al curso Caraterización de Procesos con Diseño de Experimentos", 
+    "Instructor del curso: Applied Statictics for Medical Device Industry", 
+    "Instructor del curso: Process Characterization with DoE"),
+  
+  "Investigador asociado", "CIOdD | UCR | HiVOS", "Mar. 2023 - Dic. 2023", 
+  c("Construcción y diseño del Plan de Operaciones estadísticas y sus principales indicadores de VIH para Costa Rica", 
+    "Levantamiento de procesos y procedimientos actuales a nivel de flujo de datos y actividades asociadas para las principales operaciones estadístiacs en VIH"),
+  
+  "Consultor", "FUNDES | PROCOMER", "Dic. 2021",  
+  c("Auditoría de segunda parte y presencial a tres PyME de Costa Rica para aplicar el diagnóstico de cumplimiento en la Norma AS9100D: REquisitos para las organizaciones de aviación, espacio y defensa"),
+  
+  "Servicios profesionales (bajo demanda)", "", "2021 - Actualidad", 
+  c("Programación de herramientas en VBA en MS Excel para finanazas, RRHH, supervisión de producción, control de calidad y contabilidad", 
+    "Programación de aplicaciones web interactivas en Shiny, incluyendo conexión con bases de datos",
+    "Mantenimiento de herramientas programadas"),
+  
+  "Miembro del CTN 061: Aeroespacial", "INTECO", "Mar. 2020 - Jun. 2023",
+  c("Desarrollo y revisión de los trabajos de normalización en el campo aeroespacial, incluyendo la adaptación de aproximadamente 21 normas internacionales"), 
+  
+  "Consultor y analista de datos", "Dr. Max, Centro de Salud", "Dic. 2020 - May. 2021", 
+  c("Analista de datos (R y RStudio)",
+    "Proyección y modelado por series de tiempo de las ventas (R y RStudio)", 
+    "Limpieza y actualización de base de datos (PostgreSQL)", 
+    "Asesor del equipo de gerencia general, finanzas y RRHH en temas estratégicos y operativos"),
+  
+  "Ingeniero de mejora continua", "TechShop Internacional, S.A.", "Nov. 2018 - Mar. 2021",  
+  c("Diseño y mejora de procesos", 
+    "Creación y actualización de indicadores de desempeño (KPI)", 
+    "Automatización de tareas repetitivas con VBA y R",
+    "Administración y programación de evento (Worflows) en el sistema SytelineERP"), 
+  
+  "Gestor de calidad (AS9100)", "TechShop Internacional, S.A.", "Ene. 2016 - Mar. 2021",  
+  c("Creación, implementación, mantenimiento y actualización del Sistema de Gestión de Calidad AS9100C (Aeroespacial) e ISO 9001:2008, siendo la tercer empresa en obtener esta certificación a nivel nacional", 
+    "Creación, implementación, mantenimiento y actualización del Sistema de Gestión de Calidad AS9100D (Aeroespacial) e ISO 9001:2015, migrando de la versión anterior de la norma", 
+    "Auditor interno principal del Sistema de Gestión de Calidad",
+    "Diseño y capacitación de los auditores internos de la organización",
+    "Capacitación de la mayoría de procedimientos e instructivos de la organización"), 
+  
+  "Asistente de consultoría", "UCR | MIDEPLAN | PRONAMYPE", "Set. 2016 - Jul. 2017", 
+  c("Evaluación del PRONAMYPE", 
+    "Levantamiento de procesos", 
+    "Diseño y ejecución de instrumentos de medición (encuestas y grupos focales)"),
+  
+  "Asistente de cursos", "UCR - Escuela de Ingeniería Industrial", "Ago. 2017 - Dic. 2018", 
+  c("Curso Ingeniería de Manufactura", 
+    "Curso Investigación de operaciones avanzada", 
+    "Curso Diseño de experimentos básico",
+    "Curso Distribución y localización de instalaciones")
+) |>
+  cvevents(when = "dates", what = "role", where = "institution", details = "tasks")
+```
+
+# Cursos, certificados y reconocimientos
+
+\* Inglés intermedio - alto (B2) - *Universidad de Costa Rica*
+
+\* Competencias Digitales para la Docencia - *Universidad de Costa Rica*
+
+\* Calibración de sonómetros - *LACOMET (LCM)*
+
+\* Participación CTN 061 Aeroespacil - *INTECO*
+
+\* Scrum Foundation - *CertiProf*
+
+\* MongoDB - *UDEMY*
+
+\* Machine Learning - R y Phyton para Data Science - *UDEMY*
+
+\* Técnicas estadísticas para la gestión ambiental - *Universidad de Costa Rica*
+
+\* Auditor interno AS9100C e ISO 9001:2008 - *TechShop Internacional, S.A.*
+
+\* Auditor interno AS9100D e ISO 9001:2015 - *TechShop Internacional, S.A.*
+
+
+
+# Publicaciones
+
+```{r }
+#| label: publications
+#| output: asis
+tibble::tribble(
+  ~degree, ~uni, ~loc, ~dates, ~details,
+  "Universidad de Costa Rica", "", "Tesis", "2025",
+  c("\\href{https://www.kerwa.ucr.ac.cr/items/9f121a2f-9871-4d27-b7cf-3efc8fb30494}{Algoritmo para la reducción de tratamientos en diseños experimentales con mezclas de vértices extremos, basado en la recuperación de la forma regular de un simplex}"),
+  
+  "Revista de Iniciación Científica", "",  "Artículo", "2024", 
+  c("\\href{https://doi.org/10.33412/rev-ric.v10.1.4001}{Diseño de parcelas divididas para el desarrollo de una harina mejorada y funcional de granos germinados de lenteja o arveja}"), 
+  
+  "UNICIENCIA", "", "Artículo",  "2023", 
+  c("\\href{http://dx.doi.org/10.15359/ru.37-1.19}{Efectos del sexismo hacia las mujeres sobre la autoeficacia y desempeño en matemática de los hombres: Modelos de ecuaciones estructurales desde la teoría del sexismo ambivalente}"),
+  
+  "Universidad de Costa Rica", "", "Trabajo Final de Graduación", "2019", 
+  c("\\href{https://repositorio.sibdi.ucr.ac.cr/items/3d1cf307-1bb7-4af0-a70a-e241a2b3481f}{Desarrollo de una materia prima para alimentos, a partir de granos germinados, basado en diseño de experimentos}"),
+  
+  "MIDEPLAN", "", "Informe final", "2017", 
+  c("\\href{https://repositorio-snp.mideplan.go.cr/bitstream/handle/123456789/159/EE.07.01-RE.pdf?}{Evaluación del Programa Nacional de Apoyo a la Microempresa y la Movilidad Social (PRONAMYPE) del Ministerio de Trabajo y Seguridad Social}")
+) |>
+  cvevents(when = "dates", what = "degree", where = "loc", details = "details")
+```
+
+# Charlas
+
+```{r }
+#| label: oral
+#| output: asis
+tibble::tribble(
+  ~degree, ~uni, ~loc, ~dates, ~details,
+  "Universidad de Costa Rica", "", "Grupo de Ingeniería Aeroespacial", "22 Jun. 2023",
+  c("Calidad y Normalización en la Industria Aeroespacial"),
+) |>
+  cvevents(when = "dates", what = "degree", where = "loc", details = "details")
+```
+
+# Habilidades computacionales
+
+```{r }
+#| label: skilss
+#| output: asis
+tibble::tribble(
+  ~degree, ~uni, ~loc, ~dates, ~details,
+  "Nivel", "", "Avanzado", "",
+  c("R y RStudio",
+    "Minitab", 
+    "MS Excel (VBA)"),
+  
+  "Nivel", "", "Intermedio", "",
+  c("Phyton",
+    "Git",
+    "Markdown",
+    "LaTeX",
+    "Jamovi"),
+  
+  "Nivel", "", "Básico", "",
+  c("AutoDesk Fusion 360",
+    "SQL",
+    "MongoDB", 
+    "PowerBI")
+) |>
+  cvevents(when = "dates", what = "degree", where = "loc", details = "details")
+```

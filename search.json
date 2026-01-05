@@ -1,0 +1,107 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Steven García Goñi",
+    "section": "",
+    "text": "¡Hola!\nSoy Steven García Goñi, licenciado en ingeniería industrial y M.Sc. en Estadística en la Universidad de Costa Rica. Apasionado por la estadística, el análisis de datos, el diseño estadístico de experimentos y la ingeniería de manufactura.\nEl objetivo de este sitio personal es compartir mis proyectos, algunos recursos de enseñanza y artículos sobre R, ingeniería y estadística.\nActualmente enseño para la Escuela de Ingeniería Industrial los cursos de Probabilidad y estadística, Diseño de experimentos básico y avanzado y otros relacionados con Machine Learning.\nHe colaborado como director, asesor y lector en Trabajos Finales de Graduación (TFG) para la Escuela de Ingeniería Industrial y como asesor voluntario en TFG que guardan relación con el diseño de experimentos para estudiantes de Ingeniería Industrial, Ingeniería Química e Ingeniería de Alimentos de diferentes sedes de la UCR.\nTengo más de 6 años de experiencia en la creación, implementación y mantenimiento de Sistemas de Gestión de Calidad Aeroespaciales, además de fungir como consultor independiente en esta área. Es miembro desde el año 2020 del Comité Técnico Nacional INTE/CTN 061 “Aeroespacial” de INTECO para la normalización y adaptación de normas internacionales aeroespaciales para Costa Rica y la región.\nMe gusta la lectura de libros clásicos y filosofía, mi autor favorito es Dostoievski.\n\nAll models are wrong, but some are useful - George Box\n\n\nIt’s easy to lie with statistics, but it’s hard to tell the truth without them - Andrejs Dunkels\n\n\nWithout data, you’re just another person with an opinion - W. Edwards Deming\n\n\nIntereses\n\nDiseño estadístico de experimentos\nModelos de regresión\nEstadística bayesiana"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Acerca de",
+    "section": "",
+    "text": "“La estadística es el arte de contar bien una historia con datos. A veces, también es saber cuándo callar.”"
+  },
+  {
+    "objectID": "test.html",
+    "href": "test.html",
+    "title": "Firstname Lastname - Curriculum Vitæ",
+    "section": "",
+    "text": "Firstname Lastname\n\n\n\n\n\n Current position\n Lab/Unit’s name\n City, Country\n your [at] email.com\n +33 (0)1 23 45 67 89\n linkedin.com/in/FLastname\n github.com/FLastname\n twitter.com/FLastname\n\n\n\n\n\nAdvanced: R\nIntermediate: Julia\nBasic: C/C++\n\n\n\n\nLast updated on 2025-07-25."
+  },
+  {
+    "objectID": "test.html#education",
+    "href": "test.html#education",
+    "title": "Firstname Lastname - Curriculum Vitæ",
+    "section": "Education",
+    "text": "Education\n\nDoctor of Philosophy (Ph.D.) in some field\nUniversity\nCity, Country\nStart - End\nThesis: A really fancy title"
+  },
+  {
+    "objectID": "test.html#work-experience",
+    "href": "test.html#work-experience",
+    "title": "Curriculum Vitae",
+    "section": "WORK EXPERIENCE",
+    "text": "WORK EXPERIENCE\n\nData Scientist\nFreelance, Multiple Clients Jan 2020 – June 2021\nProviding data collection, pre-processing, exploratory analysis and modelling services to clients in the early R&D stages of developing data driven products. Projects include:\n\nData description and preliminary product feasibility insights for a start-up real estate bond platform; including assessing suitability of various property transaction databases for use in initial product prototype.\nDevelopment of statistical anomaly detection regimes and key historical insights from internet quality time-series data for use in parametric insurance products, including documenting analysis tools in an R package."
+  },
+  {
+    "objectID": "test.html#presentations-and-workshops",
+    "href": "test.html#presentations-and-workshops",
+    "title": "Curriculum Vitae",
+    "section": "PRESENTATIONS AND WORKSHOPS",
+    "text": "PRESENTATIONS AND WORKSHOPS\n\nTalk: Misadventures with Reproducibility in R (30 Nov 2022, R Ladies Melbourne Meetup)\nTalk: Designing R Packages (4 Oct 2022, Monash EBS Data Science Research Software Study Group)\nTalk: Quarto Websites as Research Compendiums (16 Aug 2022, Monash EBS Data Science Research Software Study Group)\nWorkshop: Writing academic papers with Rmarkdown and friends (9 Aug 2022, Monash University)"
+  },
+  {
+    "objectID": "test.html#references",
+    "href": "test.html#references",
+    "title": "Curriculum Vitae",
+    "section": "References",
+    "text": "References\nAvailable upon request"
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Ingeniero Industrial (II-38999) y M.Sc en Estadística",
+    "section": "",
+    "text": "Resumen\nApasionado por la estadística, la ingeniería de calidad, de manufactura y la mejora continua. Estoy siempre en búsqueda de nuevos retos así como de formas de aplicar los conocimientos adquiridos en la resolución de problemas y oportunidades de mejora.\nMis áreas de interés académico son el diseño estadístico de experimentos, la estadística industrial, la ingeniería de calidad y sus aplicaciones. Además de aplicaciones de Machine learning en la industria.\nEntre mis pasatiempos se encuentra la literatura, en especial el realismo ruso.\n\n\nEducación\n\n\n\nExperiencia profesional\n\n\n\nCursos, certificados y reconocimientos\n* Inglés intermedio - alto (B2) - Universidad de Costa Rica\n* Competencias Digitales para la Docencia - Universidad de Costa Rica\n* Calibración de sonómetros - LACOMET (LCM)\n* Participación CTN 061 Aeroespacil - INTECO\n* Scrum Foundation - CertiProf\n* MongoDB - UDEMY\n* Machine Learning - R y Phyton para Data Science - UDEMY\n* Técnicas estadísticas para la gestión ambiental - Universidad de Costa Rica\n* Auditor interno AS9100C e ISO 9001:2008 - TechShop Internacional, S.A.\n* Auditor interno AS9100D e ISO 9001:2015 - TechShop Internacional, S.A.\n\n\nPublicaciones\n\n\n\nCharlas\n\n\n\nHabilidades computacionales"
+  },
+  {
+    "objectID": "test.html#contact",
+    "href": "test.html#contact",
+    "title": "Firstname Lastname - Curriculum Vitæ",
+    "section": "",
+    "text": "Current position\n Lab/Unit’s name\n City, Country\n your [at] email.com\n +33 (0)1 23 45 67 89\n linkedin.com/in/FLastname\n github.com/FLastname\n twitter.com/FLastname"
+  },
+  {
+    "objectID": "test.html#skills",
+    "href": "test.html#skills",
+    "title": "Firstname Lastname - Curriculum Vitæ",
+    "section": "",
+    "text": "Advanced: R\nIntermediate: Julia\nBasic: C/C++"
+  },
+  {
+    "objectID": "test.html#disclaimer",
+    "href": "test.html#disclaimer",
+    "title": "Firstname Lastname - Curriculum Vitæ",
+    "section": "",
+    "text": "Last updated on 2025-07-25."
+  },
+  {
+    "objectID": "test.html#title",
+    "href": "test.html#title",
+    "title": "Firstname Lastname - Curriculum Vitæ",
+    "section": "Firstname Lastname",
+    "text": "Firstname Lastname\n\nCurriculum Vitæ\nI’m currently working at the XXXXXXX as the XXXXXXX."
+  },
+  {
+    "objectID": "test.html#professional-research-experience",
+    "href": "test.html#professional-research-experience",
+    "title": "Firstname Lastname - Curriculum Vitæ",
+    "section": "Professional & Research Experience",
+    "text": "Professional & Research Experience\n\nPosition\nLab/unit/enterprise\nCity, Country\nStart - End\nActivities: some details about the activites"
+  },
+  {
+    "objectID": "test.html#r-packages",
+    "href": "test.html#r-packages",
+    "title": "Firstname Lastname - Curriculum Vitæ",
+    "section": "R Packages",
+    "text": "R Packages\n\nNAME: The Title of the Package\nFirstname Lastname, someone else and another guy\nGitHub\nApr. 2019\nhttps://github.com/FirstnameLastname/NAME/\n\n\n\n\n\nGitHub_tag"
+  },
+  {
+    "objectID": "test.html#oralposter-communications",
+    "href": "test.html#oralposter-communications",
+    "title": "Firstname Lastname - Curriculum Vitæ",
+    "section": "Oral/Poster communications",
+    "text": "Oral/Poster communications\n\nTitle\nConference’s name\nCity, Country\nDate\n\n\n\n Where are the slides"
+  }
+]

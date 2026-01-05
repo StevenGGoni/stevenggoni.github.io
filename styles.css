@@ -1,1 +1,34 @@
-/* css styles */
+/* ================================
+   NAVBAR – LOGO Y ESTILO GENERAL
+   ================================ */
+
+/* Aumenta el tamaño del logo */
+.navbar-brand img {
+  max-height: 80px;   /* ajusta a 56, 64 o 72 según prefieras */
+  width: auto;
+}
+
+/* Aumenta la altura del navbar para que el logo respire */
+.navbar {
+  min-height: 80px;
+}
+
+/* Centra verticalmente el logo */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+/* Mantiene buen tamaño en pantallas pequeñas */
+@media (max-width: 768px) {
+  .navbar-brand img {
+    max-height: 48px;
+  }
+
+  .navbar {
+    min-height: 64px;
+  }
+}
+
+
+
