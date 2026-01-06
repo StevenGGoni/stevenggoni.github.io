@@ -82,9 +82,12 @@ tibble::tribble(
     "Miembro de distintas comisiones de la EII, incluyendo Acción Social y Asuntos Estudiantiles"),
   
   "Instructor - Servicios profesionales (bajo demanda)", "School of Medical Devices (SMD)", "2024 - Actualidad", 
-  c("Invención y creación del material pedagógico formativo concerniente al curso Caraterización de Procesos con Diseño de Experimentos", 
-    "Instructor del curso: Applied Statictics for Medical Device Industry", 
+  c("Desarrollo del material pedagógico formativo concerniente al curso Caraterización de Procesos con Diseño de Experimentos", 
+    "Instructor del curso: Applied Statistics for Medical Device Industry", 
     "Instructor del curso: Process Characterization with DoE"),
+  
+  "Servicios profesionales", "Universidad Fidélitas", "Set-Oct 2024", 
+  c("Desarrollo de productos académicos para los cursos: Diseño de experimentos, Estadística descriptiva e inferencia y Estadística aplicada para la analítica de datos"),
   
   "Investigador asociado", "CIOdD | UCR | HiVOS", "Mar. 2023 - Dic. 2023", 
   c("Construcción y diseño del Plan de Operaciones estadísticas y sus principales indicadores de VIH para Costa Rica", 

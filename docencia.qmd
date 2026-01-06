@@ -1,0 +1,45 @@
+---
+title: "Recursos didácticos"
+format: html
+---
+
+# Recursos para la construcción de gráficos
+
+* [Seleccione el gráfico adecuado](https://www.data-to-viz.com/#explore){target="_blank"}
+
+* [Evite estos errores](https://www.data-to-viz.com/caveats.html){target="_blank"}
+
+* [Otro catálogo de visualización de datos](https://datavizcatalogue.com/ES/){target="_blank"}
+
+# Simulaciones y visualizadores interactivos
+
+* [Distribuciones discretas](https://stevenggoni.github.io/distribuciones-discretas/){target="_blank"}
+
+* [Distribuciones continuas](https://stevenggoni.github.io/distribuciones-continuas/){target="\_blank"}
+
+* [Comparación entre la distribución normal y t-student](https://stevenggoni.github.io/normal-vs-t-student/){target="\_blank"}
+
+* [Muestreo por atributos](https://stevenggoni.github.io/distribuciones-continuas/){target="\_blank"}
+
+* [Calculadora de distribuciones de probabilidad e intervalos de confianza](https://homepage.divms.uiowa.edu/~mbognar/){target="\_blank"}
+
+* [Ley de los Grandes Números](https://www.geogebra.org/m/edy5fexu){target="\_blank"}
+
+* [Teorema del Límite Central (TLC)](https://seeing-theory.brown.edu/probability-distributions/es.html#section3){target="\_blank"}
+
+* [Efecto de la asimetría sobre el TLC](https://rpubs.com/SGGoni){target="\_blank"}
+
+* Aplicación interactiva sobre los intervalos de confianza
+
+```{r}
+#| eval: false
+#| include: true
+# Correr en R (requiere shiny y tidyverse)
+
+library(shiny)
+library(tidyverse)
+
+runGist("d47f4c205b531e3bed59d22b22cbfd13")
+
+```
+

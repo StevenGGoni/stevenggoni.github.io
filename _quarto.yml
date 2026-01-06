@@ -9,13 +9,13 @@ website:
   navbar:
     logo: images\logo.png
     logo-alt: "Logo de un cuervo"
-    background: "#0F0F10"
+    background: "#222222"
     foreground: "#F1F5F5"
     left:
       - href: index.qmd
         text: Inicio
-      - href: about.qmd
-        text: Acerca de
+      - href: docencia.qmd
+        text: Recursos didácticos
       - href: resume.qmd
         text: CV
   page-footer: 

@@ -2,7 +2,7 @@
 title: "Steven García Goñi"
 subtitle: |
   Ingeniero Industrial y M.Sc. en Estadística
-image: images\profile.jpg
+image: images\Sticker_WhiteVer.svg
 format:
   html:
     grid:
@@ -10,8 +10,8 @@ format:
 about: 
   id: hero-heading
   template: solana
-  image-shape: round
-  image-width: 11em
+  # image-shape: round
+  image-width: 13em
   links:
   - text: '{{< iconify fa6-solid:envelope title="Correo electrónico">}}'
     href: mailto:steven.garciagoni@ucr.ac.cr
@@ -32,19 +32,17 @@ about:
 
 :::{#hero-heading}
 
-¡Hola!
+Este sitio tiene como objetivo compartir mis proyectos y algunos recursos de enseñanza para los cursos que imparto, así como otros artículos sobre ingeniería, estadística y R. 
 
-Soy Steven García Goñi, licenciado en ingeniería industrial y M.Sc. en Estadística en la Universidad de Costa Rica. Apasionado por la estadística, el análisis de datos, el diseño estadístico de experimentos y la ingeniería de manufactura. 
+# ¿Quién soy?
 
-El objetivo de este sitio personal es compartir mis proyectos, algunos recursos de enseñanza y artículos sobre R, ingeniería y estadística. 
+## Brevemente
 
-Actualmente enseño para la Escuela de Ingeniería Industrial los cursos de Probabilidad y estadística, Diseño de experimentos básico y avanzado y otros relacionados con Machine Learning. 
+![](images/profile.jpg){.img-left}
 
-He colaborado como director, asesor y lector en Trabajos Finales de Graduación (TFG) para la Escuela de Ingeniería Industrial y como asesor voluntario en TFG que guardan relación con el diseño de experimentos para estudiantes de Ingeniería Industrial, Ingeniería Química e Ingeniería de Alimentos de diferentes sedes de la UCR. 
+Mi nombre es Steven García Goñi,soy de Costa Rica y por lo general las personas suelen llamarme Goñi. Tengo una Licenciatura en Ingeniería Industrial (2020) y una Maestría Académica en Estadística (2025), ambas por mi alma mater la Universidad de Costa Rica. 
 
-Tengo más de 6 años de experiencia en la creación, implementación y mantenimiento de Sistemas de Gestión de Calidad Aeroespaciales, además de fungir como consultor independiente en esta área. Es miembro desde el año 2020 del Comité Técnico Nacional INTE/CTN 061 “Aeroespacial” de INTECO para la normalización y adaptación de normas internacionales aeroespaciales para Costa Rica y la región.
-
-Me gusta la lectura de libros clásicos y filosofía, mi autor favorito es Dostoievski.  
+Me gusta la lectura de libros clásicos, principalmente rusos, y filosofía, mi autor favorito es Dostoievski. Recientemente estoy ampliando mis horizontes hacia la literatura japonesa. Además me encanta la panadería. 
 
 > **All models are wrong, but some are useful** - *George Box*
 
@@ -52,10 +50,49 @@ Me gusta la lectura de libros clásicos y filosofía, mi autor favorito es Dosto
 
 > **Without data, you’re just another person with an opinion** - *W. Edwards Deming*
 
-# Intereses
+## ¿Qué he hecho? 
 
-* Diseño estadístico de experimentos
+Durante mis estudios de Licenciatura, desde 2016, trabajé durante los interciclos universitarios en la creación, mantenimiento y actualización de un Sistema Integrado de Gestión (SIG) con las normas AS9100 e ISO 9001, logrando ser una de las primeras empresas en Costa Rica en conseguirlo. Desde el 2018 hasta el 2021 fue mi labor a tiempo completo, incluyendo la automatización de tareas repetitivas. 
 
-* Modelos de regresión
+Gracias a esta experiencia, del 2020 al 2023 formé parte del Comité Técnico Nacional 061 - Aeroespacial para el desarrollo y revisión de los trabajos de normalización en el campo aeroespacial, incluyendo la adaptación de 21 normas internacionales. 
 
-* Estadística bayesiana
+Entre otras actividades, hice servicios profesionales en auditorías de segunda parte de la norma AS9100D para PyMEs de Costa Rica y consultor y analista de datos.
+
+## ¿Qué hago?
+
+Desde el 2022 soy profesor e invstigador en la Escuela de Ingeniería Industrial de la Universidad de Costa Rica, donde me desempeño como docente de cursos como: 
+
+* Probabilidad y estadística
+* Estadística Industrial 1
+* Estadística Industrial 2
+* Diseño de experimentos (DoE)
+* Ingeniería de Calidad
+* Diseño de experimentos (DoE) avanzado
+* Entre otros relacionados con estadística y machine learning
+
+En 2025 tuve la oportunidad de impartir Tópicos de Diseño Experimental para el Programa de Posgrado de Estadística de la UCR. 
+
+## Mis intereses en investigación
+
+Mis intereses de investigación se pueden resumir en dos grandes aristas: 
+
+* La aplicación de estadística industrial 
+* El diseño estadístico de experimentos (DoE)
+
+No obstante, me considero una persona abierta a explorar nuevas áreas. 
+
+Desde 2018 continué con las labores a tiempo completo
+
+¡Hola!
+
+Soy Steven García Goñi, licenciado en ingeniería industrial y M.Sc. en Estadística en la Universidad de Costa Rica. Apasionado por la estadística, el análisis de datos, el diseño estadístico de experimentos y la ingeniería de manufactura. 
+
+
+
+Actualmente enseño para la Escuela de Ingeniería Industrial los cursos de Probabilidad y estadística, Diseño de experimentos básico y avanzado y otros relacionados con Machine Learning. 
+
+He colaborado como director, asesor y lector en Trabajos Finales de Graduación (TFG) para la Escuela de Ingeniería Industrial y como asesor voluntario en TFG que guardan relación con el diseño de experimentos para estudiantes de Ingeniería Industrial, Ingeniería Química e Ingeniería de Alimentos de diferentes sedes de la UCR. 
+
+Tengo más de 6 años de experiencia en la creación, implementación y mantenimiento de Sistemas de Gestión de Calidad Aeroespaciales, además de fungir como consultor independiente en esta área. Es miembro desde el año 2020 del Comité Técnico Nacional INTE/CTN 061 “Aeroespacial” de INTECO para la normalización y adaptación de normas internacionales aeroespaciales para Costa Rica y la región.
+
+

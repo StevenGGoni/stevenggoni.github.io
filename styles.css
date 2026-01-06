@@ -1,34 +1,113 @@
+/* ======================================================
+   FUENTES: ALLER (CUERPO) + CRIMSON PRO (TÍTULOS / NAVBAR)
+   ====================================================== */
+
+/* Crimson Pro */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
+/* Aller */
+@import url('https://fonts.googleapis.com/css2?family=Aller:wght@400;700&display=swap');
+
 /* ================================
-   NAVBAR – LOGO Y ESTILO GENERAL
+   CUERPO DEL SITIO
    ================================ */
 
-/* Aumenta el tamaño del logo */
-.navbar-brand img {
-  max-height: 80px;   /* ajusta a 56, 64 o 72 según prefieras */
-  width: auto;
+body {
+  font-family: "Aller", sans-serif;
+  line-height: 1.6;
 }
 
-/* Aumenta la altura del navbar para que el logo respire */
+/* ================================
+   TÍTULOS
+   ================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Crimson Pro", serif;
+  font-weight: 700;
+}
+
+/* ================================
+   NAVBAR – LOGO
+   ================================ */
+
+.navbar-brand img,
+.navbar-brand .navbar-logo {
+  max-height: 74px !important;
+  width: auto !important;
+}
+
 .navbar {
-  min-height: 80px;
+  min-height: 76px !important;
 }
 
-/* Centra verticalmente el logo */
 .navbar-brand {
   display: flex;
   align-items: center;
+  font-family: "Crimson Pro", serif;
+  font-weight: 800;       /* Logo / nombre en negrita */
+  font-size: 1.8rem;
 }
 
-/* Mantiene buen tamaño en pantallas pequeñas */
+/* ================================
+   NAVBAR – ÍTEMS DE NAVEGACIÓN
+   ================================ */
+
+.navbar-nav .nav-link {
+  font-family: "Aller", sans-serif;
+  font-weight: 500; 
+  font-size: 1.2rem;
+  color: #F1F5F5;
+}
+
+/* Hover y focus: NO cambiar color ni fondo */
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
+  color: #F1F5F5;
+  background-color: transparent !important;
+}
+
+/* Página activa */
+.navbar-dark .navbar-nav .nav-link.active {
+  font-weight: 600;
+  color: #FFFFFF;
+  background-color: transparent !important;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
 @media (max-width: 768px) {
-  .navbar-brand img {
-    max-height: 48px;
+  .navbar-brand img,
+  .navbar-brand .navbar-logo {
+    max-height: 56px !important;
   }
 
   .navbar {
-    min-height: 64px;
+    min-height: 64px !important;
+  }
+
+  .navbar-brand {
+    font-size: 1.1rem;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 1rem;
   }
 }
 
+/* ================================
+   images
+   ================================ */
 
+.img-right {
+  float: right;
+  margin-left: 1em;
+  max-width: 20%;
+}
 
+.img-left {
+  float: left;
+  margin-right: 1em;
+  max-width: 20%;
+}
