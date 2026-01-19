@@ -85,7 +85,7 @@ tibble::tribble(
     "Instructor del curso: Applied Statistics for Medical Device Industry", 
     "Instructor del curso: Process Characterization with DoE"),
   
-  "Servicios profesionales", "Universidad Fidélitas", "Set.-Oct. 2024", 
+  "Servicios profesionales", "Universidad Fidélitas", "Set. 2024 - Oct. 2024", 
   c("Desarrollo de productos académicos para los cursos: Diseño de experimentos, Estadística descriptiva e inferencia y Estadística aplicada para la analítica de datos"),
   
   "Investigador asociado", "CIOdD | UCR | HiVOS", "Mar. 2023 - Dic. 2023", 
