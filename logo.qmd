@@ -1,0 +1,39 @@
+---
+title: "Personal brand"
+format: html
+---
+
+```{r echo=FALSE}
+
+library(fontawesome)
+
+```
+
+![](images/Sticker_WhiteVer.svg){.img-left}
+
+El logo de esta página fue diseñado por Mónica Umaña, fundadora de [Musaline Studio](https://musaline.com/){target="_blank"}.
+
+Pero esto no es solo un logo, sino que es una representación que busca unir mis dos pasiones académicas: la ingeniería y la estadística. Está inspirado en los [hex stickers](https://github.com/rstudio/hex-stickers?tab=readme-ov-file){target="_blank"} que son una tradición dentro de la comunidad de [`r fontawesome::fa("r-project")`](https://www.r-project.org/){target="_blank"}, principalmente por influencia del [tidyverse](https://tidyverse.org/){target="_blank"}, como detalla Hadley Wickham en este [artículo](https://hadley.github.io/25-tidyverse-history/){target="_blank"}. Como supongo que se sospecha, `r fontawesome::fa("r-project")` es mi herramienta predilecta para el desarrollo de mis actividades académicas. 
+
+::: {.img-right-wrap}
+![Escudo histórico del valle de Goñi (Navarra)](images/Escudo_de_Goñi.svg)
+[Escudo histórico del valle de Goñi (Navarra), que le da origen al apellido](https://es.wikipedia.org/wiki/Go%C3%B1i){target="_blank"}
+:::
+
+Por otro lado, [Goñi](https://apellidosvasconavarros.es/apellidos/goni/?v=324d8a1d3f81){target="_blank"} es mi segundo apellido y tradicionalmente a todos en nuestra familia se nos conoce por el mismo. Aun cuando llegue a lugares nuevos, poco a poco adoptan la costumbre de llamarnos Goñi, por lo que era esencial que formara parte de mi imagen personal. 
+
+Con esa identidad en mente, el logo incorpora un símbolo que representa cómo pienso y trabajo: al cuervo (de la familia córvidos). Es un símbolo de la curiosidad y creatividad; observan, prueban y corrigen; en este sentido funcionan como ingenieros e ingenieras, ya que recogen información, elaboran estrategias y buscan mejores resultados; por ejemplo: 
+
+
+* Los cuervos de Nueva Caledonia (*Corvus moneduloides*) fabrican y ajustan herramientas para extraer alimento. Experimentos clásicos de Gavin R. Hunt y colaboradores muestran modificación y transporte de herramientas, lo que implica planificación. [https://doi.org/10.1038/379249a0](https://doi.org/10.1038/379249a0){target="_blank"}
+
+* Trabajos de Alex Taylor y colaboradores muestran que los cuervos infieren relaciones causales simples, distinguen pruebas exitosas de fallidas y ajustan el comportamiento en consecuencia. [https://doi.org/10.1073/pnas.1208724109](https://doi.org/10.1073/pnas.1208724109){target="_blank"}
+
+* Estudios sobre córvidos en ambientes urbanos muestran estrategias de minimización de esfuerzo, por ejemplo, investigaciones en Japón sobre cuervos que utilizan el tráfico para romper nueces. [https://doi.org/10.3838/jjo.68.43](https://doi.org/10.3838/jjo.68.43){target="_blank"}
+
+
+De esta manera, este logo representa una forma de creatividad que no se limita a imaginar, sino que experimenta y aprende. La ingeniería industrial y la estadística buscan exactamente eso: entender los datos, modelar fenómenos, iterar soluciones y optimizar recursos. El cuervo encarna ese mismo método: medir el mundo, reducir la incertidumbre y mejorar procesos.
+
+![](images/Cuervos_SinFondo-01.png)
+
+Además, me encanta [Edgar Allan Poe](https://es.wikipedia.org/wiki/El_cuervo_(poema)){target="_blank"}.

@@ -15,9 +15,11 @@ website:
       - href: index.qmd
         text: Inicio
       - href: docencia.qmd
-        text: Recursos didácticos
+        text: Recursos académicos
       - href: resume.qmd
-        text: CV
+        text: Currículum
+      - href: logo.qmd
+        text: Imagen personal
   page-footer: 
     border: true
     left: |

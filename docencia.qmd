@@ -1,7 +1,11 @@
 ---
-title: "Recursos didácticos"
+title: "Recursos académicos"
 format: html
 ---
+
+En esta sección encontrará recursos académicos organizados en pestañas para facilitar su consulta. Incluyen materiales sobre visualización de datos, simulaciones interactivas y herramientas útiles para cursos de probabilidad, estadística e ingeniería.
+
+::: {.panel-tabset}
 
 # Recursos para la construcción de gráficos
 
@@ -11,23 +15,23 @@ format: html
 
 * [Otro catálogo de visualización de datos](https://datavizcatalogue.com/ES/){target="_blank"}
 
-# Simulaciones y visualizadores interactivos
+# Simulaciones y visualizaciones interactivas
 
 * [Distribuciones discretas](https://stevenggoni.github.io/distribuciones-discretas/){target="_blank"}
 
-* [Distribuciones continuas](https://stevenggoni.github.io/distribuciones-continuas/){target="\_blank"}
+* [Distribuciones continuas](https://stevenggoni.github.io/distribuciones-continuas/){target="_blank"}
 
-* [Comparación entre la distribución normal y t-student](https://stevenggoni.github.io/normal-vs-t-student/){target="\_blank"}
+* [Comparación entre la distribución normal y t de Student](https://stevenggoni.github.io/normal-vs-t-student/){target="_blank"}
 
-* [Muestreo por atributos](https://stevenggoni.github.io/distribuciones-continuas/){target="\_blank"}
+* [Muestreo por atributos](https://stevenggoni.github.io/Curvas-OC-AOQ-ITP/){target="_blank"}
 
-* [Calculadora de distribuciones de probabilidad e intervalos de confianza](https://homepage.divms.uiowa.edu/~mbognar/){target="\_blank"}
+* [Calculadora de distribuciones de probabilidad e intervalos de confianza](https://homepage.divms.uiowa.edu/~mbognar/){target="_blank"}
 
-* [Ley de los Grandes Números](https://www.geogebra.org/m/edy5fexu){target="\_blank"}
+* [Ley de los Grandes Números](https://www.geogebra.org/m/edy5fexu){target="_blank"}
 
-* [Teorema del Límite Central (TLC)](https://seeing-theory.brown.edu/probability-distributions/es.html#section3){target="\_blank"}
+* [Teorema del Límite Central (TLC)](https://seeing-theory.brown.edu/probability-distributions/es.html#section3){target="_blank"}
 
-* [Efecto de la asimetría sobre el TLC](https://rpubs.com/SGGoni){target="\_blank"}
+* [Efecto de la asimetría sobre el TLC](https://rpubs.com/SGGoni){target="_blank"}
 
 * Aplicación interactiva sobre los intervalos de confianza
 
@@ -43,3 +47,4 @@ runGist("d47f4c205b531e3bed59d22b22cbfd13")
 
 ```
 
+:::

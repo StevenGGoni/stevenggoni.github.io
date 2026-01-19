@@ -40,9 +40,9 @@ Este sitio tiene como objetivo compartir mis proyectos y algunos recursos de ens
 
 ![](images/profile.jpg){.img-left}
 
-Mi nombre es Steven García Goñi,soy de Costa Rica y por lo general las personas suelen llamarme Goñi. Tengo una Licenciatura en Ingeniería Industrial (2020) y una Maestría Académica en Estadística (2025), ambas por mi alma mater la Universidad de Costa Rica. 
+Mi nombre es Steven García Goñi, soy de Costa Rica y por lo general las personas suelen llamarme Goñi. Tengo una Licenciatura en Ingeniería Industrial (2020) y una Maestría Académica en Estadística (2025), ambas por mi *alma mater*, la Universidad de Costa Rica. 
 
-Me gusta la lectura de libros clásicos, principalmente rusos, y filosofía, mi autor favorito es Dostoievski. Recientemente estoy ampliando mis horizontes hacia la literatura japonesa. Además me encanta la panadería. 
+Me gusta la lectura de libros clásicos, principalmente rusos, y filosofía. Mi autor favorito es Dostoievski. Recientemente estoy ampliando mis horizontes hacia la literatura japonesa. Además, me encanta la panadería, por lo que dedico buena parte de mi tiempo libre en experimentar en la elaboración de panes. 
 
 > **All models are wrong, but some are useful** - *George Box*
 
@@ -56,16 +56,16 @@ Durante mis estudios de Licenciatura, desde 2016, trabajé durante los intercicl
 
 Gracias a esta experiencia, del 2020 al 2023 formé parte del Comité Técnico Nacional 061 - Aeroespacial para el desarrollo y revisión de los trabajos de normalización en el campo aeroespacial, incluyendo la adaptación de 21 normas internacionales. 
 
-Entre otras actividades, hice servicios profesionales en auditorías de segunda parte de la norma AS9100D para PyMEs de Costa Rica y consultor y analista de datos.
+Entre otras actividades, hice servicios profesionales en auditorías de segunda parte de la norma AS9100D para PyMEs de Costa Rica y fui consultor y analista de datos.
 
 ## ¿Qué hago?
 
-Desde el 2022 soy profesor e invstigador en la Escuela de Ingeniería Industrial de la Universidad de Costa Rica, donde me desempeño como docente de cursos como: 
+Desde el 2022 soy profesor e investigador en la Escuela de Ingeniería Industrial de la Universidad de Costa Rica, donde me desempeño como docente de cursos como 
 
 * Probabilidad y estadística
-* Estadística Industrial 1
-* Estadística Industrial 2
-* Diseño de experimentos (DoE)
+* Estadística Industrial 1 (Nueva estructura curricular)
+* Estadística Industrial 2 (Nueva estructura curricular)
+* Diseño de experimentos (DoE) básico
 * Ingeniería de Calidad
 * Diseño de experimentos (DoE) avanzado
 * Entre otros relacionados con estadística y machine learning
