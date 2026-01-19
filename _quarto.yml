@@ -18,6 +18,7 @@ website:
         text: Recursos académicos
       - href: resume.qmd
         text: Currículum
+        target: "_blank"
       - href: logo.qmd
         text: Imagen personal
   page-footer: 
