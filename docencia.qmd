@@ -7,6 +7,10 @@ En esta sección encontrará recursos académicos organizados en pestañas para 
 
 ::: {.panel-tabset}
 
+# Infografías
+
+* [Comprendiendo los valores P](docencia/Comprendiendo el valor P.pdf){target="_blank"}
+
 # Recursos para la construcción de gráficos
 
 * [Seleccione el gráfico adecuado](https://www.data-to-viz.com/#explore){target="_blank"}

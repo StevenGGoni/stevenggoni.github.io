@@ -28,7 +28,8 @@ website:
     right: |
       License: [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
         
-
+resources: 
+  - docencia/Comprendiendo el valor P.pdf
 format:
   html:
     theme: flatly
