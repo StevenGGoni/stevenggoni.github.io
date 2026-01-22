@@ -34,6 +34,12 @@ Con esa identidad en mente, el logo incorpora un símbolo que representa cómo p
 
 De esta manera, este logo representa una forma de creatividad que no se limita a imaginar, sino que experimenta y aprende. La ingeniería industrial y la estadística buscan exactamente eso: entender los datos, modelar fenómenos, iterar soluciones y optimizar recursos. El cuervo encarna ese mismo método: medir el mundo, reducir la incertidumbre y mejorar procesos.
 
+::: {.light-content}
 ![](images/Cuervos_SinFondo-01.png)
+:::
+
+::: {.dark-content}
+![](images/Cuervos_SinFondo-02.png)
+:::
 
 Además, me encanta [Edgar Allan Poe](https://es.wikipedia.org/wiki/El_cuervo_(poema)){target="_blank"}.

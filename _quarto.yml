@@ -16,11 +16,30 @@ website:
         text: Inicio
       - href: docencia.qmd
         text: Recursos académicos
-      - href: resume.qmd
-        text: Currículum
-        target: _blank
-      - href: logo.qmd
-        text: Imagen personal
+      - text: Sobre mí
+        menu:
+        - href: resume.qmd
+          text: Currículum
+          target: _blank
+        - href: logo.qmd
+          text: Identidad visual
+    right: 
+      - text: '{{< iconify fa6-solid:envelope title="Correo electrónico">}}'
+        href: mailto:steven.garciagoni@ucr.ac.cr
+        aria-label: "Correo electrónico"
+      - text: '{{< iconify mdi:github title="GitHub" >}}'
+        href: https://github.com/StevenGGoni
+      - text: '{{< iconify mdi:linkedin title="LinkedIn" >}}'
+        href: https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile
+      - text: '{{< iconify fa6-brands:google-scholar title="Google Académico" >}}'
+        href: https://scholar.google.com/citations?user=X_3YTJ0AAAAJ&hl=es
+      - text: '{{< iconify simple-icons:orcid title="Orcid" >}}'
+        href: https://orcid.org/0000-0002-1822-5465
+      - text: '{{< iconify academicons:researchgate-square title="ResearchGate" >}}'
+        href: https://www.researchgate.net/profile/Steven-Garcia-Goni
+      - text: '{{< iconify academicons:cv-square title="CV" >}}'
+        href: https://stevenggoni.github.io/resume.pdf
+
   page-footer: 
     border: true
     left: |
@@ -32,7 +51,9 @@ resources:
   - docencia/Comprendiendo el valor P.pdf
 format:
   html:
-    theme: flatly
+    theme: 
+      light: cosmo
+      dark: cyborg
     toc: false
     lang: es-ES
     css: styles.css

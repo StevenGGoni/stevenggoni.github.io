@@ -42,13 +42,15 @@ Este sitio tiene como objetivo compartir mis proyectos y algunos recursos de ens
 
 Mi nombre es Steven García Goñi, soy de Costa Rica y por lo general las personas suelen llamarme Goñi. Tengo una Licenciatura en Ingeniería Industrial (2020) y una Maestría Académica en Estadística (2025), ambas por mi *alma mater*, la Universidad de Costa Rica. 
 
-Me gusta la lectura de libros clásicos, principalmente rusos, y filosofía. Mi autor favorito es Dostoievski. Recientemente estoy ampliando mis horizontes hacia la literatura japonesa. Además, me encanta la panadería, por lo que dedico buena parte de mi tiempo libre en experimentar en la elaboración de panes. 
+Me gusta la lectura de libros clásicos, principalmente rusos, y filosofía. Mi autor favorito es Dostoievski. Recientemente estoy ampliando mis horizontes hacia la literatura japonesa, mis comienzos estuvieron marcados por Poe y el realismo mágico. Además, me encanta la panadería, por lo que dedico buena parte de mi tiempo libre en experimentar en la elaboración de panes. 
 
-> **All models are wrong, but some are useful** - *George Box*
+> **All models are wrong, but some are useful** 
+> - *George Box*
 
-> **It's easy to lie with statistics, but it's hard to tell the truth without them** - *Andrejs Dunkels*
+> **It's easy to lie with statistics, but it's hard to tell the truth without them** > - *Andrejs Dunkels*
 
-> **Without data, you’re just another person with an opinion** - *W. Edwards Deming*
+> **Without data, you’re just another person with an opinion** 
+> - *W. Edwards Deming*
 
 ## ¿Qué he hecho? 
 
