@@ -34,7 +34,7 @@ En esta sección encontrará recursos académicos organizados en pestañas para 
 
 ## Simulaciones y visualizaciones interactivas `r fontawesome::fa("calculator")`
 
-* [Distribuciones discretas](https://stevenggoni.github.io/distribuciones-discretas/){target="_blank"}
+* [Distribuciones discretas interactivas](distribuciones-discretas.html){target="_blank"}
 
 * [Distribuciones continuas](https://stevenggoni.github.io/distribuciones-continuas/){target="_blank"}
 
