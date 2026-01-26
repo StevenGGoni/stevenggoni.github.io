@@ -1,0 +1,243 @@
+---
+title: "Distribuciones continuas interactivas"
+---
+
+## Instrucciones de uso
+
+Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros.
+
+Seleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.
+
+El gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada. Observe cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución.
+
+También puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.
+
+Por otro lado, también le permite comparar la forma de la distribución Normal estándar con la distribución t-Student para distintos valores de los grados de libertad. Ambas distribuciones aparecen en inferencia estadística, pero juegan roles distintos: la Normal representa un escenario con información completa y varianza conocida, mientras que la t-Student surge cuando la varianza se estima a partir de muestras pequeñas.
+
+La diferencia más visible está en la cola de la distribución. Para grados de libertad pequeños, la t-Student presenta colas más gruesas, lo que refleja mayor incertidumbre y una mayor probabilidad relativa de valores extremos. Conforme los grados de libertad aumentan, la t-Student se aproxima rápidamente a la Normal y ambas curvas se vuelven prácticamente indistinguibles.
+
+Use el deslizador para ajustar los grados de libertad y observe cómo cambia la forma de la t-Student respecto a la Normal estándar.
+
+```{=html}
+<div class="widget-box">
+
+<head>
+  <meta charset="utf-8">
+  
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+</head>
+<body>
+
+  <div style="max-width: 900px; margin: 0 auto;">
+
+  <label>
+    Seleccione una distribución:</label>
+    <select id="distribution" onchange="renderControls(); updatePlot();">
+      <option value="normal">Normal</option>
+      <option value="exponential">Exponencial</option>
+      <option value="gamma">Gamma</option>
+      <option value="weibull">Weibull</option>
+      <option value="lognormal">Lognormal</option>
+      <option value="beta">Beta</option>
+      <option value="normal_vs_t">Comparación: Normal vs t-Student</option>
+    </select>
+
+  <div id="controls"></div>
+  <div id="plot" style="width: 100%; height: 500px;"></div>
+
+  <script>
+    const COLOR_SINGLE = "#331114";   // para distribuciones individuales
+    const COLOR_T = "#331114";        // t-student
+    const COLOR_NORMAL = "#9BA1AB";   // normal en comparación
+
+    function controlSlider(id, label, min, max, value, step = 0.1) {
+      return `
+        <label>
+          ${label}:
+          <input type="range" id="${id}" min="${min}" max="${max}" value="${value}" step="${step}"
+            oninput="updatePlot(); document.getElementById('${id}-val').textContent = this.value;">
+          <span id="${id}-val">${value}</span>
+        </label><br>
+      `;
+    }
+
+    function renderControls() {
+      const dist = document.getElementById("distribution").value;
+      const controls = document.getElementById("controls");
+      let html = "";
+
+      if (dist === "normal") {
+        html += controlSlider("mu", "μ (media)", -10, 10, 0);
+        html += controlSlider("sigma", "σ (desviación)", 0.1, 10, 1);
+
+      } else if (dist === "exponential") {
+        html += controlSlider("lambda", "λ (tasa)", 0.1, 5, 1);
+
+      } else if (dist === "gamma") {
+        html += controlSlider("r", "r (forma)", 0.5, 10, 2, 0.1);
+        html += controlSlider("lambda", "λ (escala)", 0.1, 5, 1);
+
+      } else if (dist === "weibull") {
+        html += controlSlider("beta", "β (forma)", 0.1, 10, 2);
+        html += controlSlider("delta", "δ (escala)", 0.1, 10, 1);
+
+      } else if (dist === "lognormal") {
+        html += controlSlider("theta", "θ (media log)", -2, 2, 0);
+        html += controlSlider("omega", "ω (desv. log)", 0.1, 2, 0.5);
+
+      } else if (dist === "beta") {
+        html += controlSlider("alpha", "α", 0.5, 10, 2);
+        html += controlSlider("beta", "β", 0.5, 10, 2);
+
+      } else if (dist === "normal_vs_t") {
+        html += controlSlider("n", "Grados de libertad (n)", 1, 100, 10, 1);
+      }
+
+      controls.innerHTML = html;
+    }
+
+      function updatePlot() {
+        const dist = document.getElementById("distribution").value;
+        let x = [], y = [], traces = [];
+        let title = "";
+        let xmin = 0, xmax = 10;
+      
+        if (dist === "normal") {
+          const mu = parseFloat(document.getElementById("mu").value);
+          const sigma = parseFloat(document.getElementById("sigma").value);
+          xmin = mu - 4 * sigma;
+          xmax = mu + 4 * sigma;
+          for (let i = xmin; i <= xmax; i += 0.1) {
+            x.push(i);
+            y.push(jStat.normal.pdf(i, mu, sigma));
+          }
+          traces.push({
+            x, y, type:"scatter", mode:"lines",
+            line:{color:COLOR_SINGLE, width:2},
+            name:`Normal (μ=${mu}, σ=${sigma})`
+          });
+          title = `Normal (μ=${mu}, σ=${sigma})`;
+      
+        } else if (dist === "exponential") {
+          const lambda = parseFloat(document.getElementById("lambda").value);
+          xmax = 10 / lambda;
+          for (let i = 0; i <= xmax; i += 0.1) {
+            x.push(i);
+            y.push(jStat.exponential.pdf(i, lambda));
+          }
+          traces.push({
+            x, y, type:"scatter", mode:"lines",
+            line:{color:COLOR_SINGLE, width:2},
+            name:`Exponencial (λ=${lambda})`
+          });
+          title = `Exponencial (λ=${lambda})`;
+      
+        } else if (dist === "gamma") {
+          const r = parseFloat(document.getElementById("r").value);
+          const lambda = parseFloat(document.getElementById("lambda").value);
+          xmax = jStat.gamma.inv(0.995, r, lambda);
+          for (let i = 0; i <= xmax; i += 0.1) {
+            x.push(i);
+            y.push(jStat.gamma.pdf(i, r, lambda));
+          }
+          traces.push({
+            x, y, type:"scatter", mode:"lines",
+            line:{color:COLOR_SINGLE, width:2},
+            name:`Gamma (r=${r}, λ=${lambda})`
+          });
+          title = `Gamma (r=${r}, λ=${lambda})`;
+      
+        } else if (dist === "weibull") {
+          const beta = parseFloat(document.getElementById("beta").value);
+          const delta = parseFloat(document.getElementById("delta").value);
+          xmax = delta * 5;
+          for (let i = 0; i <= xmax; i += 0.1) {
+            x.push(i);
+            y.push(jStat.weibull.pdf(i, beta, delta));
+          }
+          traces.push({
+            x, y, type:"scatter", mode:"lines",
+            line:{color:COLOR_SINGLE, width:2},
+            name:`Weibull (β=${beta}, δ=${delta})`
+          });
+          title = `Weibull (β=${beta}, δ=${delta})`;
+      
+        } else if (dist === "lognormal") {
+          const theta = parseFloat(document.getElementById("theta").value);
+          const omega = parseFloat(document.getElementById("omega").value);
+          xmin = 0.01;
+          xmax = jStat.lognormal.inv(0.995, theta, omega);
+          for (let i = xmin; i <= xmax; i += 0.1) {
+            x.push(i);
+            y.push(jStat.lognormal.pdf(i, theta, omega));
+          }
+          traces.push({
+            x, y, type:"scatter", mode:"lines",
+            line:{color:COLOR_SINGLE, width:2},
+            name:`Lognormal (θ=${theta}, ω=${omega})`
+          });
+          title = `Lognormal (θ=${theta}, ω=${omega})`;
+      
+        } else if (dist === "beta") {
+          const alpha = parseFloat(document.getElementById("alpha").value);
+          const beta = parseFloat(document.getElementById("beta").value);
+          xmin = 0.001;
+          xmax = 0.999;
+          for (let i = xmin; i <= xmax; i += 0.01) {
+            x.push(i);
+            y.push(jStat.beta.pdf(i, alpha, beta));
+          }
+          traces.push({
+            x, y, type:"scatter", mode:"lines",
+            line:{color:COLOR_SINGLE, width:2},
+            name:`Beta (α=${alpha}, β=${beta})`
+          });
+          title = `Beta (α=${alpha}, β=${beta})`;
+      
+        } else if (dist === "normal_vs_t") {
+          const n = parseInt(document.getElementById("n").value);
+          let yNormal = [], yT = [];
+          for (let i = -5; i <= 5; i += 0.1) {
+            x.push(i);
+            yNormal.push(jStat.normal.pdf(i, 0, 1));
+            yT.push(jStat.studentt.pdf(i, n));
+          }
+          traces.push({
+            x, y: yNormal,
+            type:"scatter", mode:"lines",
+            line:{color:COLOR_NORMAL, width:2},
+            name:"Normal estándar"
+          });
+          traces.push({
+            x, y: yT,
+            type:"scatter", mode:"lines",
+            line:{color:COLOR_T, width:2},
+            name:`t-Student (n=${n})`
+          });
+          title = `Normal estándar vs t-Student (n=${n})`;
+        }
+      
+        Plotly.newPlot("plot", traces, {
+          title: {title, font: { family: "Crimson Pro" } },
+          xaxis: { title: "x", font: { family: "Aller" } },
+          yaxis: { title: "Densidad", font: { family: "Aller" } },
+          paper_bgcolor: 'rgba(0,0,0,0)',
+          plot_bgcolor: 'rgba(0,0,0,0)'
+        });
+      }
+
+    window.onload = function () {
+      renderControls();
+      updatePlot();
+    };
+  </script>
+
+  <footer style="margin-top: 2em; font-size: 0.8em; text-align: center; color: gray;">
+      Creado por Steven García Goñi <img src="images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026
+    </footer>
+  </div>
+</body>
+</div>
+```
+

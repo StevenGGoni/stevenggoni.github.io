@@ -43,7 +43,7 @@ website:
   page-footer: 
     border: true
     left: |
-      Creado con [{{< iconify simple-icons:quarto title="Quarto Logo" label="Quarto Logo" >}} Quarto](https://quarto.org).
+      Creado con [{{< iconify simple-icons:quarto title="Quarto Logo" label="Quarto Logo" >}} Quarto](https://quarto.org) y la ayuda de [{{< iconify simple-icons:openai title="ChatGPT Logo" label="ChatGPT Logo" >}} ChatGPT](https://chatgpt.com).
     right: |
       License: [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
         

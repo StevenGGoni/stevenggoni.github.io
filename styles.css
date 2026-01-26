@@ -205,6 +205,26 @@ input[type="range"]::-moz-range-track {
   border-radius: 50%;
 }
 
+/* Inputs numéricos dentro del widget */
+.widget-box input[type="number"] {
+background-color: #FFFFFF;
+color: #1a1a1a;
+border: 1px solid #33111455;
+border-radius: 6px;
+padding: 4px 6px;
+box-sizing: border-box;
+
+
+/* Evita forced-dark en navegadores */
+color-scheme: light;
+-webkit-text-fill-color: #1a1a1a;
+}
+
+.widget-box input[type="number"]:focus {
+border-color: #331114AA;
+outline: none;
+}
+
 #plot {
   background: #F7F9F9 !important;
 }
