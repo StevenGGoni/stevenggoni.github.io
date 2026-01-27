@@ -127,8 +127,12 @@ Observe cómo los parámetros afectan la posición del centro (moda), la dispers
           marker: { color: "#331114" }
         }], {
           title: { text: trace.title, font: { family: "Crimson Pro" } },
-          xaxis: { title: "x", font: { family: "Aller" } },
-          yaxis: { title: "Probabilidad", font: { family: "Aller" } },
+          xaxis: { title: "x", 
+          titlefont: { family: "Aller" },
+          tickfont: { family: "Aller" }},
+          yaxis: { title: "Probabilidad", 
+          titlefont: { family: "Aller" },
+          tickfont: { family: "Aller" }},
           paper_bgcolor: 'rgba(0,0,0,0)',
           plot_bgcolor: 'rgba(0,0,0,0)'
         });

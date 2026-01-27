@@ -573,8 +573,12 @@ ul.task-list li input[type="checkbox"] {
         Plotly.purge("plot_oc");
         Plotly.newPlot("plot_oc", plotData, {
           title:{ text:"Curvas OC Comparadas", font: { family: "Crimson Pro" }},
-          xaxis:{ title:"Fracción defectuosa (p)", font: { family: "Aller" } },
-          yaxis:{ title:"Probabilidad de aceptación", font: { family: "Aller" } },
+          xaxis:{ title:"Fracción defectuosa (p)", 
+            titlefont: { family: "Aller" },
+            tickfont: { family: "Aller" } },
+          yaxis:{ title:"Probabilidad de aceptación",
+            titlefont: { family: "Aller" },
+            tickfont: { family: "Aller" }},
           legend: { font: { family: "Aller" } },
           paper_bgcolor:'rgba(0,0,0,0)',
           plot_bgcolor:'rgba(0,0,0,0)',
@@ -677,8 +681,12 @@ ul.task-list li input[type="checkbox"] {
 
       Plotly.newPlot("plot_oc", oc_traces, {
         title: {text: `Curva OC (Pₐ) - ${titleMap[dist]}`, font: { family: "Crimson Pro" }},
-        xaxis: { title: "Fracción defectuosa (p)", font: { family: "Aller" } },
-        yaxis: { title: "Probabilidad de aceptación", font: { family: "Aller" } },
+        xaxis: { title: "Fracción defectuosa (p)", 
+        titlefont: { family: "Aller" },
+        tickfont: { family: "Aller" }},
+        yaxis: { title: "Probabilidad de aceptación", 
+        titlefont: { family: "Aller" },
+        tickfont: { family: "Aller" }},
         legend: { font: { family: "Aller" } },
         margin: { t: 40 },
         paper_bgcolor: 'rgba(0,0,0,0)',
@@ -693,8 +701,12 @@ ul.task-list li input[type="checkbox"] {
         line: { color: COLOR_SINGLE }
       }], {
         title: { text:`Curva AOQ - ${titleMap[dist]}`, font:{ family:"Crimson Pro" } },
-        xaxis:{ title:"Fracción defectuosa (p)", font:{ family:"Aller" } },
-        yaxis:{ title:"Average Outgoing Quality", font:{ family:"Aller" } },
+        xaxis:{ title:"Fracción defectuosa (p)", 
+        titlefont: { family: "Aller" },
+        tickfont: { family: "Aller" }},
+        yaxis:{ title:"Average Outgoing Quality", 
+        titlefont: { family: "Aller" },
+        tickfont: { family: "Aller" }},
         paper_bgcolor:'rgba(0,0,0,0)',
         plot_bgcolor:'rgba(0,0,0,0)',
         margin: { t: 40 }
@@ -708,8 +720,12 @@ ul.task-list li input[type="checkbox"] {
         line: { color: COLOR_SINGLE }
       }], {
         title:{ text:`Curva ITP - ${titleMap[dist]}`, font:{ family:"Crimson Pro" } },
-        xaxis:{ title:"Fracción defectuosa (p)", font:{ family:"Aller" } },
-        yaxis:{ title:"Índice de Tasa de Producción", font:{ family:"Aller" } },
+        xaxis:{ title:"Fracción defectuosa (p)", 
+        titlefont: { family: "Aller" },
+        tickfont: { family: "Aller" }},
+        yaxis:{ title:"Índice de Tasa de Producción", 
+        titlefont: { family: "Aller" },
+        tickfont: { family: "Aller" }},
         paper_bgcolor:'rgba(0,0,0,0)',
         plot_bgcolor:'rgba(0,0,0,0)',
         margin: { t: 40 }
