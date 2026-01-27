@@ -219,7 +219,7 @@ Use el deslizador para ajustar los grados de libertad y observe cómo cambia la 
         }
       
         Plotly.newPlot("plot", traces, {
-          title: {title, font: { family: "Crimson Pro" } },
+          title: {text: title, font: { family: "Crimson Pro" } },
           xaxis: { title: "x", font: { family: "Aller" } },
           yaxis: { title: "Densidad", font: { family: "Aller" } },
           paper_bgcolor: 'rgba(0,0,0,0)',

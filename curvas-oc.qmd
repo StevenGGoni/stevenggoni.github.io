@@ -1,23 +1,22 @@
 ---
-title: "Curvas CO [OC] - Muestreo por atributos"
+title: "Curvas OC - Muestreo por atributos"
 ---
 
 ## Instrucciones de uso
 
 Este visualizador permite explorar las curvas características de planes de muestreo por atributos. Al seleccionar una distribución (Binomial, Poisson o Hipergeométrica), puede ajustar los parámetros del plan y observar cómo cambian tres curvas asociadas:
 
-* La curva OC (Operating Characteristic) muestra la probabilidad de aceptar un lote en función de la fracción defectuosa. Ilustra el equilibrio entre el riesgo del productor (α) y el riesgo del consumidor (β).
+* La curva OC (*Operating Characteristic*) muestra la probabilidad de aceptar un lote en función de la fracción defectuosa. Ilustra el equilibrio entre el riesgo del productor (α) y el riesgo del consumidor (β).
 
-* La curva AOQ (Average Outgoing Quality) muestra la fracción defectuosa esperada después de inspección, útil para evaluar la calidad promedio de salida.
+* La curva AOQ (*Average Outgoing Quality*) muestra la fracción defectuosa esperada después de inspección, útil para evaluar la calidad promedio de salida.
 
-* La curva ITP (Inspección Total Promedio) presenta la relación entre la calidad del material entrante y el número de elementos que se deben inspeccionar, suponiendo que los lotes rechazados se inspeccionarán en un 100% y se realizará una inspección de rectificación de los elementos defectuosos. 
+* La curva ITP (*Inspección Total Promedio*) presenta la relación entre la calidad del material entrante y el número de elementos que se deben inspeccionar, suponiendo que los lotes rechazados se inspeccionarán en un 100% y se realizará una inspección de rectificación de los elementos defectuosos. 
 
-Ajuste los parámetros del plan: tamaño de muestra (n), nivel de aceptación (c), tamaño del lote (N) y los riesgos α y β. Cada modificación actualiza automáticamente las curvas.
+Ajuste los parámetros del plan: tamaño de muestra (*n*), nivel de aceptación (*c*), tamaño del lote (*N*) y los riesgos *α* y *β*. Cada modificación actualiza automáticamente las curvas.
 
-También se marcan los puntos AQL (Acceptable Quality Level) y LQL (Lot Tolerance Percent Defective) cuando corresponden, lo que facilita interpretar las regiones típicas de desempeño del plan.
+También se marcan los puntos AQL (*Acceptable Quality Level*) y LQL (*Lot Tolerance Percent Defective*) cuando corresponden, lo que facilita interpretar las regiones típicas de desempeño del plan.
 
-Observe cómo cada distribución induce una forma distinta de la curva OC:
-la Binomial modela defectos independientes en muestras moderadas; la Poisson simplifica el caso de eventos raros; y la Hipergeométrica considera inspección sin reemplazo, capturando la finitud del lote.
+Observe cómo cada distribución induce una forma distinta de la curva OC:la Binomial modela defectos independientes en muestras moderadas; la Poisson simplifica el caso de eventos raros; y la Hipergeométrica considera inspección sin reemplazo, capturando la finitud del lote.
 
 ```{=html}
 <div class="widget-box">
@@ -115,16 +114,17 @@ la Binomial modela defectos independientes en muestras moderadas; la Poisson sim
     <option value="binomial">Binomial</option>
     <option value="hypergeometric">Hipergeométrica</option>
     <option value="poisson">Poisson</option>
+    <option value="oc_only">Comparar (solo OC)</option>
   </select>
 
   <div id="controls"></div>
 
   <div id="container">
     <div id="plot_oc"></div>
-    <div class="plot-row">
-      <div id="plot_aoq" class="small-plot"></div>
-      <div id="plot_itp" class="small-plot"></div>
-    </div>
+      <div id="plots-extra" class="plot-row">
+        <div id="plot_aoq" class="small-plot"></div>
+        <div id="plot_itp" class="small-plot"></div>
+      </div>
   </div>
 
   <script>
@@ -161,10 +161,85 @@ la Binomial modela defectos independientes en muestras moderadas; la Poisson sim
       const N = parseInt(document.getElementById("N").value);
       const alpha = parseFloat(document.getElementById("alpha").value);
       const beta = parseFloat(document.getElementById("beta").value);
-
+      
       const x = [], Pa_y = [], AOQ_y = [], ITP_y = [];
       const step = 0.00001;
       const max_p = (dist === "hypergeometric") ? 1 : 0.2;
+      
+      // Manejo estético de contenedores según modo
+        const plotsExtra = document.getElementById("plots-extra");
+        const plotOC = document.getElementById("plot_oc");
+        
+        if (dist === "oc_only") {
+          // Modo comparación solo OC: ocultar AOQ e ITP
+          plotsExtra.style.display = "none";
+        
+          // Hacer que OC ocupe todo el ancho
+          plotOC.style.width = "95%";  
+          plotOC.style.height = "450px"; 
+        } else {
+          // Modo estándar: mostrar AOQ e ITP
+          plotsExtra.style.display = "flex";
+        
+          // Restaurar tamaño original de OC
+          plotOC.style.width = "95%";
+          plotOC.style.height = "350px";
+        }
+
+      if (dist === "oc_only") {
+        const curves = [
+          { name:"Binomial", color:"#1f77b4", dist:"binomial" },
+          { name:"Poisson", color:"#ff7f0e", dist:"poisson" },
+          { name:"Hipergeométrica", color:"#2ca02c", dist:"hypergeometric" }
+        ];
+      
+        let plotData = [];
+      
+        for (let curve of curves) {
+          const x = [], y = [];
+          for (let p = 0; p <= max_p; p += step) {
+            let Pa = 0;
+      
+            if (curve.dist === "binomial") {
+              for (let k = 0; k <= c; k++) Pa += jStat.binomial.pdf(k, n, p);
+            }
+      
+            if (curve.dist === "poisson") {
+              const lambda = n * p;
+              for (let k = 0; k <= c; k++) Pa += jStat.poisson.pdf(k, lambda);
+            }
+      
+            if (curve.dist === "hypergeometric") {
+              const D = Math.round(p * N);
+              for (let k = 0; k <= c; k++) Pa += jStat.hypgeom.pdf(k, N, D, n);
+            }
+      
+            x.push(p);
+            y.push(Pa);
+          }
+      
+          plotData.push({
+            x, y,
+            type:"scatter",
+            mode:"lines",
+            line:{ color:curve.color },
+            name: curve.name
+          });
+        }
+      
+        Plotly.newPlot("plot_oc", plotData, {
+          title:{ text:"Curvas OC Comparadas", font: { family: "Crimson Pro" }},
+          xaxis:{ title:"Fracción defectuosa (p)", font: { family: "Aller" } },
+          yaxis:{ title:"Probabilidad de aceptación", font: { family: "Aller" } },
+          paper_bgcolor:'rgba(0,0,0,0)',
+          plot_bgcolor:'rgba(0,0,0,0)',
+        });
+      
+        // Se limpian AOQ e ITP porque en este modo no van
+        Plotly.purge("plot_aoq");
+        Plotly.purge("plot_itp");
+        return;
+      }
 
       for (let p = 0.000; p <= max_p; p += step) {
         let Pa = 0;
