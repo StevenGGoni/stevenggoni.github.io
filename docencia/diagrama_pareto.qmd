@@ -5,6 +5,7 @@ format:
   html: 
     toc: true 
     collapse-sections: true 
+    embed-resources: true
 execute: 
   warning: false 
   message: false
@@ -27,7 +28,7 @@ library(qcc)
 
 En una fábrica de aparatos de línea blanca se han presentado problemas con la calidad de las lavadoras. Un grupo de mejora de la calidad decide revisar los problemas de la tina de las lavadoras, ya que con frecuencia es necesario retrabajarlas para que éste tenga una calidad aceptable. Para ello, estratificaron los problemas en la tina de lavadora por tipo de defecto, con la idea de localizar cual es desperfecto principal. A continuación, se muestra el análisis de los defectos encontrados en las tinas producidas en 5 meses.
 
-Realice un análisis de Paretto y obtenga conclusiones
+Realice un análisis de Pareto y obtenga conclusiones.
 
 ```{r}
 

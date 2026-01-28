@@ -50,10 +50,8 @@ website:
 resources: 
   - docencia/**
   - images/**
-  - styles.css
 format:
   html:
-    embed-resources: true
     grid: 
       body-width: 900px
     theme: 
