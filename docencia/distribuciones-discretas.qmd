@@ -142,7 +142,7 @@ Observe cómo los parámetros afectan la posición del centro (moda), la dispers
         updatePlot();
     </script>
       <footer style="margin-top: 2em; font-size: 0.8em; text-align: center; color: gray;">
-      Creado por Steven García Goñi <img src="images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026
+      Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026
     </footer>
     </div>
   </body>

@@ -1,18 +1,12 @@
 ---
 title: "Gráfico de Pareto"
-author: "Steven García Goñi"
-format:
-  html:
-    toc: true
-    toc-expand: false
-    code-fold: false
-    collapse-sections: true
-    collapse-open: false
-self-contained: true
-number-sections: true
-date: today
+date: today 
+format: 
+  html: 
+    toc: true 
+    collapse-sections: true 
 execute: 
-  warning: false
+  warning: false 
   message: false
 ---
 
@@ -43,7 +37,7 @@ Defecto <- c("Boca ovalada", "Perforaciones deformes",
 
 Frecuencia <- c(1200, 400, 180, 130, 40)
 
-data.frame(Defecto, Frecuencia) %>% 
+data.frame(Defecto, Frecuencia) %>%
   flextable::flextable(cwidth = 1.9) # este código es solo para presentar los datos
 
 ```
