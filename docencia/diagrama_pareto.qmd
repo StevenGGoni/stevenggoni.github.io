@@ -1,0 +1,68 @@
+---
+title: "Gráfico de Pareto"
+author: "Steven García Goñi"
+format:
+  html:
+    toc: true
+    toc-expand: false
+    code-fold: false
+    collapse-sections: true
+    collapse-open: false
+self-contained: true
+number-sections: true
+date: today
+execute: 
+  warning: false
+  message: false
+---
+
+## Introducción
+
+Este es un ejemplo sobre como llevar a cabo gráficos de Pareto en `R`, usando la librería `qcc`. Este ejercicio es extraído del material del profesor Ing. Manrique Araya Alfaro.
+
+## Librerías
+
+```{r}
+
+library(tidyverse)
+library(qcc)
+
+```
+
+## Ejercicio
+
+En una fábrica de aparatos de línea blanca se han presentado problemas con la calidad de las lavadoras. Un grupo de mejora de la calidad decide revisar los problemas de la tina de las lavadoras, ya que con frecuencia es necesario retrabajarlas para que éste tenga una calidad aceptable. Para ello, estratificaron los problemas en la tina de lavadora por tipo de defecto, con la idea de localizar cual es desperfecto principal. A continuación, se muestra el análisis de los defectos encontrados en las tinas producidas en 5 meses.
+
+Realice un análisis de Paretto y obtenga conclusiones
+
+```{r}
+
+Defecto <- c("Boca ovalada", "Perforaciones deformes",
+             "Boda despostillada", "Falta de fundente",
+             "Mal soldada")
+
+Frecuencia <- c(1200, 400, 180, 130, 40)
+
+data.frame(Defecto, Frecuencia) %>% 
+  flextable::flextable(cwidth = 1.9) # este código es solo para presentar los datos
+
+```
+
+Ahora, realizamos el diagrama de Pareto.
+
+```{r}
+
+# Sin nombres
+
+qcc::pareto.chart(Frecuencia)
+
+# Con nombres
+
+names(Frecuencia) <- Defecto
+
+qcc::pareto.chart(Frecuencia)
+
+
+```
+
+

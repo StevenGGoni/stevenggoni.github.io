@@ -32,7 +32,7 @@ about:
 
 :::{#hero-heading}
 
-Este sitio tiene como objetivo compartir mis proyectos y algunos recursos de enseñanza para los cursos que imparto, así como otros artículos sobre ingeniería, estadística y R. 
+Este sitio tiene como objetivo compartir mis proyectos y algunos recursos de enseñanza para los cursos que imparto, así como otros artículos sobre ingeniería, estadística y R (y algunas veces en Phyton). 
 
 # ¿Quién soy?
 

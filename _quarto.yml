@@ -52,6 +52,8 @@ resources:
   - images/**
 format:
   html:
+    grid: 
+      body-width: 900px
     theme: 
       light: cosmo
       dark: cyborg

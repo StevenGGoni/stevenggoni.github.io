@@ -17,7 +17,7 @@ Pero esto no es solo un logo, sino que es una representación que busca unir mis
 
 ::: {.img-right-wrap}
 ![Escudo histórico del valle de Goñi (Navarra)](images/Escudo_de_Goñi.svg)
-[Escudo histórico del valle de Goñi (Navarra), que le da origen al apellido](https://es.wikipedia.org/wiki/Go%C3%B1i){target="_blank"}
+[*<span style="font-size: 12px;">Escudo histórico del valle de Goñi (Navarra), que le da origen al apellido*</span>](https://es.wikipedia.org/wiki/Go%C3%B1i){target="_blank"}
 :::
 
 Por otro lado, [Goñi](https://apellidosvasconavarros.es/apellidos/goni/?v=324d8a1d3f81){target="_blank"} es mi segundo apellido y tradicionalmente a todos en nuestra familia se nos conoce por el mismo. Aun cuando llegue a lugares nuevos, poco a poco adoptan la costumbre de llamarnos Goñi, por lo que era esencial que formara parte de mi imagen personal. 
@@ -34,6 +34,8 @@ Con esa identidad en mente, el logo incorpora un símbolo que representa cómo p
 
 De esta manera, este logo representa una forma de creatividad que no se limita a imaginar, sino que experimenta y aprende. La ingeniería industrial y la estadística buscan exactamente eso: entender los datos, modelar fenómenos, iterar soluciones y optimizar recursos. El cuervo encarna ese mismo método: medir el mundo, reducir la incertidumbre y mejorar procesos.
 
+Además, me encanta [Edgar Allan Poe](https://es.wikipedia.org/wiki/El_cuervo_(poema)){target="_blank"}.
+
 ::: {.light-content}
 ![](images/Cuervos_SinFondo-01.png)
 :::
@@ -42,4 +44,3 @@ De esta manera, este logo representa una forma de creatividad que no se limita a
 ![](images/Cuervos_SinFondo-02.png)
 :::
 
-Además, me encanta [Edgar Allan Poe](https://es.wikipedia.org/wiki/El_cuervo_(poema)){target="_blank"}.
