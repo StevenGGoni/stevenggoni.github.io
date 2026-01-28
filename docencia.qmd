@@ -95,4 +95,4 @@ Encuentre otros gráficos y guías para su construcción.
 
 ### Ingeniería de Calidad
 
-* [Diagrama de Pareto](docencia/diagrama_pareto.html)
+* [Diagrama de Pareto](docencia/diagrama_pareto.html){target="_blank"} 

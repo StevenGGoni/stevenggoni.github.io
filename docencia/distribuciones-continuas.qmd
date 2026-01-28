@@ -240,3 +240,5 @@ La diferencia más visible está en la cola de la distribución. Para grados de 
 </div>
 ```
 
+![](images/logo.png)
+

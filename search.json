@@ -35,207 +35,18 @@
     "text": "Mis intereses de investigación se pueden resumir en dos grandes aristas:\n\nLa aplicación de estadística industrial\nEl diseño estadístico de experimentos (DoE)\n\nNo obstante, me considero una persona abierta a explorar nuevas áreas."
   },
   {
-    "objectID": "distribuciones-discretas.html",
-    "href": "distribuciones-discretas.html",
+    "objectID": "docencia/distribuciones-discretas.html",
+    "href": "docencia/distribuciones-discretas.html",
     "title": "Distribuciones discretas interactivas",
     "section": "",
     "text": "Este visualizador permite explorar distribuciones discretas y ver cómo cambian sus formas al modificar los parámetros. Seleccione primero una distribución en el menú. Luego ajuste los controles (deslizadores) para cambiar sus valores.\nEl gráfico se actualiza automáticamente y muestra la función de probabilidad correspondiente. Observe cómo los parámetros afectan la posición del centro (moda), la dispersión y la asimetría de cada distribución. También permite la descarga en formato PNG, y al posar el cursor sobre las barras se despliega el valor de probabilidad asociado a ese valor.\n\n\n  \n    \n    \n    \n    \n  \n  \n  \n  \n  \n    \n  \n    \n      Seleccione una distribución:\n      \n        Binomial\n        Binomial negativa\n        Poisson\n        Hipergeométrica\n      \n    \n  \n    \n    \n  \n    \n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
   },
   {
-    "objectID": "distribuciones-discretas.html#instrucciones-de-uso",
-    "href": "distribuciones-discretas.html#instrucciones-de-uso",
+    "objectID": "docencia/distribuciones-discretas.html#instrucciones-de-uso",
+    "href": "docencia/distribuciones-discretas.html#instrucciones-de-uso",
     "title": "Distribuciones discretas interactivas",
     "section": "",
     "text": "Este visualizador permite explorar distribuciones discretas y ver cómo cambian sus formas al modificar los parámetros. Seleccione primero una distribución en el menú. Luego ajuste los controles (deslizadores) para cambiar sus valores.\nEl gráfico se actualiza automáticamente y muestra la función de probabilidad correspondiente. Observe cómo los parámetros afectan la posición del centro (moda), la dispersión y la asimetría de cada distribución. También permite la descarga en formato PNG, y al posar el cursor sobre las barras se despliega el valor de probabilidad asociado a ese valor.\n\n\n  \n    \n    \n    \n    \n  \n  \n  \n  \n  \n    \n  \n    \n      Seleccione una distribución:\n      \n        Binomial\n        Binomial negativa\n        Poisson\n        Hipergeométrica\n      \n    \n  \n    \n    \n  \n    \n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
-  },
-  {
-    "objectID": "docencia.html",
-    "href": "docencia.html",
-    "title": "Recursos académicos",
-    "section": "",
-    "text": "En esta sección encontrará recursos académicos organizados en pestañas para facilitar su consulta. Incluyen materiales sobre visualización de datos, simulaciones interactivas y herramientas útiles para cursos de probabilidad, estadística e ingeniería.\nTodo el material, exceptuando aquel etiquetado como externo, es de mi autoría."
-  },
-  {
-    "objectID": "docencia.html#infografías",
-    "href": "docencia.html#infografías",
-    "title": "Recursos académicos",
-    "section": "Infografías ",
-    "text": "Infografías \n\nComprendiendo los valores P\n\nEsta infografía presenta la definición del valor P, criterios para su interpretación y una guía para la elección del nivel de significancia (\\(\\alpha\\))."
-  },
-  {
-    "objectID": "docencia.html#recursos-para-la-construcción-de-gráficos",
-    "href": "docencia.html#recursos-para-la-construcción-de-gráficos",
-    "title": "Recursos académicos",
-    "section": "Recursos para la construcción de gráficos ",
-    "text": "Recursos para la construcción de gráficos \n\nSeleccione el gráfico adecuado\n\n¿Qué tipo de datos tiene? Elija el tipo principal usando esta guía.\n\nEvite estos errores\n\nUna colección de advertencias para la visualización de datos\n\nOtro catálogo de visualización de datos\n\nEncuentre otros gráficos y guías para su construcción."
-  },
-  {
-    "objectID": "docencia.html#simulaciones-y-visualizaciones-interactivas",
-    "href": "docencia.html#simulaciones-y-visualizaciones-interactivas",
-    "title": "Recursos académicos",
-    "section": "Simulaciones y visualizaciones interactivas ",
-    "text": "Simulaciones y visualizaciones interactivas \n\nDistribuciones discretas interactivas\n\nEste visualizador le permite explorar las principales distribuciones discretas y ver como cambian sus formas al modificar los parámetros.\n\nDistribuciones continuas interactivas\n\nEs el equivalente continuo al visualizador anterior, pero además, presenta una comparación entre la distribución normal estándar (\\(z\\)) y la t-Student (\\(t\\)).\n\nCurvas OC para muestreo por atributos\n\nPropio del campo de la ingeniería de calidad y muestreo de aceptación, este visualizador muestra las curvas características de operación (OC) de planes de muestreo por atributos.\n\nEfecto de la asimetría sobre el TLC\n\nInspirado en algunas publicaciones científicas, aquí podrá encontrar como la asimetría juega un papel ponderante en el cumplimiento del teorema del límite central (TLC). Con este, busco ayudar a “derrumbar” el mito de que el TLC siempre se cumple con \\(n=30\\).\n\nCalculadora de distribuciones de probabilidad e intervalos de confianza - Aplicación externa\n\nDe Ph.D. Matt Bognar, aquí encuentra “mini aplicaciones” con las que puede resolver ejercicios de probabilidad y estadística.\n\nLey de los Grandes Números - Aplicación externa\n\nEs una explicación de Rafael Pérez Laserna sobre la Ley de los Grandes Números, que incluye una simulación de un dado que nos ayuda a comprenderla.\n\nTeorema del Límite Central (TLC) - Aplicación externa\n\nUno de los pilares de la estadística frecuentista, este enlace muestra una simulación del TLC que nos permite comprender el TLC de mejor forma.\n\nAplicación interactiva sobre los intervalos de confianza\n\nEste es un gist que al ejecutarse en R con sus respectivas librerías, despliega una aplicación local que permite comprender mejor el funcionamiento de los intervalos de confianza y como estos dependen del estimador puntual (aleatorio por el muestreo), el tamaño de muestra y el nivel de confianza seleccionado.\n\n# Correr en R (requiere shiny y tidyverse)\n\nlibrary(shiny)\nlibrary(tidyverse)\n\nrunGist(\"d47f4c205b531e3bed59d22b22cbfd13\")"
-  },
-  {
-    "objectID": "logo.html",
-    "href": "logo.html",
-    "title": "Personal brand",
-    "section": "",
-    "text": "El logo de esta página fue diseñado por Mónica Umaña, fundadora de Musaline Studio.\nPero esto no es solo un logo, sino que es una representación que busca unir mis dos pasiones académicas: la ingeniería y la estadística. Está inspirado en los hex stickers que son una tradición dentro de la comunidad de , principalmente por influencia del tidyverse, como detalla Hadley Wickham en este artículo. Como supongo que se sospecha,  es mi herramienta predilecta para el desarrollo de mis actividades académicas.\n\n Escudo histórico del valle de Goñi (Navarra), que le da origen al apellido\n\nPor otro lado, Goñi es mi segundo apellido y tradicionalmente a todos en nuestra familia se nos conoce por el mismo. Aun cuando llegue a lugares nuevos, poco a poco adoptan la costumbre de llamarnos Goñi, por lo que era esencial que formara parte de mi imagen personal.\nCon esa identidad en mente, el logo incorpora un símbolo que representa cómo pienso y trabajo: al cuervo (de la familia córvidos). Es un símbolo de la curiosidad y creatividad; observan, prueban y corrigen; en este sentido funcionan como ingenieros e ingenieras, ya que recogen información, elaboran estrategias y buscan mejores resultados; por ejemplo:\n\nLos cuervos de Nueva Caledonia (Corvus moneduloides) fabrican y ajustan herramientas para extraer alimento. Experimentos clásicos de Gavin R. Hunt y colaboradores muestran modificación y transporte de herramientas, lo que implica planificación. https://doi.org/10.1038/379249a0\nTrabajos de Alex Taylor y colaboradores muestran que los cuervos infieren relaciones causales simples, distinguen pruebas exitosas de fallidas y ajustan el comportamiento en consecuencia. https://doi.org/10.1073/pnas.1208724109\nEstudios sobre córvidos en ambientes urbanos muestran estrategias de minimización de esfuerzo, por ejemplo, investigaciones en Japón sobre cuervos que utilizan el tráfico para romper nueces. https://doi.org/10.3838/jjo.68.43\n\nDe esta manera, este logo representa una forma de creatividad que no se limita a imaginar, sino que experimenta y aprende. La ingeniería industrial y la estadística buscan exactamente eso: entender los datos, modelar fenómenos, iterar soluciones y optimizar recursos. El cuervo encarna ese mismo método: medir el mundo, reducir la incertidumbre y mejorar procesos.\nAdemás, me encanta Edgar Allan Poe."
-  },
-  {
-    "objectID": "distribuciones-continuas.html",
-    "href": "distribuciones-continuas.html",
-    "title": "Distribuciones continuas interactivas",
-    "section": "",
-    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros. Seleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada. Observe cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución. También puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.\nPor otro lado, también le permite comparar la forma de la distribución Normal estándar con la distribución t-Student para distintos valores de los grados de libertad. Ambas distribuciones aparecen en inferencia estadística, pero juegan papeles distintos: la Normal representa un escenario con información completa y varianza conocida, mientras que la t-Student surge cuando la varianza se estima a partir de muestras pequeñas.\nLa diferencia más visible está en la cola de la distribución. Para grados de libertad pequeños, la t-Student presenta colas más gruesas, lo que refleja mayor incertidumbre y una mayor probabilidad relativa de valores extremos. Conforme los grados de libertad aumentan, la t-Student se aproxima rápidamente a la Normal y ambas curvas se vuelven prácticamente indistinguibles. Use el deslizador para ajustar los grados de libertad y observe cómo cambia la forma de la t-Student respecto a la Normal estándar.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  \n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n      Comparación: Normal vs t-Student\n    \n\n  \n  \n\n  \n\n  \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
-  },
-  {
-    "objectID": "distribuciones-continuas.html#instrucciones-de-uso",
-    "href": "distribuciones-continuas.html#instrucciones-de-uso",
-    "title": "Distribuciones continuas interactivas",
-    "section": "",
-    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros. Seleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada. Observe cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución. También puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.\nPor otro lado, también le permite comparar la forma de la distribución Normal estándar con la distribución t-Student para distintos valores de los grados de libertad. Ambas distribuciones aparecen en inferencia estadística, pero juegan papeles distintos: la Normal representa un escenario con información completa y varianza conocida, mientras que la t-Student surge cuando la varianza se estima a partir de muestras pequeñas.\nLa diferencia más visible está en la cola de la distribución. Para grados de libertad pequeños, la t-Student presenta colas más gruesas, lo que refleja mayor incertidumbre y una mayor probabilidad relativa de valores extremos. Conforme los grados de libertad aumentan, la t-Student se aproxima rápidamente a la Normal y ambas curvas se vuelven prácticamente indistinguibles. Use el deslizador para ajustar los grados de libertad y observe cómo cambia la forma de la t-Student respecto a la Normal estándar.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  \n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n      Comparación: Normal vs t-Student\n    \n\n  \n  \n\n  \n\n  \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
-  },
-  {
-    "objectID": "distribuciones-discretas.html#chat",
-    "href": "distribuciones-discretas.html#chat",
-    "title": "Distribuciones discretas interactivas",
-    "section": "Chat",
-    "text": "Chat\n\n\n  \n  \n\n  Seleccione una distribución:\n  \n    Normal\n    Exponencial\n    Gamma\n    Weibull\n    Lognormal\n    Beta\n  \n\n  \n\n  \n    Percentil (x):\n    \n    1"
-  },
-  {
-    "objectID": "distribuciones-continuas.html#chat",
-    "href": "distribuciones-continuas.html#chat",
-    "title": "Distribuciones continuas interactivas",
-    "section": "Chat",
-    "text": "Chat\n\n  \n  \n  \n  \n    \n    \n    \n    \n  \n  \n  \n  \n  \n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n    \n  \n    \n  \n    \n      Percentil (x):\n      \n      1\n    \n  \n    \n  \n    \n  \n    \n  \n    \n        Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
-  },
-  {
-    "objectID": "distribuciones-continuas.html#versión-original",
-    "href": "distribuciones-continuas.html#versión-original",
-    "title": "Distribuciones continuas interactivas",
-    "section": "Versión original",
-    "text": "Versión original\n\n\n\n  \n  \n\n  Seleccione una distribución:\n  \n    Normal\n    Exponencial\n    Gamma\n    Weibull\n    Lognormal\n    Beta\n  \n\n  \n\n  \n    Percentil (x):\n    \n    1\n  \n\n  \n  \n\n  \n\n\n\n\nCambios\nTest test"
-  },
-  {
-    "objectID": "distribuciones-continuas.html#instrucciones-de-uso-2",
-    "href": "distribuciones-continuas.html#instrucciones-de-uso-2",
-    "title": "Distribuciones continuas interactivas",
-    "section": "",
-    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros.\nSeleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada.\nEl deslizador de percentil \\((x)\\) permite sombrear el área bajo la curva hasta un valor específico, mostrando la probabilidad acumulada \\(P(X≤x)\\).\nObserve cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución.\nTambién puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.\n\n\n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n    \n  \n    \n  \n    \n      Percentil (x):\n      \n      1"
-  },
-  {
-    "objectID": "distribuciones-continuas.html#instrucciones-de-uso-3",
-    "href": "distribuciones-continuas.html#instrucciones-de-uso-3",
-    "title": "Distribuciones continuas interactivas",
-    "section": "",
-    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros.\nSeleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada.\nEl deslizador de percentil \\((x)\\) permite sombrear el área bajo la curva hasta un valor específico, mostrando la probabilidad acumulada \\(P(X≤x)\\).\nObserve cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución.\nTambién puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.\n\n\n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n    \n  \n    \n  \n    \n      Percentil (x):\n      \n      1\n    \n  \n    \n  \n    \n  \n    \n  \n\n\n\nCreado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 202622222"
-  },
-  {
-    "objectID": "distribuciones-continuas.html#comparación-entre-la-distribución-normal-y-la-t-de-student",
-    "href": "distribuciones-continuas.html#comparación-entre-la-distribución-normal-y-la-t-de-student",
-    "title": "Distribuciones continuas interactivas",
-    "section": "Comparación entre la distribución normal y la t de Student",
-    "text": "Comparación entre la distribución normal y la t de Student\nEste visualizador permite comparar la forma de la distribución Normal estándar con la distribución t-Student para distintos valores de los grados de libertad. Ambas distribuciones aparecen en inferencia estadística, pero juegan roles distintos: la Normal representa un escenario con información completa y varianza conocida, mientras que la t-Student surge cuando la varianza se estima a partir de muestras pequeñas.\nLa diferencia más visible está en la cola de la distribución. Para grados de libertad pequeños, la t-Student presenta colas más gruesas, lo que refleja mayor incertidumbre y una mayor probabilidad relativa de valores extremos. Conforme los grados de libertad aumentan, la t-Student se aproxima rápidamente a la Normal y ambas curvas se vuelven prácticamente indistinguibles.\nUse el deslizador para ajustar los grados de libertad y observe cómo cambia la forma de la t-Student respecto a la Normal estándar.\n\n\n  \n    \n    Comparación: Normal Estándar vs t-Student\n    \n    \n  \n  \n    Comparación: Normal estándar vs t-Student\n  \n    \n      Grados de libertad (n):\n      \n      10\n    \n  \n    \n  \n    \n  \n    \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
-  },
-  {
-    "objectID": "distribuciones-continuas.html#test-de-las-discretas",
-    "href": "distribuciones-continuas.html#test-de-las-discretas",
-    "title": "Distribuciones continuas interactivas",
-    "section": "Test de las discretas",
-    "text": "Test de las discretas\n\n\n  \n    \n    \n    \n    \n  \n  \n  \n  \n  \n    \n  \n    \n      Seleccione una distribución:\n      \n        Binomial\n        Binomial negativa\n        Poisson\n        Hipergeométrica\n      \n    \n  \n    \n    \n  \n    \n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
-  },
-  {
-    "objectID": "distribuciones-continuas.html#instrucciones-de-uso-4",
-    "href": "distribuciones-continuas.html#instrucciones-de-uso-4",
-    "title": "Distribuciones continuas interactivas",
-    "section": "",
-    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros.\nSeleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada.\nEl deslizador de percentil \\((x)\\) permite sombrear el área bajo la curva hasta un valor específico, mostrando la probabilidad acumulada \\(P(X≤x)\\).\nObserve cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución.\nTambién puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto."
-  },
-  {
-    "objectID": "Pruebas.html",
-    "href": "Pruebas.html",
-    "title": "Pruebas",
-    "section": "",
-    "text": "Comparación: Normal Estándar vs t-Student\n  \n  \n\n\n  \n\n  \n    Grados de libertad (n):\n    \n    10\n  \n\n  \n\n  \n\n  \n    Creado por Ing. Steven García Goñi · Para la Cátedra de II-0306 Probabilidad y Estadística, de la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Abril 2025"
-  },
-  {
-    "objectID": "distribuciones-continuas.html#test-continuas",
-    "href": "distribuciones-continuas.html#test-continuas",
-    "title": "Distribuciones continuas interactivas",
-    "section": "Test continuas",
-    "text": "Test continuas\n\n\n    \n    \n\n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n    \n  \n    \n  \n    \n      Percentil (x):\n      \n      1\n    \n  \n    \n  \n    \n  \n    \n  \n\n\n\nCreado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 202622222"
-  },
-  {
-    "objectID": "Pruebas.html#comparación-entre-la-distribución-normal-y-la-t-de-student",
-    "href": "Pruebas.html#comparación-entre-la-distribución-normal-y-la-t-de-student",
-    "title": "Pruebas",
-    "section": "",
-    "text": "Comparación: Normal Estándar vs t-Student\n  \n  \n\n\n  \n\n  \n    Grados de libertad (n):\n    \n    10\n  \n\n  \n\n  \n\n  \n    Creado por Ing. Steven García Goñi · Para la Cátedra de II-0306 Probabilidad y Estadística, de la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Abril 2025"
-  },
-  {
-    "objectID": "Pruebas.html#comparación-entre-la-distribución-normal-y-la-t-de-student2",
-    "href": "Pruebas.html#comparación-entre-la-distribución-normal-y-la-t-de-student2",
-    "title": "Pruebas",
-    "section": "",
-    "text": "Comparación: Normal Estándar vs t-Student\n  \n  \n\n\n  \n\n  \n    Grados de libertad (n):\n    \n    10\n  \n\n  \n\n  \n\n  \n    Creado por Ing. Steven García Goñi · Para la Cátedra de II-0306 Probabilidad y Estadística, de la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Abril 2025"
-  },
-  {
-    "objectID": "distribuciones-continuas.html#instrucciones-de-uso-5",
-    "href": "distribuciones-continuas.html#instrucciones-de-uso-5",
-    "title": "Distribuciones continuas interactivas",
-    "section": "",
-    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros.\nSeleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada.\nEl deslizador de percentil \\((x)\\) permite sombrear el área bajo la curva hasta un valor específico, mostrando la probabilidad acumulada \\(P(X≤x)\\).\nObserve cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución.\nTambién puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto."
-  },
-  {
-    "objectID": "otro test.html",
-    "href": "otro test.html",
-    "title": "otra prueba",
-    "section": "",
-    "text": "Distribuciones con sombreado CDF\n\n\n\n\n\n\n\n  Distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Lognormal\n      Beta\n      Normal vs t\n      t-Student"
-  },
-  {
-    "objectID": "otro test.html#cambios",
-    "href": "otro test.html#cambios",
-    "title": "otra prueba",
-    "section": "",
-    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros.\nSeleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada.\nEl deslizador de percentil (x) permite sombrear el área bajo la curva hasta un valor específico, mostrando la probabilidad acumulada P(X≤x).\nObserve cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución.\nTambién puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.\n\n\n  \n    \n    \n    \n    \n  \n  \n  \n  \n  \n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n    \n  \n    \n  \n    \n      Percentil (x):\n      \n      1\n    \n  \n    \n  \n    \n  \n    \n  \n    \n        Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
-  },
-  {
-    "objectID": "otro test.html#instrucciones-de-uso",
-    "href": "otro test.html#instrucciones-de-uso",
-    "title": "otra prueba",
-    "section": "",
-    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros.\nSeleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada.\nEl deslizador de percentil \\((x)\\) permite sombrear el área bajo la curva hasta un valor específico, mostrando la probabilidad acumulada \\(P(X≤x)\\).\nObserve cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución.\nTambién puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.\n\n\n  \n    \n    \n    \n    \n  \n  \n  \n  \n  \n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n    \n  \n    \n  \n    \n      Percentil (x):\n      \n      1\n    \n  \n    \n  \n    \n  \n    \n  \n    \n        Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
-  },
-  {
-    "objectID": "distribuciones-continuas.html#introducción",
-    "href": "distribuciones-continuas.html#introducción",
-    "title": "Distribuciones continuas interactivas",
-    "section": "",
-    "text": "En esta página encontrará dos aplicaciones:\n\nDistribuciones continuas interactivas\n\nEn la que podrá seleccionar entre diferentes distribuciones continuas clásicas y modificar sus parámetros para observar cambios en la forma de la misma.\n\n[Comparación entre la distribución normal y la t de Student]\n\nCon esta, podrá observar como a mayor cantidad de grados de libertad, mejor es la aproximación entre ambas ditribuciones."
-  },
-  {
-    "objectID": "distribuciones-continuas.html#distribuciones-continuas-interactivas",
-    "href": "distribuciones-continuas.html#distribuciones-continuas-interactivas",
-    "title": "Distribuciones continuas interactivas",
-    "section": "Distribuciones continuas interactivas",
-    "text": "Distribuciones continuas interactivas\nEste visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros.\nSeleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada.\nEl deslizador de percentil (x) permite sombrear el área bajo la curva hasta un valor específico, mostrando la probabilidad acumulada P(X≤x).\nObserve cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución.\nTambién puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.\n\n\n\n  \n  \n  \n\n\n\n  \n\n  \n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n      Comparación: Normal vs t-Student\n    \n\n  \n  \n\n  \n\n  \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
-  },
-  {
-    "objectID": "curvas-oc.html",
-    "href": "curvas-oc.html",
-    "title": "Curvas OC - Muestreo por atributos",
-    "section": "",
-    "text": "Este visualizador permite explorar las curvas características de planes de muestreo por atributos. Al seleccionar una distribución (Binomial, Poisson o Hipergeométrica), puede ajustar los parámetros del plan y observar cómo cambian tres curvas asociadas:\n\nLa curva OC (Operating Characteristic) muestra la probabilidad de aceptar un lote en función de la fracción defectuosa. Ilustra el equilibrio entre el riesgo del productor (α) y el riesgo del consumidor (β).\nLa curva AOQ (Average Outgoing Quality) muestra la fracción defectuosa esperada después de inspección, útil para evaluar la calidad promedio de salida.\nLa curva ITP (Inspección Total Promedio) presenta la relación entre la calidad del material entrante y el número de elementos que se deben inspeccionar, suponiendo que los lotes rechazados se inspeccionarán en un 100% y se realizará una inspección de rectificación de los elementos defectuosos.\n\nAjuste los parámetros del plan: tamaño de muestra (n), nivel de aceptación (c), tamaño del lote (N) y los riesgos α y β. Cada modificación actualiza automáticamente las curvas. También se marcan los puntos AQL (Acceptable Quality Level) y LQL (Lot Tolerance Percent Defective) cuando corresponden, lo que facilita interpretar las regiones típicas de desempeño del plan.\nObserve cómo cada distribución induce una forma distinta de la curva OC:la Binomial modela defectos independientes en muestras moderadas; la Poisson simplifica el caso de eventos raros; y la Hipergeométrica considera inspección sin reemplazo, capturando la finitud del lote.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  Seleccione una distribución:\n  \n    Binomial\n    Hipergeométrica\n    Poisson\n    Comparar (solo OC)\n  \n\n  \n\n  \n    \n      \n        \n        \n      \n  \n\n  \n\n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
-  },
-  {
-    "objectID": "curvas-oc.html#instrucciones-de-uso",
-    "href": "curvas-oc.html#instrucciones-de-uso",
-    "title": "Curvas OC - Muestreo por atributos",
-    "section": "",
-    "text": "Este visualizador permite explorar las curvas características de planes de muestreo por atributos. Al seleccionar una distribución (Binomial, Poisson o Hipergeométrica), puede ajustar los parámetros del plan y observar cómo cambian tres curvas asociadas:\n\nLa curva OC (Operating Characteristic) muestra la probabilidad de aceptar un lote en función de la fracción defectuosa. Ilustra el equilibrio entre el riesgo del productor (α) y el riesgo del consumidor (β).\nLa curva AOQ (Average Outgoing Quality) muestra la fracción defectuosa esperada después de inspección, útil para evaluar la calidad promedio de salida.\nLa curva ITP (Inspección Total Promedio) presenta la relación entre la calidad del material entrante y el número de elementos que se deben inspeccionar, suponiendo que los lotes rechazados se inspeccionarán en un 100% y se realizará una inspección de rectificación de los elementos defectuosos.\n\nAjuste los parámetros del plan: tamaño de muestra (n), nivel de aceptación (c), tamaño del lote (N) y los riesgos α y β. Cada modificación actualiza automáticamente las curvas. También se marcan los puntos AQL (Acceptable Quality Level) y LQL (Lot Tolerance Percent Defective) cuando corresponden, lo que facilita interpretar las regiones típicas de desempeño del plan.\nObserve cómo cada distribución induce una forma distinta de la curva OC:la Binomial modela defectos independientes en muestras moderadas; la Poisson simplifica el caso de eventos raros; y la Hipergeométrica considera inspección sin reemplazo, capturando la finitud del lote.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  Seleccione una distribución:\n  \n    Binomial\n    Hipergeométrica\n    Poisson\n    Comparar (solo OC)\n  \n\n  \n\n  \n    \n      \n        \n        \n      \n  \n\n  \n\n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
   },
   {
     "objectID": "docencia/diagrama_pareto.html",
@@ -266,11 +77,60 @@
     "text": "3 Ejercicio\nEn una fábrica de aparatos de línea blanca se han presentado problemas con la calidad de las lavadoras. Un grupo de mejora de la calidad decide revisar los problemas de la tina de las lavadoras, ya que con frecuencia es necesario retrabajarlas para que éste tenga una calidad aceptable. Para ello, estratificaron los problemas en la tina de lavadora por tipo de defecto, con la idea de localizar cual es desperfecto principal. A continuación, se muestra el análisis de los defectos encontrados en las tinas producidas en 5 meses.\nRealice un análisis de Paretto y obtenga conclusiones\n\nDefecto &lt;- c(\"Boca ovalada\", \"Perforaciones deformes\",\n             \"Boda despostillada\", \"Falta de fundente\",\n             \"Mal soldada\")\n\nFrecuencia &lt;- c(1200, 400, 180, 130, 40)\n\ndata.frame(Defecto, Frecuencia) %&gt;% \n  flextable::flextable(cwidth = 1.9) # este código es solo para presentar los datos\n\nDefectoFrecuenciaBoca ovalada1,200Perforaciones deformes400Boda despostillada180Falta de fundente130Mal soldada40\n\n\nAhora, realizamos el diagrama de Pareto.\n\n# Sin nombres\n\nqcc::pareto.chart(Frecuencia)\n\n\n\n\n\n\n\n\n   \nPareto chart analysis for Frecuencia\n      Frequency   Cum.Freq.  Percentage Cum.Percent.\n  A 1200.000000 1200.000000   61.538462    61.538462\n  B  400.000000 1600.000000   20.512821    82.051282\n  C  180.000000 1780.000000    9.230769    91.282051\n  D  130.000000 1910.000000    6.666667    97.948718\n  E   40.000000 1950.000000    2.051282   100.000000\n\n# Con nombres\n\nnames(Frecuencia) &lt;- Defecto\n\nqcc::pareto.chart(Frecuencia)\n\n\n\n\n\n\n\n\n                        \nPareto chart analysis for Frecuencia\n                           Frequency   Cum.Freq.  Percentage Cum.Percent.\n  Boca ovalada           1200.000000 1200.000000   61.538462    61.538462\n  Perforaciones deformes  400.000000 1600.000000   20.512821    82.051282\n  Boda despostillada      180.000000 1780.000000    9.230769    91.282051\n  Falta de fundente       130.000000 1910.000000    6.666667    97.948718\n  Mal soldada              40.000000 1950.000000    2.051282   100.000000"
   },
   {
-    "objectID": "docencia.html#tutoriales-en-r",
-    "href": "docencia.html#tutoriales-en-r",
+    "objectID": "docencia/curvas-oc.html",
+    "href": "docencia/curvas-oc.html",
+    "title": "Curvas OC - Muestreo por atributos",
+    "section": "",
+    "text": "Este visualizador permite explorar las curvas características de planes de muestreo por atributos. Al seleccionar una distribución (Binomial, Poisson o Hipergeométrica), puede ajustar los parámetros del plan y observar cómo cambian tres curvas asociadas:\n\nLa curva OC (Operating Characteristic) muestra la probabilidad de aceptar un lote en función de la fracción defectuosa. Ilustra el equilibrio entre el riesgo del productor (α) y el riesgo del consumidor (β).\nLa curva AOQ (Average Outgoing Quality) muestra la fracción defectuosa esperada después de inspección, útil para evaluar la calidad promedio de salida.\nLa curva ITP (Inspección Total Promedio) presenta la relación entre la calidad del material entrante y el número de elementos que se deben inspeccionar, suponiendo que los lotes rechazados se inspeccionarán en un 100% y se realizará una inspección de rectificación de los elementos defectuosos.\n\nAjuste los parámetros del plan: tamaño de muestra (n), nivel de aceptación (c), tamaño del lote (N) y los riesgos α y β. Cada modificación actualiza automáticamente las curvas. También se marcan los puntos AQL (Acceptable Quality Level) y LQL (Lot Tolerance Percent Defective) cuando corresponden, lo que facilita interpretar las regiones típicas de desempeño del plan.\nObserve cómo cada distribución induce una forma distinta de la curva OC:la Binomial modela defectos independientes en muestras moderadas; la Poisson simplifica el caso de eventos raros; y la Hipergeométrica considera inspección sin reemplazo, capturando la finitud del lote.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  Seleccione una distribución:\n  \n    Binomial\n    Hipergeométrica\n    Poisson\n    Comparar (solo OC)\n  \n\n  \n\n  \n    \n      \n        \n        \n      \n  \n\n  \n\n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
+  },
+  {
+    "objectID": "docencia/curvas-oc.html#instrucciones-de-uso",
+    "href": "docencia/curvas-oc.html#instrucciones-de-uso",
+    "title": "Curvas OC - Muestreo por atributos",
+    "section": "",
+    "text": "Este visualizador permite explorar las curvas características de planes de muestreo por atributos. Al seleccionar una distribución (Binomial, Poisson o Hipergeométrica), puede ajustar los parámetros del plan y observar cómo cambian tres curvas asociadas:\n\nLa curva OC (Operating Characteristic) muestra la probabilidad de aceptar un lote en función de la fracción defectuosa. Ilustra el equilibrio entre el riesgo del productor (α) y el riesgo del consumidor (β).\nLa curva AOQ (Average Outgoing Quality) muestra la fracción defectuosa esperada después de inspección, útil para evaluar la calidad promedio de salida.\nLa curva ITP (Inspección Total Promedio) presenta la relación entre la calidad del material entrante y el número de elementos que se deben inspeccionar, suponiendo que los lotes rechazados se inspeccionarán en un 100% y se realizará una inspección de rectificación de los elementos defectuosos.\n\nAjuste los parámetros del plan: tamaño de muestra (n), nivel de aceptación (c), tamaño del lote (N) y los riesgos α y β. Cada modificación actualiza automáticamente las curvas. También se marcan los puntos AQL (Acceptable Quality Level) y LQL (Lot Tolerance Percent Defective) cuando corresponden, lo que facilita interpretar las regiones típicas de desempeño del plan.\nObserve cómo cada distribución induce una forma distinta de la curva OC:la Binomial modela defectos independientes en muestras moderadas; la Poisson simplifica el caso de eventos raros; y la Hipergeométrica considera inspección sin reemplazo, capturando la finitud del lote.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  Seleccione una distribución:\n  \n    Binomial\n    Hipergeométrica\n    Poisson\n    Comparar (solo OC)\n  \n\n  \n\n  \n    \n      \n        \n        \n      \n  \n\n  \n\n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
+  },
+  {
+    "objectID": "docencia/distribuciones-continuas.html",
+    "href": "docencia/distribuciones-continuas.html",
+    "title": "Distribuciones continuas interactivas",
+    "section": "",
+    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros. Seleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada. Observe cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución. También puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.\nPor otro lado, también le permite comparar la forma de la distribución Normal estándar con la distribución t-Student para distintos valores de los grados de libertad. Ambas distribuciones aparecen en inferencia estadística, pero juegan papeles distintos: la Normal representa un escenario con información completa y varianza conocida, mientras que la t-Student surge cuando la varianza se estima a partir de muestras pequeñas.\nLa diferencia más visible está en la cola de la distribución. Para grados de libertad pequeños, la t-Student presenta colas más gruesas, lo que refleja mayor incertidumbre y una mayor probabilidad relativa de valores extremos. Conforme los grados de libertad aumentan, la t-Student se aproxima rápidamente a la Normal y ambas curvas se vuelven prácticamente indistinguibles. Use el deslizador para ajustar los grados de libertad y observe cómo cambia la forma de la t-Student respecto a la Normal estándar.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  \n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n      Comparación: Normal vs t-Student\n    \n\n  \n  \n\n  \n\n  \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
+  },
+  {
+    "objectID": "docencia/distribuciones-continuas.html#instrucciones-de-uso",
+    "href": "docencia/distribuciones-continuas.html#instrucciones-de-uso",
+    "title": "Distribuciones continuas interactivas",
+    "section": "",
+    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros. Seleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada. Observe cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución. También puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.\nPor otro lado, también le permite comparar la forma de la distribución Normal estándar con la distribución t-Student para distintos valores de los grados de libertad. Ambas distribuciones aparecen en inferencia estadística, pero juegan papeles distintos: la Normal representa un escenario con información completa y varianza conocida, mientras que la t-Student surge cuando la varianza se estima a partir de muestras pequeñas.\nLa diferencia más visible está en la cola de la distribución. Para grados de libertad pequeños, la t-Student presenta colas más gruesas, lo que refleja mayor incertidumbre y una mayor probabilidad relativa de valores extremos. Conforme los grados de libertad aumentan, la t-Student se aproxima rápidamente a la Normal y ambas curvas se vuelven prácticamente indistinguibles. Use el deslizador para ajustar los grados de libertad y observe cómo cambia la forma de la t-Student respecto a la Normal estándar.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  \n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n      Comparación: Normal vs t-Student\n    \n\n  \n  \n\n  \n\n  \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
+  },
+  {
+    "objectID": "docencia.html",
+    "href": "docencia.html",
     "title": "Recursos académicos",
-    "section": "Tutoriales en R",
-    "text": "Tutoriales en R\n\nAspectos generales\n\n\nEstadística\n\n\nIngeniería de Calidad\n\nDiagrama de Pareto"
+    "section": "",
+    "text": "En esta sección encontrará recursos académicos organizados en pestañas para facilitar su consulta. Incluyen materiales sobre visualización de datos, simulaciones interactivas y herramientas útiles para cursos de probabilidad, estadística e ingeniería.\nTodo el material, exceptuando aquel etiquetado como externo, es de mi autoría."
+  },
+  {
+    "objectID": "docencia.html#infografías",
+    "href": "docencia.html#infografías",
+    "title": "Recursos académicos",
+    "section": "Infografías ",
+    "text": "Infografías \n\nComprendiendo los valores P\n\nEsta infografía presenta la definición del valor P, criterios para su interpretación y una guía para la elección del nivel de significancia (\\(\\alpha\\))."
+  },
+  {
+    "objectID": "docencia.html#simulaciones-y-visualizaciones-interactivas",
+    "href": "docencia.html#simulaciones-y-visualizaciones-interactivas",
+    "title": "Recursos académicos",
+    "section": "Simulaciones y visualizaciones interactivas ",
+    "text": "Simulaciones y visualizaciones interactivas \n\nDistribuciones discretas interactivas\n\nEste visualizador le permite explorar las principales distribuciones discretas y ver como cambian sus formas al modificar los parámetros.\n\nDistribuciones continuas interactivas\n\nEs el equivalente continuo al visualizador anterior, pero además, presenta una comparación entre la distribución normal estándar (\\(z\\)) y la t-Student (\\(t\\)).\n\nCurvas OC para muestreo por atributos\n\nPropio del campo de la ingeniería de calidad y muestreo de aceptación, este visualizador muestra las curvas características de operación (OC) de planes de muestreo por atributos.\n\nEfecto de la asimetría sobre el TLC\n\nInspirado en algunas publicaciones científicas, aquí podrá encontrar como la asimetría juega un papel ponderante en el cumplimiento del teorema del límite central (TLC). Con este, busco ayudar a “derrumbar” el mito de que el TLC siempre se cumple con \\(n=30\\).\n\nCalculadora de distribuciones de probabilidad e intervalos de confianza - Aplicación externa\n\nDe Ph.D. Matt Bognar, aquí encuentra “mini aplicaciones” con las que puede resolver ejercicios de probabilidad y estadística.\n\nLey de los Grandes Números - Aplicación externa\n\nEs una explicación de Rafael Pérez Laserna sobre la Ley de los Grandes Números, que incluye una simulación de un dado que nos ayuda a comprenderla.\n\nTeorema del Límite Central (TLC) - Aplicación externa\n\nUno de los pilares de la estadística frecuentista, este enlace muestra una simulación del TLC que nos permite comprender el TLC de mejor forma.\n\nAplicación interactiva sobre los intervalos de confianza\n\nEste es un gist que al ejecutarse en R con sus respectivas librerías, despliega una aplicación local que permite comprender mejor el funcionamiento de los intervalos de confianza y como estos dependen del estimador puntual (aleatorio por el muestreo), el tamaño de muestra y el nivel de confianza seleccionado.\n\n# Correr en R (requiere shiny y tidyverse)\n\nlibrary(shiny)\nlibrary(tidyverse)\n\nrunGist(\"d47f4c205b531e3bed59d22b22cbfd13\")"
+  },
+  {
+    "objectID": "docencia.html#recursos-para-la-construcción-de-gráficos",
+    "href": "docencia.html#recursos-para-la-construcción-de-gráficos",
+    "title": "Recursos académicos",
+    "section": "Recursos para la construcción de gráficos ",
+    "text": "Recursos para la construcción de gráficos \n\nSeleccione el gráfico adecuado\n\n¿Qué tipo de datos tiene? Elija el tipo principal usando esta guía.\n\nEvite estos errores\n\nUna colección de advertencias para la visualización de datos\n\nOtro catálogo de visualización de datos\n\nEncuentre otros gráficos y guías para su construcción."
   },
   {
     "objectID": "docencia.html#tutoriales-en",
@@ -278,5 +138,12 @@
     "title": "Recursos académicos",
     "section": "Tutoriales en ",
     "text": "Tutoriales en \n\nAspectos generales\n\n\nEstadística\n\n\nIngeniería de Calidad\n\nDiagrama de Pareto"
+  },
+  {
+    "objectID": "logo.html",
+    "href": "logo.html",
+    "title": "Personal brand",
+    "section": "",
+    "text": "El logo de esta página fue diseñado por Mónica Umaña, fundadora de Musaline Studio.\nPero esto no es solo un logo, sino que es una representación que busca unir mis dos pasiones académicas: la ingeniería y la estadística. Está inspirado en los hex stickers que son una tradición dentro de la comunidad de , principalmente por influencia del tidyverse, como detalla Hadley Wickham en este artículo. Como supongo que se sospecha,  es mi herramienta predilecta para el desarrollo de mis actividades académicas.\n\n Escudo histórico del valle de Goñi (Navarra), que le da origen al apellido\n\nPor otro lado, Goñi es mi segundo apellido y tradicionalmente a todos en nuestra familia se nos conoce por el mismo. Aun cuando llegue a lugares nuevos, poco a poco adoptan la costumbre de llamarnos Goñi, por lo que era esencial que formara parte de mi imagen personal.\nCon esa identidad en mente, el logo incorpora un símbolo que representa cómo pienso y trabajo: al cuervo (de la familia córvidos). Es un símbolo de la curiosidad y creatividad; observan, prueban y corrigen; en este sentido funcionan como ingenieros e ingenieras, ya que recogen información, elaboran estrategias y buscan mejores resultados; por ejemplo:\n\nLos cuervos de Nueva Caledonia (Corvus moneduloides) fabrican y ajustan herramientas para extraer alimento. Experimentos clásicos de Gavin R. Hunt y colaboradores muestran modificación y transporte de herramientas, lo que implica planificación. https://doi.org/10.1038/379249a0\nTrabajos de Alex Taylor y colaboradores muestran que los cuervos infieren relaciones causales simples, distinguen pruebas exitosas de fallidas y ajustan el comportamiento en consecuencia. https://doi.org/10.1073/pnas.1208724109\nEstudios sobre córvidos en ambientes urbanos muestran estrategias de minimización de esfuerzo, por ejemplo, investigaciones en Japón sobre cuervos que utilizan el tráfico para romper nueces. https://doi.org/10.3838/jjo.68.43\n\nDe esta manera, este logo representa una forma de creatividad que no se limita a imaginar, sino que experimenta y aprende. La ingeniería industrial y la estadística buscan exactamente eso: entender los datos, modelar fenómenos, iterar soluciones y optimizar recursos. El cuervo encarna ese mismo método: medir el mundo, reducir la incertidumbre y mejorar procesos.\nAdemás, me encanta Edgar Allan Poe."
   }
 ]
