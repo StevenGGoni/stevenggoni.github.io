@@ -7,6 +7,7 @@ format:
     code-fold: false
     collapse-sections: true
     collapse-open: false
+self-contained: true
 ---
 
 ```{r echo=FALSE}
