@@ -106,3 +106,5 @@ Los gráficos de control son herramientas estadísticas. Su uso es la forma más
 * [Gráficos de control para atributos](docencia/graficos_control_atributos.html){target="_blank"}
 
 Mientras que los gráficos de control para variables rastrean las cantidades medidas relacionadas con la calidad de los resultados del proceso, los gráficos para atributos siguen el recuento de los elementos no conformes.
+
+* [Análisis de capacidad para datos normales](docencia/capacidad_datos_normales.html){target="_blank"}
