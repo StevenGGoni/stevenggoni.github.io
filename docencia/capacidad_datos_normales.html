@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Recursos académicos – Steven García Goñi</title>
+<title>Análisis de capacidad en R para datos normales – Steven García Goñi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,30 +58,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/logo.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6b7ec8ef6d90767f3a3afcb5c97d53f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-7f60fac5262d0c77e50dbb41b072b5d5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-6b7ec8ef6d90767f3a3afcb5c97d53f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6b7ec8ef6d90767f3a3afcb5c97d53f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7f60fac5262d0c77e50dbb41b072b5d5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-6b7ec8ef6d90767f3a3afcb5c97d53f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -140,7 +140,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -312,11 +312,11 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images\logo.png" alt="Logo de un cuervo" class="navbar-logo light-content">
-    <img src="./images\logo.png" alt="Logo de un cuervo" class="navbar-logo dark-content">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images\logo.png" alt="Logo de un cuervo" class="navbar-logo light-content">
+    <img src="../images\logo.png" alt="Logo de un cuervo" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Steven García Goñi</span>
     </a>
   </div>
@@ -327,11 +327,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Inicio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./docencia.html" aria-current="page"> 
+    <a class="nav-link" href="../docencia.html"> 
 <span class="menu-text">Recursos académicos</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -340,11 +340,11 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-sobre-mí">    
         <li>
-    <a class="dropdown-item" href="./resume.pdf" target="_blank">
+    <a class="dropdown-item" href="../resume.pdf" target="_blank">
  <span class="dropdown-text">Currículum</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./logo.html">
+    <a class="dropdown-item" href="../logo.html">
  <span class="dropdown-text">Identidad visual</span></a>
   </li>  
     </ul>
@@ -392,19 +392,20 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#infografías" id="toc-infografías" class="nav-link active" data-scroll-target="#infografías">Infografías <svg aria-hidden="true" role="img" viewbox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M160 64c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H336.8c-11.8-25.5-29.9-47.5-52.4-64H384V320c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v32h64V64L224 64v49.1C205.2 102.2 183.3 96 160 96V64zm0 64a96 96 0 1 1 0 192 96 96 0 1 1 0-192zM133.3 352h53.3C260.3 352 320 411.7 320 485.3c0 14.7-11.9 26.7-26.7 26.7H26.7C11.9 512 0 500.1 0 485.3C0 411.7 59.7 352 133.3 352z"></path></svg></a></li>
-  <li><a href="#simulaciones-y-visualizaciones-interactivas" id="toc-simulaciones-y-visualizaciones-interactivas" class="nav-link" data-scroll-target="#simulaciones-y-visualizaciones-interactivas">Simulaciones y visualizaciones interactivas <svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zM96 64H288c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32zm32 160a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zM96 352a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM64 416c0-17.7 14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zM192 256a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm32 64a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zm64-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm32 64a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zM288 448a32 32 0 1 1 0-64 32 32 0 1 1 0 64z"></path></svg></a></li>
-  <li><a href="#recursos-para-la-construcción-de-gráficos" id="toc-recursos-para-la-construcción-de-gráficos" class="nav-link" data-scroll-target="#recursos-para-la-construcción-de-gráficos">Recursos para la construcción de gráficos <svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"></path></svg></a></li>
-  <li><a href="#tutoriales-en" id="toc-tutoriales-en" class="nav-link" data-scroll-target="#tutoriales-en">Tutoriales en <svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg></a>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#librerías" id="toc-librerías" class="nav-link" data-scroll-target="#librerías">Librerías</a></li>
+  <li><a href="#análisis-de-capacidad-de-proceso---variables" id="toc-análisis-de-capacidad-de-proceso---variables" class="nav-link" data-scroll-target="#análisis-de-capacidad-de-proceso---variables">Análisis de capacidad de proceso - Variables</a>
   <ul class="collapse">
-  <li><a href="#aspectos-generales" id="toc-aspectos-generales" class="nav-link" data-scroll-target="#aspectos-generales">Aspectos generales</a></li>
-  <li><a href="#estadística" id="toc-estadística" class="nav-link" data-scroll-target="#estadística">Estadística</a></li>
-  <li><a href="#ingeniería-de-calidad" id="toc-ingeniería-de-calidad" class="nav-link" data-scroll-target="#ingeniería-de-calidad">Ingeniería de Calidad</a></li>
+  <li><a href="#usando-qcc" id="toc-usando-qcc" class="nav-link" data-scroll-target="#usando-qcc">Usando <code>qcc</code></a></li>
+  <li><a href="#usando-sixsigma" id="toc-usando-sixsigma" class="nav-link" data-scroll-target="#usando-sixsigma">Usando <code>SixSigma</code></a></li>
   </ul></li>
+  <li><a href="#análisis-de-capacidad-de-proceso---atributos" id="toc-análisis-de-capacidad-de-proceso---atributos" class="nav-link" data-scroll-target="#análisis-de-capacidad-de-proceso---atributos">Análisis de capacidad de proceso - Atributos</a></li>
+  <li><a href="#cómo-modificar-valores" id="toc-cómo-modificar-valores" class="nav-link" data-scroll-target="#cómo-modificar-valores">¿Cómo modificar valores?</a></li>
+  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía">Bibliografía</a></li>
   </ul>
 </nav>
     </div>
@@ -414,7 +415,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Recursos académicos</h1>
+<h1 class="title">Análisis de capacidad en R para datos normales</h1>
 </div>
 
 
@@ -422,6 +423,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">29 de enero de 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -431,98 +438,152 @@ window.Quarto = {
 </header>
 
 
-<p>En esta sección encontrará recursos académicos organizados en pestañas para facilitar su consulta. Incluyen materiales sobre visualización de datos, simulaciones interactivas y herramientas útiles para cursos de probabilidad, estadística e ingeniería.</p>
-<p>Todo el material, exceptuando aquel etiquetado como externo, es de mi autoría.</p>
-<section id="infografías" class="level2">
-<h2 class="anchored" data-anchor-id="infografías">Infografías <svg aria-hidden="true" role="img" viewbox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M160 64c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H336.8c-11.8-25.5-29.9-47.5-52.4-64H384V320c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v32h64V64L224 64v49.1C205.2 102.2 183.3 96 160 96V64zm0 64a96 96 0 1 1 0 192 96 96 0 1 1 0-192zM133.3 352h53.3C260.3 352 320 411.7 320 485.3c0 14.7-11.9 26.7-26.7 26.7H26.7C11.9 512 0 500.1 0 485.3C0 411.7 59.7 352 133.3 352z"></path></svg></h2>
-<ul>
-<li><a href="docencia/Comprendiendo el valor P.pdf" target="_blank">Comprendiendo los valores P</a></li>
-</ul>
-<p>Esta infografía presenta la definición del valor P, criterios para su interpretación y una guía para la elección del nivel de significancia (<span class="math inline">\(\alpha\)</span>).</p>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>Al finalizar la Fase I, cuando los gráficos de control hayan demostrado que el proceso se encuentra bajo control y en un nivel aceptable, se pueden calcular los PCR para documentar el estado del proceso.</p>
 </section>
-<section id="simulaciones-y-visualizaciones-interactivas" class="level2">
-<h2 class="anchored" data-anchor-id="simulaciones-y-visualizaciones-interactivas">Simulaciones y visualizaciones interactivas <svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zM96 64H288c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32zm32 160a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zM96 352a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM64 416c0-17.7 14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zM192 256a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm32 64a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zm64-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm32 64a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zM288 448a32 32 0 1 1 0-64 32 32 0 1 1 0 64z"></path></svg></h2>
-<ul>
-<li><a href="docencia/distribuciones-discretas.html" target="_blank">Distribuciones discretas interactivas</a></li>
-</ul>
-<p>Este visualizador le permite explorar las principales distribuciones discretas y ver como cambian sus formas al modificar los parámetros.</p>
-<ul>
-<li><a href="docencia/distribuciones-continuas.html" target="_blank">Distribuciones continuas interactivas</a></li>
-</ul>
-<p>Es el equivalente continuo al visualizador anterior, pero además, presenta una comparación entre la distribución normal estándar (<span class="math inline">\(z\)</span>) y la t-Student (<span class="math inline">\(t\)</span>).</p>
-<ul>
-<li><a href="docencia/curvas-oc.html" target="_blank">Curvas OC para muestreo por atributos</a></li>
-</ul>
-<p>Propio del campo de la ingeniería de calidad y muestreo de aceptación, este visualizador muestra las curvas características de operación (OC) de planes de muestreo por atributos.</p>
-<ul>
-<li><a href="https://rpubs.com/SGGoni" target="_blank">Efecto de la asimetría sobre el TLC</a></li>
-</ul>
-<p>Inspirado en algunas publicaciones científicas, aquí podrá encontrar como la asimetría juega un papel ponderante en el cumplimiento del teorema del límite central (TLC). Con este, busco ayudar a “derrumbar” el mito de que el TLC siempre se cumple con <span class="math inline">\(n=30\)</span>.</p>
-<ul>
-<li><a href="https://homepage.divms.uiowa.edu/~mbognar/" target="_blank">Calculadora de distribuciones de probabilidad e intervalos de confianza</a> - Aplicación externa</li>
-</ul>
-<p>De Ph.D.&nbsp;Matt Bognar, aquí encuentra “mini aplicaciones” con las que puede resolver ejercicios de probabilidad y estadística.</p>
-<ul>
-<li><a href="https://www.geogebra.org/m/edy5fexu" target="_blank">Ley de los Grandes Números</a> - Aplicación externa</li>
-</ul>
-<p>Es una explicación de Rafael Pérez Laserna sobre la Ley de los Grandes Números, que incluye una simulación de un dado que nos ayuda a comprenderla.</p>
-<ul>
-<li><a href="https://seeing-theory.brown.edu/probability-distributions/es.html#section3" target="_blank">Teorema del Límite Central (TLC)</a> - Aplicación externa</li>
-</ul>
-<p>Uno de los pilares de la estadística frecuentista, este enlace muestra una simulación del TLC que nos permite comprender el TLC de mejor forma.</p>
-<ul>
-<li>Aplicación interactiva sobre los intervalos de confianza</li>
-</ul>
-<p>Este es un gist que al ejecutarse en R con sus respectivas librerías, despliega una aplicación local que permite comprender mejor el funcionamiento de los intervalos de confianza y como estos dependen del estimador puntual (aleatorio por el muestreo), el tamaño de muestra y el nivel de confianza seleccionado.</p>
+<section id="librerías" class="level1">
+<h1>Librerías</h1>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correr en R (requiere shiny y tidyverse)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">runGist</span>(<span class="st">"d47f4c205b531e3bed59d22b22cbfd13"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qcc)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SixSigma)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx) <span class="co"># para leer archivos en Excel</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nortest) <span class="co"># pruebas de normalidad</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="recursos-para-la-construcción-de-gráficos" class="level2">
-<h2 class="anchored" data-anchor-id="recursos-para-la-construcción-de-gráficos">Recursos para la construcción de gráficos <svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"></path></svg></h2>
-<ul>
-<li><a href="https://www.data-to-viz.com/#explore" target="_blank">Seleccione el gráfico adecuado</a></li>
-</ul>
-<p>¿Qué tipo de datos tiene? Elija el tipo principal usando esta guía.</p>
-<ul>
-<li><a href="https://www.data-to-viz.com/caveats.html" target="_blank">Evite estos errores</a></li>
-</ul>
-<p>Una colección de advertencias para la visualización de datos</p>
-<ul>
-<li><a href="https://datavizcatalogue.com/ES/" target="_blank">Otro catálogo de visualización de datos</a></li>
-</ul>
-<p>Encuentre otros gráficos y guías para su construcción.</p>
+<section id="análisis-de-capacidad-de-proceso---variables" class="level1">
+<h1>Análisis de capacidad de proceso - Variables</h1>
+<p>Empecemos por cargar los datos.</p>
+<p><a href="datos/Datos para Capacidad en R.xlsx" download="">Descargar datos</a></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">read.xlsx</span>(<span class="st">"datos/Datos para Capacidad en R.xlsx"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="usando-qcc" class="level2">
+<h2 class="anchored" data-anchor-id="usando-qcc">Usando <code>qcc</code></h2>
+<p>Luego, se verifica que que el proceso se encuentre bajo control estadístico, para ello vamos a comenzar con un gráfico <span class="math inline">\(\bar{x}-R\)</span>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X_R <span class="ot">&lt;-</span> qcc<span class="sc">::</span><span class="fu">qcc</span>(datos, <span class="at">type =</span> <span class="st">"xbar"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="capacidad_datos_normales_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X_R)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>El segundo requisito, es que los datos sigan la distribución normal. Por ejemplo, con un <span class="math inline">\(\alpha=0.001\)</span>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(datos) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro.test</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.95336, p-value = 0.00139</code></pre>
+</div>
+</div>
+<p>Una vez resuelto esto, se puede evaluar la capacidad del proceso.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>qcc<span class="sc">::</span><span class="fu">process.capability</span>(X_R, <span class="at">spec.limits =</span> <span class="fu">c</span>(<span class="fl">7.115</span>, <span class="fl">7.135</span>), <span class="at">target =</span> <span class="fl">7.125</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="capacidad_datos_normales_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Process Capability Analysis
+
+Call:
+qcc::process.capability(object = X_R, spec.limits = c(7.115,     7.135), target = 7.125)
+
+Number of obs = 100          Target = 7.125
+       Center = 7.125           LSL = 7.115
+       StdDev = 0.002098        USL = 7.135
+
+Capability indices:
+
+      Value   2.5%  97.5%
+Cp    1.589  1.368  1.809
+Cp_l  1.573  1.381  1.765
+Cp_u  1.605  1.409  1.800
+Cp_k  1.573  1.344  1.801
+Cpm   1.587  1.367  1.807
+
+Exp&lt;LSL 0%   Obs&lt;LSL 0%
+Exp&gt;USL 0%   Obs&gt;USL 0%</code></pre>
+</div>
+</div>
 </section>
-<section id="tutoriales-en" class="level2">
-<h2 class="anchored" data-anchor-id="tutoriales-en">Tutoriales en <svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg></h2>
-<section id="aspectos-generales" class="level3">
-<h3 class="anchored" data-anchor-id="aspectos-generales">Aspectos generales</h3>
+<section id="usando-sixsigma" class="level2">
+<h2 class="anchored" data-anchor-id="usando-sixsigma">Usando <code>SixSigma</code></h2>
+<p>Este paquete puede ser un poco más sencillo de usar. Pero necesita los datos en una sola columna.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>datos_una_col <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="fu">everything</span>())</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>SixSigma<span class="sc">::</span><span class="fu">ss.study.ca</span>(<span class="at">xST =</span> datos_una_col<span class="sc">$</span>value, <span class="co"># corto plazo</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">xLT =</span> datos_una_col<span class="sc">$</span>value, <span class="co"># largo plazo</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Target =</span> <span class="fl">7.115</span>, <span class="at">LSL=</span><span class="fl">7.135</span>,<span class="at">USL=</span><span class="fl">7.125</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="capacidad_datos_normales_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="estadística" class="level3">
-<h3 class="anchored" data-anchor-id="estadística">Estadística</h3>
 </section>
-<section id="ingeniería-de-calidad" class="level3">
-<h3 class="anchored" data-anchor-id="ingeniería-de-calidad">Ingeniería de Calidad</h3>
+<section id="análisis-de-capacidad-de-proceso---atributos" class="level1">
+<h1>Análisis de capacidad de proceso - Atributos</h1>
+<p>El análisis de capacidad por atributos se aplica cuando la variable de interés no se mide de forma continua, sino que se clasifica en categorías discretas (por ejemplo, unidades defectuosas o número de defectos). A diferencia de los índices <span class="math inline">\(C_p\)</span> y <span class="math inline">\(C_pk\)</span>, que asumen normalidad y datos continuos, en este caso se evalúa el porcentaje de no conformidades (p) o el número promedio de defectos por unidad (c, u). La comparación se realiza frente a un valor máximo permitido, definido por especificaciones o normas del cliente.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos de ejemplo</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>no_conformes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>tamano_muestra <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">100</span>, <span class="fu">length</span>(no_conformes))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico p (proporción de no conformes)</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>grafico_p <span class="ot">&lt;-</span> qcc<span class="sc">::</span><span class="fu">qcc</span>(no_conformes, <span class="at">sizes =</span> tamano_muestra, <span class="at">type =</span> <span class="st">"p"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="capacidad_datos_normales_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(grafico_p)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluación de capacidad para atributos</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p_promedio <span class="ot">&lt;-</span> grafico_p<span class="sc">$</span>center</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>p_max <span class="ot">&lt;-</span> <span class="fl">0.03</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>cpk <span class="ot">&lt;-</span> (p_max <span class="sc">-</span> p_promedio)<span class="sc">/</span>(<span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>(p_promedio <span class="sc">*</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                                      (<span class="dv">1</span> <span class="sc">-</span> p_promedio)<span class="sc">/</span><span class="fu">mean</span>(tamano_muestra)))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>cpk</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1114575</code></pre>
+</div>
+</div>
+</section>
+<section id="cómo-modificar-valores" class="level1">
+<h1>¿Cómo modificar valores?</h1>
+<p>Si se desea establecer otros límites de control, el centro o nominal del proceso, u otros detalles, puede consultar la documentación de la función con <code>help(process.capability)</code></p>
+</section>
+<section id="bibliografía" class="level1">
+<h1>Bibliografía</h1>
 <ul>
-<li><a href="docencia/diagrama_pareto.html" target="_blank">Diagrama de Pareto</a></li>
+<li>Lawson, J. (2021). An Introduction to acceptance sampling and SPC with R. CRC Press.</li>
 </ul>
-<p>Aprenda a realizar un gráfico de Pareto en R. Este es un principio que dice que una pequeña cantidad de causas suele explicar la mayor parte de los efectos</p>
-<ul>
-<li><a href="docencia/graficos_control.html" target="_blank">Gráficos de control para variables</a></li>
-</ul>
-<p>Los gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real.</p>
-<ul>
-<li><a href="docencia/graficos_control_atributos.html" target="_blank">Gráficos de control para atributos</a></li>
-</ul>
-<p>Mientras que los gráficos de control para variables rastrean las cantidades medidas relacionadas con la calidad de los resultados del proceso, los gráficos para atributos siguen el recuento de los elementos no conformes.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

@@ -137,7 +137,7 @@
     "href": "docencia.html#tutoriales-en",
     "title": "Recursos académicos",
     "section": "Tutoriales en ",
-    "text": "Tutoriales en \n\nAspectos generales\n\n\nEstadística\n\n\nIngeniería de Calidad\n\nDiagrama de Pareto\n\nAprenda a realizar un gráfico de Pareto en R. Este es un principio que dice que una pequeña cantidad de causas suele explicar la mayor parte de los efectos\n\nGráficos de control para variables\n\nLos gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real."
+    "text": "Tutoriales en \n\nAspectos generales\n\n\nEstadística\n\n\nIngeniería de Calidad\n\nDiagrama de Pareto\n\nAprenda a realizar un gráfico de Pareto en R. Este es un principio que dice que una pequeña cantidad de causas suele explicar la mayor parte de los efectos\n\nGráficos de control para variables\n\nLos gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real.\n\nGráficos de control para atributos\n\nMientras que los gráficos de control para variables rastrean las cantidades medidas relacionadas con la calidad de los resultados del proceso, los gráficos para atributos siguen el recuento de los elementos no conformes."
   },
   {
     "objectID": "logo.html",
@@ -187,5 +187,82 @@
     "title": "Gráficos de control de Shewhart para variables",
     "section": "",
     "text": "Los gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real. Aunque los gráficos de control por sí solos no pueden reducir la variabilidad del proceso, pueden ayudar a prevenir una reacción excesiva a las causas comunes de la variabilidad (lo que puede empeorar las cosas) y ayudar a evitar ignorar las señales de causa asignables. Cuando se reconoce la presencia de una causa asignable para la variabilidad, el conocimiento del proceso puede llevar a ajustes para eliminar esta causa y reducir la variabilidad en los resultados del proceso.\n\n\nEn la fase I, se utilizan gráficos de control sobre datos retrospectivos para calcular los límites preliminares de control y determinar si el proceso había estado bajo control durante el período en que se recopilaron los datos. Cuando se detectan causas asignables en la carta de control utilizando los datos históricos, se lleva a cabo una investigación para encontrar la causa. Si se encuentra la causa y puede prevenirse en el futuro, se eliminan los datos correspondientes a los puntos fuera de control del gráfico y se vuelven a calcular los límites de control.\nEste es normalmente un proceso iterativo y se repite hasta que los límites de los gráficos de control se refinan, se produce ub gráfico que no parece contener ninguna causa asignable, y el proceso parece estar funcionando a un nivel aceptable. La información obtenida a partir del gráfico de control de la fase I se utiliza entonces como base para el seguimiento de la fase II. Dado que los límites del gráfico de control se calculan repetidamente en la fase I, los cálculos se realizan normalmente utilizando un ordenador."
+  },
+  {
+    "objectID": "docencia/graficos_control_atributos.html",
+    "href": "docencia/graficos_control_atributos.html",
+    "title": "Gráficos de control para atributos",
+    "section": "",
+    "text": "Mientras que los gráficos de control para variables rastrean las cantidades medidas relacionadas con la calidad de los resultados del proceso, los gráficos para atributos siguen el recuento de los elementos no conformes. Los gráficos para atributos no son tan informativos como los gráficos para variables para los estudios de la fase I. Un desplazamiento por encima o por debajo del límite de control inferior o una serie de puntos por encima o por debajo de la línea central en un gráfico de variables puede dar una pista sobre la causa. Sin embargo, un cambio en el número de elementos no conformes puede dar tal indicio. Aún así los gráficos de atributos tienen valor en la fase I.\nEn las industrias de servicios y otras áreas no manufactureras, los datos de conteo pueden ser abundantes pero las mediciones numéricas raras. Además, se pueden considerar simultáneamente muchas características de los resultados del proceso utilizando gráficos de atributos."
+  },
+  {
+    "objectID": "docencia/graficos_control_atributos.html#gráfico-p",
+    "href": "docencia/graficos_control_atributos.html#gráfico-p",
+    "title": "Gráficos de control para atributos",
+    "section": "Gráfico \\(p\\)",
+    "text": "Gráfico \\(p\\)\nA continuación se le presenta un ejemplo donde se han recogido \\(n=50\\) durante 30 periodos de tiempo.\n\ndata(orangejuice)\n\nhead(orangejuice)%&gt;% \n  flextable::flextable()\n\nsampleDsizetrial11250TRUE21550TRUE3850TRUE41050TRUE5450TRUE6750TRUE\n\ntail(orangejuice)%&gt;% \n  flextable::flextable()\n\nsampleDsizetrial49650FALSE50750FALSE51550FALSE52650FALSE53350FALSE54550FALSE\n\n\nSolo necesitamos, para el ejemplo, los primeros 30 datos (los de trial = TRUE).\n\ndatos &lt;- orangejuice %&gt;% \n  dplyr::filter(trial)\n\nCon este código podemos generar el gráfico.\n\np &lt;- qcc(datos$D, \n         sizes = 50, type = \"p\", \n         title = \"Gráfico de control p\")\n\n\n\n\n\n\n\n\nSi \\(n\\) es variable, supongamos que de esta manera (en un caso real, debe ingresar datos reales, estos son simulados):\n\nn_var &lt;- sample(40:60, # n, aleatorio, entre 40 y 60\n                30, # 30 datos\n                replace = TRUE) \n\nn_var\n\n [1] 44 45 46 46 55 50 43 45 45 49 43 40 55 45 49 59 46 57 54 55 41 43 52 40 47\n[26] 47 60 45 41 60\n\n\nEntonces\n\np &lt;- qcc(datos$D, \n         sizes = n_var, type = \"p\", \n         title = \"Gráfico de control p (n variable)\")"
+  },
+  {
+    "objectID": "docencia/graficos_control_atributos.html#gráfico-np",
+    "href": "docencia/graficos_control_atributos.html#gráfico-np",
+    "title": "Gráficos de control para atributos",
+    "section": "Gráfico \\(np\\)",
+    "text": "Gráfico \\(np\\)\nNo hay muchas diferencias entre la generación del gráfico \\(p\\) y el \\(np\\), como podemos apreciar.\n\nnp &lt;- qcc(datos$D, \n          sizes = 50, type = \"np\", \n          title = \"Gráfico de control np\")\n\n\n\n\n\n\n\n\nEste también puede ser variable, pero no se recomienda y justo este gráfico a continuación es un prueba de ello.\n\nnp &lt;- qcc(datos$D, \n          sizes = n_var, type = \"np\", \n          title = \"Gráfico de control np (n variable)\")"
+  },
+  {
+    "objectID": "docencia/graficos_control_atributos.html#gráfico-c",
+    "href": "docencia/graficos_control_atributos.html#gráfico-c",
+    "title": "Gráficos de control para atributos",
+    "section": "Gráfico \\(c\\)",
+    "text": "Gráfico \\(c\\)\nPara este ejemplo se va a emplear los siguientes datos\n\ndata(\"circuit\")\n\nhead(circuit)%&gt;% \n  flextable::flextable()\n\nxsizetrial21100TRUE24100TRUE16100TRUE12100TRUE15100TRUE5100TRUE\n\n\nAl igual que en los ejemplos de \\(p\\) y \\(np\\), solo necesitamos, para el ejemplo, los primeros 26 datos (los de trial = TRUE).\n\ndatos_circuito &lt;- circuit %&gt;% \n  dplyr::filter(trial)\n\nUna vez realizado este paso miscelaneo, se puede construir el gráfico de control \\(c\\)\n\nc &lt;- qcc(datos_circuito$x, type = \"c\", \n         title = \"Gráfico de control c\")\n\n\n\n\n\n\n\n\nPara este gráfico tampoco se recomienda \\(n\\) variable."
+  },
+  {
+    "objectID": "docencia/graficos_control_atributos.html#gráfico-u",
+    "href": "docencia/graficos_control_atributos.html#gráfico-u",
+    "title": "Gráficos de control para atributos",
+    "section": "Gráfico \\(u\\)",
+    "text": "Gráfico \\(u\\)\nEmpleando los datos anteriores, se construye el gráfico de la siguiente manera.\n\nu &lt;- qcc(datos_circuito$x, \n         sizes = 100, type = \"u\", \n         title = \"Gráfico de control u\")\n\n\n\n\n\n\n\n\nEn caso de tener \\(n\\) variable (simulado a partir de los siguientes datos).\n\nn_var &lt;- sample(90:110, 26, replace = T)\n\nSe puede obtener el gráfico de esta manera\n\nu &lt;- qcc(datos_circuito$x, \n         sizes = n_var, # datos variables\n         type = \"u\", \n         title = \"Gráfico de control u (n variable)\")"
+  },
+  {
+    "objectID": "docencia/capacidad_datos_nromales.html",
+    "href": "docencia/capacidad_datos_nromales.html",
+    "title": "Análisis de capacidad en R para datos normales",
+    "section": "",
+    "text": "Al finalizar la Fase I, cuando los gráficos de control hayan demostrado que el proceso se encuentra bajo control y en un nivel aceptable, se pueden calcular los PCR para documentar el estado del proceso."
+  },
+  {
+    "objectID": "docencia/capacidad_datos_nromales.html#usando-qcc",
+    "href": "docencia/capacidad_datos_nromales.html#usando-qcc",
+    "title": "Análisis de capacidad en R para datos normales",
+    "section": "Usando qcc",
+    "text": "Usando qcc\nLuego, se verifica que que el proceso se encuentre bajo control estadístico, para ello vamos a comenzar con un gráfico \\(\\bar{x}-R\\).\n\nX_R &lt;- qcc::qcc(datos, type = \"xbar\")\n\n\n\n\n\n\n\nplot(X_R)\n\nEl segundo requisito, es que los datos sigan la distribución normal. Por ejemplo, con un \\(\\alpha=0.001\\).\n\nas.matrix(datos) %&gt;% \n  shapiro.test()\n\n\n    Shapiro-Wilk normality test\n\ndata:  .\nW = 0.95336, p-value = 0.00139\n\n\nUna vez resuelto esto, se puede evaluar la capacidad del proceso.\n\nqcc::process.capability(X_R, spec.limits = c(7.115, 7.135), target = 7.125)\n\n\n\n\n\n\n\n\n\nProcess Capability Analysis\n\nCall:\nqcc::process.capability(object = X_R, spec.limits = c(7.115,     7.135), target = 7.125)\n\nNumber of obs = 100          Target = 7.125\n       Center = 7.125           LSL = 7.115\n       StdDev = 0.002098        USL = 7.135\n\nCapability indices:\n\n      Value   2.5%  97.5%\nCp    1.589  1.368  1.809\nCp_l  1.573  1.381  1.765\nCp_u  1.605  1.409  1.800\nCp_k  1.573  1.344  1.801\nCpm   1.587  1.367  1.807\n\nExp&lt;LSL 0%   Obs&lt;LSL 0%\nExp&gt;USL 0%   Obs&gt;USL 0%"
+  },
+  {
+    "objectID": "docencia/capacidad_datos_nromales.html#usando-sixsigma",
+    "href": "docencia/capacidad_datos_nromales.html#usando-sixsigma",
+    "title": "Análisis de capacidad en R para datos normales",
+    "section": "Usando SixSigma",
+    "text": "Usando SixSigma\nEste paquete puede ser un poco más sencillo de usar. Pero necesita los datos en una sola columna.\n\ndatos_una_col &lt;- datos %&gt;% \n  tidyr::pivot_longer(everything())\n\n\nSixSigma::ss.study.ca(xST = datos_una_col$value, # corto plazo\n                      xLT = datos_una_col$value, # largo plazo\n                      Target = 7.115, LSL=7.135,USL=7.125)"
+  },
+  {
+    "objectID": "docencia/capacidad_datos_normales.html",
+    "href": "docencia/capacidad_datos_normales.html",
+    "title": "Análisis de capacidad en R para datos normales",
+    "section": "",
+    "text": "Al finalizar la Fase I, cuando los gráficos de control hayan demostrado que el proceso se encuentra bajo control y en un nivel aceptable, se pueden calcular los PCR para documentar el estado del proceso."
+  },
+  {
+    "objectID": "docencia/capacidad_datos_normales.html#usando-qcc",
+    "href": "docencia/capacidad_datos_normales.html#usando-qcc",
+    "title": "Análisis de capacidad en R para datos normales",
+    "section": "Usando qcc",
+    "text": "Usando qcc\nLuego, se verifica que que el proceso se encuentre bajo control estadístico, para ello vamos a comenzar con un gráfico \\(\\bar{x}-R\\).\n\nX_R &lt;- qcc::qcc(datos, type = \"xbar\")\n\n\n\n\n\n\n\nplot(X_R)\n\nEl segundo requisito, es que los datos sigan la distribución normal. Por ejemplo, con un \\(\\alpha=0.001\\).\n\nas.matrix(datos) %&gt;% \n  shapiro.test()\n\n\n    Shapiro-Wilk normality test\n\ndata:  .\nW = 0.95336, p-value = 0.00139\n\n\nUna vez resuelto esto, se puede evaluar la capacidad del proceso.\n\nqcc::process.capability(X_R, spec.limits = c(7.115, 7.135), target = 7.125)\n\n\n\n\n\n\n\n\n\nProcess Capability Analysis\n\nCall:\nqcc::process.capability(object = X_R, spec.limits = c(7.115,     7.135), target = 7.125)\n\nNumber of obs = 100          Target = 7.125\n       Center = 7.125           LSL = 7.115\n       StdDev = 0.002098        USL = 7.135\n\nCapability indices:\n\n      Value   2.5%  97.5%\nCp    1.589  1.368  1.809\nCp_l  1.573  1.381  1.765\nCp_u  1.605  1.409  1.800\nCp_k  1.573  1.344  1.801\nCpm   1.587  1.367  1.807\n\nExp&lt;LSL 0%   Obs&lt;LSL 0%\nExp&gt;USL 0%   Obs&gt;USL 0%"
+  },
+  {
+    "objectID": "docencia/capacidad_datos_normales.html#usando-sixsigma",
+    "href": "docencia/capacidad_datos_normales.html#usando-sixsigma",
+    "title": "Análisis de capacidad en R para datos normales",
+    "section": "Usando SixSigma",
+    "text": "Usando SixSigma\nEste paquete puede ser un poco más sencillo de usar. Pero necesita los datos en una sola columna.\n\ndatos_una_col &lt;- datos %&gt;% \n  tidyr::pivot_longer(everything())\n\n\nSixSigma::ss.study.ca(xST = datos_una_col$value, # corto plazo\n                      xLT = datos_una_col$value, # largo plazo\n                      Target = 7.115, LSL=7.135,USL=7.125)"
   }
 ]

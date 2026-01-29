@@ -1,0 +1,123 @@
+---
+title: "Análisis de capacidad en R para datos normales"
+date: today
+format:
+  html:
+    toc: true
+    collapse-sections: true
+execute:
+  warning: false
+  message: false
+---
+
+# Introducción
+
+Al finalizar la Fase I, cuando los gráficos de control hayan demostrado que el proceso se encuentra bajo control y en un nivel aceptable, se pueden calcular los PCR para documentar el estado del proceso.
+
+# Librerías
+
+```{r}
+
+library(tidyverse)
+library(qcc)
+library(SixSigma)
+library(openxlsx) # para leer archivos en Excel
+library(nortest) # pruebas de normalidad
+
+```
+
+# Análisis de capacidad de proceso - Variables
+
+Empecemos por cargar los datos.
+
+<a href="datos/Datos para Capacidad en R.xlsx" download>Descargar datos</a>
+
+```{r}
+
+datos <- openxlsx::read.xlsx("datos/Datos para Capacidad en R.xlsx")
+
+```
+
+## Usando `qcc`
+
+Luego, se verifica que que el proceso se encuentre bajo control estadístico, para ello vamos a comenzar con un gráfico $\bar{x}-R$.
+
+```{r}
+
+X_R <- qcc::qcc(datos, type = "xbar")
+
+plot(X_R)
+
+```
+
+El segundo requisito, es que los datos sigan la distribución normal. Por ejemplo, con un $\alpha=0.001$.
+
+```{r}
+
+as.matrix(datos) %>% 
+  shapiro.test()
+
+```
+
+Una vez resuelto esto, se puede evaluar la capacidad del proceso.
+
+```{r}
+
+qcc::process.capability(X_R, spec.limits = c(7.115, 7.135), target = 7.125)
+
+```
+
+## Usando `SixSigma`
+
+Este paquete puede ser un poco más sencillo de usar. Pero necesita los datos en una sola columna.
+
+```{r}
+
+datos_una_col <- datos %>% 
+  tidyr::pivot_longer(everything())
+```
+
+```{r}
+
+SixSigma::ss.study.ca(xST = datos_una_col$value, # corto plazo
+                      xLT = datos_una_col$value, # largo plazo
+                      Target = 7.115, LSL=7.135,USL=7.125)
+
+```
+
+# Análisis de capacidad de proceso - Atributos
+
+El análisis de capacidad por atributos se aplica cuando la variable de interés no se mide de forma continua, sino que se clasifica en categorías discretas (por ejemplo, unidades defectuosas o número de defectos). A diferencia de los índices $C_p$ y $C_pk$, que asumen normalidad y datos continuos, en este caso se evalúa el porcentaje de no conformidades (p) o el número promedio de defectos por unidad (c, u). La comparación se realiza frente a un valor máximo permitido, definido por especificaciones o normas del cliente.
+
+```{r}
+
+# Datos de ejemplo
+no_conformes <- c(3, 2, 1, 4, 2, 3, 0, 5, 2, 3, 1, 4, 2, 
+                  3, 2, 1, 4, 2, 3, 3, 2, 4, 1, 3, 2)
+tamano_muestra <- rep(100, length(no_conformes))
+
+# Gráfico p (proporción de no conformes)
+grafico_p <- qcc::qcc(no_conformes, sizes = tamano_muestra, type = "p")
+plot(grafico_p)
+
+
+```
+
+```{r}
+
+# Evaluación de capacidad para atributos
+p_promedio <- grafico_p$center
+p_max <- 0.03
+cpk <- (p_max - p_promedio)/(3*sqrt(p_promedio * 
+                                      (1 - p_promedio)/mean(tamano_muestra)))
+cpk
+
+```
+
+# ¿Cómo modificar valores?
+
+Si se desea establecer otros límites de control, el centro o nominal del proceso, u otros detalles, puede consultar la documentación de la función con `help(process.capability)`
+
+# Bibliografía
+
+-   Lawson, J. (2021). An Introduction to acceptance sampling and SPC with R. CRC Press.
