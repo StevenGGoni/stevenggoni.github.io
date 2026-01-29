@@ -96,3 +96,5 @@ Encuentre otros gráficos y guías para su construcción.
 ### Ingeniería de Calidad
 
 * [Diagrama de Pareto](docencia/diagrama_pareto.html){target="_blank"} 
+
+* [Gráficos de control para variables](docencia/graficos_control.html){target"=_blank"}

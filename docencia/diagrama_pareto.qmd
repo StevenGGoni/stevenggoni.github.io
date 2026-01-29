@@ -1,13 +1,12 @@
 ---
 title: "Gráfico de Pareto"
-date: today 
-format: 
-  html: 
-    toc: true 
-    collapse-sections: true 
-    embed-resources: true
-execute: 
-  warning: false 
+date: today
+format:
+  html:
+    toc: true
+    collapse-sections: true
+execute:
+  warning: false
   message: false
 ---
 

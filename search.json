@@ -137,7 +137,7 @@
     "href": "docencia.html#tutoriales-en",
     "title": "Recursos académicos",
     "section": "Tutoriales en ",
-    "text": "Tutoriales en \n\nAspectos generales\n\n\nEstadística\n\n\nIngeniería de Calidad\n\nDiagrama de Pareto"
+    "text": "Tutoriales en \n\nAspectos generales\n\n\nEstadística\n\n\nIngeniería de Calidad\n\nDiagrama de Pareto\nGráficos de control para variables{target”=_blank”}"
   },
   {
     "objectID": "logo.html",
@@ -145,5 +145,47 @@
     "title": "Personal brand",
     "section": "",
     "text": "El logo de esta página fue diseñado por Mónica Umaña, fundadora de Musaline Studio.\nPero esto no es solo un logo, sino que es una representación que busca unir mis dos pasiones académicas: la ingeniería y la estadística. Está inspirado en los hex stickers que son una tradición dentro de la comunidad de , principalmente por influencia del tidyverse, como detalla Hadley Wickham en este artículo. Como supongo que se sospecha,  es mi herramienta predilecta para el desarrollo de mis actividades académicas.\n\n Escudo histórico del valle de Goñi (Navarra), que le da origen al apellido\n\nPor otro lado, Goñi es mi segundo apellido y tradicionalmente a todos en nuestra familia se nos conoce por el mismo. Aun cuando llegue a lugares nuevos, poco a poco adoptan la costumbre de llamarnos Goñi, por lo que era esencial que formara parte de mi imagen personal.\nCon esa identidad en mente, el logo incorpora un símbolo que representa cómo pienso y trabajo: al cuervo (de la familia córvidos). Es un símbolo de la curiosidad y creatividad; observan, prueban y corrigen; en este sentido funcionan como ingenieros e ingenieras, ya que recogen información, elaboran estrategias y buscan mejores resultados; por ejemplo:\n\nLos cuervos de Nueva Caledonia (Corvus moneduloides) fabrican y ajustan herramientas para extraer alimento. Experimentos clásicos de Gavin R. Hunt y colaboradores muestran modificación y transporte de herramientas, lo que implica planificación. https://doi.org/10.1038/379249a0\nTrabajos de Alex Taylor y colaboradores muestran que los cuervos infieren relaciones causales simples, distinguen pruebas exitosas de fallidas y ajustan el comportamiento en consecuencia. https://doi.org/10.1073/pnas.1208724109\nEstudios sobre córvidos en ambientes urbanos muestran estrategias de minimización de esfuerzo, por ejemplo, investigaciones en Japón sobre cuervos que utilizan el tráfico para romper nueces. https://doi.org/10.3838/jjo.68.43\n\nDe esta manera, este logo representa una forma de creatividad que no se limita a imaginar, sino que experimenta y aprende. La ingeniería industrial y la estadística buscan exactamente eso: entender los datos, modelar fenómenos, iterar soluciones y optimizar recursos. El cuervo encarna ese mismo método: medir el mundo, reducir la incertidumbre y mejorar procesos.\nAdemás, me encanta Edgar Allan Poe."
+  },
+  {
+    "objectID": "diagrama_pareto.html",
+    "href": "diagrama_pareto.html",
+    "title": "Gráfico de Pareto",
+    "section": "",
+    "text": "Este es un ejemplo sobre como llevar a cabo gráficos de Pareto en R, usando la librería qcc. Este ejercicio es extraído del material del profesor Ing. Manrique Araya Alfaro."
+  },
+  {
+    "objectID": "diagrama_pareto.html#introducción",
+    "href": "diagrama_pareto.html#introducción",
+    "title": "Gráfico de Pareto",
+    "section": "",
+    "text": "Este es un ejemplo sobre como llevar a cabo gráficos de Pareto en R, usando la librería qcc. Este ejercicio es extraído del material del profesor Ing. Manrique Araya Alfaro."
+  },
+  {
+    "objectID": "diagrama_pareto.html#librerías",
+    "href": "diagrama_pareto.html#librerías",
+    "title": "Gráfico de Pareto",
+    "section": "Librerías",
+    "text": "Librerías\n\nlibrary(tidyverse)\nlibrary(qcc)"
+  },
+  {
+    "objectID": "diagrama_pareto.html#ejercicio",
+    "href": "diagrama_pareto.html#ejercicio",
+    "title": "Gráfico de Pareto",
+    "section": "Ejercicio",
+    "text": "Ejercicio\nEn una fábrica de aparatos de línea blanca se han presentado problemas con la calidad de las lavadoras. Un grupo de mejora de la calidad decide revisar los problemas de la tina de las lavadoras, ya que con frecuencia es necesario retrabajarlas para que éste tenga una calidad aceptable. Para ello, estratificaron los problemas en la tina de lavadora por tipo de defecto, con la idea de localizar cual es desperfecto principal. A continuación, se muestra el análisis de los defectos encontrados en las tinas producidas en 5 meses.\nRealice un análisis de Pareto y obtenga conclusiones.\n\nDefecto &lt;- c(\"Boca ovalada\", \"Perforaciones deformes\",\n             \"Boda despostillada\", \"Falta de fundente\",\n             \"Mal soldada\")\n\nFrecuencia &lt;- c(1200, 400, 180, 130, 40)\n\ndata.frame(Defecto, Frecuencia) %&gt;%\n  flextable::flextable(cwidth = 1.9) # este código es solo para presentar los datos\n\nDefectoFrecuenciaBoca ovalada1,200Perforaciones deformes400Boda despostillada180Falta de fundente130Mal soldada40\n\n\nAhora, realizamos el diagrama de Pareto.\n\n# Sin nombres\n\nqcc::pareto.chart(Frecuencia)\n\n\n\n\n\n\n\n\n   \nPareto chart analysis for Frecuencia\n      Frequency   Cum.Freq.  Percentage Cum.Percent.\n  A 1200.000000 1200.000000   61.538462    61.538462\n  B  400.000000 1600.000000   20.512821    82.051282\n  C  180.000000 1780.000000    9.230769    91.282051\n  D  130.000000 1910.000000    6.666667    97.948718\n  E   40.000000 1950.000000    2.051282   100.000000\n\n# Con nombres\n\nnames(Frecuencia) &lt;- Defecto\n\nqcc::pareto.chart(Frecuencia)\n\n\n\n\n\n\n\n\n                        \nPareto chart analysis for Frecuencia\n                           Frequency   Cum.Freq.  Percentage Cum.Percent.\n  Boca ovalada           1200.000000 1200.000000   61.538462    61.538462\n  Perforaciones deformes  400.000000 1600.000000   20.512821    82.051282\n  Boda despostillada      180.000000 1780.000000    9.230769    91.282051\n  Falta de fundente       130.000000 1910.000000    6.666667    97.948718\n  Mal soldada              40.000000 1950.000000    2.051282   100.000000"
+  },
+  {
+    "objectID": "docencia/graficos_control.html",
+    "href": "docencia/graficos_control.html",
+    "title": "Gráficos de control de Shewhart para variables",
+    "section": "",
+    "text": "El control estadístico del proceso implica la comparación de la salida del proceso con un estándar y la toma de decisiones intermedias en caso de discrepancia entre las dos.\nTambién implica determinar si el proceso puede producir productos que cumplan con las especificaciones requeridas.\nLos resultados de todos los procesos, ya sean procesos de fabricación o procesos que proporcionan algún tipo de servicio, están sujetos a la variabilidad. La variabilidad hace que sea más difícil para los procesos generar productos que se ajusten a los límites de especificación deseados.\nShewhart (1931) definió las dos causas de variabilidad en los resultados del proceso como causas comunes y causas especiales o asignables.\n\nLas causas comunes de variabilidad se deben a la naturaleza inherente del proceso. No pueden eliminarse o reducirse sin cambiar el proceso real.\nLas causas atribuibles de la variabilidad, por otra parte, son interrupciones inusuales del funcionamiento normal. Deben identificarse y eliminarse para reducir la variabilidad y hacer que el proceso sea más capaz de cumplir las especificaciones.\n\n\n\nLos gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real. Aunque los gráficos de control por sí solos no pueden reducir la variabilidad del proceso, pueden ayudar a prevenir una reacción excesiva a las causas comunes de la variabilidad (lo que puede empeorar las cosas) y ayudar a evitar ignorar las señales de causa asignables. Cuando se reconoce la presencia de una causa asignable para la variabilidad, el conocimiento del proceso puede llevar a ajustes para eliminar esta causa y reducir la variabilidad en los resultados del proceso.\n\n\nEn la fase I, se utilizan gráficos de control sobre datos retrospectivos para calcular los límites preliminares de control y determinar si el proceso había estado bajo control durante el período en que se recopilaron los datos. Cuando se detectan causas asignables en la carta de control utilizando los datos históricos, se lleva a cabo una investigación para encontrar la causa. Si se encuentra la causa y puede prevenirse en el futuro, se eliminan los datos correspondientes a los puntos fuera de control del gráfico y se vuelven a calcular los límites de control.\nEste es normalmente un proceso iterativo y se repite hasta que los límites de los gráficos de control se refinan, se produce ub gráfico que no parece contener ninguna causa asignable, y el proceso parece estar funcionando a un nivel aceptable. La información obtenida a partir del gráfico de control de la fase I se utiliza entonces como base para el seguimiento de la fase II. Dado que los límites del gráfico de control se calculan repetidamente en la fase I, los cálculos se realizan normalmente utilizando un ordenador."
+  },
+  {
+    "objectID": "docencia/graficos_control.html#gráficos-de-control",
+    "href": "docencia/graficos_control.html#gráficos-de-control",
+    "title": "Gráficos de control de Shewhart para variables",
+    "section": "",
+    "text": "Los gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real. Aunque los gráficos de control por sí solos no pueden reducir la variabilidad del proceso, pueden ayudar a prevenir una reacción excesiva a las causas comunes de la variabilidad (lo que puede empeorar las cosas) y ayudar a evitar ignorar las señales de causa asignables. Cuando se reconoce la presencia de una causa asignable para la variabilidad, el conocimiento del proceso puede llevar a ajustes para eliminar esta causa y reducir la variabilidad en los resultados del proceso.\n\n\nEn la fase I, se utilizan gráficos de control sobre datos retrospectivos para calcular los límites preliminares de control y determinar si el proceso había estado bajo control durante el período en que se recopilaron los datos. Cuando se detectan causas asignables en la carta de control utilizando los datos históricos, se lleva a cabo una investigación para encontrar la causa. Si se encuentra la causa y puede prevenirse en el futuro, se eliminan los datos correspondientes a los puntos fuera de control del gráfico y se vuelven a calcular los límites de control.\nEste es normalmente un proceso iterativo y se repite hasta que los límites de los gráficos de control se refinan, se produce ub gráfico que no parece contener ninguna causa asignable, y el proceso parece estar funcionando a un nivel aceptable. La información obtenida a partir del gráfico de control de la fase I se utiliza entonces como base para el seguimiento de la fase II. Dado que los límites del gráfico de control se calculan repetidamente en la fase I, los cálculos se realizan normalmente utilizando un ordenador."
   }
 ]
