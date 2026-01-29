@@ -97,4 +97,8 @@ Encuentre otros gráficos y guías para su construcción.
 
 * [Diagrama de Pareto](docencia/diagrama_pareto.html){target="_blank"} 
 
-* [Gráficos de control para variables](docencia/graficos_control.html){target"=_blank"}
+Aprenda a realizar un gráfico de Pareto en R. Este es un principio que dice que una pequeña cantidad de causas suele explicar la mayor parte de los efectos
+
+* [Gráficos de control para variables](docencia/graficos_control.html){target="_blank"}
+
+Los gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real. 
