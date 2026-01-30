@@ -1,0 +1,350 @@
+---
+title: "Análisis de capacidad para datos no normales"
+date: today
+format:
+  html:
+    toc: true
+    collapse-sections: true
+execute:
+  warning: false
+  message: false
+---
+
+# Pasos previos
+
+El paquete `qualityTools` ya no está disponible para instalación directa desde RStudio, sino que debe instalarse de la siguiente forma. Lo mismo sucede para el paquete `Johnson`. 
+
+```{r eval=FALSE}
+
+library(devtools)
+
+devtools::install_github("cran/qualityTools")
+devtools::install_github("hrbrmstr/Johnson")
+
+```
+
+# Introducción
+
+Es relativamente común encontrarse con procesos que no siguen la distribución normal, ya sea por que así es como debe comportarse o bien, por errores que suceden a la hora de recolectar, almacenar o procesar los datos. 
+
+Lo aquí abordado corresponde al proceder cuando la distribución es intrinsicamente no normal. A grandes razgos se van a tratar los siguientes tópicos.
+
+* Transformaciones no lineales
+* Método de los percentiles
+
+# Librerías
+
+Las librerías que vamos a usar en el desarrollo de estos ejemplos se enlistan a continuación:
+
+
+```{r}
+
+library(tidyverse)
+library(qualityTools)
+library(Johnson) # transformación de Johnson
+library(MASS) # transformación Box-Cox
+library(car) # algunos gráficos
+library(qcc) 
+
+```
+
+# Análisis de capacidad para datos no normales
+
+Para el desarrollo de este ejemplo se van a generar, de forma intencional, datos que no siguen la distribución normal. 
+
+En este caso será una distribución Weibull, con parámetros forma y escala.
+
+```{r}
+
+set.seed(20250512)
+
+datos_no_normales <- rweibull(100, shape = 1.5, scale = 3)
+
+hist(datos_no_normales, 
+     main = "Histograma de datos no normales", 
+     col = "darkred", 
+     xlab = "Datos no normales", 
+     ylab = "Frecuencia")
+```
+
+Como se puede apreciar, los datos no siguen la distribución normal 
+
+```{r}
+
+shapiro.test(datos_no_normales)
+
+car::qqPlot(datos_no_normales, 
+            main = "Gráfico cuantil-cuantil",
+            xlab = "Cuántiles teóricos",
+            ylab = "Cuantiles",
+            col.lines = "darkred")
+
+```
+
+Suponga que las especificaciones son $3 \pm 2$. Y que el proceso se encuentra bajo control, aunque vayamos a generar algunos gráficos para comprobarlo.
+
+```{r}
+
+hist(datos_no_normales, 
+     main = "Histograma de datos no normales", 
+     col = "darkred", 
+     xlab = "Datos no normales", 
+     ylab = "Frecuencia")
+
+abline(v = c(1, 3, 5), col = "gold3", lwd = 3.5, lty = 2)
+
+```
+
+
+## Transformaciones no lineales
+
+El primer abordaje corresponde al uso de transformaciones no lineales.
+
+### Box-Cox
+
+Recuerde que esta familia de transformaciones sigue la siguiente fórmula.
+
+$$
+w_i=\Biggl\{ \begin{matrix} x_i^\lambda \quad si \quad \lambda \ne 0 \\ log(x_i) \quad si \quad \lambda = 0\end{matrix}, \text{para } x_i > 0
+$$
+
+```{r}
+
+bc <- MASS::boxcox(lm(datos_no_normales ~ 1))
+
+lambda <- bc$x[which.max(bc$y)]
+
+lambda
+
+```
+
+Algunos software trabajan directamente con los valores redondeados, por lo que en este caso $\lambda=-2$
+
+Ahora, apliquemos la transformación
+
+```{r}
+
+# Sin redondeo
+datos_transformados_1 <- datos_no_normales^lambda
+
+shapiro.test(datos_transformados_1)
+
+# Con redondeo
+datos_transformados_2 <- datos_no_normales^0.5
+shapiro.test(datos_transformados_2)
+
+```
+
+Nótese como en ambas situaciones, los datos ahora si siguen la distribución normal. Ahora analicemos la capacidad.
+
+```{r}
+
+XR <- matrix(datos_transformados_1, ncol = 4) %>% 
+  qcc::qcc(type = "xbar", data.name = "Datos transformados: Box - Cox")
+
+qcc::process.capability(XR, 
+                        spec.limits = c(1, 5),
+                        target = 3, 
+                        breaks = "sturges")
+
+```
+
+Pero hay algo raro, ¿no? Es porque aún no transformamos los límites y el nominal.
+
+```{r}
+
+# ponga atención, a veces la transformación invierte los límites
+
+c(1, 3, 5)^lambda
+
+qcc::process.capability(XR, 
+                        spec.limits = c(1, 1.979396),
+                        target = 1.593731, 
+                        breaks = "sturges")
+```
+
+### Johnson
+
+>Nota: este paquete `Johnson` fue removido del CRAN (repositorio oficial), y en general suele ser algo deficiente en el cálculo de las transformaciones.
+
+Esta está compuesta por tres familias de transformaciones: $S_B, S_L, S_U$.
+
+```{r}
+
+datos_transformados_3 <- Johnson::RE.Johnson(datos_no_normales)
+
+shapiro.test(datos_transformados_3$transformed)
+
+```
+
+Habiendo verificado que la transformación es efectiva, podemos proceder a realizar el análisis de capacidad.
+
+```{r}
+# verificamos la familia de transformaciones
+
+datos_transformados_3$`function`
+```
+
+Sabiendo que es $S_B$, se puede proceder según la fórmula
+
+$$
+w_i = \gamma+\eta\cdot ln\Big[\frac{x_i-\varepsilon}{\lambda+\varepsilon-x_i}\Big]
+$$
+
+Entonces:
+
+```{r}
+
+print(g <- datos_transformados_3$f.gamma)
+print(l <- datos_transformados_3$f.lambda)
+print(eta <- datos_transformados_3$f.eta)
+print(ep <- datos_transformados_3$f.epsilon)
+
+x_i <- c(1, 3, 5)
+
+g + (eta * log((x_i-ep)/(l+ep-x_i)))  #log = ln
+
+```
+
+Por lo tanto: 
+
+```{r}
+
+XR <- matrix(datos_transformados_3$transformed, ncol = 4) %>% 
+  qcc::qcc(type = "xbar", data.name = "Datos transformados: Johnson")
+
+qcc::process.capability(XR, 
+                        spec.limits = c(-1.0763915, 1.1403874),
+                        target = 0.2755111, 
+                        breaks = "sturges")
+
+```
+
+### Transformación en dos pasos
+
+En Excel también puede encontrar una forma de abordar este caso, pues es relativamente sencillo de aplicar.
+
+<a href="datos/Transformación en dos pasos en Excel.xlsx" download>Descargar Transformación en dos pasos con Excel</a>
+
+Dada algunas pequeñas diferencias en los algoritmos programados, encontrará disimilitudes en algunos de los resultados obtenidos.
+
+```{r}
+
+dos_pasos <- bestNormalize::bestNormalize(datos_no_normales)
+
+datos_transformados_4 <- dos_pasos$x.t * sd(datos_no_normales) +
+  mean(datos_no_normales)
+
+shapiro.test(datos_transformados_4)
+
+```
+
+Como puede observar, la transformación es efectiva. Ahora se deben obtener los límites. 
+
+```{r}
+
+limites <- predict(dos_pasos, 
+                   newdata = c(1, 3, 5), 
+                   inverse = F) * sd(datos_no_normales) + 
+  mean(datos_no_normales)
+
+limites
+
+```
+
+Resuelto esto, calculemos la capacidad
+
+```{r}
+
+XR <- matrix(datos_transformados_4, ncol = 4) %>% 
+  qcc::qcc(type = "xbar", data.name = "Datos transformados: Dos pasos")
+
+qcc::process.capability(XR, 
+                        spec.limits = c(0.7706979, 4.9708862),
+                        target = 3.5210154, 
+                        breaks = "sturges")
+
+```
+
+## Método de los percentiles
+
+Para aplicar este método primero debe identificarse la distribución subyacente que mejor se ajusta a los datos. Esto se puede hacer de muchas formas, esta es una de ellas.
+
+```{r}
+
+fitdistrplus::descdist(datos_no_normales)
+
+```
+
+Del gráfico se muestra que la Weibull, lognormal y gamma son posibles candidatos. 
+
+```{r}
+
+# probamos varias distribuciones
+
+distribuciones <- c("weibull", "lnorm", "exp", # agregar más si es conveniente
+  "gamma", "unif", "logis") %>% 
+  purrr::map(function(x){
+    fitdistrplus::fitdist(datos_no_normales, x)
+    })
+
+bondad_ajuste <- fitdistrplus::gofstat(distribuciones)
+
+round(bondad_ajuste$chisqpvalue,3) # valores p
+
+bondad_ajuste$kstest # decisiones kolmogorov
+
+bondad_ajuste$adtest # decisiones anderson - darling
+
+```
+
+Observando los resultados se intuye que se puede usar la Weibull o la gamma. Como ya sabemos que los datos provenienen de una Weibull (además de su alto valor P), se va a trabajar con ello.
+
+#### Estimación con `qualityTools`
+
+> Este paquete no está en CRAN, su instalación es manual. Suele presentar errores en versiones actuales de `R`.
+
+```{r error = TRUE}
+
+resultado <- qualityTools::cp(datos_no_normales,
+                 distribution = "weibull", 
+                 lsl = 1,
+                 target = 3,
+                 usl = 5)
+
+```
+
+#### Estimación manual
+
+A grosso modo, recordemos que la fórmula es:
+
+$$
+C_p(q) = \frac{USL - LSL}{x_{0.99865}-x_{0.00135}}
+$$
+
+Con sus respectivas variantes para $C_{pk}$.
+
+Sabiendo que la distribución es Weibull, se van a estimar sus parámetros.
+
+```{r}
+
+fitdistrplus::fitdist(datos_no_normales, "weibull")
+
+percentiles <- qweibull(c(0.99865, 0.00135, 0.5), # superior, inferior, mediana 
+                        shape = 1.494667, scale = 3.110131)
+
+# Entonces Cp
+
+(5-1)/(percentiles[1]-percentiles[2])
+
+# Y por tanto Cpk
+
+min((5-percentiles[3])/(percentiles[1]-percentiles[3]), #cpu
+    (percentiles[3]-1)/(percentiles[3]-percentiles[2])) #cpl
+
+```
+
+
+# ¿Cómo modificar valores?
+
+Si se desea agregar otros parámetros en las funciones, puede consultar la documentación de la función con `help(qualityTools)` u otro paquete (cambiando el nombre)

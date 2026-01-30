@@ -87,7 +87,7 @@ SixSigma::ss.study.ca(xST = datos_una_col$value, # corto plazo
 
 # Análisis de capacidad de proceso - Atributos
 
-El análisis de capacidad por atributos se aplica cuando la variable de interés no se mide de forma continua, sino que se clasifica en categorías discretas (por ejemplo, unidades defectuosas o número de defectos). A diferencia de los índices $C_p$ y $C_pk$, que asumen normalidad y datos continuos, en este caso se evalúa el porcentaje de no conformidades (p) o el número promedio de defectos por unidad (c, u). La comparación se realiza frente a un valor máximo permitido, definido por especificaciones o normas del cliente.
+El análisis de capacidad por atributos se aplica cuando la variable de interés no se mide de forma continua, sino que se clasifica en categorías discretas (por ejemplo, unidades defectuosas o número de defectos). A diferencia de los índices $C_p$ y $C_{pk}$, que asumen normalidad y datos continuos, en este caso se evalúa el porcentaje de no conformidades (p) o el número promedio de defectos por unidad (c, u). La comparación se realiza frente a un valor máximo permitido, definido por especificaciones o normas del cliente.
 
 ```{r}
 
