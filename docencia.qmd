@@ -91,6 +91,8 @@ Encuentre otros gráficos y guías para su construcción.
 
 * [Guía básica de R: Introducción](docencia/introduccionR.html){target="_blank"}
 
+Para los que nunca han programado, o al menos nunca han programado en R/Rstudio.
+
 ### Aspectos generales
 
 ### Estadística
