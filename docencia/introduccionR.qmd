@@ -1,0 +1,513 @@
+---
+title: "Introducción a R y RStudio"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    collapse-sections: true
+execute:
+  warning: false
+  message: false
+---
+
+Para los que nunca han programado, o al menos nunca han programado en R/Rstudio.
+
+Esta guía está basada en este [libro](https://r4ds.hadley.nz/).
+
+## Instalación de R y RStudio
+
+-   [\[Última versión de R\]](https://cran.r-project.org/) en función del sistema operativo
+
+-   [Última versión de RStudio](https://posit.co/download/rstudio-desktop/)
+
+## Partes de la interfaz de RStudio
+
+![Interfaz de RStudio](datos/interfaz.png){fig-align="center"}
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 1.  **Panel de *scripts*:** es donde va todo el código especializado que vamos creando y queremos **conservar** cuando terminamos la jornada de trabajo. Cuando se abre RStudio *puede* que este panel no esté visible, porque no hay *scripts* en él. Sobre todo la primera vez (nuevos usuarios).                                                                                                                                                                                           | 2.  **Panel de ambiente:** acá se muestran todos los objetos, variables y funciones que se vayan creando. Como pueden notar, tiene otras pestañas, que no son de interés para el nivel de esta introducción.                         |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 3.  **Panel de consola:** básicamente, el código que se ejecute en consola (*Console*) no se va a guardar, ni puede ser editado. La idea es usar la consola para ejecutar código que solo se va a usar una vez, por ejemplo, instalar un paquete, correr una prueba, entre otros. También tiene otras pestañas que pueden variar según la versión de RStudio instalada, por ejemplo *Terminal* y *Background Jobs*, pero de igual forma no son de interés para el nivel de esta introducción. | 4.  **Panel "general":** en este se muestran muchas cosas:                                                                                                                                                                           |
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |     -   **Files**: la carpeta en la que están trabajando, con todos los archivos que contenga.                                                                                                                                       |
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                      |
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |     -   **Plots**: acá se van a mostrar los gráficos que se vayan ejecutando, se van guardando por lo que se pueden ver los antiguos, pero por lo general es más fácil volver a ejecutar el código, que navegar por ese panel.       |
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                      |
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |     -   **Packages:** se muestran todos los paquetes que tenga instalados, además, si estos tienen un *check* significa que ya están cargados en la respectiva sesión. Cuando se instala R, se instalan varios paquetes por defecto. |
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                      |
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |     -   **Help:** la mejor pestaña, cuando se está empezando en esto es un poco dificil de leer, pero es increíblemente útil y muchos de los errores que se pueden encontrar se pueden solucionar leyendo la documentación.          |
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                      |
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |     -   **Otros**: por lo general, estas otras pestañas exceden esta guía, incluye *Viewer* y *Presentation*.                                                                                                                        |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+: Descripción de las partes de RStudio
+
+## Almacenamiento
+
+Cuando nombren a las variables, traten de usar un formato consistente y los mismos tienen que tener un significado "útil". Eviten llamar a las cosas por letras o monosílabos.
+
+> "Programar produce código y el código es una herramienta de comunicación. Obviamente, el código le dice a la computadora qué es lo que quiere que haga, pero también comunica significado a **otros seres humanos**. Es importante pensar el código como un medio de comunicación, ya que todo proyecto que realice es esencialmente **colaborativo**. Aun cuando no esté trabajando con otras personas, definitivamente lo estará haciendo con su futuro yo. Escribir código claro es importante para que otras personas (o usted en el futuro) puedan entender por qué se encaró un análisis de la manera que en la que se hizo. Esto significa que mejorando cómo programa, mejorará también cómo comunica. Con el tiempo querrá que su código resulte no solo más fácil de escribir, sino también más fácil de leer para los demás" (Wickham & Grolemund, 2017).
+
+Con "\#" se hacen comentarios en el código, comentar es una excelente práctica, hágalo siempre. Describa lo que está haciendo y los motivos por los cuales lo está haciendo de ese modo.
+
+El comando "`Alt + -`" produce esto "`<-`" de forma rápida, que es una **asignación**. Lo que vamos a usar para almacenar variables, objetos, funciones, etc... por ejemplo:
+
+> Observe los resultados en el panel de ambiente (*environment*)
+
+### Números
+
+```{r}
+
+# Números
+
+numero <- 10
+
+nuevo_numero <- 5 + numero
+
+
+```
+
+### Letras
+
+Es necesario colocarlas entre comillas, pueden ser las simples o las dobles.
+
+```{r}
+
+# letras
+
+letra <- "a"
+
+letra_2 <- 'a' # no importa que tipo de comilla se usa, para R son iguales
+
+
+letra == letra_2
+
+```
+
+### Booleanos
+
+Es decir, falso y verdadero, estos van en **MAYÚSCULA**.
+
+```{r}
+
+# note el cambio de color en el script respecto al resto del código
+
+FALSE
+
+TRUE
+
+# También se puede abreviar como F y T.
+
+F
+
+T
+
+```
+
+Cuando no hay data válida se utiliza *NA* (`Not Available`) o *NaN* (`Not Available Number`), esto puede tener varios significados, como:
+
+-   Datos faltantes porque se perdieron o no fueron recolectados, por ejemplo, la ausencia de datos en los años 2020-2021 en varias instituciones nacionales por la afectación de la pandemia COVID-19.
+
+-   Datos no recolectados por su ausencia de pertinencia: consumo eléctrico de una comunidad indígena sin acceso a servicios básicos de electricidad.
+
+-   Operaciones matemáticas indefinidas, por ejemplo $\frac{0}{0} = NaN$.
+
+```{r}
+
+NA
+
+NaN
+
+0/0
+
+# Otros
+
+Inf
+
+-Inf
+
+NULL
+
+```
+
+> Nota: TRUE, FALSE, T, F, NA, NaN, for, if, else, entre otras, son palabras **RESERVADAS** en el lenguaje de programación R.
+
+### Vectores
+
+Para ello se usa la función `c()` que significa *combine*.
+
+```{r}
+
+vector_numerico <- c(1, 2, 3)
+vector_numerico
+is.numeric(vector_numerico)
+
+vector_letras <- c("A", "B", "C")
+
+is.character(vector_letras)
+
+# Si se juntan los dos vectores anteriores, R no da error, solo los convierte
+# a todos en caracteres, por lo que hay que tener cuidado. 
+
+nuevo_vector <- c(vector_numerico, vector_letras)
+
+nuevo_vector
+
+is.numeric(nuevo_vector)
+is.character(nuevo_vector)
+
+# Se pueden crear vectores vacíos que luego se pueden llenar
+
+vector_vacio <- c()
+
+vector_vacio2 <- vector()
+
+vector_vacio[1] <- 2 # [1] indica la posición 1 en el vector
+
+vector_vacio
+
+vector_vacio[2] <- 4 
+
+vector_vacio
+
+```
+
+### Operaciones con vectores
+
+```{r}
+
+vector_numerico + 5
+
+vector_numerico + c(5, 6, 7)
+
+vector_numerico^2
+
+vector_numerico/2
+
+vector_numerico*9
+
+vector_numerico/c(5, 6, 7)
+
+```
+
+### Seleccionar elementos de un vector (*slicing*)
+
+```{r}
+
+vector_numerico[1]
+
+vector_numerico[1:3]
+
+vector_numerico[c(1,2,3)]
+
+vector_letras[2]
+
+vector_letras[c(1, 3)]
+
+vector_letras[-2]
+
+```
+
+### Secuencias y repeticiones
+
+```{r}
+
+# Secuencias
+
+1:10
+
+seq(1, 10)
+
+seq(1, 10, by = 0.5)
+
+seq(1, 10, length = 5)
+
+# Repeticiones
+
+rep(2, 4)
+
+rep(vector_letras, 3)
+
+rep(vector_letras, each = 3)
+
+```
+
+### Matrices
+
+```{r}
+
+matriz1 <- cbind(vector_numerico, vector_letras)
+
+matriz1
+
+matriz2 <- cbind(rep("x", 6), seq(1, 3, length = 6))
+
+matriz2
+
+```
+
+El *slicing* en matrices se hace con operaciones de tipo `[row, column]`.
+
+```{r}
+
+matriz1[1, ] # la primer fila y todas las columnas
+
+matriz1[, 1] # la primer columna y todas las filas
+
+matriz1[1, c(1, 2)] # la primer fila y las primeras dos columnas
+
+matriz1[c(1, 3), ] # la fila 1 y 3 y todas las columnas
+
+```
+
+Ejemplos similares en la sección de `data.frame()`.
+
+### Funciones
+
+Se pueden crear, o usar las que ya existen en R y los respectivos paquetes.
+
+```{r}
+
+sum(vector_numerico) #suma
+
+max(vector_numerico) # máximo
+
+mean(vector_numerico) # promedio
+
+length(vector_letras) # largo del vector
+
+```
+
+```{r}
+?mean()
+help(mean)
+```
+
+Para ver la ayuda en el panel `help`, basta con ejecutar este comando: `?mean()` o bien `help(mean)` en el *script* o en la *consola*.
+
+Otra forma de hacerlo es presionando la tecla `F1` sobre la función.
+
+### Paquetes
+
+Hay un montón de paquetes con funciones adicionales, en este curso vamos a usar mucho `tidyverse`, se pueden instalar paquetes de diversas formas, por ejemplo:
+
+-   Corriendo la siguiente función `install.packages("tidyverse")` en *script* o en *consola*.
+
+-   El panel de *Packages*, con el botón "*Install*", luego colocar el nombre del paquete e instalar.
+
+![](datos/paquetes1.png){fig-align="center"}
+
+![](datos/paquetes2.png){fig-align="center"}
+
+-   En "Tools\>Install Packages..."
+
+![](datos/paquetes3.png){fig-align="center"}
+
+## Proyectos
+
+Cree una carpeta con el nombre del proyecto, por ejemplo: "Clases", dentro de dicha carpeta ordene su trabajo de una forma similar a esta:
+
+-   Datos
+-   Imágenes
+-   Resultados, etc.
+
+Esto queda a su criterio, pero sea ordenado. Este es un ejemplo de orden para una carpeta:
+
+![](datos/carpeta.png)
+
+Lo importante es que mantenga un orden, con nombres claros y subcarpetas de ser necesario.
+
+### Directorio de trabajo
+
+R posee el poderoso concepto de directorio de trabajo (working directory en inglés). Aquí es donde R busca los archivos que le pide que lea y donde colocará todos los archivos que le pida que guarde.
+
+```{r eval=FALSE}
+
+# Se utiliza para cambiar el directorio. Se debe colocar entre paréntesis
+# y entre comillas la dirección del directorio deseado. Por ejemplo:
+
+setwd("C:/Users/Administrator/Desktop")
+
+# para visualizar en qué directorio se está trabajando
+
+getwd()
+
+```
+
+Pero este es un enfoque algo novato y anticuado. Lo práctico es crear un proyecto.
+
+### Crear un proyecto
+
+Las personas expertas en R mantienen todos los archivos asociados a un proyecto en un mismo lugar --- datos de entrada, *scripts*, resultados, gráficos. Esta es una práctica tan acertada y común, que RStudio cuenta con soporte integrado para esto por medio de los proyectos.
+
+Una vez creó la carpeta, se recomienda crear un proyecto, para que R siempre sepa donde está trabajando. En este caso el proyecto se llama igual que la carpeta: "Clases". Arriba del panel de ambiente se pueden observar el proyecto.
+
+![](datos/proyecto1.png)
+
+Por lo general dice "Project: (None)", al dar clic sobre este se despliega lo siguiente, seleccionar "*Existing Directory*" y buscar la carpeta que crearon anteriormente y listo. Es aconsejable hacer esto para que cada proyecto que vayan a crear.
+
+![](datos/proyecto2.png)
+
+Cierre RStudio. Inspeccione la carpeta asociada a su proyecto --- encontrará que hay un archivo `.Rproj` allí. Haz doble clic en ese archivo para reabrir el proyecto. Note que al hacer esto, vuelve al punto donde estaba justo antes de cerrar *RStudio*: es el mismo directorio de trabajo e historial de comandos, y todos los archivos con los que estabas trabajando siguen abiertos.
+
+## Tidy data (Datos ordenados)
+
+El análisis de datos nace de manejar datos, valga la redundancia. La forma en la que se expresan los datos pueden ser tan variados como los datos mismos y tener un estándar para trabajar los datos es casi tan importante como tener los mismos datos.
+
+*Tidy data* es un estándar de manejo de datos, en donde el significados de los datos está expresado en su estructura. Se trabaja con datos rectangulares, es decir, tablas, donde:
+
+-   Cada variable es una columna
+-   Cada observación de la población estudiada es una fila
+-   Cada tipo de información es una tabla.
+
+Más detalle lo pueden encontrar en este linK: <https://r4ds.had.co.nz/tidy-data.html>
+
+Tidy data es sumamente importante en R, porque así es como se construyen las tablas en este lenguaje de programación.
+
+## Tablas
+
+Se pueden escribir tanto a mano como usando vectores (como los creados previamente)
+
+```{r}
+
+vector_letras <- c("D", "E", "F")
+vector_numerico <- c(4, 5, 6)
+
+tabla <- data.frame(Columna1 = c("Fila 1", "Fila 2", "Fila 3"),
+                    Columna2 = vector_letras,
+                    Columna3 = vector_numerico,
+                    "Columna 4" = rep(1,3))
+
+tabla
+
+```
+
+Para acceder a las diferentes posiciones de una tabla, se puede hacer de diferentes formas:
+
+```{r}
+
+# por su nombre
+
+tabla$Columna1
+
+tabla$Columna2
+
+tabla[, "Columna1"]
+
+# por su posición
+
+## Primera fila y todas las columnas
+
+tabla[1, ] # [Fila, Columna]
+
+## Primera y segunda fila y todas las columnas
+
+tabla[c(1,2), ]
+
+## Primera fila y segunda columna
+
+tabla[1, 2]
+
+## Primera columna
+
+tabla[, 1]
+
+```
+
+Y así, sucesivamente...
+
+También se pueden agregar columnas nuevas de esta forma:
+
+```{r}
+
+tabla$Columna4 <- c(10, 20, 30)
+
+tabla$Estudiantes <- c("X", "Y", "Z")
+
+tabla
+
+```
+
+Las tablas también se pueden cargar, de texto plano (.csv, .txt, .tsv, etc), MS Excel, objetos de R, entre otros.
+
+<a href="datos/ConsumoElectrico.csv" download>Descargar datos csv</a>
+
+```{r}
+
+library(readr)
+
+# esta forma de programar se puede denominar como explícita, en el tanto
+# especifica paquete::función()
+
+consumo <- readr::read_csv("datos/ConsumoElectrico.csv")
+
+consumo
+
+```
+
+> Para leer archivos de MS Excel vamos a usar este paquete y función: `openxlsx::read.xlsx()`
+
+<a href="datos/Julio2022.xlsx" download>Descargar datos xlsx</a>
+
+```{r}
+
+# estos son los datos del primer reporte
+
+julio2022 <- openxlsx::read.xlsx("datos/Julio2022.xlsx")
+
+```
+
+## Observaciones finales
+
+Vamos a dejar como estudio individual aspectos "clásicos" de la programación como `for`, `if`, `else`, `while`, etc. Bajo el supuesto de que se ven en principios de informática.
+
+# Manejo de datos
+
+Empecemos por cargar las librerías, esto va por gustos, pero yo prefiero tener todas las librerías en un solo lugar, por ejemplo:
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(corrplot)
+
+```
+
+Habrán notado que me gusta mucho usar esta notación: `paquete::funcion()`, esto lo hago por que permite al menos dos cosas muy útiles:
+
+1.  Llamar a una función siempre y cuando el paquete esté instalado, sin tener que llamar el paquete completo.
+2.  Especificar el paquete del que se quiere usar la función, cuando se llaman igual en dos paquetes distintos que se estén utilizando, por ejemplo:
+
+```{r eval=FALSE}
+
+stats::filter()
+
+dplyr::filter()
+
+```
+
+> OJO, aunque yo lo recomiende, no significa que sea necesario.
+
+## Carga de datos
+
+Bien, ahora carguemos los datos:
+
+<a href="datos/Notas.csv" download>Descargar datos Notas</a>
+
+```{r}
+
+datos <- readr::read_csv("datos/Notas.csv")
+
+datos
+
+head(datos, 2) # los primeros 2 datos
+
+names(datos) # los nombres de las variables de los datos
+
+tail(datos, 2) # los últimos 2 datos
+
+str(datos) # la estructura de datos
+
+summary(datos) # resumen de los datos
+
+```

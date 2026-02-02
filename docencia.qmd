@@ -89,6 +89,8 @@ Encuentre otros gráficos y guías para su construcción.
 
 ## Tutoriales en `r fontawesome::fa("r-project")`
 
+* [Guía básica de R: Introducción](docencia/introduccionR.html){target="_blank"}
+
 ### Aspectos generales
 
 ### Estadística
