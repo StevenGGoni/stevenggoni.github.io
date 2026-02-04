@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xml:lang="es-ES"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Distribuciones discretas interactivas – Steven García Goñi</title>
+<title>Convolución de distribuciones – Steven García Goñi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,18 +33,19 @@ ul.task-list li input[type="checkbox"] {
 <link href="../images/logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-95ec86beb133e56e09708f0005c7610d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-888502555895e5b23bada44cac0faf2c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-95ec86beb133e56e09708f0005c7610d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6b7ec8ef6d90767f3a3afcb5c97d53f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7f60fac5262d0c77e50dbb41b072b5d5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-6b7ec8ef6d90767f3a3afcb5c97d53f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -60,7 +61,7 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "Sin resultados",
+    "search-no-results-text": "No se han encontrado resultados",
     "search-matching-documents-text": "documentos encontrados",
     "search-copy-link-title": "Copiar el enlace en la búsqueda",
     "search-hide-matches-text": "Ocultar resultados adicionales",
@@ -248,7 +249,8 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images\logo.png" alt="Logo de un cuervo" class="navbar-logo">
+    <img src="../images\logo.png" alt="Logo de un cuervo" class="navbar-logo light-content">
+    <img src="../images\logo.png" alt="Logo de un cuervo" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Steven García Goñi</span>
@@ -332,7 +334,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Distribuciones discretas interactivas</h1>
+<h1 class="title">Convolución de distribuciones</h1>
 </div>
 
 
@@ -349,150 +351,297 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>En estadística y probabilidad, convolucionar dos distribuciones es la forma correcta de responder a esta pregunta:</p>
+<blockquote class="blockquote">
+<p>Si <em>X</em> y <em>Y</em> son variables aleatorias independientes, ¿cuál es la distribución de su suma <em>Z=X+Y</em>?</p>
+</blockquote>
+<p>La respuesta no se obtiene sumando puntos, ni promediando curvas, sino mediante una convolución (el cual es un tema que por lo general se aborda en Ecuaciones Diferenciales). Intuitivamente, la convolución toma una distribución, la “desliza” sobre la otra y mide cuánto se superponen. Cada posible forma de obtener un mismo valor de <em>Z</em> contribuye a su probabilidad total.</p>
+<section id="qué-ocurre-con-estas-distribuciones-al-convolucionar" class="level3">
+<h3 class="anchored" data-anchor-id="qué-ocurre-con-estas-distribuciones-al-convolucionar">Qué ocurre con estas distribuciones al convolucionar</h3>
+<p>Aunque la definición es general, cada familia de distribuciones tiene comportamientos característicos.</p>
+<ul>
+<li><p><strong>Uniforme + Uniforme</strong> La suma de dos variables uniformes no es uniforme. Produce una distribución triangular (o trapezoidal si los intervalos no coinciden). La incertidumbre empieza a concentrarse hacia el centro.</p></li>
+<li><p><strong>Triangular + Triangular</strong> La convolución suaviza aún más la forma. Aparecen distribuciones con perfiles poligonales de mayor orden, cada vez más parecidas a una campana de Gauss (Normal).</p></li>
+</ul>
+<p>La app permite ver estas transiciones de forma visual: cómo curvas simples, al sumarse, se vuelven más suaves, más simétricas y más concentradas alrededor de un valor central.</p>
+<ul>
+<li><strong>Relación con el Teorema de Límite Central</strong></li>
+</ul>
+<p>El TLC dice que, bajo ciertas circunstancias, que se dan normalmente en el mundo de la experimentación, la distribución muestral de la media tenderá a una distribución normal a medida que el número de componentes se haga más grande, con independencia de las distribuciones particulares de los componentes. Cuando se suman muchas variables aleatorias independientes (aunque no sean normales), estamos aplicando convoluciones una y otra vez.</p>
+</section>
+<section id="importancia-en-la-metrología" class="level3">
+<h3 class="anchored" data-anchor-id="importancia-en-la-metrología">Importancia en la metrología</h3>
+<p>Una medición real suele ser una suma de diferentes contribuciones:</p>
+<ul>
+<li><p>Resolución del instrumento</p></li>
+<li><p>Error del método</p></li>
+<li><p>Variabilidad ambiental</p></li>
+<li><p>Operador</p></li>
+<li><p>Calibración</p></li>
+</ul>
+<p>Cada una de estas fuentes puede modelarse como una variable aleatoria con su propia distribución, lo que justifica el uso extendido de la distribución normal en los informes de incertidumbre.</p>
+</section>
+</section>
 <section id="instrucciones-de-uso" class="level2">
 <h2 class="anchored" data-anchor-id="instrucciones-de-uso">Instrucciones de uso</h2>
-<p>Este visualizador permite explorar distribuciones discretas y ver cómo cambian sus formas al modificar los parámetros. Seleccione primero una distribución en el menú. Luego ajuste los controles (deslizadores) para cambiar sus valores.</p>
-<p>El gráfico se actualiza automáticamente y muestra la función de probabilidad correspondiente. Observe cómo los parámetros afectan la posición del centro (moda), la dispersión y la asimetría de cada distribución. También permite la descarga en formato PNG, y al posar el cursor sobre las barras se despliega el valor de probabilidad asociado a ese valor.</p>
+<p>Este visualizador permite explorar la convolución de distribuciones continuas, es decir, cómo se combinan dos variables aleatorias independientes <em>X</em> y <em>Y</em> para obtener la distribución de su suma <em>Z=X+Y</em>.</p>
+<p>Primero seleccione una distribución para la variable <em>X</em> y una para la variable <em>Y</em>. Para cada variable, ajuste los parámetros correspondientes mediante los sliders.</p>
+<p>El gráfico se actualiza automáticamente y muestra tres curvas:</p>
+<ul>
+<li><p>La densidad de la variable <em>X</em>,</p></li>
+<li><p>La densidad de la variable <em>Y</em>,</p></li>
+<li><p>La densidad resultante de la suma <em>Z = X + Y</em>, obtenida mediante convolución.</p></li>
+</ul>
+<p>Observe cómo cambian la forma, la dispersión y la concentración de la distribución resultante al modificar los parámetros. En particular, note cómo la suma de distribuciones no normales puede producir perfiles cada vez más suaves y simétricos, anticipando el comportamiento descrito por el Teorema del Límite Central.</p>
+<p>El gráfico es interactivo: puede acercar o alejar regiones, desplazar el plano y descargar el gráfico en formato PNG. Al posar el cursor sobre las curvas se muestran los valores aproximados de la densidad.</p>
 <div class="widget-box">
 
-  
-    <meta charset="utf-8">
-    
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
-  
-  
-  
-  
-  
-    <div style="max-width: 900px; margin: 0 auto;">
-  
-    <label>
-      Seleccione una distribución:</label>
-      <select id="distribution" onchange="renderControls(); updatePlot();">
-        <option value="binomial">Binomial</option>
-        <option value="neg_binomial">Binomial negativa</option>
-        <option value="poisson">Poisson</option>
-        <option value="hypergeometric">Hipergeométrica</option>
+
+  <meta charset="UTF-8">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+
+    .controls h3 {
+      margin-bottom: 6px;
+      font-weight: normal;
+    }
+
+    label {
+      display: block;
+      margin-top: 6px;
+    }
+
+    input[type=range] {
+      width: 200px;
+      vertical-align: middle;
+    }
+
+    span {
+      display: inline-block;
+      width: 40px;
+      text-align: right;
+    }
+  </style>
+
+
+
+
+<div class="container">
+
+  <div class="controls">
+
+    <div>
+      <h3 class="anchored">X</h3>
+      <select id="distX" onchange="updateControls('X'); calcular();">
+        <option value="uniforme">Uniforme (Rectangular)</option>
+        <option value="triangular">Triangular</option>
+        <option value="normal">Normal</option>
       </select>
-    
-  
-    <div id="controls"></div>
-    <div id="plot" style="width: 100%; height: 500px;"></div>
-  
-    <script>
-      function renderControls() {
-        const dist = document.getElementById("distribution").value;
-        const controls = document.getElementById("controls");
-        let html = "";
-  
-        function controlSlider(id, label, min, max, value, step=1) {
-          return `
-            <label>
-              ${label}:
-              <input type="range" id="${id}" min="${min}" max="${max}" value="${value}" step="${step}" 
-                oninput="updatePlot(); document.getElementById(\'${id}-val\').textContent = this.value;">
-              <span id="${id}-val">${value}</span>
-            </label><br>
-          `;
-        }
-  
-        if (dist === "binomial") {
-          html += controlSlider("n", "n", 1, 50, 10);
-          html += controlSlider("p", "p", 0, 1, 0.5, 0.01);
-        } else if (dist === "neg_binomial") {
-          html += controlSlider("r", "Número de éxitos (r)", 1, 50, 10);
-          html += controlSlider("p", "p", 0, 1, 0.5, 0.01);
-        } else if (dist === "poisson") {
-          html += controlSlider("lambda", "λ", 0.1, 20, 4, 0.1);
-        } else if (dist === "hypergeometric") {
-          html += controlSlider("N", "Tamaño total (N)", 10, 100, 50);
-          html += controlSlider("K", "Éxitos en la población (K)", 1, 50, 10);
-          html += controlSlider("n", "Muestra (n)", 1, 50, 10);
-        }
-  
-        controls.innerHTML = html;
-      }
-  
-      function updatePlot() {
-        const dist = document.getElementById("distribution").value;
-        let x = [], y = [], trace = {};
-  
-        if (dist === "binomial") {
-          const n = parseInt(document.getElementById("n").value);
-          const p = parseFloat(document.getElementById("p").value);
-          for (let i = 0; i <= n; i++) {
-            x.push(i);
-            y.push(jStat.binomial.pdf(i, n, p));
-          }
-          trace = { title: `Binomial (n=${n}, p=${p.toFixed(2)})` };
-  
-        } else if (dist === "neg_binomial") {
-          const r = parseInt(document.getElementById("r").value);
-          const p = parseFloat(document.getElementById("p").value);
-          const mu = r * (1 - p) / p;
-          const sigma = Math.sqrt(r * (1 - p) / (p * p));
-          const max = Math.ceil(mu + 4 * sigma);
-  
-          for (let i = 0; i <= max; i++) {
-            x.push(i);
-            y.push(jStat.negbin.pdf(i, r, p));
-          }
-          trace = { title: `Binomial Negativa (r=${r}, p=${p.toFixed(2)})` };
-  
-        } else if (dist === "poisson") {
-          const lambda = parseFloat(document.getElementById("lambda").value);
-          const max = Math.ceil(lambda + 4 * Math.sqrt(lambda));
-          for (let i = 0; i <= max; i++) {
-            x.push(i);
-            y.push(jStat.poisson.pdf(i, lambda));
-          }
-          trace = { title: `Poisson (λ=${lambda.toFixed(2)})` };
-  
-        } else if (dist === "hypergeometric") {
-          const N = parseInt(document.getElementById("N").value);
-          const K = parseInt(document.getElementById("K").value);
-          const n = parseInt(document.getElementById("n").value);
-          const minX = Math.max(0, n + K - N);
-          const maxX = Math.min(K, n);
-          for (let i = minX; i <= maxX; i++) {
-            x.push(i);
-            y.push(jStat.hypgeom.pdf(i, N, K, n));
-          }
-          trace = { title: `Hipergeométrica (N=${N}, K=${K}, n=${n})` };
-        }
-  
-        Plotly.newPlot("plot", [{
-          x: x,
-          y: y,
-          type: "bar",
-          marker: { color: "#331114" }
-        }], {
-          title: { text: trace.title, font: { family: "Crimson Pro" } },
-          xaxis: { title: "x", 
-          titlefont: { family: "Aller" },
-          tickfont: { family: "Aller" }},
-          yaxis: { title: "Probabilidad", 
-          titlefont: { family: "Aller" },
-          tickfont: { family: "Aller" }},
-          paper_bgcolor: 'rgba(0,0,0,0)',
-          plot_bgcolor: 'rgba(0,0,0,0)'
-        });
-  
-      }
-  
-        renderControls();
-        updatePlot();
-    </script>
-      <footer style="margin-top: 2em; font-size: 0.8em; text-align: center; color: gray;">
-      Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026
-    </footer>
+      <div id="paramsX"></div>
     </div>
-  
-<div>
+
+    <div>
+      <h3 class="anchored">Y</h3>
+      <select id="distY" onchange="updateControls('Y'); calcular();">
+        <option value="uniforme">Uniforme (Rectangular)</option>
+        <option value="triangular">Triangular</option>
+        <option value="normal">Normal</option>
+      </select>
+      <div id="paramsY"></div>
+    </div>
+
+  </div>
+
+  <div id="plot" style="width:100%; height:500px;"></div>
+
+<script>
+const N = 500;
+const xmin = -15;
+const xmax = 15;
+const dx = (xmax - xmin) / N;
+
+// ===== Distribuciones =====
+
+function uniforme(x, p) {
+  return (x >= p.a && x <= p.b) ? 1 / (p.b - p.a) : 0;
+}
+
+function triangular(x, p) {
+  const d = Math.abs(x - p.c);
+  return d <= p.a ? (1 - d / p.a) / p.a : 0;
+}
+
+function normal(x, p) {
+  return Math.exp(-0.5 * ((x - p.mu) / p.sigma) ** 2) /
+         (p.sigma * Math.sqrt(2 * Math.PI));
+}
+
+function getDist(name) {
+  if (name === "uniforme") return uniforme;
+  if (name === "triangular") return triangular;
+  if (name === "normal") return normal;
+}
+
+// ===== Sliders =====
+
+function slider(id, min, max, step, value, label) {
+  return `
+    <label>
+      ${label}:
+      <input type="range" id="${id}" min="${min}" max="${max}" step="${step}" value="${value}"
+        oninput="calcular(); document.getElementById('${id}val').textContent = this.value;">
+      <span id="${id}val">${value}</span>
+    </label>
+  `;
+}
+
+function updateControls(v) {
+  const dist = document.getElementById("dist" + v).value;
+  const target = document.getElementById("params" + v);
+
+  if (dist === "uniforme") {
+    target.innerHTML =
+      slider(v+"a", -5, 4, 0.1, -2, "Min") +
+      slider(v+"b", -4, 5, 0.1, 2, "Max");
+  }
+
+  if (dist === "triangular") {
+    target.innerHTML =
+      slider(v+"c", -5, 5, 0.1, 0, "Centro") +
+      slider(v+"a", 0.5, 6, 0.1, 2, "Ancho");
+  }
+
+  if (dist === "normal") {
+    target.innerHTML =
+      slider(v+"mu", -5, 5, 0.1, 0, "μ") +
+      slider(v+"sigma", 0.5, 5, 0.1, 1.5, "σ");
+  }
+}
+
+// ===== Convolución =====
+
+function convolucion(f, g) {
+  const h = new Array(N).fill(0);
+  const offset = Math.floor(N / 2);
+  for (let i = 0; i < N; i++) {
+    for (let j = 0; j < N; j++) {
+      const k = i - j + offset;
+      if (k >= 0 && k < N) {
+        h[i] += f[j] * g[k] * dx;
+      }
+    }
+  }
+  return h;
+}
+
+// ===== Lógica principal =====
+
+function leerParametros(v, dist) {
+  if (dist === "uniforme") {
+    return {
+      a: parseFloat(document.getElementById(v+"a").value),
+      b: parseFloat(document.getElementById(v+"b").value)
+    };
+  }
+  if (dist === "triangular") {
+    return {
+      c: parseFloat(document.getElementById(v+"c").value),
+      a: parseFloat(document.getElementById(v+"a").value)
+    };
+  }
+  if (dist === "normal") {
+    return {
+      mu: parseFloat(document.getElementById(v+"mu").value),
+      sigma: parseFloat(document.getElementById(v+"sigma").value)
+    };
+  }
+}
+
+function calcular() {
+  const distX = document.getElementById("distX").value;
+  const distY = document.getElementById("distY").value;
+
+  const pX = leerParametros("X", distX);
+  const pY = leerParametros("Y", distY);
+
+  const fx = getDist(distX);
+  const fy = getDist(distY);
+
+  const x = [];
+  const fX = [];
+  const fY = [];
+
+  for (let i = 0; i < N; i++) {
+    const xi = xmin + i * dx;
+    x.push(xi);
+    fX.push(fx(xi, pX));
+    fY.push(fy(xi, pY));
+  }
+
+  const fZ = convolucion(fX, fY);
+
+  Plotly.react("plot", [
+    { x, y: fX, name: "X", mode: "lines", line: { color: "#9BA1AB", width: 2 } },
+    { x, y: fY, name: "Y", mode: "lines", line: { color: "#9BA1AB", width: 2, dash: "dot" } },
+    { x, y: fZ, name: "Z", mode: "lines", line: { color: "#331114", width: 3 } }
+  ], {
+    title: {
+      text: "Convolución de distribuciones",
+      font: { family: "Crimson Pro" }
+    },
+    xaxis: {
+      title: "x",
+      titlefont: { family: "Aller" },
+      tickfont: { family: "Aller" }
+    },
+    yaxis: {
+      title: "Densidad",
+      titlefont: { family: "Aller" },
+      tickfont: { family: "Aller" }
+    },
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    margin: { t: 60 }
+  });
+}
+
+// ===== Init =====
+
+updateControls("X");
+updateControls("Y");
+calcular();
+</script>
+
+      <footer style="margin-top: 2em; font-size: 0.8em; text-align: center; color: gray;">
+      Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Febrero 2026
+    </footer>
+
+</div>
+
+</div>
 
 
-</div></div></section>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -559,13 +708,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

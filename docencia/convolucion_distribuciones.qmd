@@ -1,0 +1,308 @@
+---
+title: "Convolución de distribuciones"
+---
+
+## Introducción
+
+En estadística y probabilidad, convolucionar dos distribuciones es la forma correcta de responder a esta pregunta:
+
+>Si *X* y *Y* son variables aleatorias independientes, ¿cuál es la distribución de su suma *Z=X+Y*?
+
+La respuesta no se obtiene sumando puntos, ni promediando curvas, sino mediante una convolución (el cual es un tema que por lo general se aborda en Ecuaciones Diferenciales). Intuitivamente, la convolución toma una distribución, la “desliza” sobre la otra y mide cuánto se superponen. Cada posible forma de obtener un mismo valor de *Z* contribuye a su probabilidad total.
+
+### Qué ocurre con estas distribuciones al convolucionar
+
+Aunque la definición es general, cada familia de distribuciones tiene comportamientos característicos.
+
+* **Uniforme + Uniforme**
+La suma de dos variables uniformes no es uniforme. Produce una distribución triangular (o trapezoidal si los intervalos no coinciden). La incertidumbre empieza a concentrarse hacia el centro.
+
+* **Triangular + Triangular**
+La convolución suaviza aún más la forma. Aparecen distribuciones con perfiles poligonales de mayor orden, cada vez más parecidas a una campana de Gauss (Normal). 
+
+La app permite ver estas transiciones de forma visual: cómo curvas simples, al sumarse, se vuelven más suaves, más simétricas y más concentradas alrededor de un valor central.
+
+* **Relación con el Teorema de Límite Central**
+
+El TLC dice que, bajo ciertas circunstancias, que se dan normalmente en el mundo de la experimentación, la distribución muestral de la media tenderá a una distribución normal a medida que el número de componentes se haga más grande, con independencia de las distribuciones particulares de los componentes. Cuando se suman muchas variables aleatorias independientes (aunque no sean normales), estamos aplicando convoluciones una y otra vez.
+
+### Importancia en la metrología
+
+Una medición real suele ser una suma de  diferentes contribuciones:
+
+* Resolución del instrumento
+
+* Error del método
+
+* Variabilidad ambiental
+
+* Operador
+
+* Calibración
+
+Cada una de estas fuentes puede modelarse como una variable aleatoria con su propia distribución, lo que justifica el uso extendido de la distribución normal en los informes de incertidumbre.
+
+## Instrucciones de uso
+
+Este visualizador permite explorar la convolución de distribuciones continuas, es decir, cómo se combinan dos variables aleatorias independientes *X* y *Y* para obtener la distribución de su suma *Z=X+Y*.
+
+Primero seleccione una distribución para la variable *X* y una para la variable *Y*. Para cada variable, ajuste los parámetros correspondientes mediante los sliders.
+
+El gráfico se actualiza automáticamente y muestra tres curvas:
+
+* La densidad de la variable *X*,
+
+* La densidad de la variable *Y*,
+
+* La densidad resultante de la suma *Z = X + Y*, obtenida mediante convolución.
+
+Observe cómo cambian la forma, la dispersión y la concentración de la distribución resultante al modificar los parámetros. En particular, note cómo la suma de distribuciones no normales puede producir perfiles cada vez más suaves y simétricos, anticipando el comportamiento descrito por el Teorema del Límite Central.
+
+El gráfico es interactivo: puede acercar o alejar regiones, desplazar el plano y descargar el gráfico en formato PNG. Al posar el cursor sobre las curvas se muestran los valores aproximados de la densidad. 
+
+```{=html}
+<div class="widget-box">
+
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+
+    .controls h3 {
+      margin-bottom: 6px;
+      font-weight: normal;
+    }
+
+    label {
+      display: block;
+      margin-top: 6px;
+    }
+
+    input[type=range] {
+      width: 200px;
+      vertical-align: middle;
+    }
+
+    span {
+      display: inline-block;
+      width: 40px;
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="controls">
+
+    <div>
+      <h3>X</h3>
+      <select id="distX" onchange="updateControls('X'); calcular();">
+        <option value="uniforme">Uniforme (Rectangular)</option>
+        <option value="triangular">Triangular</option>
+        <option value="normal">Normal</option>
+      </select>
+      <div id="paramsX"></div>
+    </div>
+
+    <div>
+      <h3>Y</h3>
+      <select id="distY" onchange="updateControls('Y'); calcular();">
+        <option value="uniforme">Uniforme (Rectangular)</option>
+        <option value="triangular">Triangular</option>
+        <option value="normal">Normal</option>
+      </select>
+      <div id="paramsY"></div>
+    </div>
+
+  </div>
+
+  <div id="plot" style="width:100%; height:500px;"></div>
+
+<script>
+const N = 500;
+const xmin = -15;
+const xmax = 15;
+const dx = (xmax - xmin) / N;
+
+// ===== Distribuciones =====
+
+function uniforme(x, p) {
+  return (x >= p.a && x <= p.b) ? 1 / (p.b - p.a) : 0;
+}
+
+function triangular(x, p) {
+  const d = Math.abs(x - p.c);
+  return d <= p.a ? (1 - d / p.a) / p.a : 0;
+}
+
+function normal(x, p) {
+  return Math.exp(-0.5 * ((x - p.mu) / p.sigma) ** 2) /
+         (p.sigma * Math.sqrt(2 * Math.PI));
+}
+
+function getDist(name) {
+  if (name === "uniforme") return uniforme;
+  if (name === "triangular") return triangular;
+  if (name === "normal") return normal;
+}
+
+// ===== Sliders =====
+
+function slider(id, min, max, step, value, label) {
+  return `
+    <label>
+      ${label}:
+      <input type="range" id="${id}" min="${min}" max="${max}" step="${step}" value="${value}"
+        oninput="calcular(); document.getElementById('${id}val').textContent = this.value;">
+      <span id="${id}val">${value}</span>
+    </label>
+  `;
+}
+
+function updateControls(v) {
+  const dist = document.getElementById("dist" + v).value;
+  const target = document.getElementById("params" + v);
+
+  if (dist === "uniforme") {
+    target.innerHTML =
+      slider(v+"a", -5, 4, 0.1, -2, "Min") +
+      slider(v+"b", -4, 5, 0.1, 2, "Max");
+  }
+
+  if (dist === "triangular") {
+    target.innerHTML =
+      slider(v+"c", -5, 5, 0.1, 0, "Centro") +
+      slider(v+"a", 0.5, 6, 0.1, 2, "Ancho");
+  }
+
+  if (dist === "normal") {
+    target.innerHTML =
+      slider(v+"mu", -5, 5, 0.1, 0, "μ") +
+      slider(v+"sigma", 0.5, 5, 0.1, 1.5, "σ");
+  }
+}
+
+// ===== Convolución =====
+
+function convolucion(f, g) {
+  const h = new Array(N).fill(0);
+  const offset = Math.floor(N / 2);
+  for (let i = 0; i < N; i++) {
+    for (let j = 0; j < N; j++) {
+      const k = i - j + offset;
+      if (k >= 0 && k < N) {
+        h[i] += f[j] * g[k] * dx;
+      }
+    }
+  }
+  return h;
+}
+
+// ===== Lógica principal =====
+
+function leerParametros(v, dist) {
+  if (dist === "uniforme") {
+    return {
+      a: parseFloat(document.getElementById(v+"a").value),
+      b: parseFloat(document.getElementById(v+"b").value)
+    };
+  }
+  if (dist === "triangular") {
+    return {
+      c: parseFloat(document.getElementById(v+"c").value),
+      a: parseFloat(document.getElementById(v+"a").value)
+    };
+  }
+  if (dist === "normal") {
+    return {
+      mu: parseFloat(document.getElementById(v+"mu").value),
+      sigma: parseFloat(document.getElementById(v+"sigma").value)
+    };
+  }
+}
+
+function calcular() {
+  const distX = document.getElementById("distX").value;
+  const distY = document.getElementById("distY").value;
+
+  const pX = leerParametros("X", distX);
+  const pY = leerParametros("Y", distY);
+
+  const fx = getDist(distX);
+  const fy = getDist(distY);
+
+  const x = [];
+  const fX = [];
+  const fY = [];
+
+  for (let i = 0; i < N; i++) {
+    const xi = xmin + i * dx;
+    x.push(xi);
+    fX.push(fx(xi, pX));
+    fY.push(fy(xi, pY));
+  }
+
+  const fZ = convolucion(fX, fY);
+
+  Plotly.react("plot", [
+    { x, y: fX, name: "X", mode: "lines", line: { color: "#9BA1AB", width: 2 } },
+    { x, y: fY, name: "Y", mode: "lines", line: { color: "#9BA1AB", width: 2, dash: "dot" } },
+    { x, y: fZ, name: "Z", mode: "lines", line: { color: "#331114", width: 3 } }
+  ], {
+    title: {
+      text: "Convolución de distribuciones",
+      font: { family: "Crimson Pro" }
+    },
+    xaxis: {
+      title: "x",
+      titlefont: { family: "Aller" },
+      tickfont: { family: "Aller" }
+    },
+    yaxis: {
+      title: "Densidad",
+      titlefont: { family: "Aller" },
+      tickfont: { family: "Aller" }
+    },
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    margin: { t: 60 }
+  });
+}
+
+// ===== Init =====
+
+updateControls("X");
+updateControls("Y");
+calcular();
+</script>
+
+      <footer style="margin-top: 2em; font-size: 0.8em; text-align: center; color: gray;">
+      Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Febrero 2026
+    </footer>
+
+</div>
+</body>
+</div>
+
+
+```
+

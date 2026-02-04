@@ -37,6 +37,10 @@ Este visualizador le permite explorar las principales distribuciones discretas y
 
 Es el equivalente continuo al visualizador anterior, pero además, presenta una comparación entre la distribución normal estándar ($z$) y la t-Student ($t$).
 
+* [Convolución de distribuciones](docencia/convolucion_distribuciones.html){target="_blank"}
+
+Este visualizador interactivo permite explorar cómo se combinan dos variables aleatorias independientes mediante la convolución de sus distribuciones. Muestra la distribución resultante de la suma y su relación con el Teorema del Límite Central.
+
 * [Curvas OC para muestreo por atributos](docencia/curvas-oc.html){target="_blank"}
 
 Propio del campo de la ingeniería de calidad y muestreo de aceptación, este visualizador muestra las curvas características de operación (OC) de planes de muestreo por atributos.
@@ -89,11 +93,11 @@ Encuentre otros gráficos y guías para su construcción.
 
 ## Tutoriales en `r fontawesome::fa("r-project")`
 
+### Aspectos generales
+
 * [Guía básica de R: Introducción](docencia/introduccionR.html){target="_blank"}
 
 Para los que nunca han programado, o al menos nunca han programado en R/Rstudio.
-
-### Aspectos generales
 
 ### Estadística
 

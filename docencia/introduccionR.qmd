@@ -13,13 +13,13 @@ execute:
 
 Para los que nunca han programado, o al menos nunca han programado en R/Rstudio.
 
-Esta guía está basada en este [libro](https://r4ds.hadley.nz/).
+Esta guía está basada en este [libro](https://r4ds.hadley.nz/){target="_blank"}.
 
 ## Instalación de R y RStudio
 
--   [\[Última versión de R\]](https://cran.r-project.org/) en función del sistema operativo
+-   [\[Última versión de R\]](https://cran.r-project.org/){target="_blank"} en función del sistema operativo
 
--   [Última versión de RStudio](https://posit.co/download/rstudio-desktop/)
+-   [Última versión de RStudio](https://posit.co/download/rstudio-desktop/){target="_blank"}
 
 ## Partes de la interfaz de RStudio
 
@@ -459,7 +459,7 @@ julio2022 <- openxlsx::read.xlsx("datos/Julio2022.xlsx")
 
 ## Observaciones finales
 
-Vamos a dejar como estudio individual aspectos "clásicos" de la programación como `for`, `if`, `else`, `while`, etc. Bajo el supuesto de que se ven en principios de informática.
+Vamos a dejar como estudio individual aspectos "clásicos" de la programación como `for`, `if`, `else`, `while`, etc. Bajo el supuesto de que son aspectos comunes a la mayoría de lenguajes de programación. 
 
 # Manejo de datos
 
