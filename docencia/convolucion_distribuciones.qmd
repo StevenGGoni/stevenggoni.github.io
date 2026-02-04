@@ -20,7 +20,7 @@ La suma de dos variables uniformes no es uniforme. Produce una distribución tri
 * **Triangular + Triangular**
 La convolución suaviza aún más la forma. Aparecen distribuciones con perfiles poligonales de mayor orden, cada vez más parecidas a una campana de Gauss (Normal). 
 
-La app permite ver estas transiciones de forma visual: cómo curvas simples, al sumarse, se vuelven más suaves, más simétricas y más concentradas alrededor de un valor central.
+La aplicación permite ver estas transiciones de forma visual. Observe cómo curvas simples, al sumarse, se vuelven más suaves, más simétricas y más concentradas alrededor de un valor central.
 
 * **Relación con el Teorema de Límite Central**
 
@@ -44,9 +44,7 @@ Cada una de estas fuentes puede modelarse como una variable aleatoria con su pro
 
 ## Instrucciones de uso
 
-Este visualizador permite explorar la convolución de distribuciones continuas, es decir, cómo se combinan dos variables aleatorias independientes *X* y *Y* para obtener la distribución de su suma *Z=X+Y*.
-
-Primero seleccione una distribución para la variable *X* y una para la variable *Y*. Para cada variable, ajuste los parámetros correspondientes mediante los sliders.
+Este visualizador permite explorar la convolución de distribuciones continuas, es decir, cómo se combinan dos variables aleatorias independientes *X* y *Y* para obtener la distribución de su suma *Z=X+Y*. Primero seleccione una distribución para la variable *X* y una para la variable *Y*. Para cada variable, ajuste los parámetros correspondientes mediante los sliders.
 
 El gráfico se actualiza automáticamente y muestra tres curvas:
 
@@ -64,15 +62,15 @@ El gráfico es interactivo: puede acercar o alejar regiones, desplazar el plano 
 <div class="widget-box">
 
 <head>
-  <meta charset="UTF-8">
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
   <style>
-    body {
+    /* Aislar estilos del resto del sitio */
+    .widget-box {
       font-family: sans-serif;
     }
 
-    .container {
+    .widget-container {
       max-width: 900px;
       margin: 0 auto;
     }
@@ -89,17 +87,17 @@ El gráfico es interactivo: puede acercar o alejar regiones, desplazar el plano 
       font-weight: normal;
     }
 
-    label {
+    .widget-box label {
       display: block;
       margin-top: 6px;
     }
 
-    input[type=range] {
+    .widget-box input[type=range] {
       width: 200px;
       vertical-align: middle;
     }
 
-    span {
+    .widget-box span {
       display: inline-block;
       width: 40px;
       text-align: right;
@@ -109,7 +107,7 @@ El gráfico es interactivo: puede acercar o alejar regiones, desplazar el plano 
 
 <body>
 
-<div class="container">
+<div class="widget-container">
 
   <div class="controls">
 
@@ -268,20 +266,9 @@ function calcular() {
     { x, y: fY, name: "Y", mode: "lines", line: { color: "#9BA1AB", width: 2, dash: "dot" } },
     { x, y: fZ, name: "Z", mode: "lines", line: { color: "#331114", width: 3 } }
   ], {
-    title: {
-      text: "Convolución de distribuciones",
-      font: { family: "Crimson Pro" }
-    },
-    xaxis: {
-      title: "x",
-      titlefont: { family: "Aller" },
-      tickfont: { family: "Aller" }
-    },
-    yaxis: {
-      title: "Densidad",
-      titlefont: { family: "Aller" },
-      tickfont: { family: "Aller" }
-    },
+    title: { text: "Convolución de distribuciones" },
+    xaxis: { title: "x" },
+    yaxis: { title: "Densidad" },
     paper_bgcolor: 'rgba(0,0,0,0)',
     plot_bgcolor: 'rgba(0,0,0,0)',
     margin: { t: 60 }

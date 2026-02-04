@@ -365,7 +365,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>Uniforme + Uniforme</strong> La suma de dos variables uniformes no es uniforme. Produce una distribución triangular (o trapezoidal si los intervalos no coinciden). La incertidumbre empieza a concentrarse hacia el centro.</p></li>
 <li><p><strong>Triangular + Triangular</strong> La convolución suaviza aún más la forma. Aparecen distribuciones con perfiles poligonales de mayor orden, cada vez más parecidas a una campana de Gauss (Normal).</p></li>
 </ul>
-<p>La app permite ver estas transiciones de forma visual: cómo curvas simples, al sumarse, se vuelven más suaves, más simétricas y más concentradas alrededor de un valor central.</p>
+<p>La aplicación permite ver estas transiciones de forma visual. Observe cómo curvas simples, al sumarse, se vuelven más suaves, más simétricas y más concentradas alrededor de un valor central.</p>
 <ul>
 <li><strong>Relación con el Teorema de Límite Central</strong></li>
 </ul>
@@ -386,8 +386,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="instrucciones-de-uso" class="level2">
 <h2 class="anchored" data-anchor-id="instrucciones-de-uso">Instrucciones de uso</h2>
-<p>Este visualizador permite explorar la convolución de distribuciones continuas, es decir, cómo se combinan dos variables aleatorias independientes <em>X</em> y <em>Y</em> para obtener la distribución de su suma <em>Z=X+Y</em>.</p>
-<p>Primero seleccione una distribución para la variable <em>X</em> y una para la variable <em>Y</em>. Para cada variable, ajuste los parámetros correspondientes mediante los sliders.</p>
+<p>Este visualizador permite explorar la convolución de distribuciones continuas, es decir, cómo se combinan dos variables aleatorias independientes <em>X</em> y <em>Y</em> para obtener la distribución de su suma <em>Z=X+Y</em>. Primero seleccione una distribución para la variable <em>X</em> y una para la variable <em>Y</em>. Para cada variable, ajuste los parámetros correspondientes mediante los sliders.</p>
 <p>El gráfico se actualiza automáticamente y muestra tres curvas:</p>
 <ul>
 <li><p>La densidad de la variable <em>X</em>,</p></li>
@@ -399,15 +398,15 @@ ul.task-list li input[type="checkbox"] {
 <div class="widget-box">
 
 
-  <meta charset="UTF-8">
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
   <style>
-    body {
+    /* Aislar estilos del resto del sitio */
+    .widget-box {
       font-family: sans-serif;
     }
 
-    .container {
+    .widget-container {
       max-width: 900px;
       margin: 0 auto;
     }
@@ -424,17 +423,17 @@ ul.task-list li input[type="checkbox"] {
       font-weight: normal;
     }
 
-    label {
+    .widget-box label {
       display: block;
       margin-top: 6px;
     }
 
-    input[type=range] {
+    .widget-box input[type=range] {
       width: 200px;
       vertical-align: middle;
     }
 
-    span {
+    .widget-box span {
       display: inline-block;
       width: 40px;
       text-align: right;
@@ -444,7 +443,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="container">
+<div class="widget-container">
 
   <div class="controls">
 
@@ -603,20 +602,9 @@ function calcular() {
     { x, y: fY, name: "Y", mode: "lines", line: { color: "#9BA1AB", width: 2, dash: "dot" } },
     { x, y: fZ, name: "Z", mode: "lines", line: { color: "#331114", width: 3 } }
   ], {
-    title: {
-      text: "Convolución de distribuciones",
-      font: { family: "Crimson Pro" }
-    },
-    xaxis: {
-      title: "x",
-      titlefont: { family: "Aller" },
-      tickfont: { family: "Aller" }
-    },
-    yaxis: {
-      title: "Densidad",
-      titlefont: { family: "Aller" },
-      tickfont: { family: "Aller" }
-    },
+    title: { text: "Convolución de distribuciones" },
+    xaxis: { title: "x" },
+    yaxis: { title: "Densidad" },
     paper_bgcolor: 'rgba(0,0,0,0)',
     plot_bgcolor: 'rgba(0,0,0,0)',
     margin: { t: 60 }

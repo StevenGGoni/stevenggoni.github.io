@@ -3,6 +3,7 @@ title: "Recursos académicos"
 format:
   html:
     toc: true
+    toc-depth: 3
     toc-expand: false
     code-fold: false
     collapse-sections: true
@@ -93,15 +94,17 @@ Encuentre otros gráficos y guías para su construcción.
 
 ## Tutoriales en `r fontawesome::fa("r-project")`
 
-### Aspectos generales
+### Aspectos generales `r fontawesome::fa("circle-info")`
 
 * [Guía básica de R: Introducción](docencia/introduccionR.html){target="_blank"}
 
 Para los que nunca han programado, o al menos nunca han programado en R/Rstudio.
 
-### Estadística
+### Estadística `r fontawesome::fa("chart-line")`
 
-### Ingeniería de Calidad
+Esta parte está en construcción
+
+### Ingeniería de Calidad `r fontawesome::fa("ruler-combined")`
 
 * [Diagrama de Pareto](docencia/diagrama_pareto.html){target="_blank"} 
 
