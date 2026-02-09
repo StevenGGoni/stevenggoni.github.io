@@ -23,7 +23,7 @@ Esta guía está basada en este [libro](https://r4ds.hadley.nz/){target="_blank"
 
 ## Partes de la interfaz de RStudio
 
-![Interfaz de RStudio](datos/interfaz.png){fig-align="center"}
+![Interfaz de RStudio](img/interfaz.png){fig-align="center"}
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | 1.  **Panel de *scripts*:** es donde va todo el código especializado que vamos creando y queremos **conservar** cuando terminamos la jornada de trabajo. Cuando se abre RStudio *puede* que este panel no esté visible, porque no hay *scripts* en él. Sobre todo la primera vez (nuevos usuarios).                                                                                                                                                                                           | 2.  **Panel de ambiente:** acá se muestran todos los objetos, variables y funciones que se vayan creando. Como pueden notar, tiene otras pestañas, que no son de interés para el nivel de esta introducción.                         |
@@ -295,13 +295,13 @@ Hay un montón de paquetes con funciones adicionales, en este curso vamos a usar
 
 -   El panel de *Packages*, con el botón "*Install*", luego colocar el nombre del paquete e instalar.
 
-![](datos/paquetes1.png){fig-align="center"}
+![](img/paquetes1.png){fig-align="center"}
 
-![](datos/paquetes2.png){fig-align="center"}
+![](img/paquetes2.png){fig-align="center"}
 
 -   En "Tools\>Install Packages..."
 
-![](datos/paquetes3.png){fig-align="center"}
+![](img/paquetes3.png){fig-align="center"}
 
 ## Proyectos
 
@@ -313,7 +313,7 @@ Cree una carpeta con el nombre del proyecto, por ejemplo: "Clases", dentro de di
 
 Esto queda a su criterio, pero sea ordenado. Este es un ejemplo de orden para una carpeta:
 
-![](datos/carpeta.png)
+![](img/carpeta.png)
 
 Lo importante es que mantenga un orden, con nombres claros y subcarpetas de ser necesario.
 
@@ -342,11 +342,11 @@ Las personas expertas en R mantienen todos los archivos asociados a un proyecto 
 
 Una vez creó la carpeta, se recomienda crear un proyecto, para que R siempre sepa donde está trabajando. En este caso el proyecto se llama igual que la carpeta: "Clases". Arriba del panel de ambiente se pueden observar el proyecto.
 
-![](datos/proyecto1.png)
+![](img/proyecto1.png)
 
 Por lo general dice "Project: (None)", al dar clic sobre este se despliega lo siguiente, seleccionar "*Existing Directory*" y buscar la carpeta que crearon anteriormente y listo. Es aconsejable hacer esto para que cada proyecto que vayan a crear.
 
-![](datos/proyecto2.png)
+![](img/proyecto2.png)
 
 Cierre RStudio. Inspeccione la carpeta asociada a su proyecto --- encontrará que hay un archivo `.Rproj` allí. Haz doble clic en ese archivo para reabrir el proyecto. Note que al hacer esto, vuelve al punto donde estaba justo antes de cerrar *RStudio*: es el mismo directorio de trabajo e historial de comandos, y todos los archivos con los que estabas trabajando siguen abiertos.
 

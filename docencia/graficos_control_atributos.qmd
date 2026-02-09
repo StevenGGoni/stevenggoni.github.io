@@ -16,7 +16,7 @@ Mientras que los gráficos de control para variables rastrean las cantidades med
 
 En las industrias de servicios y otras áreas no manufactureras, los datos de conteo pueden ser abundantes pero las mediciones numéricas raras. Además, se pueden considerar simultáneamente muchas características de los resultados del proceso utilizando gráficos de atributos.
 
-![](datos/diagrama_atributos.png)
+![](img/diagrama_atributos.png)
 
 # Librerías
 
