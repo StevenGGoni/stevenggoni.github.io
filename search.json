@@ -1,5 +1,180 @@
 [
   {
+    "objectID": "tutoriales_R.html",
+    "href": "tutoriales_R.html",
+    "title": "Tutoriales en R",
+    "section": "",
+    "text": "En esta sección encontrará tutoriales desarrollados en R para la resolución de algunos ejercicios relacionados con probabilidad, estadística e ingeniería."
+  },
+  {
+    "objectID": "tutoriales_R.html#aspectos-generales",
+    "href": "tutoriales_R.html#aspectos-generales",
+    "title": "Tutoriales en R",
+    "section": "Aspectos generales ",
+    "text": "Aspectos generales \n\nGuía básica de R: Introducción\n\nPara los que nunca han programado, o al menos nunca han programado en R/Rstudio."
+  },
+  {
+    "objectID": "tutoriales_R.html#estadística",
+    "href": "tutoriales_R.html#estadística",
+    "title": "Tutoriales en R",
+    "section": "Estadística ",
+    "text": "Estadística \nEsta parte está en construcción"
+  },
+  {
+    "objectID": "tutoriales_R.html#ingeniería-de-calidad",
+    "href": "tutoriales_R.html#ingeniería-de-calidad",
+    "title": "Tutoriales en R",
+    "section": "Ingeniería de Calidad ",
+    "text": "Ingeniería de Calidad \n\nDiagrama de Pareto\n\nAprenda a realizar un gráfico de Pareto en R. Este es un principio que dice que una pequeña cantidad de causas suele explicar la mayor parte de los efectos\n\nGráficos de control para variables\n\nLos gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real.\n\nGráficos de control para atributos\n\nMientras que los gráficos de control para variables rastrean las cantidades medidas relacionadas con la calidad de los resultados del proceso, los gráficos para atributos siguen el recuento de los elementos no conformes.\n\nAnálisis de capacidad para datos normales\n\nUn análisis de capacidad es una herramienta estadística que evalúa si un proceso puede cumplir de forma consistente con los requisitos o especificaciones establecidos. Compara la variabilidad natural del proceso con los límites de tolerancia del cliente para determinar qué tan capaz es.\n\nAnálisis de capacidad para datos no normales\n\nEs relativamente común encontrarse con procesos que no siguen la distribución normal, ya sea por que así es como debe comportarse o bien, por errores que suceden a la hora de recolectar, almacenar o procesar los datos."
+  },
+  {
+    "objectID": "tutoriales_R/graficos_control_atributos.html",
+    "href": "tutoriales_R/graficos_control_atributos.html",
+    "title": "Gráficos de control para atributos",
+    "section": "",
+    "text": "Mientras que los gráficos de control para variables rastrean las cantidades medidas relacionadas con la calidad de los resultados del proceso, los gráficos para atributos siguen el recuento de los elementos no conformes. Los gráficos para atributos no son tan informativos como los gráficos para variables para los estudios de la fase I. Un desplazamiento por encima o por debajo del límite de control inferior o una serie de puntos por encima o por debajo de la línea central en un gráfico de variables puede dar una pista sobre la causa. Sin embargo, un cambio en el número de elementos no conformes puede dar tal indicio. Aún así los gráficos de atributos tienen valor en la fase I.\nEn las industrias de servicios y otras áreas no manufactureras, los datos de conteo pueden ser abundantes pero las mediciones numéricas raras. Además, se pueden considerar simultáneamente muchas características de los resultados del proceso utilizando gráficos de atributos."
+  },
+  {
+    "objectID": "tutoriales_R/graficos_control_atributos.html#gráfico-p",
+    "href": "tutoriales_R/graficos_control_atributos.html#gráfico-p",
+    "title": "Gráficos de control para atributos",
+    "section": "Gráfico \\(p\\)",
+    "text": "Gráfico \\(p\\)\nA continuación se le presenta un ejemplo donde se han recogido \\(n=50\\) durante 30 periodos de tiempo.\n\ndata(orangejuice)\n\nhead(orangejuice)%&gt;% \n  flextable::flextable()\n\nsampleDsizetrial11250TRUE21550TRUE3850TRUE41050TRUE5450TRUE6750TRUE\n\ntail(orangejuice)%&gt;% \n  flextable::flextable()\n\nsampleDsizetrial49650FALSE50750FALSE51550FALSE52650FALSE53350FALSE54550FALSE\n\n\nSolo necesitamos, para el ejemplo, los primeros 30 datos (los de trial = TRUE).\n\ndatos &lt;- orangejuice %&gt;% \n  dplyr::filter(trial)\n\nCon este código podemos generar el gráfico.\n\np &lt;- qcc(datos$D, \n         sizes = 50, type = \"p\", \n         title = \"Gráfico de control p\")\n\n\n\n\n\n\n\n\nSi \\(n\\) es variable, supongamos que de esta manera (en un caso real, debe ingresar datos reales, estos son simulados):\n\nn_var &lt;- sample(40:60, # n, aleatorio, entre 40 y 60\n                30, # 30 datos\n                replace = TRUE) \n\nn_var\n\n [1] 57 57 56 52 52 56 57 60 55 49 54 58 46 59 46 40 51 46 60 44 54 53 55 41 53\n[26] 44 43 54 43 58\n\n\nEntonces\n\np &lt;- qcc(datos$D, \n         sizes = n_var, type = \"p\", \n         title = \"Gráfico de control p (n variable)\")"
+  },
+  {
+    "objectID": "tutoriales_R/graficos_control_atributos.html#gráfico-np",
+    "href": "tutoriales_R/graficos_control_atributos.html#gráfico-np",
+    "title": "Gráficos de control para atributos",
+    "section": "Gráfico \\(np\\)",
+    "text": "Gráfico \\(np\\)\nNo hay muchas diferencias entre la generación del gráfico \\(p\\) y el \\(np\\), como podemos apreciar.\n\nnp &lt;- qcc(datos$D, \n          sizes = 50, type = \"np\", \n          title = \"Gráfico de control np\")\n\n\n\n\n\n\n\n\nEste también puede ser variable, pero no se recomienda y justo este gráfico a continuación es un prueba de ello.\n\nnp &lt;- qcc(datos$D, \n          sizes = n_var, type = \"np\", \n          title = \"Gráfico de control np (n variable)\")"
+  },
+  {
+    "objectID": "tutoriales_R/graficos_control_atributos.html#gráfico-c",
+    "href": "tutoriales_R/graficos_control_atributos.html#gráfico-c",
+    "title": "Gráficos de control para atributos",
+    "section": "Gráfico \\(c\\)",
+    "text": "Gráfico \\(c\\)\nPara este ejemplo se va a emplear los siguientes datos\n\ndata(\"circuit\")\n\nhead(circuit)%&gt;% \n  flextable::flextable()\n\nxsizetrial21100TRUE24100TRUE16100TRUE12100TRUE15100TRUE5100TRUE\n\n\nAl igual que en los ejemplos de \\(p\\) y \\(np\\), solo necesitamos, para el ejemplo, los primeros 26 datos (los de trial = TRUE).\n\ndatos_circuito &lt;- circuit %&gt;% \n  dplyr::filter(trial)\n\nUna vez realizado este paso miscelaneo, se puede construir el gráfico de control \\(c\\)\n\nc &lt;- qcc(datos_circuito$x, type = \"c\", \n         title = \"Gráfico de control c\")\n\n\n\n\n\n\n\n\nPara este gráfico tampoco se recomienda \\(n\\) variable."
+  },
+  {
+    "objectID": "tutoriales_R/graficos_control_atributos.html#gráfico-u",
+    "href": "tutoriales_R/graficos_control_atributos.html#gráfico-u",
+    "title": "Gráficos de control para atributos",
+    "section": "Gráfico \\(u\\)",
+    "text": "Gráfico \\(u\\)\nEmpleando los datos anteriores, se construye el gráfico de la siguiente manera.\n\nu &lt;- qcc(datos_circuito$x, \n         sizes = 100, type = \"u\", \n         title = \"Gráfico de control u\")\n\n\n\n\n\n\n\n\nEn caso de tener \\(n\\) variable (simulado a partir de los siguientes datos).\n\nn_var &lt;- sample(90:110, 26, replace = T)\n\nSe puede obtener el gráfico de esta manera\n\nu &lt;- qcc(datos_circuito$x, \n         sizes = n_var, # datos variables\n         type = \"u\", \n         title = \"Gráfico de control u (n variable)\")"
+  },
+  {
+    "objectID": "tutoriales_R/diagrama_pareto.html",
+    "href": "tutoriales_R/diagrama_pareto.html",
+    "title": "Gráfico de Pareto",
+    "section": "",
+    "text": "Este es un ejemplo sobre como llevar a cabo gráficos de Pareto en R, usando la librería qcc. Este ejercicio es extraído del material del profesor Ing. Manrique Araya Alfaro."
+  },
+  {
+    "objectID": "tutoriales_R/diagrama_pareto.html#introducción",
+    "href": "tutoriales_R/diagrama_pareto.html#introducción",
+    "title": "Gráfico de Pareto",
+    "section": "",
+    "text": "Este es un ejemplo sobre como llevar a cabo gráficos de Pareto en R, usando la librería qcc. Este ejercicio es extraído del material del profesor Ing. Manrique Araya Alfaro."
+  },
+  {
+    "objectID": "tutoriales_R/diagrama_pareto.html#librerías",
+    "href": "tutoriales_R/diagrama_pareto.html#librerías",
+    "title": "Gráfico de Pareto",
+    "section": "Librerías",
+    "text": "Librerías\n\nlibrary(tidyverse)\nlibrary(qcc)"
+  },
+  {
+    "objectID": "tutoriales_R/diagrama_pareto.html#ejercicio",
+    "href": "tutoriales_R/diagrama_pareto.html#ejercicio",
+    "title": "Gráfico de Pareto",
+    "section": "Ejercicio",
+    "text": "Ejercicio\nEn una fábrica de aparatos de línea blanca se han presentado problemas con la calidad de las lavadoras. Un grupo de mejora de la calidad decide revisar los problemas de la tina de las lavadoras, ya que con frecuencia es necesario retrabajarlas para que éste tenga una calidad aceptable. Para ello, estratificaron los problemas en la tina de lavadora por tipo de defecto, con la idea de localizar cual es desperfecto principal. A continuación, se muestra el análisis de los defectos encontrados en las tinas producidas en 5 meses.\nRealice un análisis de Pareto y obtenga conclusiones.\n\nDefecto &lt;- c(\"Boca ovalada\", \"Perforaciones deformes\",\n             \"Boda despostillada\", \"Falta de fundente\",\n             \"Mal soldada\")\n\nFrecuencia &lt;- c(1200, 400, 180, 130, 40)\n\ndata.frame(Defecto, Frecuencia) %&gt;%\n  flextable::flextable(cwidth = 1.9) # este código es solo para presentar los datos\n\nDefectoFrecuenciaBoca ovalada1,200Perforaciones deformes400Boda despostillada180Falta de fundente130Mal soldada40\n\n\nAhora, realizamos el diagrama de Pareto.\n\n# Sin nombres\n\nqcc::pareto.chart(Frecuencia)\n\n\n\n\n\n\n\n\n   \nPareto chart analysis for Frecuencia\n      Frequency   Cum.Freq.  Percentage Cum.Percent.\n  A 1200.000000 1200.000000   61.538462    61.538462\n  B  400.000000 1600.000000   20.512821    82.051282\n  C  180.000000 1780.000000    9.230769    91.282051\n  D  130.000000 1910.000000    6.666667    97.948718\n  E   40.000000 1950.000000    2.051282   100.000000\n\n# Con nombres\n\nnames(Frecuencia) &lt;- Defecto\n\nqcc::pareto.chart(Frecuencia)\n\n\n\n\n\n\n\n\n                        \nPareto chart analysis for Frecuencia\n                           Frequency   Cum.Freq.  Percentage Cum.Percent.\n  Boca ovalada           1200.000000 1200.000000   61.538462    61.538462\n  Perforaciones deformes  400.000000 1600.000000   20.512821    82.051282\n  Boda despostillada      180.000000 1780.000000    9.230769    91.282051\n  Falta de fundente       130.000000 1910.000000    6.666667    97.948718\n  Mal soldada              40.000000 1950.000000    2.051282   100.000000"
+  },
+  {
+    "objectID": "tutoriales_R/capacidad_datos_normales.html",
+    "href": "tutoriales_R/capacidad_datos_normales.html",
+    "title": "Análisis de capacidad en R para datos normales",
+    "section": "",
+    "text": "Al finalizar la Fase I, cuando los gráficos de control hayan demostrado que el proceso se encuentra bajo control y en un nivel aceptable, se pueden calcular los PCR para documentar el estado del proceso."
+  },
+  {
+    "objectID": "tutoriales_R/capacidad_datos_normales.html#usando-qcc",
+    "href": "tutoriales_R/capacidad_datos_normales.html#usando-qcc",
+    "title": "Análisis de capacidad en R para datos normales",
+    "section": "Usando qcc",
+    "text": "Usando qcc\nLuego, se verifica que que el proceso se encuentre bajo control estadístico, para ello vamos a comenzar con un gráfico \\(\\bar{x}-R\\).\n\nX_R &lt;- qcc::qcc(datos, type = \"xbar\")\n\n\n\n\n\n\n\nplot(X_R)\n\nEl segundo requisito, es que los datos sigan la distribución normal. Por ejemplo, con un \\(\\alpha=0.001\\).\n\nas.matrix(datos) %&gt;% \n  shapiro.test()\n\n\n    Shapiro-Wilk normality test\n\ndata:  .\nW = 0.95336, p-value = 0.00139\n\n\nUna vez resuelto esto, se puede evaluar la capacidad del proceso.\n\nqcc::process.capability(X_R, spec.limits = c(7.115, 7.135), target = 7.125)\n\n\n\n\n\n\n\n\n\nProcess Capability Analysis\n\nCall:\nqcc::process.capability(object = X_R, spec.limits = c(7.115,     7.135), target = 7.125)\n\nNumber of obs = 100          Target = 7.125\n       Center = 7.125           LSL = 7.115\n       StdDev = 0.002098        USL = 7.135\n\nCapability indices:\n\n      Value   2.5%  97.5%\nCp    1.589  1.368  1.809\nCp_l  1.573  1.381  1.765\nCp_u  1.605  1.409  1.800\nCp_k  1.573  1.344  1.801\nCpm   1.587  1.367  1.807\n\nExp&lt;LSL 0%   Obs&lt;LSL 0%\nExp&gt;USL 0%   Obs&gt;USL 0%"
+  },
+  {
+    "objectID": "tutoriales_R/capacidad_datos_normales.html#usando-sixsigma",
+    "href": "tutoriales_R/capacidad_datos_normales.html#usando-sixsigma",
+    "title": "Análisis de capacidad en R para datos normales",
+    "section": "Usando SixSigma",
+    "text": "Usando SixSigma\nEste paquete puede ser un poco más sencillo de usar. Pero necesita los datos en una sola columna.\n\ndatos_una_col &lt;- datos %&gt;% \n  tidyr::pivot_longer(everything())\n\n\nSixSigma::ss.study.ca(xST = datos_una_col$value, # corto plazo\n                      xLT = datos_una_col$value, # largo plazo\n                      Target = 7.115, LSL=7.135,USL=7.125)"
+  },
+  {
+    "objectID": "recursos_graficos.html",
+    "href": "recursos_graficos.html",
+    "title": "Recursos para la construcción de gráficos",
+    "section": "",
+    "text": "En esta sección encontrará herramientas útiles que le permitirán seleccionar gráficos adecuados y evitar errores en la construcción de los mismos."
+  },
+  {
+    "objectID": "recursos_graficos.html#guías-gráficas",
+    "href": "recursos_graficos.html#guías-gráficas",
+    "title": "Recursos para la construcción de gráficos",
+    "section": "Guías gráficas",
+    "text": "Guías gráficas\n\nSeleccione el gráfico adecuado\n\n¿Qué tipo de datos tiene? Elija el tipo principal usando esta guía.\n\nEvite estos errores\n\nUna colección de advertencias para la visualización de datos\n\nOtro catálogo de visualización de datos\n\nEncuentre otros gráficos y guías para su construcción."
+  },
+  {
+    "objectID": "interactivos.html",
+    "href": "interactivos.html",
+    "title": "Simulaciones y visualizadores interactivos",
+    "section": "",
+    "text": "En esta sección encontrará simulaciones interactivas y herramientas útiles para cursos de probabilidad, estadística e ingeniería. Todo el material, exceptuando aquel etiquetado como externo, es de mi autoría."
+  },
+  {
+    "objectID": "interactivos.html#recursos-interactivos",
+    "href": "interactivos.html#recursos-interactivos",
+    "title": "Simulaciones y visualizadores interactivos",
+    "section": "Recursos interactivos ",
+    "text": "Recursos interactivos \n\nDistribuciones discretas interactivas\n\nEste visualizador le permite explorar las principales distribuciones discretas y ver como cambian sus formas al modificar los parámetros.\n\nDistribuciones continuas interactivas\n\nEs el equivalente continuo al visualizador anterior, pero además, presenta una comparación entre la distribución normal estándar (\\(z\\)) y la t-Student (\\(t\\)).\n\nConvolución de distribuciones\n\nEste visualizador interactivo permite explorar cómo se combinan dos variables aleatorias independientes mediante la convolución de sus distribuciones. Muestra la distribución resultante de la suma y su relación con el Teorema del Límite Central.\n\nCurvas OC para muestreo por atributos\n\nPropio del campo de la ingeniería de calidad y muestreo de aceptación, este visualizador muestra las curvas características de operación (OC) de planes de muestreo por atributos.\n\nEfecto de la asimetría sobre el TLC\n\nInspirado en algunas publicaciones científicas, aquí podrá encontrar como la asimetría juega un papel ponderante en el cumplimiento del teorema del límite central (TLC). Con este, busco ayudar a “derrumbar” el mito de que el TLC siempre se cumple con \\(n=30\\).\n\nCalculadora de distribuciones de probabilidad e intervalos de confianza - Aplicación externa\n\nDe Ph.D. Matt Bognar, aquí encuentra “mini aplicaciones” con las que puede resolver ejercicios de probabilidad y estadística.\n\nLey de los Grandes Números - Aplicación externa\n\nEs una explicación de Rafael Pérez Laserna sobre la Ley de los Grandes Números, que incluye una simulación de un dado que nos ayuda a comprenderla.\n\nTeorema del Límite Central (TLC) - Aplicación externa\n\nUno de los pilares de la estadística frecuentista, este enlace muestra una simulación del TLC que nos permite comprender el TLC de mejor forma.\n\nAplicación interactiva sobre los intervalos de confianza\n\nEste es un gist que al ejecutarse en R con sus respectivas librerías, despliega una aplicación local que permite comprender mejor el funcionamiento de los intervalos de confianza y como estos dependen del estimador puntual (aleatorio por el muestreo), el tamaño de muestra y el nivel de confianza seleccionado.\n\n# Correr en R (requiere shiny y tidyverse)\n\nlibrary(shiny)\nlibrary(tidyverse)\n\nrunGist(\"d47f4c205b531e3bed59d22b22cbfd13\")"
+  },
+  {
+    "objectID": "interactivos/distribuciones-continuas.html",
+    "href": "interactivos/distribuciones-continuas.html",
+    "title": "Distribuciones continuas interactivas",
+    "section": "",
+    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros. Seleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada. Observe cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución. También puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.\nPor otro lado, también le permite comparar la forma de la distribución Normal estándar con la distribución t-Student para distintos valores de los grados de libertad. Ambas distribuciones aparecen en inferencia estadística, pero juegan papeles distintos: la Normal representa un escenario con información completa y varianza conocida, mientras que la t-Student surge cuando la varianza se estima a partir de muestras pequeñas.\nLa diferencia más visible está en la cola de la distribución. Para grados de libertad pequeños, la t-Student presenta colas más gruesas, lo que refleja mayor incertidumbre y una mayor probabilidad relativa de valores extremos. Conforme los grados de libertad aumentan, la t-Student se aproxima rápidamente a la Normal y ambas curvas se vuelven prácticamente indistinguibles. Use el deslizador para ajustar los grados de libertad y observe cómo cambia la forma de la t-Student respecto a la Normal estándar.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  \n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n      Comparación: Normal vs t-Student\n    \n\n  \n  \n\n  \n\n  \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
+  },
+  {
+    "objectID": "interactivos/distribuciones-continuas.html#instrucciones-de-uso",
+    "href": "interactivos/distribuciones-continuas.html#instrucciones-de-uso",
+    "title": "Distribuciones continuas interactivas",
+    "section": "",
+    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros. Seleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada. Observe cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución. También puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.\nPor otro lado, también le permite comparar la forma de la distribución Normal estándar con la distribución t-Student para distintos valores de los grados de libertad. Ambas distribuciones aparecen en inferencia estadística, pero juegan papeles distintos: la Normal representa un escenario con información completa y varianza conocida, mientras que la t-Student surge cuando la varianza se estima a partir de muestras pequeñas.\nLa diferencia más visible está en la cola de la distribución. Para grados de libertad pequeños, la t-Student presenta colas más gruesas, lo que refleja mayor incertidumbre y una mayor probabilidad relativa de valores extremos. Conforme los grados de libertad aumentan, la t-Student se aproxima rápidamente a la Normal y ambas curvas se vuelven prácticamente indistinguibles. Use el deslizador para ajustar los grados de libertad y observe cómo cambia la forma de la t-Student respecto a la Normal estándar.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  \n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n      Comparación: Normal vs t-Student\n    \n\n  \n  \n\n  \n\n  \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
+  },
+  {
+    "objectID": "interactivos/convolucion_distribuciones.html",
+    "href": "interactivos/convolucion_distribuciones.html",
+    "title": "Convolución de distribuciones",
+    "section": "",
+    "text": "En estadística y probabilidad, convolucionar dos distribuciones es la forma correcta de responder a esta pregunta:\n\nSi X y Y son variables aleatorias independientes, ¿cuál es la distribución de su suma Z=X+Y?\n\nLa respuesta no se obtiene sumando puntos, ni promediando curvas, sino mediante una convolución (el cual es un tema que por lo general se aborda en Ecuaciones Diferenciales). Intuitivamente, la convolución toma una distribución, la “desliza” sobre la otra y mide cuánto se superponen. Cada posible forma de obtener un mismo valor de Z contribuye a su probabilidad total.\n\n\nAunque la definición es general, cada familia de distribuciones tiene comportamientos característicos.\n\nUniforme + Uniforme La suma de dos variables uniformes no es uniforme. Produce una distribución triangular (o trapezoidal si los intervalos no coinciden). La incertidumbre empieza a concentrarse hacia el centro.\nTriangular + Triangular La convolución suaviza aún más la forma. Aparecen distribuciones con perfiles poligonales de mayor orden, cada vez más parecidas a una campana de Gauss (Normal).\n\nLa aplicación permite ver estas transiciones de forma visual. Observe cómo curvas simples, al sumarse, se vuelven más suaves, más simétricas y más concentradas alrededor de un valor central.\n\nRelación con el Teorema de Límite Central\n\nEl TLC dice que, bajo ciertas circunstancias, que se dan normalmente en el mundo de la experimentación, la distribución muestral de la media tenderá a una distribución normal a medida que el número de componentes se haga más grande, con independencia de las distribuciones particulares de los componentes. Cuando se suman muchas variables aleatorias independientes (aunque no sean normales), estamos aplicando convoluciones una y otra vez.\n\n\n\nUna medición real suele ser una suma de diferentes contribuciones:\n\nResolución del instrumento\nError del método\nVariabilidad ambiental\nOperador\nCalibración\n\nCada una de estas fuentes puede modelarse como una variable aleatoria con su propia distribución, lo que justifica el uso extendido de la distribución normal en los informes de incertidumbre."
+  },
+  {
+    "objectID": "interactivos/convolucion_distribuciones.html#introducción",
+    "href": "interactivos/convolucion_distribuciones.html#introducción",
+    "title": "Convolución de distribuciones",
+    "section": "",
+    "text": "En estadística y probabilidad, convolucionar dos distribuciones es la forma correcta de responder a esta pregunta:\n\nSi X y Y son variables aleatorias independientes, ¿cuál es la distribución de su suma Z=X+Y?\n\nLa respuesta no se obtiene sumando puntos, ni promediando curvas, sino mediante una convolución (el cual es un tema que por lo general se aborda en Ecuaciones Diferenciales). Intuitivamente, la convolución toma una distribución, la “desliza” sobre la otra y mide cuánto se superponen. Cada posible forma de obtener un mismo valor de Z contribuye a su probabilidad total.\n\n\nAunque la definición es general, cada familia de distribuciones tiene comportamientos característicos.\n\nUniforme + Uniforme La suma de dos variables uniformes no es uniforme. Produce una distribución triangular (o trapezoidal si los intervalos no coinciden). La incertidumbre empieza a concentrarse hacia el centro.\nTriangular + Triangular La convolución suaviza aún más la forma. Aparecen distribuciones con perfiles poligonales de mayor orden, cada vez más parecidas a una campana de Gauss (Normal).\n\nLa aplicación permite ver estas transiciones de forma visual. Observe cómo curvas simples, al sumarse, se vuelven más suaves, más simétricas y más concentradas alrededor de un valor central.\n\nRelación con el Teorema de Límite Central\n\nEl TLC dice que, bajo ciertas circunstancias, que se dan normalmente en el mundo de la experimentación, la distribución muestral de la media tenderá a una distribución normal a medida que el número de componentes se haga más grande, con independencia de las distribuciones particulares de los componentes. Cuando se suman muchas variables aleatorias independientes (aunque no sean normales), estamos aplicando convoluciones una y otra vez.\n\n\n\nUna medición real suele ser una suma de diferentes contribuciones:\n\nResolución del instrumento\nError del método\nVariabilidad ambiental\nOperador\nCalibración\n\nCada una de estas fuentes puede modelarse como una variable aleatoria con su propia distribución, lo que justifica el uso extendido de la distribución normal en los informes de incertidumbre."
+  },
+  {
+    "objectID": "interactivos/convolucion_distribuciones.html#instrucciones-de-uso",
+    "href": "interactivos/convolucion_distribuciones.html#instrucciones-de-uso",
+    "title": "Convolución de distribuciones",
+    "section": "Instrucciones de uso",
+    "text": "Instrucciones de uso\nEste visualizador permite explorar la convolución de distribuciones continuas, es decir, cómo se combinan dos variables aleatorias independientes X y Y para obtener la distribución de su suma Z=X+Y. Primero seleccione una distribución para la variable X y una para la variable Y. Para cada variable, ajuste los parámetros correspondientes mediante los sliders.\nEl gráfico se actualiza automáticamente y muestra tres curvas:\n\nLa densidad de la variable X,\nLa densidad de la variable Y,\nLa densidad resultante de la suma Z = X + Y, obtenida mediante convolución.\n\nObserve cómo cambian la forma, la dispersión y la concentración de la distribución resultante al modificar los parámetros. En particular, note cómo la suma de distribuciones no normales puede producir perfiles cada vez más suaves y simétricos, anticipando el comportamiento descrito por el Teorema del Límite Central.\nEl gráfico es interactivo: puede acercar o alejar regiones, desplazar el plano y descargar el gráfico en formato PNG. Al posar el cursor sobre las curvas se muestran los valores aproximados de la densidad.\n\n\n\n  \n\n  \n\n\n\n\n\n\n  \n\n    \n      X\n      \n        Uniforme (Rectangular)\n        Triangular\n        Normal\n      \n      \n    \n\n    \n      Y\n      \n        Uniforme (Rectangular)\n        Triangular\n        Normal\n      \n      \n    \n\n  \n\n  \n\n\n\n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Febrero 2026"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Steven García Goñi",
@@ -35,109 +210,256 @@
     "text": "Mis intereses de investigación se pueden resumir en dos grandes aristas:\n\nLa aplicación de estadística industrial\nEl diseño estadístico de experimentos (DoE)\n\nNo obstante, me considero una persona abierta a explorar nuevas áreas."
   },
   {
-    "objectID": "docencia/distribuciones-discretas.html",
-    "href": "docencia/distribuciones-discretas.html",
-    "title": "Distribuciones discretas interactivas",
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#agenda",
+    "href": "clases/II-1120_01_Introducción_estadística.html#agenda",
+    "title": "Introducción a la estadística",
+    "section": "Agenda",
+    "text": "Agenda\n\nPreguntas generadoras\nRol de la estadística\nConceptos estadísticos\nÉtica y estadística\nMétodos de recolección de datos\nErrores más comunes en la recolección de datos\nTipos de estudios existentes"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#preguntas-generadoras",
+    "href": "clases/II-1120_01_Introducción_estadística.html#preguntas-generadoras",
+    "title": "Introducción a la estadística",
+    "section": "Preguntas generadoras",
+    "text": "Preguntas generadoras\n\n¿Por qué estudiar estadística?\n¿Cuáles tipos de estadística existen?\n\n¿Cuáles variables hay?\n¿Con qué niveles de medición?\n\n¿Qué fuentes de datos existen?\n¿Cuales son los errores más comunes en la recolección de datos?\n¿Cuándo utilizar cada tipo de estudio en estadística?\n¿Cuál es la relación que existe entre la estadística y el comportamiento ético?"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#estadística",
+    "href": "clases/II-1120_01_Introducción_estadística.html#estadística",
+    "title": "Introducción a la estadística",
+    "section": "Estadística",
+    "text": "Estadística\n\nDisciplina que recopila, procesa y analiza datos para realizar conclusiones para la toma de decisiones.\nForma parte de una rama científica con el objetivo de formular, aplicar teoría y métodos específicos para poder adquirir, organizar, examinar y darle sentido a datos numéricos derivados de observaciones o experimentos aplicados a diferentes situaciones.\nLa disciplina estadística nos enseña cómo realizar juicios inteligentes y tomar decisiones informadas en presencia de incertidumbre y variación.\nLa estadística ofrece los procedimientos para recolectar y transformar los datos de manera que sean útiles a quienes toman decisiones."
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#relevancia",
+    "href": "clases/II-1120_01_Introducción_estadística.html#relevancia",
+    "title": "Introducción a la estadística",
+    "section": "Relevancia",
+    "text": "Relevancia\n\n\n\n\n\nEs una materia que se encuentra en la mayoría de planes de estudios (Ciencias sociales, Ingeniería, Administración, Ciencias básicas, etc.). ¿Por qué razón?\n\nLa información numérica prolifera por todas partes.\nSe requiere estadística para tomar decisiones y además, proporciona un entendimiento de como afectarían.\nAyuda a determinar el tipo de información requerida para tomar decisiones\nPor ejemplo, ¿los datos disponibles son suficientes y adecuados o se requiere información adicional?"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#importante",
+    "href": "clases/II-1120_01_Introducción_estadística.html#importante",
+    "title": "Introducción a la estadística",
+    "section": "¡Importante!",
+    "text": "¡Importante!\n\n¿En qué se diferencia la estadística de cada plan de estudios?\n\nLa estadística es una herramienta, NO un objetivo\nEl contexto define el propósito de la estadística. Cada uno tiene sus propias necesidades, preguntas y limitaciones y esto influye en cómo se aplican las técnicas estadísticas.\nLos resultados estadísticos deben interpretarse en función del contexto. Un mismo dato puede tener implicaciones MUY diferentes dependiendo de la situación.\nSin contexto, la estadística puede ser malinterpretada o incluso manipulada para respaldar conclusiones erróneas."
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#en-ingeniería",
+    "href": "clases/II-1120_01_Introducción_estadística.html#en-ingeniería",
+    "title": "Introducción a la estadística",
+    "section": "En ingeniería…",
+    "text": "En ingeniería…\n\n\n\nLa estadística es una herramienta esencial para analizar datos, mejorar y automatizar diseños, procesos y sistemas.\nAdemás de garantizar la eficiencia y confiabilidad en proyectos y sistemas.\nSin importar el área de especialización (manufactura, calidad, metrología, energía, ambiente, robótica y automatización, entre otros) es necesario el conocimiento estadístico.\nEstamos inundados de datos… las personas que son capaces de analizar esta nueva información son y serán valiosos en prácticamente cualquier campo de estudio.\n\n\nWithout data, you’re just another person with an opinion - W. Edwards Deming"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#en-resumen",
+    "href": "clases/II-1120_01_Introducción_estadística.html#en-resumen",
+    "title": "Introducción a la estadística",
+    "section": "En resumen",
+    "text": "En resumen\n\nLa estadística es una herramienta poderosa, pero su verdadero valor se obtiene cuando se aplica de manera adecuada y se interpreta dentro de un contexto específico.\nSin contexto, los datos y los análisis estadísticos carecen de significado y utilidad práctica.\n\n\nIt’s easy to lie with statistics, but it’s hard to tell the truth without them - Andrejs Dunkels"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#teoría-hipótesis-y-contexto",
+    "href": "clases/II-1120_01_Introducción_estadística.html#teoría-hipótesis-y-contexto",
+    "title": "Introducción a la estadística",
+    "section": "Teoría, hipótesis y contexto",
+    "text": "Teoría, hipótesis y contexto\n\nPara Babbie (2000) una teoría es una explicación sistemática de los hechos y leyes observadas que se relacionan con un aspecto específico de la vida.\nOrganizan las observaciones y les asignan un sentido. A menudo las expectativas comprenden la idea de causalidad (Dado un evento A -&gt; Ocurre un evento B).\n\nLas teorías no deben confundirse con una opinión"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#ejemplos",
+    "href": "clases/II-1120_01_Introducción_estadística.html#ejemplos",
+    "title": "Introducción a la estadística",
+    "section": "Ejemplos",
+    "text": "Ejemplos\n\n\nGeneral\n\n\n\n\n\n\nMediante una encuesta, se obtiene que el 90 % de las personas con baja educación son prejuiciosos y que el 30 % de las que tienen mayor educación también lo son. Es decir, que el 70 % no tienen prejuicios.\nLa hipótesis sería que “algo” en la educación es la causa de que la persona sea prejuiciosa o no. La determinación de ese “algo” es la teoría asociada al contexto.\n\n\nEspecífico\n\n\n\n\n\n\nEn una fábrica de ensamble de relojes, se hipotetiza que dividir una tarea compleja en partes más pequeñas y asignar cada parte a una persona o equipo especializado aumenta la productividad.\nHay teorías que sostienen esta afirmación y que pueden estudiarse/comprobarse con el uso de la estadística, mediante un experimento u observación, por ejemplo."
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#importante-1",
+    "href": "clases/II-1120_01_Introducción_estadística.html#importante-1",
+    "title": "Introducción a la estadística",
+    "section": "¡Importante!",
+    "text": "¡Importante!\n\n\nLas personas ingenieras deberían usar a la estadística como un borracho usa un poste de luz eléctrica, más para apoyo que para iluminación"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#conceptos-básicos",
+    "href": "clases/II-1120_01_Introducción_estadística.html#conceptos-básicos",
+    "title": "Introducción a la estadística",
+    "section": "Conceptos básicos",
+    "text": "Conceptos básicos\n\n\nVariable\n\nCaracterística de los objetos o de los individuos\nPueden ser:\n\nExplicativas\nRespuesta o de interés\n\n\n\nPoblación\n\nTodos los miembros de un grupos acerca de los cuales se desea obtener una conclusión\n\n\nMuestra\n\nUna parte de la población seleccionada para análisis"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#conceptos-básicos-1",
+    "href": "clases/II-1120_01_Introducción_estadística.html#conceptos-básicos-1",
+    "title": "Introducción a la estadística",
+    "section": "Conceptos básicos",
+    "text": "Conceptos básicos\n\n\nParámetro\n\nMedida numérica que describe una característica de la población\n\n\nEstimador\n\nMedida numérica que describe alguna característica de la muestra\n\n\nSesgo\n\nCuando el método de recopilación de datos hace que los datos de la muestra reflejen incorrectamente la población."
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#conceptos-básicos-2",
+    "href": "clases/II-1120_01_Introducción_estadística.html#conceptos-básicos-2",
+    "title": "Introducción a la estadística",
+    "section": "Conceptos básicos",
+    "text": "Conceptos básicos\n\n\nEstadística descriptiva\n\nMétodos para organizar, resumir y presentar datos de manera informativa.\n\nEstadística inferencial\n\nMétodos que se emplean para determinar una propiedad de una población con base en la información de una muestra de ella."
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#tipos-de-variables",
+    "href": "clases/II-1120_01_Introducción_estadística.html#tipos-de-variables",
+    "title": "Introducción a la estadística",
+    "section": "Tipos de variables",
+    "text": "Tipos de variables\n\n\n\nSe clasifican en cuantitativa y cualitativa.\nLas variables cuantitativas se pueden dividir en:\n\nCuantitativa discreta\nCuantitativa continua\n\n\n\n\nCuando la característica que se estudia es de naturaleza no numérica recibe el nombre de variable cualitativa o atributo.\n\nGénero, color de ojos, marca de celular, etc.\n\nSi la variable que se estudia aparece en forma numérica, se le denomina variable cuantitativa.\n\nSalario, edades, cantidad de hijos\n\nDurante el desarrollo del curso se explayan estas definiciones."
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#niveles-de-medición",
+    "href": "clases/II-1120_01_Introducción_estadística.html#niveles-de-medición",
+    "title": "Introducción a la estadística",
+    "section": "Niveles de medición",
+    "text": "Niveles de medición\n\n\n\n\n\nLos datos se clasifican por niveles de medición.\n\nEl nivel de medición y el tipo de variable rige los cálculos que se llevan a cabo con el fin de resumir y presentar los datos.\n\nEs decir, que no todos los tipos de datos se analizan igual.\n\nEsta premisa es sumamente importante en el desarollo de estos cursos. Pues no puede aplicar los cálculos e interpretaciones de índole estadístico indiscriminadamente.\n\nCada nivel de medición superior tiene las propiedades de los anteriores.\n\nEs decir, el nivel de medición razón, incluye las propiedades del intervalo, ordinal y nominal; y así sucesivamente."
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#niveles-de-medición-1",
+    "href": "clases/II-1120_01_Introducción_estadística.html#niveles-de-medición-1",
+    "title": "Introducción a la estadística",
+    "section": "Niveles de medición",
+    "text": "Niveles de medición\n\n\nNominal\n\nLas observaciones solo se clasifican y se cuentan\nNo existe una forma particular de ordenar las etiquetas\nLos datos solo se clasifican\n\nMarca de un vehículo\nColor de la vestimenta\n\n\n\nOrdinal\n\nLas observaciones tienen un orden\nLas clasificaciones de los datos se encuentran representadas por conjuntos de etiquetas que tienen valores relativos.\nLos datos se ordenan\n\nPosición de la UCR en el ranking QS\nCalificación en Malo, Regular y Bueno"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#niveles-de-medición-2",
+    "href": "clases/II-1120_01_Introducción_estadística.html#niveles-de-medición-2",
+    "title": "Introducción a la estadística",
+    "section": "Niveles de medición",
+    "text": "Niveles de medición\n\n\nIntervalo\n\nDiferencias iguales en la característica representan diferencias iguales en las mediciones\nLa diferencia entre los valores tiene un significado\n\nTemperatura en °C\nTalla\n\n\n\nRazón\n\nEl punto cero representa la ausencia de características y la razón entre dos números es significativa\nEl cero tiene un significado (la ausencia de)\n\nNúmero de pacientes\nDistancia de su casa a la universidad"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#actividad",
+    "href": "clases/II-1120_01_Introducción_estadística.html#actividad",
+    "title": "Introducción a la estadística",
+    "section": "Actividad",
+    "text": "Actividad\n\n\n\nRecuerde que las variables se pueden clasificar en tipos (la naturaleza del dato) y niveles de medición (qué operaciones matemáticas tienen sentido). Por ejemplo:\n\nLa edad es una variable que puede recolectarse como un valor númerico: 25 años o en rangos: 0-10 años, 11-20 años, …; en el primero caso el nivel de medición es razón y en el segundo es ordinal.\n\nRealice el ejercicio que se muestra a la derecha de su pantalla.\n\n\n\n\n\nClasifique cada variable según tipo y nivel de medición\n\n\n\n  Edad en años\n  Ingreso mensual\n  Temperatura °C\n  Año calendario\n  Nivel de satisfacción\n  Rango militar\n  Tipo de sangre\n  Estado civil\n\n\n\n\n\n\n\nCuantitativo\nCualitativo\n\n\n\n\nNominal\n\n\n\n\nOrdinal\n\n\n\n\nIntervalo\n\n\n\n\nRazón\n\n\n\n\n\n\n\nVerificar"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#el-quehacer-ético-en-la-estadística",
+    "href": "clases/II-1120_01_Introducción_estadística.html#el-quehacer-ético-en-la-estadística",
+    "title": "Introducción a la estadística",
+    "section": "El quehacer ético en la estadística",
+    "text": "El quehacer ético en la estadística\n\nLa estadística debe practicarse con integridad y honestidad, “haciendo lo correcto” cuando se recoja, organice, resuma, analice e interprete información numérica.\n\nEste tema se abordará repetidamente a lo largo del curso.\n\nLa contribución real de la estadística a la sociedad es de naturaleza moral.\nCuando se practique la estadística, es necesario mantener “un punto de vista independiente y con principios”.\nLo aquí recopilado son extractos de “Statistics and Ethics: Some Advice for Young Statisticians. Se aconseja su lectura (Acceso provisto por SIBDI)."
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#ética-en-el-aprendizaje",
+    "href": "clases/II-1120_01_Introducción_estadística.html#ética-en-el-aprendizaje",
+    "title": "Introducción a la estadística",
+    "section": "Ética en el aprendizaje",
+    "text": "Ética en el aprendizaje\n\n\n\nEl comportamiento ético también se manifiesta mediante la integridad académica.\n\nEl consenso general es que la integridad académica es elaborar y presentar un trabajo original.\n\nSi no se garantiza la integridad académica, la idea de que un egresado cuenta con los conocimientos necesarios para desempeñar su profesional por el hecho de contar un diploma queda en entredicho.\nEsto incluye evitar el plagio (deliberado o no), así como hacer un uso responsable y ético de la IA.\n\nCuando use IA, declárelo y detalle el proceso que siguió para llegar a la respuesta.\n\n\n\n\n\n\nChatGPT - 11 febrero 2026"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#fuentes-de-datos-1",
+    "href": "clases/II-1120_01_Introducción_estadística.html#fuentes-de-datos-1",
+    "title": "Introducción a la estadística",
+    "section": "Fuentes de datos",
+    "text": "Fuentes de datos\n\nLa forma en la que se recolectan/obtienen los datos influye en el tipo de conclusiones que pueden extraerse.\nIdentificar las fuentes de datos apropiadas es un aspecto importante del análisis estadístico.\nSi los sesgos, ambigüedades u otros tipos de errores estropean los datos recolectados, ni el método estadístico más complejo producirá información útil y precisa."
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#fuentes-de-datos-2",
+    "href": "clases/II-1120_01_Introducción_estadística.html#fuentes-de-datos-2",
+    "title": "Introducción a la estadística",
+    "section": "Fuentes de datos",
+    "text": "Fuentes de datos\n\nEn algunos casos los datos que se necesitan para una determinada aplicación ya existen, por ejemplo, las empresas cuentan con diversas bases de datos sobre sus empleados.\nTambién se pueden obtener de organizaciones externas especializadas en la recolección y almacenamiento de datos.\nEn otras ocasiones, los datos necesarios para una aplicación particular no se pueden obtener de las fuentes existentes.\n\nEn tales casos los datos suelen conseguirse realizando estudios estadísticos, con el uso de instrumentos de medición (balanzas, cintas métricas, encuestas, etc)."
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#fuentes-de-datos-3",
+    "href": "clases/II-1120_01_Introducción_estadística.html#fuentes-de-datos-3",
+    "title": "Introducción a la estadística",
+    "section": "Fuentes de datos",
+    "text": "Fuentes de datos\n\nLas fuentes de datos se clasifican en fuentes primarias y secundarias.\n\nCuando la persona recolectora de datos es quien los emplea para análisis, la fuente es primaria.\nCuando una organización o individuo ha compilado los datos que utiliza otra organización o individuo la fuente es secundaria.\n\nEn su ejercicio académico y profesional, usted debe enfrentarse a fuentes de datos secundarias y a diseñar y aplicar métodos y técnicas para la recolección de datos primarios.\n¿Cuales fuentes secundarias conoce en CR?\n\nINEC, por ejemplo.\n\n¿Otros?\n\nIniciativa de datos abiertos (Decreto Ejecutivo 40199-MP)"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#errores-comunes-al-adquirir-datos",
+    "href": "clases/II-1120_01_Introducción_estadística.html#errores-comunes-al-adquirir-datos",
+    "title": "Introducción a la estadística",
+    "section": "Errores comunes al adquirir datos",
+    "text": "Errores comunes al adquirir datos\n\n\n\nFalta de claridad en el objetivo de la recolección de datos\nSeleccionar mal la población o la muestra\n\nIncluyendo la cantidad de unidades muestreadas\n\nNo tomar en cuenta leyes y reglamentos sobre datos sensibles\nPreguntas mal formuladas (sesgadas o confusas)\nInconsistencias en la metodología de recolección\nFalta de entrenamiento de quien recolecta el dato\nErrores de digitación"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#algunos-tipos-de-estudios",
+    "href": "clases/II-1120_01_Introducción_estadística.html#algunos-tipos-de-estudios",
+    "title": "Introducción a la estadística",
+    "section": "Algunos tipos de estudios",
+    "text": "Algunos tipos de estudios\n\nEstos son relevantes, pues del tipo de estudio dependen las conclusiones a las que se puede arribar con el ejercicio estadístico.\nTransversales:\n\nLos datos se recopilan en un solo momento del tiempo\nDescriben características en un punto específico\n\nLongitudinales:\n\nRecopilan los datos de un mismo sujeto en múltiples momentos durante un periodo de tiempo\nAnaliza cambios o tendencias a lo largo del tiempo"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#crucigrama-de-repaso",
+    "href": "clases/II-1120_01_Introducción_estadística.html#crucigrama-de-repaso",
+    "title": "Introducción a la estadística",
+    "section": "¡Crucigrama de repaso!",
+    "text": "¡Crucigrama de repaso!"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#bibliografía",
+    "href": "clases/II-1120_01_Introducción_estadística.html#bibliografía",
+    "title": "Introducción a la estadística",
+    "section": "Bibliografía",
+    "text": "Bibliografía\n\n\nWalpole, R.; Myers, R.; Myers, S. y Ye, K. Probabilidad y estadística para ingeniería y ciencias (9na Edición).\nCapítulo 1\nLind, D.; Marchal, W. y Watchen, S. Estadística aplicada a los Negocios y la Economía (15va Edición).\nCapítulo 1\nDevore, J. Probabilidad y Estadística para Ingeniería y Ciencias (7ma Edición).\nCapítulo 1\nLevine, D.; Krehbiel, T.; Berenson, M. Estadística para administración (4ta Edición).\nCapítulo 1\nVardeman, S. B., & Morris, M. D. (2003). Statistics and Ethics: Some Advice for Young Statisticians. The American Statistician, 57(1), 21–26. https://doi.org/10.1198/0003130031072\nLock, R.; Lock, P.; Morgan, K.; Lock, E. & Lock, D. Statistics: Unloking the Power of Data (3rd Edition).\nCapítulo 1"
+  },
+  {
+    "objectID": "clases/II-1120_01_Introducción_estadística.html#introducción-a-la-estadística-ii-1120-estadística-para-ingeniería-industrial-i",
+    "href": "clases/II-1120_01_Introducción_estadística.html#introducción-a-la-estadística-ii-1120-estadística-para-ingeniería-industrial-i",
+    "title": "Introducción a la estadística",
+    "section": "Introducción a la estadística  II-1120 Estadística para Ingeniería Industrial I",
+    "text": "Introducción a la estadística  II-1120 Estadística para Ingeniería Industrial I\nGracias por su atención  Steven García Goñisteven.garciagoni@ucr.ac.cr"
+  },
+  {
+    "objectID": "clases.html",
+    "href": "clases.html",
+    "title": "Material de clases",
     "section": "",
-    "text": "Este visualizador permite explorar distribuciones discretas y ver cómo cambian sus formas al modificar los parámetros. Seleccione primero una distribución en el menú. Luego ajuste los controles (deslizadores) para cambiar sus valores.\nEl gráfico se actualiza automáticamente y muestra la función de probabilidad correspondiente. Observe cómo los parámetros afectan la posición del centro (moda), la dispersión y la asimetría de cada distribución. También permite la descarga en formato PNG, y al posar el cursor sobre las barras se despliega el valor de probabilidad asociado a ese valor.\n\n\n  \n    \n    \n    \n    \n  \n  \n  \n  \n  \n    \n  \n    \n      Seleccione una distribución:\n      \n        Binomial\n        Binomial negativa\n        Poisson\n        Hipergeométrica\n      \n    \n  \n    \n    \n  \n    \n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
+    "text": "Aquí encontrará las clases de los diferentes cursos del área de conocimiento Estadística, de la Escuela de Ingeniería Industrial"
   },
   {
-    "objectID": "docencia/distribuciones-discretas.html#instrucciones-de-uso",
-    "href": "docencia/distribuciones-discretas.html#instrucciones-de-uso",
-    "title": "Distribuciones discretas interactivas",
+    "objectID": "clases.html#ii-1120-estadística-para-ingeniería-industrial-i",
+    "href": "clases.html#ii-1120-estadística-para-ingeniería-industrial-i",
+    "title": "Material de clases",
+    "section": "II-1120 Estadística para Ingeniería Industrial I",
+    "text": "II-1120 Estadística para Ingeniería Industrial I\n\nIntroducción a la estadística"
+  },
+  {
+    "objectID": "infrografias.html",
+    "href": "infrografias.html",
+    "title": "Infografías",
     "section": "",
-    "text": "Este visualizador permite explorar distribuciones discretas y ver cómo cambian sus formas al modificar los parámetros. Seleccione primero una distribución en el menú. Luego ajuste los controles (deslizadores) para cambiar sus valores.\nEl gráfico se actualiza automáticamente y muestra la función de probabilidad correspondiente. Observe cómo los parámetros afectan la posición del centro (moda), la dispersión y la asimetría de cada distribución. También permite la descarga en formato PNG, y al posar el cursor sobre las barras se despliega el valor de probabilidad asociado a ese valor.\n\n\n  \n    \n    \n    \n    \n  \n  \n  \n  \n  \n    \n  \n    \n      Seleccione una distribución:\n      \n        Binomial\n        Binomial negativa\n        Poisson\n        Hipergeométrica\n      \n    \n  \n    \n    \n  \n    \n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
+    "text": "En esta sección encontrará infografías organizadas en pestañas para facilitar su consulta. Todo el material, exceptuando aquel etiquetado como externo, es de mi autoría."
   },
   {
-    "objectID": "docencia/diagrama_pareto.html",
-    "href": "docencia/diagrama_pareto.html",
-    "title": "Gráfico de Pareto",
-    "section": "",
-    "text": "Este es un ejemplo sobre como llevar a cabo gráficos de Pareto en R, usando la librería qcc. Este ejercicio es extraído del material del profesor Ing. Manrique Araya Alfaro."
+    "objectID": "infrografias.html#inferencia-estadística",
+    "href": "infrografias.html#inferencia-estadística",
+    "title": "Infografías",
+    "section": "Inferencia estadística ",
+    "text": "Inferencia estadística \n\nComprendiendo los valores P\n\nEsta infografía presenta la definición del valor P, criterios para su interpretación y una guía para la elección del nivel de significancia (\\(\\alpha\\))."
   },
   {
-    "objectID": "docencia/diagrama_pareto.html#introducción",
-    "href": "docencia/diagrama_pareto.html#introducción",
-    "title": "Gráfico de Pareto",
-    "section": "",
-    "text": "Este es un ejemplo sobre como llevar a cabo gráficos de Pareto en R, usando la librería qcc. Este ejercicio es extraído del material del profesor Ing. Manrique Araya Alfaro."
-  },
-  {
-    "objectID": "docencia/diagrama_pareto.html#librerías",
-    "href": "docencia/diagrama_pareto.html#librerías",
-    "title": "Gráfico de Pareto",
-    "section": "Librerías",
-    "text": "Librerías\n\nlibrary(tidyverse)\nlibrary(qcc)"
-  },
-  {
-    "objectID": "docencia/diagrama_pareto.html#ejercicio",
-    "href": "docencia/diagrama_pareto.html#ejercicio",
-    "title": "Gráfico de Pareto",
-    "section": "Ejercicio",
-    "text": "Ejercicio\nEn una fábrica de aparatos de línea blanca se han presentado problemas con la calidad de las lavadoras. Un grupo de mejora de la calidad decide revisar los problemas de la tina de las lavadoras, ya que con frecuencia es necesario retrabajarlas para que éste tenga una calidad aceptable. Para ello, estratificaron los problemas en la tina de lavadora por tipo de defecto, con la idea de localizar cual es desperfecto principal. A continuación, se muestra el análisis de los defectos encontrados en las tinas producidas en 5 meses.\nRealice un análisis de Pareto y obtenga conclusiones.\n\nDefecto &lt;- c(\"Boca ovalada\", \"Perforaciones deformes\",\n             \"Boda despostillada\", \"Falta de fundente\",\n             \"Mal soldada\")\n\nFrecuencia &lt;- c(1200, 400, 180, 130, 40)\n\ndata.frame(Defecto, Frecuencia) %&gt;%\n  flextable::flextable(cwidth = 1.9) # este código es solo para presentar los datos\n\nDefectoFrecuenciaBoca ovalada1,200Perforaciones deformes400Boda despostillada180Falta de fundente130Mal soldada40\n\n\nAhora, realizamos el diagrama de Pareto.\n\n# Sin nombres\n\nqcc::pareto.chart(Frecuencia)\n\n\n\n\n\n\n\n\n   \nPareto chart analysis for Frecuencia\n      Frequency   Cum.Freq.  Percentage Cum.Percent.\n  A 1200.000000 1200.000000   61.538462    61.538462\n  B  400.000000 1600.000000   20.512821    82.051282\n  C  180.000000 1780.000000    9.230769    91.282051\n  D  130.000000 1910.000000    6.666667    97.948718\n  E   40.000000 1950.000000    2.051282   100.000000\n\n# Con nombres\n\nnames(Frecuencia) &lt;- Defecto\n\nqcc::pareto.chart(Frecuencia)\n\n\n\n\n\n\n\n\n                        \nPareto chart analysis for Frecuencia\n                           Frequency   Cum.Freq.  Percentage Cum.Percent.\n  Boca ovalada           1200.000000 1200.000000   61.538462    61.538462\n  Perforaciones deformes  400.000000 1600.000000   20.512821    82.051282\n  Boda despostillada      180.000000 1780.000000    9.230769    91.282051\n  Falta de fundente       130.000000 1910.000000    6.666667    97.948718\n  Mal soldada              40.000000 1950.000000    2.051282   100.000000"
-  },
-  {
-    "objectID": "docencia/curvas-oc.html",
-    "href": "docencia/curvas-oc.html",
+    "objectID": "interactivos/curvas-oc.html",
+    "href": "interactivos/curvas-oc.html",
     "title": "Curvas OC - Muestreo por atributos",
     "section": "",
     "text": "Este visualizador permite explorar las curvas características de planes de muestreo por atributos. Al seleccionar una distribución (Binomial, Poisson o Hipergeométrica), puede ajustar los parámetros del plan y observar cómo cambian tres curvas asociadas:\n\nLa curva OC (Operating Characteristic) muestra la probabilidad de aceptar un lote en función de la fracción defectuosa. Ilustra el equilibrio entre el riesgo del productor (α) y el riesgo del consumidor (β).\nLa curva AOQ (Average Outgoing Quality) muestra la fracción defectuosa esperada después de inspección, útil para evaluar la calidad promedio de salida.\nLa curva ITP (Inspección Total Promedio) presenta la relación entre la calidad del material entrante y el número de elementos que se deben inspeccionar, suponiendo que los lotes rechazados se inspeccionarán en un 100% y se realizará una inspección de rectificación de los elementos defectuosos.\n\nAjuste los parámetros del plan: tamaño de muestra (n), nivel de aceptación (c), tamaño del lote (N) y los riesgos α y β. Cada modificación actualiza automáticamente las curvas. También se marcan los puntos AQL (Acceptable Quality Level) y LQL (Lot Tolerance Percent Defective) cuando corresponden, lo que facilita interpretar las regiones típicas de desempeño del plan.\nObserve cómo cada distribución induce una forma distinta de la curva OC:la Binomial modela defectos independientes en muestras moderadas; la Poisson simplifica el caso de eventos raros; y la Hipergeométrica considera inspección sin reemplazo, capturando la finitud del lote.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  Seleccione una distribución:\n  \n    Binomial\n    Hipergeométrica\n    Poisson\n    Comparar (solo OC)\n  \n\n  \n\n  \n    \n      \n        \n        \n      \n  \n\n  \n\n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
   },
   {
-    "objectID": "docencia/curvas-oc.html#instrucciones-de-uso",
-    "href": "docencia/curvas-oc.html#instrucciones-de-uso",
+    "objectID": "interactivos/curvas-oc.html#instrucciones-de-uso",
+    "href": "interactivos/curvas-oc.html#instrucciones-de-uso",
     "title": "Curvas OC - Muestreo por atributos",
     "section": "",
     "text": "Este visualizador permite explorar las curvas características de planes de muestreo por atributos. Al seleccionar una distribución (Binomial, Poisson o Hipergeométrica), puede ajustar los parámetros del plan y observar cómo cambian tres curvas asociadas:\n\nLa curva OC (Operating Characteristic) muestra la probabilidad de aceptar un lote en función de la fracción defectuosa. Ilustra el equilibrio entre el riesgo del productor (α) y el riesgo del consumidor (β).\nLa curva AOQ (Average Outgoing Quality) muestra la fracción defectuosa esperada después de inspección, útil para evaluar la calidad promedio de salida.\nLa curva ITP (Inspección Total Promedio) presenta la relación entre la calidad del material entrante y el número de elementos que se deben inspeccionar, suponiendo que los lotes rechazados se inspeccionarán en un 100% y se realizará una inspección de rectificación de los elementos defectuosos.\n\nAjuste los parámetros del plan: tamaño de muestra (n), nivel de aceptación (c), tamaño del lote (N) y los riesgos α y β. Cada modificación actualiza automáticamente las curvas. También se marcan los puntos AQL (Acceptable Quality Level) y LQL (Lot Tolerance Percent Defective) cuando corresponden, lo que facilita interpretar las regiones típicas de desempeño del plan.\nObserve cómo cada distribución induce una forma distinta de la curva OC:la Binomial modela defectos independientes en muestras moderadas; la Poisson simplifica el caso de eventos raros; y la Hipergeométrica considera inspección sin reemplazo, capturando la finitud del lote.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  Seleccione una distribución:\n  \n    Binomial\n    Hipergeométrica\n    Poisson\n    Comparar (solo OC)\n  \n\n  \n\n  \n    \n      \n        \n        \n      \n  \n\n  \n\n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
   },
   {
-    "objectID": "docencia/distribuciones-continuas.html",
-    "href": "docencia/distribuciones-continuas.html",
-    "title": "Distribuciones continuas interactivas",
+    "objectID": "interactivos/distribuciones-discretas.html",
+    "href": "interactivos/distribuciones-discretas.html",
+    "title": "Distribuciones discretas interactivas",
     "section": "",
-    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros. Seleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada. Observe cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución. También puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.\nPor otro lado, también le permite comparar la forma de la distribución Normal estándar con la distribución t-Student para distintos valores de los grados de libertad. Ambas distribuciones aparecen en inferencia estadística, pero juegan papeles distintos: la Normal representa un escenario con información completa y varianza conocida, mientras que la t-Student surge cuando la varianza se estima a partir de muestras pequeñas.\nLa diferencia más visible está en la cola de la distribución. Para grados de libertad pequeños, la t-Student presenta colas más gruesas, lo que refleja mayor incertidumbre y una mayor probabilidad relativa de valores extremos. Conforme los grados de libertad aumentan, la t-Student se aproxima rápidamente a la Normal y ambas curvas se vuelven prácticamente indistinguibles. Use el deslizador para ajustar los grados de libertad y observe cómo cambia la forma de la t-Student respecto a la Normal estándar.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  \n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n      Comparación: Normal vs t-Student\n    \n\n  \n  \n\n  \n\n  \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
+    "text": "Este visualizador permite explorar distribuciones discretas y ver cómo cambian sus formas al modificar los parámetros. Seleccione primero una distribución en el menú. Luego ajuste los controles (deslizadores) para cambiar sus valores.\nEl gráfico se actualiza automáticamente y muestra la función de probabilidad correspondiente. Observe cómo los parámetros afectan la posición del centro (moda), la dispersión y la asimetría de cada distribución. También permite la descarga en formato PNG, y al posar el cursor sobre las barras se despliega el valor de probabilidad asociado a ese valor.\n\n\n  \n    \n    \n    \n    \n  \n  \n  \n  \n  \n    \n  \n    \n      Seleccione una distribución:\n      \n        Binomial\n        Binomial negativa\n        Poisson\n        Hipergeométrica\n      \n    \n  \n    \n    \n  \n    \n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
   },
   {
-    "objectID": "docencia/distribuciones-continuas.html#instrucciones-de-uso",
-    "href": "docencia/distribuciones-continuas.html#instrucciones-de-uso",
-    "title": "Distribuciones continuas interactivas",
+    "objectID": "interactivos/distribuciones-discretas.html#instrucciones-de-uso",
+    "href": "interactivos/distribuciones-discretas.html#instrucciones-de-uso",
+    "title": "Distribuciones discretas interactivas",
     "section": "",
-    "text": "Este visualizador permite explorar distribuciones continuas y observar cómo cambian sus formas al modificar sus parámetros. Seleccione primero una distribución en el menú desplegable. Luego ajuste los controles (deslizadores) para cambiar los valores de los parámetros correspondientes.\nEl gráfico se actualiza automáticamente y muestra la función de densidad de la distribución seleccionada. Observe cómo los parámetros afectan la posición central (media o moda), la dispersión y la asimetría de cada distribución. También puede descargar el gráfico en formato PNG y al posar el cursor sobre la curva se despliega el valor de densidad asociado a cada punto.\nPor otro lado, también le permite comparar la forma de la distribución Normal estándar con la distribución t-Student para distintos valores de los grados de libertad. Ambas distribuciones aparecen en inferencia estadística, pero juegan papeles distintos: la Normal representa un escenario con información completa y varianza conocida, mientras que la t-Student surge cuando la varianza se estima a partir de muestras pequeñas.\nLa diferencia más visible está en la cola de la distribución. Para grados de libertad pequeños, la t-Student presenta colas más gruesas, lo que refleja mayor incertidumbre y una mayor probabilidad relativa de valores extremos. Conforme los grados de libertad aumentan, la t-Student se aproxima rápidamente a la Normal y ambas curvas se vuelven prácticamente indistinguibles. Use el deslizador para ajustar los grados de libertad y observe cómo cambia la forma de la t-Student respecto a la Normal estándar.\n\n\n\n  \n  \n  \n  \n\n\n\n  \n\n  \n    Seleccione una distribución:\n    \n      Normal\n      Exponencial\n      Gamma\n      Weibull\n      Lognormal\n      Beta\n      Comparación: Normal vs t-Student\n    \n\n  \n  \n\n  \n\n  \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
-  },
-  {
-    "objectID": "docencia.html",
-    "href": "docencia.html",
-    "title": "Recursos académicos",
-    "section": "",
-    "text": "En esta sección encontrará recursos académicos organizados en pestañas para facilitar su consulta. Incluyen materiales sobre visualización de datos, simulaciones interactivas y herramientas útiles para cursos de probabilidad, estadística e ingeniería.\nTodo el material, exceptuando aquel etiquetado como externo, es de mi autoría."
-  },
-  {
-    "objectID": "docencia.html#infografías",
-    "href": "docencia.html#infografías",
-    "title": "Recursos académicos",
-    "section": "Infografías ",
-    "text": "Infografías \n\nComprendiendo los valores P\n\nEsta infografía presenta la definición del valor P, criterios para su interpretación y una guía para la elección del nivel de significancia (\\(\\alpha\\))."
-  },
-  {
-    "objectID": "docencia.html#simulaciones-y-visualizaciones-interactivas",
-    "href": "docencia.html#simulaciones-y-visualizaciones-interactivas",
-    "title": "Recursos académicos",
-    "section": "Simulaciones y visualizaciones interactivas ",
-    "text": "Simulaciones y visualizaciones interactivas \n\nDistribuciones discretas interactivas\n\nEste visualizador le permite explorar las principales distribuciones discretas y ver como cambian sus formas al modificar los parámetros.\n\nDistribuciones continuas interactivas\n\nEs el equivalente continuo al visualizador anterior, pero además, presenta una comparación entre la distribución normal estándar (\\(z\\)) y la t-Student (\\(t\\)).\n\nConvolución de distribuciones\n\nEste visualizador interactivo permite explorar cómo se combinan dos variables aleatorias independientes mediante la convolución de sus distribuciones. Muestra la distribución resultante de la suma y su relación con el Teorema del Límite Central.\n\nCurvas OC para muestreo por atributos\n\nPropio del campo de la ingeniería de calidad y muestreo de aceptación, este visualizador muestra las curvas características de operación (OC) de planes de muestreo por atributos.\n\nEfecto de la asimetría sobre el TLC\n\nInspirado en algunas publicaciones científicas, aquí podrá encontrar como la asimetría juega un papel ponderante en el cumplimiento del teorema del límite central (TLC). Con este, busco ayudar a “derrumbar” el mito de que el TLC siempre se cumple con \\(n=30\\).\n\nCalculadora de distribuciones de probabilidad e intervalos de confianza - Aplicación externa\n\nDe Ph.D. Matt Bognar, aquí encuentra “mini aplicaciones” con las que puede resolver ejercicios de probabilidad y estadística.\n\nLey de los Grandes Números - Aplicación externa\n\nEs una explicación de Rafael Pérez Laserna sobre la Ley de los Grandes Números, que incluye una simulación de un dado que nos ayuda a comprenderla.\n\nTeorema del Límite Central (TLC) - Aplicación externa\n\nUno de los pilares de la estadística frecuentista, este enlace muestra una simulación del TLC que nos permite comprender el TLC de mejor forma.\n\nAplicación interactiva sobre los intervalos de confianza\n\nEste es un gist que al ejecutarse en R con sus respectivas librerías, despliega una aplicación local que permite comprender mejor el funcionamiento de los intervalos de confianza y como estos dependen del estimador puntual (aleatorio por el muestreo), el tamaño de muestra y el nivel de confianza seleccionado.\n\n# Correr en R (requiere shiny y tidyverse)\n\nlibrary(shiny)\nlibrary(tidyverse)\n\nrunGist(\"d47f4c205b531e3bed59d22b22cbfd13\")"
-  },
-  {
-    "objectID": "docencia.html#recursos-para-la-construcción-de-gráficos",
-    "href": "docencia.html#recursos-para-la-construcción-de-gráficos",
-    "title": "Recursos académicos",
-    "section": "Recursos para la construcción de gráficos ",
-    "text": "Recursos para la construcción de gráficos \n\nSeleccione el gráfico adecuado\n\n¿Qué tipo de datos tiene? Elija el tipo principal usando esta guía.\n\nEvite estos errores\n\nUna colección de advertencias para la visualización de datos\n\nOtro catálogo de visualización de datos\n\nEncuentre otros gráficos y guías para su construcción."
-  },
-  {
-    "objectID": "docencia.html#tutoriales-en",
-    "href": "docencia.html#tutoriales-en",
-    "title": "Recursos académicos",
-    "section": "Tutoriales en ",
-    "text": "Tutoriales en \n\nAspectos generales \n\nGuía básica de R: Introducción\n\nPara los que nunca han programado, o al menos nunca han programado en R/Rstudio.\n\n\nEstadística \nEsta parte está en construcción\n\n\nIngeniería de Calidad \n\nDiagrama de Pareto\n\nAprenda a realizar un gráfico de Pareto en R. Este es un principio que dice que una pequeña cantidad de causas suele explicar la mayor parte de los efectos\n\nGráficos de control para variables\n\nLos gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real.\n\nGráficos de control para atributos\n\nMientras que los gráficos de control para variables rastrean las cantidades medidas relacionadas con la calidad de los resultados del proceso, los gráficos para atributos siguen el recuento de los elementos no conformes.\n\nAnálisis de capacidad para datos normales\n\nUn análisis de capacidad es una herramienta estadística que evalúa si un proceso puede cumplir de forma consistente con los requisitos o especificaciones establecidos. Compara la variabilidad natural del proceso con los límites de tolerancia del cliente para determinar qué tan capaz es.\n\nAnálisis de capacidad para datos no normales\n\nEs relativamente común encontrarse con procesos que no siguen la distribución normal, ya sea por que así es como debe comportarse o bien, por errores que suceden a la hora de recolectar, almacenar o procesar los datos."
+    "text": "Este visualizador permite explorar distribuciones discretas y ver cómo cambian sus formas al modificar los parámetros. Seleccione primero una distribución en el menú. Luego ajuste los controles (deslizadores) para cambiar sus valores.\nEl gráfico se actualiza automáticamente y muestra la función de probabilidad correspondiente. Observe cómo los parámetros afectan la posición del centro (moda), la dispersión y la asimetría de cada distribución. También permite la descarga en formato PNG, y al posar el cursor sobre las barras se despliega el valor de probabilidad asociado a ese valor.\n\n\n  \n    \n    \n    \n    \n  \n  \n  \n  \n  \n    \n  \n    \n      Seleccione una distribución:\n      \n        Binomial\n        Binomial negativa\n        Poisson\n        Hipergeométrica\n      \n    \n  \n    \n    \n  \n    \n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
   },
   {
     "objectID": "logo.html",
@@ -147,248 +469,101 @@
     "text": "El logo de esta página fue diseñado por Mónica Umaña, fundadora de Musaline Studio.\nPero esto no es solo un logo, sino que es una representación que busca unir mis dos pasiones académicas: la ingeniería y la estadística. Está inspirado en los hex stickers que son una tradición dentro de la comunidad de , principalmente por influencia del tidyverse, como detalla Hadley Wickham en este artículo. Como supongo que se sospecha,  es mi herramienta predilecta para el desarrollo de mis actividades académicas.\n\n Escudo histórico del valle de Goñi (Navarra), que le da origen al apellido\n\nPor otro lado, Goñi es mi segundo apellido y tradicionalmente a todos en nuestra familia se nos conoce por el mismo. Aun cuando llegue a lugares nuevos, poco a poco adoptan la costumbre de llamarnos Goñi, por lo que era esencial que formara parte de mi imagen personal.\nCon esa identidad en mente, el logo incorpora un símbolo que representa cómo pienso y trabajo: al cuervo (de la familia córvidos). Es un símbolo de la curiosidad y creatividad; observan, prueban y corrigen; en este sentido funcionan como ingenieros e ingenieras, ya que recogen información, elaboran estrategias y buscan mejores resultados; por ejemplo:\n\nLos cuervos de Nueva Caledonia (Corvus moneduloides) fabrican y ajustan herramientas para extraer alimento. Experimentos clásicos de Gavin R. Hunt y colaboradores muestran modificación y transporte de herramientas, lo que implica planificación. https://doi.org/10.1038/379249a0\nTrabajos de Alex Taylor y colaboradores muestran que los cuervos infieren relaciones causales simples, distinguen pruebas exitosas de fallidas y ajustan el comportamiento en consecuencia. https://doi.org/10.1073/pnas.1208724109\nEstudios sobre córvidos en ambientes urbanos muestran estrategias de minimización de esfuerzo, por ejemplo, investigaciones en Japón sobre cuervos que utilizan el tráfico para romper nueces. https://doi.org/10.3838/jjo.68.43\n\nDe esta manera, este logo representa una forma de creatividad que no se limita a imaginar, sino que experimenta y aprende. La ingeniería industrial y la estadística buscan exactamente eso: entender los datos, modelar fenómenos, iterar soluciones y optimizar recursos. El cuervo encarna ese mismo método: medir el mundo, reducir la incertidumbre y mejorar procesos.\nAdemás, me encanta Edgar Allan Poe."
   },
   {
-    "objectID": "diagrama_pareto.html",
-    "href": "diagrama_pareto.html",
-    "title": "Gráfico de Pareto",
-    "section": "",
-    "text": "Este es un ejemplo sobre como llevar a cabo gráficos de Pareto en R, usando la librería qcc. Este ejercicio es extraído del material del profesor Ing. Manrique Araya Alfaro."
-  },
-  {
-    "objectID": "diagrama_pareto.html#introducción",
-    "href": "diagrama_pareto.html#introducción",
-    "title": "Gráfico de Pareto",
-    "section": "",
-    "text": "Este es un ejemplo sobre como llevar a cabo gráficos de Pareto en R, usando la librería qcc. Este ejercicio es extraído del material del profesor Ing. Manrique Araya Alfaro."
-  },
-  {
-    "objectID": "diagrama_pareto.html#librerías",
-    "href": "diagrama_pareto.html#librerías",
-    "title": "Gráfico de Pareto",
-    "section": "Librerías",
-    "text": "Librerías\n\nlibrary(tidyverse)\nlibrary(qcc)"
-  },
-  {
-    "objectID": "diagrama_pareto.html#ejercicio",
-    "href": "diagrama_pareto.html#ejercicio",
-    "title": "Gráfico de Pareto",
-    "section": "Ejercicio",
-    "text": "Ejercicio\nEn una fábrica de aparatos de línea blanca se han presentado problemas con la calidad de las lavadoras. Un grupo de mejora de la calidad decide revisar los problemas de la tina de las lavadoras, ya que con frecuencia es necesario retrabajarlas para que éste tenga una calidad aceptable. Para ello, estratificaron los problemas en la tina de lavadora por tipo de defecto, con la idea de localizar cual es desperfecto principal. A continuación, se muestra el análisis de los defectos encontrados en las tinas producidas en 5 meses.\nRealice un análisis de Pareto y obtenga conclusiones.\n\nDefecto &lt;- c(\"Boca ovalada\", \"Perforaciones deformes\",\n             \"Boda despostillada\", \"Falta de fundente\",\n             \"Mal soldada\")\n\nFrecuencia &lt;- c(1200, 400, 180, 130, 40)\n\ndata.frame(Defecto, Frecuencia) %&gt;%\n  flextable::flextable(cwidth = 1.9) # este código es solo para presentar los datos\n\nDefectoFrecuenciaBoca ovalada1,200Perforaciones deformes400Boda despostillada180Falta de fundente130Mal soldada40\n\n\nAhora, realizamos el diagrama de Pareto.\n\n# Sin nombres\n\nqcc::pareto.chart(Frecuencia)\n\n\n\n\n\n\n\n\n   \nPareto chart analysis for Frecuencia\n      Frequency   Cum.Freq.  Percentage Cum.Percent.\n  A 1200.000000 1200.000000   61.538462    61.538462\n  B  400.000000 1600.000000   20.512821    82.051282\n  C  180.000000 1780.000000    9.230769    91.282051\n  D  130.000000 1910.000000    6.666667    97.948718\n  E   40.000000 1950.000000    2.051282   100.000000\n\n# Con nombres\n\nnames(Frecuencia) &lt;- Defecto\n\nqcc::pareto.chart(Frecuencia)\n\n\n\n\n\n\n\n\n                        \nPareto chart analysis for Frecuencia\n                           Frequency   Cum.Freq.  Percentage Cum.Percent.\n  Boca ovalada           1200.000000 1200.000000   61.538462    61.538462\n  Perforaciones deformes  400.000000 1600.000000   20.512821    82.051282\n  Boda despostillada      180.000000 1780.000000    9.230769    91.282051\n  Falta de fundente       130.000000 1910.000000    6.666667    97.948718\n  Mal soldada              40.000000 1950.000000    2.051282   100.000000"
-  },
-  {
-    "objectID": "docencia/graficos_control.html",
-    "href": "docencia/graficos_control.html",
-    "title": "Gráficos de control de Shewhart para variables",
-    "section": "",
-    "text": "El control estadístico del proceso implica la comparación de la salida del proceso con un estándar y la toma de decisiones intermedias en caso de discrepancia entre las dos.\nTambién implica determinar si el proceso puede producir productos que cumplan con las especificaciones requeridas.\nLos resultados de todos los procesos, ya sean procesos de fabricación o procesos que proporcionan algún tipo de servicio, están sujetos a la variabilidad. La variabilidad hace que sea más difícil para los procesos generar productos que se ajusten a los límites de especificación deseados.\nShewhart (1931) definió las dos causas de variabilidad en los resultados del proceso como causas comunes y causas especiales o asignables.\n\nLas causas comunes de variabilidad se deben a la naturaleza inherente del proceso. No pueden eliminarse o reducirse sin cambiar el proceso real.\nLas causas atribuibles de la variabilidad, por otra parte, son interrupciones inusuales del funcionamiento normal. Deben identificarse y eliminarse para reducir la variabilidad y hacer que el proceso sea más capaz de cumplir las especificaciones.\n\n\n\nLos gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real. Aunque los gráficos de control por sí solos no pueden reducir la variabilidad del proceso, pueden ayudar a prevenir una reacción excesiva a las causas comunes de la variabilidad (lo que puede empeorar las cosas) y ayudar a evitar ignorar las señales de causa asignables. Cuando se reconoce la presencia de una causa asignable para la variabilidad, el conocimiento del proceso puede llevar a ajustes para eliminar esta causa y reducir la variabilidad en los resultados del proceso.\n\n\nEn la fase I, se utilizan gráficos de control sobre datos retrospectivos para calcular los límites preliminares de control y determinar si el proceso había estado bajo control durante el período en que se recopilaron los datos. Cuando se detectan causas asignables en la carta de control utilizando los datos históricos, se lleva a cabo una investigación para encontrar la causa. Si se encuentra la causa y puede prevenirse en el futuro, se eliminan los datos correspondientes a los puntos fuera de control del gráfico y se vuelven a calcular los límites de control.\nEste es normalmente un proceso iterativo y se repite hasta que los límites de los gráficos de control se refinan, se produce ub gráfico que no parece contener ninguna causa asignable, y el proceso parece estar funcionando a un nivel aceptable. La información obtenida a partir del gráfico de control de la fase I se utiliza entonces como base para el seguimiento de la fase II. Dado que los límites del gráfico de control se calculan repetidamente en la fase I, los cálculos se realizan normalmente utilizando un ordenador."
-  },
-  {
-    "objectID": "docencia/graficos_control.html#gráficos-de-control",
-    "href": "docencia/graficos_control.html#gráficos-de-control",
-    "title": "Gráficos de control de Shewhart para variables",
-    "section": "",
-    "text": "Los gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real. Aunque los gráficos de control por sí solos no pueden reducir la variabilidad del proceso, pueden ayudar a prevenir una reacción excesiva a las causas comunes de la variabilidad (lo que puede empeorar las cosas) y ayudar a evitar ignorar las señales de causa asignables. Cuando se reconoce la presencia de una causa asignable para la variabilidad, el conocimiento del proceso puede llevar a ajustes para eliminar esta causa y reducir la variabilidad en los resultados del proceso.\n\n\nEn la fase I, se utilizan gráficos de control sobre datos retrospectivos para calcular los límites preliminares de control y determinar si el proceso había estado bajo control durante el período en que se recopilaron los datos. Cuando se detectan causas asignables en la carta de control utilizando los datos históricos, se lleva a cabo una investigación para encontrar la causa. Si se encuentra la causa y puede prevenirse en el futuro, se eliminan los datos correspondientes a los puntos fuera de control del gráfico y se vuelven a calcular los límites de control.\nEste es normalmente un proceso iterativo y se repite hasta que los límites de los gráficos de control se refinan, se produce ub gráfico que no parece contener ninguna causa asignable, y el proceso parece estar funcionando a un nivel aceptable. La información obtenida a partir del gráfico de control de la fase I se utiliza entonces como base para el seguimiento de la fase II. Dado que los límites del gráfico de control se calculan repetidamente en la fase I, los cálculos se realizan normalmente utilizando un ordenador."
-  },
-  {
-    "objectID": "docencia/graficos_control_atributos.html",
-    "href": "docencia/graficos_control_atributos.html",
-    "title": "Gráficos de control para atributos",
-    "section": "",
-    "text": "Mientras que los gráficos de control para variables rastrean las cantidades medidas relacionadas con la calidad de los resultados del proceso, los gráficos para atributos siguen el recuento de los elementos no conformes. Los gráficos para atributos no son tan informativos como los gráficos para variables para los estudios de la fase I. Un desplazamiento por encima o por debajo del límite de control inferior o una serie de puntos por encima o por debajo de la línea central en un gráfico de variables puede dar una pista sobre la causa. Sin embargo, un cambio en el número de elementos no conformes puede dar tal indicio. Aún así los gráficos de atributos tienen valor en la fase I.\nEn las industrias de servicios y otras áreas no manufactureras, los datos de conteo pueden ser abundantes pero las mediciones numéricas raras. Además, se pueden considerar simultáneamente muchas características de los resultados del proceso utilizando gráficos de atributos."
-  },
-  {
-    "objectID": "docencia/graficos_control_atributos.html#gráfico-p",
-    "href": "docencia/graficos_control_atributos.html#gráfico-p",
-    "title": "Gráficos de control para atributos",
-    "section": "Gráfico \\(p\\)",
-    "text": "Gráfico \\(p\\)\nA continuación se le presenta un ejemplo donde se han recogido \\(n=50\\) durante 30 periodos de tiempo.\n\ndata(orangejuice)\n\nhead(orangejuice)%&gt;% \n  flextable::flextable()\n\nsampleDsizetrial11250TRUE21550TRUE3850TRUE41050TRUE5450TRUE6750TRUE\n\ntail(orangejuice)%&gt;% \n  flextable::flextable()\n\nsampleDsizetrial49650FALSE50750FALSE51550FALSE52650FALSE53350FALSE54550FALSE\n\n\nSolo necesitamos, para el ejemplo, los primeros 30 datos (los de trial = TRUE).\n\ndatos &lt;- orangejuice %&gt;% \n  dplyr::filter(trial)\n\nCon este código podemos generar el gráfico.\n\np &lt;- qcc(datos$D, \n         sizes = 50, type = \"p\", \n         title = \"Gráfico de control p\")\n\n\n\n\n\n\n\n\nSi \\(n\\) es variable, supongamos que de esta manera (en un caso real, debe ingresar datos reales, estos son simulados):\n\nn_var &lt;- sample(40:60, # n, aleatorio, entre 40 y 60\n                30, # 30 datos\n                replace = TRUE) \n\nn_var\n\n [1] 47 45 57 42 58 48 50 56 42 52 45 52 48 60 59 53 49 43 40 43 54 47 50 58 40\n[26] 46 57 43 43 53\n\n\nEntonces\n\np &lt;- qcc(datos$D, \n         sizes = n_var, type = \"p\", \n         title = \"Gráfico de control p (n variable)\")"
-  },
-  {
-    "objectID": "docencia/graficos_control_atributos.html#gráfico-np",
-    "href": "docencia/graficos_control_atributos.html#gráfico-np",
-    "title": "Gráficos de control para atributos",
-    "section": "Gráfico \\(np\\)",
-    "text": "Gráfico \\(np\\)\nNo hay muchas diferencias entre la generación del gráfico \\(p\\) y el \\(np\\), como podemos apreciar.\n\nnp &lt;- qcc(datos$D, \n          sizes = 50, type = \"np\", \n          title = \"Gráfico de control np\")\n\n\n\n\n\n\n\n\nEste también puede ser variable, pero no se recomienda y justo este gráfico a continuación es un prueba de ello.\n\nnp &lt;- qcc(datos$D, \n          sizes = n_var, type = \"np\", \n          title = \"Gráfico de control np (n variable)\")"
-  },
-  {
-    "objectID": "docencia/graficos_control_atributos.html#gráfico-c",
-    "href": "docencia/graficos_control_atributos.html#gráfico-c",
-    "title": "Gráficos de control para atributos",
-    "section": "Gráfico \\(c\\)",
-    "text": "Gráfico \\(c\\)\nPara este ejemplo se va a emplear los siguientes datos\n\ndata(\"circuit\")\n\nhead(circuit)%&gt;% \n  flextable::flextable()\n\nxsizetrial21100TRUE24100TRUE16100TRUE12100TRUE15100TRUE5100TRUE\n\n\nAl igual que en los ejemplos de \\(p\\) y \\(np\\), solo necesitamos, para el ejemplo, los primeros 26 datos (los de trial = TRUE).\n\ndatos_circuito &lt;- circuit %&gt;% \n  dplyr::filter(trial)\n\nUna vez realizado este paso miscelaneo, se puede construir el gráfico de control \\(c\\)\n\nc &lt;- qcc(datos_circuito$x, type = \"c\", \n         title = \"Gráfico de control c\")\n\n\n\n\n\n\n\n\nPara este gráfico tampoco se recomienda \\(n\\) variable."
-  },
-  {
-    "objectID": "docencia/graficos_control_atributos.html#gráfico-u",
-    "href": "docencia/graficos_control_atributos.html#gráfico-u",
-    "title": "Gráficos de control para atributos",
-    "section": "Gráfico \\(u\\)",
-    "text": "Gráfico \\(u\\)\nEmpleando los datos anteriores, se construye el gráfico de la siguiente manera.\n\nu &lt;- qcc(datos_circuito$x, \n         sizes = 100, type = \"u\", \n         title = \"Gráfico de control u\")\n\n\n\n\n\n\n\n\nEn caso de tener \\(n\\) variable (simulado a partir de los siguientes datos).\n\nn_var &lt;- sample(90:110, 26, replace = T)\n\nSe puede obtener el gráfico de esta manera\n\nu &lt;- qcc(datos_circuito$x, \n         sizes = n_var, # datos variables\n         type = \"u\", \n         title = \"Gráfico de control u (n variable)\")"
-  },
-  {
-    "objectID": "docencia/capacidad_datos_nromales.html",
-    "href": "docencia/capacidad_datos_nromales.html",
-    "title": "Análisis de capacidad en R para datos normales",
-    "section": "",
-    "text": "Al finalizar la Fase I, cuando los gráficos de control hayan demostrado que el proceso se encuentra bajo control y en un nivel aceptable, se pueden calcular los PCR para documentar el estado del proceso."
-  },
-  {
-    "objectID": "docencia/capacidad_datos_nromales.html#usando-qcc",
-    "href": "docencia/capacidad_datos_nromales.html#usando-qcc",
-    "title": "Análisis de capacidad en R para datos normales",
-    "section": "Usando qcc",
-    "text": "Usando qcc\nLuego, se verifica que que el proceso se encuentre bajo control estadístico, para ello vamos a comenzar con un gráfico \\(\\bar{x}-R\\).\n\nX_R &lt;- qcc::qcc(datos, type = \"xbar\")\n\n\n\n\n\n\n\nplot(X_R)\n\nEl segundo requisito, es que los datos sigan la distribución normal. Por ejemplo, con un \\(\\alpha=0.001\\).\n\nas.matrix(datos) %&gt;% \n  shapiro.test()\n\n\n    Shapiro-Wilk normality test\n\ndata:  .\nW = 0.95336, p-value = 0.00139\n\n\nUna vez resuelto esto, se puede evaluar la capacidad del proceso.\n\nqcc::process.capability(X_R, spec.limits = c(7.115, 7.135), target = 7.125)\n\n\n\n\n\n\n\n\n\nProcess Capability Analysis\n\nCall:\nqcc::process.capability(object = X_R, spec.limits = c(7.115,     7.135), target = 7.125)\n\nNumber of obs = 100          Target = 7.125\n       Center = 7.125           LSL = 7.115\n       StdDev = 0.002098        USL = 7.135\n\nCapability indices:\n\n      Value   2.5%  97.5%\nCp    1.589  1.368  1.809\nCp_l  1.573  1.381  1.765\nCp_u  1.605  1.409  1.800\nCp_k  1.573  1.344  1.801\nCpm   1.587  1.367  1.807\n\nExp&lt;LSL 0%   Obs&lt;LSL 0%\nExp&gt;USL 0%   Obs&gt;USL 0%"
-  },
-  {
-    "objectID": "docencia/capacidad_datos_nromales.html#usando-sixsigma",
-    "href": "docencia/capacidad_datos_nromales.html#usando-sixsigma",
-    "title": "Análisis de capacidad en R para datos normales",
-    "section": "Usando SixSigma",
-    "text": "Usando SixSigma\nEste paquete puede ser un poco más sencillo de usar. Pero necesita los datos en una sola columna.\n\ndatos_una_col &lt;- datos %&gt;% \n  tidyr::pivot_longer(everything())\n\n\nSixSigma::ss.study.ca(xST = datos_una_col$value, # corto plazo\n                      xLT = datos_una_col$value, # largo plazo\n                      Target = 7.115, LSL=7.135,USL=7.125)"
-  },
-  {
-    "objectID": "docencia/capacidad_datos_normales.html",
-    "href": "docencia/capacidad_datos_normales.html",
-    "title": "Análisis de capacidad en R para datos normales",
-    "section": "",
-    "text": "Al finalizar la Fase I, cuando los gráficos de control hayan demostrado que el proceso se encuentra bajo control y en un nivel aceptable, se pueden calcular los PCR para documentar el estado del proceso."
-  },
-  {
-    "objectID": "docencia/capacidad_datos_normales.html#usando-qcc",
-    "href": "docencia/capacidad_datos_normales.html#usando-qcc",
-    "title": "Análisis de capacidad en R para datos normales",
-    "section": "Usando qcc",
-    "text": "Usando qcc\nLuego, se verifica que que el proceso se encuentre bajo control estadístico, para ello vamos a comenzar con un gráfico \\(\\bar{x}-R\\).\n\nX_R &lt;- qcc::qcc(datos, type = \"xbar\")\n\n\n\n\n\n\n\nplot(X_R)\n\nEl segundo requisito, es que los datos sigan la distribución normal. Por ejemplo, con un \\(\\alpha=0.001\\).\n\nas.matrix(datos) %&gt;% \n  shapiro.test()\n\n\n    Shapiro-Wilk normality test\n\ndata:  .\nW = 0.95336, p-value = 0.00139\n\n\nUna vez resuelto esto, se puede evaluar la capacidad del proceso.\n\nqcc::process.capability(X_R, spec.limits = c(7.115, 7.135), target = 7.125)\n\n\n\n\n\n\n\n\n\nProcess Capability Analysis\n\nCall:\nqcc::process.capability(object = X_R, spec.limits = c(7.115,     7.135), target = 7.125)\n\nNumber of obs = 100          Target = 7.125\n       Center = 7.125           LSL = 7.115\n       StdDev = 0.002098        USL = 7.135\n\nCapability indices:\n\n      Value   2.5%  97.5%\nCp    1.589  1.368  1.809\nCp_l  1.573  1.381  1.765\nCp_u  1.605  1.409  1.800\nCp_k  1.573  1.344  1.801\nCpm   1.587  1.367  1.807\n\nExp&lt;LSL 0%   Obs&lt;LSL 0%\nExp&gt;USL 0%   Obs&gt;USL 0%"
-  },
-  {
-    "objectID": "docencia/capacidad_datos_normales.html#usando-sixsigma",
-    "href": "docencia/capacidad_datos_normales.html#usando-sixsigma",
-    "title": "Análisis de capacidad en R para datos normales",
-    "section": "Usando SixSigma",
-    "text": "Usando SixSigma\nEste paquete puede ser un poco más sencillo de usar. Pero necesita los datos en una sola columna.\n\ndatos_una_col &lt;- datos %&gt;% \n  tidyr::pivot_longer(everything())\n\n\nSixSigma::ss.study.ca(xST = datos_una_col$value, # corto plazo\n                      xLT = datos_una_col$value, # largo plazo\n                      Target = 7.115, LSL=7.135,USL=7.125)"
-  },
-  {
-    "objectID": "docencia/capacidad_datos_no_normales.html",
-    "href": "docencia/capacidad_datos_no_normales.html",
+    "objectID": "tutoriales_R/capacidad_datos_no_normales.html",
+    "href": "tutoriales_R/capacidad_datos_no_normales.html",
     "title": "Análisis de capacidad para datos no normales",
     "section": "",
     "text": "El paquete qualityTools ya no está disponible para instalación directa desde RStudio, sino que debe instalarse de la siguiente forma. Lo mismo sucede para el paquete Johnson.\n\nlibrary(devtools)\n\ndevtools::install_github(\"cran/qualityTools\")\ndevtools::install_github(\"hrbrmstr/Johnson\")"
   },
   {
-    "objectID": "docencia/capacidad_datos_no_normales.html#transformaciones-no-lineales",
-    "href": "docencia/capacidad_datos_no_normales.html#transformaciones-no-lineales",
+    "objectID": "tutoriales_R/capacidad_datos_no_normales.html#transformaciones-no-lineales",
+    "href": "tutoriales_R/capacidad_datos_no_normales.html#transformaciones-no-lineales",
     "title": "Análisis de capacidad para datos no normales",
     "section": "Transformaciones no lineales",
     "text": "Transformaciones no lineales\nEl primer abordaje corresponde al uso de transformaciones no lineales.\n\nBox-Cox\nRecuerde que esta familia de transformaciones sigue la siguiente fórmula.\n\\[\nw_i=\\Biggl\\{ \\begin{matrix} x_i^\\lambda \\quad si \\quad \\lambda \\ne 0 \\\\ log(x_i) \\quad si \\quad \\lambda = 0\\end{matrix}, \\text{para } x_i &gt; 0\n\\]\n\nbc &lt;- MASS::boxcox(lm(datos_no_normales ~ 1))\n\n\n\n\n\n\n\nlambda &lt;- bc$x[which.max(bc$y)]\n\nlambda\n\n[1] 0.4242424\n\n\nAlgunos software trabajan directamente con los valores redondeados, por lo que en este caso \\(\\lambda=-2\\)\nAhora, apliquemos la transformación\n\n# Sin redondeo\ndatos_transformados_1 &lt;- datos_no_normales^lambda\n\nshapiro.test(datos_transformados_1)\n\n\n    Shapiro-Wilk normality test\n\ndata:  datos_transformados_1\nW = 0.99547, p-value = 0.9855\n\n# Con redondeo\ndatos_transformados_2 &lt;- datos_no_normales^0.5\nshapiro.test(datos_transformados_2)\n\n\n    Shapiro-Wilk normality test\n\ndata:  datos_transformados_2\nW = 0.99494, p-value = 0.9735\n\n\nNótese como en ambas situaciones, los datos ahora si siguen la distribución normal. Ahora analicemos la capacidad.\n\nXR &lt;- matrix(datos_transformados_1, ncol = 4) %&gt;% \n  qcc::qcc(type = \"xbar\", data.name = \"Datos transformados: Box - Cox\")\n\n\n\n\n\n\n\nqcc::process.capability(XR, \n                        spec.limits = c(1, 5),\n                        target = 3, \n                        breaks = \"sturges\")\n\n\n\n\n\n\n\n\n\nProcess Capability Analysis\n\nCall:\nqcc::process.capability(object = XR, spec.limits = c(1, 5), target = 3,     breaks = \"sturges\")\n\nNumber of obs = 100          Target = 3\n       Center = 1.458           LSL = 1\n       StdDev = 0.44            USL = 5\n\nCapability indices:\n\n       Value    2.5%   97.5%\nCp    1.5152  1.3043  1.7257\nCp_l  0.3467  0.2786  0.4149\nCp_u  2.6837  2.3652  3.0021\nCp_k  0.3467  0.2655  0.4280\nCpm   0.4157  0.3359  0.4953\n\nExp&lt;LSL 15%  Obs&lt;LSL 14%\nExp&gt;USL 0%   Obs&gt;USL 0%\n\n\nPero hay algo raro, ¿no? Es porque aún no transformamos los límites y el nominal.\n\n# ponga atención, a veces la transformación invierte los límites\n\nc(1, 3, 5)^lambda\n\n[1] 1.000000 1.593731 1.979396\n\nqcc::process.capability(XR, \n                        spec.limits = c(1, 1.979396),\n                        target = 1.593731, \n                        breaks = \"sturges\")\n\n\n\n\n\n\n\n\n\nProcess Capability Analysis\n\nCall:\nqcc::process.capability(object = XR, spec.limits = c(1, 1.979396),     target = 1.593731, breaks = \"sturges\")\n\nNumber of obs = 100          Target = 1.594\n       Center = 1.458           LSL = 1\n       StdDev = 0.44            USL = 1.979\n\nCapability indices:\n\n       Value    2.5%   97.5%\nCp    0.3710  0.3194  0.4225\nCp_l  0.3467  0.2786  0.4149\nCp_u  0.3952  0.3235  0.4669\nCp_k  0.3467  0.2655  0.4280\nCpm   0.3544  0.3033  0.4055\n\nExp&lt;LSL 15%  Obs&lt;LSL 14%\nExp&gt;USL 12%  Obs&gt;USL 13%\n\n\n\n\nJohnson\n\nNota: este paquete Johnson fue removido del CRAN (repositorio oficial), y en general suele ser algo deficiente en el cálculo de las transformaciones.\n\nEsta está compuesta por tres familias de transformaciones: \\(S_B, S_L, S_U\\).\n\ndatos_transformados_3 &lt;- Johnson::RE.Johnson(datos_no_normales)\n\nshapiro.test(datos_transformados_3$transformed)\n\n\n    Shapiro-Wilk normality test\n\ndata:  datos_transformados_3$transformed\nW = 0.99375, p-value = 0.929\n\n\nHabiendo verificado que la transformación es efectiva, podemos proceder a realizar el análisis de capacidad.\n\n# verificamos la familia de transformaciones\n\ndatos_transformados_3$`function`\n\n[1] \"SB\"\n\n\nSabiendo que es \\(S_B\\), se puede proceder según la fórmula\n\\[\nw_i = \\gamma+\\eta\\cdot ln\\Big[\\frac{x_i-\\varepsilon}{\\lambda+\\varepsilon-x_i}\\Big]\n\\]\nEntonces:\n\nprint(g &lt;- datos_transformados_3$f.gamma)\n\n[1] 3.081273\n\nprint(l &lt;- datos_transformados_3$f.lambda)\n\n[1] 24.67992\n\nprint(eta &lt;- datos_transformados_3$f.eta)\n\n[1] 1.690125\n\nprint(ep &lt;- datos_transformados_3$f.epsilon)\n\n[1] -0.9426102\n\nx_i &lt;- c(1, 3, 5)\n\ng + (eta * log((x_i-ep)/(l+ep-x_i)))  #log = ln\n\n[1] -1.0763915  0.2755111  1.1403874\n\n\nPor lo tanto:\n\nXR &lt;- matrix(datos_transformados_3$transformed, ncol = 4) %&gt;% \n  qcc::qcc(type = \"xbar\", data.name = \"Datos transformados: Johnson\")\n\n\n\n\n\n\n\nqcc::process.capability(XR, \n                        spec.limits = c(-1.0763915, 1.1403874),\n                        target = 0.2755111, \n                        breaks = \"sturges\")\n\n\n\n\n\n\n\n\n\nProcess Capability Analysis\n\nCall:\nqcc::process.capability(object = XR, spec.limits = c(-1.0763915,     1.1403874), target = 0.2755111, breaks = \"sturges\")\n\nNumber of obs = 100          Target = 0.2755\n       Center = -0.02526        LSL = -1.076\n       StdDev = 0.9774          USL = 1.14\n\nCapability indices:\n\n       Value    2.5%   97.5%\nCp    0.3780  0.3254  0.4305\nCp_l  0.3585  0.2895  0.4275\nCp_u  0.3975  0.3256  0.4694\nCp_k  0.3585  0.2762  0.4407\nCpm   0.3613  0.3091  0.4133\n\nExp&lt;LSL 14%  Obs&lt;LSL 14%\nExp&gt;USL 12%  Obs&gt;USL 13%\n\n\n\n\nTransformación en dos pasos\nEn Excel también puede encontrar una forma de abordar este caso, pues es relativamente sencillo de aplicar.\nDescargar Transformación en dos pasos con Excel\nDada algunas pequeñas diferencias en los algoritmos programados, encontrará disimilitudes en algunos de los resultados obtenidos.\n\ndos_pasos &lt;- bestNormalize::bestNormalize(datos_no_normales)\n\ndatos_transformados_4 &lt;- dos_pasos$x.t * sd(datos_no_normales) +\n  mean(datos_no_normales)\n\nshapiro.test(datos_transformados_4)\n\n\n    Shapiro-Wilk normality test\n\ndata:  datos_transformados_4\nW = 0.98477, p-value = 0.3055\n\n\nComo puede observar, la transformación es efectiva. Ahora se deben obtener los límites.\n\nlimites &lt;- predict(dos_pasos, \n                   newdata = c(1, 3, 5), \n                   inverse = F) * sd(datos_no_normales) + \n  mean(datos_no_normales)\n\nlimites\n\n[1] 0.7706979 3.5210154 4.9708862\n\n\nResuelto esto, calculemos la capacidad\n\nXR &lt;- matrix(datos_transformados_4, ncol = 4) %&gt;% \n  qcc::qcc(type = \"xbar\", data.name = \"Datos transformados: Dos pasos\")\n\n\n\n\n\n\n\nqcc::process.capability(XR, \n                        spec.limits = c(0.7706979, 4.9708862),\n                        target = 3.5210154, \n                        breaks = \"sturges\")\n\n\n\n\n\n\n\n\n\nProcess Capability Analysis\n\nCall:\nqcc::process.capability(object = XR, spec.limits = c(0.7706979,     4.9708862), target = 3.5210154, breaks = \"sturges\")\n\nNumber of obs = 100          Target = 3.521\n       Center = 2.813           LSL = 0.7707\n       StdDev = 1.835           USL = 4.971\n\nCapability indices:\n\n       Value    2.5%   97.5%\nCp    0.3814  0.3283  0.4344\nCp_l  0.3709  0.3010  0.4408\nCp_u  0.3919  0.3204  0.4633\nCp_k  0.3709  0.2877  0.4542\nCpm   0.3559  0.3035  0.4081\n\nExp&lt;LSL 13%  Obs&lt;LSL 14%\nExp&gt;USL 12%  Obs&gt;USL 13%"
   },
   {
-    "objectID": "docencia/capacidad_datos_no_normales.html#método-de-los-percentiles",
-    "href": "docencia/capacidad_datos_no_normales.html#método-de-los-percentiles",
+    "objectID": "tutoriales_R/capacidad_datos_no_normales.html#método-de-los-percentiles",
+    "href": "tutoriales_R/capacidad_datos_no_normales.html#método-de-los-percentiles",
     "title": "Análisis de capacidad para datos no normales",
     "section": "Método de los percentiles",
     "text": "Método de los percentiles\nPara aplicar este método primero debe identificarse la distribución subyacente que mejor se ajusta a los datos. Esto se puede hacer de muchas formas, esta es una de ellas.\n\nfitdistrplus::descdist(datos_no_normales)\n\n\n\n\n\n\n\n\nsummary statistics\n------\nmin:  0.05970522   max:  10.59864 \nmedian:  2.457949 \nmean:  2.813116 \nestimated sd:  1.911338 \nestimated skewness:  1.168548 \nestimated kurtosis:  4.996266 \n\n\nDel gráfico se muestra que la Weibull, lognormal y gamma son posibles candidatos.\n\n# probamos varias distribuciones\n\ndistribuciones &lt;- c(\"weibull\", \"lnorm\", \"exp\", # agregar más si es conveniente\n  \"gamma\", \"unif\", \"logis\") %&gt;% \n  purrr::map(function(x){\n    fitdistrplus::fitdist(datos_no_normales, x)\n    })\n\nbondad_ajuste &lt;- fitdistrplus::gofstat(distribuciones)\n\nround(bondad_ajuste$chisqpvalue,3) # valores p\n\n1-mle-weibull   2-mle-lnorm     3-mle-exp   4-mle-gamma    5-mle-unif \n        0.920         0.051         0.015         0.755         0.000 \n  6-mle-logis \n        0.798 \n\nbondad_ajuste$kstest # decisiones kolmogorov\n\n 1-mle-weibull    2-mle-lnorm      3-mle-exp    4-mle-gamma     5-mle-unif \n\"not rejected\" \"not rejected\"     \"rejected\" \"not rejected\"     \"rejected\" \n   6-mle-logis \n\"not rejected\" \n\nbondad_ajuste$adtest # decisiones anderson - darling\n\n 1-mle-weibull    2-mle-lnorm      3-mle-exp    4-mle-gamma     5-mle-unif \n\"not rejected\" \"not computed\"     \"rejected\" \"not rejected\" \"not computed\" \n   6-mle-logis \n    \"rejected\" \n\n\nObservando los resultados se intuye que se puede usar la Weibull o la gamma. Como ya sabemos que los datos provenienen de una Weibull (además de su alto valor P), se va a trabajar con ello.\n\nEstimación con qualityTools\n\nEste paquete no está en CRAN, su instalación es manual. Suele presentar errores en versiones actuales de R.\n\n\nresultado &lt;- qualityTools::cp(datos_no_normales,\n                 distribution = \"weibull\", \n                 lsl = 1,\n                 target = 3,\n                 usl = 5)\n\n\n    Anderson Darling Test for weibull distribution\n\ndata:  datos_no_normales \n\n\nError in round(x$statistic, 4): non-numeric argument to mathematical function\n\n\n\n\n\n\n\n\n\n\n\nEstimación manual\nA grosso modo, recordemos que la fórmula es:\n\\[\nC_p(q) = \\frac{USL - LSL}{x_{0.99865}-x_{0.00135}}\n\\]\nCon sus respectivas variantes para \\(C_{pk}\\).\nSabiendo que la distribución es Weibull, se van a estimar sus parámetros.\n\nfitdistrplus::fitdist(datos_no_normales, \"weibull\")\n\nFitting of the distribution ' weibull ' by maximum likelihood \nParameters:\n      estimate Std. Error\nshape 1.494667  0.1165100\nscale 3.110131  0.2188012\n\npercentiles &lt;- qweibull(c(0.99865, 0.00135, 0.5), # superior, inferior, mediana \n                        shape = 1.494667, scale = 3.110131)\n\n# Entonces Cp\n\n(5-1)/(percentiles[1]-percentiles[2])\n\n[1] 0.3648482\n\n# Y por tanto Cpk\n\nmin((5-percentiles[3])/(percentiles[1]-percentiles[3]), #cpu\n    (percentiles[3]-1)/(percentiles[3]-percentiles[2])) #cpl\n\n[1] 0.2995426"
   },
   {
-    "objectID": "docencia/introduccionR.html",
-    "href": "docencia/introduccionR.html",
+    "objectID": "tutoriales_R/graficos_control.html",
+    "href": "tutoriales_R/graficos_control.html",
+    "title": "Gráficos de control de Shewhart para variables",
+    "section": "",
+    "text": "El control estadístico del proceso implica la comparación de la salida del proceso con un estándar y la toma de decisiones intermedias en caso de discrepancia entre las dos.\nTambién implica determinar si el proceso puede producir productos que cumplan con las especificaciones requeridas.\nLos resultados de todos los procesos, ya sean procesos de fabricación o procesos que proporcionan algún tipo de servicio, están sujetos a la variabilidad. La variabilidad hace que sea más difícil para los procesos generar productos que se ajusten a los límites de especificación deseados.\nShewhart (1931) definió las dos causas de variabilidad en los resultados del proceso como causas comunes y causas especiales o asignables.\n\nLas causas comunes de variabilidad se deben a la naturaleza inherente del proceso. No pueden eliminarse o reducirse sin cambiar el proceso real.\nLas causas atribuibles de la variabilidad, por otra parte, son interrupciones inusuales del funcionamiento normal. Deben identificarse y eliminarse para reducir la variabilidad y hacer que el proceso sea más capaz de cumplir las especificaciones.\n\n\n\nLos gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real. Aunque los gráficos de control por sí solos no pueden reducir la variabilidad del proceso, pueden ayudar a prevenir una reacción excesiva a las causas comunes de la variabilidad (lo que puede empeorar las cosas) y ayudar a evitar ignorar las señales de causa asignables. Cuando se reconoce la presencia de una causa asignable para la variabilidad, el conocimiento del proceso puede llevar a ajustes para eliminar esta causa y reducir la variabilidad en los resultados del proceso.\n\n\nEn la fase I, se utilizan gráficos de control sobre datos retrospectivos para calcular los límites preliminares de control y determinar si el proceso había estado bajo control durante el período en que se recopilaron los datos. Cuando se detectan causas asignables en la carta de control utilizando los datos históricos, se lleva a cabo una investigación para encontrar la causa. Si se encuentra la causa y puede prevenirse en el futuro, se eliminan los datos correspondientes a los puntos fuera de control del gráfico y se vuelven a calcular los límites de control.\nEste es normalmente un proceso iterativo y se repite hasta que los límites de los gráficos de control se refinan, se produce ub gráfico que no parece contener ninguna causa asignable, y el proceso parece estar funcionando a un nivel aceptable. La información obtenida a partir del gráfico de control de la fase I se utiliza entonces como base para el seguimiento de la fase II. Dado que los límites del gráfico de control se calculan repetidamente en la fase I, los cálculos se realizan normalmente utilizando un ordenador."
+  },
+  {
+    "objectID": "tutoriales_R/graficos_control.html#gráficos-de-control",
+    "href": "tutoriales_R/graficos_control.html#gráficos-de-control",
+    "title": "Gráficos de control de Shewhart para variables",
+    "section": "",
+    "text": "Los gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real. Aunque los gráficos de control por sí solos no pueden reducir la variabilidad del proceso, pueden ayudar a prevenir una reacción excesiva a las causas comunes de la variabilidad (lo que puede empeorar las cosas) y ayudar a evitar ignorar las señales de causa asignables. Cuando se reconoce la presencia de una causa asignable para la variabilidad, el conocimiento del proceso puede llevar a ajustes para eliminar esta causa y reducir la variabilidad en los resultados del proceso.\n\n\nEn la fase I, se utilizan gráficos de control sobre datos retrospectivos para calcular los límites preliminares de control y determinar si el proceso había estado bajo control durante el período en que se recopilaron los datos. Cuando se detectan causas asignables en la carta de control utilizando los datos históricos, se lleva a cabo una investigación para encontrar la causa. Si se encuentra la causa y puede prevenirse en el futuro, se eliminan los datos correspondientes a los puntos fuera de control del gráfico y se vuelven a calcular los límites de control.\nEste es normalmente un proceso iterativo y se repite hasta que los límites de los gráficos de control se refinan, se produce ub gráfico que no parece contener ninguna causa asignable, y el proceso parece estar funcionando a un nivel aceptable. La información obtenida a partir del gráfico de control de la fase I se utiliza entonces como base para el seguimiento de la fase II. Dado que los límites del gráfico de control se calculan repetidamente en la fase I, los cálculos se realizan normalmente utilizando un ordenador."
+  },
+  {
+    "objectID": "tutoriales_R/introduccionR.html",
+    "href": "tutoriales_R/introduccionR.html",
     "title": "Introducción a R y RStudio",
     "section": "",
     "text": "Para los que nunca han programado, o al menos nunca han programado en R/Rstudio.\nEsta guía está basada en este libro."
   },
   {
-    "objectID": "docencia/introduccionR.html#partes-de-la-interfaz-de-rstudio",
-    "href": "docencia/introduccionR.html#partes-de-la-interfaz-de-rstudio",
-    "title": "Introducción a R y RStudio",
-    "section": "Partes de la interfaz de RStudio",
-    "text": "Partes de la interfaz de RStudio\n\n\n\nInterfaz de RStudio\n\n\n\nDescripción de las partes de RStudio\n\n\n\n\n\n\n\nPanel de scripts: es donde va todo el código especializado que vamos creando y queremos conservar cuando terminamos la jornada de trabajo. Cuando se abre RStudio puede que este panel no esté visible, porque no hay scripts en él. Sobre todo la primera vez (nuevos usuarios).\n\n\nPanel de ambiente: acá se muestran todos los objetos, variables y funciones que se vayan creando. Como pueden notar, tiene otras pestañas, que no son de interés para el nivel de esta introducción.\n\n\n\n\nPanel de consola: básicamente, el código que se ejecute en consola (Console) no se va a guardar, ni puede ser editado. La idea es usar la consola para ejecutar código que solo se va a usar una vez, por ejemplo, instalar un paquete, correr una prueba, entre otros. También tiene otras pestañas que pueden variar según la versión de RStudio instalada, por ejemplo Terminal y Background Jobs, pero de igual forma no son de interés para el nivel de esta introducción.\n\n\nPanel “general”: en este se muestran muchas cosas:\n\nFiles: la carpeta en la que están trabajando, con todos los archivos que contenga.\nPlots: acá se van a mostrar los gráficos que se vayan ejecutando, se van guardando por lo que se pueden ver los antiguos, pero por lo general es más fácil volver a ejecutar el código, que navegar por ese panel.\nPackages: se muestran todos los paquetes que tenga instalados, además, si estos tienen un check significa que ya están cargados en la respectiva sesión. Cuando se instala R, se instalan varios paquetes por defecto.\nHelp: la mejor pestaña, cuando se está empezando en esto es un poco dificil de leer, pero es increíblemente útil y muchos de los errores que se pueden encontrar se pueden solucionar leyendo la documentación.\nOtros: por lo general, estas otras pestañas exceden esta guía, incluye Viewer y Presentation."
-  },
-  {
-    "objectID": "docencia/introduccionR.html#instalación-de-r-y-rstudio",
-    "href": "docencia/introduccionR.html#instalación-de-r-y-rstudio",
+    "objectID": "tutoriales_R/introduccionR.html#instalación-de-r-y-rstudio",
+    "href": "tutoriales_R/introduccionR.html#instalación-de-r-y-rstudio",
     "title": "Introducción a R y RStudio",
     "section": "Instalación de R y RStudio",
     "text": "Instalación de R y RStudio\n\n[Última versión de R] en función del sistema operativo\nÚltima versión de RStudio"
   },
   {
-    "objectID": "docencia/introduccionR.html#almacenamiento",
-    "href": "docencia/introduccionR.html#almacenamiento",
+    "objectID": "tutoriales_R/introduccionR.html#partes-de-la-interfaz-de-rstudio",
+    "href": "tutoriales_R/introduccionR.html#partes-de-la-interfaz-de-rstudio",
+    "title": "Introducción a R y RStudio",
+    "section": "Partes de la interfaz de RStudio",
+    "text": "Partes de la interfaz de RStudio\n\n\n\nInterfaz de RStudio\n\n\n\nDescripción de las partes de RStudio\n\n\n\n\n\n\n\nPanel de scripts: es donde va todo el código especializado que vamos creando y queremos conservar cuando terminamos la jornada de trabajo. Cuando se abre RStudio puede que este panel no esté visible, porque no hay scripts en él. Sobre todo la primera vez (nuevos usuarios).\n\n\nPanel de ambiente: acá se muestran todos los objetos, variables y funciones que se vayan creando. Como pueden notar, tiene otras pestañas, que no son de interés para el nivel de esta introducción.\n\n\n\n\nPanel de consola: básicamente, el código que se ejecute en consola (Console) no se va a guardar, ni puede ser editado. La idea es usar la consola para ejecutar código que solo se va a usar una vez, por ejemplo, instalar un paquete, correr una prueba, entre otros. También tiene otras pestañas que pueden variar según la versión de RStudio instalada, por ejemplo Terminal y Background Jobs, pero de igual forma no son de interés para el nivel de esta introducción.\n\n\nPanel “general”: en este se muestran muchas cosas:\n\nFiles: la carpeta en la que están trabajando, con todos los archivos que contenga.\nPlots: acá se van a mostrar los gráficos que se vayan ejecutando, se van guardando por lo que se pueden ver los antiguos, pero por lo general es más fácil volver a ejecutar el código, que navegar por ese panel.\nPackages: se muestran todos los paquetes que tenga instalados, además, si estos tienen un check significa que ya están cargados en la respectiva sesión. Cuando se instala R, se instalan varios paquetes por defecto.\nHelp: la mejor pestaña, cuando se está empezando en esto es un poco dificil de leer, pero es increíblemente útil y muchos de los errores que se pueden encontrar se pueden solucionar leyendo la documentación.\nOtros: por lo general, estas otras pestañas exceden esta guía, incluye Viewer y Presentation."
+  },
+  {
+    "objectID": "tutoriales_R/introduccionR.html#almacenamiento",
+    "href": "tutoriales_R/introduccionR.html#almacenamiento",
     "title": "Introducción a R y RStudio",
     "section": "Almacenamiento",
     "text": "Almacenamiento\nCuando nombren a las variables, traten de usar un formato consistente y los mismos tienen que tener un significado “útil”. Eviten llamar a las cosas por letras o monosílabos.\n\n“Programar produce código y el código es una herramienta de comunicación. Obviamente, el código le dice a la computadora qué es lo que quiere que haga, pero también comunica significado a otros seres humanos. Es importante pensar el código como un medio de comunicación, ya que todo proyecto que realice es esencialmente colaborativo. Aun cuando no esté trabajando con otras personas, definitivamente lo estará haciendo con su futuro yo. Escribir código claro es importante para que otras personas (o usted en el futuro) puedan entender por qué se encaró un análisis de la manera que en la que se hizo. Esto significa que mejorando cómo programa, mejorará también cómo comunica. Con el tiempo querrá que su código resulte no solo más fácil de escribir, sino también más fácil de leer para los demás” (Wickham & Grolemund, 2017).\n\nCon “#” se hacen comentarios en el código, comentar es una excelente práctica, hágalo siempre. Describa lo que está haciendo y los motivos por los cuales lo está haciendo de ese modo.\nEl comando “Alt + -” produce esto “&lt;-” de forma rápida, que es una asignación. Lo que vamos a usar para almacenar variables, objetos, funciones, etc… por ejemplo:\n\nObserve los resultados en el panel de ambiente (environment)\n\n\nNúmeros\n\n# Números\n\nnumero &lt;- 10\n\nnuevo_numero &lt;- 5 + numero\n\n\n\nLetras\nEs necesario colocarlas entre comillas, pueden ser las simples o las dobles.\n\n# letras\n\nletra &lt;- \"a\"\n\nletra_2 &lt;- 'a' # no importa que tipo de comilla se usa, para R son iguales\n\n\nletra == letra_2\n\n[1] TRUE\n\n\n\n\nBooleanos\nEs decir, falso y verdadero, estos van en MAYÚSCULA.\n\n# note el cambio de color en el script respecto al resto del código\n\nFALSE\n\n[1] FALSE\n\nTRUE\n\n[1] TRUE\n\n# También se puede abreviar como F y T.\n\nF\n\n[1] FALSE\n\nT\n\n[1] TRUE\n\n\nCuando no hay data válida se utiliza NA (Not Available) o NaN (Not Available Number), esto puede tener varios significados, como:\n\nDatos faltantes porque se perdieron o no fueron recolectados, por ejemplo, la ausencia de datos en los años 2020-2021 en varias instituciones nacionales por la afectación de la pandemia COVID-19.\nDatos no recolectados por su ausencia de pertinencia: consumo eléctrico de una comunidad indígena sin acceso a servicios básicos de electricidad.\nOperaciones matemáticas indefinidas, por ejemplo \\(\\frac{0}{0} = NaN\\).\n\n\nNA\n\n[1] NA\n\nNaN\n\n[1] NaN\n\n0/0\n\n[1] NaN\n\n# Otros\n\nInf\n\n[1] Inf\n\n-Inf\n\n[1] -Inf\n\nNULL\n\nNULL\n\n\n\nNota: TRUE, FALSE, T, F, NA, NaN, for, if, else, entre otras, son palabras RESERVADAS en el lenguaje de programación R.\n\n\n\nVectores\nPara ello se usa la función c() que significa combine.\n\nvector_numerico &lt;- c(1, 2, 3)\nvector_numerico\n\n[1] 1 2 3\n\nis.numeric(vector_numerico)\n\n[1] TRUE\n\nvector_letras &lt;- c(\"A\", \"B\", \"C\")\n\nis.character(vector_letras)\n\n[1] TRUE\n\n# Si se juntan los dos vectores anteriores, R no da error, solo los convierte\n# a todos en caracteres, por lo que hay que tener cuidado. \n\nnuevo_vector &lt;- c(vector_numerico, vector_letras)\n\nnuevo_vector\n\n[1] \"1\" \"2\" \"3\" \"A\" \"B\" \"C\"\n\nis.numeric(nuevo_vector)\n\n[1] FALSE\n\nis.character(nuevo_vector)\n\n[1] TRUE\n\n# Se pueden crear vectores vacíos que luego se pueden llenar\n\nvector_vacio &lt;- c()\n\nvector_vacio2 &lt;- vector()\n\nvector_vacio[1] &lt;- 2 # [1] indica la posición 1 en el vector\n\nvector_vacio\n\n[1] 2\n\nvector_vacio[2] &lt;- 4 \n\nvector_vacio\n\n[1] 2 4\n\n\n\n\nOperaciones con vectores\n\nvector_numerico + 5\n\n[1] 6 7 8\n\nvector_numerico + c(5, 6, 7)\n\n[1]  6  8 10\n\nvector_numerico^2\n\n[1] 1 4 9\n\nvector_numerico/2\n\n[1] 0.5 1.0 1.5\n\nvector_numerico*9\n\n[1]  9 18 27\n\nvector_numerico/c(5, 6, 7)\n\n[1] 0.2000000 0.3333333 0.4285714\n\n\n\n\nSeleccionar elementos de un vector (slicing)\n\nvector_numerico[1]\n\n[1] 1\n\nvector_numerico[1:3]\n\n[1] 1 2 3\n\nvector_numerico[c(1,2,3)]\n\n[1] 1 2 3\n\nvector_letras[2]\n\n[1] \"B\"\n\nvector_letras[c(1, 3)]\n\n[1] \"A\" \"C\"\n\nvector_letras[-2]\n\n[1] \"A\" \"C\"\n\n\n\n\nSecuencias y repeticiones\n\n# Secuencias\n\n1:10\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\nseq(1, 10)\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\nseq(1, 10, by = 0.5)\n\n [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5  8.0\n[16]  8.5  9.0  9.5 10.0\n\nseq(1, 10, length = 5)\n\n[1]  1.00  3.25  5.50  7.75 10.00\n\n# Repeticiones\n\nrep(2, 4)\n\n[1] 2 2 2 2\n\nrep(vector_letras, 3)\n\n[1] \"A\" \"B\" \"C\" \"A\" \"B\" \"C\" \"A\" \"B\" \"C\"\n\nrep(vector_letras, each = 3)\n\n[1] \"A\" \"A\" \"A\" \"B\" \"B\" \"B\" \"C\" \"C\" \"C\"\n\n\n\n\nMatrices\n\nmatriz1 &lt;- cbind(vector_numerico, vector_letras)\n\nmatriz1\n\n     vector_numerico vector_letras\n[1,] \"1\"             \"A\"          \n[2,] \"2\"             \"B\"          \n[3,] \"3\"             \"C\"          \n\nmatriz2 &lt;- cbind(rep(\"x\", 6), seq(1, 3, length = 6))\n\nmatriz2\n\n     [,1] [,2] \n[1,] \"x\"  \"1\"  \n[2,] \"x\"  \"1.4\"\n[3,] \"x\"  \"1.8\"\n[4,] \"x\"  \"2.2\"\n[5,] \"x\"  \"2.6\"\n[6,] \"x\"  \"3\"  \n\n\nEl slicing en matrices se hace con operaciones de tipo [row, column].\n\nmatriz1[1, ] # la primer fila y todas las columnas\n\nvector_numerico   vector_letras \n            \"1\"             \"A\" \n\nmatriz1[, 1] # la primer columna y todas las filas\n\n[1] \"1\" \"2\" \"3\"\n\nmatriz1[1, c(1, 2)] # la primer fila y las primeras dos columnas\n\nvector_numerico   vector_letras \n            \"1\"             \"A\" \n\nmatriz1[c(1, 3), ] # la fila 1 y 3 y todas las columnas\n\n     vector_numerico vector_letras\n[1,] \"1\"             \"A\"          \n[2,] \"3\"             \"C\"          \n\n\nEjemplos similares en la sección de data.frame().\n\n\nFunciones\nSe pueden crear, o usar las que ya existen en R y los respectivos paquetes.\n\nsum(vector_numerico) #suma\n\n[1] 6\n\nmax(vector_numerico) # máximo\n\n[1] 3\n\nmean(vector_numerico) # promedio\n\n[1] 2\n\nlength(vector_letras) # largo del vector\n\n[1] 3\n\n\n\n?mean()\nhelp(mean)\n\nPara ver la ayuda en el panel help, basta con ejecutar este comando: ?mean() o bien help(mean) en el script o en la consola.\nOtra forma de hacerlo es presionando la tecla F1 sobre la función.\n\n\nPaquetes\nHay un montón de paquetes con funciones adicionales, en este curso vamos a usar mucho tidyverse, se pueden instalar paquetes de diversas formas, por ejemplo:\n\nCorriendo la siguiente función install.packages(\"tidyverse\") en script o en consola.\nEl panel de Packages, con el botón “Install”, luego colocar el nombre del paquete e instalar.\n\n\n\n\n\n\n\n\n\n\n\n\nEn “Tools&gt;Install Packages…”"
   },
   {
-    "objectID": "docencia/introduccionR.html#proyectos",
-    "href": "docencia/introduccionR.html#proyectos",
+    "objectID": "tutoriales_R/introduccionR.html#proyectos",
+    "href": "tutoriales_R/introduccionR.html#proyectos",
     "title": "Introducción a R y RStudio",
     "section": "Proyectos",
     "text": "Proyectos\nCree una carpeta con el nombre del proyecto, por ejemplo: “Clases”, dentro de dicha carpeta ordene su trabajo de una forma similar a esta:\n\nDatos\nImágenes\nResultados, etc.\n\nEsto queda a su criterio, pero sea ordenado. Este es un ejemplo de orden para una carpeta:\n\nLo importante es que mantenga un orden, con nombres claros y subcarpetas de ser necesario.\n\nDirectorio de trabajo\nR posee el poderoso concepto de directorio de trabajo (working directory en inglés). Aquí es donde R busca los archivos que le pide que lea y donde colocará todos los archivos que le pida que guarde.\n\n# Se utiliza para cambiar el directorio. Se debe colocar entre paréntesis\n# y entre comillas la dirección del directorio deseado. Por ejemplo:\n\nsetwd(\"C:/Users/Administrator/Desktop\")\n\n# para visualizar en qué directorio se está trabajando\n\ngetwd()\n\nPero este es un enfoque algo novato y anticuado. Lo práctico es crear un proyecto.\n\n\nCrear un proyecto\nLas personas expertas en R mantienen todos los archivos asociados a un proyecto en un mismo lugar — datos de entrada, scripts, resultados, gráficos. Esta es una práctica tan acertada y común, que RStudio cuenta con soporte integrado para esto por medio de los proyectos.\nUna vez creó la carpeta, se recomienda crear un proyecto, para que R siempre sepa donde está trabajando. En este caso el proyecto se llama igual que la carpeta: “Clases”. Arriba del panel de ambiente se pueden observar el proyecto.\n\nPor lo general dice “Project: (None)”, al dar clic sobre este se despliega lo siguiente, seleccionar “Existing Directory” y buscar la carpeta que crearon anteriormente y listo. Es aconsejable hacer esto para que cada proyecto que vayan a crear.\n\nCierre RStudio. Inspeccione la carpeta asociada a su proyecto — encontrará que hay un archivo .Rproj allí. Haz doble clic en ese archivo para reabrir el proyecto. Note que al hacer esto, vuelve al punto donde estaba justo antes de cerrar RStudio: es el mismo directorio de trabajo e historial de comandos, y todos los archivos con los que estabas trabajando siguen abiertos."
   },
   {
-    "objectID": "docencia/introduccionR.html#tidy-data-datos-ordenados",
-    "href": "docencia/introduccionR.html#tidy-data-datos-ordenados",
+    "objectID": "tutoriales_R/introduccionR.html#tidy-data-datos-ordenados",
+    "href": "tutoriales_R/introduccionR.html#tidy-data-datos-ordenados",
     "title": "Introducción a R y RStudio",
     "section": "Tidy data (Datos ordenados)",
     "text": "Tidy data (Datos ordenados)\nEl análisis de datos nace de manejar datos, valga la redundancia. La forma en la que se expresan los datos pueden ser tan variados como los datos mismos y tener un estándar para trabajar los datos es casi tan importante como tener los mismos datos.\nTidy data es un estándar de manejo de datos, en donde el significados de los datos está expresado en su estructura. Se trabaja con datos rectangulares, es decir, tablas, donde:\n\nCada variable es una columna\nCada observación de la población estudiada es una fila\nCada tipo de información es una tabla.\n\nMás detalle lo pueden encontrar en este linK: https://r4ds.had.co.nz/tidy-data.html\nTidy data es sumamente importante en R, porque así es como se construyen las tablas en este lenguaje de programación."
   },
   {
-    "objectID": "docencia/introduccionR.html#tablas",
-    "href": "docencia/introduccionR.html#tablas",
+    "objectID": "tutoriales_R/introduccionR.html#tablas",
+    "href": "tutoriales_R/introduccionR.html#tablas",
     "title": "Introducción a R y RStudio",
     "section": "Tablas",
     "text": "Tablas\nSe pueden escribir tanto a mano como usando vectores (como los creados previamente)\n\nvector_letras &lt;- c(\"D\", \"E\", \"F\")\nvector_numerico &lt;- c(4, 5, 6)\n\ntabla &lt;- data.frame(Columna1 = c(\"Fila 1\", \"Fila 2\", \"Fila 3\"),\n                    Columna2 = vector_letras,\n                    Columna3 = vector_numerico,\n                    \"Columna 4\" = rep(1,3))\n\ntabla\n\n  Columna1 Columna2 Columna3 Columna.4\n1   Fila 1        D        4         1\n2   Fila 2        E        5         1\n3   Fila 3        F        6         1\n\n\nPara acceder a las diferentes posiciones de una tabla, se puede hacer de diferentes formas:\n\n# por su nombre\n\ntabla$Columna1\n\n[1] \"Fila 1\" \"Fila 2\" \"Fila 3\"\n\ntabla$Columna2\n\n[1] \"D\" \"E\" \"F\"\n\ntabla[, \"Columna1\"]\n\n[1] \"Fila 1\" \"Fila 2\" \"Fila 3\"\n\n# por su posición\n\n## Primera fila y todas las columnas\n\ntabla[1, ] # [Fila, Columna]\n\n  Columna1 Columna2 Columna3 Columna.4\n1   Fila 1        D        4         1\n\n## Primera y segunda fila y todas las columnas\n\ntabla[c(1,2), ]\n\n  Columna1 Columna2 Columna3 Columna.4\n1   Fila 1        D        4         1\n2   Fila 2        E        5         1\n\n## Primera fila y segunda columna\n\ntabla[1, 2]\n\n[1] \"D\"\n\n## Primera columna\n\ntabla[, 1]\n\n[1] \"Fila 1\" \"Fila 2\" \"Fila 3\"\n\n\nY así, sucesivamente…\nTambién se pueden agregar columnas nuevas de esta forma:\n\ntabla$Columna4 &lt;- c(10, 20, 30)\n\ntabla$Estudiantes &lt;- c(\"X\", \"Y\", \"Z\")\n\ntabla\n\n  Columna1 Columna2 Columna3 Columna.4 Columna4 Estudiantes\n1   Fila 1        D        4         1       10           X\n2   Fila 2        E        5         1       20           Y\n3   Fila 3        F        6         1       30           Z\n\n\nLas tablas también se pueden cargar, de texto plano (.csv, .txt, .tsv, etc), MS Excel, objetos de R, entre otros.\nDescargar datos csv\n\nlibrary(readr)\n\n# esta forma de programar se puede denominar como explícita, en el tanto\n# especifica paquete::función()\n\nconsumo &lt;- readr::read_csv(\"datos/ConsumoElectrico.csv\")\n\nconsumo\n\n# A tibble: 74 × 4\n   Consumo Zona   Tipo Habitantes\n     &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt;\n 1     274 A         1          3\n 2     186 A         1          7\n 3      49 A         1          4\n 4     249 A         1          4\n 5      76 A         1          3\n 6     315 A         1          4\n 7     194 A         1          6\n 8     113 A         0          2\n 9     121 A         0          4\n10     263 A         0          3\n# ℹ 64 more rows\n\n\n\nPara leer archivos de MS Excel vamos a usar este paquete y función: openxlsx::read.xlsx()\n\nDescargar datos xlsx\n\n# estos son los datos del primer reporte\n\njulio2022 &lt;- openxlsx::read.xlsx(\"datos/Julio2022.xlsx\")"
   },
   {
-    "objectID": "docencia/introduccionR.html#observaciones-finales",
-    "href": "docencia/introduccionR.html#observaciones-finales",
+    "objectID": "tutoriales_R/introduccionR.html#observaciones-finales",
+    "href": "tutoriales_R/introduccionR.html#observaciones-finales",
     "title": "Introducción a R y RStudio",
     "section": "Observaciones finales",
     "text": "Observaciones finales\nVamos a dejar como estudio individual aspectos “clásicos” de la programación como for, if, else, while, etc. Bajo el supuesto de que son aspectos comunes a la mayoría de lenguajes de programación."
   },
   {
-    "objectID": "docencia/introduccionR.html#carga-de-datos",
-    "href": "docencia/introduccionR.html#carga-de-datos",
+    "objectID": "tutoriales_R/introduccionR.html#carga-de-datos",
+    "href": "tutoriales_R/introduccionR.html#carga-de-datos",
     "title": "Introducción a R y RStudio",
     "section": "Carga de datos",
     "text": "Carga de datos\nBien, ahora carguemos los datos:\nDescargar datos Notas\n\ndatos &lt;- readr::read_csv(\"datos/Notas.csv\")\n\ndatos\n\n# A tibble: 4 × 3\n  Nombre  Nota Sexo \n  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;\n1 Hugo    84.6 M    \n2 Paco    71.2 M    \n3 Luis    90.5 M    \n4 Daisy   96.7 F    \n\nhead(datos, 2) # los primeros 2 datos\n\n# A tibble: 2 × 3\n  Nombre  Nota Sexo \n  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;\n1 Hugo    84.6 M    \n2 Paco    71.2 M    \n\nnames(datos) # los nombres de las variables de los datos\n\n[1] \"Nombre\" \"Nota\"   \"Sexo\"  \n\ntail(datos, 2) # los últimos 2 datos\n\n# A tibble: 2 × 3\n  Nombre  Nota Sexo \n  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;\n1 Luis    90.5 M    \n2 Daisy   96.7 F    \n\nstr(datos) # la estructura de datos\n\nspc_tbl_ [4 × 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ Nombre: chr [1:4] \"Hugo\" \"Paco\" \"Luis\" \"Daisy\"\n $ Nota  : num [1:4] 84.6 71.2 90.5 96.7\n $ Sexo  : chr [1:4] \"M\" \"M\" \"M\" \"F\"\n - attr(*, \"spec\")=\n  .. cols(\n  ..   Nombre = col_character(),\n  ..   Nota = col_double(),\n  ..   Sexo = col_character()\n  .. )\n - attr(*, \"problems\")=&lt;externalptr&gt; \n\nsummary(datos) # resumen de los datos\n\n    Nombre               Nota           Sexo          \n Length:4           Min.   :71.20   Length:4          \n Class :character   1st Qu.:81.25   Class :character  \n Mode  :character   Median :87.55   Mode  :character  \n                    Mean   :85.75                     \n                    3rd Qu.:92.05                     \n                    Max.   :96.70"
-  },
-  {
-    "objectID": "test.html",
-    "href": "test.html",
-    "title": "Convoluciones",
-    "section": "",
-    "text": "En estadística y probabilidad, convolucionar dos distribuciones es la forma correcta de responder a esta pregunta:\n\nSi X y Y son variables aleatorias independientes, ¿cuál es la distribución de su suma Z=X+Y?\n\nLa respuesta no se obtiene sumando puntos, ni promediando curvas, sino mediante una convolución (el cual es un tema que por lo general se aborda en Ecuaciones Diferenciales). Intuitivamente, la convolución toma una distribución, la “desliza” sobre la otra y mide cuánto se superponen. Cada posible forma de obtener un mismo valor de Z contribuye a su probabilidad total.\n\n\nAunque la definición es general, cada familia de distribuciones tiene comportamientos característicos.\n\nUniforme + Uniforme La suma de dos variables uniformes no es uniforme. Produce una distribución triangular (o trapezoidal si los intervalos no coinciden). La incertidumbre empieza a concentrarse hacia el centro.\nTriangular + Triangular La convolución suaviza aún más la forma. Aparecen distribuciones con perfiles poligonales de mayor orden, cada vez más parecidas a una campana de Gauss (Normal).\n\nLa app permite ver estas transiciones de forma visual: cómo curvas simples, al sumarse, se vuelven más suaves, más simétricas y más concentradas alrededor de un valor central.\n\nRelación con el Teorema de Límite Central\n\nEl TLC dice que, bajo ciertas circunstancias, que se dan normalmente en el mundo de la experimentación, la distribución muestral de la media tenderá a una distribución normal a medida que el número de componentes se haga más grande, con independencia de las distribuciones particulares de los componentes. Cuando se suman muchas variables aleatorias independientes (aunque no sean normales), estamos aplicando convoluciones una y otra vez.\n\n\n\nUna medición real suele ser una suma de diferentes contribuciones:\n\nResolución del instrumento\nError del método\nVariabilidad ambiental\nOperador\nCalibración\n\nCada una de estas fuentes puede modelarse como una variable aleatoria con su propia distribución, lo que justifica el uso extendido de la distribución normal en los informes de incertidumbre."
-  },
-  {
-    "objectID": "test.html#introducción",
-    "href": "test.html#introducción",
-    "title": "Convoluciones",
-    "section": "",
-    "text": "En estadística y probabilidad, convolucionar dos distribuciones es la forma correcta de responder a esta pregunta:\n\nSi X y Y son variables aleatorias independientes, ¿cuál es la distribución de su suma Z=X+Y?\n\nLa respuesta no se obtiene sumando puntos, ni promediando curvas, sino mediante una convolución (el cual es un tema que por lo general se aborda en Ecuaciones Diferenciales). Intuitivamente, la convolución toma una distribución, la “desliza” sobre la otra y mide cuánto se superponen. Cada posible forma de obtener un mismo valor de Z contribuye a su probabilidad total.\n\n\nAunque la definición es general, cada familia de distribuciones tiene comportamientos característicos.\n\nUniforme + Uniforme La suma de dos variables uniformes no es uniforme. Produce una distribución triangular (o trapezoidal si los intervalos no coinciden). La incertidumbre empieza a concentrarse hacia el centro.\nTriangular + Triangular La convolución suaviza aún más la forma. Aparecen distribuciones con perfiles poligonales de mayor orden, cada vez más parecidas a una campana de Gauss (Normal).\n\nLa app permite ver estas transiciones de forma visual: cómo curvas simples, al sumarse, se vuelven más suaves, más simétricas y más concentradas alrededor de un valor central.\n\nRelación con el Teorema de Límite Central\n\nEl TLC dice que, bajo ciertas circunstancias, que se dan normalmente en el mundo de la experimentación, la distribución muestral de la media tenderá a una distribución normal a medida que el número de componentes se haga más grande, con independencia de las distribuciones particulares de los componentes. Cuando se suman muchas variables aleatorias independientes (aunque no sean normales), estamos aplicando convoluciones una y otra vez.\n\n\n\nUna medición real suele ser una suma de diferentes contribuciones:\n\nResolución del instrumento\nError del método\nVariabilidad ambiental\nOperador\nCalibración\n\nCada una de estas fuentes puede modelarse como una variable aleatoria con su propia distribución, lo que justifica el uso extendido de la distribución normal en los informes de incertidumbre."
-  },
-  {
-    "objectID": "test.html#instrucciones-de-uso",
-    "href": "test.html#instrucciones-de-uso",
-    "title": "Convoluciones",
-    "section": "Instrucciones de uso",
-    "text": "Instrucciones de uso\nEste visualizador permite explorar la convolución de distribuciones continuas, es decir, cómo se combinan dos variables aleatorias independientes X y Y para obtener la distribución de su suma Z=X+Y.\nPrimero seleccione una distribución para la variable X y una para la variable Y. Para cada variable, ajuste los parámetros correspondientes mediante los sliders.\nEl gráfico se actualiza automáticamente y muestra tres curvas:\n\nLa densidad de la variable X,\nLa densidad de la variable Y,\nLa densidad resultante de la suma Z = X + Y, obtenida mediante convolución.\n\nObserve cómo cambian la forma, la dispersión y la concentración de la distribución resultante al modificar los parámetros. En particular, note cómo la suma de distribuciones no normales puede producir perfiles cada vez más suaves y simétricos, anticipando el comportamiento descrito por el Teorema del Límite Central.\nEl gráfico es interactivo: puede acercar o alejar regiones, desplazar el plano y descargar el gráfico en formato PNG. Al posar el cursor sobre las curvas se muestran los valores aproximados de la densidad.\n\n\n\n  \n  \n\n  \n\n\n\n\n\n\n  \n\n    \n      X\n      \n        Uniforme (Rectangular)\n        Triangular\n        Normal\n      \n      \n    \n\n    \n      Y\n      \n        Uniforme (Rectangular)\n        Triangular\n        Normal\n      \n      \n    \n\n  \n\n  \n\n\n\n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Febrero 2026"
-  },
-  {
-    "objectID": "docencia/convolucion_distribuciones.html",
-    "href": "docencia/convolucion_distribuciones.html",
-    "title": "Convolución de distribuciones",
-    "section": "",
-    "text": "En estadística y probabilidad, convolucionar dos distribuciones es la forma correcta de responder a esta pregunta:\n\nSi X y Y son variables aleatorias independientes, ¿cuál es la distribución de su suma Z=X+Y?\n\nLa respuesta no se obtiene sumando puntos, ni promediando curvas, sino mediante una convolución (el cual es un tema que por lo general se aborda en Ecuaciones Diferenciales). Intuitivamente, la convolución toma una distribución, la “desliza” sobre la otra y mide cuánto se superponen. Cada posible forma de obtener un mismo valor de Z contribuye a su probabilidad total.\n\n\nAunque la definición es general, cada familia de distribuciones tiene comportamientos característicos.\n\nUniforme + Uniforme La suma de dos variables uniformes no es uniforme. Produce una distribución triangular (o trapezoidal si los intervalos no coinciden). La incertidumbre empieza a concentrarse hacia el centro.\nTriangular + Triangular La convolución suaviza aún más la forma. Aparecen distribuciones con perfiles poligonales de mayor orden, cada vez más parecidas a una campana de Gauss (Normal).\n\nLa aplicación permite ver estas transiciones de forma visual. Observe cómo curvas simples, al sumarse, se vuelven más suaves, más simétricas y más concentradas alrededor de un valor central.\n\nRelación con el Teorema de Límite Central\n\nEl TLC dice que, bajo ciertas circunstancias, que se dan normalmente en el mundo de la experimentación, la distribución muestral de la media tenderá a una distribución normal a medida que el número de componentes se haga más grande, con independencia de las distribuciones particulares de los componentes. Cuando se suman muchas variables aleatorias independientes (aunque no sean normales), estamos aplicando convoluciones una y otra vez.\n\n\n\nUna medición real suele ser una suma de diferentes contribuciones:\n\nResolución del instrumento\nError del método\nVariabilidad ambiental\nOperador\nCalibración\n\nCada una de estas fuentes puede modelarse como una variable aleatoria con su propia distribución, lo que justifica el uso extendido de la distribución normal en los informes de incertidumbre."
-  },
-  {
-    "objectID": "docencia/convolucion_distribuciones.html#introducción",
-    "href": "docencia/convolucion_distribuciones.html#introducción",
-    "title": "Convolución de distribuciones",
-    "section": "",
-    "text": "En estadística y probabilidad, convolucionar dos distribuciones es la forma correcta de responder a esta pregunta:\n\nSi X y Y son variables aleatorias independientes, ¿cuál es la distribución de su suma Z=X+Y?\n\nLa respuesta no se obtiene sumando puntos, ni promediando curvas, sino mediante una convolución (el cual es un tema que por lo general se aborda en Ecuaciones Diferenciales). Intuitivamente, la convolución toma una distribución, la “desliza” sobre la otra y mide cuánto se superponen. Cada posible forma de obtener un mismo valor de Z contribuye a su probabilidad total.\n\n\nAunque la definición es general, cada familia de distribuciones tiene comportamientos característicos.\n\nUniforme + Uniforme La suma de dos variables uniformes no es uniforme. Produce una distribución triangular (o trapezoidal si los intervalos no coinciden). La incertidumbre empieza a concentrarse hacia el centro.\nTriangular + Triangular La convolución suaviza aún más la forma. Aparecen distribuciones con perfiles poligonales de mayor orden, cada vez más parecidas a una campana de Gauss (Normal).\n\nLa aplicación permite ver estas transiciones de forma visual. Observe cómo curvas simples, al sumarse, se vuelven más suaves, más simétricas y más concentradas alrededor de un valor central.\n\nRelación con el Teorema de Límite Central\n\nEl TLC dice que, bajo ciertas circunstancias, que se dan normalmente en el mundo de la experimentación, la distribución muestral de la media tenderá a una distribución normal a medida que el número de componentes se haga más grande, con independencia de las distribuciones particulares de los componentes. Cuando se suman muchas variables aleatorias independientes (aunque no sean normales), estamos aplicando convoluciones una y otra vez.\n\n\n\nUna medición real suele ser una suma de diferentes contribuciones:\n\nResolución del instrumento\nError del método\nVariabilidad ambiental\nOperador\nCalibración\n\nCada una de estas fuentes puede modelarse como una variable aleatoria con su propia distribución, lo que justifica el uso extendido de la distribución normal en los informes de incertidumbre."
-  },
-  {
-    "objectID": "docencia/convolucion_distribuciones.html#instrucciones-de-uso",
-    "href": "docencia/convolucion_distribuciones.html#instrucciones-de-uso",
-    "title": "Convolución de distribuciones",
-    "section": "Instrucciones de uso",
-    "text": "Instrucciones de uso\nEste visualizador permite explorar la convolución de distribuciones continuas, es decir, cómo se combinan dos variables aleatorias independientes X y Y para obtener la distribución de su suma Z=X+Y. Primero seleccione una distribución para la variable X y una para la variable Y. Para cada variable, ajuste los parámetros correspondientes mediante los sliders.\nEl gráfico se actualiza automáticamente y muestra tres curvas:\n\nLa densidad de la variable X,\nLa densidad de la variable Y,\nLa densidad resultante de la suma Z = X + Y, obtenida mediante convolución.\n\nObserve cómo cambian la forma, la dispersión y la concentración de la distribución resultante al modificar los parámetros. En particular, note cómo la suma de distribuciones no normales puede producir perfiles cada vez más suaves y simétricos, anticipando el comportamiento descrito por el Teorema del Límite Central.\nEl gráfico es interactivo: puede acercar o alejar regiones, desplazar el plano y descargar el gráfico en formato PNG. Al posar el cursor sobre las curvas se muestran los valores aproximados de la densidad.\n\n\n\n  \n\n  \n\n\n\n\n\n\n  \n\n    \n      X\n      \n        Uniforme (Rectangular)\n        Triangular\n        Normal\n      \n      \n    \n\n    \n      Y\n      \n        Uniforme (Rectangular)\n        Triangular\n        Normal\n      \n      \n    \n\n  \n\n  \n\n\n\n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Febrero 2026"
   }
 ]

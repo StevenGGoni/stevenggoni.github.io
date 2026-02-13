@@ -1,0 +1,372 @@
+/* ======================================================
+   FUENTES: ALLER (CUERPO) + CRIMSON PRO (TÍTULOS / NAVBAR)
+   ====================================================== */
+/* Crimson Pro */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+/* Aller */
+@import url('https://fonts.googleapis.com/css2?family=Aller:wght@400;700&display=swap');
+/* =====================================================
+   Fondo general y tipografía
+   ===================================================== */
+.reveal .slide-background {
+  background: radial-gradient(
+  circle at top right,
+  #F1F5F5,
+  #AFB5BC 20%,
+  #808EA0 40%,
+  #556070 60%,
+  #263247 80%);
+}
+.reveal {
+  font-family: 'Aller', sans-serif;
+  color: var(--text-main);
+}
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: 'Crimson Pro', serif;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* =====================================================
+   Pie de página
+   ===================================================== */
+.reveal .footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  color: #FFFFFF !important; 
+  font-size: 0.5em;
+  font-weight: 500;
+  opacity: 0.8;
+}
+.reveal .footer a {
+  color: #F1F5F5 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(241, 245, 245, 0.3) !important;
+  transition: all 0.3s ease;
+}
+.reveal .slide-number {
+  bottom: 40px !important;
+  color: #FFFFFF !important;
+  right: 25px !important;
+  background-color: transparent !important;
+  font-size: 0.4em !important;
+}
+.reveal .footer-logo {
+  height: 4em;
+  width: auto;
+  vertical-align: middle;
+}
+
+/* =====================================================
+   Fondo de secciones (blanco papel) para H1
+   ===================================================== */
+.reveal .slides section.bloques,
+.reveal .slides section.bloques > section,
+.reveal .slides section.bloques.stack {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.reveal .slides section:not(.bloques):not(.stack) {
+  background: #F1F5F5 !important;
+  border-radius: 18px;
+  box-shadow: 0 5px 15px #B1BDD0;
+}
+
+/* Slide totalmente transparente para contenido libre */
+.reveal .slides section.limpio {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Esconde el footer y el número de página solo en slides con clase .limpio */
+.reveal .slides section.limpio ~ .footer,
+.reveal:has(section.limpio.present) .footer,
+.reveal:has(section.limpio.present) .slide-number {
+  display: none !important;
+}
+
+/* =====================================================
+   Resaltado color dorado
+   ===================================================== */
+.hi {
+  color: #C18A00 !important;
+  font-weight: 700 !important; /* Cambiado a 700 para máxima compatibilidad */
+  font-style: normal !important;
+}
+
+/* =====================================================
+   Estilo personalizado: Bloques Separados
+   ===================================================== */
+.reveal .slides section.bloques h2 {
+  background: #F1F5F5;
+  border-radius: 18px;
+  padding: 25px 40px;
+  margin-bottom: 40px !important;
+  box-shadow: 0 8px 20px #9BA1AB;
+  display: block;
+  color: #0F0F10;
+  font-size: 2.2em !important;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+.reveal .slides section.bloques > ul {
+  background: #F1F5F5;
+  border-radius: 18px;
+  padding: 50px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 5px 15px #9BA1AB;
+  box-sizing: border-box;
+  height: 780px !important;
+  min-height: 780px !important;
+  max-height: 780px !important;
+  margin: 0 auto !important;
+  font-size: clamp(1.1em, 3.5vh, 1.6em);
+  line-height: 1.3;
+  text-align: justify;
+  hyphens: auto;
+  overflow: hidden;
+  list-style-position: outside;
+  color: #0F0F10;
+}
+.reveal .slides section.bloques .caja-unica ul {
+  background: #F1F5F5;
+  border-radius: 18px;
+  padding: 35px 45px; 
+  display: block;
+  box-shadow: 0 5px 15px #9BA1AB;
+  box-sizing: border-box;
+  height: 780px !important;
+  width: 100%;
+  text-align: justify;
+  margin: 0 auto !important;
+}
+.reveal .slides section.bloques > ul li {
+  margin-bottom: 0.4em;
+  margin-left: 1.1em;
+  padding-right: 10px;
+}
+.reveal .slides section.bloques ul ul {
+  background: transparent !important;
+  box-shadow: none !important;
+  height: auto !important;
+  padding-left: 1.2em !important;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  display: block !important;
+  list-style-type: "— "; 
+  color: #263247;
+  font-size: 0.9em;
+  text-align: justify;
+}
+.reveal .slides section.bloques ul ul li {
+  font-size: 0.9em;
+  color: #333;
+}
+.reveal .slides section.bloques img {
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.reveal .slides section.bloques .column.v-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.reveal .slides section.bloques .column.v-center img {
+  max-width: 90%;
+  max-height: 85%;
+  width: auto;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.reveal .slides section.bloques .column.img-fit {
+  background: #F1F5F5;
+  border-radius: 18px;
+  padding: 15px; 
+  box-shadow: 0 5px 15px #9BA1AB;
+  height: fit-content !important;
+  min-height: auto !important;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.reveal .slides section.bloques .column.img-fit img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 780px !important;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* =====================================================
+   Slides de Transición (Solo Título H1)
+   ===================================================== */
+.reveal .slides section.bloques:has(h1) {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.reveal .slides section.bloques h1 {
+  background: #F1F5F5;
+  border-radius: 18px;
+  padding: 60px 100px;
+  box-shadow: 0 15px 35px #9BA1AB;
+  width: fit-content;
+  margin: 0 auto !important;
+  font-size: 3.8em !important;
+  color: #263247;
+}
+
+/* =====================================================
+   Soporte para Columnas Estilo Bloques
+   ===================================================== */
+.reveal .slides section.bloques .columns {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+}
+.reveal .slides section.bloques .column {
+  background: #F1F5F5;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 5px 15px #9BA1AB;
+  box-sizing: border-box;
+  height: 780px !important;
+  font-size: clamp(1em, 3vh, 1.4em);
+  line-height: 1.3;
+  text-align: justify;
+  hyphens: auto;
+  color: #0F0F10;
+}
+.reveal .slides section.bloques .column ul {
+  margin-top: 0;
+  list-style-position: outside;
+  margin-left: 1.2em;
+}
+.reveal .slides section.bloques .column li {
+  margin-bottom: 0.5em;
+}
+
+/* =====================================================
+   Estilo para Enlaces (Links)
+   ===================================================== */
+.reveal .slides section.bloques a {
+  color: #C18A00;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* =====================================================
+   AJUSTES PARA EXPORTACIÓN A PDF (IMPRESIÓN)
+   ===================================================== */
+@media print {
+  @page { size: 1920px 1080px; margin: 0 !important; }
+  html, body {
+    width: 1920px !important;
+    height: 1080px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+  }
+  .reveal .slides {
+    transform: scale(1) !important;
+    width: 100% !important;
+    height: 100% !important;
+    inset: 0 !important;
+  }
+  .reveal .slide-background {
+    width: 100% !important;
+    height: 100% !important;
+    background-size: cover !important;
+  }
+}
+
+/* =====================================================
+   AJUSTES SUBTITLE
+   ===================================================== */
+.reveal .subtitle a {
+  font-size: 0.8em;
+  color: #C18A00 !important;
+  opacity: 0.8;
+}
+.reveal .subtitle a:hover {
+  opacity: 1;
+  text-decoration: underline !important;
+  color: #C18A00 !important;
+}
+
+/* =====================================================
+   Contenedor del autor
+   ===================================================== */  
+.quarto-title-authors {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 20px !important;
+}
+.quarto-title-author-name a, .quarto-title-authors a {
+  text-decoration: none !important;
+  color: #C18A00 !important;
+  font-weight: bold;
+}
+.quarto-title-authors a[href^="mailto:"] {
+  font-size: 0.7em !important;
+  font-weight: normal !important;
+  opacity: 0.8;
+}
+
+/* =====================================================
+   iframe parámetros
+   ===================================================== */    
+.reveal section iframe {
+  max-width: 100% !important;
+  max-height: 70vh !important;
+  margin: auto;
+  display: block;
+}
+
+/* =====================================================
+   Ajuste para Iframes dentro de Bloques
+   ===================================================== */
+
+.reveal .slides section.bloques .iframe-card {
+  background: #F1F5F5;
+  border-radius: 18px;
+  padding: 15px; 
+  box-shadow: 0 5px 15px #9BA1AB;
+  
+  /* Volvemos al ancho estándar */
+  width: 100% !important; 
+  margin-left: 0 !important; 
+  
+  /* Ajustamos altura para que sea armónico */
+  height: 750px !important; 
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.reveal .slides section.bloques .iframe-card iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none;
+  border-radius: 10px;
+}

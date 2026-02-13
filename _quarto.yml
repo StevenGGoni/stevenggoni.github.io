@@ -5,6 +5,7 @@ project:
 website:
   title: "Steven García Goñi"
   description: "Un sitio para compartir ingeniería y estadística"
+
   favicon: images\logo.png
   navbar:
     logo: images\logo.png
@@ -16,6 +17,17 @@ website:
         text: Inicio
       - href: docencia.qmd
         text: Recursos académicos
+        menu:
+        - href: infografias.qmd
+          text: Infografías
+        - href: interactivos.qmd
+          text: Simulaciones y visualizadores
+        - href: recursos_graficos.qmd
+          text: Construcción de gráficos
+        - href: tutoriales_R.qmd
+          text: Tutoriales en R
+        - href: clases.qmd
+          text: Material de clases
       - text: Sobre mí
         menu:
         - href: resume.qmd
@@ -48,8 +60,11 @@ website:
       License: [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
         
 resources: 
-  - docencia/**
+  - interactivos/**
   - images/**
+  - tutoriales_R/**
+  - infografias/**
+  - clases/**
 format:
   html:
     grid: 

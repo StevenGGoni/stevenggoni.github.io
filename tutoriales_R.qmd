@@ -1,0 +1,51 @@
+---
+title: "Tutoriales en R"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-expand: false
+    code-fold: false
+    collapse-sections: true
+    collapse-open: false
+---
+
+```{r echo=FALSE}
+
+library(fontawesome)
+
+```
+
+En esta sección encontrará tutoriales desarrollados en R para la resolución de algunos ejercicios relacionados con probabilidad, estadística e ingeniería.
+
+## Aspectos generales `r fontawesome::fa("circle-info")`
+
+* [Guía básica de R: Introducción](tutoriales_R/introduccionR.html){target="_blank"}
+
+Para los que nunca han programado, o al menos nunca han programado en R/Rstudio.
+
+## Estadística `r fontawesome::fa("chart-line")`
+
+Esta parte está en construcción
+
+## Ingeniería de Calidad `r fontawesome::fa("ruler-combined")`
+
+* [Diagrama de Pareto](tutoriales_R/diagrama_pareto.html){target="_blank"} 
+
+Aprenda a realizar un gráfico de Pareto en R. Este es un principio que dice que una pequeña cantidad de causas suele explicar la mayor parte de los efectos
+
+* [Gráficos de control para variables](tutoriales_R/graficos_control.html){target="_blank"}
+
+Los gráficos de control son herramientas estadísticas. Su uso es la forma más eficaz de distinguir entre causa común y atribuible para la variabilidad cuando se supervisa el resultado del proceso en tiempo real. 
+
+* [Gráficos de control para atributos](tutoriales_R/graficos_control_atributos.html){target="_blank"}
+
+Mientras que los gráficos de control para variables rastrean las cantidades medidas relacionadas con la calidad de los resultados del proceso, los gráficos para atributos siguen el recuento de los elementos no conformes.
+
+* [Análisis de capacidad para datos normales](tutoriales_R/capacidad_datos_normales.html){target="_blank"}
+
+Un análisis de capacidad es una herramienta estadística que evalúa si un proceso puede cumplir de forma consistente con los requisitos o especificaciones establecidos. Compara la variabilidad natural del proceso con los límites de tolerancia del cliente para determinar qué tan capaz es.
+
+* [Análisis de capacidad para datos no normales](tutoriales_R/capacidad_datos_no_normales.html){target="_blank"}
+
+Es relativamente común encontrarse con procesos que no siguen la distribución normal, ya sea por que así es como debe comportarse o bien, por errores que suceden a la hora de recolectar, almacenar o procesar los datos. 

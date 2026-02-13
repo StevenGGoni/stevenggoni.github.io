@@ -1,0 +1,15 @@
+---
+title: "Material de clases"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-expand: false
+    code-fold: false
+---
+
+Aquí encontrará las clases de los diferentes cursos del área de conocimiento Estadística, de la Escuela de Ingeniería Industrial
+
+## II-1120 Estadística para Ingeniería Industrial I
+
+1.  [Introducción a la estadística](clases/II-1120_01_Introducción_estadística.html){target="_blank"}

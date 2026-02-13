@@ -1,0 +1,25 @@
+---
+title: "Recursos para la construcción de gráficos"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-expand: false
+    code-fold: false
+---
+
+En esta sección encontrará herramientas útiles que le permitirán seleccionar gráficos adecuados y evitar errores en la construcción de los mismos. 
+
+## Guías gráficas
+
+* [Seleccione el gráfico adecuado](https://www.data-to-viz.com/#explore){target="_blank"}
+
+¿Qué tipo de datos tiene? Elija el tipo principal usando esta guía.
+
+* [Evite estos errores](https://www.data-to-viz.com/caveats.html){target="_blank"}
+
+Una colección de advertencias para la visualización de datos
+
+* [Otro catálogo de visualización de datos](https://datavizcatalogue.com/ES/){target="_blank"}
+
+Encuentre otros gráficos y guías para su construcción.

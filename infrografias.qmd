@@ -1,0 +1,25 @@
+---
+title: "Infografías"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-expand: false
+    code-fold: false
+    collapse-sections: true
+    collapse-open: false
+---
+
+```{r echo=FALSE}
+
+library(fontawesome)
+
+```
+
+En esta sección encontrará infografías organizadas en pestañas para facilitar su consulta. Todo el material, exceptuando aquel etiquetado como externo, es de mi autoría.
+
+## Inferencia estadística `r fontawesome::fa("chalkboard-user")`
+
+* [Comprendiendo los valores P](infografias/Comprendiendo el valor P.pdf){target="_blank"} 
+
+Esta infografía presenta la definición del valor P, criterios para su interpretación y una guía para la elección del nivel de significancia ($\alpha$). 

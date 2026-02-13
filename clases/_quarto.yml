@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: .
+
+author: "Steven García Goñi<br>[steven.garciagoni@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr)"
+license: "CC BY"
+lang: es
+date-format: long
+format:
+  revealjs:
+    theme: white
+    css: custom.css
+    fig-cap-location: top
+    slide-number: true
+    incremental: false
+    transition: fade
+    hash-type: number
+    width: 1920
+    height: 1080
+    margin: 0.05
+    footer: |
+      <span class="footer-text">© 2026 [Steven García Goñi](https://stevenggoni.github.io/)| [Licencia CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)</span>
+      <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-02.png" class="footer-logo">

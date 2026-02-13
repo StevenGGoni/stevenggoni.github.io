@@ -1,0 +1,68 @@
+---
+title: "Simulaciones y visualizadores interactivos"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-expand: false
+    code-fold: false
+---
+
+```{r echo=FALSE}
+
+library(fontawesome)
+
+```
+
+En esta sección encontrará simulaciones interactivas y herramientas útiles para cursos de probabilidad, estadística e ingeniería. Todo el material, exceptuando aquel etiquetado como externo, es de mi autoría.
+
+
+## Recursos interactivos `r fontawesome::fa("calculator")`
+
+* [Distribuciones discretas interactivas](docencia/distribuciones-discretas.html){target="_blank"}
+
+Este visualizador le permite explorar las principales distribuciones discretas y ver como cambian sus formas al modificar los parámetros. 
+
+* [Distribuciones continuas interactivas](docencia/distribuciones-continuas.html){target="_blank"}
+
+Es el equivalente continuo al visualizador anterior, pero además, presenta una comparación entre la distribución normal estándar ($z$) y la t-Student ($t$).
+
+* [Convolución de distribuciones](docencia/convolucion_distribuciones.html){target="_blank"}
+
+Este visualizador interactivo permite explorar cómo se combinan dos variables aleatorias independientes mediante la convolución de sus distribuciones. Muestra la distribución resultante de la suma y su relación con el Teorema del Límite Central.
+
+* [Curvas OC para muestreo por atributos](docencia/curvas-oc.html){target="_blank"}
+
+Propio del campo de la ingeniería de calidad y muestreo de aceptación, este visualizador muestra las curvas características de operación (OC) de planes de muestreo por atributos.
+
+* [Efecto de la asimetría sobre el TLC](https://rpubs.com/SGGoni){target="_blank"}
+
+Inspirado en algunas publicaciones científicas, aquí podrá encontrar como la asimetría juega un papel ponderante en el cumplimiento del teorema del límite central (TLC). Con este, busco ayudar a "derrumbar" el mito de que el TLC siempre se cumple con $n=30$.
+
+* [Calculadora de distribuciones de probabilidad e intervalos de confianza](https://homepage.divms.uiowa.edu/~mbognar/){target="_blank"} - Aplicación externa
+
+De Ph.D. Matt Bognar, aquí encuentra "mini aplicaciones" con las que puede resolver ejercicios de probabilidad y estadística.
+
+* [Ley de los Grandes Números](https://www.geogebra.org/m/edy5fexu){target="_blank"}  - Aplicación externa
+
+Es una explicación de Rafael Pérez Laserna sobre la Ley de los Grandes Números, que incluye una simulación de un dado que nos ayuda a comprenderla. 
+
+* [Teorema del Límite Central (TLC)](https://seeing-theory.brown.edu/probability-distributions/es.html#section3){target="_blank"}  - Aplicación externa
+
+Uno de los pilares de la estadística frecuentista, este enlace muestra una simulación del TLC que nos permite comprender el TLC de mejor forma. 
+
+* Aplicación interactiva sobre los intervalos de confianza
+
+Este es un gist que al ejecutarse en R con sus respectivas librerías, despliega una aplicación local que permite comprender mejor el funcionamiento de los intervalos de confianza y como estos dependen del estimador puntual (aleatorio por el muestreo), el tamaño de muestra y el nivel de confianza seleccionado. 
+
+```{r}
+#| eval: false
+#| include: true
+# Correr en R (requiere shiny y tidyverse)
+
+library(shiny)
+library(tidyverse)
+
+runGist("d47f4c205b531e3bed59d22b22cbfd13")
+
+```

@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
+
+  <meta name="author" content="Steven García Goñi steven.garciagoni@ucr.ac.cr">
+  <title>Introducción a la estadística</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="custom.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section class="quarto-title-block center">
+  <h1 class="title">Introducción a la estadística</h1>
+  <p class="subtitle"><a href="https://stevenggoni.github.io/clases/II-1120_01_Introducción_estadística.pdf">Versión PDF</a> <br> II-1120 Estadística para Ingeniería Industrial I</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a> 
+</div>
+</div>
+</div>
+
+  <p class="date">12 de febrero de 2026</p>
+</section>
+<section class="slide level2 bloques">
+<h2>Agenda</h2>
+<ul>
+<li>Preguntas generadoras</li>
+<li>Rol de la estadística</li>
+<li>Conceptos estadísticos</li>
+<li>Ética y estadística</li>
+<li>Métodos de recolección de datos</li>
+<li>Errores más comunes en la recolección de datos</li>
+<li>Tipos de estudios existentes</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Preguntas generadoras</h2>
+<ul>
+<li>¿Por qué estudiar estadística?</li>
+<li>¿Cuáles tipos de estadística existen?
+<ul>
+<li>¿Cuáles variables hay?</li>
+<li>¿Con qué niveles de medición?</li>
+</ul></li>
+<li>¿Qué fuentes de datos existen?</li>
+<li>¿Cuales son los errores más comunes en la recolección de datos?</li>
+<li>¿Cuándo utilizar cada tipo de estudio en estadística?</li>
+<li>¿Cuál es la relación que existe entre la estadística y el comportamiento ético?</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Estadística</h2>
+<ul>
+<li>Disciplina que <strong>recopila</strong>, <strong>procesa</strong> y <strong>analiza</strong> datos para <span class="hi">realizar conclusiones para la toma de decisiones</span>.</li>
+<li>Forma parte de una rama científica con el objetivo de formular, aplicar teoría y métodos específicos para poder adquirir, organizar, examinar y darle sentido a datos numéricos derivados de observaciones o experimentos aplicados a diferentes situaciones.</li>
+<li>La disciplina estadística nos enseña cómo <span class="hi">realizar juicios inteligentes y tomar decisiones informadas</span> en presencia de incertidumbre y variación.</li>
+<li>La estadística ofrece los procedimientos para <strong>recolectar</strong> y <strong>transformar</strong> los datos de manera que sean <span class="hi">útiles</span> a quienes toman decisiones.</li>
+</ul>
+</section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>¿Por qué estudiar estadística?</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Relevancia</h2>
+<div class="columns">
+<div class="column img-fit" style="width:30%;">
+<p><img data-src="img/decision_icon.png"></p>
+</div><div class="column" style="width:70%;">
+<ul>
+<li>Es una materia que se encuentra en la mayoría de planes de estudios (Ciencias sociales, Ingeniería, Administración, Ciencias básicas, etc.). <span class="hi">¿Por qué razón?</span>
+<ul>
+<li>La información numérica prolifera por todas partes.</li>
+<li>Se requiere estadística para tomar decisiones y además, proporciona un entendimiento de como afectarían.</li>
+<li>Ayuda a determinar el tipo de información requerida para tomar decisiones</li>
+<li>Por ejemplo, ¿los datos disponibles son suficientes y adecuados o se requiere información adicional?</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¡Importante!</h2>
+<ul>
+<li>¿En qué se diferencia la estadística de cada plan de estudios?
+<ul>
+<li>La estadística es una <span class="hi">herramienta</span>, NO un objetivo</li>
+<li>El <span class="hi">contexto</span> define el propósito de la estadística. Cada uno tiene sus propias necesidades, preguntas y limitaciones y esto influye en <span class="hi">cómo se aplican las técnicas estadísticas</span>.</li>
+<li>Los resultados estadísticos deben interpretarse en función del contexto. Un mismo dato puede tener implicaciones <span class="hi">MUY</span> diferentes dependiendo de la situación.</li>
+<li>Sin contexto, la estadística puede ser malinterpretada o incluso <span class="hi">manipulada</span> para respaldar conclusiones erróneas.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>En ingeniería…</h2>
+<div class="columns">
+<div class="column" style="width:75%;">
+<ul>
+<li>La estadística es una <strong>herramienta esencial</strong> para analizar datos, mejorar y automatizar diseños, procesos y sistemas.</li>
+<li>Además de garantizar la eficiencia y confiabilidad en proyectos y sistemas.</li>
+<li>Sin importar el área de especialización (manufactura, calidad, metrología, energía, ambiente, robótica y automatización, entre otros) <span class="hi">es necesario el conocimiento estadístico</span>.</li>
+<li>Estamos <strong>inundados de datos</strong>… las personas que son capaces de analizar esta nueva información son y serán valiosos en prácticamente cualquier campo de estudio.
+<ul>
+<li><blockquote>
+<p><span class="hi">Without data, you’re just another person with an opinion</span> - <em>W. Edwards Deming</em></p>
+</blockquote></li>
+</ul></li>
+</ul>
+</div><div class="column img-fit" style="width:25%;">
+<p><img data-src="img/ingenieria_icon.jpg"></p>
+</div></div>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Entonces…</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>En resumen</h2>
+<ul>
+<li>La estadística es una <strong>herramienta poderosa</strong>, pero su verdadero valor se obtiene cuando se aplica de <strong>manera adecuada y se interpreta dentro de un</strong> <span class="hi">contexto específico</span>.</li>
+<li>Sin contexto, los datos y los análisis estadísticos carecen de significado y utilidad práctica.
+<ul>
+<li><blockquote>
+<p><span class="hi">It’s easy to lie with statistics, but it’s hard to tell the truth without them</span> - <em>Andrejs Dunkels</em></p>
+</blockquote></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Teoría, hipótesis y contexto</h2>
+<ul>
+<li><p>Para Babbie (2000) una teoría es una explicación sistemática de los hechos y leyes observadas que se relacionan con un aspecto específico de la vida.</p></li>
+<li><p>Organizan las observaciones y les asignan un sentido. A menudo las expectativas comprenden la idea de causalidad (Dado un evento A -&gt; Ocurre un evento B).</p>
+<blockquote>
+<p><span class="hi">Las teorías no deben confundirse con una opinión</span></p>
+</blockquote></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplos</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>General</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/educacion.png" class="quarto-figure quarto-figure-center" width="100"></p>
+</figure>
+</div>
+<ul>
+<li>Mediante una encuesta, se obtiene que el 90 % de las personas con baja educación son prejuiciosos y que el 30 % de las que tienen mayor educación también lo son. Es decir, que el 70 % no tienen prejuicios.</li>
+<li>La hipótesis sería que “algo” en la educación es la causa de que la persona sea prejuiciosa o no. La determinación de ese “algo” es la teoría asociada al contexto.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3>Específico</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/reloj.png" class="quarto-figure quarto-figure-center" width="100"></p>
+</figure>
+</div>
+<ul>
+<li>En una fábrica de ensamble de relojes, se hipotetiza que dividir una tarea compleja en partes más pequeñas y asignar cada parte a una persona o equipo especializado aumenta la productividad.</li>
+<li>Hay teorías que sostienen esta afirmación y que pueden estudiarse/comprobarse con el uso de la estadística, mediante un experimento u observación, por ejemplo.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¡Importante!</h2>
+<div class="columns">
+<div class="column" style="text-align: center; font-size: 1.7em;">
+<p>Las personas ingenieras deberían usar a la estadística como un borracho usa un poste de luz eléctrica, <span class="hi">más para apoyo que para iluminación</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/borracho_farola.jpg" class="quarto-figure quarto-figure-center" width="261"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Conceptos básicos</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<h3>Variable</h3>
+<ul>
+<li>Característica de los objetos o de los individuos</li>
+<li>Pueden ser:
+<ul>
+<li>Explicativas</li>
+<li>Respuesta o de interés</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<h3>Población</h3>
+<ul>
+<li>Todos los miembros de un grupos acerca de los cuales se desea obtener una conclusión</li>
+</ul>
+</div><div class="column" style="width:30%;">
+<h3>Muestra</h3>
+<ul>
+<li>Una parte de la población seleccionada para análisis</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Conceptos básicos</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<h3>Parámetro</h3>
+<ul>
+<li>Medida numérica que describe una característica de la población</li>
+</ul>
+</div><div class="column" style="width:30%;">
+<h3>Estimador</h3>
+<ul>
+<li>Medida numérica que describe alguna característica de la muestra</li>
+</ul>
+</div><div class="column" style="width:30%;">
+<h3>Sesgo</h3>
+<ul>
+<li>Cuando el método de recopilación de datos hace que los datos de la muestra reflejen incorrectamente la población.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Conceptos básicos</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<h3>Estadística descriptiva</h3>
+<ul>
+<li>Métodos para organizar, resumir y presentar datos de manera informativa.</li>
+</ul>
+<h3>Estadística inferencial</h3>
+<ul>
+<li>Métodos que se emplean para determinar una propiedad de una población con base en la información de una muestra de ella.</li>
+</ul>
+</div><div class="column img-fit" style="width:55%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/diagrama.png" class="quarto-figure quarto-figure-center" width="500"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Tipos de variables</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<ul>
+<li>Se clasifican en <span class="hi">cuantitativa</span> y <span class="hi">cualitativa</span>.</li>
+<li>Las variables cuantitativas se pueden dividir en:
+<ul>
+<li>Cuantitativa discreta</li>
+<li>Cuantitativa continua</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:60;">
+<ul>
+<li>Cuando la característica que se estudia es de naturaleza no numérica recibe el nombre de variable cualitativa o atributo.
+<ul>
+<li>Género, color de ojos, marca de celular, etc.</li>
+</ul></li>
+<li>Si la variable que se estudia aparece en forma numérica, se le denomina variable cuantitativa.
+<ul>
+<li>Salario, edades, cantidad de hijos</li>
+</ul></li>
+<li>Durante el desarrollo del curso se explayan estas definiciones.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Niveles de medición</h2>
+<div class="columns">
+<div class="column img-fit" style="width:40%;">
+<p><img data-src="img/niveles_medicion.jpg"></p>
+</div><div class="column" style="width:60%;">
+<ul>
+<li>Los datos se clasifican por niveles de medición.
+<ul>
+<li>El nivel de medición y el tipo de variable <span class="hi">rige los cálculos que se llevan a cabo</span> con el fin de resumir y presentar los datos.</li>
+</ul></li>
+<li>Es decir, que <span class="hi">no todos los tipos de datos se analizan igual</span>.
+<ul>
+<li>Esta premisa es <strong>sumamente importante</strong> en el desarollo de estos cursos. Pues no puede aplicar los cálculos e interpretaciones de índole estadístico indiscriminadamente.</li>
+</ul></li>
+<li>Cada nivel de medición superior tiene las propiedades de los anteriores.
+<ul>
+<li>Es decir, el nivel de medición razón, incluye las propiedades del intervalo, ordinal y nominal; y así sucesivamente.</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Niveles de medición</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>Nominal</h3>
+<ul>
+<li>Las observaciones solo se clasifican y se cuentan</li>
+<li>No existe una forma particular de ordenar las etiquetas</li>
+<li>Los datos solo se clasifican
+<ul>
+<li>Marca de un vehículo</li>
+<li>Color de la vestimenta</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3>Ordinal</h3>
+<ul>
+<li>Las observaciones tienen un orden</li>
+<li>Las clasificaciones de los datos se encuentran representadas por conjuntos de etiquetas que tienen valores relativos.</li>
+<li>Los datos se ordenan
+<ul>
+<li>Posición de la UCR en el ranking QS</li>
+<li>Calificación en Malo, Regular y Bueno</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Niveles de medición</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<h3>Intervalo</h3>
+<ul>
+<li>Diferencias iguales en la característica representan diferencias iguales en las mediciones</li>
+<li>La diferencia entre los valores tiene un significado
+<ul>
+<li>Temperatura en °C</li>
+<li>Talla</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:25%;">
+<h3>Razón</h3>
+<ul>
+<li>El punto cero representa la ausencia de características y la razón entre dos números es significativa</li>
+<li>El cero tiene un significado (la ausencia de)
+<ul>
+<li>Número de pacientes</li>
+<li>Distancia de su casa a la universidad</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Actividad</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li>Recuerde que las variables se pueden clasificar en tipos (la naturaleza del dato) y niveles de medición (qué operaciones matemáticas tienen sentido). Por ejemplo:
+<ul>
+<li>La edad es una variable que puede recolectarse como un valor númerico: 25 años o en rangos: 0-10 años, 11-20 años, …; en el primero caso el nivel de medición es <span class="hi">razón</span> y en el segundo es <span class="hi">ordinal</span>.</li>
+</ul></li>
+<li>Realice el ejercicio que se muestra a la derecha de su pantalla.</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<style>
+#items {
+  width: 80%;
+  margin: 5px auto 15px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 15px;
+  font-size: 0.7em;
+}
+
+.matrix {
+  width: 80%;
+  margin: 10px auto;
+  border-collapse: collapse;
+  font-size: 0.75em;
+}
+
+.matrix th, .matrix td {
+  border: 2px solid #444;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.matrix thead th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.matrix tbody th {
+  background-color: #f7f7f7;
+  font-weight: bold;
+  width: 120px;
+}
+
+.dropzone {
+  min-height: 50px;
+}
+
+.dropzone.correct {
+  background-color: #d9fdd9;
+}
+
+.dropzone.incorrect {
+  background-color: #ffd9d9;
+}
+
+.draggable {
+  padding: 4px 6px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background: #f2f2f2;
+  cursor: grab;
+  margin: 2px 0;
+}
+
+button {
+  margin-top: 8px;
+  padding: 5px 10px;
+  font-size: 0.7em;
+}
+</style>
+
+<h5 style="margin-bottom:5px;">
+Clasifique cada variable según tipo y nivel de medición
+</h5>
+
+<div id="items">
+  <div class="draggable" draggable="true" id="i1" data-target="razon-cuant">Edad en años</div>
+  <div class="draggable" draggable="true" id="i2" data-target="razon-cuant">Ingreso mensual</div>
+  <div class="draggable" draggable="true" id="i3" data-target="intervalo-cuant">Temperatura °C</div>
+  <div class="draggable" draggable="true" id="i4" data-target="intervalo-cuant">Año calendario</div>
+  <div class="draggable" draggable="true" id="i5" data-target="ordinal-cual">Nivel de satisfacción</div>
+  <div class="draggable" draggable="true" id="i6" data-target="ordinal-cual">Rango militar</div>
+  <div class="draggable" draggable="true" id="i7" data-target="nominal-cual">Tipo de sangre</div>
+  <div class="draggable" draggable="true" id="i8" data-target="nominal-cual">Estado civil</div>
+</div>
+
+
+<table class="matrix caption-top">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Cuantitativo</th>
+<th data-quarto-table-cell-role="th">Cualitativo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Nominal</th>
+<td class="dropzone" data-zone="nominal-cuant"></td>
+<td class="dropzone" data-zone="nominal-cual"></td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Ordinal</th>
+<td class="dropzone" data-zone="ordinal-cuant"></td>
+<td class="dropzone" data-zone="ordinal-cual"></td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Intervalo</th>
+<td class="dropzone" data-zone="intervalo-cuant"></td>
+<td class="dropzone" data-zone="intervalo-cual"></td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Razón</th>
+<td class="dropzone" data-zone="razon-cuant"></td>
+<td class="dropzone" data-zone="razon-cual"></td>
+</tr>
+</tbody>
+</table>
+
+
+<button onclick="checkAnswers()">Verificar</button>
+<p id="result" style="font-size:0.7em;"></p>
+
+<script>
+const draggables = document.querySelectorAll(".draggable");
+const dropzones = document.querySelectorAll(".dropzone");
+
+draggables.forEach(item => {
+  item.addEventListener("dragstart", e => {
+    e.dataTransfer.setData("text/plain", item.id);
+  });
+});
+
+dropzones.forEach(zone => {
+  zone.addEventListener("dragover", e => e.preventDefault());
+
+  zone.addEventListener("drop", e => {
+    e.preventDefault();
+    const id = e.dataTransfer.getData("text/plain");
+    const element = document.getElementById(id);
+    zone.appendChild(element);
+  });
+});
+
+function checkAnswers() {
+  let allCorrect = true;
+
+  dropzones.forEach(zone => {
+    zone.classList.remove("correct", "incorrect");
+    const items = zone.querySelectorAll(".draggable");
+
+    items.forEach(item => {
+      if (item.dataset.target === zone.dataset.zone) {
+        zone.classList.add("correct");
+      } else {
+        zone.classList.add("incorrect");
+        allCorrect = false;
+      }
+    });
+
+    // Solo marcar incorrecto si hay elementos mal ubicados,
+    // no si la celda está vacía
+    if (items.length === 0) {
+      zone.classList.remove("incorrect");
+    }
+  });
+
+  document.getElementById("result").textContent =
+    allCorrect ? "Clasificación correcta." : "Revise las ubicaciones.";
+}
+
+</script>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>El quehacer ético en la estadística</h2>
+<ul>
+<li><p>La estadística debe practicarse con <span class="hi">integridad y honestidad</span>, “<em>haciendo lo correcto</em>” cuando se recoja, organice, resuma, analice e interprete información numérica.</p>
+<ul>
+<li>Este tema se abordará repetidamente a lo largo del curso.</li>
+</ul></li>
+<li><p>La contribución real de la estadística a la sociedad es de <span class="hi">naturaleza moral</span>.</p></li>
+<li><p>Cuando se practique la estadística, es necesario mantener “<em>un punto de vista independiente y con principios</em>”.</p></li>
+<li><p>Lo aquí recopilado son extractos de “<a href="https://doi.org/10.1198/0003130031072" target="&quot;_blank”">Statistics and Ethics: Some Advice for Young Statisticians</a>. <u>Se aconseja su lectura</u> (Acceso provisto por SIBDI).</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ética en el aprendizaje</h2>
+<div class="columns">
+<div class="column" style="width:76%;">
+<ul>
+<li>El comportamiento ético también se manifiesta mediante la <span class="hi">integridad académica</span>.
+<ul>
+<li>El consenso general es que la integridad académica es elaborar y presentar un trabajo original.</li>
+</ul></li>
+<li>Si no se garantiza la integridad académica, la idea de que un egresado cuenta con los conocimientos necesarios para desempeñar su profesional por el hecho de contar un diploma queda en entredicho.</li>
+<li>Esto incluye evitar el plagio (deliberado o no), así como hacer un uso <span class="hi">responsable y ético de la IA</span>.
+<ul>
+<li>Cuando use IA, declárelo y detalle el proceso que siguió para llegar a la respuesta.</li>
+</ul></li>
+</ul>
+</div><div class="column img-fit" style="width:24%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption><em>ChatGPT - 11 febrero 2026</em></figcaption>
+<p><img data-src="img/uso_ia.jpeg" width="300"></p>
+</figure>
+</div>
+</div></div>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Fuentes de datos</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Fuentes de datos</h2>
+<ul>
+<li>La forma en la que se recolectan/obtienen los datos influye en el <span class="hi">tipo de conclusiones que pueden extraerse</span>.</li>
+<li>Identificar las fuentes de datos apropiadas es un aspecto importante del análisis estadístico.</li>
+<li>Si los sesgos, ambigüedades u otros tipos de errores estropean los datos recolectados, ni el método estadístico más complejo producirá información útil y precisa.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Fuentes de datos</h2>
+<ul>
+<li>En algunos casos los datos que se necesitan para una determinada aplicación <span class="hi">ya existen</span>, por ejemplo, las empresas cuentan con diversas bases de datos sobre sus empleados.</li>
+<li>También se pueden obtener de organizaciones externas especializadas en la recolección y almacenamiento de datos.</li>
+<li>En otras ocasiones, los datos necesarios para una aplicación particular <span class="hi">no se pueden obtener de las fuentes existentes</span>.
+<ul>
+<li>En tales casos los datos suelen conseguirse realizando estudios estadísticos, con el uso de instrumentos de medición (balanzas, cintas métricas, encuestas, etc).</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Fuentes de datos</h2>
+<ul>
+<li>Las fuentes de datos se clasifican en fuentes <span class="hi">primarias</span> y <span class="hi">secundarias</span>.
+<ul>
+<li>Cuando la persona recolectora de datos es quien los emplea para análisis, la fuente es primaria.</li>
+<li>Cuando una organización o individuo ha compilado los datos que utiliza otra organización o individuo la fuente es secundaria.</li>
+</ul></li>
+<li>En su ejercicio académico y profesional, usted debe enfrentarse a fuentes de datos secundarias y a diseñar y aplicar métodos y técnicas para la recolección de datos primarios.</li>
+<li>¿Cuales fuentes secundarias conoce en CR?
+<ul>
+<li>INEC, por ejemplo.
+<ul>
+<li>¿Otros?</li>
+</ul></li>
+<li>Iniciativa de datos abiertos (Decreto Ejecutivo 40199-MP)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Errores comunes al adquirir datos</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>Falta de claridad en el objetivo de la recolección de datos</li>
+<li>Seleccionar mal la población o la muestra
+<ul>
+<li>Incluyendo la cantidad de unidades muestreadas</li>
+</ul></li>
+<li>No tomar en cuenta leyes y reglamentos sobre datos sensibles</li>
+<li>Preguntas mal formuladas (sesgadas o confusas)</li>
+<li>Inconsistencias en la metodología de recolección</li>
+<li>Falta de entrenamiento de quien recolecta el dato</li>
+<li>Errores de digitación</li>
+</ul>
+</div><div class="column img-fit" style="width:40%;">
+<p><img data-src="img/errores_datos.jpg"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Algunos tipos de estudios</h2>
+<ul>
+<li><p>Estos son relevantes, pues del tipo de estudio dependen las conclusiones a las que se puede arribar con el ejercicio estadístico.</p></li>
+<li><p><span class="hi">Transversales</span>:</p>
+<ul>
+<li>Los datos se recopilan en un solo momento del tiempo</li>
+<li>Describen características en un punto específico</li>
+</ul></li>
+<li><p><span class="hi">Longitudinales</span>:</p>
+<ul>
+<li>Recopilan los datos de un mismo sujeto en múltiples momentos durante un periodo de tiempo</li>
+<li>Analiza cambios o tendencias a lo largo del tiempo</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>¡Crucigrama de repaso!</h2>
+<div class="iframe-card">
+<iframe src="https://crosswordlabs.com/embed/estadistica-151" frameborder="0">
+</iframe>
+</div>
+</section>
+<section class="slide level2 bloques">
+<h2>Bibliografía</h2>
+<div class="caja-unica" style="font-size: 0.8em;">
+<ul>
+<li>Walpole, R.; Myers, R.; Myers, S. y Ye, K. Probabilidad y estadística para ingeniería y ciencias (9na Edición).</li>
+<li>Capítulo 1</li>
+<li>Lind, D.; Marchal, W. y Watchen, S. Estadística aplicada a los Negocios y la Economía (15va Edición).</li>
+<li>Capítulo 1</li>
+<li>Devore, J. Probabilidad y Estadística para Ingeniería y Ciencias (7ma Edición).</li>
+<li>Capítulo 1</li>
+<li>Levine, D.; Krehbiel, T.; Berenson, M. Estadística para administración (4ta Edición).</li>
+<li>Capítulo 1</li>
+<li>Vardeman, S. B., &amp; Morris, M. D. (2003). Statistics and Ethics: Some Advice for Young Statisticians. The American Statistician, 57(1), 21–26. <a href="https://doi.org/10.1198/0003130031072" class="uri">https://doi.org/10.1198/0003130031072</a></li>
+<li>Lock, R.; Lock, P.; Morgan, K.; Lock, E. &amp; Lock, D. Statistics: Unloking the Power of Data (3rd Edition).</li>
+<li>Capítulo 1</li>
+</ul>
+</div>
+</section>
+<section class="slide level2 center">
+<h2>Introducción a la estadística <br> II-1120 Estadística para Ingeniería Industrial I</h2>
+<h3 class="subtitle">Gracias por su atención <br> Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a></h3>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p><span class="footer-text">© 2026 <a href="https://stevenggoni.github.io/">Steven García Goñi</a>| <a href="https://creativecommons.org/licenses/by/4.0/deed.es">Licencia CC BY 4.0</a></span> <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-02.png" class="footer-logo"></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copiado");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copiado");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
