@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: .
+  render: 
+    - "*.qmd"
+    - "!Guia_practicas_laboratoriales.qmd"
 
 author: "Steven García Goñi<br>[steven.garciagoni@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr)"
 license: "CC BY"

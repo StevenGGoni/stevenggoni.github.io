@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: .
+  render:
+    - "*.qmd"
+    - "!clases/"
 
 website:
   title: "Steven García Goñi"
@@ -15,8 +18,7 @@ website:
     left:
       - href: index.qmd
         text: Inicio
-      - href: docencia.qmd
-        text: Recursos académicos
+      - text: Recursos académicos
         menu:
         - href: infografias.qmd
           text: Infografías
