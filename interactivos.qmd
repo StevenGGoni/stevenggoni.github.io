@@ -19,19 +19,19 @@ En esta sección encontrará simulaciones interactivas y herramientas útiles pa
 
 ## Recursos interactivos `r fontawesome::fa("calculator")`
 
-* [Distribuciones discretas interactivas](docencia/distribuciones-discretas.html){target="_blank"}
+* [Distribuciones discretas interactivas](interactivos/distribuciones-discretas.html){target="_blank"}
 
 Este visualizador le permite explorar las principales distribuciones discretas y ver como cambian sus formas al modificar los parámetros. 
 
-* [Distribuciones continuas interactivas](docencia/distribuciones-continuas.html){target="_blank"}
+* [Distribuciones continuas interactivas](interactivos/distribuciones-continuas.html){target="_blank"}
 
 Es el equivalente continuo al visualizador anterior, pero además, presenta una comparación entre la distribución normal estándar ($z$) y la t-Student ($t$).
 
-* [Convolución de distribuciones](docencia/convolucion_distribuciones.html){target="_blank"}
+* [Convolución de distribuciones](interactivos/convolucion_distribuciones.html){target="_blank"}
 
 Este visualizador interactivo permite explorar cómo se combinan dos variables aleatorias independientes mediante la convolución de sus distribuciones. Muestra la distribución resultante de la suma y su relación con el Teorema del Límite Central.
 
-* [Curvas OC para muestreo por atributos](docencia/curvas-oc.html){target="_blank"}
+* [Curvas OC para muestreo por atributos](interactivos/curvas-oc.html){target="_blank"}
 
 Propio del campo de la ingeniería de calidad y muestreo de aceptación, este visualizador muestra las curvas características de operación (OC) de planes de muestreo por atributos.
 
