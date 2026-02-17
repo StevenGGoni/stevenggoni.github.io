@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
+
+  <meta name="author" content="Steven García Goñi steven.garciagoni@ucr.ac.cr">
+  <title>Fundamentos de muestreo y manejo de datos</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="custom.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section class="quarto-title-block center">
+  <h1 class="title">Fundamentos de muestreo y manejo de datos</h1>
+  <p class="subtitle"><a href="https://stevenggoni.github.io/clases/II-1120_02_Fundamentos_muestreo.pdf">Versión PDF</a> <br> II-1120 Estadística para Ingeniería Industrial I <br> II-1123 Estadística para Ingeniería Industrial II (transición)</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a> 
+</div>
+</div>
+</div>
+
+  <p class="date">17 de febrero de 2026</p>
+</section>
+<section class="slide level2 bloques">
+<h2>Agenda</h2>
+<ul>
+<li>Preguntas generadoras</li>
+<li>Repaso</li>
+<li>Fundamentos de muestreo</li>
+<li>Etapas de un muestreo</li>
+<li>Muestreo probabilístico</li>
+<li>Muestreo no probabilístico</li>
+<li>Repaso tamaño de muestra (Para II-1123)</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Preguntas generadoras</h2>
+<ul>
+<li>¿Por qué es necesario muestrear?</li>
+<li>¿Qué es el sesgo estadístico y cómo evitarlo?</li>
+<li>¿Cuáles métodos de selección de muestra existen y cuándo se usan?</li>
+<li>¿Qué es el error de muestreo y que consecuencias prácticas tiene?</li>
+<li>¿Qué diferencia hay entre un buen diseño muestral y una muestra grande?
+<ul>
+<li>¿Más grande es igual a mejor?</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>¿De dónde obtengo datos?</h2>
+<ul>
+<li>Recuerde que:
+<ul>
+<li>Los datos pueden provenir de fuentes secundarias:
+<ul>
+<li>Cuando son proporcionados por un externo, por ejemplo el INEC.</li>
+</ul></li>
+<li>Los datos pueden provenir de fuentes primarias:
+<ul>
+<li>Cuando usted debe recoger los datos (observación, experimento, encuesta o una combinación de estas).</li>
+</ul></li>
+</ul></li>
+<li>La premisa de esta sesión es:
+<ul>
+<li><span class="hi">¿Cuántos datos necesito?</span> y <span class="hi">¿Cómo debo recogerlos?</span></li>
+</ul></li>
+</ul>
+</section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Fundamentos de muestreo</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Contexto</h2>
+<div class="columns">
+<div class="column" style="text-align: center; font-size: 1.5em;">
+<p>Estas lecciones tienen como propósito desarrollar métodos de muestreo que proporcionen con <span class="hi">el menor costo posible, estimaciones con la suficiente exactitud</span> para los propósitos que se diseñen.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/eficiencia.png" class="quarto-figure quarto-figure-center" width="261"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo</h2>
+<div class="columns">
+<div class="column" style="width:65%;">
+<ul>
+<li><p>El procedimiento mediante el cual obtenemos una o más muestras recibe el nombre de muestreo.</p></li>
+<li><p>Para <em>Montgomery</em>, es:</p>
+<blockquote>
+<p><span class="hi">El objetivo de la inferencia estadística es extraer conclusiones o tomar decisiones acerca de una población con base en una muestra seleccionada de dicha población</span>.</p>
+</blockquote></li>
+<li><p>Existen, al menos, dos tipos de muestreo:</p>
+<ul>
+<li>Probabilístico</li>
+<li>No probabilístico</li>
+</ul></li>
+</ul>
+</div><div class="column img-fit" style="width:35%;">
+<p><img data-src="img/muestreo.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Importante</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<ul>
+<li><p>La validez de las conclusiones que se extraen o de las decisiones que se toman dependen de la forma en la que se <span class="hi">recolectan</span> y <span class="hi">analizan</span> los datos.</p></li>
+<li><p>La estadística es una <strong>herramienta poderosa</strong>, pero su verdadero valor se obtiene cuando se aplica de <strong>manera adecuada y se interpreta dentro de un</strong> <span class="hi">contexto específico</span>.</p></li>
+<li><p>El nivel de medición y el tipo de variable rige los cálculos que se llevan a cabo con el fin de resumir y presentar los datos. Es decir, que <span class="hi">no todos los tipos de datos se analizan igual</span>.</p></li>
+</ul>
+</div><div class="column img-fit" style="width:45%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/diagrama.png" class="quarto-figure quarto-figure-center" width="500"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ventajas del muestreo frente al censo</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><strong>Costo reducido</strong>
+<ul>
+<li>En poblaciones muy grandes se pueden obtener resultados lo suficientemente exactos cuando se analizan muestras que representan solo una pequeña fracción de la población.</li>
+</ul></li>
+<li><strong>Mayor rapidez</strong>
+<ul>
+<li>Los datos pueden ser recolectados y resumidos más rápidamente con una muestra que con una enumeración completa. Lo cual es vital cuando se necesita la información con urgencia.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><strong>Más posibilidades</strong>
+<ul>
+<li>En casos donde el censo es impracticable habría dos alternativas: muestreo o no tomar los datos. Es por eso que el muestreo da más posibilidades para la obtención de información.</li>
+</ul></li>
+<li><strong>Mayor exactitud</strong>
+<ul>
+<li>Suena contraintuitivo, pero debido a que el volumen de trabajo es reducido, se puede emplear personal más capacitado y someterlo a más entrenamiento, lo que puede producir resultados más exactos que en el censo.</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Cuándo muestrear?</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><img data-src="img/infinita_pop.png" width="150"></p>
+<p>Cuando la población sea infinita: o tan grande que el censo exceda de las posibilidades del investigador.</p>
+</div><div class="column" style="width:33%;">
+<p>Cuando la población sea suficientemente uniforme: para que cualquier muestra dé una buena representación de esta y carezca de sentido examinar la población completa.</p>
+<p><img data-src="img/uniforme.png" width="150"></p>
+</div><div class="column" style="width:33%;">
+<p><img data-src="img/destroy.png" width="150"></p>
+<p>Cuando el proceso de medida o investigación de las características de cada elemento sea destructivo.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Sesgos</h2>
+<ul>
+<li>Cuando el método de recopilación de datos hace que los datos de la muestra reflejen incorrectamente la población. En términos simples, es la diferencia que existre entre un estimador (<span class="math inline">\(\bar{x}\)</span>) y un parámetro (<span class="math inline">\(\mu\)</span>).
+<ul>
+<li><span class="math inline">\(|\bar{x}-\mu|\)</span></li>
+</ul></li>
+<li>En este sentido, hay muchos tipos o causas de sesgos:
+<ul>
+<li>No respuesta: personas que deciden no participar en un estudio, por ejemplo, la evaluación docente en la UCR.</li>
+<li>Confusión: cuando se cree que A causa B, existiendo una variable C confusora que causa a A y B simultáneamente. Visualmente: A ← C → B</li>
+<li>Colisionador: similar al de confusión. El colisionador es una variable que es causada por A y B. Visualmente: A → C ← B.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo de sesgo</h2>
+<div class="columns">
+<div class="column" style="font-size: 1em;">
+<ul>
+<li><p>El sesgo del superviviente es uno muy famoso.</p>
+<ul>
+<li>Quizá algún día haya visto esta imagen.</li>
+</ul></li>
+<li><p>Es una falacia lógica que consiste en centrarse en aquellos que han logrado sobrevivir a un proceso, ignorando a aquellos que no lo lograron.</p></li>
+<li><p>Por ejemplo:</p>
+<ul>
+<li><span class="hi">Todos los emprendedores exitosos abandonaron la universidad, así que dejar la carrera aumenta tus probabilidades de éxito</span></li>
+</ul></li>
+</ul>
+</div><div class="column img-fit" style="width:45%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Fuente: <a href="https://en.wikipedia.org/wiki/Survivorship_bias" target="_blank">Wikipedia</a></figcaption>
+<p><img data-src="img/Survivorship-bias.svg"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Sesgos</h2>
+<ul>
+<li><p>Para el curso <span class="hi">II-1120 Estadística para Ingeniería Industrial I</span>, este tema es una introducción al concepto, que será abordado oportunamente en el desarrollo de las lecciones.</p></li>
+<li><p>Para el curso <span class="hi">II-1123 Estadística para Ingeniería Industrial II</span>, este tema corresponde a un repaso de lo ya aprendido. De necesitarlo, se le invita a proceder al estudio individual del mismo.</p></li>
+</ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 center">
+<h1>Etapas <br> Para desarrollar un plan de muestreo</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Etapas</h2>
+<div class="columns">
+<div class="column img-fit" style="width:100%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/pasos_muestreo.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>1. Definición del objetivo del muestreo</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>El primer paso es definir claramente qué se desea lograr con el muestreo.
+<ul>
+<li>Esto implica identificar el problema de investigación o la pregunta que se desea responder, las hipótesis que se probarán y el uso que se dará a los resultados obtenidos.</li>
+</ul></li>
+</ul>
+<p><img data-src="img/goal.png" width="250"></p>
+</div><div class="column" style="width:50%;">
+<h3>Consideraciones importantes</h3>
+<ul>
+<li>Determinar las variables clave que se estudiarán (por ejemplo, edad, ingresos, preferencias, dimensiones críticas de una pieza mecánica, peso, porcentaje de condimentación, percepción de calidad, entre otros).</li>
+<li>Especificar si el objetivo es descriptivo (describir características de una población), analítico (encontrar relaciones o diferencias) o predictivo (predecir tendencias o comportamientos futuros).</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>2. Determinación de la población de estudio</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Definir claramente quiénes son los elementos que componen la población objetivo, es decir, el grupo completo de individuos o unidades que se desea estudiar.</li>
+</ul>
+<p><img data-src="img/poblacion.png" width="250"></p>
+</div><div class="column" style="width:50%;">
+<h3>Consideraciones importantes</h3>
+<ul>
+<li>Especificar criterios de inclusión y exclusión que definan claramente quién pertenece a la población de estudio.
+<ul>
+<li>Por ejemplo, edad, ubicación geográfica, comportamiento de compra, etc.</li>
+</ul></li>
+<li>Definir la “unidad de análisis,” que podría ser una persona, una empresa, un producto, etc.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>3. Selección del tipo de muestreo</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Decidir qué método de muestreo es el más adecuado para obtener una muestra representativa.</li>
+</ul>
+<p><img data-src="img/muestreo.png" width="250"></p>
+</div><div class="column" style="width:50%;">
+<h3>Consideraciones importantes</h3>
+<ul>
+<li>Algunas técnicas de muestreo son más económicas que otras, así como algunas son más precisas.</li>
+<li>Lo que se busca es un adecuado balance entre ambas.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>4. Determinación del tamaño de la muestra</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Calcular el número de elementos necesarios en la muestra para obtener resultados estadísticamente significativos.
+<ul>
+<li>El tamaño de muestra puede determinarse por el método de potencia o el método de intervalos, según se requiera</li>
+<li>Para <span class="hi">II-1120 Estadística para Ingeniería Industrial I</span>, es tema del curso <strong>II-1123 Estadística para Ingeniería Industrial II</strong>.</li>
+<li>Para <span class="hi">II-1123 Estadística para Ingeniería Industrial II - 01:2026</span> fue abordado en el curso <strong>II-0306 Probabilidad y Estadística</strong>, de ser necesario, recurra al estudio individual de este tema.</li>
+<li>Otras formas de obtener tamaños de muestra serán abordados en cursos específicos.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3>Consideraciones importantes</h3>
+<ul>
+<li>Para obtener el tamaño de muestra, al menos necesita:
+<ul>
+<li>El nivel de confianza (<span class="math inline">\(1-\alpha\)</span>) se selecciona según el contexto</li>
+<li>El margen de error (<span class="math inline">\(e\)</span>) debe ser aceptable en función del contexto</li>
+<li>La variabilidad (<span class="math inline">\(s\)</span>) es intrínseco a los datos, tome en cuenta que entre más variable sea, más datos requerirá.</li>
+<li>El tamaño de la población (<span class="math inline">\(N\)</span>) es intrínseco de la población, también puede desconocerse.</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>5. Diseño del plan de muestreo</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Elaborar un plan detallado que describa cómo se seleccionarán los elementos de la población.</li>
+</ul>
+<p><img data-src="img/sample_size.png" width="250"></p>
+</div><div class="column" style="width:50%;">
+<h3>Consideraciones importantes</h3>
+<ul>
+<li>Especificar el método de muestreo seleccionado y los procedimientos exactos que se seguirán.</li>
+<li>Definir herramientas y recursos necesarios, como listas de población, software de selección, encuestas, instrumentos de medición, entre otros.</li>
+<li>Incluir instrucciones específicas para los recolectores de datos para evitar sesgos de selección.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>6. Recolección de datos</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Implementar el plan de muestreo y recolectar los datos de los elementos seleccionados</li>
+</ul>
+<p><img data-src="img/plan_muestreo.png" width="250"></p>
+</div><div class="column" style="width:50%;">
+<h3>Consideraciones importantes</h3>
+<ul>
+<li>Seguir los protocolos establecidos para asegurar la consistencia y precisión de los datos. Durante la recolección de datos no se improvisa.</li>
+<li>Utilizar herramientas tecnológicas, como aplicaciones móviles o encuestas en línea, para facilitar la recolección de datos.</li>
+<li>Monitorear continuamente el proceso de recolección para identificar y corregir cualquier desviación del plan.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>7. Evaluación de la representatividad</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Verificar si la muestra obtenida es representativa de la población de estudio.</li>
+</ul>
+<p><img data-src="img/representativo.png" width="250"></p>
+</div><div class="column" style="width:50%;">
+<h3>Consideraciones importantes</h3>
+<ul>
+<li>Comparar las características clave de la muestra con las de la población para detectar posibles sesgos.</li>
+<li>Utilizar estadísticas descriptivas y gráficas para evaluar la representatividad.</li>
+<li>Ajustar mediante <u>ponderación</u> si se detectan desviaciones significativas</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>8. Análisis de los datos</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Realizar el análisis estadístico de los datos recolectados para extraer conclusiones válidas.</li>
+<li>La validez depende de que tan bien se cumplieron los pasos anteriores. Además, los datos se deben analizar en consecuencia del tipo de variable y el nivel de medición.</li>
+</ul>
+<p><img data-src="img/analisis.png" width="250"></p>
+</div><div class="column" style="width:50%;">
+<h3>Consideraciones importantes</h3>
+<ul>
+<li>Utilizar técnicas estadísticas apropiadas en función del tipo de datos y de las hipótesis a probar.</li>
+<li>Considerar la aplicación de técnicas de ponderación e imputación para corregir sesgos o datos faltantes.</li>
+<li>Presentar los resultados de manera clara y comprensible (y ética), utilizando cuadros, gráficos y resúmenes estadísticos.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>9. Documentación del proceso de muestreo</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Registrar todos los detalles del proceso de muestreo para asegurar la transparencia y la replicabilidad.</li>
+<li>Recuerde que la estadística es un ejercicio ético y moral.</li>
+</ul>
+<p><img data-src="img/documentacion.png" width="250"></p>
+</div><div class="column" style="font-size: 0.95em;">
+<h3>Consideraciones importantes</h3>
+<ul>
+<li>Documentar el método de selección de la muestra, el tamaño de la muestra, y cualquier ajuste realizado.</li>
+<li>Guardar registros de todos los datos recolectados, herramientas utilizadas, y problemas encontrados durante el proceso.
+<ul>
+<li>Un ejemplo real: una persona operaria al encontrar una pieza mala, no la registraba, sino que la corregía y anotaba el nuevo valor. Esto impedía a las personas ingenieras detectar un problema en producción.</li>
+</ul></li>
+<li>Preparar informes que describan el proceso y los resultados del muestreo.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>10. Revisión y ajuste (Si es necesario)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Revisar el plan de muestreo y los resultados para identificar problemas o áreas de mejora.</li>
+<li>El ejercicio de la ingeniería industrial es una búsqueda constante de la excelencia; de la mejora continua.</li>
+</ul>
+<p><img data-src="img/revision.png" width="250"></p>
+</div><div class="column" style="width:50%;">
+<h3>Consideraciones importantes</h3>
+<ul>
+<li>Revisar los resultados para detectar inconsistencias o problemas que sugieran un sesgo de muestreo.</li>
+<li>Realizar ajustes en el plan de muestreo si se identifican problemas, como aumentar el tamaño de la muestra o cambiar el método de muestreo.</li>
+<li>Realizar un segundo muestreo si es necesario para mejorar la representatividad.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Consideraciones adicionales</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<ul>
+<li>Existe la <span class="hi">ponderación</span> y la <span class="hi">imputación</span>.</li>
+<li>Ambos términos se mencionan, pero no se detallan, pues su complejidad es relativamente alta.
+<ul>
+<li>Sobre todo en los métodos de imputación.</li>
+</ul></li>
+<li>Lo importante es que comprenda estos conceptos. Pues los puede requerir en el desarrollo de cursos específicos.</li>
+</ul>
+</div><div class="column" style="font-size: 0.84em;">
+<h3>Ponderación</h3>
+<ul>
+<li>Es una técnica que ajusta la influencia de cada observación en la muestra para que los resultados sean más representativos de la población total. Se utiliza principalmente para corregir <strong>sesgos de muestreo o de respuesta</strong>.</li>
+</ul>
+<h3>Imputación</h3>
+<ul>
+<li>Es una técnica utilizada para “<em>completar</em>” los datos faltantes en un conjunto de datos, reemplazando esos valores perdidos con estimaciones razonables.
+<ul>
+<li>Estas estimaciones razonables pueden ser complejas, y no siempre se recomienda imputar, <u>menos por valores como medias o medianas</u>. Toda imputación introduce un sesgo, lo correcto es reportar esta intervención de los datos.<br>
+</li>
+</ul></li>
+<li>Esto ayuda a mantener el tamaño de la muestra y a reducir el sesgo que puede surgir debido a datos incompletos</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplos</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>Ponderación</h3>
+<p>Supongamos que se realiza una encuesta donde el 30% de los encuestados son jóvenes, pero en realidad, los jóvenes representan el 50% de la población. Se puede asignar un peso mayor a las respuestas de los jóvenes para que los resultados de la encuesta reflejen mejor la realidad demográfica.</p>
+</div><div class="column" style="width:60%;">
+<h3>Imputación</h3>
+<p>En encuestas es normal encontrar que las personas no completan alguna información sensible, como el salario. Estos valores faltantes se pueden imputar a partir de las respuestas de otras personas, de respuestas a otras preguntas o una combinación entre ambas.</p>
+<p>Por ejemplo, durante la decada de los 2000 se podía imputar los valores del salario de las personas con base en el índice de tenencia de artículos. Era más probable que las personas encuestadas respondieran qué artículos tenían: televisor, teléfono, etc.</p>
+</div></div>
+</section></section>
+<section>
+<section class="title-slide slide level1 center">
+<h1>Muestreo probabilístico</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Definición</h2>
+<ul>
+<li>Cuando puede calcularse de antemano cual es la probabilidad de obtener cada una de las muestras que sea posible seleccionar.</li>
+<li>Es necesario que la selección pueda considerarse como una prueba o <u>experimento aleatorio</u>.</li>
+<li>La aleatoriedad no es un carácter que corresponda estrictamente hablando a una muestra dada, sino al proceso de muestreo usado para obtenerla..</li>
+<li>Lo que busca el muestreo probabilístico es asegurar la representatividad de la muestra extraída.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Algunos tipos</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>Abordados en el curso</h3>
+<ul>
+<li>Muestreo aleatorio simple (MAS)
+<ul>
+<li>Con reemplazo</li>
+<li>Sin reemplazo</li>
+</ul></li>
+<li>Muestreo estratificado</li>
+<li>Muestreo por conglomerados
+<ul>
+<li>Muestreo bietápico</li>
+</ul></li>
+<li>Muestreo sistemático</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3>Otros no abordados</h3>
+<ul>
+<li>Muestreo polietápico</li>
+<li>Muestreo doble o bifásico</li>
+<li>Muestreo múltiple o polifásico</li>
+<li>Submuestras interpenetrantes</li>
+<li>Muestreo repetido</li>
+<li>Métodos mixtos</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo aleatorio simple (MAS)</h2>
+<ul>
+<li>Es un método de recolección de 𝑛 unidades en un conjunto de <span class="math inline">\(N\)</span> de tal modo que cada una de las <span class="math inline">\(\binom{N}{n} = \frac{n!}{k!(n-k)!}\)</span> nuestras distintas tengan la misma oportunidad de ser elegidas.</li>
+<li>En la práctica, este se realiza unidad por unidad, de forma <span class="hi">aleatoria</span>, garantizando la misma oportunidad para aquellas unidades que no hayan salido.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 01</h2>
+<ul>
+<li>Un proceso de fabricación genera 20 unidades cada hora. Se tiene que tomar una muestra de 4 unidades por hora.</li>
+<li>¿Cuántas son todas las posibles muestras aleatorias?
+<ul>
+<li><span class="math display">\[\binom{N}{n}=4845\]</span></li>
+</ul></li>
+<li>¿Cuál es la probabilidad de cada muestra?
+<ul>
+<li><span class="math display">\[\frac{1}{4845}=0.02\%\]</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo aleatorio simple (MAS)</h2>
+<ul>
+<li>El caso anteriormente descrito también se llama muestreo aleatorio simple sin reemplazo.</li>
+<li>El muestreo con reemplazo es perfectamente factible.</li>
+<li>Anteriormente la selección de una muestra se hacía con tablas de números aleatorios. Hoy en día esto se realiza con ayuda de programas de computadora.
+<ul>
+<li>Cabe resaltar que la mayoría de estos programas producen números pseudoaleatorios.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>En síntesis</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>MAS con reemplazo</h3>
+<p>Todas las muestras, todas las unidades de la población tienen la misma probabilidad de ser seleccionadas para formar parte de la muestra. Coincide con el muestreo de poblaciones infinitas, ya que al devolver a la población cada elemento extraído de la misma, la población es inagotable y el resultado de la extracción de cada elemento, independiente de los anteriores a él.</p>
+</div><div class="column" style="width:50%;">
+<h3>MAS sin reemplazo</h3>
+<p>Todas las unidades de la población tienen la misma probabilidad de ser extraídas, pero si la población es finita, la probabilidad de que salga un elemento dependerá de los que fueron separados anteriormente para formar parte de la muestra y dejaron, por tanto, de pertenecer a los seleccionables.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo aleatorio simples (MAS)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>Ventajas</h3>
+<ul>
+<li>Sencillo y de fácil comprensión.</li>
+<li>Cálculo rápido de medias y de varianzas.</li>
+<li>Existen paquetes informáticos para analizar los datos.</li>
+<li>Ahorra recursos, obteniendo resultados parecidos que si se realizase un estudio de toda la población.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3>Desventajas</h3>
+<ul>
+<li>Requiere que se posea de antemano un listado de toda la población.</li>
+<li>Si se trabaja con muestras pequeñas, es posible que no representen a la población adecuadamente.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo aleatorio estratificado</h2>
+<ul>
+<li><p>En este, la población de <span class="math inline">\(N\)</span> unidades se dividide primero en <span class="math inline">\(h\)</span> subpoblaciones de <span class="math inline">\(N_1\)</span>,<span class="math inline">\(N_2\)</span>,<span class="math inline">\(N_3\)</span>, <span class="math inline">\(\cdots\)</span>, <span class="math inline">\(N_h\)</span> unidades respectivamente.</p></li>
+<li><p>Estas subpoblaciones no se traslapan y en su conjunto comprenden a toda la población: * <span class="math display">\[N = N_1,N_2,N_3, \cdots, N_h\]</span></p></li>
+<li><p>Las subpoblaciones se denominan estratos (<span class="math inline">\(h\)</span>). Para obtener todo el beneficio de la estratificación, los valores de los <span class="math inline">\(N_h\)</span> deben ser conocidos.</p></li>
+<li><p>Una vez determinados, se extrae una muestra de cada uno, de forma independiente.</p>
+<ul>
+<li>Si se toma una <span class="hi">muestra aleatoria simple</span> de cada estrato, el procedimiento total será un muestreo aleatorio estratificado.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo aleatorio estratificado</h2>
+<ul>
+<li>Esta es una técnica común, que se da por muchas razones, entre ellas:
+<ul>
+<li>Cuando se puede dividir la población heterogénea en grupos o estratos que son internamente homogéneos.</li>
+<li>Algunos ejemplos son: por sexo, edad, nivel educativo, etc.</li>
+</ul></li>
+<li>Si cada estrato es homogéneo, una estimación precisa de cualquier media de estrato se puede obtener a partir de una pequeña muestra en dicho estrato y posteriormente podrían combinarse estas estimaciones en una estimación precisa para toda la población.
+<ul>
+<li>En simple: Siempre que esté bien aplicado, <span class="hi">produce resultados más precisos que haciendo un MAS</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Asignación por ponderación</h2>
+<ul>
+<li><p>Una vez definido el estrato (<span class="math inline">\(h\)</span>), se puede definir la ponderación del estrato (<span class="math inline">\(W_h\)</span>), que está dada por:</p>
+<ul>
+<li><span class="math display">\[W_h = \frac{N_h}{N}\]</span></li>
+</ul></li>
+<li><p>De tal forma que, una vez que se ha determinado el tamaño de muestra (<span class="math inline">\(n\)</span>), la cantidad de muestras por estrato está dado por:</p>
+<ul>
+<li><span class="math display">\[n_h=n\cdot W_h\]</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Otras formas de asignación</h2>
+<ul>
+<li><p>La asignación también puede hacerse con base en criterios de costo.</p></li>
+<li><p>Por ejemplo:</p>
+<ul>
+<li>En una empresa hay tres turnos de trabajo, diurno, vespertino y nocturno, obtener muestras en estos turnos de trabajo tiene un costo diferente (<span class="math inline">\(c_h\)</span>), puesto que el salario de las personas trabajadoras es mayor conforme avanzan los turnos. Y puede tener variaciones diferentes (<span class="math inline">\(s_h\)</span>).</li>
+</ul></li>
+<li><p>Se puede utilizar un tipo de <span class="hi">asignación óptima</span> que minimice el costo del muestreo, sin perder representatividad.</p></li>
+<li><p><span class="math display">\[n_h = n\cdot \frac{W_h\cdot \frac{s_h}{\sqrt{c_h}}} {\sum_{h=1}^{L}W_h\cdot \frac{s_h}{\sqrt{c_h}}}\]</span></p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 02</h2>
+<ul>
+<li><p>Un distribuidor de comestibles al mayoreo en una gran ciudad debe saber si la demanda es lo bastante grande como para justificar la inclusión de un nuevo producto a sus existencias. Para tomar la decisión, planea añadir este producto a una muestra de los almacenes a los que abastece para estimar el promedio de las ventas mensuales.</p></li>
+<li><p>Él únicamente suministra a cuatro grandes cadenas de la ciudad. Así que, por conveniencia administrativa, decide usar muestreo aleatorio estratificado tomando cada cadena como un estrato.</p>
+<ul>
+<li>Hay 24 almacenes en el estrato 1, 36 en el estrato 2 y 30 en los estratos 3 y 4.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 02</h2>
+<ul>
+<li><p>El distribuidor tiene suficiente tiempo y dinero para obtener datos sobre ventas mensuales con <span class="math inline">\(n=20\)</span> almacenes. Decide aplicar la asignación proporcional.</p></li>
+<li><p>Calcule <span class="math inline">\(W_h\)</span> para cada estrato</p>
+<ul>
+<li><span class="math display">\[W_h=\frac{N_h}{N} = 0.20 | 0.30 | 0.25 | 0.25\]</span></li>
+</ul></li>
+<li><p>Calcule el tamaño de muestra (<span class="math inline">\(n_h\)</span>) para cada estrato, sabiendo ya el valor de <span class="math inline">\(n\)</span>.</p>
+<ul>
+<li><span class="math display">\[n_h=n\cdot W_h = 4 | 6 | 5 | 5\]</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 03</h2>
+<ul>
+<li>Suponga una situación ficticia en la que se va a realizar un muestreo estratificado en los tres turnos de trabajo de una empresa, cada turno puede tener una variabilidad distinta (<span class="math inline">\(s_h\)</span>) y además ya se sabe que el costo de tener personal muestreando es diferente en cada turno (<span class="math inline">\(c_h\)</span>).</li>
+<li>Se sabe que la producción en cada turno de trabajo (<span class="math inline">\(N_h\)</span>) es 1000, 2000 y 1500 unidades respectivamente y que el costo del segundo y tercer turno, respecto al primero es el doble y el triple respectivamente.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 03</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Como intuye de la fórmula, se necesita tener información previa de la población, como por ejemplo una estimación de la varianza histórica. Tome como referencia los valores de la siguiente tabla.</li>
+</ul>
+<div class="center">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Estrato <span class="math inline">\(h\)</span></th>
+<th><span class="math inline">\(N_h\)</span></th>
+<th><span class="math inline">\(S_h\)</span></th>
+<th><span class="math inline">\(c_h\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1000</td>
+<td>10</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2000</td>
+<td>20</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>1500</td>
+<td>15</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Se sabe que se requiere un tamaño de muestra (<span class="math inline">\(n\)</span>) de 60 unidades.</li>
+<li>Determine el tamaño de muestra por estrato usando asignación óptima:</li>
+</ul>
+<div class="center">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Estrato <span class="math inline">\(h\)</span></th>
+<th><span class="math inline">\(n_h\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo aleatorio sistemático</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li><p>Difiere del muestreo aleatorio simple.</p></li>
+<li><p>Suponga <span class="math inline">\(N\)</span> unidades de la población que se numeran de 1 a <span class="math inline">\(N\)</span> en cierto orden, para elegir una muestra de <span class="math inline">\(n\)</span> unidades se toma una unidad al azar entre las <span class="math inline">\(k\)</span> primeras y luego se toman las subsecuentes en intervalos de <span class="math inline">\(k\)</span>.</p></li>
+<li><p>Por ejemplo, si <span class="math inline">\(k=15\)</span> y la primera unidad que se extrae, al azar, es la número 13, entonces las subsecuentes serán las 28, la 43, 58, etc.</p>
+<ul>
+<li><span class="math display">\[k = \frac{N}{n}\]</span></li>
+</ul></li>
+<li><p>La selección de la primera unidad determina toda la muestra.</p></li>
+</ul>
+</div><div class="column img-fit" style="width:30%;">
+<p><img data-src="img/conveyor.gif"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo aleatorio sistemático</h2>
+<ul>
+<li>Es más fácil sacar una muestra y a menudo, más fácil hacerlo sin cometer errores.
+<ul>
+<li>Puede ahorrar mucho tiempo.</li>
+</ul></li>
+<li>Estratifica la población en 𝑛 estratos, lo que lo hace técnicamente más preciso que el aleatorio simple.</li>
+<li>Esto también se puede considerar como un conglomerado.
+<ul>
+<li>Tema que se aborda adelante.</li>
+</ul></li>
+<li>El éxito del muestreo sistemático con relación al muestreo aleatorio simple o aleatorio estratificado depende mucho de las propiedades de la población.</li>
+<li>En algunas poblaciones, el muestreo sistemático es extremadamente preciso y en otras resulta menos preciso que el aleatorio simple.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo aleatorio sistemático</h2>
+<ul>
+<li>Por lo que resulta difícil dar un consejo general sobre cuando el muestreo sistemático es adecuado. Sino que es necesario escoger algo sobre la estructura de la población para usarlo de manear efectiva.
+<ul>
+<li>Si hay tendencia lineal (sospechada o insospechada) este muestreo es mejor que el aleatorio simple, pero menos efectivo que el aleatorio estratificado.</li>
+<li>Si no hay tendencia lineal (poblaciones en orden aleatorio) este muestreo es en promedio equivalente al aleatorio simple (MAS).</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo aleatorio sistemático</h2>
+<div class="columns" width="100%">
+<div class="column">
+<ul>
+<li>Si hay una variación periódica (sinusoidal, por ejemplo) la efectividad de este muestreo dependerá del valor de k, donde A sería un valor desfavorable y B uno favorable.
+<ul>
+<li>Aunque una curva perfecta como la del ejemplo no es plausible, esta si es una situación común, como por ejemplo, el comportamiento del flujo de personas o tráfico.</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/periodic_variation.png" class="quarto-figure quarto-figure-center" width="800"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo aleatorio sistemático</h2>
+<ul>
+<li>Si hay <strong>poblaciones autocorrelacionadas</strong>, es decir, que cuando los elementos estén cercanos entre si (espacial o temporalmente) tienden a parecerse más entre ellos que los están mas alejados. Por ejemplo:
+<ul>
+<li>Personas que viven en la misma zona geográfica tienen ingresos económicos similares.</li>
+<li>La cantidad de helados vendidos este año se relaciona más con la del año pasado que con la de hace 10 años.</li>
+</ul></li>
+<li>En este caso, es mejor estratificar que hacer el MAS. No hay consenso entre si el muestreo sistemático es superior al estratificado.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo aleatorio sistemático</h2>
+<ul>
+<li>En general <span class="math inline">\(N\)</span> no es múltiplo de entero de <span class="math inline">\(k\)</span>, lo que produce que diferentes muestras sistemáticas de la misma población finita puedan tener tamaños de muestra diferentes.</li>
+<li>Por ejemplo, con <span class="math inline">\(N = 23\)</span> y <span class="math inline">\(k = 5\)</span>, las primeras muestras tienen <span class="math inline">\(n=5\)</span> y las últimas dos <span class="math inline">\(n=4\)</span>. Esta perturbación se considera despreciable si <span class="math inline">\(n \ge 50\)</span>.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 04</h2>
+<ul>
+<li><p>Se tienen la siguiente población correspondientes al peso (g) de los 60 productos fabricados en una empresa industrial. Se fabrican en el orden que se muestran.</p></li>
+<li><p>Se necesita una muestra de tamaño 20, determínela mediante el muestreo aleatorio sistemático.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 04</h2>
+<div class="columns">
+<div class="column" style="text-align: center; font-size: 0.65em;">
+<div class="center">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>No.</th>
+<th>Peso</th>
+<th>No.</th>
+<th>Peso</th>
+<th>No.</th>
+<th>Peso</th>
+<th>No.</th>
+<th>Peso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>251.25</td>
+<td>16</td>
+<td>287.10</td>
+<td>31</td>
+<td>306.00</td>
+<td>46</td>
+<td>322.00</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>312.50</td>
+<td>17</td>
+<td>290.00</td>
+<td>32</td>
+<td>234.25</td>
+<td>47</td>
+<td>204.00</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>504.90</td>
+<td>18</td>
+<td>362.50</td>
+<td>33</td>
+<td>420.00</td>
+<td>78</td>
+<td>225.50</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>318.60</td>
+<td>19</td>
+<td>306.90</td>
+<td>34</td>
+<td>241.25</td>
+<td>79</td>
+<td>312.00</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>321.25</td>
+<td>20</td>
+<td>338.50</td>
+<td>35</td>
+<td>292.75</td>
+<td>50</td>
+<td>218.25</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>301.90</td>
+<td>21</td>
+<td>305.00</td>
+<td>36</td>
+<td>289.00</td>
+<td>51</td>
+<td>322.00</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>320.25</td>
+<td>22</td>
+<td>272.00</td>
+<td>37</td>
+<td>331.00</td>
+<td>52</td>
+<td>278.00</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>281.75</td>
+<td>23</td>
+<td>260.00</td>
+<td>38</td>
+<td>300.00</td>
+<td>53</td>
+<td>317.80</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>298.60</td>
+<td>24</td>
+<td>437.40</td>
+<td>39</td>
+<td>310.00</td>
+<td>54</td>
+<td>361.00</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>297.60</td>
+<td>25</td>
+<td>407.00</td>
+<td>40</td>
+<td>289.00</td>
+<td>55</td>
+<td>261.25</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>354.60</td>
+<td>26</td>
+<td>304.00</td>
+<td>41</td>
+<td>304.00</td>
+<td>56</td>
+<td>400.00</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>370.00</td>
+<td>27</td>
+<td>309.00</td>
+<td>42</td>
+<td>332.00</td>
+<td>57</td>
+<td>410.25</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>325.00</td>
+<td>28</td>
+<td>288.00</td>
+<td>43</td>
+<td>369.00</td>
+<td>58</td>
+<td>450.50</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>234.25</td>
+<td>29</td>
+<td>422.00</td>
+<td>44</td>
+<td>297.00</td>
+<td>59</td>
+<td>480.00</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>208.75</td>
+<td>30</td>
+<td>312.25</td>
+<td>45</td>
+<td>361.00</td>
+<td>60</td>
+<td>490.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo por conglomerados</h2>
+<ul>
+<li>Se basa en que la unidad primaria de muestreo no es un individuo aislado, sino un grupo natural de individuos llamado conglomerado (escuelas, hospitales, cuidades, barrios, familias).
+<ul>
+<li>Por ejemplo: Se quiere encuestar estudiantes en una cuidad, en lugar de conseguir la lista de todos los estudiantes (muy difícil) se seleccionan algunas escuelas (conglomerados ) y se encuestan todos los estudiantes.</li>
+</ul></li>
+<li>Primero se seleccionan aleatoriamente los conglomerados de toda la población.</li>
+<li>Luego, se estudian:
+<ul>
+<li>Todos los elementos dentro de esos conglomerados (una etapa)</li>
+<li>Una muestra dentro de cada conglomerado (dos o más etapas)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo por conglomerados</h2>
+<div class="columns" width="50%">
+<div class="column">
+<h3>Una etapa</h3>
+<ul>
+<li>Se seleccionan aleatoriamente algunos conglomerados</li>
+<li>Se incluyen todos los elementos de esos conglomerados en una muestra</li>
+<li>Por ejemplo:
+<ul>
+<li><em>En una escuela, para el diseño de los pupitres, se seleccionan 10 aulas con MAS, y se mide la estatura de <strong>todos</strong> los estudiantes de esas aulas</em>.</li>
+</ul></li>
+</ul>
+</div><div class="column" data-with="50%">
+<h3>Bietápico</h3>
+<ul>
+<li>Se seleccionan aleatoriamente algunos conglomerados (con MAS).</li>
+<li>Dentro de cada conglomerado elegido, se selecciona una muestra, generalmente con MAS, de los elementos, no todos.</li>
+<li>Por ejemplo:
+<ul>
+<li><em>En una escuela, para el diseño de los pupitres, se seleccionan 10 aulas, y se mide la estatura de 15 de los estudiantes de esas aulas, seleccionados aleatoriamente</em>.</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo por conglomerados</h2>
+<ul>
+<li><span class="hi">Una etapa</span> suele usarse cuando el conglomerado no es muy grande (o no es caro) medir a todos los elementos.</li>
+<li><span class="hi">Dos etapas</span> (o más) es más eficiente en costo y manejo de datos en conglomerados grandes.</li>
+<li>A partir de tres etapas se conocen como muestreo <span class="hi">polietápico</span>.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Conglomerados vs Estratos</h2>
+<ul>
+<li><p>La diferencia clave entre estos dos muestreos está en como y por qué se forman los grupos y el efecto que se tiene sobre la precisión (variabilidad).</p></li>
+<li><p><span class="hi">Estratificado</span></p>
+<ul>
+<li>Los grupos se forman deliberadamente para que los elementos dentro de cada uno sean los más parecidos posible (homogéneos) y que sean diferentes entre estratos.</li>
+<li>Aumentan la precisión al reducir la varianza.</li>
+</ul></li>
+<li><p><span class="hi">Conglomerados</span></p>
+<ul>
+<li>Estas agrupaciones surgen de forma natural en la población, no son diseñadas o creadas para la investigación (barrios, escuelas, hospitales, etc)</li>
+<li>Con estos se reducen costos, aumenta la eficiencia logística, pero no necesariamente aumentan la precisión.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Conglomerados vs Estratos</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><p><span class="hi">Estratos</span>:</p>
+<ul>
+<li>En un estudio de ingresos, se decide estratificar por nivel educativo, ya que son variables relacionadas.</li>
+<li>En este caso, se espera que intra-nivel educativo haya un comportamiento homogéneo.</li>
+</ul></li>
+<li><p><span class="hi">Conglomerados</span>:</p>
+<ul>
+<li>En una encuesta de opinión, se decide entrevistar cada barrio que ha sido seleccionado aleatoriamente en un cantón particular del país.</li>
+<li>En este ejemplo, los subgrupos ya están formados naturalmente y no existe garantía de que sean homogéneos (diferentes niveles socioeconómicos, edades, etc).</li>
+</ul></li>
+</ul>
+</div><div class="column img-fit" style="width:40%;">
+<p><img data-src="img/example.gif"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Resumen - Muestreo probabilístico</h2>
+<div class="columns">
+<div class="column" style="text-align: center; font-size: 0.8em;">
+<div class="center">
+<table class="caption-top">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 39%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Método</th>
+<th>Cómo se selecciona</th>
+<th>Cuándo usarlo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Muestreo aleatorio simple (MAS)</td>
+<td>Se seleccionan elementos al azar de toda la población, todos con igual probabilidad.</td>
+<td>Cuando se dispone de un marco muestral completo y accesible, y no existen subgrupos que requieran tratamiento especial.</td>
+</tr>
+<tr class="even">
+<td>Muestreo estratificado</td>
+<td>Se divide la población en estratos homogéneos según una variable relevante y se toma una muestra en cada estrato.</td>
+<td>Cuando existen subgrupos importantes y se desea mejorar precisión o comparar resultados entre ellos.</td>
+</tr>
+<tr class="odd">
+<td>Muestreo sistemático</td>
+<td>Se ordena la población, se elige un punto de inicio aleatorio y se selecciona cada k-ésimo elemento.</td>
+<td>Cuando se cuenta con una lista ordenada sin periodicidad relevante y se busca rapidez operativa.</td>
+</tr>
+<tr class="even">
+<td>Muestreo por conglomerados</td>
+<td>Se seleccionan al azar grupos naturales (conglomerados) y se estudian todos o algunos elementos dentro de ellos.</td>
+<td>Cuando la población está dispersa geográficamente o es más eficiente trabajar por grupos que por individuos.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section></section>
+<section>
+<section class="title-slide slide level1 center">
+<h1>Muestreo no probabilístico</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Introducción</h2>
+<div class="columns">
+<div class="column img-fit" style="width:30%;">
+<p><img data-src="img/contexto.png"></p>
+</div><div class="column" style="font-size: 0.95em;">
+<ul>
+<li><p>En una muestra no probabilística, algunos miembros de la población, comparada con otros miembros, tienen una probabilidad mayor (pero desconocida) de ser seleccionados.</p></li>
+<li><p>Hay 5 principales tipos de muestreo no probabilístico: conveniencia, intencional, cuota, bola de nieve y autoselección.</p></li>
+<li><p>La principal característica del <strong>muestreo probabilístico</strong>, que está ausente en el <strong>NO probabilístico</strong>, es la existencia del marco muestral (lista de elementos en la población, por ejemplo).</p>
+<ul>
+<li>Este tipo de muestreo es muy útil en ausencia del marco muestral.</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Introducción</h2>
+<ul>
+<li>La escogencia del método, incluyendo el muestreo probabilístico, va a <span class="hi">depender del contexto</span>:
+<ul>
+<li>La naturaleza del problema</li>
+<li>La disponibilidad de un buen marco muestral</li>
+<li>Recursos: tiempo, dinero</li>
+<li>El nivel de precisión requerido en la muestra</li>
+<li>Y los métodos de recolección de datos</li>
+</ul></li>
+<li>Como en todo, cada método tiene sus ventajas y desventajas.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ventajas y desventajas</h2>
+<ul>
+<li><span class="hi">Ventajas</span>:
+<ul>
+<li>La posibilidad de apuntar a grupos particulares de la población.</li>
+<li>Es típicamente menos costoso.</li>
+</ul></li>
+<li><span class="hi">Desventajas</span>:
+<ul>
+<li>Las conclusiones a las que se arriban deben realizar con extrema cautela, pues este muestreo no garantiza representatividad.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo no probabilístico</h2>
+<ul>
+<li>A menudo son rechazados o criticados porque no tienen los <strong>fundamentos estadísticos</strong> de los <span class="hi">métodos probabilísticos</span>.
+<ul>
+<li>No obstante, los métodos probabilísticos no son infalibles y pueden tener una tasa de éxito típicamente muy pobre.</li>
+<li>Por ejemplo, entrevista que pregunte sobre temas sensibles (salario, sexualidad, opiniones religiosas).</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestreo no probabilístico</h2>
+<ul>
+<li>En general se emplea cuando:
+<ul>
+<li>La tasa de respuesta en muestreo probabilístico es muy pobre.</li>
+<li>El muestreo probabilístico es costoso, difícil de hacer</li>
+<li>Se quiere apuntar a una población muy particular que sería difícil de ubicar de forma aleatoria.</li>
+<li>Entre otros.</li>
+</ul></li>
+<li>Es una <span class="hi">alternativa válida</span>, pero nunca superior al <span class="hi">muestreo probabilístico</span>.
+<ul>
+<li>Siempre que el probabilístico sea plausible, se preferirá sobre el no probabilístico.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>1. Muestreo por conveniencia</h2>
+<ul>
+<li>Selecciona aquellos elementos que son convenientes para la investigación.</li>
+<li>No hay un patrón definido para la adquisición de los elementos.
+<ul>
+<li>Por ejemplo, al realizar una encuesta de preferencia de consumo, para un curso de la universidad, se le envía a compañeros y amigos para que la completen, pues se sabe que ayudarán a llenarla.</li>
+<li>La principal desventaja es que el sesgo introducido puede ser muy grande. Si sus amigos son un nivel socioeconómico particularmente alto, le puede hacer pensar que muchas personas van a estar dispuestas a comprar un nuevo producto.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>2. Muestreo intencional</h2>
+<ul>
+<li>Se esfuerza para dirigir el estudio a una gama de elementos que sean, el última instancia, representativo de al menos los extremos de las variables consideradas.
+<ul>
+<li>Por ejemplo, en la misma encuesta anterior, se le envía solo a familiares y amigos que sean menos de 15 años y mayores de 45; intencionalmente. Pues ese es el rango etario que se desea estudiar.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>3. Muestreo por cuota</h2>
+<ul>
+<li>Hay muchas características en común entre muestreo intencional y muestreo por cuota. La diferencia sustancial sucede en que el primero suele hacerlo un solo investigador, mientras que el segundo, un grupo de ellos.</li>
+<li>El muestreo por cuota trata de replicar las proporciones en la población.
+<ul>
+<li>Por ejemplo: cada inspector de calidad debe muestrear una cantidad de determinada de defectos en cada línea de producción.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>4. Muestreo de bola de nieve</h2>
+<ul>
+<li>Es particularmente útil cuando se buscan elementos o respuestas de una población con características inusuales (gustos/creencias/condiciones médicas).</li>
+<li>Siempre empieza con la persona investigadora contactando 1 o 2 personas que cumplen con los criterios y estas a su vez lo ponen en contacto con más personas que cumplen también los criterios.
+<ul>
+<li>Ejemplo: percepciones éticas en la comunidad migrante taiwanesa en Costa Rica.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>5. Muestreo por autoselección</h2>
+<ul>
+<li>Tiene una probabilidad de sesgo muy alta.</li>
+<li>Es cuando las personas deciden por si mismas, participar de un estudio (pruebas de medicamentos, completar una encuesta, etc).
+<ul>
+<li>Por ejemplo, colocar un código QR en una pizarra informativa con un enlace a una encuesta.</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 center">
+<h1>Estimación del tamaño de muestra <br> Repaso para II-1123 Estadística para Ingeniería Industrial II</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Contexto</h2>
+<ul>
+<li>Al planear un muestreo, siempre se alcanza una etapa donde hay que tomar una decisión respecto al tamaño de la muestra. Esta es una decisión importante.</li>
+<li>Una muestra demasiado grande implica un despilfarro de recursos y una muy pequeña disminuye la calidad de los resultados.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Tamaño de muestra</h2>
+<ul>
+<li>Este componente no deja de ser un repaso, pues el tema de tamaño de muestra se abordó en el curso anterior.</li>
+<li>Aquí se detallan algunas diferencias o consideraciones que se deben tener según el tipo de muestreo.</li>
+<li>No olvide que el tamaño de muestra también puede obtenerse a partir de <span class="hi">potencia estadística</span>.</li>
+<li>Con estas fórmulas podemos estar seguros con un <span class="math inline">\((1-\alpha)\)</span> de confianza que el error <span class="math inline">\(|\bar{x}-\mu|\)</span> no va a exceder el valor <span class="math inline">\(e\)</span>.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Tamaño de muestra</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<h3>Para variables</h3>
+<p><span class="math display">\[n=\left(\frac{z_{\alpha/2}\cdot \sigma}{e}\right)^2\]</span></p>
+</div><div class="column" style="width:33%;">
+<h3>Para atributos</h3>
+<p><span class="math display">\[n=\left(\frac{z_{\alpha/2}}{e}\right)^2 \cdot p \cdot q\]</span></p>
+</div><div class="column" style="width:33%;">
+<h3>Factor de corrección por población finita</h3>
+<p><span class="math display">\[n=\frac{n_o}{1+\frac{n_o}{N}}\]</span></p>
+<p>La fórmula con el factor de corrección para población finita incluido es:</p>
+<p><span class="math display">\[n = \frac{z_{\alpha/2}^2 \cdot \sigma^2 \cdot N}{e^2\cdot (N-1)+z_{\alpha/2}^2\cdot \sigma^2}\]</span></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Tamaño de muestra</h2>
+<ul>
+<li><p>El cálculo de <span class="math inline">\(n\)</span> debe dar un resultado <span class="hi">ADIMENSIONAL</span>, por lo que las unidades de <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(e\)</span> deben estar en la misma dimensión.</p></li>
+<li><p>Naturalmente, en el caso de proporciones <span class="math inline">\(p\)</span> y <span class="math inline">\(e\)</span> deben estar en unidades de proporciones (porcentajes).</p></li>
+<li><p><span class="hi">¿Qué es <span class="math inline">\(e\)</span>?</span> y <span class="hi">¿cómo escojo <span class="math inline">\(\alpha\)</span></span></p>
+<ul>
+<li>Es el máximo error permitido por la persona investigadora que tiene un IMPACTO sobre el contexto en el que se enmarca el muestreo. Lo mismo con <span class="math inline">\(\alpha\)</span>, depende del contexto. Puede encontrar más detalle en esta <a href="https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf" target="_blank">infografía</a>.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Tamaño de muestra</h2>
+<ul>
+<li><span class="hi">¿De dónde saco <span class="math inline">\(\sigma\)</span>?</span>
+<ul>
+<li>Fuente secundaria: Existen datos históricos</li>
+<li>Fuente primaria: Hay que recolectarla con un premuestreo, que puede ser: observación, experimento o encuesta.</li>
+</ul></li>
+<li>Todo tamaño de muestra se debe [redondear] a un número entero. La norma indica que este redonde siempre debe ser hacia el <span class="hi">entero superior más próximo</span>.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Bibliografía</h2>
+<div class="columns">
+<div class="column" style="font-size: 1.25em;">
+<ul>
+<li>Cochran, William. Sampling Techiques (3rd Edition).
+<ul>
+<li><em>Capítulo 1, 2, 3, 5, 8, 9, 10.</em></li>
+</ul></li>
+<li>Galloway, A. (2005). Non-probability sampling. En K. Kempf-Leonard (Ed.), Encyclopedia of social measurement (pp.&nbsp;859–864). Elsevier. <a href="https://doi.org/10.1016/B0-12-369398-5/00382-0">https://doi.org/10.1016/B0-12-369398-5/00382</a></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 center">
+<h2>Fundamentos de muestreo y manejo de datos <br> II-1120 Estadística para Ingeniería Industrial I <br> II-1123 Estadística para Ingeniería Industrial II (transición)</h2>
+<h3 class="subtitle">Gracias por su atención <br> Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a></h3>
+<h3>Dudas o correcciones requeridas pueden solicitarse al correo</h3>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p><span class="footer-text">© 2026 <a href="https://stevenggoni.github.io/">Steven García Goñi</a>| <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia CC BY NC 4.0</a></span> <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-02.png" class="footer-logo"></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copiado");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copiado");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

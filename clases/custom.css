@@ -39,15 +39,22 @@
   font-size: 0.5em;
   font-weight: 500;
   opacity: 0.8;
+  z-index: 9999 !important;
+  position: fixed !important;
+  bottom: 8px !important;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
 }
 .reveal .footer a {
+  pointer-events: auto;
   color: #F1F5F5 !important;
   text-decoration: none !important;
   border-bottom: 1px solid rgba(241, 245, 245, 0.3) !important;
   transition: all 0.3s ease;
 }
 .reveal .slide-number {
-  bottom: 40px !important;
+  bottom: 15px !important;
   color: #FFFFFF !important;
   right: 25px !important;
   background-color: transparent !important;
@@ -72,6 +79,7 @@
   background: #F1F5F5 !important;
   border-radius: 18px;
   box-shadow: 0 5px 15px #B1BDD0;
+  margin-top: -30px !important;
 }
 
 /* Slide totalmente transparente para contenido libre */
@@ -79,13 +87,6 @@
   background: transparent !important;
   box-shadow: none !important;
   border: none !important;
-}
-
-/* Esconde el footer y el número de página solo en slides con clase .limpio */
-.reveal .slides section.limpio ~ .footer,
-.reveal:has(section.limpio.present) .footer,
-.reveal:has(section.limpio.present) .slide-number {
-  display: none !important;
 }
 
 /* =====================================================
@@ -104,7 +105,8 @@
   background: #F1F5F5;
   border-radius: 18px;
   padding: 25px 40px;
-  margin-bottom: 40px !important;
+  margin-top: -10 !important;
+  margin-bottom: 20px !important;
   box-shadow: 0 8px 20px #9BA1AB;
   display: block;
   color: #0F0F10;
@@ -122,6 +124,7 @@
   justify-content: center;
   box-shadow: 0 5px 15px #9BA1AB;
   box-sizing: border-box;
+  margin-top: -10px;
   height: 780px !important;
   min-height: 780px !important;
   max-height: 780px !important;
@@ -134,6 +137,7 @@
   list-style-position: outside;
   color: #0F0F10;
 }
+
 .reveal .slides section.bloques .caja-unica ul {
   background: #F1F5F5;
   border-radius: 18px;
@@ -369,4 +373,23 @@
   height: 100% !important;
   border: none;
   border-radius: 10px;
+}
+
+/* =====================================================
+   Ajuste para tablas
+   ===================================================== */
+
+.reveal table {
+  border-collapse: collapse;
+}
+
+.reveal table, 
+.reveal th, 
+.reveal td {
+  border: 2px solid #263247; 
+}
+
+.reveal th, 
+.reveal td {
+  padding: 8px 12px;
 }

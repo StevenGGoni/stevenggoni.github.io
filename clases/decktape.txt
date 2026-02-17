@@ -1,1 +1,3 @@
 decktape reveal --size="1920x1080" II-1120_01_Introducción_estadística.html II-1120_01_Introducción_estadística.pdf
+
+decktape reveal --size="1920x1080" II-1120_02_Fundamentos_muestreo.html II-1120_02_Fundamentos_muestreo.pdf

@@ -64,10 +64,18 @@ format: revealjs
 ::::: columns
 ::: {.column width="75%"}
 -   La estadística es una **herramienta esencial** para analizar datos, mejorar y automatizar diseños, procesos y sistemas.
+
 -   Además de garantizar la eficiencia y confiabilidad en proyectos y sistemas.
+
 -   Sin importar el área de especialización (manufactura, calidad, metrología, energía, ambiente, robótica y automatización, entre otros) [es necesario el conocimiento estadístico]{.hi}.
--   Estamos **inundados de datos**… las personas que son capaces de analizar esta nueva información son y serán valiosos en prácticamente cualquier campo de estudio.
-    - > [Without data, you’re just another person with an opinion]{.hi} - *W. Edwards Deming*
+
+-   
+
+    ## Estamos **inundados de datos**… las personas que son capaces de analizar esta nueva información son y serán valiosos en prácticamente cualquier campo de estudio.
+
+    ```         
+    > [Without data, you’re just another person with an opinion]{.hi} - *W. Edwards Deming*
+    ```
 :::
 
 ::: {.column .img-fit width="25%"}
@@ -80,8 +88,14 @@ format: revealjs
 ## En resumen {.bloques}
 
 -   La estadística es una **herramienta poderosa**, pero su verdadero valor se obtiene cuando se aplica de **manera adecuada y se interpreta dentro de un** [contexto específico]{.hi}.
--   Sin contexto, los datos y los análisis estadísticos carecen de significado y utilidad práctica.
-    -   > [It’s easy to lie with statistics, but it’s hard to tell the truth without them]{.hi} - *Andrejs Dunkels*
+
+-   
+
+    ## Sin contexto, los datos y los análisis estadísticos carecen de significado y utilidad práctica.
+
+    ```         
+    > [It’s easy to lie with statistics, but it’s hard to tell the truth without them]{.hi} - *Andrejs Dunkels*
+    ```
 
 ## Teoría, hipótesis y contexto {.bloques}
 
@@ -96,33 +110,32 @@ format: revealjs
 ::::: columns
 ::: {.column width="50%"}
 ### General
+
 ![](img/educacion.png){fig-align="center" width="100"}
 
 -   Mediante una encuesta, se obtiene que el 90 % de las personas con baja educación son prejuiciosos y que el 30 % de las que tienen mayor educación también lo son. Es decir, que el 70 % no tienen prejuicios.
 -   La hipótesis sería que “algo” en la educación es la causa de que la persona sea prejuiciosa o no. La determinación de ese “algo” es la teoría asociada al contexto.
-
 :::
 
 ::: {.column width="50%"}
 ### Específico
+
 ![](img/reloj.png){fig-align="center" width="100"}
 
 -   En una fábrica de ensamble de relojes, se hipotetiza que dividir una tarea compleja en partes más pequeñas y asignar cada parte a una persona o equipo especializado aumenta la productividad.
 -   Hay teorías que sostienen esta afirmación y que pueden estudiarse/comprobarse con el uso de la estadística, mediante un experimento u observación, por ejemplo.
-
-
 :::
 :::::
 
 ## ¡Importante! {.bloques}
 
-::::: columns
+:::: columns
 ::: {.column width="100%" style="text-align: center; font-size: 1.7em;"}
 Las personas ingenieras deberían usar a la estadística como un borracho usa un poste de luz eléctrica, [más para apoyo que para iluminación]{.hi}
 
 ![](img/borracho_farola.jpg){fig-align="center" width="261"}
 :::
-::::: 
+::::
 
 ## Conceptos básicos {.bloques}
 
@@ -182,13 +195,10 @@ Las personas ingenieras deberían usar a la estadística como un borracho usa un
 ### Estadística inferencial
 
 -   Métodos que se emplean para determinar una propiedad de una población con base en la información de una muestra de ella.
-
 :::
 
 ::: {.column .img-fit width="55%"}
-
 ![](img/diagrama.png){fig-align="center" width="500"}
-
 :::
 :::::
 
@@ -197,18 +207,17 @@ Las personas ingenieras deberían usar a la estadística como un borracho usa un
 ::::: columns
 ::: {.column width="20%"}
 -   Se clasifican en [cuantitativa]{.hi} y [cualitativa]{.hi}.
--   Las variables cuantitativas se pueden dividir en: 
-    - Cuantitativa discreta
-    - Cuantitativa continua
+-   Las variables cuantitativas se pueden dividir en:
+    -   Cuantitativa discreta
+    -   Cuantitativa continua
 :::
 
 ::: {.column width="60"}
-
 -   Cuando la característica que se estudia es de naturaleza no numérica recibe el nombre de variable cualitativa o atributo.
     -   Género, color de ojos, marca de celular, etc.
 -   Si la variable que se estudia aparece en forma numérica, se le denomina variable cuantitativa.
     -   Salario, edades, cantidad de hijos
--   Durante el desarrollo del curso se explayan estas definiciones. 
+-   Durante el desarrollo del curso se explayan estas definiciones.
 :::
 :::::
 
@@ -216,23 +225,18 @@ Las personas ingenieras deberían usar a la estadística como un borracho usa un
 
 ::::: columns
 ::: {.column .img-fit width="40%"}
-
 ![](img/niveles_medicion.jpg)
-
 :::
 
 ::: {.column width="60%"}
-
 -   Los datos se clasifican por niveles de medición.
     -   El nivel de medición y el tipo de variable [rige los cálculos que se llevan a cabo]{.hi} con el fin de resumir y presentar los datos.
 -   Es decir, que [no todos los tipos de datos se analizan igual]{.hi}.
-    - Esta premisa es **sumamente importante** en el desarollo de estos cursos. Pues no puede aplicar los cálculos e interpretaciones de índole estadístico indiscriminadamente.
+    -   Esta premisa es **sumamente importante** en el desarollo de estos cursos. Pues no puede aplicar los cálculos e interpretaciones de índole estadístico indiscriminadamente.
 -   Cada nivel de medición superior tiene las propiedades de los anteriores.
-    - Es decir, el nivel de medición razón, incluye las propiedades del intervalo, ordinal y nominal; y así sucesivamente. 
-
+    -   Es decir, el nivel de medición razón, incluye las propiedades del intervalo, ordinal y nominal; y así sucesivamente.
 :::
-
-::::: 
+:::::
 
 ## Niveles de medición {.bloques}
 
@@ -457,17 +461,17 @@ function checkAnswers() {
 :::
 :::::
 
-
 ## El quehacer ético en la estadística {.bloques}
 
 -   La estadística debe practicarse con [integridad y honestidad]{.hi}, “*haciendo lo correcto*” cuando se recoja, organice, resuma, analice e interprete información numérica.
-    - Este tema se abordará repetidamente a lo largo del curso. 
+
+    -   Este tema se abordará repetidamente a lo largo del curso.
 
 -   La contribución real de la estadística a la sociedad es de [naturaleza moral]{.hi}.
 
 -   Cuando se practique la estadística, es necesario mantener “*un punto de vista independiente y con principios*”.
 
--   Lo aquí recopilado son extractos de “[Statistics and Ethics: Some Advice for Young Statisticians](https://doi.org/10.1198/0003130031072){target="\"_blank”"}. [Se aconseja su lectura]{.ul} (Acceso provisto por SIBDI).
+-   Lo aquí recopilado son extractos de “[Statistics and Ethics: Some Advice for Young Statisticians](https://doi.org/10.1198/0003130031072){target="\"_blank”"}. [Se aconseja su lectura]{.underline} (Acceso provisto por SIBDI).
 
 ## Ética en el aprendizaje {.bloques}
 
@@ -505,18 +509,16 @@ function checkAnswers() {
 -   Las fuentes de datos se clasifican en fuentes [primarias]{.hi} y [secundarias]{.hi}.
     -   Cuando la persona recolectora de datos es quien los emplea para análisis, la fuente es primaria.
     -   Cuando una organización o individuo ha compilado los datos que utiliza otra organización o individuo la fuente es secundaria.
--   En su ejercicio académico y profesional, usted debe enfrentarse a fuentes de datos secundarias y a diseñar y aplicar métodos y técnicas para la recolección de datos primarios. 
+-   En su ejercicio académico y profesional, usted debe enfrentarse a fuentes de datos secundarias y a diseñar y aplicar métodos y técnicas para la recolección de datos primarios.
 -   ¿Cuales fuentes secundarias conoce en CR?
-    -   INEC, por ejemplo. 
-        - ¿Otros?
+    -   INEC, por ejemplo.
+        -   ¿Otros?
     -   Iniciativa de datos abiertos (Decreto Ejecutivo 40199-MP)
 
 ## Errores comunes al adquirir datos {.bloques}
 
-:::::: {.columns}
-
+::::: columns
 ::: {.column width="60%"}
-
 -   Falta de claridad en el objetivo de la recolección de datos
 -   Seleccionar mal la población o la muestra
     -   Incluyendo la cantidad de unidades muestreadas
@@ -525,7 +527,6 @@ function checkAnswers() {
 -   Inconsistencias en la metodología de recolección
 -   Falta de entrenamiento de quien recolecta el dato
 -   Errores de digitación
-
 :::
 
 ::: {.column .img-fit width="40%"}
@@ -535,37 +536,46 @@ function checkAnswers() {
 
 ## Algunos tipos de estudios {.bloques}
 
-- Estos son relevantes, pues del tipo de estudio dependen las conclusiones a las que se puede arribar con el ejercicio estadístico. 
+-   Estos son relevantes, pues del tipo de estudio dependen las conclusiones a las que se puede arribar con el ejercicio estadístico.
 
 -   [Transversales]{.hi}:
+
     -   Los datos se recopilan en un solo momento del tiempo
     -   Describen características en un punto específico
+
 -   [Longitudinales]{.hi}:
+
     -   Recopilan los datos de un mismo sujeto en múltiples momentos durante un periodo de tiempo
     -   Analiza cambios o tendencias a lo largo del tiempo
 
 ## ¡Crucigrama de repaso! {.bloques}
 
 ::: iframe-card
-<iframe src="https://crosswordlabs.com/embed/estadistica-151" frameborder="0"></iframe>
+<iframe src="https://crosswordlabs.com/embed/estadistica-151" frameborder="0">
+
+</iframe>
 :::
 
 ## Bibliografía {.bloques}
 
-::: {.caja-unica style="font-size: 0.8em;"}
+:::: columns
+::: {.column width="100%" style="font-size: 0.9em;"}
 -   Walpole, R.; Myers, R.; Myers, S. y Ye, K. Probabilidad y estadística para ingeniería y ciencias (9na Edición).
--   Capítulo 1
+    -   *Capítulo 1*
 -   Lind, D.; Marchal, W. y Watchen, S. Estadística aplicada a los Negocios y la Economía (15va Edición).
--   Capítulo 1
+    -   *Capítulo 1*
 -   Devore, J. Probabilidad y Estadística para Ingeniería y Ciencias (7ma Edición).
--   Capítulo 1
+    -   *Capítulo 1*
 -   Levine, D.; Krehbiel, T.; Berenson, M. Estadística para administración (4ta Edición).
--   Capítulo 1
+    -   *Capítulo 1*
 -   Vardeman, S. B., & Morris, M. D. (2003). Statistics and Ethics: Some Advice for Young Statisticians. The American Statistician, 57(1), 21–26. <https://doi.org/10.1198/0003130031072>
 -   Lock, R.; Lock, P.; Morgan, K.; Lock, E. & Lock, D. Statistics: Unloking the Power of Data (3rd Edition).
--   Capítulo 1
+    -   *Capítulo 1*
 :::
+::::
 
 ## Introducción a la estadística <br> II-1120 Estadística para Ingeniería Industrial I {.center}
 
 ### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni\@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
+
+### Dudas o correcciones requeridas pueden solicitarse al correo
