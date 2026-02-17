@@ -228,7 +228,7 @@
     "href": "clases.html#ii-1120-estadística-para-ingeniería-industrial-i",
     "title": "Material de clases",
     "section": "II-1120 Estadística para Ingeniería Industrial I",
-    "text": "II-1120 Estadística para Ingeniería Industrial I\n\nIntroducción a la estadística"
+    "text": "II-1120 Estadística para Ingeniería Industrial I\n\nIntroducción a la estadística\nFundamentos de muestreo y manejo de datos"
   },
   {
     "objectID": "infografias.html",
@@ -369,5 +369,12 @@
     "title": "Gráficos de control para atributos",
     "section": "Gráfico \\(u\\)",
     "text": "Gráfico \\(u\\)\nEmpleando los datos anteriores, se construye el gráfico de la siguiente manera.\n\nu &lt;- qcc(datos_circuito$x, \n         sizes = 100, type = \"u\", \n         title = \"Gráfico de control u\")\n\n\n\n\n\n\n\n\nEn caso de tener \\(n\\) variable (simulado a partir de los siguientes datos).\n\nn_var &lt;- sample(90:110, 26, replace = T)\n\nSe puede obtener el gráfico de esta manera\n\nu &lt;- qcc(datos_circuito$x, \n         sizes = n_var, # datos variables\n         type = \"u\", \n         title = \"Gráfico de control u (n variable)\")"
+  },
+  {
+    "objectID": "clases.html#ii-1123-estadística-para-ingeniería-industrial-ii",
+    "href": "clases.html#ii-1123-estadística-para-ingeniería-industrial-ii",
+    "title": "Material de clases",
+    "section": "II-1123 Estadística para Ingeniería Industrial II",
+    "text": "II-1123 Estadística para Ingeniería Industrial II\n\nFundamentos de muestreo y manejo de datos"
   }
 ]
