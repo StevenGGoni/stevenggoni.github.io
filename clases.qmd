@@ -16,6 +16,8 @@ Aquí encontrará las clases de los diferentes cursos del área de conocimiento 
 
 2. [Fundamentos de muestreo y manejo de datos](clases/II-1120_02_Fundamentos_muestreo.html){target="_blank"}
 
+3. [Descripción de datos (Estadística descriptiva)](clases/II-1120_03_Descripción_datos.html){target="_blank"}
+
 ## II-1123 Estadística para Ingeniería Industrial II
 
 1. [Fundamentos de muestreo y manejo de datos](clases/II-1120_02_Fundamentos_muestreo.html){target="_blank"}

@@ -62,20 +62,17 @@ format: revealjs
 ## En ingeniería... {.bloques}
 
 ::::: columns
-::: {.column width="75%"}
+::: {.column width="75%" style="font-size: 0.9em;"}
 -   La estadística es una **herramienta esencial** para analizar datos, mejorar y automatizar diseños, procesos y sistemas.
 
 -   Además de garantizar la eficiencia y confiabilidad en proyectos y sistemas.
 
 -   Sin importar el área de especialización (manufactura, calidad, metrología, energía, ambiente, robótica y automatización, entre otros) [es necesario el conocimiento estadístico]{.hi}.
 
--   
-
-    ## Estamos **inundados de datos**… las personas que son capaces de analizar esta nueva información son y serán valiosos en prácticamente cualquier campo de estudio.
-
-    ```         
+-   Estamos **inundados de datos**… las personas que son capaces de analizar esta nueva información son y serán valiosos en prácticamente cualquier campo de estudio.
+  
     > [Without data, you’re just another person with an opinion]{.hi} - *W. Edwards Deming*
-    ```
+
 :::
 
 ::: {.column .img-fit width="25%"}
@@ -88,14 +85,9 @@ format: revealjs
 ## En resumen {.bloques}
 
 -   La estadística es una **herramienta poderosa**, pero su verdadero valor se obtiene cuando se aplica de **manera adecuada y se interpreta dentro de un** [contexto específico]{.hi}.
-
--   
-
-    ## Sin contexto, los datos y los análisis estadísticos carecen de significado y utilidad práctica.
-
-    ```         
+-   Sin contexto, los datos y los análisis estadísticos carecen de significado y utilidad práctica.
+       
     > [It’s easy to lie with statistics, but it’s hard to tell the truth without them]{.hi} - *Andrejs Dunkels*
-    ```
 
 ## Teoría, hipótesis y contexto {.bloques}
 
