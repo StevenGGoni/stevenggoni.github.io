@@ -187,7 +187,7 @@ plotly::plot_ly(sabor_ord,
 ![](img/encuesta.png){width="250"}
 :::
 
-::: {.column width="50%" style="font-size: 0.87em;"}
+::: {.column width="50%" style="font-size: 0.86em;"}
 ```{r}
 
 motivo_visita <- data.frame(Motivo = c("Vacaciones",
@@ -589,27 +589,22 @@ La gran mayoría de estudios responden al salario promedio. Inlcusive, muchos de
 
 ## El problema del promedio vs la mediana {.bloques}
 
-:::::: {.columns}
+::::: columns
 ::: {.column width="60%" style="font-size: 1.1em;"}
 -   Por esto es importante, en algunos conjuntos de datos, estimar la mediana en lugar de la media.
     -   OJO: esto no es una "receta", cada contexto se analiza en consecuencia.
 -   Entonces, [¿El salario promedio es adecuado?]{.hi}
-
 :::
 
 ::: {.column .img-fit width="40%"}
-
 {{< video img/salario_promedio.mp4 height="710">}}
-
 :::
-
-::::::
+:::::
 
 ## 2. Mediana - Fórmulas {.bloques}
 
-:::::: {.columns}
+::::: columns
 ::: {.column width="50%"}
-
 ### Poblacional
 
 Es literalmente el valor medio de un conjunto de [datos ordenados]{.hi} de menor a mayor.
@@ -624,23 +619,18 @@ $$
 :::
 
 ::: {.column width="50%"}
-
 ### Muestral
 
 $$
 \tilde{x} = \begin{cases} x_{\frac{n+1}{2}} & \text{si n es impar} \\ \frac{1}{2} \cdot (x_{\frac{n}{2}}+x_{\frac{n}{2}+1}) & \text{si n es par} \end{cases}
 $$
-
 :::
-
-::::::
+:::::
 
 ## Ejemplo {.bloques}
 
-:::::: {.columns}
-
+::::: columns
 ::: {.column width="65%"}
-
 Por ejemplo, en estos valores ordenados:
 
 ```{r}
@@ -655,187 +645,158 @@ valores %>%
 
 ```
 
-La mediana es: 
+La mediana es:
 
 $$\tilde{x}=\frac{1}{2} \cdot (x_{\frac{10}{2}}+x_{\frac{10}{2}+1}) \\ \tilde{x} =\frac{1}{2}\cdot (39 + 40) \\ \tilde{x} =39.5$$
-
-
 :::
 
 ::: {.column .img-fit width="35%"}
-
 ![](img\example.gif)
-
 :::
-
-::::::
+:::::
 
 ## 3. Moda {.bloques}
 
-* Es el valor del conjunto de datos que aparece con mayor frecuencia. Al igual que con la mediana y a diferencia de la media, los valores extremos no afectan a la moda.
-* La moda [solo se usa con propósitos descriptivos]{.hi} (es decir, no para hacer inferencias), ya que varía más entre muestras que la media o la mediana. 
-* En simple, es el valor que más repite en una distribución de datos. Como tal no tiene fórmula, pues se trata de un simple conteo.
-  * >Es posible que haya conjuntos de datos sin moda o con varias modas.
-  
+-   Es el valor del conjunto de datos que aparece con mayor frecuencia. Al igual que con la mediana y a diferencia de la media, los valores extremos no afectan a la moda.
+
+-   La moda [solo se usa con propósitos descriptivos]{.hi} (es decir, no para hacer inferencias), ya que varía más entre muestras que la media o la mediana.
+
+-   En simple, es el valor que más repite en una distribución de datos. Como tal no tiene fórmula, pues se trata de un simple conteo.
+  * > Es posible que haya conjuntos de datos sin moda o con varias modas.
+
 ## 4. Cuantiles {.bloques}
 
-* Dividen el conjunto de datos en partes iguales. El procedimiento manual siempre inicia con ordenar los datos de menor a mayor (*en este sentido se sigue la misma lógica de cálculo que en la mediana, pues esta es un caso de los cuantiles*). Y tomar decisiones si la cantidad de datos es par o impar. 
-  * **Percentil** (P): divide a los datos en 100 partes iguales
-  * **Quintil**: divide a los datos en 5 partes iguales
-  * **Cuartil** (Q): divide a los datos en 4 partes iguales
-  * **Mediana**: divide a los datos en 2 partes iguales
-El $P_50$ es igual al $Q_2$ que es igual a la mediana ($\tilde{x}$).
+-   Dividen el conjunto de datos en partes iguales. El procedimiento manual siempre inicia con ordenar los datos de menor a mayor (*en este sentido se sigue la misma lógica de cálculo que en la mediana, pues esta es un caso de los cuantiles*). Y tomar decisiones si la cantidad de datos es par o impar.
+    -   **Percentil** (P): divide a los datos en 100 partes iguales
+    -   **Quintil**: divide a los datos en 5 partes iguales
+    -   **Cuartil** (Q): divide a los datos en 4 partes iguales
+    -   **Mediana**: divide a los datos en 2 partes iguales El $P_50$ es igual al $Q_2$ que es igual a la mediana ($\tilde{x}$).
 
 ## ¿Cómo se interpretan? {.bloques}
 
-:::::: {.columns}
-
+::::: columns
 ::: {.column width="60%" style="font-size: 1.2em;"}
-
-* Por ejemplo, para el siguiente conjunto de datos el $Q_1$ es 35
-  * 29, 31, 35, 39, 40, 43, 44, 44, 52
-    * En Excel usamos `QUARTILE.INC` en lugar de `QUARTILE.EXC`, si se usa `QUARTILE.EXC` el resultado sería 33 y no 35. La función `QUARTILE.EXC` excluye valores extremos del conjunto de datos. 
-
-* [Interpretación]{.hi}: 
-  * El 25 % de los datos se encuentran por debajo de 35.
-
-* Calcule e interprete otros cuantiles. 
-
+-   Por ejemplo, para el siguiente conjunto de datos el $Q_1$ es 35
+    -   29, 31, 35, 39, 40, 43, 44, 44, 52
+        -   En Excel usamos `QUARTILE.INC` en lugar de `QUARTILE.EXC`, si se usa `QUARTILE.EXC` el resultado sería 33 y no 35. La función `QUARTILE.EXC` excluye valores extremos del conjunto de datos.
+-   [Interpretación]{.hi}:
+    -   El 25 % de los datos se encuentran por debajo de 35.
+-   Calcule e interprete otros cuantiles.
 :::
 
 ::: {.column width="40%"}
-
 ### Algunas equivalencias
 
-* $P_{25}=Q_1$
-* $P_{50}=Q_2=\tilde{x}$
-* $P_{75}=Q_3$
-* $P_{20}=Quintil_1$
-* $P_{40}=Quintil_2$
-* $P_{60}=Quintil_3$
-* $P_{80}=Quintil_4$
-
+-   $P_{25}=Q_1$
+-   $P_{50}=Q_2=\tilde{x}$
+-   $P_{75}=Q_3$
+-   $P_{20}=Quintil_1$
+-   $P_{40}=Quintil_2$
+-   $P_{60}=Quintil_3$
+-   $P_{80}=Quintil_4$
 :::
+:::::
 
-::::::
+## Médidas de dispersión o variabilidad {.bloques style="font-size: 1.1em;"}
 
-## Médidas de dispersión o variabilidad {.bloques style="font-size: 1.5em;"}
+-   La variabilidad de una muestra desempeña un papel importante en el análisis de datos. La [variabilidad de procesos y productos es un hecho real en los sistemas científicos y de ingeniería]{.hi}: el control o la reducción de la variabilidad de un proceso a menudo es una fuente de mayores dificultades.
 
-* La variabilidad de una muestra desempeña un papel importante en el análisis de datos. La [variabilidad de procesos y productos es un hecho real en los sistemas científicos y de ingeniería]{.hi}: el control o la reducción de la variabilidad de un proceso a menudo es una fuente de mayores dificultades. 
+-   Las medidas de tendencia central o posición [siempre]{.hi} deben acompañarse de medidas de [variablidad]{.hi}.
 
-* Las medidas de tendencia central o posición [siempre]{.hi} deben acompañarse de medidas de [variablidad]{.hi}.
+## Rangos {.bloques}
 
-## Rangos
-
-:::::: {.columns}
-
+::::: columns
 ::: {.column width="50%"}
-
 ### 1. Rango
 
-* Son las medidas de variabilidad más simples. 
+-   Son las medidas de variabilidad más simples.
 
-* El defecto o desventaja de los rangos es que depende únicamente de dos valores, y por ende es [sensible]{.hi} a si estos son extremos en comparación al resto del conjunto de datos. 
+-   El defecto o desventaja de los rangos es que depende únicamente de dos valores, y por ende es [sensible]{.hi} a si estos son extremos en comparación al resto del conjunto de datos.
 
-* Se refiere a la diferencia entre el valor máximo y el mínimo. 
+-   Se refiere a la diferencia entre el valor máximo y el mínimo.
 
 $$
 R=Máx-Min
 $$
-
 :::
 
 ::: {.column width="50%"}
-
 ### 2. Rango Intercuartil (RIC o *IQR*)
 
-* Esta reduce el riesgo de la anterior, pues es una medida de dispersión del 50 % central de los datos.
+-   Esta reduce el riesgo de la anterior, pues es una medida de dispersión del 50 % central de los datos.
 
 $$
 IQR = Q_3-Q_1 \\ IQR = P_{75}-P_{25}
 $$
-
 :::
-
-::::::
-
-## 3. Varianza y desviación estándar {.bloques}
-
-* Es una medida que indica la [desviación]{.hi} que tienen los datos alrededor de la **media** (mucha atención a la fórmula).
-  * Una varianza (desviación) "alta" indica que los datos se encuentran muy dispersos, por el contrario una baja indicaría que los datos se encuentran poco dispersos alrededor de la media. 
-* Lo correcto es siempre analizar las medidas de posición, acompañadas de medidas de variabilidad. 
-  * ¿Por qué? Discuta con la persona docente y otras personas estudiantes.
-* Se suele usar la desviación estándar en lugar de la varianza, porque la segunda tiene una interpretación "más complicada".
-
+:::::
 
 ## 3. Varianza y desviación estándar {.bloques}
 
-:::::: {.columns}
+-   Es una medida que indica la [desviación]{.hi} que tienen los datos alrededor de la **media** (mucha atención a la fórmula).
+    -   Una varianza (desviación) "alta" indica que los datos se encuentran muy dispersos, por el contrario una baja indicaría que los datos se encuentran poco dispersos alrededor de la media.
+-   Lo correcto es siempre analizar las medidas de posición, acompañadas de medidas de variabilidad.
+    -   ¿Por qué? Discuta con la persona docente y otras personas estudiantes.
+-   Se suele usar la desviación estándar en lugar de la varianza, porque la segunda tiene una interpretación "más complicada".
 
+## 3. Varianza y desviación estándar {.bloques}
+
+::::: columns
 ::: {.column width="50%"}
-
 ### Poblacional
 
-* Varianza
+-   Varianza
 
 $$
 \sigma^2=\frac{\sum_{i=1}^{N}(\bar{x}-\mu)^2}{N}
 $$
 
-* Desviación estándar
+-   Desviación estándar
 
 $$
 \sigma=\sqrt{\frac{\sum_{i=1}^{N}(\bar{x}-\mu)^2}{N}}
 $$
-
 :::
 
 ::: {.column width="50%"}
-
 ### Muestral
 
-* Varianza
+-   Varianza
 
 $$
 s^2=\frac{\sum_{i=1}^{N}(\bar{x}-\mu)^2}{n-1}
 $$
 
-* Desviación estándar
+-   Desviación estándar
 
 $$
 s=\sqrt{\frac{\sum_{i=1}^{N}(\bar{x}-\mu)^2}{n-1}}
 $$
-
 :::
-
-::::::
+:::::
 
 ## ¿Por qué n-1? {.bloques}
 
-* Se llama la corrección de Bessel
-* Justificación por intuición: 
-  * Para comprender completamente esto, hay que avanzar un poco más en el curso. 
-  * Básicamente 𝑛−1 provee una estimación insesgada del estimador de la varianza poblacional. 
-  * El $n-1$ implica que un grado de libertad se pierde (en realidad se usa) para estimar la media muestral $\bar{x}$. 
+-   Se llama la corrección de Bessel
 
-* Los grados de libertad (tema que se detalla en otras sesiones) son las piezas de información que se utilizan para calcular un estimador, en este caso 1 grado de libertad se usó para calcular la media ($\bar{x}$), por lo que solo quedarían $n-1$ para la varianza.
+-   Justificación por intuición:
 
-* La justificación por demostración está disponible en este [sitio web](https://stevenggoni.github.io/interactivos/demostracion_n-1.html){target="_blank"} como material **complementario** y **opcional**.
+    -   Básicamente 𝑛−1 provee una estimación insesgada del estimador de la varianza poblacional. El $n-1$ implica que un grado de libertad se pierde (en realidad se usa) para estimar la media muestral $\bar{x}$.
+
+-   Los grados de libertad (tema que se detalla en otras sesiones) son las piezas de información que se utilizan para calcular un estimador, en este caso 1 grado de libertad se usó para calcular la media ($\bar{x}$), por lo que solo quedarían $n-1$ para la varianza.
+
+-   La justificación por demostración está disponible en este [sitio web](https://stevenggoni.github.io/interactivos/demostracion_n-1.html){target="_blank"} como material **complementario** y **opcional**.
 
 ## 4. Coeficiente de variación (CV) {.bloques}
 
-:::::: {.columns}
-
+::::: columns
 ::: {.column width="50%"}
-
-* Es una medida de dispersión relativa de un determinado conjunto de datos.
-  * ¿Relativo a quién? A la [media]{.hi}.
-  * Observemos la fórmula. 
-
+-   Es una medida de dispersión relativa de un determinado conjunto de datos.
+    -   ¿Relativo a quién? A la [media]{.hi}.
+    -   Observemos la fórmula.
 :::
 
 ::: {.column width="50%"}
-
 ### Poblacional
 
 $$
@@ -847,232 +808,472 @@ $$
 $$
 \widehat{CV} = \frac{s}{\bar{x}}
 $$
-
 :::
-
-::::::
+:::::
 
 ## 4. Coeficiente de variación (CV) {.bloques}
 
-* ¿Cuándo deberíamos usar el CV y no la desviación estándar o la varianza?
-* Note de la fórmula que el CV es [adimensional]{.hi}, eso nos permite comparar la variabilidad de variables con [diferentes unidades]{.hi}. 
-* Su interpretación se puede expresar como porcentaje.
-* Por ejemplo: 
-  * ¿Qué es más variable, el peso o la edad de una persona?
+-   ¿Cuándo deberíamos usar el CV y no la desviación estándar o la varianza?
+-   Note de la fórmula que el CV es [adimensional]{.hi}, eso nos permite comparar la variabilidad de variables con [diferentes unidades]{.hi}.
+-   Su interpretación se puede expresar como porcentaje.
+-   Por ejemplo:
+    -   ¿Qué es más variable, el peso o la edad de una persona?
 
 ## Resumen {.bloques}
 
-* En términos generales [es siempre conveniente presentar las medidas de posición acompañadas de medidas de dispersión]{.hi}.
-* Pues complementan la información dada por las medidas de tendencia central (posición).   * Hace posible la comparación entre diferentes grupos.
-  * Sirven como control para evitar conclusiones erróneas en la comparación de datos. 
-* ¿Cuál medida de dispersión es la más adecuada para las respectivas medidas de posición?
-* Para la [media]{.hi} se suele usar la [desviación estándar]{.hi}, mientras que para la [mediana]{.hi} se sugiere usar alguna de las medidas de rango, preferiblemente el [IQR]{.hi}.
+-   En términos generales [es siempre conveniente presentar las medidas de posición acompañadas de medidas de dispersión]{.hi}.
+-   Pues complementan la información dada por las medidas de tendencia central (posición). \* Hace posible la comparación entre diferentes grupos.
+    -   Sirven como control para evitar conclusiones erróneas en la comparación de datos.
+-   ¿Cuál medida de dispersión es la más adecuada para las respectivas medidas de posición?
+-   Para la [media]{.hi} se suele usar la [desviación estándar]{.hi}, mientras que para la [mediana]{.hi} se sugiere usar alguna de las medidas de rango, preferiblemente el [IQR]{.hi}.
 
 ## Médidas de dispersión o variabilidad {.bloques style="font-size: 1.2em;"}
 
-* Describen la forma de una distribución de datos. Permiten identificar si una distribución es simétrica o asimétrica, o qué tan agrupados están los datos.
+-   Describen la forma de una distribución de datos. Permiten identificar si una distribución es simétrica o asimétrica, o qué tan agrupados están los datos.
 
-* Son, probablemente, las medidas que típicamente se interpretan mal.
+-   Son, probablemente, las medidas que típicamente se interpretan mal.
 
 ## 1. Asimetría {.bloques}
 
-:::::: {.columns}
-
+::::: columns
 ::: {.column width="50%"}
+-   Mide el grado de deformación horizontal en un conjunto de datos.
 
-* Mide el grado de deformación horizontal en un conjunto de datos. 
+-   Hay muchos coeficientes de asimetría, todos se interpretan igual, pero se calculan de formas diversas.
 
-* Hay muchos coeficientes de asimetría, todos se interpretan igual, pero se calculan de formas diversas. 
-
-* Para efectos de este curso vamos a usar el coeficiente de asimetría que se encuentra disponible en Excel. 
-
-::: 
-
-::: {.column width="50%"}
-
-* $Sk= \frac{n}{(n-1)(n-2)}\left[\sum_{i=1}^{n}\left(\frac{x_i-\bar{x}}{s}\right)^3\right]$
-  * $Sk<0$: asimetría postiva
-  * $Sk=0$: distribución simétrica
-  * $Sk>0$: asimetría positiva 
-  
-![](img/asimetria.png){width="350"}
-
+-   Para efectos de este curso vamos a usar el coeficiente de asimetría que se encuentra disponible en Excel.
 :::
 
-::::::
+::: {.column width="50%"}
+-   $Sk= \frac{n}{(n-1)(n-2)}\left[\sum_{i=1}^{n}\left(\frac{x_i-\bar{x}}{s}\right)^3\right]$
+    -   $Sk<0$: asimetría postiva
+    -   $Sk=0$: distribución simétrica
+    -   $Sk>0$: asimetría positiva
+
+![](img/asimetria.png){width="350"}
+:::
+:::::
 
 ## 1. Asimetría {.bloques}
 
-* Si la distribución de los datos es simétrica, la media, la mediana y la moda son coincidentes (iguales o muy similares).
+-   Si la distribución de los datos es simétrica, la media, la mediana y la moda son coincidentes (iguales o muy similares).
 
-* Esta medida es importante ya que dos conjuntos de datos pueden tener la misma media y desviación estándar pero un diferente grado de asimetría.
+-   Esta medida es importante ya que dos conjuntos de datos pueden tener la misma media y desviación estándar pero un diferente grado de asimetría.
 
-* Es común que en libros de texto en **español** y otras personas docentes utilicen el término [sesgo]{.hi} como sinónimo de asimetría. De la clase anterior, sabemos que esto no es así. 
-   * **Sesgo**: Cuando el método de recopilación de datos hace que los datos de la muestra reflejen incorrectamente la población.
+-   Es común que en libros de texto en **español** y otras personas docentes utilicen el término [sesgo]{.hi} como sinónimo de asimetría. De la clase anterior, sabemos que esto no es así.
 
+    -   **Sesgo**: Cuando el método de recopilación de datos hace que los datos de la muestra reflejen incorrectamente la población.
 
 ## 1. Asimetría {.bloques}
 
-:::::: {.columns}
-
+:::::: columns
 ::: {.column width="40%"}
-
-* Una distribución puede ser asimétrica y no presentar ningún tipo de sesgo. O viceversa.
-* Los términos [NO SON intercambiables]{.hi}. Use la terminología correcta.
+-   Una distribución puede ser asimétrica y no presentar ningún tipo de sesgo. O viceversa.
+-   Los términos [NO SON intercambiables]{.hi}. Use la terminología correcta.
 
 ### ¿De dónde proviene esto?
 
-* Básicamente, de un “error de traducción”. Para sesgo el término en inglés es bias, mientras que para asimetría es skewness. 
-
-
+-   Básicamente, de un “error de traducción”. Para sesgo el término en inglés es bias, mientras que para asimetría es skewness.
 :::
 
 ::: {.column .img-fit width="30%"}
-
 ![](img/cero_sesgo.png)
-
 :::
 
 ::: {.column .img-fit width="30%"}
-
 ![](img/zero_skewness.png)
-
 :::
-
 ::::::
 
 ## 2. Curtósis {.bloques}
 
-* Se define técnicamente como el cuarto momento estandarizado esperado de una variable aleatoria
+-   Se define técnicamente como el cuarto momento estandarizado esperado de una variable aleatoria
 
-* Mide la concentración relativa de los valores en el centro de la distribución al compararlos con las colas y se basa en las diferencias respecto a la media elevadas a la cuarta potencia. 
+-   Mide la concentración relativa de los valores en el centro de la distribución al compararlos con las colas y se basa en las diferencias respecto a la media elevadas a la cuarta potencia.
 
-* La interpretación de la curtosis es en términos de la extremidad de las colas; es decir, mide la propensión de una distribución a producir valores atípicos (*outliers*), y no la "puntiagudez" (*peakedness*) o forma del pico central.
+-   La interpretación de la curtosis es en términos de la extremidad de las colas; es decir, mide la propensión de una distribución a producir valores atípicos (*outliers*), y no la "puntiagudez" (*peakedness*) o forma del pico central.
 
-* A veces se confunde con cuan escarpada, achatada, etc, se encuentra una distribución de datos. 
+-   A veces se confunde con cuan escarpada, achatada, etc, se encuentra una distribución de datos.
 
-## 2. Curtósis {.bloques} 
+## 2. Curtósis {.bloques}
 
-:::::: {.columns}
-
+::::: columns
 ::: {.column width="60%"}
+-   Usamos la misma fórmula que MS Excel:
 
-* Usamos la misma fórmula que MS Excel: 
-  * Esta fórmula mide el [exceso de curtosis]{.ul}, es decir, que tan distinta es de una distribución normal (tema que se aborda adelante en el curso).
-  
-* $ku=\left[ \left(\frac{n(n+1)}{(n-1)(n-2)(n-3)}\sum_{i=1}^{n} \left(\frac{x_i-\bar{x}}{s}\right)^4 \right) \right] - \frac{3(n-1)}{(n-2)(n-3)}$
+    -   Esta fórmula mide el [exceso de curtosis]{.underline}, es decir, que tan distinta es de una distribución normal (tema que se aborda adelante en el curso).
 
-  * $ku<0$ platicúrtica: 
-    * Donde la curtosis es menor que la de la distribución normal 
-  * $ku=0$ mesocúrtica:
-    * Donde la curtosis es igual a la de la distribución normal 
-  * $ku>0$ leptocúrtica:
-    * Donde la curtosis es mayor que la de la distribución normal 
+-   $ku=\left[ \left(\frac{n(n+1)}{(n-1)(n-2)(n-3)}\sum_{i=1}^{n} \left(\frac{x_i-\bar{x}}{s}\right)^4 \right) \right] - \frac{3(n-1)}{(n-2)(n-3)}$
 
+    -   $ku<0$ platicúrtica:
+        -   Donde la curtosis es menor que la de la distribución normal
+    -   $ku=0$ mesocúrtica:
+        -   Donde la curtosis es igual a la de la distribución normal
+    -   $ku>0$ leptocúrtica:
+        -   Donde la curtosis es mayor que la de la distribución normal
 :::
 
 ::: {.column .img-fit width="30%"}
-
 ![](img\curtosis.png)
-
 :::
-
-::::::
-
-## Presentación y visualización de datos {.bloques}
-
-* Recordemos que entre las funciones de la estadística descriptiva se encuentra el resumir datos. 
-* El objetivo fundamental de agrupar los datos es que el análisis de los mismos pueda ser más sencillo, de manera que se pueda hacer una primera aproximación a los resultados de forma rápida.
-* La agrupación sirve para poder elaborar, a partir de la información recopilada, herramientas visuales como un histograma, un gráfico de barras o un gráfico circular.
+:::::
 
 ## Presentación y visualización de datos {.bloques}
 
-:::::: {.columns}
+-   Recordemos que entre las funciones de la estadística descriptiva se encuentra el resumir datos.
+-   El objetivo fundamental de agrupar los datos es que el análisis de los mismos pueda ser más sencillo, de manera que se pueda hacer una primera aproximación a los resultados de forma rápida.
+-   La agrupación sirve para poder elaborar, a partir de la información recopilada, herramientas visuales como un histograma, un gráfico de barras o un gráfico circular.
 
+## Presentación y visualización de datos {.bloques}
+
+::::: columns
 ::: {.column width="50%"}
-
 ### Datos agrupados
 
-* Son aquellos que luego de ser recopilados se dividen y agrupan por categorías o intervalos.
-* ¿Cómo se agrupan los datos? Para una sola variable se pueden usar tablas de frecuencia. 
-
+-   Son aquellos que luego de ser recopilados se dividen y agrupan por categorías o intervalos.
+-   ¿Cómo se agrupan los datos? Para una sola variable se pueden usar tablas de frecuencia.
 :::
 
-::: {.column width="50%"}
-
+::: {.column width="50%" style="font-size: 0.83em;"}
 ### Tablas de frecuencia
 
-* No existe una “regla” establecida para construir tablas de frecuencia. Pero debe asegurarse que los intervalos establecidos cubran todo el conjunto de datos. 
+No existe una “regla” establecida para construir tablas de frecuencia. Pero debe asegurarse que los intervalos establecidos cubran todo el conjunto de datos.
 
-1. Determinar la cantidad de datos ($n$)
-2. Escoger la regla de agrupación
-3. Obtener la medida de variabilidad asociada a la regla de agrupación ($R$, $IQR$, $s$)
-4. Definir la cantidad de clases empleando la regla de agrupación. 
-
+1.  Determinar la cantidad de datos ($n$)
+2.  Escoger la regla de agrupación
+3.  Obtener la medida de variabilidad asociada a la regla de agrupación ($R$, $IQR$, $s$)
+4.  Definir la cantidad de clases empleando la regla de agrupación.
 :::
-
-::::::
+:::::
 
 ## Tablas de frecuencia {.bloques}
 
-:::::: {.columns}
-
+::::: columns
 ::: {.column width="50%" style="font-size: 0.83em;"}
-
 ### Reglas de agrupación
 
-* Sturges ($n<200$)
+-   Sturges ($n<200$)
 
 $$
 k=1+log_2(n)
 $$
 
-* Scott ($n>200$)
+-   Scott ($n>200$)
 
 $$
 A_S=h=\frac{7\cdot s}{2\cdot \sqrt[3]{n}
 }
 $$
 
-* Freedman-Diaconis
+-   Freedman-Diaconis
 
 $$
 A_{FD}=h=\frac{2\cdot IQR}{\sqrt[3]{n}}
 $$
-
 :::
 
 ::: {.column width="50%"}
-
 Si se definió $k$, calcule $h$, por el contrario, si definió $h$, calcule $k$.
 
 $$
 k= \frac{Rango}{h} \\k=\frac{max-min}{h}
 $$
-
 :::
-
-::::::
+:::::
 
 ## Convencionalismo de redondeo para $k$ {.bloques}
 
-* $k$ es la cantidad de clases y como tal es siempre un número entero positivo.
-* Si el entero del resultado previo al redondeo es "*par*" se redondea a la alta y si el entero es "*impar*" se redondea a la baja, resultando siempre un número impar de clases.
-  * 6.26 redondea a 7.0
-  * 7.02 redondea a 7.0
-* Las comillas en “regla” son importantes, pues esta no es inamovible. Es un convencionalismo. 
+-   $k$ es la cantidad de clases y como tal es siempre un número entero positivo.
+-   Si el entero del resultado previo al redondeo es "*par*" se redondea a la alta y si el entero es "*impar*" se redondea a la baja, resultando siempre un número impar de clases.
+    -   6.26 redondea a 7.0
+    -   7.02 redondea a 7.0
+-   Las comillas en “regla” son importantes, pues esta no es inamovible. Es un convencionalismo.
+
+## Ejemplo {.bloques}
+
+::::: columns
+::: {.column width="50%"}
+Tomemos el siguiente conjunto de datos, que por conveniencia ya viene ordenado.
+
+Usemos la regla de Sturges y calculemos $k$
+
+$$
+k=1+log_2(12)=4.58=5
+$$ Entonces:
+
+$$
+h=\frac{77.2-73.8}{5}=0.68
+$$
+:::
+
+::: {.column width="50%" style="font-size: 0.8em;"}
+```{r}
+
+histograma <- data.frame(Datos = c(73.8, 74.2, 75.1, 75.3, 75.5, 
+                                   75.7, 76.5, 76.9, 77.1, 77.2, 77.2, 77.2))
+
+histograma %>% 
+  knitr::kable(format = "html") %>%
+  kableExtra::kable_styling()
+
+```
+:::
+:::::
+
+## ¿Cómo se construye una tabla de frecuencias? {.bloques}
+
+:::: columns
+::: {.column width="100%"}
+| Clases | LI | LS | $f_a$ | $f_r$ | $F_a$ | $F_r$ |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| 1 | $[Min$ | $LI_1 + h[$ | Conteo | $\frac{f_{a1}}{n}$ | $f_{a1}$ | $\frac{F_{a1}}{n}$ |
+| 2 | $[LS_1$ | $LI_2 + h[$ | … | $\frac{f_{a2}}{n}$ | $f_{a1}+f_{a2}$ | … |
+| 3 | $[LS_2$ | $LI_3 + h[$ | … | … | … | … |
+| 4 | \[…\] | …\[ | … | … | … | … |
+| 5 | \[…\] | $Max]$ | … | … | $f_{a1}+f_{a2}+…+f_{a5}=n$ | $\frac{F_{a5}}{n}=1$ |
+:::
+::::
+
+## Ejemplo {.bloques}
+
+:::: columns
+::: {.column width="100%"}
+```{r}
+
+histograma %>%
+  dplyr::mutate(Clase = cut(Datos, 
+                            breaks = seq(min(Datos), max(Datos) + 1e-8, by=0.68), 
+                            include.lowest = TRUE)) %>%
+  dplyr::count(Clase) %>%
+  dplyr::mutate(fr = n / sum(n),
+                Fa = cumsum(n),
+                Fr = cumsum(fr)) %>% 
+  dplyr::mutate(across(3:5, ~round(.x, 3))) %>% 
+  knitr::kable(format = "html") %>%
+  kableExtra::kable_styling()
+  
+
+```
+:::
+::::
+
+## Histogramas {.bloques}
+
+::::: columns
+::: {.column width="70%"}
+Los histogramas ayudan a dar una estimación de [dónde se concentran los valores, cuáles son los extremos y si hay vacíos o valores inusuales]{.hi}.
+
+También son útiles para dar una visión aproximada de la distribución de probabilidad.
+
+Cada barra en un histograma representa la frecuencia tabulada en cada intervalo/bin. El área total del histograma es igual al número de datos.
+:::
+
+::: {.column .img-fit width="30%"}
+![](img/histograma.svg)
+:::
+:::::
+
+## Ejemplo - Histograma {.bloques}
+
+:::: columns
+::: {.column width="50%"}
+```{r}
+
+gh <- histograma %>% 
+  ggplot(aes(Datos)) +
+  geom_histogram(bins = 5, color = "white", fill = "darkred") +
+  labs(x = "Intervalos",
+       y = "Frecuencia") +
+  theme_bw()
+
+plotly::ggplotly(gh, height = 600, width = 850) %>% 
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 25),
+                 xaxis = list(
+                   title = list(font = list(size = 25)),
+                   tickfont = list(size = 20)),
+                 yaxis = list(title = list(font = list(size = 25)),
+                              tickfont = list(size = 20)),
+                 legend = list(title = list(font = list(size = 25)),
+                               font = list(size = 20),
+                               bgcolor = "#F1F5F5"))
+
+```
+:::
+
+::: {.column width="50%"}
+
+-   Un histograma es una forma de representación visual donde con una sola mirada la persona analista puede darse una idea de:
+    -   La ubicación de la media, mediana y moda
+    -   La curtosis y asimetría
+    -   La variabilidad de los datos
+
+:::
+
+::::
+
+## Gráfico de cajas y bigotes {.bloques}
+
+-   También conocido como boxplot.
+-   Es una manera conveniente de mostrar visualmente grupos de datos numéricos a través de sus cuartiles.
+-   Normalmente utilizado en estadísticas descriptivas, los gráficos de cajas y bigotes son una excelente forma de examinar rápidamente uno o más conjuntos de datos gráficamente.
+-   En ocasiones al boxplot se le agrega un punto (u otro símbolo) representando la media o promedio.
+
+## Valores atípicos {.bloques}
+
+:::: columns
+::: {.column width="100%"}
+-   Son valores dentro del conjunto de datos que difieren de forma “considerable” de los otros valores.
+-   [Importante]{.hi}: los datos atípicos se estudian, pero NO se eliminan sin justificación válida.
+-   Los gráficos de cajas y bigotes son una herramienta visual para la detección de datos “atípicos”.
+
+![](img/boxplot_montgomery.png){fig-align="center" width="800"}
+:::
+::::
+
+## Gráficos de cajas y bigotes {.bloques}
+
+::::: columns
+::: {.column .img-fit width="30%"}
+![](img/boxplot_espanol.svg)
+:::
+
+::: {.column width="70%"}
+-   Extremo superior
+    -   Es el valor extremo superior más pequeño que se encuentre dentro de:
+        -   $LS=Q_3+1.5\cdot IQR$
+-   Extremo inferior
+    -   Es el valor extremo inferior más pequeño que se encuentre dentro de:
+        -   $LS=Q_1-1.5\cdot IQR$
+-   Cualquier valor fuera de LI y LS es considerado “atípico” y debe estudiarse
+:::
+:::::
+
+## Ejemplo - Box plot {.bloques}
+
+::::: columns
+::: {.column width="50%"}
+```{r}
+
+plotly::plot_ly(data = histograma,
+                y = ~Datos,
+                type = "box",
+                boxpoints = "outliers",  # muestra outliers
+                marker = list(color = "darkred"),
+                line = list(color = "black"),
+                height = 600,
+                width  = 850) %>%
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 25),
+                 yaxis = list(
+                   title = "Valores",
+                   tickfont = list(size = 20)),
+                 xaxis = list(showticklabels = FALSE))
+
+```
+:::
+
+::: {.column width="50%"}
+### Importante
+
+-   Las comillas en “atípico” son importantes, pues no implica que el dato no pertenezca al conjunto de datos.
+-   El dato obtenido puede ser completamente natural, pero debe estudiarse de forma individual al diferir sustancialmente de sus pares.
+-   De nuevo, un dato atípico [no debe eliminarse ni tratarse sin una justificación de peso]{.hi}.
+:::
+:::::
+
+# Medidas para dos variables cuantitativas y cualitativas {.bloques}
+
+## Una variable cuantitativa y otra cuantitativa {.bloques}
+
+-   Suponga que usted como analista desea estudiar el rendimiento (%) de algunas máquinas CNC.
+
+-   Tiene dos variables
+
+    -   Rendimiento: Cuantitativa
+    -   Máquinas: Cualitativa
+
+-   Usted puede hacer grupos y analizar el promedio del rendimiento por máquina. De igual manera puede usar otros estadísticos.
+
+-   También puede realizar los gráficos estudiados pero por categorías.
+
+## Dos variables cuantitativas {.bloques}
+
+-   Por ejemplo, usted desea estudiar el efecto que tienen los años de experiencia sobre el salario percibido por las personas.
+-   Tiene dos variables cuantitativas:
+    -   Años de experiencia
+    -   Salario percibido
+-   Todas las técnicas estadísticas estudiadas hasta ahora pueden usarse. Incluyendo visualizaciones.
+
+## Dos variables cuantitativas {.bloques}
+
+-   Se introduce una nueva forma de visualización, donde usted puede visualizar y correspondientemente estudiar la relación que existe entre dos variables.
+
+-   Este gráfico posiblemente ya lo conoce de cursos de ciencias básicas como química y física, donde se muestra en un eje ($x$) una variable y en el otro ($y$), de tal modo que se puede apreciar como se relacionan las mismas.
+
+## Dos variables cuantitativas {.bloques}
+
+::::: columns
+::: {.column .img-fit width="50%"}
+![](img/xyplot.png)
+:::
+
+::: {.column width="50%"}
+En el gráfico de la izquierda puede encontrar la relación que existe entre el salario promedio mensual y la edad de las personas, clasificadas por género y en general.
+:::
+:::::
+
+## Comunicación tendenciosa o errónea {.bloques}
+
+-   Parte del comportamiento ético necesario en el quehacer estadístico es comunicar los resultados de forma debida
+
+##  {.limpio}
+
+![](img/dificil_leer.png){fig-align="center" width="100%"}
+
+##  {.limpio}
+
+![](img/malos_porcentajes.jpg){fig-align="center" width="100%"}
+
+##  {.limpio}
+
+![](img/proporciones_malas.jpg){fig-align="center" width="100%"}
+
+##  {.limpio}
+
+![](img/proporciones_malas2.jpg){fig-align="center" width="100%"}
+
+## ¿Cómo escoger el gráfico adecuado? {.bloques}
+
+* Para escoger el gráfico adecuado puede apoyarse en este [enlace](https://www.data-to-viz.com/#explore){target="_blank"}.
+* ¿Que hacer y no hacer a la hora de confeccionar un gráfico? Siga este [enlace](https://www.data-to-viz.com/caveats.html){target="_blank"}.
+* ¿Quiere más ideas para seleccionar un gráfico? Use este [enlace](https://datavizcatalogue.com/ES/){target="_blank"}.
 
 
 ## Bibliografía {.bloques}
 
-* Walpole, R.; Myers, R.; Myers, S. y Ye, K. Probabilidad y estadística para ingeniería y ciencias (9na Edición).
-  * Capítulo 1
-* Lind, D.; Marchal, W. y Watchen, S. Estadística aplicada a los Negocios y la Economía (15va Edición).
-  * Capítulo 2, 3 y 4
-* Devore, J. Probabilidad y Estadística para Ingeniería y Ciencias (7ma Edición).
-  * Capítulo 2
-* Levine, D.; Krehbiel, T.; Berenson, M. Estadística para administración (4ta Edición).
-  * Capítulo 2 y 3
-* Lock, R.; Lock, P.; Morgan, K.; Lock, E. & Lock, D. Statistics: Unlocking the Power of Data (3rd Edition)
-  * Capítulo 2
-* Westfall P. H. (2014). Kurtosis as Peakedness, 1905 - 2014. R.I.P. The American statistician, 68(3), 191–195. [https://doi.org/10.1080/00031305.2014.917055](https://doi.org/10.1080/00031305.2014.917055)
+:::: columns
+::: {.column width="100%" style="font-size: 0.8em;"}
+
+-   Walpole, R.; Myers, R.; Myers, S. y Ye, K. Probabilidad y estadística para ingeniería y ciencias (9na Edición).
+    -   Capítulo 1
+-   Lind, D.; Marchal, W. y Watchen, S. Estadística aplicada a los Negocios y la Economía (15va Edición).
+    -   Capítulo 2, 3 y 4
+-   Devore, J. Probabilidad y Estadística para Ingeniería y Ciencias (7ma Edición).
+    -   Capítulo 2
+-   Levine, D.; Krehbiel, T.; Berenson, M. Estadística para administración (4ta Edición).
+    -   Capítulo 2 y 3
+-   Lock, R.; Lock, P.; Morgan, K.; Lock, E. & Lock, D. Statistics: Unlocking the Power of Data (3rd Edition)
+    -   Capítulo 2
+-   Westfall P. H. (2014). Kurtosis as Peakedness, 1905 - 2014. R.I.P. The American statistician, 68(3), 191–195. <https://doi.org/10.1080/00031305.2014.917055>
+
+:::
+::::
+
+## Descripción de datos <br> II-1120 Estadística para Ingeniería Industrial I {.center}
+
+### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni\@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
+
+### Dudas o correcciones requeridas pueden solicitarse al correo
