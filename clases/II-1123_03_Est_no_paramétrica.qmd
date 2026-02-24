@@ -1,0 +1,37 @@
+---
+title: "Pruebas de bondad de ajuste para distribuciones"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_03_Est_no_paramétrica.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
+date: today
+format: revealjs
+---
+
+```{r}
+
+
+
+```
+
+## Agenda {.bloques}
+
+* Preguntas generadoras
+* Introducción
+  * Usos, ventajas y desventajas
+* Prueba de signo
+* Prueba de rango con signo
+* Wilcoxon y Mann Whitney
+* Para la varianza
+
+
+## Preguntas generadoras {.bloques}
+
+* ¿Qué significa que ser “*paramétrico*” y “*no paramétrico*”?
+* ¿Cuándo se debe recurrir a estadística no paramétrica? 
+* ¿Cuáles son las desventajas de los procedimientos no paramétricos?
+
+## Introducción {.bloques}
+
+* La mayoría de procedimientos que han sido abordados en este curso y otros anteriores tienen un supuesto [importantísimo]{.hi}:
+
+  * Se trabaja con variables aleatorias que siguen la [distribución normal]{.hi}. 
+  * O bien, el [tamaño de muestra es lo suficientemente grande]{.hi} para cumplir con el teorema del límite central (TLC).
+    * Recuerde que el TLC depende, en gran medida de la asimetría de la distribución de la población y que no es una buena práctica asumir que en todos los casos se necesita $n \ge 30$. En ocasiones puede ser más o puede ser menos. 
