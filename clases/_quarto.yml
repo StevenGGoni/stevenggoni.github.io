@@ -21,6 +21,7 @@ format:
     width: 1920
     height: 1080
     margin: 0.05
+    mathjax: true
     footer: |
       <span class="footer-text">© 2026 [Steven García Goñi](https://stevenggoni.github.io/)| [Licencia CC BY NC 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)</span>
       <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-02.png" class="footer-logo">

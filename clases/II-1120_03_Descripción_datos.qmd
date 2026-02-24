@@ -1081,7 +1081,7 @@ Cada barra en un histograma representa la frecuencia tabulada en cada intervalo/
 
 gh <- histograma %>% 
   ggplot(aes(Datos)) +
-  geom_histogram(bins = 5, color = "white", fill = "darkred") +
+  geom_histogram(bins = 5, color = "#C18A00", fill = "#263247") +
   labs(x = "Intervalos",
        y = "Frecuencia") +
   theme_bw()
@@ -1160,8 +1160,9 @@ plotly::plot_ly(data = histograma,
                 y = ~Datos,
                 type = "box",
                 boxpoints = "outliers",  # muestra outliers
-                marker = list(color = "darkred"),
-                line = list(color = "black"),
+                marker = list(color = "#C18A00"),
+                line = list(color = "#C18A00"),
+                fillcolor = "#263247",
                 height = 600,
                 width  = 850) %>%
   plotly::layout(paper_bgcolor = "#F1F5F5",

@@ -22,3 +22,5 @@ Aquí encontrará las clases de los diferentes cursos del área de conocimiento 
 
 1. [Fundamentos de muestreo y manejo de datos](clases/II-1120_02_Fundamentos_muestreo.html){target="_blank"}
 
+2. [Pruebas de bondad de ajuste para distribuciones](clases/II-1123_02_Bondad_ajuste.html){target="_blank"}
+

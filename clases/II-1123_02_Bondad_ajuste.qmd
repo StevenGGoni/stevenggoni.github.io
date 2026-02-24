@@ -1,0 +1,1293 @@
+---
+title: "Pruebas de bondad de ajuste para distribuciones"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_02_Bondad_ajuste.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
+date: today
+format: revealjs
+---
+
+```{r}
+
+library(tidyverse)
+library(plotly)
+
+```
+
+## Agenda {.bloques}
+
+-   Preguntas generadoras
+-   Concepto de bondad de ajuste
+-   Rutinas gráficas
+-   Test de $\chi^2$
+-   Pruebas de normalidad
+-   Otras rutinas de identificación de distribuciones
+
+## Preguntas generadoras {.bloques}
+
+-   ¿Cómo se selecicona la distribución que mejor se ajusta a los datos?
+
+-   ¿Por qué es necesario conocer qué distribución se ajusta a los datos?
+
+## ¿Qué es bondad de ajuste? {.bloques}
+
+-   Es el grado de acoplamiento que existe entre los datos originales y los valores teóricos.
+-   Describe que tan bien se ajusta un conjunto de observaciones. Tales medidas, por lo general, describen o resumen la discrepancia entre los valores observados y los valores esperados en el modelo de estudio.
+-   Para ello se emplean contrastes de hipótesis.
+-   La bondad de ajuste es un concepto estadístico que mide qué tan bien un conjunto de [datos observados]{.hi} se ajusta a una distribución de [probabilidad teórica]{.hi} específica.
+-   En otras palabras, evalúa si los datos podrían razonablemente provenir de una distribución determinada (por ejemplo, binomial, Poisson, normal, exponencial, etc.).
+
+## Rutinas gráficas {.bloques}
+
+-   Se usan como herramienta para la identificación de distribuciones.
+
+-   Son [procedimientos visuales]{.hi} que se usan para comparar los datos observados en una distribución teórica, con el fin de evaluar de [forma preliminar]{.hi} si el modelo propuesto parece adecuado.
+
+-   No sustituyen bajo ningún concepto a las pruebas formales que van a ser estudiadas, pero permiten detectar patrones de desviación, asimetrías o valores atípicos antes de aplicar dichas pruebas.
+
+-   Su ventaja principal es que la [vista humana es muy sensible para reconocer discrepancias]{.hi} que podrían pasar desapercibidas en un solo estadístico numérico.
+
+## Recuerde: Visualización {.bloques style="font-size: 1.2em;"}
+
+-   Una buena visualización mostrará cosas que no se esperaban o hará surgir nuevas preguntas acerca de los datos. También puede dar pistas acerca de si se están haciendo las preguntas equivocadas o si necesitas recolectar datos diferentes.
+
+-   [“Un simple gráfico ha brindado más información a la mente del analista de datos que cualquier otro dispositivo”]{.hi} - *John Tukey*
+
+## Rutinas gráficas: Formalmente {.bloques style="font-size: 1.2em;"}
+
+-   Una rutina gráfica es un [conjunto de pasos estandarizados]{.hi} para elaborar y analizar gráficamente la relación entre los datos observados y una distribución teórica, de manera que se pueda evaluar visualmente la concordancia antes de realizar pruebas formales.
+
+## ¿Cuáles gráficos usar? {.bloques}
+
+:::::: columns
+::: {.column width="35%"}
+### Variable continua
+
+```{r}
+
+set.seed(123)
+
+n <- 500
+
+datos_w <- data.frame(Datos = rweibull(n, 2, 2))
+
+
+g1 <- datos_w %>% 
+  ggplot(aes(Datos, y=after_stat(density))) +
+  geom_histogram(bins = round(1 + log2(n)), 
+                 fill = "#263247", 
+                 color = "#C18A00") +
+  geom_density(color = "#C18A00", linetype="dashed", linewidth=1) +
+  labs(y = "Densidad") +
+  theme_bw()
+
+plotly::ggplotly(g1, height = 600, width = 550) %>% 
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 30),
+                 xaxis = list(
+                   title = list( font = list(size = 30)),
+                   tickfont = list(size = 25)),
+                 yaxis = list(title = list(font = list(size = 30)),
+                              tickfont = list(size = 25)))
+
+```
+:::
+
+::: {.column width="30%" style="font-size: 0.90em;"}
+-   Histograma (variables continuas)
+    -   Puede agregar una “curva” teórica superpuesta para evaluar el ajuste.
+-   Gráfico de barras (Variables discretas)
+    -   Puede agregar puntos téoricos que le permitan evaluar el ajuste.
+:::
+
+::: {.column width="35%"}
+### Variable discreta
+
+```{r}
+
+datos_b <- data.frame(Datos = rbinom(n, 5, 0.4))
+
+g2 <- datos_b %>% 
+  dplyr::count(Datos) %>% 
+  dplyr::mutate(Masa = dbinom(0:5, 5, 0.4)) %>% 
+  ggplot(aes(x = Datos, y = n/500)) +
+  geom_col(fill = "#263247") +
+  geom_point(aes(y = Masa), color = "#C18A00", size = 4) +
+  labs(y = "Masa") +
+  theme_bw()
+
+plotly::ggplotly(g2, height = 600, width = 550) %>% 
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 30),
+                 xaxis = list(
+                   title = list( font = list(size = 30)),
+                   tickfont = list(size = 25)),
+                 yaxis = list(title = list(font = list(size = 30)),
+                              tickfont = list(size = 25)))
+
+```
+:::
+::::::
+
+## ¿Cuáles gráficos usar? {.bloques}
+
+:::::: columns
+::: {.column width="28%" style="font-size: 0.88em;"}
+-   Puede usar un gráfico de probabilidad ([Probability plot]{.hi}) o un gráfico cuantil-cuantil ([QQ Plot]{.hi}).
+
+    -   La idea que sigue este gráfico es que si los puntos se alinean a una recta (teórica), el ajuste es plausible, mientras que si hay desviaciones sistemáticas habría indicativos de mala concordancia.
+:::
+
+::: {.column width="36%"}
+### No normal
+
+Estos datos se desvían mucho de la distribución teórica [normal]{.hi}, lo que es indicativo de que no siguen la distribución normal.
+
+```{r}
+
+## Bandas de confianza intervalos
+
+sim_matrix <- replicate(1000, # número de simulaciones
+                        {sort(rnorm(n, mean = 1.77, sd = 0.89))})
+
+lower <- apply(sim_matrix, 1, quantile, probs = 0.025)
+upper <- apply(sim_matrix, 1, quantile, probs = 0.975)
+
+```
+
+```{r}
+
+theoretical <- qnorm(ppoints(n))
+
+sample_q <- sort(datos_w$Datos)
+
+fit <- lm(sample_q ~ theoretical)
+
+plot_ly(height = 400, width = 550) %>%
+  plotly::add_ribbons(x = theoretical,
+                      ymin = lower,
+                      ymax = upper,
+                      fillcolor = "rgba(38,50,71,0.15)",
+                      line = list(color = "transparent"),
+                      showlegend = FALSE) %>% 
+  plotly::add_markers(x = theoretical,
+                      y = sample_q,
+                      marker = list(color = "#C18A00"),
+                      showlegend = FALSE) %>%
+  plotly::add_lines(x = theoretical,
+                    y = fitted(fit),
+                    line = list(color = "#263247"),
+                    showlegend = FALSE) %>%
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 25),
+                 xaxis = list(
+                   title = list(text = "Cuantiles teóricos normales",
+                                font = list(size = 25)),
+                   tickfont = list(size = 20)),
+                 yaxis = list(title = list(text = "Distribución NO normal",
+                                           font = list(size = 25)),
+                              tickfont = list(size = 20)))
+
+```
+:::
+
+::: {.column width="36%"}
+### Normal
+
+Los puntos [siguen la línea teórica]{.hi}, lo que es indicativo que en este caso se sigue la distribución normal.
+
+```{r}
+
+## Bandas de confianza intervalos
+
+sim_matrix <- replicate(1000, # número de simulaciones
+                        {sort(rnorm(n, mean = 0, sd = 1))})
+
+lower <- apply(sim_matrix, 1, quantile, probs = 0.025)
+upper <- apply(sim_matrix, 1, quantile, probs = 0.975)
+
+```
+
+```{r}
+
+x2 <- rnorm(n)
+theoretical2 <- qnorm(ppoints(n))
+sample_q2 <- sort(x2)
+fit2 <- lm(sample_q2 ~ theoretical2)
+
+plotly::plot_ly(height = 400, width = 550) %>%
+  plotly::add_ribbons(x = theoretical2,
+                      ymin = lower,
+                      ymax = upper,
+                      fillcolor = "rgba(38,50,71,0.15)",
+                      line = list(color = "transparent"),
+                      showlegend = FALSE) %>% 
+  plotly::add_markers(x = theoretical2,
+                      y = sample_q2,
+                      marker = list(color = "#C18A00"),
+                      showlegend = FALSE) %>%
+  plotly::add_lines(x = theoretical2,
+                    y = fitted(fit2),
+                    line = list(color = "#263247"),
+                    showlegend = FALSE) %>%
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 30),
+                 xaxis = list(
+                   title = list(text = "Cuantiles teóricos normales",
+                                font = list(size = 30)),
+                   tickfont = list(size = 25)),
+                 yaxis = list(title = list(text = "Distribución normal",
+                                           font = list(size = 30)),
+                              tickfont = list(size = 25)))
+
+
+```
+:::
+::::::
+
+## ¿Cuáles gráficos usar? {.bloques}
+
+::::: columns
+::: {.column width="50%"}
+-   El gráfico de probabilidad o el gráfico de cuantil – cuantil a menudo es “recetado” para una distribución normal, pero [se puede usar para cualquier distribución]{.hi} siempre que se conozcan los cuantiles teóricos.
+
+-   Por ejemplo, en este caso, de una Weibull(2,2), que son los datos que dieron origen a la "Distribución no normal" del slide anterior, que al ser probada contra una normal, no se ajustó correctamente. Caso contrario al observado a la derecha.
+:::
+
+::: {.column width="50%"}
+### QQ-Plot (Weibull)
+
+```{r}
+
+## Bandas de confianza intervalos
+
+sim_matrix <- replicate(1000, # número de simulaciones
+                        {sort(rweibull(n, shape = 2, scale =  2))})
+
+lower <- apply(sim_matrix, 1, quantile, probs = 0.025)
+upper <- apply(sim_matrix, 1, quantile, probs = 0.975)
+
+```
+
+```{r}
+
+p <- ppoints(n)
+
+theoretical_w <- qweibull(p, shape = 2, scale = 2)
+
+sample_q <- sort(datos_w$Datos)
+
+fit <- lm(sample_q ~ theoretical_w)
+
+plotly::plot_ly(height = 600, width = 850) %>%
+  plotly::add_ribbons(x = theoretical_w,
+                      ymin = lower,
+                      ymax = upper,
+                      fillcolor = "rgba(38,50,71,0.15)",
+                      line = list(color = "transparent"),
+                      showlegend = FALSE) %>% 
+  plotly::add_markers(x = theoretical_w,
+                      y = sample_q,
+                      marker = list(color = "#C18A00"),
+                      showlegend = FALSE) %>%
+  plotly::add_lines(x = theoretical_w,
+                    y = fitted(fit),
+                    line = list(color = "#263247"),
+                    showlegend = FALSE) %>%
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 25),
+                 xaxis = list(
+                   title = list(text = "Cuantiles teóricos Weibull (2,2)",
+                                font = list(size = 25)),
+                   tickfont = list(size = 20)),
+                 yaxis = list(title = list(text = "Distribución Weibull",
+                                           font = list(size = 25)),
+                              tickfont = list(size = 20)))
+
+```
+:::
+:::::
+
+## Improtancia de la visualización {.bloques}
+
+::::: columns
+::: {.column width="70%"}
+-   Este tipo de gráficos [se utilizan]{.hi} con frecuencia y de forma simultánea [con pruebas estadísticas formales]{.hi} para contrastar la hipótesis de que un dato siga una distribución particular.
+
+-   También es relevante para saber que tipo de prueba de hipótesis realizar.
+
+-   ¿Tiene sentido aplicarle una prueba de normalidad a estos datos?
+
+    -   No ¿verdad?
+
+-   En este caso resultaría conveniente aplicar una prueba [apropiada para la forma de los datos]{.hi}, por ejemplo, podemos intuir estas dos:
+
+    -   Lognormal
+    -   Exponencial
+:::
+
+::: {.column width="30%"}
+### Distribución asimétrica
+
+```{r}
+
+set.seed(123)
+
+datos_e <- data.frame(Datos = rexp(n, 2))
+
+g3 <- datos_e %>% 
+  ggplot(aes(Datos, y = after_stat(density))) +
+  geom_histogram(bins = round(1 + log2(n)), 
+                 fill = "#263247", 
+                 color = "#C18A00") +
+  geom_density(color = "#C18A00", linetype="dashed", linewidth=1) +
+  labs(y = "Densidad") +
+  theme_bw()
+
+plotly::ggplotly(g3, height = 600, width = 500) %>% 
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 30),
+                 xaxis = list(
+                   title = list( font = list(size = 30)),
+                   tickfont = list(size = 25)),
+                 yaxis = list(title = list(font = list(size = 30)),
+                              tickfont = list(size = 25)))
+
+```
+:::
+:::::
+
+## Improtancia de la visualización {.bloques}
+
+:::::: columns
+::: {.column width="24%"}
+-   Como es obvio, la normal [no es una buena opción]{.hi}, por lo que no se debe ni intentar.
+-   Y entre la *lognormal* y *exponencial*, esta última resulta con mejor ajuste.
+:::
+
+::: {.column width="38%"}
+### QQ-plot (exponencial)
+
+```{r}
+
+## Bandas de confianza intervalos
+
+sim_matrix <- replicate(1000, # número de simulaciones
+                        {sort(rexp(n, 2))})
+
+lower <- apply(sim_matrix, 1, quantile, probs = 0.025)
+upper <- apply(sim_matrix, 1, quantile, probs = 0.975)
+
+```
+
+```{r}
+
+p <- ppoints(n)
+
+theoretical_e <- qexp(p, 2)
+
+sample_q <- sort(datos_e$Datos)
+
+fit <- lm(sample_q ~ theoretical_e)
+
+plotly::plot_ly(height = 600, width = 650) %>%
+  plotly::add_ribbons(x = theoretical_e,
+                      ymin = lower,
+                      ymax = upper,
+                      fillcolor = "rgba(38,50,71,0.15)",
+                      line = list(color = "transparent"),
+                      showlegend = FALSE) %>% 
+  plotly::add_markers(x = theoretical_e,
+                      y = sample_q,
+                      marker = list(color = "#C18A00"),
+                      showlegend = FALSE) %>%
+  plotly::add_lines(x = theoretical_e,
+                    y = fitted(fit),
+                    line = list(color = "#263247"),
+                    showlegend = FALSE) %>%
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 25),
+                 xaxis = list(
+                   title = list(text = "Cuantiles teóricos Exponencial(2)",
+                                font = list(size = 25)),
+                   tickfont = list(size = 20)),
+                 yaxis = list(title = list(text = "Distribución Exponencial",
+                                           font = list(size = 25)),
+                              tickfont = list(size = 20)))
+
+```
+:::
+
+::: {.column width="38%"}
+### QQ-plot (lognormal)
+
+```{r}
+
+## Bandas de confianza intervalos
+
+sim_matrix <- replicate(1000, # número de simulaciones
+                        {sort(rlnorm(n, -1.24, 1.29))})
+
+lower <- apply(sim_matrix, 1, quantile, probs = 0.025)
+upper <- apply(sim_matrix, 1, quantile, probs = 0.975)
+
+```
+
+```{r}
+
+p <- ppoints(n)
+
+theoretical_ln <- qlnorm(p, meanlog = -1.24,  sdlog = 1.29)
+
+sample_q <- sort(datos_e$Datos)
+
+fit <- lm(sample_q ~ theoretical_ln)
+
+plotly::plot_ly(height = 600, width = 650) %>%
+  plotly::add_ribbons(x = theoretical_ln,
+                      ymin = lower,
+                      ymax = upper,
+                      fillcolor = "rgba(38,50,71,0.15)",
+                      line = list(color = "transparent"),
+                      showlegend = FALSE) %>%
+  plotly::add_markers(x = theoretical_ln,
+                      y = sample_q,
+                      marker = list(color = "#C18A00"),
+                      showlegend = FALSE) %>%
+  plotly::add_lines(x = theoretical_ln,
+                    y = theoretical_ln,
+                    line = list(color = "#263247"),
+                    showlegend = FALSE) %>%
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 25),
+                 xaxis = list(
+                   title = list(text = "Cuantiles teóricos Lognormal(-1.24, 1.29)",
+                                font = list(size = 25)),
+                   tickfont = list(size = 20)),
+                 yaxis = list(title = list(text = "Distribución Exponencial",
+                                           font = list(size = 25)),
+                              range = c(0, 5),
+                              tickfont = list(size = 20)))
+
+```
+:::
+::::::
+
+## Recordemos antes de continuar {.bloques}
+
+-   Hacer estadística [no es solo leer valores p de forma indiscriminada]{.hi}.
+-   La comunidad científica ha insistido en que evitemos la mala práctica de solo interpretar el valor P.
+    -   [No perpetuemos este error]{.hi}.
+-   Los valores P se analizan [en conjunto]{.hi} con los demás estadísticos, contexto y visualizaciones.
+
+## Valores P {.bloques}
+
+::::: columns
+::: {.column width="50%"}
+-   El valor P es una probabilidad que [mide la evidencia en contra de la hipótesis nula]{.hi}. [Entre más bajo este valor, más fuerte será la evidencia en contra]{.underline}.
+
+    -   Se compara contra el nivel de significancia ($\alpha$).
+
+-   Formalmente: un valor P es la probabilidad bajo un modelo estadístico especificado que un resumen estadístico de los datos sería igual o más extremo que su valor observado.
+
+-   Consulte esta [infografía](https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf){target="_blank"} para ampliar estos conceptos.
+:::
+
+::: {.column .img-fit width="50%"}
+![Ilustración de [Allison Horst](https://allisonhorst.com/allison-horst){target="_blank"}](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/23bb6fe3d5bd6792d85744f8ff18dc7ec22585cd/other-stats-artwork/p_value_mic_hog.jpg)
+:::
+:::::
+
+## Valores P {.bloques}
+
+-   El valor P [no es el protagonista]{.hi}, es solo una medida estadística adicional, que [se interpreta en conjunto]{.hi} con las demás medidas.
+
+-   En síntesis $\alpha$ y valor p están íntimamente relacionados, pues el primero marca el límite de decisión con base en el segundo.
+
+-   El nivel de significancia ($\alpha$) se va a usar frecuentemente, este valor hay que escogerlo [cuidadosamente]{.hi} en función del contexto, [nunca es una medida genérica]{.hi}.
+
+    -   Como por ejemplo, usar $\alpha=0.05$ para todo sin importar el contexto es un error. Estos valores siempre deben justificarse.
+
+## Valores P {.bloques}
+
+-   Por otro lado, en ocasiones nos vemos tentados a emplear terminología incorrecta como:
+  
+  * Es [MUY significativo]{.hi}, cuando un valor P es muy bajo.
+
+-   Es importante aclarar que la significancia estadística es un límite: **solo se puede ser o no ser significativo**.
+-   [No puedo ser muy o poco significativo]{.hi}, pues los valores P, como bien se indica en la [infografía](https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf){target="_blank"} no mide el tamaño de un efecto ni la importancia de un resultado.
+
+## Valores P {.bloques}
+
+::::: columns
+::: {.column style="font-size: 0.85em;"}
+-   Piénselo de esta manera:
+-   ¿Yo soy [“más tico”]{.hi} por nacer en San José que alguien que nació en Los Chiles?
+    -   ¿Verdad que no?
+-   Con base en esta analogía, tampoco puedo ser más significativo con base en un valor P.
+    -   Así como cualquier nacimiento dentro de las fonteras costarricenses producen un "tico", cualquier valor por debajo del nivel de siginificancia ($\alpha$) es un resultado significativo, aún cuando ese umbral se supere ampliamente.
+-   Lo que puedo estar es más o menos seguro de que “soy tico” y para ello es relevante [analizar el valor P en conjunto]{.hi} con:
+    -   **Evidencias externas** del contexto (diseño del estudio, calidad de mediciones, fiabilidad del muestreo).
+    -   **Evidencias internas** (otros estadísticos como la estimación del intervalo de confianza).
+:::
+
+::: {.column .img-fit width="30%"}
+![](img/mapa_cr.jpg)
+:::
+:::::
+
+# Test de $\chi^2$
+
+## Introducción {.bloques}
+
+-   Se emplea para la bondad de ajuste de [distribuciones discretas]{.hi}.
+-   Es un test estadístico que compara las frecuencias observadas con las frecuencias esperadas según la distribución teórica propuesta.
+    -   También conocida como prueba de Pearson.
+-   Esta se usa por que es el caso más general y fácil de entender, aunque es importante señalar que es poco sensible en tamaños de muestra pequeños.
+-   También es relevante dar a conocer que existen otras pruebas que pueden usarse.
+
+## Procedimiento {.bloques}
+
+:::: columns
+::: {.column width="100%"}
+-   Se define la prueba de hipótesis
+
+    -   $H_o:$ la distribución se ajusta a los datos
+    -   $H_i:$ la distribución *NO* se ajusta a los datos
+
+-   Se calcula el estadístico $\chi^2$
+
+$$
+\chi^2=\sum_{i=1}^{k}\frac{(O_i-E_i)^2}{E_i}
+$$
+
+-   Donde $O_i$ es lo observado y $E_i$ es lo esperado.
+
+    -   A partir de ese estadístico $\chi^2$ se puede obtener un valor P que [en conjunto con las rutinas gráficas]{.hi}, y una elección adecuada del nivel de significancia ($\alpha$) da origen a las conclusiones acerca de la bondad de ajuste.
+:::
+::::
+
+## Aclaraciones {.bloques}
+
+-   Esta prueba [también puede usarse con datos continuos]{.hi}, pero no es “*nativa*” para este tipo de datos, por lo que dichos datos deben “*discretizarse*” en clases (como los de un histograma) y luego comparar las frecuencias observadas en cada clase.
+-   Pero no se recomienda usarla en estos casos por la falta de potencia, son mejores las opciones que veremos adelante.
+
+## Ejemplo 01 {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+* Se realiza el lanzamiento de un dado en 120 ocasiones. Se anotan los resultados.
+* ¿Los datos están balanceados? Es decir, ¿se sigue una distribución uniforme discreta? 
+  * Responda con $\alpha=0.05$
+* En este [Excel](https://stevenggoni.github.io/clases/data/II-1123_02_Ejemplos y ejercicios resueltos.xlsx){target="_blank"} puede encontrar los datos sin procesar, así como los ejemplos resueltos.
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+
+ejemplo_01 <- openxlsx::read.xlsx("data/II-1123_02_Ejemplos y ejercicios resueltos.xlsx", 
+                                  sheet = "Ejemplo 01", 
+                                  cols = 2)
+
+ejemplo_01 %>% 
+  dplyr::count(Lanzamiento, name = "Conteo (Observado)") %>% 
+  knitr::kable(format = "html") %>%
+  kableExtra::kable_styling()
+
+```
+
+
+:::
+
+::::::
+
+## Ejemplo 01 {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+* El primer paso, antes de buscar obtener un valor P a como de lugar, es realizar las rutinas gráficas.
+
+  * Como este conjunto de datos es discreto, lo que conviene es realizar un gráfico de barras. 
+
+* El gráfico mostrado a la derecha, ¿parece ser una uniforme discreta? 
+  * Aunque pueda generarle dudas, razonablemente parece seguir una uniforme. Esta visualización es importante, porque inmediatamente le hace ver que el valor de 3 dificilmente alcanza el valor esperado y que el de 6 lo supera con creces.  
+  * No obstante, no se puede ser más estricto de la cuenta. 
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+
+gej1 <- ejemplo_01 %>% 
+  dplyr::count(Lanzamiento) %>% 
+  dplyr::mutate(Esperado = (1/6)*120) %>% 
+  ggplot(aes(x = Lanzamiento, y = n)) +
+  geom_col(aes(fill = "Observado")) +
+  geom_point(aes(y = Esperado, fill = "Esperado"), 
+             color = "#C18A00", size = 3)+
+  scale_fill_manual(values = c("Observado" = "#263247", 
+                               "Esperado" = "#C18A00")) +
+  labs(x = "Valor del dado",
+       y =  "Frecuencia", 
+       fill = "") +
+  theme_bw()
+
+plotly::ggplotly(gej1, height = 650, width = 850) %>% 
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 30),
+                 xaxis = list(
+                   title = list( font = list(size = 30)),
+                   tickfont = list(size = 25)),
+                 yaxis = list(title = list(font = list(size = 30)),
+                              tickfont = list(size = 25)),
+                 legend = list(title = list(font = list(size = 25)),
+                               font = list(size = 20),
+                               bgcolor = "#F1F5F5"))
+
+```
+
+
+:::
+
+::::::
+
+## Ejemplo 01 {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+```{r}
+
+ejemplo_01 %>% 
+  dplyr::count(Dado = Lanzamiento, name = "Observado \\((O_i\\))") %>% 
+  dplyr::mutate("P(Esperada)" = (1/6),
+                "Esperado \\((E_i\\))" = (1/6)*120, 
+                "\\(\\frac{(O_i-E_i)^2}{E_i}\\)" = 
+                  (`Observado \\((O_i\\))` - `Esperado \\((E_i\\))`)^2/`Esperado \\((E_i\\))`) %>% 
+  janitor::adorn_totals() %>% 
+  dplyr::mutate(across(2:5, ~ round(.x, 3))) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()  
+  
+
+```
+
+
+:::
+
+::::::
+
+## Ejemplo 01 {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+* Obtenga el valor P a partir del estadístico $\chi^2$
+
+* En Excel hay dos formas de hacerlo (fórmulas en *inglés*)
+
+  * Forma corta: CHISQ.TEST($O_i$, $E_i$)
+    
+  * Forma larga: 1-CHISQ.DIST($\chi^2$, $n-1$, TRUE)
+
+* En R `chisq.test(x = c(21, 21, 15, 21, 18, 24), p = rep(1/6, 6))`
+
+:::
+
+::: {.column width="50%"}
+
+* $\chi^2=2.4$
+* Valor P (forma corta) = $0.7915$
+* Valor P (forma larga) = $0.7915$
+* Significancia = $0.05$
+
+* No hay evidencia suficiente para rechazar la hipótesis nula de que el dado se comporta como una distribución uniforme discreta de probabilidad $\frac{1}{6}$, dado que $p>\alpha$, aunado a lo mostrado en el gráfico anterior.
+
+
+:::
+
+::::::
+
+## Ejercicio 01 {.bloques}
+
+* Se ha recolectado 400 observaciones sobre la cantidad de personas que que se reciben cada minuto en una estación de tren de la capital. 
+
+* Por la naturaleza de este proceso, se sospecha que estos datos son una variable aleatorio que sigue la [distribución de Poisson]{.hi}. 
+
+* En [Excel](https://stevenggoni.github.io/clases/data/II-1123_02_Ejemplos y ejercicios resueltos.xlsx) se le hace entrega de los datos y del ejercicio resuelto, procure realizar este ejercicio por su cuenta y utilice el ejercicio resuelto solo en caso de dudas.
+
+## Ejercicio 01 {.bloques}
+
+* Determine el parámetro de la distribución. Como el enunciado deja en claro, esta es una Poisson, por lo tanto, el parámetro es $\lambda$.
+
+  * Como es una muestra, el parámetro se estima. En una Poisson se sabe que $E(x)=\lambda$.
+  * $\lambda=4.575$
+  
+* Realice una rutina gráfica. 
+  * Recomendación: $E_i$ debe sumar 400 (es decir, las probabilidades siempre deben suma 1), por lo que quizá deba agregar datos en cero, por ejemplo: 
+    * 15 personas observadas 0 veces, esperadas 0.03.
+    * Salvo el cálculo de $\lambda$, resuelva con dos decimales. 
+    
+## Ejercicio 01 {.bloques}
+
+```{r}
+
+ejercio_01 <- openxlsx::read.xlsx("data/II-1123_02_Ejemplos y ejercicios resueltos.xlsx",
+                                  sheet = "Ejercicio 01")
+
+gej1 <- ejercio_01 %>% 
+  dplyr::count(Llegadas) %>% 
+  dplyr::mutate(Masa = dpois(0:11, lambda = 4.575)) %>% 
+  ggplot(aes(x = Llegadas, y = n/400)) +
+  geom_col(fill = "#263247") +
+  geom_point(aes(y = Masa), color = "#C18A00", size = 4) +
+  labs(y = "Masa") +
+  theme_bw()
+
+plotly::ggplotly(gej1, height = 780, width = 1900) %>% 
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 30),
+                 xaxis = list(
+                   title = list( font = list(size = 30)),
+                   tickfont = list(size = 25)),
+                 yaxis = list(title = list(font = list(size = 30)),
+                              tickfont = list(size = 25)))
+
+
+```
+
+    
+## Ejercicio 01 {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+* Por ejemplo, en este caso las probabilidades no suman 1, ni los valores esperados 400, por lo que debemos agregar más valores con 0 observaciones. 
+
+* No obstante, [Cochran]( https://doi.org/10.1214/aoms/1177729380){target="_blank"} y otros autores mencionan que se debe cumplir una regla básica: 
+
+  * Todos los $E_i \ge 3$ o $E_i \ge 3$
+
+* Por lo que estos valores deben agregarse. Para efectos de este curso usaremos $E_i \ge 5$.
+
+:::
+
+::: {.column width="50%" style="font-size: 0.68em;"}
+
+```{r}
+
+ejercio_01 %>% 
+  dplyr::count(Llegadas, name = "Frecuencia") %>% 
+  dplyr::mutate(PEi = dpois(0:11, lambda = 4.575), 
+                Ei = PEi*400, 
+                chi = (Frecuencia - Ei)^2/Ei) %>% 
+  janitor::adorn_totals() %>% 
+  dplyr::mutate(across(2:5, ~round(.x, 3))) %>% 
+  setNames(c("Llegadas", "\\(O_i\\)", 
+             "P(\\(E_i\\))", "\\(E_i\\)",
+             "\\(\\frac{(O_i-E_i)^2}{E_i}\\)")) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()  
+
+```
+
+:::
+
+
+::::::
+
+
+## Ejercicio 01 {.bloques}
+
+:::::: {.columns}
+
+::: {.column style="font-size: 0.53em;"}
+
+```{r}
+
+ejercio_01 %>% 
+  dplyr::count(Llegadas, name = "Frecuencia") %>% 
+  dplyr::add_row(Llegadas = 12:16, Frecuencia = rep(0, 5)) %>% 
+  dplyr::mutate(PEi = dpois(0:16, lambda = 4.575), 
+                Ei = PEi*400, 
+                chi = (Frecuencia - Ei)^2/Ei) %>% 
+  janitor::adorn_totals() %>%
+  dplyr::mutate(across(3:5, ~round(.x, 4))) %>% 
+  setNames(c("Llegadas", "\\(O_i\\)", 
+             "P(\\(E_i\\))", "\\(E_i\\)",
+             "\\(\\frac{(O_i-E_i)^2}{E_i}\\)")) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling() 
+
+```
+
+
+:::
+
+::: {.column style="font-size: 0.61em;"}
+
+En la primera tabla se obtiene un valor de $\chi^2=9.24$ con un valor P = $0.9031$. No obstante, no se cumple la regla de que $E_i\ge5$.
+
+Por tanto, procedemos a agrupar valores que incumplen la regla con el más cercano posible, por ejemplo $E_0+E_1 = 3 + 15 = 18$. Obteniendo un valor P = $0.6264$.
+
+```{r}
+
+p <- c(0.0574576179173541, 0.107858641616271, 
+       0.164484428464813, 0.18812906505663, 
+       0.172138094526816, 0.131255297076698, 
+       0.0857847120179845, 0.0490581321852849,
+       0.0249378838608532, 0.0188896172863315)
+
+p <- p/sum(p)
+
+data.frame(Llegadas = c("0-1", 2, 3, 4, 5, 6, 7, 8, 9, ">=10"), 
+           Frecuencia = c(18, 39, 69, 82, 68, 61, 33, 16, 5, 9),
+           PEi = p) %>% 
+  dplyr::mutate(Ei = PEi*400, 
+                chi = (Frecuencia - Ei)^2/Ei) %>% 
+  janitor::adorn_totals() %>%
+  dplyr::mutate(across(3:5, ~round(.x, 4))) %>% 
+  setNames(c("Llegadas", "\\(O_i\\)", 
+             "P(\\(E_i\\))", "\\(E_i\\)",
+             "\\(\\frac{(O_i-E_i)^2}{E_i}\\)")) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling() 
+
+
+```
+
+
+:::
+
+::::::
+
+## Sensibilidad de $\chi^2$ {.bloques}
+
+* El cálculo estadístico de $\chi^2$ y su comparación con un valor crítico de la distribución $\chi^2$ permite al investigador evaluar si los recuentos de celdas observados son significativamente diferentes de los recuentos de celdas esperados.
+* Debido a la forma en que se calcula el valor de $\chi^2$, es [extremadamente sensible al tamaño de la muestra]{.hi}: 
+  
+  * Cuando el tamaño de la muestra es demasiado grande (~500), casi cualquier pequeña diferencia parecerá estadísticamente significativa. Por tanto, debe analizarse con más cuidado, utilizando otras evidencias además del valor P. 
+  
+# Pruebas de normalidad {.bloques}
+
+## Introducción {.bloques}
+
+* Nos vamos a adentrar en el universo de las pruebas de normalidad, pero la idea es hacerlo estándo preparados. 
+
+* Por lo general, desarrollar pruebas de normalidad de forma manual (con apoyo de software como Excel), puede ser muy laborioso. 
+
+* Por tanto, este abordaje será basado en el uso de software estadístico (`R`, `Minitab`, entre otros).
+
+## Introducción {.bloques}
+
+* La idea básica que se quiere desarrollar es que las pruebas de normalidad NO SON INTERCAMBIABLES sin más: 
+  
+  * No tienen la misma [sensibilidad]{.hi}
+  * Su [potencia]{.hi} varía con el tamaño de muestra
+  * Los [contextos]{.hi} en los que se aplican son diversos
+
+* Pero todas parten de la misma hipótesis: 
+  * $H_o: \text{los datos siguen una distribución normal}$
+
+## Introducción {.bloques}
+  
+* En esta sesión de trabajo vamos a aprender qué características tienen las pruebas de normalidad, para que pueda escogerlas más adelante. 
+* Por *tradición* se suele usar `Minitab` para hacerlo, pero se nombraran otras que no están presentes en este software, pues no es el único que existe ni el que se usa en ambientes fabriles. 
+
+## Características {.bloques}
+
+* Un conjunto de datos puede [no seguir la distribución normal]{.hi} por al menos dos grandes motivos: 
+
+  * La distribución es asimétrica
+  * Las colas son pesadas
+
+* Por lo que la selección de una prueba [debe ser concordante con el tipo de desviación que nos preocupe]{.hi}. Ya las pruebas, por lo general, suelen darle más importancia a uno de los dos motivos anteriores
+
+## Por ejemplo {.bloques}
+
+* Un análisis de regresión (*tema que se atiende luego en el curso*) es robusto a desviaciones ligeras de la normalidad, por lo que conviene utilizar una prueba que no penalice en exceso dichas desviaciones. 
+
+* Por otro lado, los análisis de capacidad (*tema de ingeniería de calidad*) son muy sensibles a desviaciones en el supuesto de normalidad por las colas, por lo que conviene utilizar una prueba de normalidad que sea apropiada para este contexto. 
+
+  * Desviaciones en la normalidad a causa de las colas pesadas incrementa la probabilidad de valores extremos y aumenta la estimación de la desviación estándar
+
+* En resumen, [es el contexto]{.hi} el que dicta la adecuación de las pruebas de normalidad usadas. 
+
+## Pruebas de normalidad {.bloques}
+
+:::::: {.columns}
+
+::: {.column width ="50%"}
+
+```{r}
+
+# Tamaño de muestra 100 -------------------------------------------------------
+
+like_ESM_reg <- function(a, g, l, m, beta0, beta1, beta2){
+  veros <- ESM(x = y,
+               alpha = exp(a),
+               beta = exp(beta0 + beta1 * X1 + beta2 * X2),
+               gamma = exp(g),
+               lambda = exp(l),
+               mu = m)
+  -sum(log(veros)) %>%
+    suppressWarnings()
+}
+
+ESM <- function(x, alpha, beta, gamma, lambda, mu){
+  
+  
+  part_I <- (lambda*alpha)/(gamma*beta^(1/gamma))
+  
+  part_II <- (x - mu)^((1/gamma)-1)
+  
+  part_III <- (1+((x-mu)/beta)^(1/gamma))^(alpha-1)
+  
+  part_IV <- exp(-lambda*(1+((x-mu)/beta)^(1/gamma))^(alpha))
+  
+  ESM <- part_I * part_II * part_III * part_IV
+  
+  return(ESM)
+  
+}
+
+set.seed(124)
+
+N <- 100
+
+X1 <- runif(N, 0, 1)
+X2 <- rbinom(N, 1, 0.5)
+
+escala <- exp(4 - 0.5*X1 - 0.5 * X2)
+
+y <- VGAM::rsinmad(N, scale = escala, shape1.a = 5, shape3.q = 2)
+
+reg_100 <- stats4::mle(minuslogl = like_ESM_reg, 
+                       start = list(a = 2,
+                                    g = 3, 
+                                    l = -2,
+                                    beta1 = -0.5,
+                                    beta2 = -0.5),
+                       fixed = list(beta0 = 4, m = 0))@fullcoef
+
+coeficientes_regresion <- c(reg_100[5], # intercepto
+                            reg_100[6], # X1
+                            reg_100[7]) # X2
+
+par_aux <- c(reg_100[1] %>% exp(), # alpha
+             reg_100[2] %>% exp(), # gamma
+             reg_100[3] %>% exp()) # lambda
+
+residuos <- data.frame(X1 =  X1, X2 = X2, y = y) %>% 
+  dplyr::mutate(y_hat_lineal = cbind(1, X1, X2) %*% coeficientes_regresion,
+                y_hat = exp(y_hat_lineal),
+                residuos_resp = y - y_hat,
+                signo = if_else(residuos_resp > 0, 1, -1),
+                log_vero_obs = log(ESM(y, par_aux[1], y_hat, 
+                                       par_aux[2], par_aux[3], 0)),
+                log_vero_sat = log(ESM(y, par_aux[1], y, 
+                                       par_aux[2], par_aux[3], 0)), 
+                residuos_dev = signo*sqrt(2*(log_vero_sat - log_vero_obs)),
+                residuos_dev = if_else(is.nan(residuos_dev), 
+                                       0, residuos_dev)) %>% 
+  suppressWarnings()
+
+texto_label <- paste(
+  "Valor P (SW) =",
+  scales::pvalue(shapiro.test(residuos$residuos_dev)$p.value),
+  "<br>",
+  "Valor P (KS) =",
+  scales::pvalue(nortest::lillie.test(residuos$residuos_dev)$p.value))
+
+  # QQ plot
+
+p1 <- residuos %>%
+  ggplot2::ggplot(aes(sample = residuos_dev)) +
+  stat_qq () +
+  stat_qq_line(color = "#556070") +
+  labs(x = "Datos",
+       y = "Cuantiles") +
+  theme_bw()
+
+# histograma
+
+p2 <-  residuos %>%
+  ggplot2::ggplot(aes(residuos_dev)) +
+  geom_histogram(bins = 7, color =  "#C18A00",
+                 fill = "#263247") +
+  labs(x = "Datos",
+       y = "Frecuencia") +
+  theme_bw()
+
+# ---- QQ plot interactivo  ----
+p1_plotly <- ggplotly(p1, source = "qq")
+
+p1_plotly <- p1_plotly %>%
+  layout(annotations = list(x = -1.2,
+                            y = 1.6,
+                            text = texto_label,
+                            showarrow = FALSE,
+                            bgcolor = "white",
+                            bordercolor = "black"))
+
+# ---- Histograma interactivo ----
+
+p2_plotly <- ggplotly(p2, source = "hist")
+
+fig <- subplot(p1_plotly,
+               p2_plotly,
+               nrows = 2,
+               shareX = FALSE,
+               shareY = FALSE,
+               which_layout = 1)
+
+# ---- Ahora sí aplicar layout global y tamaño ----
+fig <- fig %>%
+  layout(#height = 780,
+         #width  = 850,
+         paper_bgcolor = "#F1F5F5",
+         plot_bgcolor  = "#F1F5F5",
+         font = list(size = 30),
+         xaxis  = list(title = list(font = list(size = 30)),
+                       tickfont = list(size = 25)),
+         yaxis  = list(title = list(font = list(size = 30)),
+                       tickfont = list(size = 25)),
+         xaxis2 = list(title = list(font = list(size = 30)),
+                       tickfont = list(size = 25)),
+         yaxis2 = list(title = list(font = list(size = 30)),
+                       tickfont = list(size = 25)))
+
+fig$height <- 700
+fig$width  <- 850
+
+fig
+```
+
+:::
+
+::: {.column width ="50%"}
+
+* ¿Por qué en este caso la prueba de Shapiro – Wilk (SW), con un 95 % de confianza, no rechaza la hipótesis nula, mientras que Kolmogórov-Smirnov (KS) si lo hace?
+
+* ¿Cuál prueba escojo?
+  * Discuta con compañer@s y persona docente. 
+
+
+:::
+
+::::::
+
+## Pruebas de normalidad {.bloques}
+
+* ¿Qué sucede en la práctica? Y que no necesariamente es una buena práctica.
+
+* Las personas realizan varias pruebas de normalidad y se reportan la que les da bien según sus objetivos (rechazar o no rechazar).
+
+* Esto no es [éticamente correcto]{.hi} y por ello se les insta a comprender cuando funciona mejor cada prueba de normalidad. 
+
+## Anderson - Darling (AD) {.bloques}
+
+* Tiene una sensibilidad especial en las colas de la distribución y es justo por este motivo que es la primera opción en Minitab y otros software, pues desviaciones en las colas genera problemas en la estimación de índices de calidad (tema de ingeniería de calidad abordado en otros cursos).
+* Su principal limitación deviene en que, cuando 𝑛 es grande tiende a sobre – rechazar la hipótesis nula. 
+
+## Shapiro - Wilk (SW) {.bloques}
+
+* Si bien no está presente en software como `Minitab` de forma explícita, es necesario explicarla. 
+* Es una prueba que se centra en las diferencias de forma global (asimetría y colas).
+* Su limitación se basa en que con $n$ muy grande puede rechazar $H_o$ por desviaciones irrelevantes. 
+
+## Ryan - Joiner (RJ) {.bloques}
+
+* Es similar a SW, pues se centra en desviaciones generales. Es por este motivo que suele preferirse en muestras “pequeñas”.
+* Posee las mismas limitaciones que SW. 
+* La lógica del estadístico está más centrada en la alineación global, donde indefectiblemente la mayor contribución proviene del centro de la distribución. 
+* Es decir, las colas si influyen, pero no tanto como en AD, porque su efecto está diluido. 
+
+## Kolmogórov - Smirnov (KS) {.bloques}
+
+* Está centrado en la desviación general en la forma de la distribución. Requiere de parámetros conocidos, por lo que la versión de Minitab es menos potente, pues trabaja con estimaciones ($\bar{x}$ en lugar de $\mu$)).
+* Es más sensible a las colas que RJ y SW, pero menos que AD.
+* KS no es por lo general la primera opción pues en colas pesadas gana AD y en el centrado/asimetría de la distribución gana RJ y SW.
+
+## Ejemplo 02 {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+En [Excel](https://stevenggoni.github.io/clases/data/II-1123_02_Ejemplos y ejercicios resueltos.xlsx){target="_blank"}, en la pestaña con este mismo nombre, puede encontrar un conjunto de datos. 
+Realice un histograma de los datos. 
+Con un 99 % de confianza, realice al menos tres pruebas de normalidad o con las que cuente el software que esté usando. 
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+
+ejemplo_02 <- openxlsx::read.xlsx("data/II-1123_02_Ejemplos y ejercicios resueltos.xlsx", 
+                                  sheet = "Ejemplo 02")
+
+gej02 <- ejemplo_02 %>% 
+  ggplot(aes(Normalidad)) +
+  geom_histogram(bins = round(1+log2(140)), 
+                 fill = "#263247", 
+                 color = "#C18A00") +
+  theme_bw()
+
+plotly::ggplotly(gej02, width = 850, height = 500) %>% 
+    plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 25),
+                 xaxis = list(
+                   title = list( font = list(size = 25)),
+                   tickfont = list(size = 22)),
+                 yaxis = list(title = list(font = list(size = 25)),
+                              tickfont = list(size = 22)))
+
+```
+
+
+:::
+
+::::::
+
+## Ejemplo 02 {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+* Con base en el análisis gráfico y los valores p obtenidos.
+
+* Prepare un esquema en el que responda al ¿por qué con una prueba se rechaza y con las otras no?
+
+:::
+
+
+::: {.column width="50%"} 
+
+```{r}
+
+data.frame(Prueba =  c("AD", "KS", "RJ"), 
+           "Valor p" = c(0.009, 0.013, 0.022)) %>% 
+  knitr::kable(format = "html") %>%
+  kableExtra::kable_styling()
+
+```
+
+:::
+
+::::::
+
+## Conclusiones y recomendaciones {.bloques}
+
+* Si el tamaño de muestra es pequeño, no conviene penalizar fuertemente las colas, pues un solo valor, que puede ser “mala suerte” puede tener mucho peso en la decisión sobre la normalidad. 
+
+* Si $n$ es muy grande, conviene interpretar los valores P con cautela, pues son valores del tipo “caja negra”. Es decir, preste muchas más atención a las rutinas gráficas. 
+
+* Conviene siempre realizar el análisis gráfico (rutinas gráficas) primero, antes de aplicar una prueba formal de normalidad. 
+
+* Las conclusiones finales sobre la normalidad de un conjunto de datos [no pueden]{.hi} estar basadas solo en un valor P. 
+
+# Otras rutinas de identificación de distribuciones {.bloques}
+
+## Identificación de distribuciones {.bloques}
+
+* Muchos softwares estadísticos (libres o comerciales) tienen incluidas rutinas de identificación de distribuciones que funcionan de forma que prueban muchas distribuciones a la vez.
+
+* Esto es importante, para decidir sobre el tipo de modelo y análisis estadístico a emplear. 
+
+* Nótese que las distribuciones tienen sus propias características, no se deben usar indiscriminadamente. Las pruebas estadísticas no pueden supeditar la teoría y el sentido común. 
+
+## Identificación de distribuciones {.bloques}
+
+* Es decir, que un identificador de distribuciones puede decir que mis datos siguen alguna distribución y esto no tener sentido alguno en la práctica. 
+
+* Estudie si la distribución que le tocó es adecuada o si hay otra, no tan buena, pero que tiene más sentido teórico práctico. 
+
+## Ejemplo 03 {.bloques}
+
+* Utilice los datos del ejemplo 02 y encuentre mediante un identificador de distribuciones (puede ser en R, Python, Minitab, etc), qué distribución se ajusta mejor a los datos. Use $\alpha = 0.01$.
+* Recuerde que: 
+  * Las rutinas gráficas ya las hizo, por eso no se repiten, pero siempre deben hacerse. 
+  * ¿Va a probar todas las distribuciones? Si no conoce alguna, puede que sea conveniente que la estudie de forma individual.
+
+## Ejemplo 03 {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+* El concepto de transformación no es abarcado aún. Por lo que de obtenerlos, puede ignorarlos. 
+
+* En este y otros ejercicios [puede]{.hi} obtener valores diferentes a los aquí mostrados, como consecuencia de los algorítmos empleados en los cálculos. 
+  * Para este ejercicio, se está usando la prueba de KS, Minitab suele usar AD.
+
+* Nótese como este conjunto de datos se ajusta a 4 distribuciones distintas. ¿Cuál escojo? Dependerá del contexto y conveniencia.  
+
+:::
+
+::: {.column width="50%"}
+
+### Resultados de un identificador de distribuciones
+
+```{r}
+
+# probamos varias distribuciones
+
+distribuciones <- c("weibull", "lnorm", "exp", # agregar más si es conveniente
+  "gamma", "unif", "logis", "norm") %>% 
+  purrr::map(function(x){
+    fitdistrplus::fitdist(ejemplo_02$Normalidad, x)
+    })
+
+bondad_ajuste <- fitdistrplus::gofstat(distribuciones)
+
+data.frame(Distribución = c("Weibull", "Lognormal", "Exponencial",
+                            "Gamma", "Uniforme", "Logística", "Normal"), 
+           "Valor p" = round(bondad_ajuste$chisqpvalue,3)) %>% 
+  tibble::remove_rownames() %>% 
+  knitr::kable(format = "html") %>%
+  kableExtra::kable_styling()
+```
+
+
+:::
+
+::::::
+
+## Bibliografía {.bloques}
+
+:::: columns
+::: {.column width="100%" style="font-size: 1.2em;"}
+
+* Las fuentes de esta sesión provienen de diferentes libros de texto, cuya mención no es necesaria porque ahondan en exceso en conceptos que no son pertinentes al alcance de este curso.
+
+
+:::
+::::
+
+## Pruebas de bondad de ajuste para distribuciones <br> II-1123 Estadística para Ingeniería Industrial II {.center}
+
+### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni\@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
+
+### Dudas o correcciones requeridas pueden solicitarse al correo
