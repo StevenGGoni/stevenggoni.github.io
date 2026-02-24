@@ -542,7 +542,7 @@ plotly::plot_ly(height = 600, width = 650) %>%
 :::
 :::::
 
-# Test de $\chi^2$
+# Test de $\chi^2$ {.bloques}
 
 ## Introducción {.bloques}
 
