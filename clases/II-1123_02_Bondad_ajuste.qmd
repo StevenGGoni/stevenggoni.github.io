@@ -23,7 +23,7 @@ library(plotly)
 
 ## Preguntas generadoras {.bloques}
 
--   ¿Cómo se selecicona la distribución que mejor se ajusta a los datos?
+-   ¿Cómo se selecciona la distribución que mejor se ajusta a los datos?
 
 -   ¿Por qué es necesario conocer qué distribución se ajusta a los datos?
 
