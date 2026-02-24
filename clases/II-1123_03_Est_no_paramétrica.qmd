@@ -35,3 +35,6 @@ format: revealjs
   * Se trabaja con variables aleatorias que siguen la [distribución normal]{.hi}. 
   * O bien, el [tamaño de muestra es lo suficientemente grande]{.hi} para cumplir con el teorema del límite central (TLC).
     * Recuerde que el TLC depende, en gran medida de la asimetría de la distribución de la población y que no es una buena práctica asumir que en todos los casos se necesita $n \ge 30$. En ocasiones puede ser más o puede ser menos. 
+    * Puede visitar estos recursos para mejorar su comprensión en este tema:
+      * [Explicación, demostración y tutorial sobre el TLC](https://stevenggoni.github.io/tutoriales_R/Teorema-del-l%C3%ADmite-central.html){target="_blank"}
+      * [](){target="_blank"}
