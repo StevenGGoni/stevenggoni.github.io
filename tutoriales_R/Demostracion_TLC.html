@@ -522,7 +522,7 @@ x \sim N(5, 2)
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Teorema-del-límite-central_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Demostracion_TLC_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -544,7 +544,7 @@ x \sim N(5, 2)
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Teorema-del-límite-central_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Demostracion_TLC_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -583,7 +583,7 @@ x \sim N(5, 2)
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Teorema-del-límite-central_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Demostracion_TLC_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -621,7 +621,7 @@ x \sim LN(0, 1)
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Teorema-del-límite-central_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Demostracion_TLC_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -656,7 +656,7 @@ x \sim LN(0, 1)
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Teorema-del-límite-central_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Demostracion_TLC_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -674,7 +674,7 @@ x \sim LN(0, 1)
     Anderson-Darling normality test
 
 data:  muestras
-A = 9.3847, p-value &lt; 2.2e-16</code></pre>
+A = 5.7617, p-value = 3.422e-14</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(muestras,</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">"Gráfico de cuantil-cuantil (Q-Q plot)"</span>,</span>
@@ -684,12 +684,12 @@ A = 9.3847, p-value &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Teorema-del-límite-central_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Demostracion_TLC_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 617 701</code></pre>
+<pre><code>[1] 884 149</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -711,7 +711,7 @@ A = 9.3847, p-value &lt; 2.2e-16</code></pre>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="co"># puede salir el mismo valor varias veces</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">prob =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="dv">6</span>)) <span class="co"># probabilidad para valor de las caras del dado</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1 3 1 1 6</code></pre>
+<pre><code>[1] 6 1 1 1 4</code></pre>
 </div>
 </div>
 <p>Ahora, repitamos el lanzamiento, 5000 veces y observemos la distribución de los datos, la frecuencia relativa de cada lanzamiento debería ser <strong>aproximadamente</strong> 1/6 = 16.67 %.</p>
@@ -740,38 +740,38 @@ A = 9.3847, p-value &lt; 2.2e-16</code></pre>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1</td>
-<td style="text-align: right;">834</td>
-<td style="text-align: right;">16.68</td>
-<td style="text-align: right;">16.68</td>
+<td style="text-align: right;">809</td>
+<td style="text-align: right;">16.18</td>
+<td style="text-align: right;">16.18</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2</td>
-<td style="text-align: right;">863</td>
-<td style="text-align: right;">17.26</td>
-<td style="text-align: right;">33.94</td>
+<td style="text-align: right;">836</td>
+<td style="text-align: right;">16.72</td>
+<td style="text-align: right;">32.90</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3</td>
-<td style="text-align: right;">817</td>
-<td style="text-align: right;">16.34</td>
-<td style="text-align: right;">50.28</td>
+<td style="text-align: right;">835</td>
+<td style="text-align: right;">16.70</td>
+<td style="text-align: right;">49.60</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">4</td>
-<td style="text-align: right;">819</td>
-<td style="text-align: right;">16.38</td>
-<td style="text-align: right;">66.66</td>
+<td style="text-align: right;">806</td>
+<td style="text-align: right;">16.12</td>
+<td style="text-align: right;">65.72</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">5</td>
-<td style="text-align: right;">865</td>
-<td style="text-align: right;">17.30</td>
-<td style="text-align: right;">83.96</td>
+<td style="text-align: right;">868</td>
+<td style="text-align: right;">17.36</td>
+<td style="text-align: right;">83.08</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">6</td>
-<td style="text-align: right;">802</td>
-<td style="text-align: right;">16.04</td>
+<td style="text-align: right;">846</td>
+<td style="text-align: right;">16.92</td>
 <td style="text-align: right;">100.00</td>
 </tr>
 <tr class="odd">
@@ -806,7 +806,7 @@ Frecuencia = \frac{1}{6}\cdot 5000 = 833.33
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Teorema-del-límite-central_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Demostracion_TLC_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -826,16 +826,16 @@ Frecuencia = \frac{1}{6}\cdot 5000 = 833.33
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.2
-[1] 3.4
-[1] 3.2
-[1] 3
-[1] 2.6
-[1] 2.4
-[1] 4.2
+<pre><code>[1] 3
+[1] 4.6
+[1] 4.4
 [1] 3.6
-[1] 3.4
-[1] 2.6</code></pre>
+[1] 4.6
+[1] 4.4
+[1] 1.6
+[1] 3.8
+[1] 3.6
+[1] 3.6</code></pre>
 </div>
 </div>
 <p>Ahora si, repitámoslo 1000 veces</p>
@@ -863,7 +863,7 @@ Frecuencia = \frac{1}{6}\cdot 5000 = 833.33
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Teorema-del-límite-central_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Demostracion_TLC_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -875,7 +875,7 @@ Frecuencia = \frac{1}{6}\cdot 5000 = 833.33
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(experimento_dado<span class="sc">$</span>V1)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.531</code></pre>
+<pre><code>[1] 3.4716</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -893,7 +893,7 @@ Frecuencia = \frac{1}{6}\cdot 5000 = 833.33
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(experimento_dado<span class="sc">$</span>V1)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7782317</code></pre>
+<pre><code>[1] 0.7475776</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -902,7 +902,7 @@ Frecuencia = \frac{1}{6}\cdot 5000 = 833.33
 <p>Aunque la distribución de la población es uniforme discreta, vemos como la de las medias muestrales se asemeja a una distribución normal.</p>
 <p>En una situación real tendríamos sólo los estadísticos de nuestra muestra:</p>
 <p><span class="math display">\[
-\bar{X} \sim N(3.531, 0.7782317)
+\bar{X} \sim N(3.4716, 0.7475776)
 \]</span></p>
 <p>Gracias a TLC podemos acercarnos a conocer las características de la población, mediante la toma de muestras.</p>
 <p>Por ejemplo, la media poblacional y la media muestral son similares. La desviación poblacional <span class="math inline">\(\sigma\)</span> puede obtenerse al despejar esta fórmula <span class="math inline">\(\frac{\sigma}{\sqrt{n}} = s\)</span>.</p>

@@ -37,4 +37,4 @@ format: revealjs
     * Recuerde que el TLC depende, en gran medida de la asimetría de la distribución de la población y que no es una buena práctica asumir que en todos los casos se necesita $n \ge 30$. En ocasiones puede ser más o puede ser menos. 
     * Puede visitar estos recursos para mejorar su comprensión en este tema:
       * [Explicación, demostración y tutorial sobre el TLC](https://stevenggoni.github.io/tutoriales_R/Teorema-del-l%C3%ADmite-central.html){target="_blank"}
-      * [](){target="_blank"}
+      * [Efecto de la asimetría sobre el TLC](https://rpubs.com/SGGoni){target="_blank"}

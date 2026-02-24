@@ -26,7 +26,9 @@ Para los que nunca han programado, o al menos nunca han programado en R/Rstudio.
 
 ## Estadística `r fontawesome::fa("chart-line")`
 
-* [Demostración del Teorema del Límite Central (TLC)](tutoriales_R/t){target="_blank"}
+* [Demostración del Teorema del Límite Central (TLC)](tutoriales_R/Demostracion_TLC.html){target="_blank"}
+
+Una demostración por intuición de cuándo y por qué funciona el TLC. 
 
 ## Ingeniería de Calidad `r fontawesome::fa("ruler-combined")`
 
