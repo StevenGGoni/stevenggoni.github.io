@@ -24,4 +24,4 @@ Aquí encontrará las clases de los diferentes cursos del área de conocimiento 
 
 2. [Pruebas de bondad de ajuste para distribuciones](clases/II-1123_02_Bondad_ajuste.html){target="_blank"}
 
-3. [Estadística no paramétrica para una variable](clases/II-1123_03_Est_no_paramétrica.html){target="_blank"}
+3. [Estadística no paramétrica para una o dos variables](clases/II-1123_03_Est_no_paramétrica.html){target="_blank"}

@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Steven García Goñi steven.garciagoni@ucr.ac.cr">
-  <title>Pruebas de bondad de ajuste para distribuciones</title>
+  <title>Estadística no paramétrica para una o dos variables</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -122,13 +122,17 @@
       margin-right: 0; 
     }
   </style>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section class="quarto-title-block center">
-  <h1 class="title">Pruebas de bondad de ajuste para distribuciones</h1>
+  <h1 class="title">Estadística no paramétrica para una o dos variables</h1>
   <p class="subtitle"><a href="https://stevenggoni.github.io/clases/II-1123_03_Est_no_paramétrica.pdf">Versión PDF</a> <br> II-1123 Estadística para Ingeniería Industrial II</p>
 
 <div class="quarto-title-authors">
@@ -171,13 +175,1083 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Se trabaja con variables aleatorias que siguen la <span class="hi">distribución normal</span>.</li>
 <li>O bien, el <span class="hi">tamaño de muestra es lo suficientemente grande</span> para cumplir con el teorema del límite central (TLC).
 <ul>
-<li>Recuerde que el TLC depende, en gran medida de la asimetría de la distribución de la población y que no es una buena práctica asumir que en todos los casos se necesita <span class="math inline">\(n \ge 30\)</span>. En ocasiones puede ser más o puede ser menos.</li>
+<li>Recuerde que el TLC depende, en gran medida de la asimetría de la distribución de la población y que no es una buena práctica asumir que en todos los casos se necesita <span class="math inline">\(n \ge 30\)</span> (esta idea es prácticamente un fósil de la estadística). En ocasiones puede ser más o puede ser menos.</li>
+<li>Puede visitar estos enlaces para mejorar su comprensión en este tema:
+<ul>
+<li><a href="https://stevenggoni.github.io/tutoriales_R/Demostracion_TLC.html" target="_blank">Explicación, demostración y tutorial sobre el TLC</a></li>
+<li><a href="https://rpubs.com/SGGoni" target="_blank">Efecto de la asimetría sobre el TLC</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Igualmente, recuerde que estos los procedimientos paramétricos son, por lo general, <span class="hi">relativamente insensibles</span> a variaciones pequeñas en la normalidad.</p>
+<ul>
+<li>Por lo que, aún de no cumplirse esta condición “<em>por muy poco</em>”, aun puede usarlos.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Introducción</h2>
+<ul>
+<li><p>Existen procedimientos que son <span class="hi">libres de distribución</span> o no paramétricos que usualmente <u>no hacen supuestos acerca de la distribución</u> subyacente de los datos en la población.</p>
+<ul>
+<li>En algunas ocasiones puede existir el supuesto de continuidad, es decir, que los datos sean continuos.</li>
+</ul></li>
+<li><p>Los métodos no paramétricos no están libres de supuestos, porque algunos de los métodos más comunes, como la prueba de rango con signo y de suma de rangos que vemos en nuestro curso, parten del supuesto de simetría aproximada.</p></li>
+<li><p>Lo que nos lleva a que en realidad los métodos ¡<span class="hi">no son aplicables de modo universal</span>!</p></li>
+<li><p>Nótese que no paramétrico no es necesariamente “inferior” ni paramétrico es “mejor” o superior.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Estadística no parámetrica</h2>
+<div class="columns">
+<div class="column" style="width:100%;">
+<ul>
+<li><p>La estadística no paramétrica es una rama de la estadística que permite analizar datos <span class="hi">sin asumir que provienen de una distribución específica</span>.</p>
+<ul>
+<li><em>Nota del autor de esta presentación: nótese que indica que no provienen de una distribución específica, no solo de la normal, por lo que recomiendo evaluar si no existe una distribución particular que se pueda ajustar a los datos antes de aplicar un test paramétrico</em></li>
+</ul></li>
+<li><p>Lo que la hace especialmente útil cuando las condiciones para los métodos paramétricos no se cumplen.</p>
+<ul>
+<li><blockquote>
+<p>Este slide y el siguiente están basados en material de <a href="https://www.researchgate.net/profile/Isabel-Escudero-7" target="_blank">PhD. Isabel Escudero</a> facilitado el 23 de agosto 2025 en la Lección Inaugural II Ciclo 2025 de la Escuela de Estadística y Programa de Posgrado en Estadística.</p>
+</blockquote></li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Estadística no parámetrica</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.9em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Característica</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Paramétrico</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">No paramétrico</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Distribución de los datos</td>
+<td style="text-align: left;">Requieren que los datos sigan una distribución específica (normal)</td>
+<td style="text-align: left;">No requieren distribución específica</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tipo de datos</td>
+<td style="text-align: left;">Datos de intervalo o razón</td>
+<td style="text-align: left;">Datos ordinales, nominales o no normalmente distribuidos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Supuestos previos</td>
+<td style="text-align: left;">Más estrictos</td>
+<td style="text-align: left;">Más flexibles</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Potencia estadística</td>
+<td style="text-align: left;">Mayor si se cumplen los supuestos</td>
+<td style="text-align: left;">Menor, pero más robustos ante violaciones de supuestos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sensibilidad a outliers</td>
+<td style="text-align: left;">Alta (afectados por valores extremos)</td>
+<td style="text-align: left;">Baja (más resistentes a outliers)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tamaño de muestra necesario</td>
+<td style="text-align: left;">Generalmente mayor</td>
+<td style="text-align: left;">Funciona bien con muestras pequeñas</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<blockquote>
+<p>Material de <a href="https://www.researchgate.net/profile/Isabel-Escudero-7" target="_blank">PhD. Isabel Escudero</a></p>
+</blockquote>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Estadística no parámetrica</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>Ventajas</h3>
+<ul>
+<li><p>Fácil aplicación computacional.</p></li>
+<li><p><strong>Puede</strong> servir de método de evaluación rápido, antes de determinar si se requiere de un método más elaborado.</p></li>
+<li><p>Muchos supuestos que típicamente se deben hacer respecto a la población en estadística paramétrica, no son requeridos. Pero sigue requiriendo independencia y otros supuestos.</p></li>
+<li><p>Útil cuando el tamaño de muestra no es el adecuado (muy pequeño) para cumplir con el TLC.</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3>Desventajas</h3>
+<ul>
+<li><p>Conceptualmente, no siempre son de fácil aplicación.</p></li>
+<li><p>Si se puede aplicar una técnica paramétrica, por que se cumplen sus supuestos, es mejor, pues este generalmente es un método más eficiente: tiene más potencia para un mismo tamaño muestral.</p></li>
+<li><p>En general, cuando los supuestos paramétricos se cumplen, las pruebas no paramétricas tienen menor eficiencia, por lo que pueden requerir una muestra mayor para alcanzar la misma potencia.</p></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Reflexión</h2>
+<ul>
+<li><p>La estadística inferencial se basa o depende del proceso de extracción de la muestra y de si este es efectivamente aleatorio y está bien hecho: libre de sesgos evidentes, etc; lo cual es requisito de cualquiera de las pruebas estadísticas.</p>
+<ul>
+<li><span class="hi">Ningún test, paramétrico o no, corrige un diseño erróneo.</span></li>
+</ul></li>
+<li><p>En ocasiones sucede que la población sigue la distribución normal, pero que el método de extracción de los datos no lo refleja, pues no es correcto (aleatoriedad, el instrumento de medición no es adecuado, etc).</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Reflexión</h2>
+<ul>
+<li>El <span class="math inline">\(n&lt;30\)</span> no significa que automáticamente se requiere de un test no paramétrico.
+<ul>
+<li>Esto es un error que hay que evitar reproducir.</li>
+<li>El test no paramétrico se requiere cuando no se cumplan los supuestos del paramétrico, no por una cuestión del tamaño de muestra.</li>
+</ul></li>
+<li>Por ejemplo, para hacer hipótesis de tendencia central:
+<ul>
+<li>La población es normal
+<ul>
+<li>Test paramétrico</li>
+</ul></li>
+<li>La población no es normal, pero la muestra es suficientemente grande
+<ul>
+<li>Test paramétrico es adecuado por el TLC</li>
+</ul></li>
+<li>La población es claramente no normal y la muestra es pequeña
+<ul>
+<li>Test no paramétrico</li>
 </ul></li>
 </ul></li>
 </ul>
-
+</section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Tests no paramétricos</h1>
 
 </section>
+<section class="slide level2 bloques">
+<h2>Prueba de signo</h2>
+<ul>
+<li>Es usada para probar hipótesis acerca de la mediana (<span class="math inline">\(\widetilde{X}\)</span>) de una distribución continua o discreta. La mediana es el valor central de una distribución.</li>
+<li>Las hipótesis son:
+<ul>
+<li><p><span class="math inline">\(H_o: \widetilde{X}=\text{valor}\)</span></p></li>
+<li><p><span class="math inline">\(H_i: \widetilde{X}\ne\text{valor}\)</span></p></li>
+<li><p>Son también plausibles las hipótesis alternativas con &gt; y &lt;.</p></li>
+</ul></li>
+<li>Sus principales supuestos son: independencia, que el nivel de medición sea al menos ordinal y que la mediana está bien definida</li>
+<li>Básicamente es la alternativa no paramétrica a las pruebas de hipótesis sobre tendencia central, como por ejemplo: una media.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 01</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><blockquote>
+<p>Nota: todos los ejercicios serán resueltos de forma manual, pero también pueden resolverse con software estadístico.</p>
+</blockquote></li>
+<li>Se desea comprobar que la resistencia al corte de 20 motores seleccionados al azar sea de 2000 psi, con un 95% de confianza.
+<ul>
+<li>Los datos no provienen de una población normal (o no se puede asumir) y no se cumple el TLC, por lo que una prueba no paramétrica resulta apropiada.</li>
+</ul></li>
+<li>Para ello se le proveen de 20 observaciones.</li>
+</ul>
+</div><div class="column" style="font-size: 0.85em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Obsevación</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Resistencia</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Obsevación</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Resistencia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2158.70</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">2165.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1678.15</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">2399.55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2316.00</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1779.80</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2061.30</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">2336.75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2207.50</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1765.30</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1708.30</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">2053.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1784.70</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">2414.40</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2575.10</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">2200.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2357.90</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">2654.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">2256.70</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">1753.70</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 01</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.85em;">
+<p>Se calculan las diferencias respecto al valor de <span class="math inline">\(H_o\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Obsevación</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Resistencia</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Diferencias</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Signo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Obsevación</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Resistencia</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Diferencias</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Signo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2158.70</td>
+<td style="text-align: right;">158.70</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">2165.20</td>
+<td style="text-align: right;">165.20</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1678.15</td>
+<td style="text-align: right;">-321.85</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">2399.55</td>
+<td style="text-align: right;">399.55</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2316.00</td>
+<td style="text-align: right;">316.00</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1779.80</td>
+<td style="text-align: right;">-220.20</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2061.30</td>
+<td style="text-align: right;">61.30</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">2336.75</td>
+<td style="text-align: right;">336.75</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2207.50</td>
+<td style="text-align: right;">207.50</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1765.30</td>
+<td style="text-align: right;">-234.70</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1708.30</td>
+<td style="text-align: right;">-291.70</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">2053.50</td>
+<td style="text-align: right;">53.50</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1784.70</td>
+<td style="text-align: right;">-215.30</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">2414.40</td>
+<td style="text-align: right;">414.40</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2575.10</td>
+<td style="text-align: right;">575.10</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">2200.50</td>
+<td style="text-align: right;">200.50</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2357.90</td>
+<td style="text-align: right;">357.90</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">2654.20</td>
+<td style="text-align: right;">654.20</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">2256.70</td>
+<td style="text-align: right;">256.70</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">1753.70</td>
+<td style="text-align: right;">-246.30</td>
+<td style="text-align: left;">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 01</h2>
+<ul>
+<li><p>Luego, se cuenta los signos positivos y negativos.</p></li>
+<li><p><span class="math inline">\(+ = 14\)</span></p></li>
+<li><p><span class="math inline">\(- = 6\)</span></p></li>
+<li><p>El valor P se obtiene basándose en la distribución binomial (lo que tiene sentido, pues hay dos signos). * Se hace de la siguiente manera (con <span class="math inline">\(+\)</span> y con <span class="math inline">\(-\)</span>):</p></li>
+<li><p><span class="math inline">\(2\cdot Bin(x \ge 14, n=20, p = 0.5) = 0.1153\)</span></p></li>
+<li><p><span class="math inline">\(2\cdot Bin(x \le 6, n=20, p = 0.5) = 0.1153\)</span></p>
+<ul>
+<li>Si la hipótesis es unilateral, no se multiplica por 2 y se utiliza la desigualdad (<span class="math inline">\(\le , \ge\)</span>) correspondiente.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 02 (Pareado)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><p>Se instalan dos tipos de dispositivos de medición en el sistema electrónico de inyección de combustible de 12 automóviles.</p></li>
+<li><p>Se desea determinar si existe diferencia en los datos de rendimiento entre dispositivos. Use un nivel de significancia de 0.05.</p></li>
+</ul>
+</div><div class="column" style="font-size: 0.81em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Automóvil</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">D1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">D2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">17.6</td>
+<td style="text-align: right;">16.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">19.4</td>
+<td style="text-align: right;">20.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">19.5</td>
+<td style="text-align: right;">18.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">17.1</td>
+<td style="text-align: right;">16.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">15.3</td>
+<td style="text-align: right;">16.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">15.9</td>
+<td style="text-align: right;">15.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">16.3</td>
+<td style="text-align: right;">16.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">18.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">17.3</td>
+<td style="text-align: right;">16.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">19.1</td>
+<td style="text-align: right;">20.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">17.8</td>
+<td style="text-align: right;">16.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">18.2</td>
+<td style="text-align: right;">17.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 02 (Pareado)</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.81em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Automóvil</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">D1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">D2</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Diferencia</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Signo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">17.6</td>
+<td style="text-align: right;">16.8</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">19.4</td>
+<td style="text-align: right;">20.0</td>
+<td style="text-align: right;">-0.6</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">19.5</td>
+<td style="text-align: right;">18.2</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">17.1</td>
+<td style="text-align: right;">16.4</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">15.3</td>
+<td style="text-align: right;">16.0</td>
+<td style="text-align: right;">-0.7</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">15.9</td>
+<td style="text-align: right;">15.4</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">16.3</td>
+<td style="text-align: right;">16.5</td>
+<td style="text-align: right;">-0.2</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">18.0</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">17.3</td>
+<td style="text-align: right;">16.4</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">19.1</td>
+<td style="text-align: right;">20.1</td>
+<td style="text-align: right;">-1.0</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">17.8</td>
+<td style="text-align: right;">16.7</td>
+<td style="text-align: right;">1.1</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">18.2</td>
+<td style="text-align: right;">17.9</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: left;">+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 02 (Pareado)</h2>
+<ul>
+<li><p>La mediana hipotetizada en la población es de 0.</p></li>
+<li><p>Se cuenta con 8 +’s y 4 -’s.</p></li>
+<li><p><span class="math inline">\(2\cdot Bin(x \ge 8, n=12, p = 0.5) = 0.3877\)</span></p></li>
+<li><p><span class="math inline">\(2\cdot Bin(x \le 4, n=12, p = 0.5) = 0.3877\)</span></p></li>
+<li><p>Por lo que, no hay evidencia suficiente para rechazar la hipótesis nula de que los dos dipositivos de medición son iguales.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Prueba de rango con signo de Wilcoxon</h2>
+<ul>
+<li>Se utiliza para probar la hipótesis sobre la mediana de una distribución continua, si la distribución es simétrica alrededor de esa mediana.</li>
+<li>Por lo que un supuesto de aplicación es esa simetría, además de la independencia y que la variable sea al menos ordinal.</li>
+<li>Básicamente es la alternativa no paramétrica a las pruebas de hipótesis sobre tendencia central, como por ejemplo: una media.
+<ul>
+<li>Es una alternativa más potente a la prueba de signos. Pues esta incorpora más información</li>
+</ul></li>
+<li>Las hipótesis son:
+<ul>
+<li><span class="math inline">\(H_o: \widetilde{X}=\text{valor}\)</span></li>
+<li><span class="math inline">\(H_i: \widetilde{X}\ne\text{valor}\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 03</h2>
+<ul>
+<li><p>Resuelva el ejercicio del Ejemplo 01, pero con esta técnica no paramétrica.</p></li>
+<li><p>Los ejercicios resueltos los puede encontrar en este archivo <a href="https://stevenggoni.github.io/clases/data/II-1123_03_Ejemplos%20y%20ejercicios%20resueltos.xlsx">Excel</a></p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 03</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.7em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Obsevación</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Resistencia</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Diferencias</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Signo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Diferencia absoluta</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Rango</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Obsevación</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Resistencia</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Diferencias</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Signo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Diferencia absoluta</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Rango</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">2053.5</td>
+<td style="text-align: right;">53.5</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">53.5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">2256.70</td>
+<td style="text-align: right;">256.70</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">256.70</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2061.3</td>
+<td style="text-align: right;">61.3</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">61.3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1708.30</td>
+<td style="text-align: right;">-291.70</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">291.70</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2158.7</td>
+<td style="text-align: right;">158.7</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">158.7</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2316.00</td>
+<td style="text-align: right;">316.00</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">316.00</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">2165.2</td>
+<td style="text-align: right;">165.2</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">165.2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1678.15</td>
+<td style="text-align: right;">-321.85</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">321.85</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">2200.5</td>
+<td style="text-align: right;">200.5</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">200.5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">2336.75</td>
+<td style="text-align: right;">336.75</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">336.75</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2207.5</td>
+<td style="text-align: right;">207.5</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">207.5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2357.90</td>
+<td style="text-align: right;">357.90</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">357.90</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1784.7</td>
+<td style="text-align: right;">-215.3</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">215.3</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">2399.55</td>
+<td style="text-align: right;">399.55</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">399.55</td>
+<td style="text-align: right;">17</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1779.8</td>
+<td style="text-align: right;">-220.2</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">220.2</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">2414.40</td>
+<td style="text-align: right;">414.40</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">414.40</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1765.3</td>
+<td style="text-align: right;">-234.7</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">234.7</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2575.10</td>
+<td style="text-align: right;">575.10</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">575.10</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">1753.7</td>
+<td style="text-align: right;">-246.3</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">246.3</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">2654.20</td>
+<td style="text-align: right;">654.20</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: right;">654.20</td>
+<td style="text-align: right;">20</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 03</h2>
+<ul>
+<li><p>Se realiza la suma los rangos o rankings para cada signo, de tal forma que:</p></li>
+<li><p><span class="math inline">\(W^+=150\)</span></p></li>
+<li><p><span class="math inline">\(W^-=60\)</span></p></li>
+<li><p>El valor P se puede conseguir con esta <a href="https://homepage.divms.uiowa.edu/~mbognar/applets/wilcoxon-signed-rank.html" target="_blank">aplicación</a>.</p></li>
+<li><p>Valor P = <span class="math inline">\(P(W \le w) = P(W \le 60) = 0.04865\)</span></p></li>
+<li><p>Como la distribución es simétrica, también puede: Valor P = <span class="math inline">\(P(W \ge w) = P(W \ge 150) = 0.04865\)</span></p></li>
+<li><p>Concluya del estudio</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Suma de rangos de Wilcoxon (Mann Whitney)</h2>
+<ul>
+<li>Básicamente es la alternativa a las pruebas de hipótesis sobre dos poblaciones (en paramétrico usamos medias). Lo que evalua es si las distribuciones de ambas poblaciones son iguales. Por lo que podría interpretarse como una prueba sobre la diferencia de las medianas siempre que el supuesto de forma se cumpla.</li>
+<li>Puede probar la hipótesis de las distribuciones:
+<ul>
+<li><span class="math inline">\(H_o:F_1(x)=F_2(x)\)</span></li>
+<li><span class="math inline">\(H_i:F_1(x) \ne F_2(x)\)</span></li>
+</ul></li>
+<li>Si la forma de las distribuciones es la misma, puede probar la hipótesis de las medianas:
+<ul>
+<li><span class="math inline">\(H_o:\widetilde{X_1}=\widetilde{X_2}\)</span></li>
+<li><span class="math inline">\(H_i:\widetilde{X_1}\ne\widetilde{X_2}\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 04</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Se quiere verificar que una nueva aleación más ligera (aleación 2) tiene más resistencia a la tensión que la aleación tradicional. Utilice una significancia del 5%.</li>
+<li>No se cumplen las condiciones para realizar un test paramétrico, por lo que se recurre a uno no paramétrico.</li>
+</ul>
+</div><div class="column" style="font-size: 0.9em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Aleación1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Aleación2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">3238</td>
+<td style="text-align: right;">3261</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3195</td>
+<td style="text-align: right;">3187</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3246</td>
+<td style="text-align: right;">3209</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3190</td>
+<td style="text-align: right;">3212</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3204</td>
+<td style="text-align: right;">3258</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3254</td>
+<td style="text-align: right;">3248</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3229</td>
+<td style="text-align: right;">3215</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3225</td>
+<td style="text-align: right;">3226</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3217</td>
+<td style="text-align: right;">3240</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3241</td>
+<td style="text-align: right;">3234</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 04</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.95em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Aleación</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Valores</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Rango</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Aleación</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Valores</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Rango</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Aleación2</td>
+<td style="text-align: right;">3187</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Aleación1</td>
+<td style="text-align: right;">3229</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aleación1</td>
+<td style="text-align: right;">3190</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Aleación2</td>
+<td style="text-align: right;">3234</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Aleación1</td>
+<td style="text-align: right;">3195</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Aleación1</td>
+<td style="text-align: right;">3238</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aleación1</td>
+<td style="text-align: right;">3204</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Aleación2</td>
+<td style="text-align: right;">3240</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Aleación2</td>
+<td style="text-align: right;">3209</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Aleación1</td>
+<td style="text-align: right;">3241</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aleación2</td>
+<td style="text-align: right;">3212</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Aleación1</td>
+<td style="text-align: right;">3246</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Aleación2</td>
+<td style="text-align: right;">3215</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Aleación2</td>
+<td style="text-align: right;">3248</td>
+<td style="text-align: right;">17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aleación1</td>
+<td style="text-align: right;">3217</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Aleación1</td>
+<td style="text-align: right;">3254</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Aleación1</td>
+<td style="text-align: right;">3225</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Aleación2</td>
+<td style="text-align: right;">3258</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aleación2</td>
+<td style="text-align: right;">3226</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Aleación2</td>
+<td style="text-align: right;">3261</td>
+<td style="text-align: right;">20</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 04</h2>
+<div class="columns">
+<div class="column">
+<h3>Rangos de Wilcoxon</h3>
+<p><span class="math inline">\(W_i\)</span> es la suma de las posiciones o rankings para cada <span class="math inline">\(i\)</span>.</p>
+<ul>
+<li>Aleación 1 (<span class="math inline">\(n=10\)</span>) = <span class="math inline">\(W_1=99\)</span></li>
+<li>Aleación 2 (<span class="math inline">\(n=10\)</span>) = <span class="math inline">\(W_2=111\)</span></li>
+</ul>
+<p>Entonces, usando esta <a href="https://homepage.divms.uiowa.edu/~mbognar/applets/wilcoxon-rank-sum.html" target="_blank">aplicación</a>:</p>
+<ul>
+<li><span class="math inline">\(P(W_1 \ge 99) = 0.68474\)</span></li>
+<li><span class="math inline">\(P(W_2 \le 111) = 0.68474\)</span></li>
+</ul>
+</div><div class="column">
+<h3>Mann Whitney</h3>
+<p><span class="math display">\[U_i=W_i-\frac{n_i\cdot (n_i+1)}{2}\]</span></p>
+<ul>
+<li>Aleación 1 (<span class="math inline">\(n=10\)</span>) = <span class="math inline">\(U_1=44\)</span></li>
+<li>Aleación 2 (<span class="math inline">\(n=10\)</span>) = <span class="math inline">\(U_2=56\)</span></li>
+</ul>
+<p>Entonces, usando esta <a href="https://homepage.divms.uiowa.edu/~mbognar/applets/mw.html" target="_blank">aplicación</a>:</p>
+<ul>
+<li><span class="math inline">\(P(U_1 \ge 44) = 0.68474\)</span></li>
+<li><span class="math inline">\(P(U_2 \le 56) = 0.68474\)</span></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Pruebas para la varianza</h2>
+<ul>
+<li>Para el caso de varianzas (y en <code>Minitab</code> de forma específica para dos varianzas) no hay TLC, ni cantidad de datos que nos salven.
+<ul>
+<li>Los datos deben seguir una distribución normal.</li>
+</ul></li>
+<li>Algunas de las alternativas a la no normalidad son la prueba de Bonett y la de Levene.
+<ul>
+<li>Por lo general, Bonett es más potente, salvo que tengo muy pocos datos o la distribución es muy asimétrica.</li>
+</ul></li>
+<li>No son necesariamente pruebas no paramétricas, sino robustas al incumplimiento de la normalidad.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 05</h2>
+<ul>
+<li><p>Se utilizan los datos del Ejemplo 05, que puede encontrar en el Excel, para evaluar si la varianza de tres grupos es la misma.</p></li>
+<li><p>En R</p>
+<ul>
+<li><code>car::leveneTest(Respuesta ~ Grupo, data = datos)</code></li>
+<li><code>intervcomp::Bonett.Seier.test(Grupo1, Grupo2, alternative = "two.sided")</code></li>
+</ul></li>
+<li><p>En Minitab Stat&gt;Basic Statistics&gt;2 Variances…&gt;Options</p>
+<ul>
+<li>Si el “Use test and confidence intervals based on normal distribution” está marcado, se ejecutará el test F, caso contrario, se ejecta Bonnet y Levene (No paramétricos o robustos a la no normalidad).</li>
+</ul></li>
+<li><p>Resuelva este ejemplo por cuenta propia. Tome en cuenta que por diferencias algoríticas, puede obtener valores distintos en función del software.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Bibliografía</h2>
+<div class="columns">
+<div class="column" style="font-size: 1.3em;">
+<ul>
+<li>Montgomery, D; Runger, G. Applied Statistics and Probabilty for Engineers (5th Edition)
+<ul>
+<li>Capítulo 9.9, 10.3</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 center">
+<h2>Estadística no paramétrica para una o dos variables <br> II-1123 Estadística para Ingeniería Industrial II</h2>
+<h3 class="subtitle">Gracias por su atención <br> Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a></h3>
+<h3>Dudas o correcciones requeridas pueden solicitarse al correo</h3>
+
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

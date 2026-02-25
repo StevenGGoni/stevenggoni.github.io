@@ -1,5 +1,5 @@
 ---
-title: "Pruebas de bondad de ajuste para distribuciones"
+title: "Estadística no paramétrica para una o dos variables"
 subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_03_Est_no_paramétrica.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
 date: today
 format: revealjs
@@ -7,7 +7,7 @@ format: revealjs
 
 ```{r}
 
-
+library(tidyverse)
 
 ```
 
@@ -34,7 +34,492 @@ format: revealjs
 
   * Se trabaja con variables aleatorias que siguen la [distribución normal]{.hi}. 
   * O bien, el [tamaño de muestra es lo suficientemente grande]{.hi} para cumplir con el teorema del límite central (TLC).
-    * Recuerde que el TLC depende, en gran medida de la asimetría de la distribución de la población y que no es una buena práctica asumir que en todos los casos se necesita $n \ge 30$. En ocasiones puede ser más o puede ser menos. 
-    * Puede visitar estos recursos para mejorar su comprensión en este tema:
-      * [Explicación, demostración y tutorial sobre el TLC](https://stevenggoni.github.io/tutoriales_R/Teorema-del-l%C3%ADmite-central.html){target="_blank"}
+    * Recuerde que el TLC depende, en gran medida de la asimetría de la distribución de la población y que no es una buena práctica asumir que en todos los casos se necesita $n \ge 30$ (esta idea es prácticamente un fósil de la estadística). En ocasiones puede ser más o puede ser menos. 
+    * Puede visitar estos enlaces para mejorar su comprensión en este tema:
+      * [Explicación, demostración y tutorial sobre el TLC](https://stevenggoni.github.io/tutoriales_R/Demostracion_TLC.html){target="_blank"}
       * [Efecto de la asimetría sobre el TLC](https://rpubs.com/SGGoni){target="_blank"}
+
+* Igualmente, recuerde que estos los procedimientos paramétricos son, por lo general, [relativamente insensibles]{.hi} a variaciones pequeñas en la normalidad. 
+  * Por lo que, aún de no cumplirse esta condición “*por muy poco*”, aun puede usarlos.
+
+## Introducción {.bloques}
+
+* Existen procedimientos que son [libres de distribución]{.hi} o no paramétricos que usualmente [no hacen supuestos acerca de la distribución]{.ul} subyacente de los datos en la población.
+  * En algunas ocasiones puede existir el supuesto de continuidad, es decir, que los datos sean continuos. 
+* Los métodos no paramétricos no están libres de supuestos, porque algunos de los métodos más comunes, como la prueba de rango con signo y de suma de rangos que vemos en nuestro curso, parten del supuesto de simetría aproximada. 
+
+* Lo que nos lleva a que en realidad los métodos ¡[no son aplicables de modo universal]{.hi}!
+
+* Nótese que no paramétrico no es necesariamente "inferior" ni paramétrico es "mejor" o superior.
+
+## Estadística no parámetrica {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="100%"}
+
+* La estadística no paramétrica es una rama de la estadística que permite analizar datos [sin asumir que provienen de una distribución específica]{.hi}.
+  * *Nota del autor de esta presentación: nótese que indica que no provienen de una distribución específica, no solo de la normal, por lo que recomiendo evaluar si no existe una distribución particular que se pueda ajustar a los datos antes de aplicar un test paramétrico* 
+
+* Lo que la hace especialmente útil cuando las condiciones para los métodos paramétricos no se cumplen.
+
+  * >Este slide y el siguiente están basados en material de [PhD. Isabel Escudero](https://www.researchgate.net/profile/Isabel-Escudero-7){target="_blank"} facilitado el 23 de agosto 2025 en la Lección Inaugural II Ciclo 2025 de la Escuela de Estadística y Programa de Posgrado en Estadística.  
+  
+:::
+
+::::::
+
+## Estadística no parámetrica {.bloques}
+
+:::::: {.columns}
+
+::: {.column style="font-size: 0.9em;"}
+
+```{r}
+
+
+data.frame(Caracteristica = c("Distribución de los datos",
+                              "Tipo de datos",
+                              "Supuestos previos",
+                              "Potencia estadística",
+                              "Sensibilidad a outliers",
+                              "Tamaño de muestra necesario"),
+           Test_Parametrico = c("Requieren que los datos sigan una distribución específica (normal)",
+                                "Datos de intervalo o razón",
+                                "Más estrictos",
+                                "Mayor si se cumplen los supuestos",
+                                "Alta (afectados por valores extremos)",
+                                "Generalmente mayor"),
+           Test_No_Parametrico = c("No requieren distribución específica",
+                                   "Datos ordinales, nominales o no normalmente distribuidos",
+                                   "Más flexibles",
+                                   "Menor, pero más robustos ante violaciones de supuestos",
+                                   "Baja (más resistentes a outliers)",
+                                   "Funciona bien con muestras pequeñas"),
+           stringsAsFactors = FALSE) %>% 
+  setNames(c("Característica", "Paramétrico", "No paramétrico")) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+
+```
+
+>Material de [PhD. Isabel Escudero](https://www.researchgate.net/profile/Isabel-Escudero-7){target="_blank"}
+
+:::
+
+::::::
+
+## Estadística no parámetrica {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+### Ventajas
+
+* Fácil aplicación computacional.
+* **Puede** servir de método de evaluación rápido, antes de determinar si se requiere de un método más elaborado. 
+
+* Muchos supuestos que típicamente se deben hacer respecto a la población en estadística paramétrica,  no son requeridos. Pero sigue requiriendo independencia y otros supuestos. 
+
+* Útil cuando el tamaño de muestra no es el adecuado (muy pequeño) para cumplir con el TLC.
+
+:::
+
+::: {.column width="50%"}
+
+### Desventajas
+
+* Conceptualmente, no siempre son de fácil aplicación.
+
+* Si se puede aplicar una técnica paramétrica, por que se cumplen sus supuestos,  es mejor, pues este generalmente es un método más eficiente: tiene más potencia para un mismo tamaño muestral.  
+
+* En general, cuando los supuestos paramétricos se cumplen, las pruebas no paramétricas tienen menor eficiencia, por lo que pueden requerir una muestra mayor para alcanzar la misma potencia.
+
+
+:::
+
+::::::
+
+## Reflexión {.bloques}
+
+* La estadística inferencial se basa o depende del proceso de extracción de la muestra y de si este es efectivamente aleatorio y está bien hecho: libre de sesgos evidentes, etc; lo cual es requisito de cualquiera de las pruebas estadísticas.
+
+  * [Ningún test, paramétrico o no, corrige un diseño erróneo.]{.hi} 
+
+* En ocasiones sucede que la población sigue la distribución normal, pero que el método de extracción de los datos no lo refleja, pues no es correcto (aleatoriedad, el instrumento de medición no es adecuado, etc). 
+
+## Reflexión {.bloques}
+
+* El $n<30$ no significa que automáticamente se requiere de un test no paramétrico. 
+  * Esto es un error que hay que evitar reproducir. 
+  * El test no paramétrico se requiere cuando no se cumplan los supuestos del paramétrico, no por una cuestión del tamaño de muestra. 
+
+* Por ejemplo, para hacer hipótesis de tendencia central: 
+  * La población es normal
+      * Test paramétrico
+  * La población no es normal, pero la muestra es suficientemente grande
+      * Test paramétrico es adecuado por el TLC
+  * La población es claramente no normal y la muestra es pequeña
+      * Test no paramétrico
+
+# Tests no paramétricos {.bloques}
+
+## Prueba de signo {.bloques}
+
+* Es usada para probar hipótesis acerca de la mediana ($\widetilde{X}$) de una distribución continua o discreta. La mediana es el valor central de una distribución. 
+* Las hipótesis son: 
+  * $H_o: \widetilde{X}=\text{valor}$
+  * $H_i: \widetilde{X}\ne\text{valor}$
+
+  * Son también plausibles las hipótesis alternativas con > y <.
+* Sus principales supuestos son: independencia, que el nivel de medición sea al menos ordinal y que la mediana está bien definida
+* Básicamente es la alternativa no paramétrica a las pruebas de hipótesis sobre tendencia central, como por ejemplo: una media.
+
+
+## Ejemplo 01 {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+* >Nota: todos los ejercicios serán resueltos de forma manual, pero también pueden resolverse con software estadístico. 
+
+* Se desea comprobar que la resistencia al corte de 20 motores seleccionados al azar sea de 2000 psi, con un 95% de confianza.
+  * Los datos no provienen de una población normal (o no se puede asumir) y no se cumple el TLC, por lo que una prueba no paramétrica resulta apropiada. 
+
+* Para ello se le proveen de 20 observaciones. 
+
+:::
+
+::: {.column style="font-size: 0.85em;"}
+
+```{r}
+
+ejemplo_01 <- data.frame(Obsevación = 1:20, 
+                         Resistencia = c(2158.7, 1678.15, 2316, 2061.3, 
+                                         2207.5, 1708.3, 1784.7, 2575.1, 
+                                         2357.9, 2256.7, 2165.2, 2399.55, 
+                                         1779.8, 2336.75, 1765.3, 2053.5, 
+                                         2414.4, 2200.5, 2654.2, 1753.7))
+
+ejemplo_01[1:10,] %>% 
+  cbind(ejemplo_01[11:20,]) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+  
+
+```
+
+
+:::
+
+::::::
+
+## Ejemplo 01 {.bloques}
+
+:::::: {.columns}
+
+::: {.column style="font-size: 0.85em;"}
+
+Se calculan las diferencias respecto al valor de $H_o$.
+
+```{r}
+
+resuelto_01 <- ejemplo_01 %>% 
+  dplyr::mutate(Diferencias = Resistencia - 2000,
+                Signo = if_else(Diferencias>0, "+", "-"))
+
+
+resuelto_01[1:10,] %>% 
+  cbind(resuelto_01[11:20,]) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+:::
+
+:::::
+
+## Ejemplo 01 {.bloques}
+
+* Luego, se cuenta los signos positivos y negativos.
+
+* $+ = 14$
+* $- = 6$
+
+* El valor P se obtiene basándose en la distribución binomial (lo que tiene sentido, pues hay dos signos). * Se hace de la siguiente manera (con $+$ y con $-$):
+
+* $2\cdot Bin(x \ge 14, n=20, p = 0.5) = 0.1153$
+* $2\cdot Bin(x \le 6, n=20, p = 0.5) = 0.1153$
+
+  * Si la hipótesis es unilateral, no se multiplica por 2 y se utiliza la desigualdad ($\le , \ge$) correspondiente. 
+
+## Ejemplo 02 (Pareado) {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+* Se instalan dos tipos de  dispositivos de medición en el sistema electrónico de inyección de combustible de 12 automóviles. 
+
+ * Se desea determinar si existe diferencia en los datos de rendimiento entre dispositivos. Use un nivel de significancia de 0.05.
+
+:::
+
+::: {.column style="font-size: 0.81em;"}
+
+```{r}
+
+ejemplo_02 <- data.frame(Automóvil = 1:12,
+                         D1 = c(17.6,  19.4,  19.5,  17.1,  15.3,  15.9,  
+                                16.3,  18.4,  17.3,  19.1,  17.8,  18.2),
+                         D2 = c(16.8,  20.0,  18.2,  16.4,  16.0,  15.4,  
+                                16.5,  18.0,  16.4,  20.1,  16.7,  17.9))
+
+ejemplo_02 %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+
+:::
+
+::::::
+
+## Ejemplo 02 (Pareado) {.bloques}
+
+:::::: {.columns}
+
+::: {.column style="font-size: 0.81em;"}
+
+```{r}
+
+ejemplo_02 %>% 
+  dplyr::mutate(Diferencia = D1-D2, 
+                Signo = if_else(Diferencia>0, "+", "-")) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+
+:::
+
+::::::
+
+## Ejemplo 02 (Pareado) {.bloques}
+
+* La mediana hipotetizada en la población es de 0.
+* Se cuenta con 8 +'s y 4 -'s.
+
+* $2\cdot Bin(x \ge 8, n=12, p = 0.5) = 0.3877$
+* $2\cdot Bin(x \le 4, n=12, p = 0.5) = 0.3877$
+
+* Por lo que, no hay evidencia suficiente para rechazar la hipótesis nula de que los dos dipositivos de medición son iguales. 
+
+## Prueba de rango con signo de Wilcoxon {.bloques}
+
+* Se utiliza para probar la hipótesis sobre la mediana de una distribución continua, si la distribución es simétrica alrededor de esa mediana.
+* Por lo que un supuesto de aplicación es esa simetría, además de la independencia y que la variable sea al menos ordinal.
+* Básicamente es la alternativa no paramétrica a las pruebas de hipótesis sobre tendencia central, como por ejemplo: una media.
+  * Es una alternativa más potente a la prueba de signos. Pues esta incorpora más información
+
+* Las hipótesis son: 
+  * $H_o: \widetilde{X}=\text{valor}$
+  * $H_i: \widetilde{X}\ne\text{valor}$
+  
+## Ejemplo 03 {.bloques}
+
+* Resuelva el ejercicio del Ejemplo 01, pero con esta técnica no paramétrica. 
+
+* Los ejercicios resueltos los puede encontrar en este archivo [Excel](https://stevenggoni.github.io/clases/data/II-1123_03_Ejemplos y ejercicios resueltos.xlsx) 
+
+## Ejemplo 03 {.bloques}
+
+:::::: {.columns}
+
+::: {.column style="font-size: 0.7em;"}
+
+```{r}
+
+resuelto_03 <- ejemplo_01 %>% 
+  dplyr::mutate(Diferencias = Resistencia - 2000,
+                Signo = if_else(Diferencias>0, "+", "-"), 
+                "Diferencia absoluta" = abs(Diferencias), 
+                Rango = rank(`Diferencia absoluta`)) %>% 
+  dplyr::arrange(Rango)
+
+resuelto_03[1:10,] %>% 
+  cbind(resuelto_03[11:20,]) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+:::
+
+::::::
+
+## Ejemplo 03 {.bloques}
+
+* Se realiza la suma los rangos o rankings para cada signo, de tal forma que: 
+
+* $W^+=150$
+* $W^-=60$
+
+* El valor P se puede conseguir con esta [aplicación](https://homepage.divms.uiowa.edu/~mbognar/applets/wilcoxon-signed-rank.html){target="_blank"}.
+
+* Valor P = $P(W \le w) = P(W \le 60) = 0.04865$
+
+* Como la distribución es simétrica, también puede: Valor P = $P(W \ge w) = P(W \ge 150) = 0.04865$
+
+* Concluya del estudio
+
+## Suma de rangos de Wilcoxon (Mann Whitney) {.bloques}
+
+* Básicamente es la alternativa a las pruebas de hipótesis sobre dos poblaciones (en paramétrico usamos medias). Lo que evalua es si las distribuciones de ambas poblaciones son iguales. Por lo que podría interpretarse como una prueba sobre la diferencia de las medianas siempre que el supuesto de forma se cumpla.
+* Puede probar la hipótesis de las distribuciones:
+  * $H_o:F_1(x)=F_2(x)$
+  * $H_i:F_1(x) \ne F_2(x)$
+
+* Si la forma de las distribuciones es la misma, puede probar la hipótesis de las medianas:
+  * $H_o:\widetilde{X_1}=\widetilde{X_2}$
+  * $H_i:\widetilde{X_1}\ne\widetilde{X_2}$
+
+## Ejemplo 04 {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+* Se quiere verificar que una nueva aleación más ligera (aleación 2) tiene más resistencia a la tensión que la aleación tradicional. Utilice una significancia del 5%. 
+* No se cumplen las condiciones para realizar un test paramétrico, por lo que se recurre a uno no paramétrico. 
+
+:::
+
+::: {.column style="font-size: 0.9em;"}
+
+```{r}
+
+ejemplo_04 <- data.frame(Aleación1 = c(3238, 3195, 3246, 3190, 3204, 
+                                       3254, 3229, 3225, 3217, 3241),
+                         Aleación2 = c(3261, 3187, 3209, 3212, 3258, 
+                                       3248, 3215, 3226, 3240, 3234))
+
+ejemplo_04 %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()  
+
+```
+
+
+:::
+
+::::::
+
+## Ejemplo 04 {.bloques}
+
+:::::: {.columns}
+
+::: {.column style="font-size: 0.95em;"}
+
+```{r}
+
+resuelto_04 <- ejemplo_04 %>% 
+  tidyr::pivot_longer(1:2, names_to = "Aleación", values_to = "Valores") %>% 
+  dplyr::mutate(Rango = rank(Valores)) %>% 
+  dplyr::arrange(Rango)
+
+resuelto_04[1:10,] %>% 
+  cbind(resuelto_04[11:20,]) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+
+:::
+
+::::::
+
+## Ejemplo 04 {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+### Rangos de Wilcoxon
+
+$W_i$ es la suma de las posiciones o rankings para cada $i$.
+
+* Aleación 1 ($n=10$) = $W_1=99$
+* Aleación 2 ($n=10$) = $W_2=111$
+
+Entonces, usando esta [aplicación](https://homepage.divms.uiowa.edu/~mbognar/applets/wilcoxon-rank-sum.html){target="_blank"}: 
+
+* $P(W_1 \ge 99) = 0.68474$
+* $P(W_2 \le 111) = 0.68474$
+
+:::
+
+::: {.column}
+
+### Mann Whitney
+
+$$U_i=W_i-\frac{n_i\cdot (n_i+1)}{2}$$
+
+* Aleación 1 ($n=10$) = $U_1=44$
+* Aleación 2 ($n=10$) = $U_2=56$
+
+Entonces, usando esta [aplicación](https://homepage.divms.uiowa.edu/~mbognar/applets/mw.html){target="_blank"}: 
+
+* $P(U_1 \ge 44) = 0.68474$
+* $P(U_2 \le 56) = 0.68474$
+
+:::
+
+::::::
+
+## Pruebas para la varianza {.bloques}
+
+* Para el caso de varianzas (y en `Minitab` de forma específica para dos varianzas) no hay TLC, ni cantidad de datos que nos salven. 
+  * Los datos deben seguir una distribución normal.
+* Algunas de las alternativas a la no normalidad son la prueba de Bonett y la de Levene. 
+  * Por lo general, Bonett es más potente, salvo que tengo muy pocos datos o la distribución es muy asimétrica. 
+
+* No son necesariamente pruebas no paramétricas, sino robustas al incumplimiento de la normalidad. 
+
+## Ejemplo 05 {.bloques}
+
+* Se utilizan los datos del Ejemplo 05, que puede encontrar en el Excel, para evaluar si la varianza de tres grupos es la misma. 
+
+* En R 
+  * `car::leveneTest(Respuesta ~ Grupo, data = datos)` 
+  * `intervcomp::Bonett.Seier.test(Grupo1, Grupo2, alternative = "two.sided")`
+
+* En Minitab Stat>Basic Statistics>2 Variances...>Options
+  * Si el "Use test and confidence intervals based on normal distribution" está marcado, se ejecutará el test F, caso contrario, se ejecta Bonnet y Levene (No paramétricos o robustos a la no normalidad). 
+
+* Resuelva este ejemplo por cuenta propia. Tome en cuenta que por diferencias algoríticas, puede obtener valores distintos en función del software. 
+
+
+## Bibliografía {.bloques}
+
+:::: columns
+::: {.column width="100%" style="font-size: 1.3em;"}
+
+* Montgomery, D; Runger, G. Applied Statistics and Probabilty for Engineers (5th Edition)
+  * Capítulo 9.9, 10.3
+
+:::
+::::
+
+## Estadística no paramétrica para una o dos variables <br> II-1123 Estadística para Ingeniería Industrial II {.center}
+
+### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni\@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
+
+### Dudas o correcciones requeridas pueden solicitarse al correo
