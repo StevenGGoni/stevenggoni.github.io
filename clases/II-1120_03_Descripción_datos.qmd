@@ -38,7 +38,7 @@ library(fontawesome)
 ::: {.column width="55%"}
 -   Las variables se pueden clasificar por tipo: *Cuantitativa* y *Cualitativa*, así como por niveles de medición: *Nominal*, *Ordinal*, *Intervalo* y *Razón.*
 
--   Éstas determinan como se deben recoger y analizar lo datos. Es decir, rigen los cálculos que se deben llevar a cabo.
+-   Éstas determinan cómo se deben recoger y analizar los datos. Es decir, rigen los cálculos que se deben llevar a cabo.
 
 -   La validez de las conclusiones depende de la fiabilidad de la recolección de datos y de las técnicas de análisis empleadas.
 :::
@@ -296,7 +296,7 @@ plotly::plot_ly(motivo_ord,
 :::
 
 ::: {.column width="50%"}
-El ejercicio de visualización de datos es, en el fondo, un acto profundamente humano; pues toma algo "abstracto" como números, distribuciones, incertidumbres, entre otros y los transmite en algo con significado. En la comunicación visual la simplicidad es importante.
+El ejercicio de visualización de datos es, en el fondo, un acto profundamente humano; pues toma algo "abstracto" como números, distribuciones, incertidumbres, entre otros, y los transmite en algo con significado. En la comunicación visual la simplicidad es importante.
 
 > [La perfección se alcanza, no cuando no hay nada más que añadir, sino cuando no hay nada más que quitar]{.hi} - *Antoine de Saint-Exupery*
 :::
@@ -312,7 +312,7 @@ El ejercicio de visualización de datos es, en el fondo, un acto profundamente h
 
     -   Las tablas de contingencia, además de para describir datos, tienen muchas aplicaciones en [estadística inferencial]{.hi}.
 
--   Las categorías de una de las variables son las filas y las de la otra variable son las columnas. Los cruces son el conteo de lso casos en los que ocurren ambas variables simultáneamente.
+-   Las categorías de una de las variables son las filas y las de la otra variable son las columnas. Los cruces son el conteo de los casos en los que ocurren ambas variables simultáneamente.
 
 ## Ejemplo {.bloques}
 
@@ -432,7 +432,7 @@ plotly::ggplotly(g2, height = 600, width = 850) %>%
 -   `r fontawesome::fa("circle-exclamation")` **Advertencia**: Estas medidas también pueden usar para dos o más variables cuantitativas, categorizadas por variables cualitativas.
     -   Por ejemplo: salario promedio por género.
 
-## Médidas de posición {.bloques style="font-size: 1.5em;"}
+## Medidas de posición {.bloques style="font-size: 1.5em;"}
 
 -   Están diseñadas para brindar a la persona analista algunos [valores cuantitativos]{.hi} de la ubicación central (u otros) de los datos en una población o en una muestra.
 
@@ -494,7 +494,7 @@ $$
 ::: {.column width="50%"}
 ### 1.2 Geométrica (G)
 
--   Es un tipo de media que se calcula como la raíz n-esima del producto de un conjunto de número estrictamente positivos
+-   Es un tipo de media que se calcula como la raíz n-esima del producto de un conjunto de números estrictamente positivos
 -   Se suele usar para calcular medias sobre porcentajes. Es menos sensible a datos extremos.
 
 $$\bar{x}_G=(x_1 \cdot x_2 \cdots x_n)^\frac{1}{n}$$
@@ -581,9 +581,9 @@ cafe %>%
 ::: {.column width="40%"}
 ¿Alguna vez se preguntó por el salario en su carrera?
 
-La gran mayoría de estudios responden al salario promedio. Inlcusive, muchos de ustedes durante las ferias vocacionales realizan esta pregunta.
+La gran mayoría de estudios responden al salario promedio. Inclusive, muchos de ustedes durante las ferias vocacionales realizan esta pregunta.
 
-[¿Eso está bien?]{.hi} La respuesta es ¡no! los salarios siempre tienen valores extremos.
+[¿Eso está bien?]{.hi} La respuesta es ¡no! los salarios casi siempre tienen valores extremos.
 :::
 :::::
 
@@ -697,11 +697,11 @@ $$\tilde{x}=\frac{1}{2} \cdot (x_{\frac{10}{2}}+x_{\frac{10}{2}+1}) \\ \tilde{x}
 :::
 :::::
 
-## Médidas de dispersión o variabilidad {.bloques style="font-size: 1.1em;"}
+## Medidas de dispersión o variabilidad {.bloques style="font-size: 1.1em;"}
 
 -   La variabilidad de una muestra desempeña un papel importante en el análisis de datos. La [variabilidad de procesos y productos es un hecho real en los sistemas científicos y de ingeniería]{.hi}: el control o la reducción de la variabilidad de un proceso a menudo es una fuente de mayores dificultades.
 
--   Las medidas de tendencia central o posición [siempre]{.hi} deben acompañarse de medidas de [variablidad]{.hi}.
+-   Las medidas de tendencia central o posición [siempre]{.hi} deben acompañarse de medidas de [variabilidad]{.hi}.
 
 ## Rangos {.bloques}
 
@@ -748,29 +748,30 @@ $$
 -   Varianza
 
 $$
-\sigma^2=\frac{\sum_{i=1}^{N}(\bar{x}-\mu)^2}{N}
+\sigma^2=\frac{\sum_{i=1}^{N}(x_i-\mu)^2}{N}
 $$
 
 -   Desviación estándar
 
 $$
-\sigma=\sqrt{\frac{\sum_{i=1}^{N}(\bar{x}-\mu)^2}{N}}
+\sigma=\sqrt{\frac{\sum_{i=1}^{N}(x_i-\mu)^2}{N}}
 $$
 :::
 
 ::: {.column width="50%"}
+
 ### Muestral
 
 -   Varianza
 
 $$
-s^2=\frac{\sum_{i=1}^{N}(\bar{x}-\mu)^2}{n-1}
+s^2=\frac{\sum_{i=1}^{N}(x_i-\bar{x})^2}{n-1}
 $$
 
 -   Desviación estándar
 
 $$
-s=\sqrt{\frac{\sum_{i=1}^{N}(\bar{x}-\mu)^2}{n-1}}
+s=\sqrt{\frac{\sum_{i=1}^{N}(x_i-\bar{x})^2}{n-1}}
 $$
 :::
 :::::
@@ -818,6 +819,7 @@ $$
 -   Su interpretación se puede expresar como porcentaje.
 -   Por ejemplo:
     -   ¿Qué es más variable, el peso o la edad de una persona?
+-   No se recomienda usarlo cuando la media está cercana a cero. 
 
 ## Resumen {.bloques}
 
@@ -827,7 +829,7 @@ $$
 -   ¿Cuál medida de dispersión es la más adecuada para las respectivas medidas de posición?
 -   Para la [media]{.hi} se suele usar la [desviación estándar]{.hi}, mientras que para la [mediana]{.hi} se sugiere usar alguna de las medidas de rango, preferiblemente el [IQR]{.hi}.
 
-## Médidas de dispersión o variabilidad {.bloques style="font-size: 1.2em;"}
+## Medidas de dispersión o variabilidad {.bloques style="font-size: 1.2em;"}
 
 -   Describen la forma de una distribución de datos. Permiten identificar si una distribución es simétrica o asimétrica, o qué tan agrupados están los datos.
 
@@ -846,7 +848,7 @@ $$
 
 ::: {.column width="50%"}
 -   $Sk= \frac{n}{(n-1)(n-2)}\left[\sum_{i=1}^{n}\left(\frac{x_i-\bar{x}}{s}\right)^3\right]$
-    -   $Sk<0$: asimetría postiva
+    -   $Sk<0$: asimetría negativa
     -   $Sk=0$: distribución simétrica
     -   $Sk>0$: asimetría positiva
 
@@ -885,7 +887,7 @@ $$
 :::
 ::::::
 
-## 2. Curtósis {.bloques}
+## 2. Curtosis {.bloques}
 
 -   Se define técnicamente como el cuarto momento estandarizado esperado de una variable aleatoria
 
@@ -893,15 +895,15 @@ $$
 
 -   La interpretación de la curtosis es en términos de la extremidad de las colas; es decir, mide la propensión de una distribución a producir valores atípicos (*outliers*), y no la "puntiagudez" (*peakedness*) o forma del pico central.
 
--   A veces se confunde con cuan escarpada, achatada, etc, se encuentra una distribución de datos.
+-   A veces se confunde con cuán escarpada, achatada, etc, se encuentra una distribución de datos.
 
-## 2. Curtósis {.bloques}
+## 2. Curtosis {.bloques}
 
 ::::: columns
 ::: {.column width="60%"}
 -   Usamos la misma fórmula que MS Excel:
 
-    -   Esta fórmula mide el [exceso de curtosis]{.underline}, es decir, que tan distinta es de una distribución normal (tema que se aborda adelante en el curso).
+    -   Esta fórmula mide el [exceso de curtosis]{.underline}, es decir, que tan distinta es de una distribución normal (tema que se aborda más adelante en el curso).
 
 -   $ku=\left[ \left(\frac{n(n+1)}{(n-1)(n-2)(n-3)}\sum_{i=1}^{n} \left(\frac{x_i-\bar{x}}{s}\right)^4 \right) \right] - \frac{3(n-1)}{(n-2)(n-3)}$
 
@@ -1065,7 +1067,7 @@ Los histogramas ayudan a dar una estimación de [dónde se concentran los valore
 
 También son útiles para dar una visión aproximada de la distribución de probabilidad.
 
-Cada barra en un histograma representa la frecuencia tabulada en cada intervalo/bin. El área total del histograma es igual al número de datos.
+Cada barra en un histograma representa la frecuencia tabulada en cada intervalo/bin. El área total del histograma es igual al número de datos, cuando se grafica en frecuencia absoluta.
 :::
 
 ::: {.column .img-fit width="30%"}
@@ -1145,7 +1147,7 @@ plotly::ggplotly(gh, height = 600, width = 850) %>%
         -   $LS=Q_3+1.5\cdot IQR$
 -   Extremo inferior
     -   Es el valor extremo inferior más pequeño que se encuentre dentro de:
-        -   $LS=Q_1-1.5\cdot IQR$
+        -   $LI=Q_1-1.5\cdot IQR$
 -   Cualquier valor fuera de LI y LS es considerado “atípico” y debe estudiarse
 :::
 :::::
@@ -1212,7 +1214,7 @@ plotly::plot_ly(data = histograma,
 
 -   Se introduce una nueva forma de visualización, donde usted puede visualizar y correspondientemente estudiar la relación que existe entre dos variables.
 
--   Este gráfico posiblemente ya lo conoce de cursos de ciencias básicas como química y física, donde se muestra en un eje ($x$) una variable y en el otro ($y$), de tal modo que se puede apreciar como se relacionan las mismas.
+-   Este gráfico posiblemente ya lo conoce de cursos de ciencias básicas como química y física, donde se muestra en un eje ($x$) una variable y en el otro ($y$), de tal modo que se puede apreciar como se relacionan entre sí.
 
 ## Dos variables cuantitativas {.bloques}
 
@@ -1249,7 +1251,7 @@ En el gráfico de la izquierda puede encontrar la relación que existe entre el 
 ## ¿Cómo escoger el gráfico adecuado? {.bloques}
 
 * Para escoger el gráfico adecuado puede apoyarse en este [enlace](https://www.data-to-viz.com/#explore){target="_blank"}.
-* ¿Que hacer y no hacer a la hora de confeccionar un gráfico? Siga este [enlace](https://www.data-to-viz.com/caveats.html){target="_blank"}.
+* ¿Qué hacer y no hacer a la hora de confeccionar un gráfico? Siga este [enlace](https://www.data-to-viz.com/caveats.html){target="_blank"}.
 * ¿Quiere más ideas para seleccionar un gráfico? Use este [enlace](https://datavizcatalogue.com/ES/){target="_blank"}.
 
 

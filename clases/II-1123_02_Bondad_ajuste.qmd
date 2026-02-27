@@ -311,7 +311,7 @@ plotly::plot_ly(height = 600, width = 850) %>%
 :::
 :::::
 
-## Improtancia de la visualización {.bloques}
+## Importancia de la visualización {.bloques}
 
 ::::: columns
 ::: {.column width="70%"}
@@ -531,7 +531,7 @@ plotly::plot_ly(height = 600, width = 650) %>%
 -   ¿Yo soy [“más tico”]{.hi} por nacer en San José que alguien que nació en Los Chiles?
     -   ¿Verdad que no?
 -   Con base en esta analogía, tampoco puedo ser más significativo con base en un valor P.
-    -   Así como cualquier nacimiento dentro de las fonteras costarricenses producen un "tico", cualquier valor por debajo del nivel de siginificancia ($\alpha$) es un resultado significativo, aún cuando ese umbral se supere ampliamente.
+    -   Así como cualquier nacimiento dentro de las fronteras costarricenses producen un "tico", cualquier valor por debajo del nivel de significancia ($\alpha$) es un resultado significativo, aún cuando ese umbral se supere ampliamente.
 -   Lo que puedo estar es más o menos seguro de que “soy tico” y para ello es relevante [analizar el valor P en conjunto]{.hi} con:
     -   **Evidencias externas** del contexto (diseño del estudio, calidad de mediciones, fiabilidad del muestreo).
     -   **Evidencias internas** (otros estadísticos como la estimación del intervalo de confianza).
@@ -549,7 +549,7 @@ plotly::plot_ly(height = 600, width = 650) %>%
 -   Se emplea para la bondad de ajuste de [distribuciones discretas]{.hi}.
 -   Es un test estadístico que compara las frecuencias observadas con las frecuencias esperadas según la distribución teórica propuesta.
     -   También conocida como prueba de Pearson.
--   Esta se usa por que es el caso más general y fácil de entender, aunque es importante señalar que es poco sensible en tamaños de muestra pequeños.
+-   Esta se usa porque es el caso más general y fácil de entender, aunque es importante señalar que es poco sensible en tamaños de muestra pequeños.
 -   También es relevante dar a conocer que existen otras pruebas que pueden usarse.
 
 ## Procedimiento {.bloques}
@@ -728,7 +728,7 @@ ejemplo_01 %>%
 
 * Se ha recolectado 400 observaciones sobre la cantidad de personas que que se reciben cada minuto en una estación de tren de la capital. 
 
-* Por la naturaleza de este proceso, se sospecha que estos datos son una variable aleatorio que sigue la [distribución de Poisson]{.hi}. 
+* Por la naturaleza de este proceso, se sospecha que estos datos son una variable aleatoria que sigue la [distribución de Poisson]{.hi}. 
 
 * En [Excel](https://stevenggoni.github.io/clases/data/II-1123_02_Ejemplos y ejercicios resueltos.xlsx) se le hace entrega de los datos y del ejercicio resuelto, procure realizar este ejercicio por su cuenta y utilice el ejercicio resuelto solo en caso de dudas.
 
@@ -784,9 +784,9 @@ plotly::ggplotly(gej1, height = 780, width = 1900) %>%
 
 * No obstante, [Cochran]( https://doi.org/10.1214/aoms/1177729380){target="_blank"} y otros autores mencionan que se debe cumplir una regla básica: 
 
-  * Todos los $E_i \ge 3$ o $E_i \ge 3$
+  * Todos los $E_i \ge 3$ o $E_i \ge 5$
 
-* Por lo que estos valores deben agregarse. Para efectos de este curso usaremos $E_i \ge 5$.
+* Por lo que estos valores deben agregarse. Para efectos de este curso usaremos $E_i \ge 5$ como una simplicación, la regla global es 1) Ningún $E_i < 1$ y al menos el 80% de los $E_i\ge 5$.
 
 :::
 
@@ -884,13 +884,15 @@ data.frame(Llegadas = c("0-1", 2, 3, 4, 5, 6, 7, 8, 9, ">=10"),
 * El cálculo estadístico de $\chi^2$ y su comparación con un valor crítico de la distribución $\chi^2$ permite al investigador evaluar si los recuentos de celdas observados son significativamente diferentes de los recuentos de celdas esperados.
 * Debido a la forma en que se calcula el valor de $\chi^2$, es [extremadamente sensible al tamaño de la muestra]{.hi}: 
   
-  * Cuando el tamaño de la muestra es demasiado grande (~500), casi cualquier pequeña diferencia parecerá estadísticamente significativa. Por tanto, debe analizarse con más cuidado, utilizando otras evidencias además del valor P. 
+  * Cuando el tamaño de la muestra es demasiado grande (~500), casi cualquier pequeña diferencia parecerá estadísticamente significativa. 
+  * $\chi^2$ es sensible porque las diferencias pequeñas multiplicadas por n generan $E_i$ grandes, y el estadístico acumula discrepancias sistemáticas.
+* Por tanto, debe analizarse con más cuidado, utilizando otras evidencias además del valor P. 
   
 # Pruebas de normalidad {.bloques}
 
 ## Introducción {.bloques}
 
-* Nos vamos a adentrar en el universo de las pruebas de normalidad, pero la idea es hacerlo estándo preparados. 
+* Nos vamos a adentrar en el universo de las pruebas de normalidad, pero la idea es hacerlo estando preparados. 
 
 * Por lo general, desarrollar pruebas de normalidad de forma manual (con apoyo de software como Excel), puede ser muy laborioso. 
 
@@ -1114,6 +1116,8 @@ fig
 * Es una prueba que se centra en las diferencias de forma global (asimetría y colas).
 * Su limitación se basa en que con $n$ muy grande puede rechazar $H_o$ por desviaciones irrelevantes. 
 
+* Esta suele ser más potente que KS en muestras pequeñas.
+
 ## Ryan - Joiner (RJ) {.bloques}
 
 * Es similar a SW, pues se centra en desviaciones generales. Es por este motivo que suele preferirse en muestras “pequeñas”.
@@ -1123,9 +1127,10 @@ fig
 
 ## Kolmogórov - Smirnov (KS) {.bloques}
 
-* Está centrado en la desviación general en la forma de la distribución. Requiere de parámetros conocidos, por lo que la versión de Minitab es menos potente, pues trabaja con estimaciones ($\bar{x}$ en lugar de $\mu$)).
+* Está centrado en la desviación general en la forma de la distribución. Requiere de parámetros conocidos, por lo que la versión de Minitab es menos potente, pues trabaja con estimaciones ($\bar{x}$ en lugar de $\mu$)). Al usar estimaciones se realiza la prueba de Lilliefors.
 * Es más sensible a las colas que RJ y SW, pero menos que AD.
 * KS no es por lo general la primera opción pues en colas pesadas gana AD y en el centrado/asimetría de la distribución gana RJ y SW.
+  * Rara vez es preferido cuando parámetros son estimados
 
 ## Ejemplo 02 {.bloques}
 
@@ -1218,6 +1223,8 @@ data.frame(Prueba =  c("AD", "KS", "RJ"),
 
 * Nótese que las distribuciones tienen sus propias características, no se deben usar indiscriminadamente. Las pruebas estadísticas no pueden supeditar la teoría y el sentido común. 
 
+* Tome en cuenta, también, que probar muchas distribuciones simultáneamente aumenta el chance de falso positivo. Probar muchas hasta que una dé $p > \alpha$ no es una evidencia fuerte. 
+
 ## Identificación de distribuciones {.bloques}
 
 * Es decir, que un identificador de distribuciones puede decir que mis datos siguen alguna distribución y esto no tener sentido alguno en la práctica. 
@@ -1239,7 +1246,7 @@ data.frame(Prueba =  c("AD", "KS", "RJ"),
 
 * El concepto de transformación no es abarcado aún. Por lo que de obtenerlos, puede ignorarlos. 
 
-* En este y otros ejercicios [puede]{.hi} obtener valores diferentes a los aquí mostrados, como consecuencia de los algorítmos empleados en los cálculos. 
+* En este y otros ejercicios [puede]{.hi} obtener valores diferentes a los aquí mostrados, como consecuencia de los algoritmos empleados en los cálculos. 
   * Para este ejercicio, se está usando la prueba de KS, Minitab suele usar AD.
 
 * Nótese como este conjunto de datos se ajusta a 4 distribuciones distintas. ¿Cuál escojo? Dependerá del contexto y conveniencia.  
@@ -1275,6 +1282,12 @@ data.frame(Distribución = c("Weibull", "Lognormal", "Exponencial",
 
 ::::::
 
+## Reflexión final {.bloques}
+
+* Un modelo puede no ser perfecto y aún así ser útil. 
+
+* >All models are [wrong]{.hi}, but some are [useful]{.hi} - George Box
+
 ## Bibliografía {.bloques}
 
 :::: columns
@@ -1285,6 +1298,7 @@ data.frame(Distribución = c("Weibull", "Lognormal", "Exponencial",
 
 :::
 ::::
+
 
 ## Pruebas de bondad de ajuste para distribuciones <br> II-1123 Estadística para Ingeniería Industrial II {.center}
 

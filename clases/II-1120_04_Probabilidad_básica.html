@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
+
+  <meta name="author" content="Steven García Goñi steven.garciagoni@ucr.ac.cr">
+  <title>Probabilidad básica</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="custom.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+  <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+  <script src="site_libs/viz-1.8.2/viz.js"></script>
+
+  <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+
+  <script src="site_libs/grViz-binding-1.0.11/grViz.js"></script>
+
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section class="quarto-title-block center">
+  <h1 class="title">Probabilidad básica</h1>
+  <p class="subtitle"><a href="https://stevenggoni.github.io/clases/II-1120_04_Probabilidad_básica.pdf">Versión PDF</a> <br> II-1120 Estadística para Ingeniería Industrial I</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a> 
+</div>
+</div>
+</div>
+
+  <p class="date">26 de febrero de 2026</p>
+</section>
+<section class="slide level2 bloques">
+<h2>Agenda</h2>
+<ul>
+<li>Introducción</li>
+<li>Definición de probabilidad: Tipos de enfoques</li>
+<li>Estadística: Frecuentista vs Bayesiana</li>
+<li>Conceptos básicos de probabilidad</li>
+<li>Axiomas de probabilidad</li>
+<li>Cálculo de probabilidades: Algunas reglas</li>
+<li>Teorema de Bayes</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Preguntas generadoras</h2>
+<ul>
+<li>¿Qué es probabilidad?</li>
+<li>¿Cuándo se utiliza la estadística inferencial y la estadística descriptiva?</li>
+<li>¿Qué diferencias existen entre la estadística frecuentista y la estadística bayesiana?</li>
+<li>¿Cuándo se utilizan las diferentes reglas de cálculo de probabilidades?</li>
+<li>¿Cuál es la importancia del Teorema de Bayes?</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Introducción</h2>
+<ul>
+<li>Hasta este punto hemos estudiado la estadística descriptiva.</li>
+<li>A esta le concierne el resumen de los datos recogidos de eventos pasados (muestras o poblaciones). Ahora se presenta otra faceta de la estadística: el cálculo de la probabilidad de que algo ocurra en el futuro (o en una población a partir de una muestra).</li>
+<li>Esto es lo que se conoce como <span class="hi">estadística inferencial</span>.</li>
+<li>Se relaciona con las conclusiones asociadas con una población sobre la base de una muestra que se toma de ella.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Por qué es necesaria?</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li>Son pocas las ocasiones en las que se tiene <span class="hi">acceso a datos completos de la población</span>, por lo que es necesario hacer inferencia de los <strong>parámetros</strong> a partir de información de las muestras.
+<ul>
+<li>Recuerden la diferencia y relación entre Estimador y Parámetro.</li>
+</ul></li>
+</ul>
+</div><div class="column img-fit" style="width:100%;">
+<p><img data-src="img/diagrama.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Por qué es necesaria?</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li>Esto desde luego tiene relación con <span class="hi">la forma en la que se recolectan los datos</span>; datos mal recolectados dan inferencias erróneas sobre los parámetros.</li>
+<li>Aquí es también importante recordar o estudiar el concepto de sesgo estadístico, y los tipos que existen</li>
+</ul>
+</div><div class="column" style="width:30%;">
+<h3>Estimador <span class="math inline">\(\hat{\theta}\)</span></h3>
+<p>Estadístico que es función de la muestra usado para estimar un parámetro desconocido de la población</p>
+</div><div class="column" style="width:30%;">
+<h3>Parámetro <span class="math inline">\(\theta\)</span></h3>
+<p>Estadísticos que son función de una población, que indefectiblemente resumen una “gran” cantidad de datos en una o varias variables estadísticas</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Sesgo</h2>
+<ul>
+<li><p>Cuando el método de recopilación de datos hace que los datos de la muestra reflejen incorrectamente la población.</p></li>
+<li><p>En términos simples, es la diferencia que hay entre un estimador y un parámetro <span class="math inline">\(\text{sesgo}=|\hat{\theta}-\theta|\)</span></p></li>
+<li><p><strong>Nota</strong>: lo ideal es que el sesgo sea cero, pero eso es <span class="hi">prácticamente imposible</span>, entonces lo que se busca es <strong>minimizarlo</strong> y <strong>controlarlo</strong>, para que no cambie las conclusiones prácticas del estudio.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Por ejemplo…</h2>
+<div class="columns">
+<div class="column" style="font-size: 1.1em;">
+<ul>
+<li><p>La estadística inferencial trata de <span class="hi">describir la realidad o población (la persona en el video) a partir de los datos recolectados de una muestra (la sombra que se forma)</span>.</p></li>
+<li><p>Un <span class="hi">sesgo</span> nos puede hacer pensar a partir de solo la sombra, que lo que estamos describiendo es una rana/sapo y no una persona..</p></li>
+</ul>
+</div><div class="column img-fit" style="width:40%;">
+<video id="video_shortcode_videojs_video1" height="710" class="video-js vjs-default-skin " controls="" preload="auto" data-setup="{}" title=""><source src="img/sombra_sapo.mp4"></video>
+</div></div>
+</section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>¿Qué es probabilidad?</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Posible vs Probable</h2>
+<ul>
+<li>Para que un evento sea probable, primero debe ser posible.
+<ul>
+<li>No puedo sacar un 7 en un dado con 6 caras.</li>
+</ul></li>
+<li>Pueden existir eventos posibles, pero que sean improbables. A veces conocido como improbabilidad extrema.
+<ul>
+<li>Ganar el premio mayor de la lotería</li>
+</ul></li>
+<li>Lo posible abarca tanto lo cotidiano (como lanzar un 4 en el dado) como lo rarísimo (ganar la lotería).</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Probabilidad</h2>
+<ul>
+<li><p>Es un valor numérico que representa la oportunidad o posibilidad de que un evento en particular ocurra, tal como el aumento en el precio de un producto, de que el día sea lluvioso, se produzca una unidad defectuosa, entre otros.</p></li>
+<li><p>En todos los casos es un valor entre cero y uno, ambos inclusive.</p></li>
+<li><p>Existen al menos tres enfoques para asignar probabilidades:</p>
+<ul>
+<li>Clásica a priori</li>
+<li>Clásica empírica</li>
+<li>Subjetiva</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Probabilidad</h2>
+<ul>
+<li><span class="hi">Clásica a priori</span>:</li>
+<li>La probabilidad de éxito se basa en el conocimiento previo que hay del proceso implicado.
+<ul>
+<li>Por ejemplo, ¿cuál es la probabilidad de “Escudo” en una moneda?</li>
+<li>¿Necesitó tirar la moneda varias veces para saber ese resultado? ¿Cómo lo supo?</li>
+</ul></li>
+<li><span class="math inline">\(P(x)=\frac{x}{T}\)</span> siendo <span class="math inline">\(T\)</span> el número de resultados posibles.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Probabilidad</h2>
+<ul>
+<li><p><span class="hi">Clásica empírica</span>:</p></li>
+<li><p>Se basan en datos observados, no en un conocimiento previo del proceso.</p></li>
+<li><p>Se fundamenta en la ley de los grandes números.</p></li>
+<li><p>También se conoce como probabilidad frecuentista.</p></li>
+<li><p><span class="math inline">\(P(x)=\frac{\text{Número de veces que el evento x ocurre}}{\text{Número total de observaciones}}\)</span></p></li>
+<li><p>Se basa en <span class="hi">observación</span> y <span class="hi">experimentación</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Probabilidad</h2>
+<ul>
+<li><p><span class="hi">Subjetiva</span>:</p></li>
+<li><p>Es asignado, como su nombre lo indica, de forma subjetiva por un individuo, con base en cualquier información que encuentre disponible.</p></li>
+<li><p><em>Nota</em>: es la base, hasta cierto punto, de la estadística bayesiana.</p></li>
+<li><p>Refleja el <span class="hi">grado de creencia</span> que alguien le asigna a un evento.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Enfoque frecuentista vs Bayesiano</h2>
+<ul>
+<li><p>La estadística frecuentista se basa en la frecuencia relativa de los eventos, utilizando probabilidades objetivas, sin incorporar información previa.</p></li>
+<li><p>En contraste, la estadística bayesiana incorpora creencias o información previa y <span class="hi">las actualiza con datos observados, utilizando probabilidades subjetivas</span>.</p></li>
+<li><blockquote>
+<p>Este curso, y en general esta área de conocimiento, está centrado en la <span class="hi">estadística frecuentista</span>, pero es importante que conozca la existencia e importancia de la bayesiana.</p>
+</blockquote></li>
+</ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Conceptos básicos</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Experimento</h2>
+<ul>
+<li>Es un proceso cuyo resultado está sujeto a la incertidumbre.</li>
+<li>Es un procedimiento que produce datos para comparar resultados y verificar hipótesis.
+<ul>
+<li>Lanzar una moneda</li>
+<li>Tirar un dado</li>
+</ul></li>
+<li>En general, un requisito para ser un experimento es variar las entradas para observar las salidas.
+<ul>
+<li>El final del curso II-1123 y todo II-1125 se basan en la experimentación. En esos cursos se expande el concepto de experimento.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Espacio muestral</h2>
+<ul>
+<li>Es el conjunto de todos los posibles resultados de un experimento (Se puede denotar por <span class="math inline">\(S\)</span>).
+<ul>
+<li>Cara o cruz</li>
+<li>As de corazones, 3 de diamantes, etc. (las 52 cartas).</li>
+</ul></li>
+<li>Mini ejercicio:
+<ul>
+<li>¿Cuál es el espacio muestral de un experimento que consiste en lanzar dos monedas?</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Evento</h2>
+<ul>
+<li>Conjunto de uno o más resultados de un experimento.</li>
+<li>Es la recopilación o subconjunto de resultados contenidos en el espacio muestral, puede ser simple (único resultado) o compuesto (más de un resultado).
+<ul>
+<li><strong>Simple</strong>: sale cara al lanzar una moneda (solo un resultado)</li>
+<li><strong>Compuesto</strong>: si se lanzan dos monedas simultáneamente se puede obtener: {cara-cruz}, {cruz-cara}, {cara-cara}, {cruz-cruz}.
+<ul>
+<li><span class="hi">Un</span> evento compuesto es <span class="hi">uno</span> de estos resultados.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Axiomas de probabilidad</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li>Es importante conocer los axiomas, pues sirven para garantizar la <span class="hi">coherencia</span> al establecer reglas claras, evitar contradicciones o inconsistencias en el cálculo de probabilidades.</li>
+</ul>
+</div><div class="column" style="width:60%;">
+<ul>
+<li>La probabilidad de cualquier suceso o evento <span class="math inline">\(E\)</span> es no negativa.</li>
+<li>La probabilidad del espacio muestral es 1 <span class="math inline">\(\rightarrow P(S)=1\)</span>.</li>
+<li>La probabilidad de un conjunto vacío y de eventos mutuamente excluyentes, es cero <span class="math inline">\(\rightarrow P(\emptyset)=0\)</span></li>
+<li>Si un evento <span class="math inline">\(A\)</span> está contenido en otro <span class="math inline">\(B\)</span>, la probabilidad de <span class="math inline">\(A\)</span> será menor o igual a la de <span class="math inline">\(B\)</span>. Es decir si <span class="math inline">\(A \subseteq B \rightarrow P(A) \le P(B)\)</span>.</li>
+</ul>
+</div></div>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Cálculo de probabilidades</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Teoría de conjuntos</h2>
+<ul>
+<li><p><span class="hi">Unión</span>: de dos eventos A y B denotados por 𝐴∪𝐵 y leídos “A o B”, es el evento que consiste de todos los resultados que están en A o en B.</p></li>
+<li><p><span class="hi">Intersección</span>: de dos eventos A y B, denotada por 𝐴∩𝐵 y leída como “A y B”, es el evento que consiste en todos los resultados que están tanto en A como en B.</p></li>
+<li><p><span class="hi">Complemento</span>: de un evento A, denotado por 𝐴′, es el conjunto de todos los eventos del espacio muestral S que no están contenidos en A.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diagrama de Venn</h2>
+<div class="columns">
+<div class="column img-fit" style="width:100%;">
+<p><img data-src="img/diagrama_venn.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Operaciones</h2>
+<div class="columns">
+<div class="column img-fit" style="width:100%;">
+<p><img data-src="img/operaciones_conjuntos.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 01</h2>
+<ul>
+<li><p>Sea un conjunto <span class="math inline">\(A=\{0, 1, 2, 3, 4\}\)</span>, uno <span class="math inline">\(B=\{3, 4, 5, 6\}\)</span> y uno <span class="math inline">\(C=\{1, 3, 5\}\)</span>.</p></li>
+<li><p>Dibuje un diagrama de Venn.</p></li>
+<li><p>Obtenga:</p>
+<ul>
+<li><span class="math inline">\(A \cup B\)</span></li>
+<li><span class="math inline">\(A\cap B\)</span></li>
+<li><span class="math inline">\(A'\)</span></li>
+<li><span class="math inline">\((A\cup B)'\)</span></li>
+</ul></li>
+<li><p>Se le recomienda como ejercicio <span class="hi">individual</span> se plante y resuelva otros ejercicios.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 01</h2>
+<div class="columns">
+<div class="column img-fit" style="width:100%;">
+<div class="cell" data-bg="#F1F5F5">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="II-1120_04_Probabilidad_básica_files/figure-revealjs/unnamed-chunk-2-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<h3>Respuestas</h3>
+<ul>
+<li><span class="math inline">\(A \cup B = \{0, 1, 2, 3, 4, 5, 6\}\)</span></li>
+<li><span class="math inline">\(A\cap B = \{3, 4\}\)</span></li>
+<li><span class="math inline">\(A' = \{5, 6\}\)</span></li>
+<li><span class="math inline">\((A\cup B)'=\{\emptyset\}\)</span></li>
+</ul>
+</div></div>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Datos para ejercicios</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Nota importante</h2>
+<ul>
+<li>Vamos a desarrollar los temas correspondientes con <span class="hi">datos reales</span>. Los ejercicios de libro nos ayudan a entender, y por tanto puede ser importante que practique y estudie con ellos, pero en la práctica usted debe buscar/recoger el dato y tratar con conjuntos de datos con errores o inconsistencias.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Contexto</h2>
+<ul>
+<li>Se cuenta con la información de 2403 personas que poseen o no, diabetes no controlada.</li>
+<li>Bajo varios criterios técnicos de personas expertas se tiene evidencia de que un ancho de la cintura elevado, la hipertensión y poca fuerza de agarre en la mano son causas de diabetes no controlada.
+<ul>
+<li>Es decir, no haremos estadística “porque si”, la haremos bajo estos contextos.</li>
+</ul></li>
+<li>La información también se encuentra desagregada por sexo.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Contexto</h2>
+<ul>
+<li>Para el desarrollo de estos ejemplos se toma una <span class="hi">submuestra o subconjunto</span> de la base de datos, con el fin de hacerla manejable en clase.
+<ul>
+<li>La submuestra, de 16 observaciones, se obtiene mediante muestreo estratificado y MAS. Se forman dos estratos: los que tienen y los que no diabetes no controlada, se extraen 2 observaciones para los que si y 14 para los que no.</li>
+</ul></li>
+<li>Se le hace entrega de la base de datos completa, en este <a href="https://stevenggoni.github.io/clases/data/II-1123_04_Diabetes%20No%20Controlada.xlsx">enlace</a>, para que practique y repita ejercicios con más volumen de datos.
+<ul>
+<li>Se le recomienda hacerlo, pues las bases de datos de las pruebas es similar en extensión a la que se le entrega.</li>
+<li>Puede usar esta misma base de datos para realizar ejercicios de estadística descriptiva y muestreo.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Submuestra</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.61em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Edad</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sexo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Cintura.(cm)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fuerza.agarre.mano.(N)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Hipertensión</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Diabetes.no.controlada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">74</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">114.5</td>
+<td style="text-align: right;">23.5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">73</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">85.0</td>
+<td style="text-align: right;">20.0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">74</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">74.7</td>
+<td style="text-align: right;">34.0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">72</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">69.3</td>
+<td style="text-align: right;">21.5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">78</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">98.0</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">90.8</td>
+<td style="text-align: right;">22.0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">78</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">82.3</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">83</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">77.0</td>
+<td style="text-align: right;">24.5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">79</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">92.0</td>
+<td style="text-align: right;">27.5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">71</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">91.5</td>
+<td style="text-align: right;">23.5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">86.0</td>
+<td style="text-align: right;">21.5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">87</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">93.9</td>
+<td style="text-align: right;">29.0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">89</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">100.5</td>
+<td style="text-align: right;">30.0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">96.0</td>
+<td style="text-align: right;">27.0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">68</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">111.2</td>
+<td style="text-align: right;">13.0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">76.0</td>
+<td style="text-align: right;">17.0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Probabilidad simple (Marginal)</h2>
+<div class="columns">
+<div class="column" style="width:80%;">
+<ul>
+<li>Se refiere a la probabilidad de ocurrencia de un evento simple.
+<ul>
+<li>Por ejemplo: <span class="math inline">\(P(A)\)</span></li>
+</ul></li>
+</ul>
+<h3>Ejercicio</h3>
+<ul>
+<li><p>¿Cuál es la probabilidad de ser hipertenso?</p></li>
+<li><p>En la submuestra</p></li>
+</ul>
+<ul>
+<li><p><span class="math inline">\(P(H = 1) = \frac{8}{16} = 0.5\)</span></p></li>
+<li><p>En la muestra</p></li>
+</ul>
+<ul>
+<li><span class="math inline">\(P(H = 1) = \frac{1190}{2403} = 0.4952143\)</span></li>
+</ul>
+</div><div class="column" style="font-size: 0.61em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Hipertensión</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Probabilidad conjunta</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Se refiere a la probabilidad de ocurrencia que involucra dos o más eventos de forma simultánea (al mismo tiempo pues).
+<ul>
+<li>Por ejemplo, la probabilidad de ser hombre y fumador.</li>
+</ul></li>
+<li><strong>Ejercicio</strong>:
+<ul>
+<li>¿Cuál es la probabilidad de encontrar una persona mujer e hipertensa? En la submuestra:</li>
+</ul></li>
+</ul>
+<ul>
+<li><p><span class="math inline">\(P(S=M \cap H=sí) = \frac{4}{16} = 0.25\)</span></p></li>
+<li><p>En la muestra</p></li>
+</ul>
+<ul>
+<li><span class="math inline">\(P(S=M \cap H=sí) = \frac{727}{2403} = 0.3025385\)</span></li>
+</ul>
+</div><div class="column" style="font-size: 0.61em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sexo</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Hipertensión</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">M</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">H</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">M</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">M</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">H</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">M</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">M</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">H</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">H</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">M</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">M</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Probabilidad conjunta</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><p>Hay 25% de probabilidad, en la submuestra, de que la persona seleccionada al azar sea una mujer hipertensa.</p></li>
+<li><p>Note que la información anterior se puede resumir en tablas de contingencia.</p></li>
+<li><p>Esto puede ayudarle a resolver el ejercicio.</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3>En la submuestra</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sexo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Hip=0</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Hip=1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h3>En la muestra</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sexo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Hip=0</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Hip=1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">653</td>
+<td style="text-align: right;">463</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">560</td>
+<td style="text-align: right;">727</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Reglas para el cálculo de probabilidades</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Ley de la suma</h2>
+<ul>
+<li>Esta ley nos permite encontrar la probabilidad de evento “A o B”. Para <span class="hi">dos eventos</span> esta regla se define como:</li>
+<li><span class="math inline">\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\)</span></li>
+<li>Si A y B son mutuamente excluyentes, entonces <span class="math inline">\(P(A\cap B)=0\)</span>.</li>
+<li>Tome en cuenta que esta ley tiene diferentes fórmulas en función de la cantidad de eventos (A, B, C, D, …)</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ley de la suma</h2>
+<ul>
+<li><p>Esta ley nos permite encontrar la probabilidad de que ocurra “A o B o C”. Para <span class="hi">tres eventos</span> esta regla se define como:</p></li>
+<li><p><span class="math inline">\(P(A\cup B\cup C)=P(A)+P(B)+P(C)\\-P(A\cap B)-P(A\cap C)-P(B\cap C)\\+P(A\cap B\cap C)\)</span></p></li>
+<li><p>Observe que primero se suman las probabilidades individuales, luego se restan las intersecciones dobles y finalmente se suma la intersección triple.</p></li>
+<li><p>Este patrón se conoce como el principio de inclusión-exclusión.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ley de la suma</h2>
+<ul>
+<li><p>Para <span class="hi">más de tres eventos</span>, la ley sigue un patrón alternado de sumas y restas conocido como principio de inclusión-exclusión:</p></li>
+<li><p><span class="math inline">\(P\left(\bigcup_{i=1}^{n} A_i\right)=\sum_{i=1}^{n}P(A_i) \\ -\sum_{i&lt;j}P(A_i\cap A_j) \\ +\sum_{i&lt;j&lt;k}P(A_i\cap A_j\cap A_k)-\\;\cdots;\\+(-1)^{n+1}P(A_1\cap A_2\cap\cdots\cap A_n)\)</span></p></li>
+<li><p><u>El signo alterna</u>: se suman probabilidades individuales, se restan intersecciones dobles, se suman triples, se restan cuádruples, y así sucesivamente.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ley de la suma - Ejercicio</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>Calcule la probabilidad de aleatoriamente, se obtenga un hombre o una persona hipertensa. Nótese de la redacción que se solicita <span class="math inline">\(P(A \text{ o } B) = P(A\cup B)\)</span></p>
+<ul>
+<li>En la submuestra</li>
+</ul>
+<p><span class="math inline">\(P(A\cup B) = P(A) + P(B) - P(A\cap B) \\= 0.5625 + 0.5 - 0.25 = 0.8125\)</span></p>
+<ul>
+<li>En la muestra</li>
+</ul>
+<p><span class="math inline">\(P(A\cup B) = P(A) + P(B) - P(A\cap B) \\= 0.4644195 + 0.4952143 - 0.1926758 \\= 0.766958\)</span></p>
+</div><div class="column" style="font-size: 0.61em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sexo</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Hipertensión</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">H</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">H</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">H</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">H</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">H</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">H</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">H</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">H</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">H</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ley de la multiplicación</h2>
+<ul>
+<li>Considera la ocurrencia de dos o más eventos de forma simultánea (A y B).</li>
+<li><span class="math inline">\(P(A\cap B) = P(A)\cdot P(B|A)\)</span> (Regla general)</li>
+<li>Si son independientes, entonces <span class="math inline">\(P(B|A)=P(B)\)</span> y por tanto <span class="math inline">\(P(A\cap B) = P(A)\cdot P(B)\)</span>.
+<ul>
+<li><span class="math inline">\(P(B|A)\)</span> se lee: la probabilidad de B dado A y es una probabilidad condicional.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Probabilidad condicional</h2>
+<ul>
+<li>Antes de continuar con la ley de la multiplicación, se explica este concepto.</li>
+<li>Es la probabilidad de que ocurra un evento, dado que ya se sabe que otro ha ocurrido.</li>
+<li><span class="math inline">\(P(A|B) = \frac{P(A\cap B)}{P(B)}\)</span>, en el denominador siempre va el que condiciona (A <span class="hi">dado B</span>)
+<ul>
+<li>Por ejemplo:</li>
+</ul></li>
+<li>En una clase el 30 % son hombres <span class="math inline">\(P(A)\)</span> y el 10 % son hombres y fumadores <span class="math inline">\(P(A\cap B)\)</span>. Entonces la probabilidad de ser fumador (B) dado que es hombre (A).</li>
+<li><span class="math inline">\(P(B|A) = \frac{P(A\cap B)}{P(A)} = \frac{0.10}{0.30} = 0.333\)</span></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Probabilidad condicional</h2>
+<ul>
+<li>Note como cambia el enfoque de la pregunta:
+<ul>
+<li>¿Cuál es la probabilidad de que, dado que se ha encontrado una persona con diabetes no controlada, esta sea hipertensa?.</li>
+<li>Esta redacción sugiere que hay una relación entre las variables, que solo puede venir dada de un contexto particular, en este caso, la teoría indica que las personas diabéticas con hipertensión, son más propensas a que tengan esta no controlada.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Probabilidad condicional vs conjunta</h2>
+<ul>
+<li>Es normal confundirlas, pero son diferentes</li>
+<li>La conjunta dice:
+<ul>
+<li><blockquote>
+<p>¿Qué tan probable es que alguien elegido al azar sea hombre y fumador al mismo tiempo?</p>
+</blockquote></li>
+</ul></li>
+<li>La condicional:
+<ul>
+<li><blockquote>
+<p>Dado que ya se sabe que es hombre, ¿Qué tan probable es que sea fumador?</p>
+</blockquote></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Qué es independencia?</h2>
+<ul>
+<li>Si un evento ocurre, no tiene ningún efecto sobre la probabilidad que otro acontezca.</li>
+<li>Por ejemplo, si yo lanzo dos monedas, ¿el valor de la primera afecta el valor de la segunda?</li>
+<li>En términos matemáticos, cuando <span class="math inline">\(P(B|A)=P(B)\)</span></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ley de la multiplicación - Ejercicio</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Calcule la probabilidad de que sea hipertenso (A) y tenga diabetes no controlada (B) (note la redacción). Es decir: <span class="math inline">\(P(A)\cdot P(B|A)\)</span></p></li>
+<li><p>En la submuestra</p></li>
+</ul>
+<p><span class="math inline">\(P(A)\cdot P(B|A) \\= 0.5 \cdot 0.125 = 0.0625\)</span></p>
+<ul>
+<li>En la muestra</li>
+</ul>
+<p><span class="math inline">\(P(A)\cdot P(B|A) \\= 0.4952143 \cdot 0.1487395 = 0.0736579\)</span></p>
+</div><div class="column" style="font-size: 0.61em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Hipertensión</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Diabetes.no.controlada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+<td style="text-align: left;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Diagrama de árbol</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li><p>Un diagrama de árbol puede ser una forma más intuitiva de resolver estos ejercicios, pues le obliga a pensar en secuencias y en condicionalidad.</p></li>
+<li><p>Note que la suma de los nodos terminales debe ser igual 1.0; además la suma en cada nodo debe ser también 1.0.</p></li>
+</ul>
+</div><div class="column img-fit" style="width:100%;">
+<div class="cell">
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item" id="htmlwidget-6c0688a849169abb3486" style="width:1200px;height:700px;"></div>
+<script type="application/json" data-for="htmlwidget-6c0688a849169abb3486">{"x":{"diagram":"\ndigraph {rankdir = LR\n  \n        node [shape = circle]\n      \n        Inicio -> Hsí [label = \"P(H=Sí) = 8/16 = 0.5\"]\n        Inicio -> Hno [label = \"P(H=No) = 8/16 = 0.5\"]\n      \n        Hsí -> 0.0625 [label = \"P(D = sí|H = sí) = 1/8 = 0.125\"]\n        Hsí -> 0.4375 [label = \"P(D = no|H = sí) = 7/8 = 0.875\"]\n      \n        Hno -> 0.06250 [label = \"P(D = sí|H = no) = 1/8 = 0.125\"]\n        Hno -> 0.43750 [label = \"P(D = no|H = no) = 7/8 = 0.875\"]}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Diagrama de árbol</h2>
+<ul>
+<li>Resuelva, como ejercicio individual y asincrónico, con la muestra completa.</li>
+<li>La respuesta al ejercicio específico que se plantea debe ser la misma que la del slide trasanterior.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ley de la multiplicación</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Estos ejercicios también pueden resolverse con tablas de contingencia.</p></li>
+<li><p>En la submuestra: <span class="math inline">\(P(A)\cdot P(B|A) = \frac{1}{16} = 0.0625\)</span></p></li>
+<li><p>En la submuestra: <span class="math inline">\(P(A)\cdot P(B|A) = \frac{177}{2403} = 0.0736579\)</span></p></li>
+</ul>
+</div><div class="column">
+<h3>En la submuestra</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Hipertensión</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">DNC=0</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">DNC=1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h3>En la muestra</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Hipertensión</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">DNC=0</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">DNC=1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1118</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1013</td>
+<td style="text-align: right;">177</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ley de la multiplicación vs Probabilidad conjunta</h2>
+<ul>
+<li>Son muy similares, pero no son lo mismo:
+<ul>
+<li>La probabilidad conjunta es la probabilidad de que dos eventos ocurran simultáneamente.</li>
+<li>La ley de la multiplicación permite calcular la probabilidad conjunta usando tanto probabilidades marginales, como condicionales.</li>
+<li><blockquote>
+<p>Cuidado: no confunda probabilidad conjunta con probabilidad condicional. Se escriben de forma similar, son conceptos distintos.</p>
+</blockquote></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Otro ejemplo</h2>
+<ul>
+<li>En un lote de 75 tornillos, hay 25 con los hilos de rosca dañados.</li>
+<li>Juan saca un tornillo y se lo lleva (no lo devuelve) y luego María saca otro.
+<ul>
+<li>¿Cuál es la probabilidad de que ambos estén con los hilos de rosca dañados?</li>
+</ul></li>
+<li><span class="math inline">\(P(J \cap M)= P(J) \cdot P(M|J) = \frac{25}{75} \cdot \frac{24}{74}=0.1081\)</span></li>
+</ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Teorema de Bayes</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Teorema de Bayes</h2>
+<ul>
+<li><p>El teorema de Bayes se usa cuando se quieren invertir y reponderar probabilidades condicionales. Es decir, conocer la probabilidad de un evento A dado que ocurrió B, usando la información sobre B dado A.</p></li>
+<li><p>Es decir, dado que tiene diabetes no controlada, ¿cuál es la probabilidad de que sea hipertensa?</p></li>
+<li><p>La ley de la multiplicación sirve para calcular la probabilidad conjunta de que ocurran dos eventos.</p></li>
+<li><p>El teorema de Bayes sirve para actualizar la probabilidad de un evento con base en nueva información</p>
+<ul>
+<li>Esta regla se usa cuando ya ocurrió un evento y queremos actualizar la probabilidad de una “causa”.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<div class="columns">
+<div class="column">
+<h3>Probabilidad conjunta</h3>
+<ul>
+<li>En una fábrica de tornillos, el 80 % de los producidos son de buena calidad, si un tornillo es de buena calidad, tiene una probabilidad del 90 % de ser aprobado en la inspección final. La probabilidad de que un tornillo sea de buena calidad y pase la inspección final es de <span class="math inline">\(0.8\cdot 0.9=0.72\)</span></li>
+</ul>
+</div><div class="column">
+<h3>Teorema de Bayes</h3>
+<ul>
+<li>Si el tornillo ya pasó por la inspección final (<span class="hi">ya ocurrió el evento</span>), ¿cuál es la probabilidad de este sea de buena calidad?
+<ul>
+<li>Más adelante ahondamos en la fórmula, de momento se quiere dejar en claro la diferencia entre probabilidad conjunta y teorema de Bayes</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+P(Buena|Pasó) = \frac{0.9\cdot 0.8}{0.9\cdot 0.8 + 0.5\cdot 0.2}
+\]</span></p>
+<p><span class="math display">\[
+P(Buena|Pasó) = 0.878
+\]</span></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Cuándo usar el teorema de Bayes?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Cuando haya información subjetiva o externa al conjunto de datos que sirva para actualizar las probabilidades en el conjunto de datos.</li>
+<li><span class="hi">De forma más general</span>: Cuando se observa un resultado y se quiere estimar qué hipótesis lo generó.</li>
+<li>Por ejemplo:
+<ul>
+<li>Como información externa o subjetiva se sabe que la probabilidad de tener diabetes no controlada es de 10 %.</li>
+<li>Entonces, si una persona es diagnosticada con diabetes no controlada, ¿Cuál es la probabilidad de que si tenga la enfermedad?</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>El teorema de Bayes, como se observa en la fórmula, integra los conceptos de la Ley de la suma (el denominador) y la Ley de la multiplicación (el numerador).</li>
+</ul>
+<p><span class="math display">\[
+P(A|B)= \frac{P(A\cap B)}{P(B)} = \frac{P(B|A)\cdot P(A)}{\sum_{i=1}^{k}P(B|A_i)P(A_i)}
+\]</span> * Donde: * <span class="math inline">\(P(A)\)</span>: es también conocida como probabilidad a priori * <span class="math inline">\(P(A|B)\)</span>: recibe el nombre de probabilidad a posteriori</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Teorema de Bayes</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p>Esta es una explicación gráfica del Teorema de Bayes por <a href="https://www.linkedin.com/posts/akshay-pachaar_bayes-theorem-clearly-explained-activity-7372630950733733889-h3z-/" target="_blank">Akshay Pachaar</a></p>
+</div><div class="column img-fit" style="width:30%;">
+<p><img data-src="img/visual_proof_Bayes.jpeg"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Siguiendo el ejemplo de diabetes…</h2>
+<ul>
+<li>Suponga que se selecciona una persona al azar y se le realiza una prueba con la que se determina que tiene diabetes no controlada.</li>
+<li>Calculemos la probabilidad de que una persona sea hipertensa dado que tiene diabetes no controlada <span class="math inline">\(P(H=sí|D=sí)\)</span>.</li>
+<li>Utilice un diagrama de árbol.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diagrama de árbol</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><p>Siga las ramas donde el resultado sea <span class="math inline">\(P(D=sí)\)</span>. En el numerador va la rama de interés (tener diabetes no controlada dado que se es hipertenso.) mientras que en el denominador va la probabilidad total de tener diabetes no controlada, tenga hipertensión o no. En este ejercicio particular es <span class="hi">casualidad</span> que las dos ramas tengan el mismo valor.</p></li>
+<li><p><span class="math inline">\(P(H=sí|D=sí) = \frac{P(H=sí \cap D =sí)}{P(D=sí)}\)</span></p></li>
+<li><p><span class="math inline">\(P(H=sí|D=sí) = \frac{0.0625}{0.0625 + 0.0625} = 0.5\)</span></p></li>
+</ul>
+</div><div class="column img-fit" style="width:100%;">
+<div class="cell">
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item" id="htmlwidget-349adfa5d821dc44474b" style="width:900px;height:680px;"></div>
+<script type="application/json" data-for="htmlwidget-349adfa5d821dc44474b">{"x":{"diagram":"\ndigraph {rankdir = LR\n  \n        node [shape = circle]\n      \n        Inicio -> Hsí [label = \"P(H=Sí) = 8/16 = 0.5\"]\n        Inicio -> Hno [label = \"P(H=No) = 8/16 = 0.5\"]\n      \n        Hsí -> 0.0625 [label = \"P(D = sí|H = sí) = 1/8 = 0.125\"]\n        Hsí -> 0.4375 [label = \"P(D = no|H = sí) = 7/8 = 0.875\"]\n      \n        Hno -> 0.06250 [label = \"P(D = sí|H = no) = 1/8 = 0.125\"]\n        Hno -> 0.43750 [label = \"P(D = no|H = no) = 7/8 = 0.875\"]}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Note esto…</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>En este caso, da lo mismo que resolverlo con probabilidad condicional.</li>
+<li><span class="math inline">\(P(H=sí|D=sí)\)</span>: Probabilidad de que sea hipertenso, dado que tiene diabetes no controlada</li>
+</ul>
+<p><span class="math display">\[
+P(H=sí|D=sí) = \frac{1}{2}=0.5
+\]</span></p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Hipertensión</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">DNC=0</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">DNC=1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li><p>Es por esto que, en presencia de todo el conjunto de datos Bayes se reduce algebraicamente a probabilidad condicional clásica. Por lo que quizá sea más sencillo obtenerlo de esta manera que con Teorema de Bayes.</p></li>
+<li><p>El Teorema de Bayes resulta especialmente útil cuando solo se conocen probabilidades marginales y condicionales parciales.</p></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Como por ejemplo</h2>
+<ul>
+<li><p>Solo 1 de 1000 (0.001) adultos padece una enfermedad rara (<span class="math inline">\(A_{sí}\)</span>) para la cual se ha creado una prueba de diagnóstico (<span class="math inline">\(B\)</span>).</p></li>
+<li><p>Un resultado positivo se presentará en el 99 % de las veces cuando se tenga la enfermedad <span class="math inline">\((B_+|A_{sí})\)</span> y solo se presentará positivo el 2% cuando no se tenga la enfermedad <span class="math inline">\((B_+|A_{no})\)</span>.</p></li>
+<li><p>Se selecciona y somete al azar a un individuo y el resultado es positivo (<span class="hi">ya ocurrió el evento</span>). ¿Cuál es la probabilidad de que tenga la enfermedad? <span class="math inline">\(P(A_{sí}|B_+)\)</span>.</p></li>
+<li><p>Construya el diagrama de árbol y encuentre la probabilidad, ¿Compare la <span class="math inline">\(P(A_{sí})\)</span> contra la obtenida anteriormente <span class="math inline">\(P(A_{sí}|B_+)\)</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Solución</h2>
+<ul>
+<li>Se omite intencionalmente la secuencia de pasos para que la persona estudiante trate de resolverlo por su propia cuenta.</li>
+<li><span class="math inline">\(P(A_{sí}|B_+)=0.047\)</span></li>
+<li><span class="math inline">\(P(A_{sí}) = 0.001\)</span> (ya venía dada por el enunciado)</li>
+<li>Dado que el resultado de la prueba es positivo, la probabilidad de padecer la enfermedad incrementa en 47 veces. Aunque en términos absolutos sigue siendo baja (<span class="math inline">\(4.7\%\)</span>).</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Actividad extracurricular</h2>
+<ul>
+<li><p>Realice los ejercicios con la base de datos completa, en esta presentación se muestran algunos de los resultados.</p></li>
+<li><p>Utilice lo ya aprendido en muestreo y obtenga otras submuestras bajos los diferentes métodos estudiados y repita los ejercicios.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Bibliografía</h2>
+<div class="columns">
+<div class="column" style="font-size: 1.2em;">
+<ul>
+<li>Walpole, R.; Myers, R.; Myers, S. y Ye, K. Probabilidad y estadística para ingeniería y ciencias (9na Edición).
+<ul>
+<li>Capítulo 1</li>
+</ul></li>
+<li>Lind, D.; Marchal, W. y Watchen, S. Estadística aplicada a los Negocios y la Economía (15va Edición).
+<ul>
+<li>Capítulo 5</li>
+</ul></li>
+<li>Devore, J. Probabilidad y Estadística para Ingeniería y Ciencias (7ma Edición).
+<ul>
+<li>Capítulo 2</li>
+</ul></li>
+<li>Levine, D.; Krehbiel, T.; Berenson, M. Estadística para administración (4ta Edición).
+<ul>
+<li>Capítulo 4</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 center">
+<h2>Probabilidad básica <br> II-1120 Estadística para Ingeniería Industrial I</h2>
+<h3 class="subtitle">Gracias por su atención <br> Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a></h3>
+<h3>Dudas o correcciones requeridas pueden solicitarse al correo</h3>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p><span class="footer-text">© 2026 <a href="https://stevenggoni.github.io/">Steven García Goñi</a>| <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia CC BY NC 4.0</a></span> <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-02.png" class="footer-logo"></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copiado");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copiado");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    <script>videojs(video_shortcode_videojs_video1);</script>
+    
+
+</body></html>

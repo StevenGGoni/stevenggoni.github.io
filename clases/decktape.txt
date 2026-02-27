@@ -7,3 +7,5 @@ decktape reveal --size="1920x1080" II-1120_03_Descripción_datos.html II-1120_03
 decktape reveal --size="1920x1080" II-1123_02_Bondad_ajuste.html II-1123_02_Bondad_ajuste.pdf
 
 decktape reveal --size="1920x1080" II-1123_03_Est_no_paramétrica.html II-1123_03_Est_no_paramétrica.pdf
+
+decktape reveal --size="1920x1080" II-1120_04_Probabilidad_básica.html II-1120_04_Probabilidad_básica.pdf

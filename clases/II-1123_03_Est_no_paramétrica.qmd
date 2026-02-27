@@ -18,13 +18,13 @@ library(tidyverse)
   * Usos, ventajas y desventajas
 * Prueba de signo
 * Prueba de rango con signo
-* Wilcoxon y Mann Whitney
+* Wilcoxon y Mann-Whitney
 * Para la varianza
 
 
 ## Preguntas generadoras {.bloques}
 
-* ¿Qué significa que ser “*paramétrico*” y “*no paramétrico*”?
+* ¿Qué significa ser “*paramétrico*” y “*no paramétrico*”?
 * ¿Cuándo se debe recurrir a estadística no paramétrica? 
 * ¿Cuáles son las desventajas de los procedimientos no paramétricos?
 
@@ -40,7 +40,7 @@ library(tidyverse)
       * [Efecto de la asimetría sobre el TLC](https://rpubs.com/SGGoni){target="_blank"}
 
 * Igualmente, recuerde que estos los procedimientos paramétricos son, por lo general, [relativamente insensibles]{.hi} a variaciones pequeñas en la normalidad. 
-  * Por lo que, aún de no cumplirse esta condición “*por muy poco*”, aun puede usarlos.
+  * Incluso si la condición no se cumple **por muy poco**, aún puede usarse el procedimiento.
 
 ## Introducción {.bloques}
 
@@ -48,11 +48,11 @@ library(tidyverse)
   * En algunas ocasiones puede existir el supuesto de continuidad, es decir, que los datos sean continuos. 
 * Los métodos no paramétricos no están libres de supuestos, porque algunos de los métodos más comunes, como la prueba de rango con signo y de suma de rangos que vemos en nuestro curso, parten del supuesto de simetría aproximada. 
 
-* Lo que nos lleva a que en realidad los métodos ¡[no son aplicables de modo universal]{.hi}!
+* Lo que nos lleva a que en realidad los métodos [no son aplicables de modo universal]{.hi}
 
-* Nótese que no paramétrico no es necesariamente "inferior" ni paramétrico es "mejor" o superior.
+* Nótese que lo no paramétrico no es necesariamente "inferior" ni lo paramétrico es "mejor" o superior.
 
-## Estadística no parámetrica {.bloques}
+## Estadística no paramétrica {.bloques}
 
 :::::: {.columns}
 
@@ -69,7 +69,7 @@ library(tidyverse)
 
 ::::::
 
-## Estadística no parámetrica {.bloques}
+## Estadística no paramétrica {.bloques}
 
 :::::: {.columns}
 
@@ -110,7 +110,7 @@ data.frame(Caracteristica = c("Distribución de los datos",
 
 ::::::
 
-## Estadística no parámetrica {.bloques}
+## Estadística no paramétrica {.bloques}
 
 :::::: {.columns}
 
@@ -133,7 +133,7 @@ data.frame(Caracteristica = c("Distribución de los datos",
 
 * Conceptualmente, no siempre son de fácil aplicación.
 
-* Si se puede aplicar una técnica paramétrica, por que se cumplen sus supuestos,  es mejor, pues este generalmente es un método más eficiente: tiene más potencia para un mismo tamaño muestral.  
+* Si se puede aplicar una técnica paramétrica, porque se cumplen sus supuestos,  es mejor, pues este generalmente es un método más eficiente: tiene más potencia para un mismo tamaño muestral.  
 
 * En general, cuando los supuestos paramétricos se cumplen, las pruebas no paramétricas tienen menor eficiencia, por lo que pueden requerir una muestra mayor para alcanzar la misma potencia.
 
@@ -197,7 +197,7 @@ data.frame(Caracteristica = c("Distribución de los datos",
 
 ```{r}
 
-ejemplo_01 <- data.frame(Obsevación = 1:20, 
+ejemplo_01 <- data.frame(Observación = 1:20, 
                          Resistencia = c(2158.7, 1678.15, 2316, 2061.3, 
                                          2207.5, 1708.3, 1784.7, 2575.1, 
                                          2357.9, 2256.7, 2165.2, 2399.55, 
@@ -250,7 +250,7 @@ resuelto_01[1:10,] %>%
 * $+ = 14$
 * $- = 6$
 
-* El valor P se obtiene basándose en la distribución binomial (lo que tiene sentido, pues hay dos signos). * Se hace de la siguiente manera (con $+$ y con $-$):
+* El valor P se obtiene basándose en la distribución binomial (lo que tiene sentido, pues hay dos signos). Se hace de la siguiente manera (con $+$ y con $-$):
 
 * $2\cdot Bin(x \ge 14, n=20, p = 0.5) = 0.1153$
 * $2\cdot Bin(x \le 6, n=20, p = 0.5) = 0.1153$
@@ -319,7 +319,7 @@ ejemplo_02 %>%
 * $2\cdot Bin(x \ge 8, n=12, p = 0.5) = 0.3877$
 * $2\cdot Bin(x \le 4, n=12, p = 0.5) = 0.3877$
 
-* Por lo que, no hay evidencia suficiente para rechazar la hipótesis nula de que los dos dipositivos de medición son iguales. 
+* Por lo que, no hay evidencia suficiente para rechazar la hipótesis nula de que los dos dispositivos de medición son iguales. 
 
 ## Prueba de rango con signo de Wilcoxon {.bloques}
 
@@ -379,9 +379,9 @@ resuelto_03[1:10,] %>%
 
 * Concluya del estudio
 
-## Suma de rangos de Wilcoxon (Mann Whitney) {.bloques}
+## Suma de rangos de Wilcoxon (Mann-Whitney) {.bloques}
 
-* Básicamente es la alternativa a las pruebas de hipótesis sobre dos poblaciones (en paramétrico usamos medias). Lo que evalua es si las distribuciones de ambas poblaciones son iguales. Por lo que podría interpretarse como una prueba sobre la diferencia de las medianas siempre que el supuesto de forma se cumpla.
+* Básicamente es la alternativa a las pruebas de hipótesis sobre dos poblaciones (en paramétrico usamos medias). Lo que evalúa es si las distribuciones de ambas poblaciones son iguales. Por lo que podría interpretarse como una prueba sobre la diferencia de las medianas siempre que el supuesto de forma se cumpla.
 * Puede probar la hipótesis de las distribuciones:
   * $H_o:F_1(x)=F_2(x)$
   * $H_i:F_1(x) \ne F_2(x)$
@@ -468,7 +468,7 @@ Entonces, usando esta [aplicación](https://homepage.divms.uiowa.edu/~mbognar/ap
 
 ::: {.column}
 
-### Mann Whitney
+### Mann-Whitney
 
 $$U_i=W_i-\frac{n_i\cdot (n_i+1)}{2}$$
 
@@ -491,7 +491,7 @@ Entonces, usando esta [aplicación](https://homepage.divms.uiowa.edu/~mbognar/ap
 * Algunas de las alternativas a la no normalidad son la prueba de Bonett y la de Levene. 
   * Por lo general, Bonett es más potente, salvo que tengo muy pocos datos o la distribución es muy asimétrica. 
 
-* No son necesariamente pruebas no paramétricas, sino robustas al incumplimiento de la normalidad. 
+* No son pruebas no paramétricas; son robustas frente a violaciones de normalidad. 
 
 ## Ejemplo 05 {.bloques}
 
@@ -502,9 +502,9 @@ Entonces, usando esta [aplicación](https://homepage.divms.uiowa.edu/~mbognar/ap
   * `intervcomp::Bonett.Seier.test(Grupo1, Grupo2, alternative = "two.sided")`
 
 * En Minitab Stat>Basic Statistics>2 Variances...>Options
-  * Si el "Use test and confidence intervals based on normal distribution" está marcado, se ejecutará el test F, caso contrario, se ejecta Bonnet y Levene (No paramétricos o robustos a la no normalidad). 
+  * Si el "Use test and confidence intervals based on normal distribution" está marcado, se ejecutará el test F, caso contrario, se ejecuta Bonett y Levene (No paramétricos o robustos a la no normalidad). 
 
-* Resuelva este ejemplo por cuenta propia. Tome en cuenta que por diferencias algoríticas, puede obtener valores distintos en función del software. 
+* Resuelva este ejemplo por cuenta propia. Tome en cuenta que por diferencias algorítmicas, puede obtener valores distintos en función del software. 
 
 
 ## Bibliografía {.bloques}
@@ -512,7 +512,7 @@ Entonces, usando esta [aplicación](https://homepage.divms.uiowa.edu/~mbognar/ap
 :::: columns
 ::: {.column width="100%" style="font-size: 1.3em;"}
 
-* Montgomery, D; Runger, G. Applied Statistics and Probabilty for Engineers (5th Edition)
+* Montgomery, D; Runger, G. (2011) Applied Statistics and Probability for Engineers (5th Edition)
   * Capítulo 9.9, 10.3
 
 :::

@@ -20,7 +20,7 @@ format: revealjs
 -   ¿Por qué es necesario muestrear?
 -   ¿Qué es el sesgo estadístico y cómo evitarlo?
 -   ¿Cuáles métodos de selección de muestra existen y cuándo se usan?
--   ¿Qué es el error de muestreo y que consecuencias prácticas tiene?
+-   ¿Qué es el error de muestreo y qué consecuencias prácticas tiene?
 -   ¿Qué diferencia hay entre un buen diseño muestral y una muestra grande?
     -   ¿Más grande es igual a mejor?
 
@@ -75,7 +75,7 @@ Estas lecciones tienen como propósito desarrollar métodos de muestreo que prop
 
 -   La estadística es una **herramienta poderosa**, pero su verdadero valor se obtiene cuando se aplica de **manera adecuada y se interpreta dentro de un** [contexto específico]{.hi}.
 
--   El nivel de medición y el tipo de variable rige los cálculos que se llevan a cabo con el fin de resumir y presentar los datos. Es decir, que [no todos los tipos de datos se analizan igual]{.hi}.
+-   El nivel de medición y el tipo de variable rigen los cálculos que se llevan a cabo con el fin de resumir y presentar los datos. Es decir, que [no todos los tipos de datos se analizan igual]{.hi}.
 :::
 
 ::: {.column .img-fit width="45%"}
@@ -125,7 +125,7 @@ Cuando el proceso de medida o investigación de las características de cada ele
 
 ## Sesgos {.bloques}
 
--   Cuando el método de recopilación de datos hace que los datos de la muestra reflejen incorrectamente la población. En términos simples, es la diferencia que existre entre un estimador ($\bar{x}$) y un parámetro ($\mu$).
+-   Cuando el método de recopilación de datos hace que los datos de la muestra reflejen incorrectamente la población. En términos simples, es la diferencia que existe entre un estimador ($\bar{x}$) y un parámetro ($\mu$).
     -   $|\bar{x}-\mu|$
 -   En este sentido, hay muchos tipos o causas de sesgos:
     -   No respuesta: personas que deciden no participar en un estudio, por ejemplo, la evaluación docente en la UCR.
@@ -238,8 +238,8 @@ Cuando el proceso de medida o investigación de las características de cada ele
 -   Para obtener el tamaño de muestra, al menos necesita:
     -   El nivel de confianza ($1-\alpha$) se selecciona según el contexto
     -   El margen de error ($e$) debe ser aceptable en función del contexto
-    -   La variabilidad ($s$) es intrínseco a los datos, tome en cuenta que entre más variable sea, más datos requerirá.
-    -   El tamaño de la población ($N$) es intrínseco de la población, también puede desconocerse.
+    -   La variabilidad ($s$) es intrínseca a los datos, tome en cuenta que entre más variable sea, más datos requerirá.
+    -   El tamaño de la población ($N$) es intrínseco a la población, también puede desconocerse.
 :::
 :::::
 
@@ -302,7 +302,7 @@ Cuando el proceso de medida o investigación de las características de cada ele
 ::::: columns
 ::: {.column width="50%"}
 -   Realizar el análisis estadístico de los datos recolectados para extraer conclusiones válidas.
--   La validez depende de que tan bien se cumplieron los pasos anteriores. Además, los datos se deben analizar en consecuencia del tipo de variable y el nivel de medición.
+-   La validez depende de qué tan bien se cumplieron los pasos anteriores. Además, los datos se deben analizar en consecuencia del tipo de variable y el nivel de medición.
 
 ![](img/analisis.png){width="250"}
 :::
@@ -392,7 +392,7 @@ Supongamos que se realiza una encuesta donde el 30% de los encuestados son jóve
 
 En encuestas es normal encontrar que las personas no completan alguna información sensible, como el salario. Estos valores faltantes se pueden imputar a partir de las respuestas de otras personas, de respuestas a otras preguntas o una combinación entre ambas.
 
-Por ejemplo, durante la decada de los 2000 se podía imputar los valores del salario de las personas con base en el índice de tenencia de artículos. Era más probable que las personas encuestadas respondieran qué artículos tenían: televisor, teléfono, etc.
+Por ejemplo, durante la década de los 2000 se podía imputar los valores del salario de las personas con base en el índice de tenencia de artículos. Era más probable que las personas encuestadas respondieran qué artículos tenían: televisor, teléfono, etc.
 :::
 :::::
 
@@ -400,9 +400,9 @@ Por ejemplo, durante la decada de los 2000 se podía imputar los valores del sal
 
 ## Definición {.bloques}
 
--   Cuando puede calcularse de antemano cual es la probabilidad de obtener cada una de las muestras que sea posible seleccionar.
+-   Cuando puede calcularse de antemano cuál es la probabilidad de obtener cada una de las muestras que sea posible seleccionar.
 -   Es necesario que la selección pueda considerarse como una prueba o [experimento aleatorio]{.underline}.
--   La aleatoriedad no es un carácter que corresponda estrictamente hablando a una muestra dada, sino al proceso de muestreo usado para obtenerla..
+-   La aleatoriedad no es un carácter que corresponda estrictamente hablando a una muestra dada, sino al proceso de muestreo usado para obtenerla.
 -   Lo que busca el muestreo probabilístico es asegurar la representatividad de la muestra extraída.
 
 ## Algunos tipos {.bloques}
@@ -434,7 +434,7 @@ Por ejemplo, durante la decada de los 2000 se podía imputar los valores del sal
 
 ## Muestreo aleatorio simple (MAS) {.bloques}
 
--   Es un método de recolección de 𝑛 unidades en un conjunto de $N$ de tal modo que cada una de las $\binom{N}{n} = \frac{n!}{k!(n-k)!}$ nuestras distintas tengan la misma oportunidad de ser elegidas.
+-   Es un método de recolección de 𝑛 unidades en un conjunto de $N$ de tal modo que cada una de las $\binom{N}{n} = \frac{N!}{n!(N-n)!}$ muestras distintas tengan la misma oportunidad de ser elegidas.
 -   En la práctica, este se realiza unidad por unidad, de forma [aleatoria]{.hi}, garantizando la misma oportunidad para aquellas unidades que no hayan salido.
 
 ## Ejemplo 01 {.bloques}
@@ -468,7 +468,7 @@ Todas las unidades de la población tienen la misma probabilidad de ser extraíd
 :::
 :::::
 
-## Muestreo aleatorio simples (MAS) {.bloques}
+## Muestreo aleatorio simple (MAS) {.bloques}
 
 ::::: columns
 ::: {.column width="50%"}
@@ -490,9 +490,9 @@ Todas las unidades de la población tienen la misma probabilidad de ser extraíd
 
 ## Muestreo aleatorio estratificado {.bloques style="font-size: 0.9em;"}
 
--   En este, la población de $N$ unidades se dividide primero en $h$ subpoblaciones de $N_1$,$N_2$,$N_3$, $\cdots$, $N_h$ unidades respectivamente.
+-   En este, la población de $N$ unidades se divide primero en $h$ subpoblaciones de $N_1$,$N_2$,$N_3$, $\cdots$, $N_h$ unidades respectivamente.
 
--   Estas subpoblaciones no se traslapan y en su conjunto comprenden a toda la población: \* $$N = N_1,N_2,N_3, \cdots, N_h$$
+-   Estas subpoblaciones no se traslapan y en su conjunto comprenden a toda la población: \* $$N = N_1+N_2+N_3+ \cdots+ N_h$$
 
 -   Las subpoblaciones se denominan estratos ($h$). Para obtener todo el beneficio de la estratificación, los valores de los $N_h$ deben ser conocidos.
 
@@ -562,7 +562,7 @@ Todas las unidades de la población tienen la misma probabilidad de ser extraíd
 -   Como intuye de la fórmula, se necesita tener información previa de la población, como por ejemplo una estimación de la varianza histórica. Tome como referencia los valores de la siguiente tabla.
 
 ::: center
-| Estrato $h$ | $N_h$ | $S_h$ | $c_h$ |
+| Estrato $h$ | $N_h$ | $s_h$ | $c_h$ |
 |-------------|-------|-------|-------|
 | 1           | 1000  | 10    | 1     |
 | 2           | 2000  | 20    | 2     |
@@ -616,14 +616,14 @@ Todas las unidades de la población tienen la misma probabilidad de ser extraíd
 
 ## Muestreo aleatorio sistemático {.bloques}
 
--   Por lo que resulta difícil dar un consejo general sobre cuando el muestreo sistemático es adecuado. Sino que es necesario escoger algo sobre la estructura de la población para usarlo de manear efectiva.
+-   Por lo que resulta difícil dar un consejo general sobre cuando el muestreo sistemático es adecuado. Sino que es necesario conocer algo sobre la estructura de la población para usarlo de manera efectiva.
     -   Si hay tendencia lineal (sospechada o insospechada) este muestreo es mejor que el aleatorio simple, pero menos efectivo que el aleatorio estratificado.
     -   Si no hay tendencia lineal (poblaciones en orden aleatorio) este muestreo es en promedio equivalente al aleatorio simple (MAS).
 
 ## Muestreo aleatorio sistemático {.bloques}
 
-:::: {.columns width="100%"}
-::: column
+:::: {.columns}
+::: {.column width="100%"}
 -   Si hay una variación periódica (sinusoidal, por ejemplo) la efectividad de este muestreo dependerá del valor de k, donde A sería un valor desfavorable y B uno favorable.
     -   Aunque una curva perfecta como la del ejemplo no es plausible, esta si es una situación común, como por ejemplo, el comportamiento del flujo de personas o tráfico.
 
@@ -633,19 +633,19 @@ Todas las unidades de la población tienen la misma probabilidad de ser extraíd
 
 ## Muestreo aleatorio sistemático {.bloques}
 
--   Si hay **poblaciones autocorrelacionadas**, es decir, que cuando los elementos estén cercanos entre si (espacial o temporalmente) tienden a parecerse más entre ellos que los están mas alejados. Por ejemplo:
+-   Si hay **poblaciones autocorrelacionadas**, es decir, que cuando los elementos estén cercanos entre sí (espacial o temporalmente) tienden a parecerse más entre ellos que los que están más alejados. Por ejemplo:
     -   Personas que viven en la misma zona geográfica tienen ingresos económicos similares.
     -   La cantidad de helados vendidos este año se relaciona más con la del año pasado que con la de hace 10 años.
 -   En este caso, es mejor estratificar que hacer el MAS. No hay consenso entre si el muestreo sistemático es superior al estratificado.
 
 ## Muestreo aleatorio sistemático {.bloques}
 
--   En general $N$ no es múltiplo de entero de $k$, lo que produce que diferentes muestras sistemáticas de la misma población finita puedan tener tamaños de muestra diferentes.
+-   En general $N$ no es múltiplo entero de $k$, lo que produce que diferentes muestras sistemáticas de la misma población finita puedan tener tamaños de muestra diferentes.
 -   Por ejemplo, con $N = 23$ y $k = 5$, las primeras muestras tienen $n=5$ y las últimas dos $n=4$. Esta perturbación se considera despreciable si $n \ge 50$.
 
 ## Ejemplo 04 {.bloques}
 
--   Se tienen la siguiente población correspondientes al peso (g) de los 60 productos fabricados en una empresa industrial. Se fabrican en el orden que se muestran.
+-   Se tiene la siguiente población correspondiente al peso (g) de los 60 productos fabricados en una empresa industrial. Se fabrican en el orden que se muestran.
 
 -   Se necesita una muestra de tamaño 20, determínela mediante el muestreo aleatorio sistemático.
 
@@ -677,8 +677,8 @@ Todas las unidades de la población tienen la misma probabilidad de ser extraíd
 
 ## Muestreo por conglomerados {.bloques}
 
--   Se basa en que la unidad primaria de muestreo no es un individuo aislado, sino un grupo natural de individuos llamado conglomerado (escuelas, hospitales, cuidades, barrios, familias).
-    -   Por ejemplo: Se quiere encuestar estudiantes en una cuidad, en lugar de conseguir la lista de todos los estudiantes (muy difícil) se seleccionan algunas escuelas (conglomerados ) y se encuestan todos los estudiantes.
+-   Se basa en que la unidad primaria de muestreo no es un individuo aislado, sino un grupo natural de individuos llamado conglomerado (escuelas, hospitales, ciudades, barrios, familias).
+    -   Por ejemplo: Se quiere encuestar estudiantes en una ciudad, en lugar de conseguir la lista de todos los estudiantes (muy difícil) se seleccionan algunas escuelas (conglomerados) y se encuestan todos los estudiantes.
 -   Primero se seleccionan aleatoriamente los conglomerados de toda la población.
 -   Luego, se estudian:
     -   Todos los elementos dentro de esos conglomerados (una etapa)
@@ -696,7 +696,7 @@ Todas las unidades de la población tienen la misma probabilidad de ser extraíd
     -   *En una escuela, para el diseño de los pupitres, se seleccionan 10 aulas con MAS, y se mide la estatura de **todos** los estudiantes de esas aulas*.
 :::
 
-::: {.column with="50%"}
+::: {.column width="50%"}
 ### Bietápico
 
 -   Se seleccionan aleatoriamente algunos conglomerados (con MAS).
@@ -714,7 +714,7 @@ Todas las unidades de la población tienen la misma probabilidad de ser extraíd
 
 ## Conglomerados vs Estratos {.bloques}
 
--   La diferencia clave entre estos dos muestreos está en como y por qué se forman los grupos y el efecto que se tiene sobre la precisión (variabilidad).
+-   La diferencia clave entre estos dos muestreos está en cómo y por qué se forman los grupos y el efecto que se tiene sobre la precisión (variabilidad).
 
 -   [Estratificado]{.hi}
 
@@ -791,7 +791,7 @@ Todas las unidades de la población tienen la misma probabilidad de ser extraíd
 
 ## Introducción {.bloques}
 
-* La escogencia del método, incluyendo el muestreo probabilístico, va a [depender del contexto]{.hi}: 
+* La elección del método, incluyendo el muestreo probabilístico, va a [depender del contexto]{.hi}: 
   * La naturaleza del problema
   * La disponibilidad de un buen marco muestral 
   * Recursos: tiempo, dinero
@@ -805,7 +805,7 @@ Todas las unidades de la población tienen la misma probabilidad de ser extraíd
   * La posibilidad de apuntar a grupos particulares de la población. 
   * Es típicamente menos costoso.
 * [Desventajas]{.hi}:
-  * Las conclusiones a las que se arriban deben realizar con extrema cautela, pues este muestreo no garantiza representatividad. 
+  * Las conclusiones a las que se arriban deben realizarse con extrema cautela, pues este muestreo no garantiza representatividad. 
 
 ## Muestreo no probabilístico {.bloques}
 
@@ -832,14 +832,14 @@ Todas las unidades de la población tienen la misma probabilidad de ser extraíd
 
 ## 2. Muestreo intencional {.bloques}
 
-* Se esfuerza para dirigir el estudio a una gama de elementos que sean, el última instancia, representativo de al menos los extremos de las variables consideradas. 
+* Se esfuerza para dirigir el estudio a una gama de elementos que sean, en última instancia, representativos de al menos los extremos de las variables consideradas. 
   * Por ejemplo, en la misma encuesta anterior, se le envía solo a familiares y amigos que sean menos de 15 años y mayores de 45; intencionalmente. Pues ese es el rango etario que se desea estudiar. 
 
 ## 3. Muestreo por cuota {.bloques}
 
-* Hay muchas características en común entre muestreo intencional y muestreo por cuota. La diferencia sustancial sucede en que el primero suele hacerlo un solo investigador, mientras que el segundo, un grupo de ellos.
+* Hay muchas características en común entre muestreo intencional y muestreo por cuota. La diferencia sustancial es que el primero suele hacerlo un solo investigador, mientras que el segundo, un grupo de ellos.
 * El muestreo por cuota trata de replicar las proporciones en la población. 
-  * Por ejemplo: cada inspector de calidad debe muestrear una cantidad de determinada de defectos en cada línea de producción. 
+  * Por ejemplo: cada inspector de calidad debe muestrear una cantidad determinada de defectos en cada línea de producción. 
   
 ## 4. Muestreo de bola de nieve {.bloques}
 
@@ -904,25 +904,25 @@ $$n = \frac{z_{\alpha/2}^2 \cdot \sigma^2 \cdot N}{e^2\cdot (N-1)+z_{\alpha/2}^2
 
 ## Tamaño de muestra {.bloques}
 
-* El cálculo de $n$ debe dar un resultado [ADIMENSIONAL]{.hi}, por lo que las unidades de $\alpha$ y $e$ deben estar en la misma dimensión. 
+* El cálculo de $n$ debe dar un resultado [ADIMENSIONAL]{.hi}, por lo que "las unidades" de $\sigma$ y $e$ deben estar en la misma dimensión. 
 * Naturalmente, en el caso de proporciones $p$ y $e$ deben estar en unidades de proporciones (porcentajes).
 
 * [¿Qué es $e$?]{.hi} y [¿cómo escojo $\alpha$]{.hi}
-  * Es el máximo error permitido por la persona investigadora que tiene un IMPACTO sobre el contexto en el que se enmarca el muestreo. Lo mismo con $\alpha$, depende del contexto. Puede encontrar más detalle en esta [infografía](https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf){target="_blank"}.
+  * Es el máximo error permitido por la persona investigadora que tiene un IMPACTO sobre el contexto en el que se enmarca el muestreo. Lo mismo ocurre con $\alpha$, depende del contexto. Puede encontrar más detalle en esta [infografía](https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf){target="_blank"}.
 
 ## Tamaño de muestra {.bloques}
 
 * [¿De dónde saco $\sigma$?]{.hi}
   * Fuente secundaria: Existen datos históricos
   * Fuente primaria: Hay que recolectarla con un premuestreo, que puede ser: observación, experimento o encuesta. 
-* Todo tamaño de muestra se debe [redondear] a un número entero. La norma indica que este redonde siempre debe ser hacia el [entero superior más próximo]{.hi}. 
+* Todo tamaño de muestra se debe [redondear] a un número entero. La norma indica que este redondeo siempre debe ser hacia el [entero superior más próximo]{.hi}. 
 
 
 ## Bibliografía {.bloques}
 
 :::: columns
 ::: {.column width="100%" style="font-size: 1.25em;"}
--   Cochran, William. Sampling Techiques (3rd Edition).
+-   Cochran, William. Sampling Techniques (3rd Edition).
     -   *Capítulo 1, 2, 3, 5, 8, 9, 10.*
 -   Galloway, A. (2005). Non-probability sampling. En K. Kempf-Leonard (Ed.), Encyclopedia of social measurement (pp. 859–864). Elsevier. [https://doi.org/10.1016/B0-12-369398-5/00382](https://doi.org/10.1016/B0-12-369398-5/00382-0)
 :::
