@@ -1067,6 +1067,7 @@ submuestra %>%
 * Realice los ejercicios con la base de datos completa, en esta presentación se muestran algunos de los resultados. 
 
 * Utilice lo ya aprendido en muestreo y obtenga otras submuestras bajos los diferentes métodos estudiados y repita los ejercicios. 
+  * Observe, tanto en sus submuestras como en la que se presentó en esta clase, la diferencia que hay entre los estimadores y los parámetros. Discuta con la persona docente y otros estudiantes.
 
 ## Bibliografía {.bloques}
 

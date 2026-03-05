@@ -1,0 +1,480 @@
+---
+title: "Variables aleatorias"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1120_05_Variables_aleatorias.pdf) <br> II-1120 Estadística para Ingeniería Industrial I"
+date: today
+format: revealjs
+---
+
+```{r}
+
+library(tidyverse)
+
+```
+
+
+## Agenda {.bloques}
+
+* Preguntas generadoras
+* Variable aleatoria
+  * Discreta
+  * Continua
+* Distribución de probabilidad
+  * Discreta
+  * Continua
+* Esperanza y Varianza matemática
+
+
+
+## Preguntas generadoras {.bloques}
+
+* ¿Qué es una variable aleatoria?
+* ¿Para qué sirven las variables aleatorias?
+* ¿Qué es un parámetro?
+* ¿Qué es una función de masa/densidad?
+* ¿Qué es una función de distribución acumulada?
+* ¿Qué es la esperanza matemática? 
+* ¿Cuáles son las propiedades de la esperanza y varianza matemática?
+
+## Introducción {.bloques}
+
+* El concepto de variable aleatoria permite pasar de los resultados recolectados en un experimento a la función numérica de los resultados. 
+* Existen dos tipos de variables aleatorias: 
+  * Discretas
+  * Continuas 
+* Una distribución de probabilidad proporciona toda la gama de valores que se pueden presentar en un experimento cuyos resultados se encuentran sujetos al azar. 
+* Es similar a una distribución de frecuencias relativas, pero en lugar de describir, busca asignar probabilidades a los posibles resultados. 
+
+## ¿Para qué estudiarlas? {.bloques}
+
+* Prácticamente [todo a nuestro alrededor tiene un comportamiento “aleatorio”]{.hi}. 
+* Por ejemplo:
+  * ¿Cuántos lanzamientos se necesitan para obtener “corona” en una moneda?
+  * ¿Cuánto tiempo debe esperar a que llegue el ascensor/bus/Uber? 
+* Conectado con la práctica de la ingeniería: control de calidad, tiempos de espera, inventarios, confiabilidad... cada decisión bajo incertidumbre implica una variable aleatoria, aun cuando esta no se mencione explícitamente. 
+* La teoría de la probabilidad es la herramienta matemática que nos permite analizar los eventos aleatorios de manera estructurada. 
+
+## Variable aleatoria {.bloques}
+
+* Es una función $X: S \rightarrow \mathbb{R}$, aun cuando lleve el nombre de [variable]{.hi},  que asocia un número real con cada elemento del espacio muestral. 
+  * Cuyo dominio es el espacio muestral y cuyo codominio es el conjunto de números reales.
+  
+  * Tampoco es [aleatoria]{.hi}, pues está completamente definida por la función.
+
+* La semántica detrás del concepto [variable aleatoria]{.hi} viene arraigada a la idea clásica de que depende del resultado de un experimento que es [aleatorio]{.hi}.
+
+* >La aleatoriedad no está en la función, sino en el resultado del experimento.
+
+## Variable aleatoria {.bloques}
+
+* Las variables aleatorias pueden ser valores "reales", como la longitud de un borrador, el espacio entre máquinas en una fábrica; o "ficticias", como la codificación de 1 como bueno y 0 como malo en un producto. 
+
+* Es un [modelo matemático]{.hi} que describe o intenta describir los resultados, usualmente de manera numérica, de un evento cuyos resultados se deben al azar. 
+
+* Es cualquier regla que asocia un número con cada resultado en $S$.
+
+## Variable aleatoria {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+### Discreta
+
+* Cuando la variable puede tomar un [número finito]{.hi} de posibilidades, o una serie interminable con tantos elementos como [números enteros]{.hi} existen. 
+* En simple:
+  * Cuando sí se puede contar su conjunto de valores posibles.
+* Ejemplo: 
+  * Artículos defectuosos
+  * Número de accidentes
+  * Cantidad de monedas en una cartera
+
+:::
+
+::: {.column width="50%"}
+
+### Continua
+
+* Cuando puede tomar un número infinito (no numerable) de posibilidades, igual al número en un segmento de recta. 
+* En simple: 
+  * Cuando puede tomar valores en una escala [continua]{.hi}.
+* Ejemplo: 
+  * Peso
+  * Altura
+  * Temperatura
+
+:::
+
+::::::
+
+## Anotación importante {.bloques}
+
+* Esta aproximación práctica es generalmente válida, no obstante, hay aplicaciones en las que el instrumento de medición, aún cuando mida una variable continua, por su resolución, produce resultados discretos. 
+
+* Por ejemplo, medir un proceso que produce resultados muy consistentes y precisos con un instrumento "incorrecto" va a generar una variable discreta: 
+
+  * El peso de las nueces en una ensalada que podemos comprar en un supermercado debe ser de 50 g. 
+    * Medir ese peso con una balanza que marca cada 5 g va a producir resultados discretos.
+    * Medirlo con una balanza que marca cada 0.1 g produce resultados más cercanos a una variable continua. 
+
+* A menudo, lo "continuo" responde a un modelo "idealizado". El carácter discreto o continuo no es una propiedad física del fenómeno, sino del modelo que se busca construir. 
+
+## Una simplificación de los términos {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+### Variables discretas
+
+* Si los resultados son conteos
+
+  * Valor del lanzamiento de un dado
+  * Valor del lanzamiento de una moneda
+  * Cantidad de personas en una fila
+  * Número de intentos de una persona para obtener la licencia de conducir
+
+:::
+
+::: {.column}
+
+### Variables continuas
+
+* Si los resultados son mediciones
+
+  * Tiempo de supervivencia de un electrodoméstico
+  * Medición del peso en una balanza
+  * Energía producida por una turbina eólica
+  * Distancia recorrida por un avión de papel
+
+:::
+
+::::::
+
+# Distribución de probabilidad {.bloques}
+
+## Concepto {.bloques}
+
+* Es la lista de todos los resultados de un experimento y la probabilidad asociada a cada uno de ellos. 
+  * La probabilidad de un resultado particular se encuentra entre 0 y 1, ambos inclusive.
+  * Los resultados son eventos mutuamente excluyentes.
+  * La lista es exhaustiva
+    * Es decir, la suma de las probabilidades es igual a 1.0
+    
+## Notación importante {.bloques}
+
+* Función de masa (*pmf*) /densidad (*pdf*) $\rightarrow f(x)$
+
+* Función de distribución acumulada (*cdf*) $\rightarrow F(x)$
+
+* Esperanza matemática $\rightarrow E(x)$
+
+* Varianza matemática $\rightarrow V(x)$
+
+* Recuerde además: en el contexto de las distribuciones de probabilidad, los parámetros se emplean para describir el comportamiento de los datos. Nosotros buscamos aproximar esos parámetros a partir de [muestreo]{.hi}, es decir, mediante estimadores
+
+## Importante {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit width="22%"}
+
+![](img/zapato.jpg)
+
+:::
+
+
+::: {.column width="70%"}
+
+* Ojo, son las [distribuciones las que se ajustan a los datos]{.hi} y nunca los datos a las distribuciones.
+  * Cuide el vocabulario técnico correcto. 
+* Entonces, si una distribución cualquiera NO se ajusta a un conjunto de datos, [es la distribución la que no “sirve”]{.hi} como modelo, no los datos. 
+  * Nota: Esto bajo la consideración de que la forma en que se recolectaron los datos y la cantidad de los mismos son adecuados. 
+
+* ¿Podemos suponer que el pie ([datos]{.hi}) está mal? ¿O escogimos mal el zapato ([distribución]{.hi})?
+
+
+:::
+
+::::::
+
+## Ejemplo {.bloques}
+
+* Vamos a generar una distribución de probabilidad (recuerde que es similar a una [distribución de frecuencias relativas]{.hi}).
+* Se supone que la probabilidad de obtener “escudo” en una moneda es 0.50.
+* Todas las personas presentes:
+  * Lancen una moneda 3 veces, ¿cuántos escudos obtuvieron?
+* Complete la tabla del siguiente slide en conjunto con la persona docente y las demás personas estudiantes. 
+* Complete también el gráfico, dibujando los resultados obtenidos en el cuadro. 
+
+## Ejemplo {data-chalkboard="true" .bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+```{r}
+
+df <- data.frame(`Número de escudos \\(x_i\\)` = c(0, 1, 2, 3),
+                 `Probabilidad (teórica)` = c(0.125, 0.375, 0.375, 0.125),
+                 `Cantidad de estudiantes que sacaron \\(x_i\\) escudos` = c("", "", "", ""),
+                 `Probabilidad (práctica)` = c("", "", "", ""), 
+                 check.names = FALSE)
+
+
+df %>% 
+  knitr::kable(format = "html") %>%
+  kableExtra::kable_styling(full_width = TRUE, position = "center")
+
+```
+
+
+:::
+
+::::::
+
+## Ejemplo {data-chalkboard="true" .bloques}
+
+:::::: {.columns}
+
+::: {.column width="65%"}
+
+```{r}
+
+g1 <- df %>% 
+  ggplot2::ggplot(aes(x = `Número de escudos \\(x_i\\)`, 
+                      y = `Probabilidad (teórica)`)) +
+  geom_col(fill = "#263247") +
+  labs(x =  "Número de escudos", 
+       y = "Masa (Probabilidad)") +
+  theme_bw()
+
+plotly::ggplotly(g1, height = 650, width = 1100) %>% 
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 30),
+                 xaxis = list(
+                   title = list(font = list(size = 30)),
+                   tickfont = list(size = 25)),
+                 yaxis = list(title = list(font = list(size = 30)),
+                 tickfont = list(size = 25)),
+                 legend = list(title = list(font = list(size = 30)),
+                               font = list(size = 25),
+                               bgcolor = "#F1F5F5"))
+
+```
+
+
+:::
+
+::: {.column width="35%"}
+
+* Si la probabilidad práctica NO se parece o se asemeja a la probabilidad teórica, puede ser que le falte tamaño de muestra. 
+  * Es decir, la cantidad de estudiantes no es suficiente. Esto se asocia con la ley de los grandes números que se estudiará posteriormente. 
+
+
+
+:::
+
+::::::
+
+## Ejemplo {.bloques}
+
+* Finalmente, el ejemplo desarrollado es una distribución Binomial (tema de la clase de distribuciones discretas). No se necesita lanzar $x_\infty$ para obtener las probabilidades, solo necesita conocer o estimar el parámetro que describe esta distribución, en este caso $n:$ cantidad de lanzamientos, que fueron 3 y $p:$ probabilidad, que es 0.5.
+
+
+* $P(x_i)=\frac{n!}{x_i!(n-x_i)!}p^{x_i}(1-p)^{n-x_i}$
+
+* Es decir: 
+  * $P(0)= \frac{3!}{0!(3-0)!}0.5^0(1-0.5)^{3-0}=0.125$
+* Resuelva para $1, 2, 3$
+
+## Distribución de probabilidad discreta {.bloques}
+
+* Es una lista mutuamente excluyente de todos los posibles valores numéricos para una variable aleatoria tal que una probabilidad de ocurrencia específica se asocia con cada resultado.
+* Cuando la distribución es discreta, la función suele recibir el nombre de [función de masa]{.hi}. 
+
+* La función de masa $f(x)$:
+  * Es estrictamente no negativa $f(x) \ge 0$
+  * La suma de las probabilidades de todos sus eventos es igual a 1 $\sum_{i=1}^{n} f(x)=1$
+  * La probabilidad de un evento $x$ es igual al resultado de la función de masa $P(X=x_i)=f(x_i)$
+
+## Distribución de probabilidad discreta {.bloques}
+
+* La función de distribución acumulada $F(x)$:
+  * Es la sumatoria de la función de masa desde el valor mínimo hasta un valor particular de interés $F(X_i)=P(X\le x_i) = \sum f(x)$
+  * Por ejemplo, $F(1) = f(0)+f(1)$
+    * Resuelva $F(1)$ para el ejemplo de las monedas
+  * Note que $F(x)$ es siempre NO decreciente. 
+  
+## Sigamos el ejemplo {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+```{r}
+
+g2 <- df %>% 
+  dplyr::mutate(x = cumsum(`Probabilidad (teórica)`)) %>% 
+  ggplot2::ggplot(aes(x = `Número de escudos \\(x_i\\)`, 
+                      y = x)) +
+  geom_col(fill = "#263247") +
+  labs(x =  "Número de escudos", 
+       y = "Probabilidad") +
+  theme_bw()
+
+plotly::ggplotly(g2, height = 650, width = 1800) %>% 
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 30),
+                 xaxis = list(
+                   title = list(font = list(size = 30)),
+                   tickfont = list(size = 25)),
+                 yaxis = list(title = list(font = list(size = 30)),
+                 tickfont = list(size = 25)),
+                 legend = list(title = list(font = list(size = 30)),
+                               font = list(size = 25),
+                               bgcolor = "#F1F5F5"))
+
+```
+
+
+:::
+
+::::::
+
+## Distribución de probabilidad continua {.bloques}
+
+* Por definición, tiene una probabilidad de 0 (cero) de adoptar exactamente cualquiera de sus valores. Por tanto, su distribución no se puede representar, fácilmente, de forma tabular directa. 
+  * Al ver la fórmula más adelante se comprenderá mejor. Pero requiere conocimientos básicos de cálculo integral. 
+* En este caso suele recibir el nombre de [función de densidad]{.hi}.
+
+* La función de densidad $f(x)$:
+  * Es no negativa $f(x) \ge 0$ para toda $x \in \mathbb{R}$
+    * La integral en exactamente un punto es siempre 0, por eso la definición anterior.
+  * La integral de $-\infty$ (o el valor de inicio) hasta $\infty$ o el valor final es igual a 1 $\int_{-\infty}^{\infty} f(x)dx=1$
+  * La probabilidad se obtiene por intervalos $F(x) = P(a < X < b) = \int_{a}^{b} f(x)dx$
+
+## Distribución de probabilidad continua {.bloques}
+
+* La función de distribución acumulada $F(x)$:
+  * Es la integral de la función de densidad desde el valor mínimo hasta un valor particular de interés $F(x) = P(X \le x) = \int_{-\infty}^{x} f(t)\, dt$
+  * $F(x)$ es siempre no decreciente
+  
+# Esperanza y varianza matemática {.bloques}
+
+## Esperanza matemática {.bloques}
+
+* La media $\mu$ de una distribución de probabilidad recibe el nombre de valor esperado (Esperanza matemática). 
+* Se trata de un [promedio ponderado]{.ul} en el que los posibles valores de una variable aleatoria se ponderan con sus correspondientes probabilidades de ocurrir. 
+* $E(x)=\mu=\sum x_i \cdot f(x_i)$
+
+## Varianza matemática {.bloques}
+
+* Como se sabe del tema de descripción de datos, la media constituye un valor típico para resumir datos. Sin embargo, no describe el grado de dispersión (variación o variabilidad) en una distribución. La varianza sí lo hace. Por lo que hay una medida del valor esperado de esta variación. 
+
+* $V(x) = \sigma^2 = \sum (x_i-\mu)^2 \cdot f(x_i)$
+
+## Continuemos el ejemplo de las monedas {.bloques}
+
+* Verifique que el valor de
+  * $E(x) = 1.5$
+  * $V(x) = 0.75$
+  
+## Para distribuciones continuas {.bloques}
+
+* $E(x) = \mu = \int_{-\infty}^{\infty} x \cdot f(x)$
+* $V(x) =  \sigma^2=\int_{-\infty}^{\infty} (x-\mu)^2 \cdot f(x)$
+
+## Propiedades de la esperanza {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+$$
+\begin{aligned}
+\mathbb{E}(aX + b) &= a\mathbb{E}(X) + b \\
+\mathbb{E}(aX) &= a\mathbb{E}(X) \\
+\mathbb{E}(b) &= b \\
+\mathbb{E}(X \pm Y) &= \mathbb{E}(X) \pm \mathbb{E}(Y) \\
+\mathbb{E}(XY) &= \mathbb{E}(X)\mathbb{E}(Y) 
+\quad \text{si } X \text{ e } Y \text{ son independientes}
+\end{aligned}
+$$
+
+:::
+
+::::::
+
+## Propiedades de la varianza {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+$$
+\begin{aligned}
+\mathrm{V}(aX + b) &= a^2 \mathrm{V}(X) \\
+\mathrm{V}(aX) &= a^2 \mathrm{V}(X) \\
+\mathrm{V}(b) &= 0 \\
+\mathrm{V}(X + Y) &= \mathrm{V}(X) + \mathrm{Var}(Y) 
+\quad \text{si } X \text{ e } Y \text{ son independientes} \\
+\mathrm{V}(aX + bY) &= a^2 \mathrm{V}(X) + b^2 \mathrm{V}(Y)
+\quad \text{si } X \text{ e } Y \text{ son independientes}
+\end{aligned}
+$$
+
+:::
+
+::::::
+
+## Ejemplos finales {.bloques}
+
+* Se muestran dos ejercicios tomados del material de la Inga. Valentina Campos Aguilar. 
+
+## Ejemplo 01 {.bloques}
+
+* Una empresa de confección de telas produce en promedio 580 metros al día y el promedio de manchas por cada metro de tela es de 0.75. Estas variables se consideran independientes. Obtenga el promedio de manchas por día.
+* Resuelva con las propiedades anteriores. La respuesta correcta es 443 $\frac{manchas}{día}$
+
+
+
+## Ejemplo 02 {.bloques}
+
+* Una persona compra un “six pack” de cervezas de 350 mL, se sabe por el fabricante que la varianza de cada lata es de 9 mL. ¿Cuál es la varianza del “six pack”?
+* Resuelva con las propiedades anteriores. La respuesta correcta es 54 $mL^2$.  
+
+* Si en lugar de un six pack la persona compra una sola lata gigante que es exactamente 6 veces el contenido de una pequeña: 
+* Resuelva con las propiedades anteriores. La respuesta correcta es 324 $mL^2$. 
+
+## Actividad lúdica [(Enlace)](https://view.genially.com/67d5c1a2cea794dd55592343/interactive-content-variables-aleatorias){target="_blank"} {.bloques}
+
+::: iframe-card
+<iframe src="https://view.genially.com/67d5c1a2cea794dd55592343" frameborder="0">
+
+</iframe>
+:::
+
+## Bibliografía {.bloques}
+
+:::: columns
+::: {.column width="100%" style="font-size: 1.15em;"}
+
+-   Walpole, R.; Myers, R.; Myers, S. y Ye, K. Probabilidad y estadística para ingeniería y ciencias (9na Edición).
+    -   Capítulo 3 y 4
+-   Lind, D.; Marchal, W. y Watchen, S. Estadística aplicada a los Negocios y la Economía (15va Edición).
+    -   Capítulo 6
+-   Devore, J. Probabilidad y Estadística para Ingeniería y Ciencias (7ma Edición).
+    -   Capítulo 3
+-   Levine, D.; Krehbiel, T.; Berenson, M. Estadística para administración (4ta Edición).
+    -   Capítulo 5
+
+:::
+::::
+
+## Variables aleatorias <br> II-1120 Estadística para Ingeniería Industrial I {.center}
+
+### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni\@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
+
+### Dudas o correcciones requeridas pueden solicitarse al correo

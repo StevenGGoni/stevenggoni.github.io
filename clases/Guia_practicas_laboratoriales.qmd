@@ -175,7 +175,6 @@ Esta sección NO debe exceder de dos páginas, respetando el tipo y tamaño de l
 
     -   Evita copiar definiciones sin explicarlas en el contexto del fenómeno de estudio. Por ejemplo, no es correcto copiar la definición de la mediana y no contextualizar su uso en el conjunto de datos sujeto a estudio.
 
-
 ## Procedimiento
 
 Esta sección **NO debe exceder de dos páginas**, respetando el tipo y tamaño de letra, así como el espaciado.
@@ -396,22 +395,21 @@ No se consideran válidas las siguientes referencias:
 
 # Rúbrica de evaluación
 
-La rúbrica puede obtenerse en este [enlace](https://stevenggoni.github.io/clases/Rúbrica de evaluación (Excel).xlsx).
+La rúbrica puede obtenerse en este [enlace](https://stevenggoni.github.io/clases/Rúbrica%20de%20evaluación%20(Excel).xlsx).
 
 En resumen:
 
 | Componente                         | Valor   |
 |------------------------------------|---------|
 | Objetivos                          | 10      |
-| Fundamentos teóricos               | 15      |
+| Fundamentos teóricos               | 10      |
 | Procedimiento                      | 15      |
-| Análisis de resultados             | 20      |
-| Conclusiones y recomendaciones     | 20      |
-| Referencias bibliográficas         | 10      |
+| Ejecución de la práctica           | 20      |
+| Análisis de resultados             | 15      |
+| Conclusiones y recomendaciones     | 15      |
+| Referencias bibliográficas         | 5       |
 | Construcción de gráficos y cuadros | 5       |
 | Aspectos de redacción y formato    | 5       |
 | **Total**                          | **100** |
 
 : Resumen de evaluación
-
-

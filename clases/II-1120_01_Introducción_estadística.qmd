@@ -543,7 +543,7 @@ function checkAnswers() {
 ## ¡Crucigrama de repaso! {.bloques}
 
 ::: iframe-card
-<iframe src="https://crosswordlabs.com/embed/estadistica-151" frameborder="0">
+<iframe src="https://www.teachize.com/es/crossword/view/?id=7d24f2fe-f259-4b8f-bfb9-77bbab7bde4d" frameborder="0">
 
 </iframe>
 :::
