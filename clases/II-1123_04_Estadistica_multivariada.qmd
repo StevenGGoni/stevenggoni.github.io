@@ -445,8 +445,7 @@ plotly::ggplotly(g01, height = 740, width = 1800) %>%
 * Ahora, para el mismo conjunto de datos, obtenga una estimación de la respuesta, es decir $\hat{y}$.
 * Con base en esta, estime el error (también conocido como [residuos]{.hi}) y obtenga la suma de todos los residuos. 
   * $$e = y-\hat{y}$$
-* En teoría este valor debe ser cero o aproximadamente cero. 
-* De forma matricial, lo puede obtener de esta manera:
+* En teoría este valor debe ser cero o aproximadamente cero.De forma matricial, lo puede obtener de esta manera:
   * $$\hat{\varepsilon}=y-X\hat{\beta}$$
 
 ## Regresión {.bloques}
@@ -465,13 +464,26 @@ plotly::ggplotly(g01, height = 740, width = 1800) %>%
 
 ## Ejemplo 01 {.bloques}
 
+:::::: {.columns}
+
+::: {.column}
+
 * Obtenga, para los datos del ejemplo 01, la $SS_e$.
   * $$166\, 254.86$$
 * Obtenga además el valor de $s^2$
   * $$9\, 236.38$$
+
+:::
+
+::: {.column}
+
 * Y el valor de $s$
   * $$96.11$$
 * >Resuelva también con álgebra matricial.
+
+:::
+
+::::::
 
 ## Otras sumas de cuadrados {.bloques}
 
@@ -673,7 +685,7 @@ data.frame(Término = c("Regresión", "Residuos", "Total"),
 ## Variables categóricas (*dummy*) {.bloques}
 
 * Es importante comprender que regresión y ANOVA solo “trabajan” con variables numéricas y [no con categorías]{.hi}. 
-* Las variables *dummy* solucionan este problema, convirtiendo las 𝑛 categorías en $n-1$ variables cuantitativas.
+* Las variables *dummy* solucionan este problema, convirtiendo las 𝑛 categorías en $n-1$ variables cuantitativas binarias.
 * Son $n-1$ porque de incluirse el regresor 𝑥_𝑛 se generaría una combinación lineal, como las estudiadas en álgebra. Y eso haría a la regresión colineal.
   * El concepto de colinealidad se abordará luego. 
 
@@ -706,7 +718,7 @@ ej02 <- openxlsx::read.xlsx("data/II-1123_04_Datos y ejercicios resueltos.xlsx",
 
 :::::: {.columns}
 
-::: {.column style="font-size: 0.65em;"}
+::: {.column style="font-size: 0.63em;"}
 
 ### Datos
 
@@ -721,7 +733,7 @@ ej02 %>%
 
 :::
 
-::: {.column style="font-size: 0.65em;"}
+::: {.column style="font-size: 0.63em;"}
 
 ### Variables codificadas
 
@@ -738,7 +750,7 @@ fastDummies::dummy_cols(ej02, select_columns = "Tela(x)") %>%
 
 :::
 
-::: {.column style="font-size: 0.65em;"}
+::: {.column style="font-size: 0.63em;"}
 
 ### Eliminación de la colinealidad
 
@@ -2187,8 +2199,7 @@ mod4 %>%
 ## Ejemplo 04 - ANOVA {.bloques}
 
 * Con base en los resultados obtenidos, hay evidencia para decir que la resistencia es distinta en función de los niveles de grosor y de templado. 
-* Ahora, el interés de la organización es seleccionar la configuración que de la mayor resistencia. 
-* ¿Cómo obtengo esos valores? ¿Cómo doy una respuesta?
+* Ahora, el interés de la organización es seleccionar la configuración que de la mayor resistencia. ¿Cómo obtengo esos valores? ¿Cómo doy una respuesta?
 
 * Para ello vamos a usar una técnica llamada [comparaciones múltiples]{.hi}. Muchos softwares estadísticos ofrecen una batería de herramientas para tomar esta decisión, entre ellas: 
   * Tukey
@@ -2471,19 +2482,3 @@ kruskal.test(Peso ~Dieta, data = ej05)
 ### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni\@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
 
 ### Dudas o correcciones requeridas pueden solicitarse al correo
-
-```{r, results='asis', echo=FALSE}
-cat('
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    if (window.Reveal) {
-      Reveal.on("slid", event => {
-        const iframe = event.currentSlide.querySelector("iframe");
-        if (iframe && iframe.dataset.src && !iframe.src) {
-          iframe.src = iframe.dataset.src;
-        }
-      });
-    }
-  });
-</script>
-')
