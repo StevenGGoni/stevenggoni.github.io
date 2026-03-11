@@ -4,7 +4,12 @@
 /* Crimson Pro */
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
 
+/* Aller */
+
+/*@import url('https://fonts.googleapis.com/css2?family=Aller:wght@400;700&display=swap');*/
+
 /* Aller (local webfont kit) */
+
 @font-face {
     font-family: 'Aller';
     src: url('fonts/aller/aller_rg-webfont.woff2') format('woff2'),
@@ -60,6 +65,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 /* =====================================================
    Fondo general y tipografía
    ===================================================== */
