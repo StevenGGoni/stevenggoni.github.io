@@ -3,8 +3,63 @@
    ====================================================== */
 /* Crimson Pro */
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
-/* Aller */
-@import url('https://fonts.googleapis.com/css2?family=Aller:wght@400;700&display=swap');
+
+/* Aller (local webfont kit) */
+@font-face {
+    font-family: 'Aller';
+    src: url('fonts/aller/aller_rg-webfont.woff2') format('woff2'),
+         url('fonts/aller/aller_rg-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aller';
+    src: url('fonts/aller/aller_it-webfont.woff2') format('woff2'),
+         url('fonts/aller/aller_it-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aller';
+    src: url('fonts/aller/aller_bd-webfont.woff2') format('woff2'),
+         url('fonts/aller/aller_bd-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aller';
+    src: url('fonts/aller/aller_bdit-webfont.woff2') format('woff2'),
+         url('fonts/aller/aller_bdit-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aller';
+    src: url('fonts/aller/aller_lt-webfont.woff2') format('woff2'),
+         url('fonts/aller/aller_lt-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aller';
+    src: url('fonts/aller/aller_ltit-webfont.woff2') format('woff2'),
+         url('fonts/aller/aller_ltit-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aller Display';
+    src: url('fonts/aller/allerdisplay-webfont.woff2') format('woff2'),
+         url('fonts/aller/allerdisplay-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /* =====================================================
    Fondo general y tipografía
    ===================================================== */
@@ -359,7 +414,7 @@
   margin-left: 0 !important; 
   
   /* Ajustamos altura para que sea armónico */
-  height: 750px !important; 
+  height: 780px !important; 
   
   display: flex;
   align-items: center;

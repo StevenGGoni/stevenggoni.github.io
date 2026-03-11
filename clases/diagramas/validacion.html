@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'neutral',
+            flowchart: { 
+                useMaxWidth: false, 
+                htmlLabels: true,
+                curve: 'basis' 
+            }
+        });
+    </script>
+    <style>
+        body { 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            background: #F1F5F5; 
+            font-family: 'Aller', sans-serif;
+            overflow: hidden;
+            position: relative; /* Necesario para el posicionamiento del footnote */
+        }
+        
+        .mermaid { 
+            width: 100%; 
+            margin: auto;
+        }
+
+        /* --- ESTILO DEL FOOTNOTE --- */
+        .footnote {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 18px;
+            color: #556070;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        .node .label, 
+        .node .label div, 
+        .node .label span,
+        .node text {
+            font-size: 24px !important; 
+            font-weight: 800 !important;
+            font-family: 'Aller', sans-serif !important;
+            color: inherit;
+            line-height: 1.1;
+        }
+
+        .edgeLabel, .edgeLabel span {
+            font-size: 30px !important; 
+            font-weight: bold !important;
+            background-color: #F1F5F5 !important;
+        }
+
+        .subgraph-title, .subgraph-title span {
+            font-size: 36px !important;
+            font-weight: bold !important;
+        }
+
+        .node rect, .node circle, .node polygon, .node path {
+            stroke-width: 3px !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mermaid">
+      flowchart LR
+      
+      classDef rectangulo fill:#fff,color:#000,stroke:#0F0F10
+      classDef rombo fill:#fff,color:#000,stroke:#333
+      classDef circulo fill:#fff,color:#000,stroke:#333
+      classDef importante fill:#263247,color:#F1F5F5
+      
+      A[Datos]
+      B[Teoría]
+      C[Especificación<br>del modelo]
+      D[Estimación<br>de parámetros]
+      E@{shape: diamond, label: "Verificación de la<br>adecuación del modelo"}
+      F@{shape: diamond, label: "Validación<br>del modelo"}
+      G@{shape: circ, label: "Uso del<br>modelo"}
+      
+      class G circulo
+      class A,B,C,D rectangulo
+      class E,F rombo
+      
+      subgraph todos[ ]
+          direction LR
+          
+          subgraph Contexto [ ]
+              direction TB
+              A a1@ o==o B
+          end
+      
+          subgraph spec [ ]
+              direction LR
+              C ==> D d1@ ==> E
+              E e1@ ==> |Sí| F
+              
+              E e2@ ==> |No| C
+              F:::importante f1@ ==> |No| C
+          end
+      
+          Contexto con1@ ==> spec
+          F f2@ ==> |Sí| G
+      end
+      
+      %% Animación 
+      f1@{ animate: true }
+      f2@{ animate: true }
+      
+    </div>
+
+    <div class="footer-info">
+        <div class="enlace-full">
+            Para ver el diagrama en pantalla completa, diríjase a este 
+            <a href="https://stevenggoni.github.io/clases/diagramas/validacion.html" target="_blank">enlace</a>.
+        </div>
+        <div class="footnote">
+            Tomado y adaptado de Montgomery et al. (2012).
+        </div>
+    </div>
+
+    <style>
+        /* Estilos para el nuevo contenedor de información */
+        .footer-info {
+            position: absolute;
+            bottom: 20px;
+            width: 95%;
+            display: flex;
+            justify-content: space-between; /* El enlace a la izquierda, la cita a la derecha */
+            align-items: flex-end;
+            padding: 0 30px;
+            pointer-events: none; /* Permite que el mouse pase a través del contenedor si es necesario */
+        }
+
+        .enlace-full, .footnote {
+            pointer-events: auto; /* Activa los clics solo en el texto/enlace */
+            font-size: 20px;
+            color: #556070;
+            opacity: 0.9;
+        }
+
+        .enlace-full a {
+            color: #C18A00; /* El dorado de tu clase .hi */
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(193, 138, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .enlace-full a:hover {
+            border-bottom: 1px solid #C18A00;
+            opacity: 1;
+        }
+
+        .footnote {
+            font-style: italic;
+            text-align: right;
+        }
+    </style>
+
+</body>
+</html>

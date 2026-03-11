@@ -324,7 +324,7 @@ ggVennDiagram::ggVennDiagram(list(A=A, B=B, C=C)) +
 
 * Para el desarrollo de estos ejemplos se toma una [submuestra o subconjunto]{.hi} de la base de datos, con el fin de hacerla manejable en clase.
   * La submuestra, de 16 observaciones, se obtiene mediante muestreo estratificado y MAS. Se forman dos estratos: los que tienen y los que no diabetes no controlada, se extraen 2 observaciones para los que si y 14 para los que no. 
-* Se le hace entrega de la base de datos completa, en este [enlace](https://stevenggoni.github.io/clases/data/II-1123_04_Diabetes No Controlada.xlsx), para que practique y repita ejercicios con más volumen de datos.
+* Se le hace entrega de la base de datos completa, en este [enlace](https://stevenggoni.github.io/clases/data/II-1120_04_Diabetes No Controlada.xlsx), para que practique y repita ejercicios con más volumen de datos.
   * Se le recomienda hacerlo, pues las bases de datos de las pruebas es similar en extensión a la que se le entrega.
   * Puede usar esta misma base de datos para realizar ejercicios de estadística descriptiva y muestreo. 
 
@@ -336,7 +336,7 @@ ggVennDiagram::ggVennDiagram(list(A=A, B=B, C=C)) +
 
 ```{r}
 
-diabetes <- openxlsx::read.xlsx("data/II-1123_04_Diabetes No Controlada.xlsx")
+diabetes <- openxlsx::read.xlsx("data/II-1120_04_Diabetes No Controlada.xlsx")
 
 ```
 

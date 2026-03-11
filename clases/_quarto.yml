@@ -13,6 +13,10 @@ format:
   revealjs:
     theme: white
     css: custom.css
+    mermaid: 
+      theme: neutral
+      displayMode: true
+      width: 100%
     fig-cap-location: top
     slide-number: true
     incremental: false
