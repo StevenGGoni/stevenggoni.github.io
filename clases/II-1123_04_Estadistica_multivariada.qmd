@@ -871,7 +871,7 @@ $$y = \beta_0+\beta_1 x_1+\beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon$$
 ## Pasos en la construcción de una RLM {.bloques}
 
 ::: {.iframe-card}
-<iframe src="diagramas/pasos_regresion.html" title="Pasos de una RLM"></iframe>
+<iframe src="https://stevenggoni.github.io/clases/diagramas/pasos_regresion.html" title="Pasos de una RLM"></iframe>
 :::
 
 ## Importante {.bloques}
@@ -893,7 +893,7 @@ $$y = \beta_0+\beta_1 x_1+\beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon$$
 ## Datos + Teoría {.bloques}
 
 ::: {.iframe-card}
-<iframe src="diagramas/datos+teoria.html" title="Pasos de una RLM"></iframe>
+<iframe src="https://stevenggoni.github.io/clases/diagramas/datos+teoria.html" title="Pasos de una RLM"></iframe>
 :::
 
 ## Datos + Teoría {.bloques}
@@ -913,7 +913,7 @@ $$y = \beta_0+\beta_1 x_1+\beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon$$
 ## Especificación del modelo {.bloques}
 
 ::: {.iframe-card}
-<iframe src="diagramas/especificacion.html" title="Pasos de una RLM"></iframe>
+<iframe src="https://stevenggoni.github.io/clases/diagramas/datos+teoria.htmldiagramas/especificacion.html" title="Pasos de una RLM"></iframe>
 :::
 
 ## Especificación del modelo {.bloques}
@@ -943,7 +943,7 @@ $$y = \beta_0+\beta_1 x_1+\beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon$$
 ## Estimación de parámetros {.bloques}
 
 ::: {.iframe-card}
-<iframe src="diagramas/estimacion.html" title="Pasos de una RLM"></iframe>
+<iframe src="https://stevenggoni.github.io/clases/diagramas/datos+teoria.htmldiagramas/estimacion.html" title="Pasos de una RLM"></iframe>
 :::
 
 ## Estimación de parámetros {.bloques}
@@ -1024,7 +1024,7 @@ mod1 %>%
 ## Verificación de la adecuación del modelo {.bloques}
 
 ::: {.iframe-card}
-<iframe src="diagramas/adecuacion.html" title="Pasos de una RLM"></iframe>
+<iframe src="https://stevenggoni.github.io/clases/diagramas/datos+teoria.htmldiagramas/adecuacion.html" title="Pasos de una RLM"></iframe>
 :::
 
 ## Verificación de la adecuación del modelo {.bloques}
@@ -1367,7 +1367,7 @@ Recuerde la clase de bondad de ajuste para distribuciones.
 ## Verificación de la adecuación del modelo {.bloques}
 
 ::: {.iframe-card}
-<iframe src="diagramas/adecuacion.html" title="Pasos de una RLM"></iframe>
+<iframe src="https://stevenggoni.github.io/clases/diagramas/datos+teoria.htmldiagramas/adecuacion.html" title="Pasos de una RLM"></iframe>
 :::
 
 ## ¿Por qué se deben cumplir los supuestos?  {.bloques}
@@ -1888,7 +1888,7 @@ mod2 %>%
 ## Validación del modelo {.bloques}
 
 ::: {.iframe-card}
-<iframe src="diagramas/validacion.html" title="Pasos de una RLM"></iframe>
+<iframe src="https://stevenggoni.github.io/clases/diagramas/datos+teoria.htmldiagramas/validacion.html" title="Pasos de una RLM"></iframe>
 :::
 
 ## Validación del modelo {.bloques}
@@ -1985,7 +1985,7 @@ data.frame(Variable = c("\\(x_1\\)", "\\(x_2\\)", "\\(x_1 x_2\\)"),
 ## Uso del modelo - Interpretación {.bloques}
 
 ::: {.iframe-card}
-<iframe src="diagramas/uso_modelo.html" title="Pasos de una RLM"></iframe>
+<iframe src="https://stevenggoni.github.io/clases/diagramas/datos+teoria.htmldiagramas/uso_modelo.html" title="Pasos de una RLM"></iframe>
 :::
 
 ## Interpretación de resultados {.bloques}
