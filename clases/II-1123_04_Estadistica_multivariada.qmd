@@ -11,6 +11,7 @@ library(tidyverse)
 library(plotly)
 library(broom)
 library(openxlsx)
+library(emmeans)
 
 ```
 
@@ -492,8 +493,7 @@ plotly::ggplotly(g01, height = 740, width = 1800) %>%
 
 ## Pruebas de hipótesis e IC {.bloques}
 
-* Cuando se rechaza la hipótesis nula se dice que el [coeficiente es significativo]{.hi}.
-* Recuerde además, que, para la media:
+* Cuando se rechaza la hipótesis nula se dice que el [coeficiente es significativo]{.hi}. Recuerde además, que, para la media:
 * Intervalo de confianza: 
   * $$\theta \pm EE \cdot t_{\frac{\alpha}{2}}$$
 * Prueba de hipótesis: 
@@ -796,7 +796,7 @@ ej02 %>%
 
 ## Interpretación {.bloques}
 
-* En este caso $\beta_1$ representa a la tela B. Entonces se puede decir que la cuando se use la tela B se espera una reducción en el [promedio]{.hi} de la resistencia de 2.71, pues el estimador es negativo. 
+* En este caso $\beta_1$ representa a la tela B. Entonces se puede decir que cuando se use la tela B se espera una reducción en el [promedio]{.hi} de la resistencia de 2.71, pues el estimador es negativo. 
 * En este sentido A, es una [categoría de referencia]{.hi} que toma el valor de cero (0).
   * Promedio de $A=8.1429−2.7143\cdot0=8.1429$
   * Promedio de $B=8.1429−2.7143\cdot1=5.4286$
@@ -900,7 +900,7 @@ $$y = \beta_0+\beta_1 x_1+\beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon$$
 
 * Resaltan dos aspectos importantes, la entrada del proceso es datos + teoría. Y esto es un detalle VITAL en el proceso estadístico. 
 
-* No en todas las ocasiones se le va a proveer un conjunto de datos para que haga la regresión, creer que es así es muu inocente. En muchas ocasiones es usted en su rol como persona ingeniera quien tiene que decidir cuántos y cuáles datos recoger.
+* No en todas las ocasiones se le va a proveer un conjunto de datos para que haga la regresión, creer que siempre será así es muy inocente En muchas ocasiones es usted en su rol como persona ingeniera quien tiene que decidir cuántos y cuáles datos recoger.
   * Por ello la relevancia del tema de muestreo. 
   
 ## ¿Por qué es importante? {.bloques}
@@ -925,7 +925,7 @@ $$y = \beta_0+\beta_1 x_1+\beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon$$
   * Además, para probar esto, debe haber recolectado los datos. ¿Recolectaría datos sin estar seguro? ¿Invertiría dinero en medir variables que no va a usar? 
 
 * Por ejemplo, nos podríamos preguntar si es necesario (y lógico según la teoría) que dos variables interactúen.En este caso, podríamos querer un modelo de este tipo:
-* $$y_ij= \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 x_2 + e_{ij}$$
+* $$y_{ij}= \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 x_2 + e_{ij}$$
 
 ## Especificación del modelo {.bloques}
 
@@ -938,7 +938,7 @@ $$y = \beta_0+\beta_1 x_1+\beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon$$
 
 * $$y[min] = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e $$
 
-* Donde el objetivo es minimizar la respuesta y $x_1$ y $x_2$ son el número de cajas y la distancia recorrida, respectivamente. Se aclara que el min en la ecuación es de minutos, no de minizar. 
+* Donde el objetivo es minimizar la respuesta y $x_1$ y $x_2$ son el número de cajas y la distancia recorrida, respectivamente. Se aclara que el min en la ecuación es de minutos, no de minimizar. 
 
 ## Estimación de parámetros {.bloques}
 
@@ -955,7 +955,7 @@ $$y = \beta_0+\beta_1 x_1+\beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon$$
   
 ## Una anotación relevante {.bloques}
 
-* Hoy por hoy el método en “boga” (desde los 70’s, formalizados por John Nelder y Robert Wedderburn) para la estimación de parámetros es el de máxima verosimilitud (ML – Maximum Likelihood).
+* Hoy por hoy el método predominante o más utilizado (desde los 70’s, formalizados por John Nelder y Robert Wedderburn) para la estimación de parámetros es el de máxima verosimilitud (ML – Maximum Likelihood).
 * Los estimadores [ML y MCO son iguales siempre que se cumplan los supuestos]{.hi} de regresión (que más adelante serán estudiados), principalmente el de normalidad.
   * Maximizar la verosimilitud produce exactamente el mismo estimador que minimizar $\sum e_i^2$. Por ello, MCO sigue válido y ampliamente utilizado. 
 * No obstante, en Modelos Lineales Generales (GLM), donde el error no es normal (binomial, Poisson, Exponencial, etc.) se utiliza ML para la estimación de los coeficientes de regresión. 
@@ -2120,5 +2120,354 @@ $$H_o: \text{Todas las medias por grupo son iguales} \\ H_i: \text{Al menos una 
 ## Ejemplo 04 - ANOVA {.bloques}
 
 * Una empresa de materiales de construcción quiere estudiar la influencia que tienen el grosor y el tipo de templado sobre la resistencia máxima de unas láminas de acero. 
-* Para ello miden el estrés hasta la rotura (variable cuantitativa dependiente) para dos tipos de templado (lento y rápido) y tres grosores de lámina (8mm, 16mm y 24 mm).
-* Use un 95 % de confianza
+* Para ello miden el estrés hasta la rotura (variable cuantitativa dependiente) para dos tipos de templado (lento y rápido) y tres grosores de lámina (8 mm, 16 mm y 24 mm).
+* Use un 90 % de confianza estadística. 
+
+* Como en los otros ejemplos, los datos se encuentran en Excel. 
+
+## Ejemplo 04 - ANOVA {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* Obtenga la tabla ANOVA para la situación descrita. Incluya desde un inicio la interacción. Analice los resultados obtenidos. 
+
+  * ¿Es el efecto de interacción significativo? 
+
+* Obtenga también indicadores de bondad de ajuste. 
+
+* >Como parte de su estudio individual, verifique los supuestos del modelo y determine las acciones a seguir. 
+
+
+:::
+
+::: {.column style="font-size: 0.8em;"}
+
+### ANOVA
+
+```{r}
+
+ej04 <- openxlsx::read.xlsx("data/II-1123_04_Datos y ejercicios resueltos.xlsx", 
+                            sheet = 7) %>% 
+  purrr::modify_at(2, as.factor)
+
+mod4 <- aov(Resistencia ~ Templado*Grosor , data = ej04)
+
+mod4 %>% 
+  broom::tidy() %>% 
+  dplyr::mutate(across(where(is.numeric), ~round(.x, 2))) %>% 
+  setNames(c("Término", "GL", "SS", "MS", "Valor F", "Valor P")) %>% 
+  knitr::kable(format = "html") %>%
+  kableExtra::kable_styling()
+
+```
+
+### Indicadores de bondad de ajuste
+
+```{r}
+
+mod4 %>% 
+  lm() %>% 
+  broom::glance() %>% 
+  dplyr::select(c(1:5)) %>% 
+  setNames(c("\\(R^2\\)", "\\(R^2_{adj}\\)", "s", "Valor F (Regresión)",
+             "Valor P (Regresión)")) %>% 
+  dplyr::mutate(across(1:5, ~ round(.x, 3))) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+
+:::
+
+:::::: 
+
+## Ejemplo 04 - ANOVA {.bloques}
+
+* Con base en los resultados obtenidos, hay evidencia para decir que la resistencia es distinta en función de los niveles de grosor y de templado. 
+* Ahora, el interés de la organización es seleccionar la configuración que de la mayor resistencia. 
+* ¿Cómo obtengo esos valores? ¿Cómo doy una respuesta?
+
+* Para ello vamos a usar una técnica llamada [comparaciones múltiples]{.hi}. Muchos softwares estadísticos ofrecen una batería de herramientas para tomar esta decisión, entre ellas: 
+  * Tukey
+  * Fisher
+  * Bonferroni
+  * Sidak
+
+## Ejemplo 04 - Tukey {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="40%"}
+
+* Es una prueba bastante conservadora que calcula el intervalo de confianza [simultáneo]{.hi} al nivel de confianza especificado. Controla bien el error tipo I.
+* Es muy útil cuando el tamaño de los grupos está balanceado. 
+
+* [En el ejemplo]{.hi}
+  * Esto quiere decir que todos los grosores son diferentes. Siendo todos diferentes, se escoje el de menor media, en este caso el grosor 8 tiene una media de 14.151.
+  * Interprete para el Templado. 
+
+
+:::
+
+::: {.column style="font-size: 0.90em;"}
+
+### Grosor
+
+```{r}
+
+emm1 <-emmeans::emmeans(mod4,  ~ Grosor) 
+
+pairs(emm1, adjust = "tukey") %>% 
+  as.data.frame() %>% 
+  setNames(c("Contraste", "Estimado", "EE", "GL", 
+             "t", "P")) %>% 
+  dplyr::mutate(across(c(2:6), ~round(.x, 2))) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+### Templado
+
+```{r}
+
+emm2 <-emmeans::emmeans(mod4,  ~ Templado) 
+
+pairs(emm2, adjust = "tukey") %>% 
+  as.data.frame() %>% 
+  setNames(c("Contraste", "Estimado", "EE", "GL", 
+             "t", "P")) %>% 
+  dplyr::mutate(across(c(2:6), ~round(.x, 2))) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+:::
+
+::::::
+
+## Ejemplo 04 - Fisher {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="40%"}
+
+* Aumenta el riesgo de error tipo I, pues calcula todos los intervalos de confianza de forma individual, manteniendo el $\alpha$ para cada intervalo
+* Básicamente aplica varios t-test entre pares, pero no corrige por las comparaciones múltiples (Como si lo hace Tukey)
+
+
+* [En el ejemplo]{.hi}
+  * Se llegan a las mismas conclusiones que con Tukey, pero observe como cambian las estimaciones de los valores P. 
+
+:::
+
+::: {.column style="font-size: 0.90em;"}
+
+### Grosor
+
+```{r}
+
+pairs(emm1, adjust = "none") %>% 
+  as.data.frame() %>% 
+  setNames(c("Contraste", "Estimado", "EE", "GL", 
+             "t", "P")) %>% 
+  dplyr::mutate(across(c(2:6), ~round(.x, 2))) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+### Templado
+
+```{r}
+
+pairs(emm2, adjust = "none") %>% 
+  as.data.frame() %>% 
+  setNames(c("Contraste", "Estimado", "EE", "GL", 
+             "t", "P")) %>% 
+  dplyr::mutate(across(c(2:6), ~round(.x, 2))) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+:::
+
+::::::
+
+## Ejemplo 04 - Bonferroni {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="40%"}
+
+* Calcula, como Tukey, intervalos de confianza simultáneos. 
+* Es simple de aplicar, pero produce resultados más conservadoras.
+* Reduce la probabilidad de falsos positivos, a costa de perder potencia. 
+
+
+* [En el ejemplo]{.hi}
+  * Se llegan a las mismas conclusiones que con Tukey y Fisher, pero observe como cambian las estimaciones de los valores P. 
+  * Analice el comportamiento que se aprecia al aplicar las pruebas. 
+
+:::
+
+::: {.column style="font-size: 0.90em;"}
+
+### Grosor
+
+```{r}
+
+pairs(emm1, adjust = "bonferroni") %>% 
+  as.data.frame() %>% 
+  setNames(c("Contraste", "Estimado", "EE", "GL", 
+             "t", "P")) %>% 
+  dplyr::mutate(across(c(2:6), ~round(.x, 2))) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+### Templado
+
+```{r}
+
+pairs(emm2, adjust = "bonferroni") %>% 
+  as.data.frame() %>% 
+  setNames(c("Contraste", "Estimado", "EE", "GL", 
+             "t", "P")) %>% 
+  dplyr::mutate(across(c(2:6), ~round(.x, 2))) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+:::
+
+::::::
+
+## Ejemplo 04 - Sidak {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="40%"}
+
+* Es, grosso modo, una variante más refinada de Bonferroni, lo que la hace ligeramente menos conservadora. 
+
+
+* [En el ejemplo]{.hi}
+  * Puede observar como los resultados son sumamente similares a los de Bonferroni.
+
+:::
+
+::: {.column style="font-size: 0.90em;"}
+
+### Grosor
+
+```{r}
+
+pairs(emm1, adjust = "sidak") %>% 
+  as.data.frame() %>% 
+  setNames(c("Contraste", "Estimado", "EE", "GL", 
+             "t", "P")) %>% 
+  dplyr::mutate(across(c(2:6), ~round(.x, 2))) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+### Templado
+
+```{r}
+
+pairs(emm2, adjust = "sidak") %>% 
+  as.data.frame() %>% 
+  setNames(c("Contraste", "Estimado", "EE", "GL", 
+             "t", "P")) %>% 
+  dplyr::mutate(across(c(2:6), ~round(.x, 2))) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling()
+
+```
+
+:::
+
+::::::
+
+## Ejemplo 04 - Regresión {.bloques}
+
+* Resuelva este ejercicio como una regresión lineal múltiple, no como un ANOVA y discuta con compañeros y docente sobre si la respuesta obtenida es equiparable a los resultados que se obtienen de ANOVA y comparaciones múltiples.  
+
+# ANOVA no paramétrico {.bloques}
+
+## Kruskall - Wallis {.bloques}
+
+* Tiene la siguiente prueba de hipótesis sobre la mediana de más de dos grupos independientes que se aplica cuando no se cumplen los supuestos de normalidad o de varianza homogénea. 
+
+* La idea básica que se sigue es que evalúa si las medianas de los grupos son iguales. 
+
+* $$H_o: \widetilde{X}_A =\widetilde{X}_B =  \widetilde{X}_C \\ H_i: \text{Al menos una es diferente}$$
+
+## Ejemplo 05 - Kruskall - Wallis {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* Se quiere evaluar el resultado de tres dietas en el peso de pollos en un granja. 
+* Los datos se entregan en el Excel respectivo. 
+* Determine si alguno de los pesos es diferente. 
+
+* [Solución]{.hi}
+
+  * Con los resultados obtenidos, a un 95 % de confianza, tengo evidencia suficiente para rechazar la hipótesis nula de que las dietas son iguales. 
+
+:::
+
+::: {.column}
+
+```{r}
+
+ej05 <- openxlsx::read.xlsx("data/II-1123_04_Datos y ejercicios resueltos.xlsx", 
+                            sheet = 8)
+
+kruskal.test(Peso ~Dieta, data = ej05)
+
+```
+
+
+:::
+
+::::::
+
+## Ejercicio integrador {.bloques}
+
+* Se realizó un estudio por parte de personas estudiantes de la carrera de Bach. en Ciencias del Movimiento Humano (CIMOHU), cuyo objetivo era examinar el efecto que tiene la posición de salida (+ y -) y el tipo de calentamiento (A, B y C) en el recorrido de 100 metros planos. Se trabajó con una población de 17 a 24 años, todos estudiantes masculinos de la sede Rodrigo Facio de la Universidad de Costa Rica. 
+
+* Como variable de respuesta se mide el tiempo en segundos (s) que cada persona tarda en recorrer los 100 metros. Se asume que todas las mediciones son correctas y que los instrumentos de medición utilizados son adecuados. 
+
+## Ejercicio integrador {.bloques}
+
+* En resumen, se puede decir que la fuente de datos es correcta y que los datos se recolectaron de forma adecuada. La hipótesis que se sigue, basada en la teoría de las CIMOHU indica que si debiera existir diferencia entre el tiempo de recorrido de los 100 m planos dado los regresores estudiados. 
+
+* Se le hace entrega de los datos, así como del ejercicio parcialmente resuelto ([enlace](https://stevenggoni.github.io/clases/data/II-1123_04_Ejercicio integrador resuelto.pdf){target="_blank"}). 
+* La idea es que la persona estudiante lo realice sin ver la solución y que de ser necesario se guíe con la resolución aportada, pero que a su vez complete los elementos faltantes. 
+
+## Bibliografía {.bloques}
+
+:::: columns
+::: {.column width="100%" style="font-size: 0.9em;"}
+-   Montgomery, D.; Peck, E.; Vining, G. (2012). Introduction to Linear Regression Analysis (5th Ed). Wiley. 
+    -   *Capítulo 1, 2, 3, 4, 9 y 11*
+:::
+::::
+
+## Estadística multivariada: Regresión y ANOVA <br> II-1123 Estadística para Ingeniería Industrial II {.center}
+
+### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni\@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
+
+### Dudas o correcciones requeridas pueden solicitarse al correo
