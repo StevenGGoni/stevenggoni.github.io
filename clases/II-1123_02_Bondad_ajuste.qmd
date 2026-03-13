@@ -1061,8 +1061,11 @@ fig <- subplot(p1_plotly,
                shareY = FALSE,
                which_layout = 1)
 
+# ---- Ahora sí aplicar layout global y tamaño ----
 fig <- fig %>%
-  layout(paper_bgcolor = "#F1F5F5",
+  layout(#height = 780,
+         #width  = 850,
+         paper_bgcolor = "#F1F5F5",
          plot_bgcolor  = "#F1F5F5",
          font = list(size = 30),
          xaxis  = list(title = list(font = list(size = 30)),

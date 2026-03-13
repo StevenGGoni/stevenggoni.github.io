@@ -460,7 +460,7 @@ plotly::ggplotly(g01, height = 740, width = 1800) %>%
 
 * $$SS_e = \sum_{i=1}^{n}(y_i-\hat{y}_i)^2 = \sum_{i=1}^{n}e_i^2$$
 
-* La varianza es, entonces, $s^2= \frac{SS_e}{df_e}=MS_e$, donde $df$ son grados de libertad y $MS_e$ es el cuadrático medio del error. Tome en cuenta que los términos $SS$, $CM$ y $df$ son acrónimos en inglés. Sus equivalentes al español son $SC$, $CM$ y $gl$.
+* La varianza es, entonces, $s^2= \frac{SS_e}{df_e}=MS_e$, donde $df$ son grados de libertad y $MS_e$ es el cuadrático medio del error. Tome en cuenta que los términos $SS$, $MS$ y $df$ son acrónimos en inglés. Sus equivalentes al español son $SC$, $CM$ y $gl$.
 
 ## Ejemplo 01 {.bloques}
 
@@ -686,7 +686,7 @@ data.frame(Término = c("Regresión", "Residuos", "Total"),
 
 * Es importante comprender que regresión y ANOVA solo “trabajan” con variables numéricas y [no con categorías]{.hi}. 
 * Las variables *dummy* solucionan este problema, convirtiendo las 𝑛 categorías en $n-1$ variables cuantitativas binarias.
-* Son $n-1$ porque de incluirse el regresor 𝑥_𝑛 se generaría una combinación lineal, como las estudiadas en álgebra. Y eso haría a la regresión colineal.
+* Son $n-1$ porque de incluirse el regresor $x_n$ se generaría una combinación lineal, como las estudiadas en álgebra. Y eso haría a la regresión colineal.
   * El concepto de colinealidad se abordará luego. 
 
 ## Ejemplo 02 {.bloques}
@@ -912,7 +912,7 @@ $$y = \beta_0+\beta_1 x_1+\beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon$$
 
 * Resaltan dos aspectos importantes, la entrada del proceso es datos + teoría. Y esto es un detalle VITAL en el proceso estadístico. 
 
-* No en todas las ocasiones se le va a proveer un conjunto de datos para que haga la regresión, creer que siempre será así es muy inocente En muchas ocasiones es usted en su rol como persona ingeniera quien tiene que decidir cuántos y cuáles datos recoger.
+* No en todas las ocasiones se le va a proveer un conjunto de datos para que haga la regresión, creer que siempre será así es muy inocente. En muchas ocasiones es usted en su rol como persona ingeniera quien tiene que decidir cuántos y cuáles datos recoger.
   * Por ello la relevancia del tema de muestreo. 
   
 ## ¿Por qué es importante? {.bloques}
@@ -1848,7 +1848,7 @@ fig
 
 * Estos se enfocan en cuánto se equivocan las predicciones del modelo. 
 * En algunos software como Minitab existe el PRESS (*Prediction Sum of Squares*). Un valor de PRESS menor indica un mejor modelo predictivo. 
-* También se puede encontrar el valor de $S$, que es $s = \sqrt{CM_e}$, es una medida de la desviación estándar de la regresión. 
+* También se puede encontrar el valor de $S$, que es $S = \sqrt{CM_e}$, es una medida de la desviación estándar de la regresión. 
 
 ## Resumen de indicadores de bondad de ajuste {.bloques}
 
@@ -1948,7 +1948,7 @@ mod2 %>%
 
 * $$FIV_j = \frac{1}{1-R^2_j}$$
 * Donde $R^2_j$ es el coeficiente de determinación obtenido al hacer una regresión donde $x_j$ se explica usando todas las demás variables explicativas. En simple, $x_j$ pasa de ser un regresor a la variable de respuesta. 
-* Valores de FIV > 10 implica problemas serios con la multicolinealidad. Valores de FIV > indican un posible problema y debe analizarse con cautela. 
+* Valores de $FIV > 10$ implica problemas serios con la multicolinealidad. Valores de $FIV > 5$ indican un posible problema y debe analizarse con cautela. 
 
 ## FIV {.bloques}
 
