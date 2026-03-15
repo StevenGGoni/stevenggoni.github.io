@@ -9,9 +9,9 @@ website:
   title: "Steven García Goñi"
   description: "Un sitio para compartir ingeniería y estadística"
 
-  favicon: images\logo.png
+  favicon: images/logo.png
   navbar:
-    logo: images\logo.png
+    logo: images/logo.png
     logo-alt: "Logo de un cuervo"
     background: "#222222"
     foreground: "#F1F5F5"
@@ -60,6 +60,9 @@ website:
       Creado con [{{< iconify simple-icons:quarto title="Quarto Logo" label="Quarto Logo" >}} Quarto](https://quarto.org)
     right: |
       License: [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
+
+execute: 
+  freeze: auto
         
 resources: 
   - interactivos/**

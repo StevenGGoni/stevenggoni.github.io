@@ -42,7 +42,7 @@ datos <- openxlsx::read.xlsx("datos/Datos para Capacidad en R.xlsx")
 
 Luego, se verifica que que el proceso se encuentre bajo control estadístico, para ello vamos a comenzar con un gráfico $\bar{x}-R$.
 
-```{r}
+```{r XRN1}
 
 X_R <- qcc::qcc(datos, type = "xbar")
 
@@ -61,7 +61,7 @@ as.matrix(datos) %>%
 
 Una vez resuelto esto, se puede evaluar la capacidad del proceso.
 
-```{r}
+```{r X_RN2}
 
 qcc::process.capability(X_R, spec.limits = c(7.115, 7.135), target = 7.125)
 
@@ -77,7 +77,7 @@ datos_una_col <- datos %>%
   tidyr::pivot_longer(everything())
 ```
 
-```{r}
+```{r SP1}
 
 SixSigma::ss.study.ca(xST = datos_una_col$value, # corto plazo
                       xLT = datos_una_col$value, # largo plazo
@@ -89,7 +89,7 @@ SixSigma::ss.study.ca(xST = datos_una_col$value, # corto plazo
 
 El análisis de capacidad por atributos se aplica cuando la variable de interés no se mide de forma continua, sino que se clasifica en categorías discretas (por ejemplo, unidades defectuosas o número de defectos). A diferencia de los índices $C_p$ y $C_{pk}$, que asumen normalidad y datos continuos, en este caso se evalúa el porcentaje de no conformidades (p) o el número promedio de defectos por unidad (c, u). La comparación se realiza frente a un valor máximo permitido, definido por especificaciones o normas del cliente.
 
-```{r}
+```{r pc}
 
 # Datos de ejemplo
 no_conformes <- c(3, 2, 1, 4, 2, 3, 0, 5, 2, 3, 1, 4, 2, 

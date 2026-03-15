@@ -12,6 +12,7 @@ library(plotly)
 library(broom)
 library(openxlsx)
 library(emmeans)
+library(performance)
 
 ```
 
@@ -1989,6 +1990,105 @@ data.frame(Variable = c("\\(x_1\\)", "\\(x_2\\)", "\\(x_1 x_2\\)"),
 
 ```
 
+
+:::
+
+::::::
+
+## Ejemplo 03 - Multicolinealidad {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+### Sin interacción
+
+```{r vifmod1}
+
+vif_mod1 <- performance::check_collinearity(mod1)
+
+
+df <- as.data.frame(vif_mod1) %>% 
+  dplyr::mutate(color = case_when(VIF < 5 ~ "FIV < 5",
+                                  VIF >= 5 ~ "FIV >= 5", 
+                                  VIF >= 10 ~ "FIV >= 10"))
+
+max_VIF <- round(ifelse(max(df$VIF_CI_high) < 12, 12, max(df$VIF_CI_high)))
+
+g1 <- ggplot(df, aes(x = VIF, y = Term, color =  color)) +
+  geom_point(aes(color = color), size = 4) +
+  geom_errorbar(aes(xmin = VIF_CI_low, xmax = VIF_CI_high), linewidth = 1) +
+  scale_color_manual(values = c("FIV < 5" = "#2E8B57", 
+                                "FIV >= 5" = "#4A708B", 
+                                "FIV >= 10" = "#8B3626")) +
+  scale_x_continuous(limits = c(0, max_VIF), breaks = seq(0, max_VIF, 2)) +
+  labs(color = "", 
+       y = "Término") +
+  coord_flip() +
+  theme_minimal()
+
+g1 %>% 
+  plotly::ggplotly(., height = 600, width = 850) %>% 
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 25),
+                 xaxis = list(
+                   title = list(font = list(size = 25)),
+                   tickfont = list(size = 20)),
+                 yaxis = list(title = list(font = list(size = 25)),
+                              tickfont = list(size = 20)),
+                 legend = list(title = list(font = list(size = 25)),
+                               font = list(size = 20),
+                               bgcolor = "#F1F5F5"))
+
+```
+
+
+:::
+
+::: {.column}
+
+### Con interacción
+
+```{r vifmod2}
+
+vif_mod2 <- performance::check_collinearity(mod2)
+
+df <- as.data.frame(vif_mod2) %>% 
+  dplyr::mutate(color = case_when(VIF < 5 ~ "FIV < 5",
+                                  VIF >= 10 ~ "FIV >= 10", 
+                                  VIF >= 5 ~ "FIV >= 5"))
+
+max_VIF <- round(ifelse(max(df$VIF_CI_high) < 12, 12, max(df$VIF_CI_high))) + 1
+
+g2 <- ggplot(df, aes(x = VIF, y = Term, color =  color)) +
+  geom_point(aes(color = color), size = 4) +
+  geom_errorbar(aes(xmin = VIF_CI_low, xmax = VIF_CI_high), linewidth = 1) +
+  scale_color_manual(values = c("FIV < 5" = "#2E8B57", 
+                                "FIV >= 5" = "#4A708B", 
+                                "FIV >= 10" = "#8B3626")) +
+  scale_x_continuous(limits = c(0, max_VIF), breaks = seq(0, max_VIF, 2)) +
+  labs(color = "", 
+       y = "Término") +
+  coord_flip() +
+  theme_minimal()
+
+g2 %>% 
+  plotly::ggplotly(., height = 600, width = 850) %>% 
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 25),
+                 xaxis = list(
+                   title = list(font = list(size = 25)),
+                   tickfont = list(size = 20)),
+                 yaxis = list(title = list(font = list(size = 25)),
+                              tickfont = list(size = 20)),
+                 legend = list(title = list(font = list(size = 25)),
+                               font = list(size = 20),
+                               bgcolor = "#F1F5F5"))
+  
+
+```
 
 :::
 

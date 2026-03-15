@@ -275,7 +275,7 @@ Estadísticos que son función de una población, que indefectiblemente resumen 
 
 ::: {.column .img-fit width="100%"}
 
-```{r, out.width="100%", bg="#F1F5F5"}
+```{r venn, out.width="100%", bg="#F1F5F5"}
 
 A <- 0:4
 B <- 3:6

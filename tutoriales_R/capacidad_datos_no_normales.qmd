@@ -54,7 +54,7 @@ Para el desarrollo de este ejemplo se van a generar, de forma intencional, datos
 
 En este caso será una distribución Weibull, con parámetros forma y escala.
 
-```{r}
+```{r dist_no_normal}
 
 set.seed(20250512)
 
@@ -69,7 +69,7 @@ hist(datos_no_normales,
 
 Como se puede apreciar, los datos no siguen la distribución normal 
 
-```{r}
+```{r qqplot_NN}
 
 shapiro.test(datos_no_normales)
 
@@ -83,7 +83,7 @@ car::qqPlot(datos_no_normales,
 
 Suponga que las especificaciones son $3 \pm 2$. Y que el proceso se encuentra bajo control, aunque vayamos a generar algunos gráficos para comprobarlo.
 
-```{r}
+```{r hist_NN}
 
 hist(datos_no_normales, 
      main = "Histograma de datos no normales", 
@@ -108,7 +108,7 @@ $$
 w_i=\Biggl\{ \begin{matrix} x_i^\lambda \quad si \quad \lambda \ne 0 \\ log(x_i) \quad si \quad \lambda = 0\end{matrix}, \text{para } x_i > 0
 $$
 
-```{r}
+```{r bc}
 
 bc <- MASS::boxcox(lm(datos_no_normales ~ 1))
 
@@ -137,7 +137,7 @@ shapiro.test(datos_transformados_2)
 
 Nótese como en ambas situaciones, los datos ahora si siguen la distribución normal. Ahora analicemos la capacidad.
 
-```{r}
+```{r XR1}
 
 XR <- matrix(datos_transformados_1, ncol = 4) %>% 
   qcc::qcc(type = "xbar", data.name = "Datos transformados: Box - Cox")
@@ -151,7 +151,7 @@ qcc::process.capability(XR,
 
 Pero hay algo raro, ¿no? Es porque aún no transformamos los límites y el nominal.
 
-```{r}
+```{r XR2}
 
 # ponga atención, a veces la transformación invierte los límites
 
@@ -208,7 +208,7 @@ g + (eta * log((x_i-ep)/(l+ep-x_i)))  #log = ln
 
 Por lo tanto: 
 
-```{r}
+```{r XR3}
 
 XR <- matrix(datos_transformados_3$transformed, ncol = 4) %>% 
   qcc::qcc(type = "xbar", data.name = "Datos transformados: Johnson")
@@ -254,7 +254,7 @@ limites
 
 Resuelto esto, calculemos la capacidad
 
-```{r}
+```{r XR4}
 
 XR <- matrix(datos_transformados_4, ncol = 4) %>% 
   qcc::qcc(type = "xbar", data.name = "Datos transformados: Dos pasos")
@@ -270,7 +270,7 @@ qcc::process.capability(XR,
 
 Para aplicar este método primero debe identificarse la distribución subyacente que mejor se ajusta a los datos. Esto se puede hacer de muchas formas, esta es una de ellas.
 
-```{r}
+```{r CFG}
 
 fitdistrplus::descdist(datos_no_normales)
 
@@ -304,7 +304,7 @@ Observando los resultados se intuye que se puede usar la Weibull o la gamma. Com
 
 > Este paquete no está en CRAN, su instalación es manual. Suele presentar errores en versiones actuales de `R`.
 
-```{r error = TRUE}
+```{r qtCP, error = TRUE}
 
 resultado <- qualityTools::cp(datos_no_normales,
                  distribution = "weibull", 
@@ -326,7 +326,7 @@ Con sus respectivas variantes para $C_{pk}$.
 
 Sabiendo que la distribución es Weibull, se van a estimar sus parámetros.
 
-```{r}
+```{r weib}
 
 fitdistrplus::fitdist(datos_no_normales, "weibull")
 

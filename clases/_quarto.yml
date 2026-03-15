@@ -9,12 +9,16 @@ author: "Steven García Goñi<br>[steven.garciagoni@ucr.ac.cr](mailto:steven.gar
 license: "CC BY"
 lang: es
 date-format: long
+knitr: 
+  opts_chunk: 
+    fig.path: img/assets/
 format:
   revealjs:
     theme: white
     css: custom.css
     preload-iframes: true
     fig-cap-location: top
+    html-math-method: katex
     slide-number: true
     incremental: false
     transition: fade
