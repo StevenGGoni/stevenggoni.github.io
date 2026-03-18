@@ -281,7 +281,7 @@ Las personas ingenieras deberían usar a la estadística como un borracho usa un
 ::::: columns
 ::: {.column width="45%"}
 -   Recuerde que las variables se pueden clasificar en tipos (la naturaleza del dato) y niveles de medición (qué operaciones matemáticas tienen sentido). Por ejemplo:
-    -   La edad es una variable que puede recolectarse como un valor nemérico: 25 años o en rangos: 0-10 años, 11-20 años, ...; en el primero caso el nivel de medición es [razón]{.hi} y en el segundo es [ordinal]{.hi}.
+    -   La edad es una variable que puede recolectarse como un valor numérico: 25 años o en rangos: 0-10 años, 11-20 años, ...; en el primero caso el nivel de medición es [razón]{.hi} y en el segundo es [ordinal]{.hi}.
 -   Realice el ejercicio que se muestra a la derecha de su pantalla.
 :::
 
