@@ -193,7 +193,7 @@
     "href": "infografias.html#inferencia-estadística",
     "title": "Infografías",
     "section": "Inferencia estadística ",
-    "text": "Inferencia estadística \n\nComprendiendo los valores P\n\nEsta infografía presenta la definición del valor P, criterios para su interpretación y una guía para la elección del nivel de significancia (\\(\\alpha\\))."
+    "text": "Inferencia estadística \n\nComprendiendo los valores P\n\nEsta infografía presenta la definición del valor P, criterios para su interpretación y una guía para la elección del nivel de significancia (\\(\\alpha\\)).\n\nEl mito del \\(n \\ge 30\\)\n\nLa cifra 30 se ha convertido en una especie de “número mágico” que, supuestamente, garantiza la normalidad gracias al Teorema del Límite Central (TLC). Sin embargo, esta noción es peligrosa."
   },
   {
     "objectID": "clases.html",

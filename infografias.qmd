@@ -23,3 +23,7 @@ En esta sección encontrará infografías organizadas en pestañas para facilita
 * [Comprendiendo los valores P](infografias/Comprendiendo el valor P.pdf){target="_blank"} 
 
 Esta infografía presenta la definición del valor P, criterios para su interpretación y una guía para la elección del nivel de significancia ($\alpha$). 
+
+* [El mito del $n \ge 30$](infografias/dogma_n_30.pdf){target="_blank"} 
+
+La cifra 30 se ha convertido en una especie de "*número mágico*" que, supuestamente, garantiza la normalidad gracias al Teorema del Límite Central (TLC). Sin embargo, esta noción es peligrosa.
