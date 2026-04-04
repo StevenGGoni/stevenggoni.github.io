@@ -44,7 +44,7 @@ website:
       - text: '{{< iconify mdi:github title="GitHub" >}}'
         href: https://github.com/StevenGGoni
       - text: '{{< iconify mdi:linkedin title="LinkedIn" >}}'
-        href: https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile
+        href: https://www.linkedin.com/in/sggoni/
       - text: '{{< iconify fa6-brands:google-scholar title="Google Académico" >}}'
         href: https://scholar.google.com/citations?user=X_3YTJ0AAAAJ&hl=es
       - text: '{{< iconify simple-icons:orcid title="Orcid" >}}'
