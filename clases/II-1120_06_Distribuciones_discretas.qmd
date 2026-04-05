@@ -36,7 +36,7 @@ library(tidyverse)
 
 ## Distribuciones de probabilidad {.bloques}
 
-* Se pueden considerar como [modelos matemáticos]{.hi} que representan y simplifica la realidad de fenómenos aleatorios. 
+* Se pueden considerar como [modelos matemáticos]{.hi} que representan y simplifican la realidad de fenómenos aleatorios. 
 * En este contexto, es una representación teórica que formaliza ciertos aspectos de un [fenómeno observable]{.hi}, permitiendo [describir, explicar y predecir]{.hi} el comportamiento de variables aleatorias bajo algunos supuestos. 
 
 ## Distribuciones de probabilidad {.bloques}
@@ -44,3 +44,362 @@ library(tidyverse)
 * **Simplifican** la complejidad de la **realidad** al centrarse en ciertos aspectos relevantes del fenómeno aleatorio.
 * Permiten **calcular probabilidades** de manera sistemática bajo supuestos explícitos.
 * Sirven para predecir el **comportamiento futuro** de un experimento aleatorio si se mantienen las condiciones iniciales
+
+## ¡Importante! {.bloques}
+
+:::: columns
+::: {.column width="100%" style="text-align: center; font-size: 2.5em;"}
+All models are wrong, [but some are useful]{.hi} - *George E. P. Box*
+:::
+::::
+
+## Parámetros {.bloques}
+
+* Los **parámetros** se emplean para describir el comportamiento de los datos.
+
+* Todas las distribuciones se describen mediante **parámetros**. 
+
+* Los **parámetros** se estiman mediante [estimadores]{.hi}.
+
+## Construcción de analogía {.bloques}
+
+:::: columns
+::: {.column width="100%" style="text-align: center; font-size: 1.6em;"}
+
+En esta clase utilizaremos una analogía porque lo importante [no es memorizar]{.hi} una lista de distribuciones, sino [entender]{.hi} las ideas que hay detrás de ellas. 
+
+Una vez que se comprenden estas distribuciones fundamentales, es mucho más fácil reconocer y trabajar con [otras distribuciones menos conocidas]{.hi}.
+
+:::
+::::
+
+## Construcción de analogía {.bloques}
+
+* En este sentido, los modelos estadísticos, y, en particular, las distribuciones de probabilidad, son como *prendas de ropa*. 
+
+* Para vestirse, las personas escogen prendas que se ajusten a sus cuerpos y gustos.
+
+* En primer lugar, las personas escogen una prenda ([distribución]{.hi}) que sea adecuada para la situación ([contexto]{.hi}). 
+  * No vamos a una boda con la ropa del gimnasio, tampoco vamos a la piscina con ropa de gala. 
+
+* Luego, se prueba la talla ([parámetros]{.hi}) de la prenda de ropa ([distribución]{.hi}) que mejor se ajuste al cuerpo ([la realidad que se desea describir]{.hi}).
+
+## Recuerde {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit width="22%"}
+
+![](img/zapato.jpg)
+
+:::
+
+
+::: {.column width="70%"}
+
+* Ojo, son las [distribuciones las que se ajustan a los datos]{.hi} y nunca los datos a las distribuciones.
+  * Cuide el uso del vocabulario técnico correcto. 
+* Entonces, si una distribución cualquiera NO se ajusta a un conjunto de datos, [es la distribución la que no “sirve”]{.hi} como modelo, no los datos. 
+  * Nota: Esto bajo la consideración de que la forma en que se recolectaron los datos y la cantidad de los mismos son adecuados. 
+
+* ¿Podemos suponer que el pie ([datos]{.hi}) está mal? ¿O escogimos mal el zapato ([distribución]{.hi})?
+
+:::
+
+::::::
+
+## Construcción de analogía {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit width="30%"}
+
+![Guía de tallas de [MUSCARI](https://muscaricollection.es/pages/guia-de-tallas-vestidos?srsltid=AfmBOopt-gTDcXvuZ-YK6pjsijMvWEOJZ87vzPsMOj2dTcWeZ7v7jZnu){target="_blank"}](img/guia_tallas_mujer.webp)
+
+:::
+
+::: {.column width="70%"}
+
+* Suponga que, para la [situación/contexto]{.ul} se selecciona un vestido ([distribución]{.hi}). 
+* Los **parámetros** son $1$ Pecho, $2$ Cintura, $3$ Cadera y $4$ Largo, que buscan aproximar las medidas del cuerpo. Por ejemplo, la página de MUSCARI (link en la imagen) recomienda que si la medida de la cadera es de 94-96 cm, la talla o parámetro es **S**.
+* Entonces, esta prenda de ropa está descrita por estos cuatro parámetros.
+* Estos parámetros se estiman mediante **estimadores**.
+
+
+:::
+
+::::::
+
+## Resumen de la analogía {.bloques}
+
+* En estadística, hay dos etapas conceptualmente distintas: 
+
+  * [Elegir el modelo]{.hi}: Según el contexto, la naturaleza del experimento, las características de la variable, los supuestos probabilísticos, entre otros. 
+  
+  * [Estimar los parámetros]{.hi}: Una vez elegido el modelo, necesitamos encontrar qué valores de los parámetros lo hacen ajustarse a los datos.
+
+* Es decir: 
+
+  * Primero escogemos el tipo de prenda que creemos adecuada para la situación: esto corresponde a elegir una distribución de probabilidad.
+  * Luego debemos encontrar qué talla de esa prenda se ajusta mejor al cuerpo. En estadística, esto corresponde a estimar los parámetros del modelo mediante estimadores.
+  
+## Cierre de la analogía {.bloques}
+
+:::: columns
+::: {.column width="100%" style="text-align: center; font-size: 1.6em;"}
+
+Las distribuciones de probabilidad [no son recetas para memorizar]{.hi}, sino herramientas para modelar la realidad.
+
+Quien ejerce la ingeniería no aplica modelos de forma mecánica.
+Más bien los selecciona y los ajusta a la realidad, como un sastre ajusta una prenda al cuerpo.
+
+:::
+::::
+
+## Cierre de la analogía {.bloques}
+
+:::: columns
+::: {.column width="100%" style="text-align: center; font-size: 1.5em;"}
+
+*Fitting models to data is a bit like designing shirts to fit people. If you fit a shirt too closely to one particular person, it will fit other people poorly. Likewise, a model that fits a particular data set too well might not fit other data sets well*. - Rahul Parsa
+
+[Por eso]{.hi}: 
+
+*All models are wrong, but some are useful* - George Box
+
+:::
+::::
+
+# Algunas distribuciones discretas {.bloques}
+
+## Aclaraciones importantes {.bloques}
+
+* Se insiste sobre:
+
+* Estas lecciones no tratan de que memorice las diferentes distribuciones de probabilidad, sino que aprenda, con base en las más comunes, cómo extrapolar estos conocimientos a otras distribuciones que quizá hoy no sean tan usadas, pero que en el futuro podrían serlo.
+
+## Distribución uniforme discreta {.bloques}
+
+::::::  {.columns}
+
+::: {.column width="50%"}
+
+### [Parámetros]{.hi}
+
+$$n = \text{cantidad de eventos}$$
+
+### [Funciones]{.hi}
+
+$$
+f(x|n) = \frac{1}{n}
+$$
+
+$$
+F(x|n) = \sum_{i=1}^x \frac{1}{n} = \frac{x}{n}
+$$
+
+:::
+
+::: {.column width="50%"}
+
+### [Esperanza $E(x)$ y varianza $V(x)$]{.hi}
+
+$$
+E(x|n) = \frac{n+1}{2}
+$$
+
+$$
+V(x|n) = \frac{n^2-1}{12}
+$$
+
+* Esta distribución es de “calentamiento”. Por su sencillez de aplicación. 
+* Recuerde que $x|n$ es una expresión condicional, que se lee como $x$ dado $n$.
+
+:::
+
+::::::
+
+## Uniforme discreta {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+### ¿Cuándo se usa? 
+No todas las prendas de ropa son adecuadas para todas las ocasiones/climas, sino que se escogen cuidadosamente en función del contexto, incluyendo sus tallas. 
+
+Este mismo razonamiento es el que se usa para seleccionar una distribución de probabilidad, según sus características.
+
+:::
+
+::: {.column}
+
+### Características
+
+* Es una distribución simétrica.
+* Todos sus eventos son equiprobables. 
+* Está descrita por la cantidad de eventos ($n$).
+* Un ejemplo clásico es el lanzamiento de un dado. 
+
+
+:::
+
+::::::
+
+## Ejercicio de calentamiento {.bloques}
+
+* Un decaedro es un dado con 10 caras, con cada cara de forma de cometa o deltoide. Suponga que cada cara está igualmente cargada. 
+* Obtenga
+  * El parámetro de la distribución
+    * $n = 10$
+  * La probabilidad de cualquier evento
+    * $P(x) = \frac{1}{n} = \frac{1}{10}$
+  * La probabilidad de que salga un 1 o un 2
+    * $P(1\,ó\,2) = P(1) + P(2) = \frac{2}{10}$
+  * La esperanza y varianza matemática
+    * $E(x) = 5.5$ y $V(x)=8.25$
+
+## Ensayo Bernoulli {.bloques}
+
+* Es un experimento que consta de ensayos repetidos.
+* Cada ensayo produce un resultado que se puede clasificar como [éxito o fracaso]{.hi}.
+  * Éxito es el evento de interés y no necesariamente algo positivo. El éxito puede ser: un diagnóstico positivo de enfermedad, el daño de una pieza, ganarse la lotería, etc 
+* La probabilidad de éxito se denota con $p$ y la de fracaso con $q$.
+  * Recuerde las propiedades de la probabilidad $q = 1-p$
+* Los ensayos son independientes. 
+  * Esto implica que la probabilidad de éxito $p$ es la misma en todos los ensayos.
+
+## Recordatorio {.bloques}
+
+* En la clase de Probabilidad Básica aprendimos que hay tres tipos de enfoques para obtener probabilidades: 
+  * Clásica a priori
+  * Clásica empírica
+  * Subjetiva
+* En este sentido, la probabilidad de éxito se puede asignar de cualquiera de las tres formas anteriores. 
+
+* De ser necesario, repase estos conceptos
+
+## Distribución binomial {.bloques}
+
+::::::  {.columns}
+
+::: {.column width="50%"}
+
+### [Parámetros]{.hi}
+
+$$n = \text{cantidad de intentos}$$
+$$p = \text{probabilidad de éxito}$$
+
+### [Funciones]{.hi}
+
+$$
+f(x|n, p) = \binom{n}{x} p^x (1-p)^{n-x}
+$$
+
+$$
+F(x|n,p) = \sum_{i=0}^x f(i|n,p)
+$$
+
+:::
+
+::: {.column width="50%"}
+
+### [Esperanza $E(x)$ y varianza $V(x)$]{.hi}
+
+$$
+E(x|n, p) = n\cdot p
+$$
+
+$$
+V(x|n, p) = n \cdot p \cdot q
+$$
+
+* Esta distribución se basa en ensayos de Bernoulli.
+* $x = 0, 1, 2, \dots , n$
+* $\binom{n}{x} = \frac{n!}{x!(n-x)!}$
+
+:::
+
+::::::
+
+## Distribución binomial {.bloques}
+
+::::::  {.columns}
+
+::: {.column}
+
+### Características: 
+* Consta de una secuencia de 𝑛 experimentos más pequeños llamados ensayos, donde $n$ es fijo. 
+* Cada ensayo puede dar dos resultados posibles (dicotómico o binario) que se suelen denotar como éxito y fracaso. 
+* Los ensayos son independientes, es decir, el resultado anterior no influye en cualquier otro ensayo. 
+* La variable aleatoria $x$ denota el número de éxitos en $n$ ensayos de Bernoulli, con una probabilidad $p$.
+
+:::
+
+::::::
+
+## Binomial interactiva
+
+<iframe 
+src="https://stevenggoni.github.io/interactivos/distribuciones-discretas.html"
+width="100%" 
+height="600"
+style="border:none;">
+</iframe>
+
+## Ejercicio 01 {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="70%"}
+
+* Recuerde el ejemplo de Diabetes no controlada. 
+* Determine la probabilidad de ser hipertenso: 
+* $$p = \frac{8}{16} = 0.5$$
+
+* Con esto ya tenemos un parámetro, nos falta otro. Recuerde que $n$ es la cantidad de experimentos Bernoulli, por lo general esto es una decisión del experimentador/analista.
+
+:::
+
+::: {.column style="font-size: 0.61em;"}
+
+```{r}
+
+diabetes <- openxlsx::read.xlsx("data/II-1120_04_Diabetes No Controlada.xlsx")
+
+```
+
+```{r}
+
+set.seed(123)
+
+submuestra1 <- diabetes %>% 
+  dplyr::filter(Diabetes.no.controlada == 1) %>% 
+  dplyr::slice_sample(n = 2)
+
+submuestra2 <- diabetes %>% 
+  dplyr::filter(Diabetes.no.controlada == 0) %>% 
+  dplyr::slice_sample(n = 14)
+
+submuestra <- submuestra1 %>% 
+  rbind(submuestra2) %>% 
+  dplyr::slice_sample(n = 16)
+
+submuestra %>% 
+  dplyr::select(Hipertensión) %>% 
+  dplyr::mutate(Hipertensión = ifelse(Hipertensión == 1,
+                                      kableExtra::cell_spec(
+                                        Hipertensión, 
+                                        background = "#AFB5BC",
+                                        extra_css = "display:block; width:100%;"),
+                                      Hipertensión)) %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling() 
+
+
+```
+
+
+:::
+
+::::::

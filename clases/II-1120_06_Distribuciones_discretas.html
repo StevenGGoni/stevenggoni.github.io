@@ -31,6 +31,22 @@
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link rel="stylesheet" href="custom.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -122,6 +138,10 @@
       margin-right: 0; 
     }
   </style>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -129,7 +149,7 @@
 
 <section class="quarto-title-block center">
   <h1 class="title">Distribuciones de probabilidad discretas</h1>
-  <p class="subtitle"><a href="https://stevenggoni.github.io/clases/II-1120_06_Distribuciones_discretas.pdf">Versión PDF</a> <br> II-1123 Estadística para Ingeniería Industrial II</p>
+  <p class="subtitle"><a href="https://stevenggoni.github.io/clases/II-1120_06_Distribuciones_discretas.pdf">Versión PDF</a> <br> II-1120 Estadística para Ingeniería Industrial I</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -139,7 +159,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">3 de abril de 2026</p>
+  <p class="date">5 de abril de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
@@ -176,7 +196,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Distribuciones de probabilidad</h2>
 <ul>
-<li>Se pueden considerar como <span class="hi">modelos matemáticos</span> que representan y simplifica la realidad de fenómenos aleatorios.</li>
+<li>Se pueden considerar como <span class="hi">modelos matemáticos</span> que representan y simplifican la realidad de fenómenos aleatorios.</li>
 <li>En este contexto, es una representación teórica que formaliza ciertos aspectos de un <span class="hi">fenómeno observable</span>, permitiendo <span class="hi">describir, explicar y predecir</span> el comportamiento de variables aleatorias bajo algunos supuestos.</li>
 </ul>
 </section>
@@ -187,6 +207,343 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Permiten <strong>calcular probabilidades</strong> de manera sistemática bajo supuestos explícitos.</li>
 <li>Sirven para predecir el <strong>comportamiento futuro</strong> de un experimento aleatorio si se mantienen las condiciones iniciales</li>
 </ul>
+</section>
+<section class="slide level2 bloques">
+<h2>¡Importante!</h2>
+<div class="columns">
+<div class="column" style="text-align: center; font-size: 2.5em;">
+<p>All models are wrong, <span class="hi">but some are useful</span> - <em>George E. P. Box</em></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Parámetros</h2>
+<ul>
+<li><p>Los <strong>parámetros</strong> se emplean para describir el comportamiento de los datos.</p></li>
+<li><p>Todas las distribuciones se describen mediante <strong>parámetros</strong>.</p></li>
+<li><p>Los <strong>parámetros</strong> se estiman mediante <span class="hi">estimadores</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Construcción de analogía</h2>
+<div class="columns">
+<div class="column" style="text-align: center; font-size: 1.6em;">
+<p>En esta clase utilizaremos una analogía porque lo importante <span class="hi">no es memorizar</span> una lista de distribuciones, sino <span class="hi">entender</span> las ideas que hay detrás de ellas.</p>
+<p>Una vez que se comprenden estas distribuciones fundamentales, es mucho más fácil reconocer y trabajar con <span class="hi">otras distribuciones menos conocidas</span>.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Construcción de analogía</h2>
+<ul>
+<li><p>En este sentido, los modelos estadísticos, y, en particular, las distribuciones de probabilidad, son como <em>prendas de ropa</em>.</p></li>
+<li><p>Para vestirse, las personas escogen prendas que se ajusten a sus cuerpos y gustos.</p></li>
+<li><p>En primer lugar, las personas escogen una prenda (<span class="hi">distribución</span>) que sea adecuada para la situación (<span class="hi">contexto</span>).</p>
+<ul>
+<li>No vamos a una boda con la ropa del gimnasio, tampoco vamos a la piscina con ropa de gala.</li>
+</ul></li>
+<li><p>Luego, se prueba la talla (<span class="hi">parámetros</span>) de la prenda de ropa (<span class="hi">distribución</span>) que mejor se ajuste al cuerpo (<span class="hi">la realidad que se desea describir</span>).</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Recuerde</h2>
+<div class="columns">
+<div class="column img-fit" style="width:22%;">
+<p><img data-src="img/zapato.jpg"></p>
+</div><div class="column" style="width:70%;">
+<ul>
+<li>Ojo, son las <span class="hi">distribuciones las que se ajustan a los datos</span> y nunca los datos a las distribuciones.
+<ul>
+<li>Cuide el uso del vocabulario técnico correcto.</li>
+</ul></li>
+<li>Entonces, si una distribución cualquiera NO se ajusta a un conjunto de datos, <span class="hi">es la distribución la que no “sirve”</span> como modelo, no los datos.
+<ul>
+<li>Nota: Esto bajo la consideración de que la forma en que se recolectaron los datos y la cantidad de los mismos son adecuados.</li>
+</ul></li>
+<li>¿Podemos suponer que el pie (<span class="hi">datos</span>) está mal? ¿O escogimos mal el zapato (<span class="hi">distribución</span>)?</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Construcción de analogía</h2>
+<div class="columns">
+<div class="column img-fit" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Guía de tallas de <a href="https://muscaricollection.es/pages/guia-de-tallas-vestidos?srsltid=AfmBOopt-gTDcXvuZ-YK6pjsijMvWEOJZ87vzPsMOj2dTcWeZ7v7jZnu" target="_blank">MUSCARI</a></figcaption>
+<p><img data-src="img/guia_tallas_mujer.webp"></p>
+</figure>
+</div>
+</div><div class="column" style="width:70%;">
+<ul>
+<li>Suponga que, para la <u>situación/contexto</u> se selecciona un vestido (<span class="hi">distribución</span>).</li>
+<li>Los <strong>parámetros</strong> son <span class="math inline">1</span> Pecho, <span class="math inline">2</span> Cintura, <span class="math inline">3</span> Cadera y <span class="math inline">4</span> Largo, que buscan aproximar las medidas del cuerpo. Por ejemplo, la página de MUSCARI (link en la imagen) recomienda que si la medida de la cadera es de 94-96 cm, la talla o parámetro es <strong>S</strong>.</li>
+<li>Entonces, esta prenda de ropa está descrita por estos cuatro parámetros.</li>
+<li>Estos parámetros se estiman mediante <strong>estimadores</strong>.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Resumen de la analogía</h2>
+<ul>
+<li><p>En estadística, hay dos etapas conceptualmente distintas:</p>
+<ul>
+<li><p><span class="hi">Elegir el modelo</span>: Según el contexto, la naturaleza del experimento, las características de la variable, los supuestos probabilísticos, entre otros.</p></li>
+<li><p><span class="hi">Estimar los parámetros</span>: Una vez elegido el modelo, necesitamos encontrar qué valores de los parámetros lo hacen ajustarse a los datos.</p></li>
+</ul></li>
+<li><p>Es decir:</p>
+<ul>
+<li>Primero escogemos el tipo de prenda que creemos adecuada para la situación: esto corresponde a elegir una distribución de probabilidad.</li>
+<li>Luego debemos encontrar qué talla de esa prenda se ajusta mejor al cuerpo. En estadística, esto corresponde a estimar los parámetros del modelo mediante estimadores.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Cierre de la analogía</h2>
+<div class="columns">
+<div class="column" style="text-align: center; font-size: 1.6em;">
+<p>Las distribuciones de probabilidad <span class="hi">no son recetas para memorizar</span>, sino herramientas para modelar la realidad.</p>
+<p>Quien ejerce la ingeniería no aplica modelos de forma mecánica. Más bien los selecciona y los ajusta a la realidad, como un sastre ajusta una prenda al cuerpo.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Cierre de la analogía</h2>
+<div class="columns">
+<div class="column" style="text-align: center; font-size: 1.5em;">
+<p><em>Fitting models to data is a bit like designing shirts to fit people. If you fit a shirt too closely to one particular person, it will fit other people poorly. Likewise, a model that fits a particular data set too well might not fit other data sets well</em>. - Rahul Parsa</p>
+<p><span class="hi">Por eso</span>:</p>
+<p><em>All models are wrong, but some are useful</em> - George Box</p>
+</div></div>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Algunas distribuciones discretas</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Aclaraciones importantes</h2>
+<ul>
+<li><p>Se insiste sobre:</p></li>
+<li><p>Estas lecciones no tratan de que memorice las diferentes distribuciones de probabilidad, sino que aprenda, con base en las más comunes, cómo extrapolar estos conocimientos a otras distribuciones que quizá hoy no sean tan usadas, pero que en el futuro podrían serlo.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución uniforme discreta</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3><span class="hi">Parámetros</span></h3>
+<p><span class="math display">n = \text{cantidad de eventos}</span></p>
+<h3><span class="hi">Funciones</span></h3>
+<p><span class="math display">
+f(x|n) = \frac{1}{n}
+</span></p>
+<p><span class="math display">
+F(x|n) = \sum_{i=1}^x \frac{1}{n} = \frac{x}{n}
+</span></p>
+</div><div class="column" style="width:50%;">
+<h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
+<p><span class="math display">
+E(x|n) = \frac{n+1}{2}
+</span></p>
+<p><span class="math display">
+V(x|n) = \frac{n^2-1}{12}
+</span></p>
+<ul>
+<li>Esta distribución es de “calentamiento”. Por su sencillez de aplicación.</li>
+<li>Recuerde que <span class="math inline">x|n</span> es una expresión condicional, que se lee como <span class="math inline">x</span> dado <span class="math inline">n</span>.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Uniforme discreta</h2>
+<div class="columns">
+<div class="column">
+<h3>¿Cuándo se usa?</h3>
+<p>No todas las prendas de ropa son adecuadas para todas las ocasiones/climas, sino que se escogen cuidadosamente en función del contexto, incluyendo sus tallas.</p>
+<p>Este mismo razonamiento es el que se usa para seleccionar una distribución de probabilidad, según sus características.</p>
+</div><div class="column">
+<h3>Características</h3>
+<ul>
+<li>Es una distribución simétrica.</li>
+<li>Todos sus eventos son equiprobables.</li>
+<li>Está descrita por la cantidad de eventos (<span class="math inline">n</span>).</li>
+<li>Un ejemplo clásico es el lanzamiento de un dado.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio de calentamiento</h2>
+<ul>
+<li>Un decaedro es un dado con 10 caras, con cada cara de forma de cometa o deltoide. Suponga que cada cara está igualmente cargada.</li>
+<li>Obtenga
+<ul>
+<li>El parámetro de la distribución
+<ul>
+<li><span class="math inline">n = 10</span></li>
+</ul></li>
+<li>La probabilidad de cualquier evento
+<ul>
+<li><span class="math inline">P(x) = \frac{1}{n} = \frac{1}{10}</span></li>
+</ul></li>
+<li>La probabilidad de que salga un 1 o un 2
+<ul>
+<li><span class="math inline">P(1\,ó\,2) = P(1) + P(2) = \frac{2}{10}</span></li>
+</ul></li>
+<li>La esperanza y varianza matemática
+<ul>
+<li><span class="math inline">E(x) = 5.5</span> y <span class="math inline">V(x)=8.25</span></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ensayo Bernoulli</h2>
+<ul>
+<li>Es un experimento que consta de ensayos repetidos.</li>
+<li>Cada ensayo produce un resultado que se puede clasificar como <span class="hi">éxito o fracaso</span>.
+<ul>
+<li>Éxito es el evento de interés y no necesariamente algo positivo. El éxito puede ser: un diagnóstico positivo de enfermedad, el daño de una pieza, ganarse la lotería, etc</li>
+</ul></li>
+<li>La probabilidad de éxito se denota con <span class="math inline">p</span> y la de fracaso con <span class="math inline">q</span>.
+<ul>
+<li>Recuerde las propiedades de la probabilidad <span class="math inline">q = 1-p</span></li>
+</ul></li>
+<li>Los ensayos son independientes.
+<ul>
+<li>Esto implica que la probabilidad de éxito <span class="math inline">p</span> es la misma en todos los ensayos.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Recordatorio</h2>
+<ul>
+<li><p>En la clase de Probabilidad Básica aprendimos que hay tres tipos de enfoques para obtener probabilidades:</p>
+<ul>
+<li>Clásica a priori</li>
+<li>Clásica empírica</li>
+<li>Subjetiva</li>
+</ul></li>
+<li><p>En este sentido, la probabilidad de éxito se puede asignar de cualquiera de las tres formas anteriores.</p></li>
+<li><p>De ser necesario, repase estos conceptos</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución binomial</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3><span class="hi">Parámetros</span></h3>
+<p><span class="math display">n = \text{cantidad de intentos}</span> <span class="math display">p = \text{probabilidad de éxito}</span></p>
+<h3><span class="hi">Funciones</span></h3>
+<p><span class="math display">
+f(x|n, p) = \binom{n}{x} p^x (1-p)^{n-x}
+</span></p>
+<p><span class="math display">
+F(x|n,p) = \sum_{i=0}^x f(i|n,p)
+</span></p>
+</div><div class="column" style="width:50%;">
+<h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
+<p><span class="math display">
+E(x|n, p) = n\cdot p
+</span></p>
+<p><span class="math display">
+V(x|n, p) = n \cdot p \cdot q
+</span></p>
+<ul>
+<li>Esta distribución se basa en ensayos de Bernoulli.</li>
+<li><span class="math inline">x = 0, 1, 2, \dots , n</span></li>
+<li><span class="math inline">\binom{n}{x} = \frac{n!}{x!(n-x)!}</span></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución binomial</h2>
+<div class="columns">
+<div class="column">
+<h3>Características:</h3>
+<ul>
+<li>Consta de una secuencia de 𝑛 experimentos más pequeños llamados ensayos, donde <span class="math inline">n</span> es fijo.</li>
+<li>Cada ensayo puede dar dos resultados posibles (dicotómico o binario) que se suelen denotar como éxito y fracaso.</li>
+<li>Los ensayos son independientes, es decir, el resultado anterior no influye en cualquier otro ensayo.</li>
+<li>La variable aleatoria <span class="math inline">x</span> denota el número de éxitos en <span class="math inline">n</span> ensayos de Bernoulli, con una probabilidad <span class="math inline">p</span>.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2">
+<h2>Binomial interactiva</h2>
+<iframe src="https://stevenggoni.github.io/interactivos/distribuciones-discretas.html" width="100%" height="600" style="border:none;">
+</iframe>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 01</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li><p>Recuerde el ejemplo de Diabetes no controlada.</p></li>
+<li><p>Determine la probabilidad de ser hipertenso:</p></li>
+<li><p><span class="math display">p = \frac{8}{16} = 0.5</span></p></li>
+<li><p>Con esto ya tenemos un parámetro, nos falta otro. Recuerde que <span class="math inline">n</span> es la cantidad de experimentos Bernoulli, por lo general esto es una decisión del experimentador/analista.</p></li>
+</ul>
+</div><div class="column" style="font-size: 0.61em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Hipertensión</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(175, 181, 188, 255) !important;display:block; width:100%;">1</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
 
 
 </section></section>

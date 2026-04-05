@@ -138,6 +138,16 @@ Observe cómo los parámetros afectan la posición del centro (moda), la dispers
         });
   
       }
+      
+      const params = new URLSearchParams(window.location.search);
+      const distParam = params.get("dist");
+
+      if (distParam) {
+        const select = document.getElementById("distribution");
+        if ([...select.options].some(o => o.value === distParam)) {
+          select.value = distParam;
+        }
+      }
   
         renderControls();
         updatePlot();

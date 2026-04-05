@@ -10,6 +10,7 @@ format: revealjs
 library(tidyverse)
 library(plotly)
 library(broom)
+library(kableExtra)
 library(openxlsx)
 library(emmeans)
 library(performance)
@@ -446,7 +447,7 @@ plotly::ggplotly(g01, height = 740, width = 1800) %>%
 * Ahora, para el mismo conjunto de datos, obtenga una estimación de la respuesta, es decir $\hat{y}$.
 * Con base en esta, estime el error (también conocido como [residuos]{.hi}) y obtenga la suma de todos los residuos. 
   * $$e = y-\hat{y}$$
-* En teoría este valor debe ser cero o aproximadamente cero.De forma matricial, lo puede obtener de esta manera:
+* En teoría este valor debe ser cero o aproximadamente cero. De forma matricial, lo puede obtener de esta manera:
   * $$\hat{\varepsilon}=y-X\hat{\beta}$$
 
 ## Regresión {.bloques}
@@ -911,7 +912,7 @@ $$y = \beta_0+\beta_1 x_1+\beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon$$
 
 ## Datos + Teoría {.bloques}
 
-* Resaltan dos aspectos importantes, la entrada del proceso es datos + teoría. Y esto es un detalle VITAL en el proceso estadístico. 
+* Resaltan dos aspectos importantes, la entrada del proceso es la combinación de datos + teoría. Y esto es un detalle VITAL en el proceso estadístico. 
 
 * No en todas las ocasiones se le va a proveer un conjunto de datos para que haga la regresión, creer que siempre será así es muy inocente. En muchas ocasiones es usted en su rol como persona ingeniera quien tiene que decidir cuántos y cuáles datos recoger.
   * Por ello la relevancia del tema de muestreo. 
@@ -937,7 +938,7 @@ $$y = \beta_0+\beta_1 x_1+\beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon$$
 
   * Además, para probar esto, debe haber recolectado los datos. ¿Recolectaría datos sin estar seguro? ¿Invertiría dinero en medir variables que no va a usar? 
 
-* Por ejemplo, nos podríamos preguntar si es necesario (y lógico según la teoría) que dos variables interactúen.En este caso, podríamos querer un modelo de este tipo:
+* Por ejemplo, nos podríamos preguntar si es necesario (y lógico según la teoría) que dos variables interactúen. En este caso, podríamos querer un modelo de este tipo:
 * $$y_{ij}= \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 x_2 + e_{ij}$$
 
 ## Especificación del modelo {.bloques}
@@ -963,7 +964,7 @@ $$y = \beta_0+\beta_1 x_1+\beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon$$
 
 * Los parámetros ($\beta_i$) especificados en el modelo [son desconocidos]{.hi} y deben ser estimados con base en una [muestra]{.hi}.
   * De nuevo, recuerde las bases de muestreo.
-* Ésta estimación se realiza mediante MCO (Mínimos Cuadrados Ordinarios). El detalle de las fórmulas es trivial, ya que su estimación por software está más que extendida.
+* Esta estimación se realiza mediante MCO (Mínimos Cuadrados Ordinarios). El detalle de las fórmulas es trivial, ya que su estimación por software está más que extendida.
   * Además, ya fue abordado el caso en RLS. 
   
 ## Una anotación relevante {.bloques}
@@ -1348,7 +1349,7 @@ Recuerde la clase de bondad de ajuste para distribuciones.
 * Bartlett
 * Levene
 * Comparaciones múltiples
-* Breush-Pagan
+* Breusch-Pagan
 
 :::
 
@@ -1373,7 +1374,7 @@ Recuerde la clase de bondad de ajuste para distribuciones.
 ## Primero ... {.bloques}
 
 * Hay que comprender que es relativamente común no cumplir con los supuestos de aplicación de regresión y ANOVA. 
-* La forma más sencillo de corregirlo, es entender lo que provoca el incumplimiento. 
+* La forma más sencilla de corregirlo, es entender lo que provoca el incumplimiento. 
 * Antes de hacer algún cambio drástico, [puede]{.hi} ser suficiente con volver a especificar el modelo (agregar o quitar términos en la ecuación).
   * Recuerde el diagrama de pasos de regresión. Si el modelo no es adecuado, se busca especificar otro modelo. No debería ser su primera opción tratar de cambiar los datos. 
 
@@ -1418,7 +1419,7 @@ Recuerde la clase de bondad de ajuste para distribuciones.
   * Pero solo es válida si el estudio es intrinsecamente dependiente, no subsana errores de diseño que provoquen este incumplimiento. 
 
 ## Recordemos {.bloques}
-* Ahora bien, tratemos de entender a que se refiere con que no se puede interpretar bien al valor P.
+* Ahora bien, tratemos de entender a qué se refiere con que no se puede interpretar bien al valor P.
 * En simple, cada coeficiente de la regresión está siendo sometido a una prueba t. 
 * $$\theta \pm EE \cdot t_{\frac{\alpha}{2}}$$
 * El valor P, depende del $EE$.
@@ -1666,7 +1667,7 @@ fig
 
 ::::::
 
-# ¿Qué más puedo hacer sino se cumplen los supuestos? {.bloques}
+# ¿Qué más puedo hacer si no se cumplen los supuestos? {.bloques}
 
 ## Alternativas ante el incumplimiento de supuestos {.bloques}
 
@@ -1692,7 +1693,7 @@ fig
 
 * [ANOVA no paramétrico]{.hi}
 
-  * Se conoce como Kruskall-Wallis.
+  * Se conoce como Kruskal-Wallis.
   * Útil para problemas de normalidad y homocedasticidad
   * Muchas desventajas: 
     * Cantidad de factores (no existen ANOVA no paramétricos para más de dos factores).
@@ -1748,14 +1749,14 @@ fig
 
 ## Coeficiente determinación $R^2$ {.bloques}
 
-* Es una medida con la que se puede saber que tanto está acertando o fallando el modelo. Este mide que tan grandes son los residuos.
+* Es una medida con la que se puede saber qué tanto está acertando o fallando el modelo. Este mide qué tan grandes son los residuos.
 * Este es un estadístico que debe analizarse con cuidado, pues [siempre crece a medida que se añaden términos en el modelo]{.hi}, aun cuando estos no tengan un aporte real o significativo sobre la variable.
 
 * $$R^2= 1 -\frac{SS_e}{SS_T}$$
 
 ## Coeficiente determinación $R^2$ {.bloques}
 
-* El valor de $R^2$ es engañoso, pues como se dijo anteriormente, siempre crece, sin importar si el predictor que se incluye es valio o no.
+* El valor de $R^2$ es engañoso, pues como se dijo anteriormente, siempre crece, sin importar si el predictor que se incluye es valioso o no.
 
 * Para eso casos existe una versión ajustada
 
@@ -1915,7 +1916,7 @@ mod2 %>%
 * La validez del modelo se puede determinar de varias formas: 
   * [Contrastando los resultados obtenidos contra la experiencia previa, la teoría aplicable, entre otros]{.hi}. Por ejemplo, que la regresión indique que la gravedad es negativa no tendría lógica.
   * [Recolectando nuevos datos]{.hi} y contrastando estos valores contra los valores predichos por la ecuación del modelo. 
-  * [Partición de datos]{.hi}, es deci rpartir los datos recolectados en dos partes. Se emplea una para hacer la estimación y la otra parte para validar que el modelo funcione.
+  * [Partición de datos]{.hi}, es decir, partir los datos recolectados en dos partes. Se emplea una para hacer la estimación y la otra parte para validar que el modelo funcione.
 
 ## Ejemplo 03 - Validación del modelo {.bloques}
 
@@ -1932,13 +1933,13 @@ mod2 %>%
 * Vale la pena aclarar que el análisis de multicolinealidad se puede realizar como parte de la revisión de la [adecuación]{.hi} del modelo.
 
 * El uso e interpretación de los modelos de regresión múltiple dependen a menudo (explícita o implícitamente)  en la estimación de los coeficientes individuales. 
-* Se supone que los regresores ($x$) deben ser independientes entre si y dependientes con la variable de respuesta ($y$). Es por eso que los regresores deben escogerse cuidadosamente. 
+* Se supone que los regresores ($x$) deben ser independientes entre sí y dependientes con la variable de respuesta ($y$). Es por eso que los regresores deben escogerse cuidadosamente. 
 * De cumplirse la primera premisa, estos serían ortogonales. 
 * Cuando los regresores son ortogonales, los análisis e inferencias pueden realizarse fácilmente.
 
 ## Multicolinealidad {.bloques}
 
-* No obstante, en ocasiones, los regresores pueden estar cerca de ser linealmente dependientes y esto provocaría que las conclusiones a las que se arriban sean erróneas. 
+* No obstante, en ocasiones, los regresores pueden estar cerca de ser linealmente dependientes y esto provocaría que las conclusiones a las que se llega sean erróneas. 
 * Esto es lo que se conoce como multicolinealidad. Esta provoca que las estimaciones sean inestables. 
 * Cuando dos predictores están casi alineados, el modelo tiene problemas para decidir cuál de ellos merece el crédito, y la incertidumbre del coeficiente explota (se infla).
 * A menudo la multicolinealidad se analiza con el FIV: Factor de Inflación de la Varianza. 
@@ -1970,13 +1971,13 @@ mod2 %>%
 
 ::: {.column width="40%"}
 
-* Realice el análisisde multicolinealidad para los dos modelos planteados en el Ejemplo 03. Recuerde que el FIV es más revelante para el modelo sin interacción que en el con interacción. 
+* Realice el análisis de multicolinealidad para los dos modelos planteados en el Ejemplo 03. Recuerde que el FIV es más relevante para el modelo [sin]{.hi} interacción que para el modelo con interacción. 
 
 * Interprete los resultados.
 
 :::
 
-::: {.column widht="60%"}
+::: {.column width="60%"}
 
 ```{r}
 
@@ -2102,7 +2103,7 @@ g2 %>%
 
 ## Interpretación de resultados {.bloques}
 
-* Esta sección se refiere a como se interpretan correctamente los resultados obtenidos una vez [todo el proceso para obtener una regresión ha sido realizado]{.hi}. 
+* Esta sección se refiere a cómo se interpretan correctamente los resultados obtenidos una vez [todo el proceso para obtener una regresión ha sido realizado]{.hi}. 
 * Solo se realiza cuando el modelo está limpio, todos los supuestos se cumplen, el modelo se ha validado, etc. 
 * Por tanto, esta sección NO se refiere a que solo se interpretan estos resultados
 
@@ -2151,7 +2152,7 @@ $y=2.34 + 1.62 \cdot x_1 + 0.0144 \cdot x_2 + e$
 
 * La interpretación de $\beta_0$ se debe realizar con cuidado (y en ocasiones ni siquiera es necesario realizarla), pues sus resultados pueden no ser coherentes. 
 
-* Si fuese estrictamente necesario obtener un $\beta_0$ interpretable, habría que hacer una operación particular de centramiento. 
+* Si fuese estrictamente necesario obtener un $\beta_0$ interpretable, habría que hacer una operación particular de centrado de variables. 
 
 * La interpretación es la siguiente: 
   * Cuando se transporten cero cajas y se recorra una distancia de cero metros, el tiempo de entrega estimado es de 2.34 minutos. 
@@ -2211,7 +2212,7 @@ donde:
 
 * Los grados de libertad en ANOVA, para los predictores, se asignan de la siguiente forma: $k-1$.
 * Siendo $k$ la cantidad de niveles en la categoría. Por ejemplo, si pruebo tres grosores de lámina, los grados de libertad serán 2.
-* Los grados de libertad totales son siempre 𝑛−1, siendo n la cantidad de observaciones. Los grados de libertad del error son lo que sobra de la asignación para los predictores.
+* Los grados de libertad totales son siempre $n-1$, siendo $n$ la cantidad de observaciones. Los grados de libertad del error son lo que sobra de la asignación para los predictores.
 
 ## Prueba de hipótesis {.bloques}
 
@@ -2317,7 +2318,7 @@ mod4 %>%
 * Es muy útil cuando el tamaño de los grupos está balanceado. 
 
 * [En el ejemplo]{.hi}
-  * Esto quiere decir que todos los grosores son diferentes. Siendo todos diferentes, se escoje el de menor media, en este caso el grosor 8 tiene una media de 14.151.
+  * Esto indica que todos los grosores difieren significativamente entre sí. Dado esto, se escoge el de menor media, en este caso el grosor 8 tiene una media de 14.151.
   * Interprete para el Templado. 
 
 
@@ -2515,7 +2516,7 @@ pairs(emm2, adjust = "sidak") %>%
 
 # ANOVA no paramétrico {.bloques}
 
-## Kruskall - Wallis {.bloques}
+## Kruskal - Wallis {.bloques}
 
 * Tiene la siguiente prueba de hipótesis sobre la mediana de más de dos grupos independientes que se aplica cuando no se cumplen los supuestos de normalidad o de varianza homogénea. 
 
@@ -2523,7 +2524,7 @@ pairs(emm2, adjust = "sidak") %>%
 
 * $$H_o: \widetilde{X}_A =\widetilde{X}_B =  \widetilde{X}_C \\ H_i: \text{Al menos una es diferente}$$
 
-## Ejemplo 05 - Kruskall - Wallis {.bloques}
+## Ejemplo 05 - Kruskal - Wallis {.bloques}
 
 :::::: {.columns}
 
@@ -2546,7 +2547,19 @@ pairs(emm2, adjust = "sidak") %>%
 ej05 <- openxlsx::read.xlsx("data/II-1123_04_Datos y ejercicios resueltos.xlsx", 
                             sheet = 8)
 
-kruskal.test(Peso ~Dieta, data = ej05)
+kw <- broom::tidy(kruskal.test(Peso ~ Dieta, data = ej05))
+
+kw %>%
+  mutate(across(where(is.numeric), ~round(.x, 4))) %>%
+  rename("Estadístico Chi-cuadrado" = statistic,
+         "Grados de Libertad" = parameter,
+         "Valor P" = p.value,
+         "Método" = method) %>%
+  kable(format = "html", caption = "Resultado de la Prueba de Kruskal-Wallis") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), 
+                full_width = F, 
+                position = "center") %>%
+  row_spec(0, bold = T, color = "white", background = "#263247")
 
 ```
 
