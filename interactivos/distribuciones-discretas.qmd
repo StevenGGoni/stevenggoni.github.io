@@ -1,5 +1,6 @@
 ---
 title: "Distribuciones discretas interactivas"
+date: today
 ---
 
 ## Instrucciones de uso

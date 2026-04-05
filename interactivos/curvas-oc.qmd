@@ -1,5 +1,6 @@
 ---
 title: "Curvas OC - Muestreo por atributos"
+date: today
 ---
 
 ## Instrucciones de uso

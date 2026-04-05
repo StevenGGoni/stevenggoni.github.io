@@ -1,5 +1,6 @@
 ---
 title: "Distribuciones continuas interactivas"
+date: today
 ---
 
 ## Instrucciones de uso

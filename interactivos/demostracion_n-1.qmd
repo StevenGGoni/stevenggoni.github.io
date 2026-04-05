@@ -1,5 +1,6 @@
 ---
 title: "¿Por qué n-1? en la varianza muestral"
+date: today
 ---
 
 Demostración matemática de por qué se usa $n-1$ en el denominador al calcular la varianza muestral. E() se conoce como esperanza y puede que al momento de consultar este sitio web aun no lo conozca.

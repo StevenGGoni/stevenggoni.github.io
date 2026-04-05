@@ -1,5 +1,6 @@
 ---
 title: "Convolución de distribuciones"
+date: today
 ---
 
 ## Introducción
