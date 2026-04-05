@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+<script>
+mermaid.initialize({ 
+startOnLoad:true, 
+theme:'neutral',
+flowchart:{ 
+useMaxWidth:false, 
+htmlLabels:true,
+curve:'basis'
+}
+});
+</script>
+
+<style>
+
+body{ 
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+background:#F1F5F5;
+font-family:'Aller', sans-serif;
+overflow:hidden;
+position:relative;
+}
+
+.mermaid{
+width:100%;
+margin:auto;
+}
+
+.node .label,
+.node .label div,
+.node .label span,
+.node text{
+font-size:26px !important;
+font-weight:800 !important;
+font-family:'Aller', sans-serif !important;
+line-height:1.1;
+}
+
+.edgeLabel,.edgeLabel span{
+font-size:28px !important;
+font-weight:bold !important;
+background-color:#F1F5F5 !important;
+}
+
+.node rect,.node circle,.node polygon,.node path{
+stroke-width:3px !important;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="mermaid">
+
+flowchart LR
+
+classDef modelo fill:#ffffff,color:#000,stroke:#333
+classDef base fill:#e9eef6,color:#000,stroke:#333
+classDef especial fill:#fff7e6,color:#000,stroke:#333
+
+A["Ensayos Bernoulli<br>(éxito / fracaso)"]
+B["Binomial<br>(n,p)<br>n ensayos independientes"]
+C["Binomial negativa<br>esperar r éxitos"]
+D["Poisson<br>eventos raros<br>tasa λ"]
+E["Hipergeométrica<br>muestreo<br>sin reemplazo"]
+
+class A base
+class B modelo
+class C modelo
+class D especial
+class E especial
+
+A =======> B
+
+B ------->|esperar r éxitos| C
+B ------->|eventos raros<br>n grande p pequeño| D
+
+B ------->|sin reemplazo| E
+
+</div>
+
+<div class="footer-info">
+
+<div class="enlace-full">
+Para ver el diagrama en pantalla completa diríjase a este 
+<a href="https://stevenggoni.github.io/clases/diagramas/distribuciones-discretas-relacion.html" target="_blank">enlace</a>.
+</div>
+
+<div class="footnote">
+Relación conceptual entre distribuciones discretas
+</div>
+
+</div>
+
+<style>
+
+.footer-info{
+position:absolute;
+bottom:20px;
+width:95%;
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+padding:0 30px;
+}
+
+.enlace-full,.footnote{
+font-size:18px;
+color:#556070;
+opacity:0.9;
+}
+
+.enlace-full a{
+color:#C18A00;
+font-weight:bold;
+text-decoration:none;
+border-bottom:1px solid rgba(193,138,0,0.3);
+}
+
+.enlace-full a:hover{
+border-bottom:1px solid #C18A00;
+}
+
+.footnote{
+font-style:italic;
+text-align:right;
+}
+
+</style>
+
+</body>
+</html>

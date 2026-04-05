@@ -291,14 +291,14 @@
     "href": "interactivos/distribuciones-discretas.html",
     "title": "Distribuciones discretas interactivas",
     "section": "",
-    "text": "Este visualizador permite explorar distribuciones discretas y ver cómo cambian sus formas al modificar los parámetros. Seleccione primero una distribución en el menú. Luego ajuste los controles (deslizadores) para cambiar sus valores.\nEl gráfico se actualiza automáticamente y muestra la función de probabilidad correspondiente. Observe cómo los parámetros afectan la posición del centro (moda), la dispersión y la asimetría de cada distribución. También permite la descarga en formato PNG, y al posar el cursor sobre las barras se despliega el valor de probabilidad asociado a ese valor.\n\n\n  \n    \n    \n    \n    \n  \n  \n  \n  \n  \n    \n  \n    \n      Seleccione una distribución:\n      \n        Binomial\n        Binomial negativa\n        Poisson\n        Hipergeométrica\n      \n    \n  \n    \n    \n  \n    \n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
+    "text": "Este visualizador permite explorar distribuciones discretas y ver cómo cambian sus formas al modificar los parámetros. Seleccione primero una distribución en el menú. Luego ajuste los controles (deslizadores) para cambiar sus valores.\nEl gráfico se actualiza automáticamente y muestra la función de probabilidad correspondiente. Observe cómo los parámetros afectan la posición del centro (moda), la dispersión y la asimetría de cada distribución. También permite la descarga en formato PNG, y al posar el cursor sobre las barras se despliega el valor de probabilidad asociado a ese valor."
   },
   {
     "objectID": "interactivos/distribuciones-discretas.html#instrucciones-de-uso",
     "href": "interactivos/distribuciones-discretas.html#instrucciones-de-uso",
     "title": "Distribuciones discretas interactivas",
     "section": "",
-    "text": "Este visualizador permite explorar distribuciones discretas y ver cómo cambian sus formas al modificar los parámetros. Seleccione primero una distribución en el menú. Luego ajuste los controles (deslizadores) para cambiar sus valores.\nEl gráfico se actualiza automáticamente y muestra la función de probabilidad correspondiente. Observe cómo los parámetros afectan la posición del centro (moda), la dispersión y la asimetría de cada distribución. También permite la descarga en formato PNG, y al posar el cursor sobre las barras se despliega el valor de probabilidad asociado a ese valor.\n\n\n  \n    \n    \n    \n    \n  \n  \n  \n  \n  \n    \n  \n    \n      Seleccione una distribución:\n      \n        Binomial\n        Binomial negativa\n        Poisson\n        Hipergeométrica\n      \n    \n  \n    \n    \n  \n    \n      \n      Creado por Steven García Goñi · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026"
+    "text": "Este visualizador permite explorar distribuciones discretas y ver cómo cambian sus formas al modificar los parámetros. Seleccione primero una distribución en el menú. Luego ajuste los controles (deslizadores) para cambiar sus valores.\nEl gráfico se actualiza automáticamente y muestra la función de probabilidad correspondiente. Observe cómo los parámetros afectan la posición del centro (moda), la dispersión y la asimetría de cada distribución. También permite la descarga en formato PNG, y al posar el cursor sobre las barras se despliega el valor de probabilidad asociado a ese valor."
   },
   {
     "objectID": "publicaciones.html",
@@ -418,5 +418,12 @@
     "title": "Gráficos de control para atributos",
     "section": "Gráfico \\(u\\)",
     "text": "Gráfico \\(u\\)\nEmpleando los datos anteriores, se construye el gráfico de la siguiente manera.\n\nu &lt;- qcc(datos_circuito$x, \n         sizes = 100, type = \"u\", \n         title = \"Gráfico de control u\")\n\n\n\n\n\n\n\n\nEn caso de tener \\(n\\) variable (simulado a partir de los siguientes datos).\n\nn_var &lt;- sample(90:110, 26, replace = T)\n\nSe puede obtener el gráfico de esta manera\n\nu &lt;- qcc(datos_circuito$x, \n         sizes = n_var, # datos variables\n         type = \"u\", \n         title = \"Gráfico de control u (n variable)\")"
+  },
+  {
+    "objectID": "interactivos/distribuciones-discretas.html#visualizador-interactivo",
+    "href": "interactivos/distribuciones-discretas.html#visualizador-interactivo",
+    "title": "Distribuciones discretas interactivas",
+    "section": "Visualizador interactivo",
+    "text": "Visualizador interactivo"
   }
 ]

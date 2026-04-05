@@ -48,7 +48,7 @@ library(tidyverse)
 ## ¡Importante! {.bloques}
 
 :::: columns
-::: {.column width="100%" style="text-align: center; font-size: 2.5em;"}
+::: {.column width="100%" style="text-align: center; font-size: 2em;"}
 All models are wrong, [but some are useful]{.hi} - *George E. P. Box*
 :::
 ::::
@@ -214,6 +214,7 @@ $$
 
 * Esta distribución es de “calentamiento”. Por su sencillez de aplicación. 
 * Recuerde que $x|n$ es una expresión condicional, que se lee como $x$ dado $n$.
+* $x = 1, 2, \dots, n$
 
 :::
 
@@ -261,13 +262,13 @@ Este mismo razonamiento es el que se usa para seleccionar una distribución de p
 
 ## Ensayo Bernoulli {.bloques}
 
-* Es un experimento que consta de ensayos repetidos.
 * Cada ensayo produce un resultado que se puede clasificar como [éxito o fracaso]{.hi}.
   * Éxito es el evento de interés y no necesariamente algo positivo. El éxito puede ser: un diagnóstico positivo de enfermedad, el daño de una pieza, ganarse la lotería, etc 
 * La probabilidad de éxito se denota con $p$ y la de fracaso con $q$.
   * Recuerde las propiedades de la probabilidad $q = 1-p$
 * Los ensayos son independientes. 
   * Esto implica que la probabilidad de éxito $p$ es la misma en todos los ensayos.
+* Una secuencia de ensayos Bernoulli independientes da origen a la distribución binomial.
 
 ## Recordatorio {.bloques}
 
@@ -326,38 +327,44 @@ $$
 
 ::::::  {.columns}
 
-::: {.column}
+::: {.column width="55%"}
 
 ### Características: 
-* Consta de una secuencia de 𝑛 experimentos más pequeños llamados ensayos, donde $n$ es fijo. 
+* Consiste en n ensayos Bernoulli independientes. 
 * Cada ensayo puede dar dos resultados posibles (dicotómico o binario) que se suelen denotar como éxito y fracaso. 
 * Los ensayos son independientes, es decir, el resultado anterior no influye en cualquier otro ensayo. 
 * La variable aleatoria $x$ denota el número de éxitos en $n$ ensayos de Bernoulli, con una probabilidad $p$.
 
 :::
 
-::::::
+::: {.column width="45%"}
 
-## Binomial interactiva
+### Binomial interactiva
 
 <iframe 
-src="https://stevenggoni.github.io/interactivos/distribuciones-discretas.html"
+src="https://stevenggoni.github.io/interactivos/distribuciones-discretas-embed.html?dist=binomial"
 width="100%" 
-height="600"
+height="680"
 style="border:none;">
 </iframe>
+
+:::
+
+::::::
+
 
 ## Ejercicio 01 {.bloques}
 
 :::::: {.columns}
 
-::: {.column width="70%"}
+::: {.column width="85%"}
 
-* Recuerde el ejemplo de Diabetes no controlada. 
-* Determine la probabilidad de ser hipertenso: 
+* Recuerde el ejemplo de Diabetes no controlada. Determine la probabilidad de ser hipertenso: 
 * $$p = \frac{8}{16} = 0.5$$
 
 * Con esto ya tenemos un parámetro, nos falta otro. Recuerde que $n$ es la cantidad de experimentos Bernoulli, por lo general esto es una decisión del experimentador/analista.
+
+* Para resolver estos ejercicios puede recurrir a los gráficos interactivos disponibles a lo largo de esta presentación y en este [enlace](https://stevenggoni.github.io/interactivos/distribuciones-discretas.html){target="_blank"}, además, se recomienda que utilice esta [aplicación](https://mabognar.github.io/apps/){target="_blank"} de Matt Bognar, Ph.D.
 
 :::
 
@@ -403,3 +410,381 @@ submuestra %>%
 :::
 
 ::::::
+
+## Ejercicio 01 {.bloques}
+
+* Bien, ya conocemos $p$.
+* Ahora, en una clínica odontológica especializada en diabéticos, interesa conocer si un paciente es hipertenso o no, pues al momento de hacer una extracción dental se deben tomar precauciones para evitar complicaciones como sangrado excesivo.
+* La visita de pacientes es independiente, es decir, que un paciente hipertenso asista no influye sobre la asistencia de otros pacientes hipertensos. 
+
+## Ejercicio 01 {.bloques}
+
+* Si en un día hay espacio para 12 pacientes, determine: 
+* La probabilidad que 8 sean hipertensos. 
+  * 0.2128
+* La probabilidad que máximo 3 sean hipertensos
+  * 0.0153
+* La probabilidad que al menos la mitad sean hipertensos
+  * 0.84179
+
+## Distribución binomial negativa {.bloques}
+
+::::::  {.columns}
+
+::: {.column width="50%"}
+
+### [Parámetros]{.hi}
+
+$$r = \text{cantidad de éxitos}$$
+$$p = \text{probabilidad de éxito}$$
+
+### [Funciones]{.hi}
+
+$$
+f(x|r, p) = \binom{x+r-1}{r-1} p^r (1-p)^{x}
+$$
+
+$$
+F(x|r,p) = \sum_{i=0}^x f(i|r,p)
+$$
+
+:::
+
+::: {.column width="50%"}
+
+### [Esperanza $E(x)$ y varianza $V(x)$]{.hi}
+
+$$
+E(x|r, p) = \frac{r\cdot q}{p}
+$$
+
+$$
+V(x|r, p) = \frac{r \cdot q}{p^2}
+$$
+
+* Esta distribución también se basa en ensayos de Bernoulli. Existen dos parametrizaciones comunes de la distribución binomial negativa. Aquí utilizamos la que modela el número de fracasos antes del r-ésimo éxito.
+
+* $x = 0, 1, 2, \dots$
+
+:::
+
+::::::
+
+## Distribución binomial negativa {.bloques}
+
+::::::  {.columns}
+
+::: {.column width="55%"}
+
+### Características: 
+* El experimento consiste en una serie de ensayos independientes.
+* Cada ensayo puede dar como resultado éxito o fracaso. La probabilidad de éxito es constante de un ensayo a otro
+* El experimento continua (se siguen realizando ensayos) hasta que un total de $r$ éxitos sean observados. Siendo $r$ un entero positivo.
+* Se llama binomial negativa, porque al contrario de la binomial, el [número de éxitos es fijo]{.hi} y el [número de ensayos es aleatorio]{.hi}. 
+
+:::
+
+::: {.column width="45%"}
+
+### Binomial negativa interactiva
+
+<iframe 
+src="https://stevenggoni.github.io/interactivos/distribuciones-discretas-embed.html?dist=neg_binomial"
+width="100%" 
+height="680"
+style="border:none;">
+</iframe>
+
+:::
+
+::::::
+
+## ¿Qué significa esto? {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="60%"}
+
+* La variable aleatoria $x$ es el número de fracasos [antes]{.hi} del $r-esimo$ éxito. 
+
+* Si $r=2$, $x$ sería la cantidad de fracasos [antes]{.hi} de que ocurra el éxito número 2.
+
+  * $x = 5$: ❌✅❌❌❌❌✅
+  * $x = 6$: ❌❌❌❌❌✅❌✅
+  * $x = 3$: ✅❌❌❌✅
+
+:::
+
+::: {.column width="40%"}
+
+Note que NO importa donde/cuando sucede el primer éxito. 
+
+Lo que si importa es cuántos fracasos suceden antes de que ocurra el segundo éxito (dado que $r=2$), note además que el último siempre es un éxito.
+
+
+:::
+
+::::::
+
+## Ejercicio 02 {.bloques}
+
+* Sigamos con el ejemplo anterior, recordemos que ya se estimó 𝑝=0.6. Ahora, al centro de salud, le interesa conocer:
+  * La probabilidad de que 10 pacientes sean atendidos antes de que 4 sean hipertensos. Es decir, la probabilidad de que hayan 6 fracasos, antes de encontrar 4 éxitos. 
+    * 0.04459
+* La probabilidad de que hayan 4 fracasos o menos, antes de encontrar 1 persona hipertensa
+    * 0.98976
+
+## Distribución hipergeométrica {.bloques}
+
+::::::  {.columns}
+
+::: {.column width="50%"}
+
+### [Parámetros]{.hi}
+
+* $N = \text{tamaño de la población}$
+* $M = \text{cantidad de éxitos en } N$
+* $n = \text{tamaño de la muestra}$
+
+### [Funciones]{.hi}
+
+$$
+f(x|n, M, N) = \frac{\binom{M}{x} \binom{N-M}{n-x}}{\binom{N}{n}}
+\\
+F(x|n, M, N) = \sum_{i=0}^x f(i|n, M, N)
+$$
+
+:::
+
+::: {.column width="50%"}
+
+### [Esperanza $E(x)$ y varianza $V(x)$]{.hi}
+
+$$
+E(x|n, M, N) = n \cdot \frac{M}{N}
+$$
+
+$$
+V(x|n, M, N) = \frac{N-n}{N-1} \cdot n \cdot \frac{M}{N} \cdot \bigg(1- \frac{M}{N}\bigg)
+$$
+
+* $x = 0, 1, 2, \dots , n$
+* $x \le M$ y $n-x \le N-M$
+
+:::
+
+::::::
+
+## Distribución hipergeométrica {.bloques}
+
+::::::  {.columns}
+
+::: {.column width="55%"}
+
+### Características: 
+* El conjunto o población a muestrear, que es finito, se compone de $N$ individuos. Cada individuo puede ser caracterizado como éxito o falla y hay $M$ éxitos en la población.
+* Se selecciona una muestra de 𝑛 individuos [sin reemplazo]{.hi} de tal modo que cada subconjunto de tamaño $n$ es igualmente probable de ser seleccionado. 
+
+* La variable de interés $x$ es el número de éxitos en la muestra. La distribución depende de los parámetros $n$, $M$ y $N$.
+
+
+:::
+
+::: {.column width="45%"}
+
+### Hipergeométrica interactiva
+
+<iframe 
+src="https://stevenggoni.github.io/interactivos/distribuciones-discretas-embed.html?dist=hypergeometric"
+width="100%" 
+height="680"
+style="border:none;">
+</iframe>
+
+:::
+
+::::::
+
+## Ejercicio 03 {.bloques}
+
+* Siguiendo con el ejemplo de la hipertensión. Recuerde que
+  * $N = 15$
+  * $M = 9$
+  * La persona puede decidir sobre usar un valor de n particular. Supongamos $n=4$.
+  
+* Calcule la probabilidad que en la muestra haya 3 o menos hipertensos. 
+  * 0.90769
+
+## Distribución Poisson {.bloques}
+
+::::::  {.columns}
+
+::: {.column width="50%"}
+
+### [Parámetros]{.hi}
+
+$$\lambda = \text{promedio de eventos}$$
+
+### [Funciones]{.hi}
+
+$$
+f(x|\lambda) = \frac{e^{-\lambda}\lambda^{x}}{x!}
+$$
+
+$$
+F(x|\lambda) = \sum_{i=0}^x f(i|\lambda)
+$$
+
+:::
+
+::: {.column width="50%"}
+
+### [Esperanza $E(x)$ y varianza $V(x)$]{.hi}
+
+$$
+E(x|\lambda) = \lambda
+$$
+
+$$
+V(x|\lambda) = \lambda
+$$
+
+* $x = 0, 1, 2, \dots$
+* $\lambda > 0$
+
+* [Video sobre cómo pronunciar Possion (puá-son)](https://www.youtube.com/watch?v=43eJq-pAOGA){target="_blank"}
+
+:::
+
+::::::
+
+## Distribución Poisson {.bloques}
+
+::::::  {.columns}
+
+::: {.column width="55%"}
+
+### Características: 
+* Los eventos ocurren independientemente en intervalos disjuntos (incrementos independientes). 
+* El número esperado de eventos en un intervalo es proporcional a la longitud del intervalo (tasa constante $\lambda$).
+* Se describen mediante una tasa constante de ocurrencia en el tiempo o espacio (variable continua).
+* $x$ es el número de eventos observados en un intervalo.
+  * Ejemplos: llamadas a un call center, defectos por metro de tela, accidentes por día.
+
+:::
+
+::: {.column width="45%"}
+
+### Poisson interactiva
+
+<iframe 
+src="https://stevenggoni.github.io/interactivos/distribuciones-discretas-embed.html?dist=poisson"
+width="100%" 
+height="680"
+style="border:none;">
+</iframe>
+
+:::
+
+::::::
+
+## Ejercicio 04 {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="85%"}
+
+* Al centro de salud, cada hora llegan los consultantes con hipertensión que se muestran en el cuadro a la derecha. 
+* ¿Cuál es la probabilidad de que se reciban 4 pacientes hipertensos en una hora? 
+  * Primero hay que encontrar $\lambda = E(x) = 2.93$
+  * $P(x = 4) = 0.16397$
+* ¿Cuál es la probabilidad de que se reciban más de 4 pacientes hipertensos en una hora?
+  * $P(x>4) = 0.17311$
+
+
+:::
+
+::: {.column style="font-size: 0.61em;"}
+
+```{r}
+
+ej04 <- data.frame(Pacientes = c(3, 2, 3, 4, 4, 2, 4, 2, 0, 3, 3, 1, 6, 4, 3))
+
+
+ej04 %>% 
+  knitr::kable(format = "html", escape = FALSE) %>%
+  kableExtra::kable_styling() 
+
+```
+
+
+:::
+
+::::::
+
+## Diagrama de relaciones entre distribuciones {.bloques}
+
+::: {.iframe-card}
+
+<iframe data-src="diagramas/distribuciones-discretas-relacion.html" title="Pasos de una RLM"></iframe>
+
+:::
+
+## Consideraciones finales {.bloques}
+
+* Estas no son las únicas distribuciones que existen
+
+* Siguiendo con la analogía de las prendas de ropa, acabamos de aprender las clásicas: camisetas, blusas, camisas, pantalones, etc. 
+* No obstante, tomemos en cuenta que [así como existen otras prendas de ropa]{.hi} (o variaciones de las anteriores), por ejemplo pantalones con campana, ajustados, cortos, largos, etc; enterizos, overalls, etc… [También existen otras distribuciones discretas que pueden ser más adecuadas a determinadas situaciones]{.hi} o inclusive ajustarse mejor al conjunto de datos. 
+
+## Consideraciones finales {.bloques}
+
+* En este sentido, ésta cátedra le recomienda [no depender de aplicaciones o software para calcular probabilidades]{.hi} en las distribuciones clásicas.
+
+* Sino que [comprenda la base procedimental de cualquier distribución discreta]{.hi} para que pueda expandir o generalizar dicho conocimiento a otras distribuciones con mayor grado de especialización. 
+
+* Nota: Esto no implica que se desaconseje el uso de la tecnología, solo se le insta a no depender de ello. 
+
+## Consideraciones finales {.bloques}
+
+* Existen pruebas estadísticas para determinar cual es la distribución que mejor se ajusta a los datos. No obstante, este tema: Bondad de ajuste, queda fuera del alcance de este curso. 
+* Básicamente, lo que hacen esas pruebas es probar simultáneamente muchas prendas y tallas de ropa y escoger la mejor. 
+
+## Ejercicio integrador {.bloques}
+
+* A un restaurante muy famoso llegan una determinada cantidad de clientes cada 30 minutos. A esos clientes se les pide llenar una encuesta de satisfacción a cambio de una regalía, la cantidad de clientes que aceptan (1) y rechazan (0) se registran en una hoja de cálculo. La decisión de completar la encuesta es independiente. 
+* Esta regalía se compone de 10 galletas caseras, que pueden ser galletas de chispas de chocolate (0) y galletas red velvet (1). La producción de galletas también se registra en una hoja de cálculo en este [Excel](https://stevenggoni.github.io/clases/data/II-1120_06_Ejercicio integrador.xlsx){target="_blank"}. 
+
+## Ejercicio integrador {.bloques}
+
+* Determine:
+  * La probabilidad de que en un momento determinado del día hayan 10 clientes en el restaurante famoso. 
+  * La probabilidad de que de 15 personas, 10 llenen la encuesta de satisfacción. 
+  * La probabilidad de que 3 o menos galletas sean Red Velvet
+  * La probabilidad de que haya que preguntarle a más de 5 personas para obtener 3 respuestas en la encuesta de satisfacción. 
+  * La cantidad de galletas red velvet que tiene cada regalía en promedio.
+  * El promedio de la cantidad de rechazos que debe haber para que se completen 30 encuestas de satisfacción.
+  * Obtenga el promedio de personas que aceptan responder a la encuesta por día, considerando una jornada de trabajo de 8 horas e independencia. 
+* A modo de práctica para el examen, plantee otros ejercicios y trate de resolverlos. 
+
+## Bibliografía {.bloques}
+
+:::: columns
+::: {.column width="100%" style="font-size: 1.2em;"}
+
+* Walpole, R.; Myers, R.; Myers, S. y Ye, K. Probabilidad y estadística para ingeniería y ciencias (9na Edición).
+  * Capítulo 5
+* Devore, J. Probabilidad y Estadística para Ingeniería y Ciencias (7ma Edición).
+  * Capítulo 3
+* Montgomery, D; Runger, G. Applied Statistics and Probabilty for Engineers (5th Edition)
+  * **Capítulo 3**
+
+
+:::
+::::
+
+## Distribuciones de probabilidad discretas <br> II-1120 Estadística para Ingeniería Industrial I {.center}
+
+### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni\@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
+
+### Dudas o correcciones requeridas pueden solicitarse al correo
