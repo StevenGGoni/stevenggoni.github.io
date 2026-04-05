@@ -1,0 +1,30 @@
+---
+title: "Publicaciones"
+---
+
+A continuación se presentan algunas de mis contribuciones en investigación y consultoría. Puede consultar el listado completo en mi perfil de [{{< iconify fa6-brands:google-scholar >}} Google Scholar](https://scholar.google.com/citations?user=X_3YTJ0AAAAJ&hl=es){target="_blank"}.
+
+::: {.publication-item}
+<span>{{< iconify fa6-solid:file-lines >}}</span> **S. García-Goñi**. (2025). **Algoritmo para la reducción de tratamientos en diseños experimentales con mezclas de vértices extremos, basado en la recuperación de la forma regular de un simplex**. *Repositorio Kérwá*.  
+[[Link](https://www.kerwa.ucr.ac.cr/items/9f121a2f-9871-4d27-b7cf-3efc8fb30494){target="_blank"}]{.btn-pub} [[Google Scholar](https://scholar.google.com/citations?hl=es&user=X_3YTJ0AAAAJ&sortby=pubdate&citation_for_view=X_3YTJ0AAAAJ:UeHWp8X0CEIC&view_op=view_citation){target="_blank"}]{.btn-pub}
+:::
+
+::: {.publication-item}
+<span>{{< iconify fa6-solid:file-lines >}}</span> **S. García-Goñi**. (2024). **Diseño de parcelas divididas para el desarrollo de una harina mejorada y funcional de granos germinados de lenteja o arveja**. *Revista de Iniciación Científica*.  
+[[DOI](https://doi.org/10.33412/rev-ric.v10.1.4001){target="_blank"}]{.btn-pub} [[Google Scholar](https://scholar.google.com/citations?view_op=view_citation&hl=es&user=X_3YTJ0AAAAJ&sortby=pubdate&citation_for_view=X_3YTJ0AAAAJ:2osOgNQ5qMEC){target="_blank"}]{.btn-pub}
+:::
+
+::: {.publication-item}
+<span>{{< iconify fa6-solid:file-lines >}}</span> **S. García-Goñi**, A. Loría-García, H. Quesada-Leitón. (2023). **Efectos del sexismo hacia las mujeres sobre la autoeficacia y desempeño en matemática de los hombres: Modelos de ecuaciones estructurales desde la teoría del sexismo ambivalente**. *Revista Uniciencia*.  
+[[DOI](http://dx.doi.org/10.15359/ru.37-1.19){target="_blank"}]{.btn-pub} [[Google Scholar](https://scholar.google.com/citations?view_op=view_citation&hl=es&user=X_3YTJ0AAAAJ&sortby=pubdate&citation_for_view=X_3YTJ0AAAAJ:d1gkVwhDpl0C){target="_blank"}]{.btn-pub}
+:::
+
+::: {.publication-item}
+<span>{{< iconify fa6-solid:file-lines >}}</span> C. Campos Argueta, B. Fonseca Rodríguez, **S. García-Goñi**. (2019). **Desarrollo de una materia prima para alimentos, a partir de granos germinados, basado en diseño de experimentos**. *Repositorio Kérwá*.  
+[[Link](https://www.kerwa.ucr.ac.cr/items/f6725f82-be7e-4304-8726-e59e2d6199be){target="_blank"}]{.btn-pub} [[Google Scholar](https://scholar.google.com/citations?view_op=view_citation&hl=es&user=X_3YTJ0AAAAJ&sortby=pubdate&citation_for_view=X_3YTJ0AAAAJ:u5HHmVD_uO8C){target="_blank"}]{.btn-pub}
+:::
+
+::: {.publication-item}
+<span>{{< iconify fa6-solid:file-lines >}}</span> I. Aguilar Mata, A. Pabón Páramo, M. Pizarro Aguilar, J. Alfaro Rodríguez, **S. García-Goñi**. (2017). **Evaluación del Programa Nacional de Apoyo a la Microempresa y la Movilidad Social (PRONAMYPE) del Ministerio de Trabajo y Seguridad Social. Informe final**. *Repositorio MIDEPLAN*.  
+[[Link](https://repositorio-snp.mideplan.go.cr/handle/123456789/159){target="_blank"}]{.btn-pub} [[Google Scholar](https://scholar.google.com/citations?view_op=view_citation&hl=es&user=X_3YTJ0AAAAJ&sortby=pubdate&citation_for_view=X_3YTJ0AAAAJ:u-x6o8ySG0sC){target="_blank"}]{.btn-pub}
+:::

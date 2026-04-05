@@ -22,6 +22,8 @@ Aquí encontrará las clases de los diferentes cursos del área de conocimiento 
 
 5. [Variables aleatorias](clases/II-1120_05_Variables_aleatorias.html){targe="_blank"}
 
+6. [Distribuciones de probabilidad discretas](clases/II-1120_06_Distribuciones_discretas.html){target="_blank"}
+
 ## II-1123 Estadística para Ingeniería Industrial II
 
 1. [Fundamentos de muestreo y manejo de datos](clases/II-1120_02_Fundamentos_muestreo.html){target="_blank"}

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Teorema del límite central – Steven García Goñi</title>
+<title>Teorema del límite central – Steven García Goñi Estadística e Ingeniería</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -318,11 +318,11 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images\logo.png" alt="Logo de un cuervo" class="navbar-logo light-content">
-    <img src="../images\logo.png" alt="Logo de un cuervo" class="navbar-logo dark-content">
+    <img src="../images/logo.png" alt="Logo de un cuervo" class="navbar-logo light-content">
+    <img src="../images/logo.png" alt="Logo de un cuervo" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Steven García Goñi</span>
+    <span class="navbar-title">Steven García Goñi <span class="navbar-subtitle">Estadística e Ingeniería</span></span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Buscar"></div>
@@ -334,6 +334,10 @@ window.Quarto = {
   <li class="nav-item">
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../publicaciones.html"> 
+<span class="menu-text">Publicaciones</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-recursos-académicos" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -368,7 +372,7 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-sobre-mí">    
         <li>
-    <a class="dropdown-item" href="../resume.pdf" target="_blank">
+    <a class="dropdown-item" href="../resume.qmd" target="_blank">
  <span class="dropdown-text">Currículum</span></a>
   </li>  
         <li>
@@ -388,7 +392,7 @@ window.Quarto = {
 <span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:github" aria-label="Icon github from mdi Iconify.design set." title="GitHub"></iconify-icon></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"> 
+    <a class="nav-link" href="https://www.linkedin.com/in/sggoni/"> 
 <span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:linkedin" aria-label="Icon linkedin from mdi Iconify.design set." title="LinkedIn"></iconify-icon></span></a>
   </li>  
   <li class="nav-item">
@@ -459,7 +463,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">24 de febrero de 2026</p>
+      <p class="date">4 de abril de 2026</p>
     </div>
   </div>
   
@@ -674,7 +678,7 @@ x \sim LN(0, 1)
     Anderson-Darling normality test
 
 data:  muestras
-A = 5.7617, p-value = 3.422e-14</code></pre>
+A = 7.8563, p-value &lt; 2.2e-16</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(muestras,</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">"Gráfico de cuantil-cuantil (Q-Q plot)"</span>,</span>
@@ -689,7 +693,7 @@ A = 5.7617, p-value = 3.422e-14</code></pre>
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 884 149</code></pre>
+<pre><code>[1] 825 302</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -711,7 +715,7 @@ A = 5.7617, p-value = 3.422e-14</code></pre>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="co"># puede salir el mismo valor varias veces</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">prob =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="dv">6</span>)) <span class="co"># probabilidad para valor de las caras del dado</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6 1 1 1 4</code></pre>
+<pre><code>[1] 4 5 1 2 1</code></pre>
 </div>
 </div>
 <p>Ahora, repitamos el lanzamiento, 5000 veces y observemos la distribución de los datos, la frecuencia relativa de cada lanzamiento debería ser <strong>aproximadamente</strong> 1/6 = 16.67 %.</p>
@@ -740,38 +744,38 @@ A = 5.7617, p-value = 3.422e-14</code></pre>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1</td>
-<td style="text-align: right;">809</td>
-<td style="text-align: right;">16.18</td>
-<td style="text-align: right;">16.18</td>
+<td style="text-align: right;">821</td>
+<td style="text-align: right;">16.42</td>
+<td style="text-align: right;">16.42</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2</td>
-<td style="text-align: right;">836</td>
-<td style="text-align: right;">16.72</td>
-<td style="text-align: right;">32.90</td>
+<td style="text-align: right;">853</td>
+<td style="text-align: right;">17.06</td>
+<td style="text-align: right;">33.48</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3</td>
-<td style="text-align: right;">835</td>
-<td style="text-align: right;">16.70</td>
-<td style="text-align: right;">49.60</td>
+<td style="text-align: right;">818</td>
+<td style="text-align: right;">16.36</td>
+<td style="text-align: right;">49.84</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">4</td>
-<td style="text-align: right;">806</td>
-<td style="text-align: right;">16.12</td>
-<td style="text-align: right;">65.72</td>
+<td style="text-align: right;">834</td>
+<td style="text-align: right;">16.68</td>
+<td style="text-align: right;">66.52</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">5</td>
-<td style="text-align: right;">868</td>
-<td style="text-align: right;">17.36</td>
-<td style="text-align: right;">83.08</td>
+<td style="text-align: right;">844</td>
+<td style="text-align: right;">16.88</td>
+<td style="text-align: right;">83.40</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">6</td>
-<td style="text-align: right;">846</td>
-<td style="text-align: right;">16.92</td>
+<td style="text-align: right;">830</td>
+<td style="text-align: right;">16.60</td>
 <td style="text-align: right;">100.00</td>
 </tr>
 <tr class="odd">
@@ -826,16 +830,16 @@ Frecuencia = \frac{1}{6}\cdot 5000 = 833.33
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3
-[1] 4.6
-[1] 4.4
-[1] 3.6
-[1] 4.6
-[1] 4.4
-[1] 1.6
+<pre><code>[1] 3.4
+[1] 2.8
+[1] 2.4
+[1] 3.4
+[1] 2
+[1] 4.8
 [1] 3.8
+[1] 2.8
 [1] 3.6
-[1] 3.6</code></pre>
+[1] 2.6</code></pre>
 </div>
 </div>
 <p>Ahora si, repitámoslo 1000 veces</p>
@@ -875,7 +879,7 @@ Frecuencia = \frac{1}{6}\cdot 5000 = 833.33
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(experimento_dado<span class="sc">$</span>V1)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.4716</code></pre>
+<pre><code>[1] 3.544</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -893,7 +897,7 @@ Frecuencia = \frac{1}{6}\cdot 5000 = 833.33
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(experimento_dado<span class="sc">$</span>V1)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7475776</code></pre>
+<pre><code>[1] 0.7853412</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -902,7 +906,7 @@ Frecuencia = \frac{1}{6}\cdot 5000 = 833.33
 <p>Aunque la distribución de la población es uniforme discreta, vemos como la de las medias muestrales se asemeja a una distribución normal.</p>
 <p>En una situación real tendríamos sólo los estadísticos de nuestra muestra:</p>
 <p><span class="math display">\[
-\bar{X} \sim N(3.4716, 0.7475776)
+\bar{X} \sim N(3.544, 0.7853412)
 \]</span></p>
 <p>Gracias a TLC podemos acercarnos a conocer las características de la población, mediante la toma de muestras.</p>
 <p>Por ejemplo, la media poblacional y la media muestral son similares. La desviación poblacional <span class="math inline">\(\sigma\)</span> puede obtenerse al despejar esta fórmula <span class="math inline">\(\frac{\sigma}{\sqrt{n}} = s\)</span>.</p>

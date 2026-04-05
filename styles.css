@@ -293,3 +293,120 @@ outline: none;
 #plot {
   background: #F7F9F9 !important;
 }
+
+/* ================================
+   NAVBAR (Consolidado)
+   ================================ */
+.navbar { min-height: 76px !important; }
+
+.navbar-brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    line-height: 1.1;
+    font-family: "Crimson Pro", serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.navbar-brand img {
+    max-height: 55px !important;
+    width: auto !important;
+}
+
+.navbar-subtitle {
+    display: block;
+    font-family: "Aller", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    opacity: 0.85;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+}
+
+.navbar-nav .nav-link {
+    font-family: "Aller", sans-serif;
+    font-weight: 500;
+    color: #F1F5F5;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #FFFFFF !important;
+    background-color: transparent !important;
+}
+
+/* ================================
+   PUBLICACIONES (Limpio)
+   ================================ */
+.publication-item {
+    margin-bottom: 1.8rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.publication-item:last-child { border-bottom: none; }
+
+/* Color base para iconos (Modo Claro) */
+.publication-item span, 
+.publication-item .iconify {
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: middle;
+    color: #331114; /* Color por defecto */
+}
+
+/* Botones (Modo Claro) */
+.btn-pub a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    margin-right: 6px;
+    padding: 3px 12px;
+    font-family: "Aller", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: all 0.2s ease-in-out;
+    /* Colores por defecto */
+    color: #331114;
+    border: 1px solid #331114;
+}
+
+.btn-pub a:hover {
+    background-color: #331114;
+    color: #ffffff !important;
+}
+
+/* ======================================================
+   AJUSTES PARA DARK MODE (Prioridad Alta)
+   ====================================================== */
+
+/* Forzamos el color claro cuando el body tiene la clase del tema oscuro */
+body.quarto-dark .publication-item span, 
+body.quarto-dark .publication-item .iconify,
+body.quarto-dark .publication-item i {
+    color: #F1F5F5 !important;
+    fill: #F1F5F5 !important; /* Para algunos tipos de iconos SVG */
+}
+
+/* Botones en Modo Oscuro: Borde y Texto claros */
+body.quarto-dark .btn-pub a {
+    color: #F1F5F5 !important;
+    border: 1.5px solid #F1F5F5 !important;
+    background-color: transparent !important;
+}
+
+/* Hover en Modo Oscuro: Fondo claro, texto oscuro */
+body.quarto-dark .btn-pub a:hover {
+    background-color: #F1F5F5 !important;
+    color: #1a1a1a !important;
+}
+
+/* El link de Google Scholar del párrafo inicial */
+body.quarto-dark a[href*="scholar.google"] {
+    color: #4db6ac !important; /* Un turquesa suave para que resalte en negro */
+}

@@ -1,0 +1,46 @@
+---
+title: "Distribuciones de probabilidad discretas"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1120_06_Distribuciones_discretas.pdf) <br> II-1120 Estadística para Ingeniería Industrial I"
+date: today
+format: revealjs
+---
+
+```{r}
+
+library(tidyverse)
+
+```
+
+## Agenda {.bloques}
+
+* Preguntas generadoras
+* Repaso y analogía
+* Algunas distribuciones discretas
+  * Uniforme
+  * Binomial
+  * Binomial negativa
+  * Hipergeométrica
+  * Poisson
+* Consideraciones finales
+* Ejercicio integrador (minicaso)
+
+## Preguntas generadoras {.bloques}
+
+* ¿Cuándo se utiliza cada tipo de distribución?
+* ¿Cuáles son las características de una distribución de probabilidad discreta?
+* ¿Cómo se calcula la probabilidad, sin importar el tipo de distribución?
+* ¿Cómo utilizar las distribuciones de probabilidad para resolver problemas?
+* ¿Cuál es la relación e importancia de cada distribución con el quehacer ingenieril? 
+
+# Repaso {.bloques}
+
+## Distribuciones de probabilidad {.bloques}
+
+* Se pueden considerar como [modelos matemáticos]{.hi} que representan y simplifica la realidad de fenómenos aleatorios. 
+* En este contexto, es una representación teórica que formaliza ciertos aspectos de un [fenómeno observable]{.hi}, permitiendo [describir, explicar y predecir]{.hi} el comportamiento de variables aleatorias bajo algunos supuestos. 
+
+## Distribuciones de probabilidad {.bloques}
+
+* **Simplifican** la complejidad de la **realidad** al centrarse en ciertos aspectos relevantes del fenómeno aleatorio.
+* Permiten **calcular probabilidades** de manera sistemática bajo supuestos explícitos.
+* Sirven para predecir el **comportamiento futuro** de un experimento aleatorio si se mantienen las condiciones iniciales
