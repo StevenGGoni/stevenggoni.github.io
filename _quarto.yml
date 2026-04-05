@@ -35,7 +35,7 @@ website:
           text: Material de clases
       - text: Sobre mí
         menu:
-        - href: resume.qmd
+        - href: resume.pdf
           text: Currículum
           target: _blank
         - href: logo.qmd
