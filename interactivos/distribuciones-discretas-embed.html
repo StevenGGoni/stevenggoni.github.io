@@ -14,6 +14,8 @@
             /* Añadimos aire en los 4 costados */
             padding: 15px; 
             /* CRUCIAL: para que el padding no sume al ancho total y cause scroll */
+            font-size: 20px; 
+            line-height: 1.4;
             box-sizing: border-box; 
             background-color: transparent;
             overflow: hidden; 
@@ -25,7 +27,12 @@
             margin-bottom: 10px;
         }
 
-        label { font-weight: 800; font-size: 1em; }
+        label { font-weight: 800; font-size: 1.0em; }
+        
+        select {
+        font-size: 18px;
+        padding: 8px; /* Más fácil de clickear */
+        }
 
         /* Estilo de los Sliders (Copiado de tu CSS) */
         input[type="range"] {
@@ -64,10 +71,23 @@
               height: 500px; /* Reducimos ligeramente para ganar espacio vertical */
               margin-top: 10px;
           }
-
+          
+          span[id$="-val"] {
+          font-weight: bold;
+          color: #331114; /* Usando tu color dorado de realce */
+          margin-left: 10px;
+          font-size: 1em;
+          }
+          
+          label[for="dist-select"] {
+          font-family: 'Aller', sans-serif;
+          font-weight: bold;
+          margin-right: 10px;
+          }
+          
         footer {
             margin-top: 2em;
-            font-size: 1em;
+            font-size: 0.8em;
             text-align: center;
             color: gray;
         }
