@@ -9,25 +9,37 @@
     <style>
         /* Estilos base para que coincida con tu sitio */
         body {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Fallback si no carga Aller */
+            font-family: "Aller", sans-serif;
             margin: 0;
-            padding: 10px;
-            background-color: transparent; /* Permite que se vea el fondo del contenedor padre */
-            color: #1a1a1a;
+            /* Añadimos aire en los 4 costados */
+            padding: 25px; 
+            /* CRUCIAL: para que el padding no sume al ancho total y cause scroll */
+            box-sizing: border-box; 
+            background-color: transparent;
+            overflow: hidden; 
+        }
+        
+        /* Opcional: un poco de espacio entre el selector y los sliders */
+        #controls {
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
 
         label { font-weight: 500; font-size: 0.95em; }
 
         /* Estilo de los Sliders (Copiado de tu CSS) */
         input[type="range"] {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 6px;
-            background: #33111422;
-            border-radius: 4px;
-            outline: none;
-            margin: 10px 0;
-        }
+        -webkit-appearance: none;
+        width: 300px; /* Tamaño fijo similar al de la imagen de la Normal */
+        max-width: 80%; /* Para que no se rompa en móviles */
+        height: 6px;
+        background: #33111422;
+        border-radius: 4px;
+        outline: none;
+        margin: 10px 0;
+        display: inline-block; /* Permite alineación controlada */
+        vertical-align: middle;
+    }
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 14px; height: 14px;
@@ -42,13 +54,16 @@
             cursor: pointer;
         }
 
-        #plot {
-            width: 100%;
-            height: 480px;
-            margin-top: 15px;
-            background: #F7F9F9 !important;
-            border-radius: 4px;
-        }
+          .main-container {
+              padding: 15px;
+              box-sizing: border-box;
+          }
+          
+          #plot {
+              width: 100%;
+              height: 450px; /* Reducimos ligeramente para ganar espacio vertical */
+              margin-top: 10px;
+          }
 
         footer {
             margin-top: 2em;
