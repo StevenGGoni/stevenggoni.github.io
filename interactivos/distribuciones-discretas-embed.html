@@ -1,32 +1,77 @@
-<div class="widget-box">
-  <head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
     <meta charset="utf-8">
-
-    <link rel="stylesheet" href="/styles.css">
-    
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
-  </head>
-  
-  
-  <body>
-  
-    <div style="max-width: 900px; margin: 0 auto;">
-  
-    <label>
-      Seleccione una distribución:</label>
-      <select id="distribution" onchange="renderControls(); updatePlot();">
-        <option value="binomial">Binomial</option>
-        <option value="neg_binomial">Binomial negativa</option>
-        <option value="poisson">Poisson</option>
-        <option value="hypergeometric">Hipergeométrica</option>
-      </select>
     
-  
-    <div id="controls"></div>
-    <div id="plot" style="width: 100%; height: 500px;"></div>
-  
-    <script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700&display=swap">
+    <style>
+        /* Estilos base para que coincida con tu sitio */
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Fallback si no carga Aller */
+            margin: 0;
+            padding: 10px;
+            background-color: transparent; /* Permite que se vea el fondo del contenedor padre */
+            color: #1a1a1a;
+        }
+
+        label { font-weight: 500; font-size: 0.95em; }
+
+        /* Estilo de los Sliders (Copiado de tu CSS) */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #33111422;
+            border-radius: 4px;
+            outline: none;
+            margin: 10px 0;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px; height: 14px;
+            background: #331114;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 14px; height: 14px;
+            background: #331114;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        #plot {
+            width: 100%;
+            height: 480px;
+            margin-top: 15px;
+            background: #F7F9F9 !important;
+            border-radius: 4px;
+        }
+
+        footer {
+            margin-top: 2em;
+            font-size: 0.8em;
+            text-align: center;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width: 900px; margin: 0 auto;">
+        <label>Seleccione una distribución:</label>
+        <select id="distribution" onchange="renderControls(); updatePlot();" style="padding: 4px; border-radius: 4px; border: 1px solid #33111455;">
+            <option value="binomial">Binomial</option>
+            <option value="neg_binomial">Binomial negativa</option>
+            <option value="poisson">Poisson</option>
+            <option value="hypergeometric">Hipergeométrica</option>
+        </select>
+
+        <div id="controls" style="margin-top: 15px;"></div>
+        <div id="plot"></div>
+
+        <script>
       function renderControls() {
         const dist = document.getElementById("distribution").value;
         const controls = document.getElementById("controls");
@@ -144,5 +189,5 @@
       Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026
     </footer>
     </div>
-  </body>
-  </div>
+</body>
+</html>

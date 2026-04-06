@@ -11,11 +11,13 @@ El gráfico se actualiza automáticamente y muestra la función de probabilidad 
 Observe cómo los parámetros afectan la posición del centro (moda), la dispersión y la asimetría de cada distribución. También permite la descarga en formato PNG, y al posar el cursor sobre las barras se despliega el valor de probabilidad asociado a ese valor.
 
 ## Visualizador interactivo
-<div class="widget-box">
+::: {.column-page}
 <iframe
-src="https://stevenggoni.github.io/interactivos/distribuciones-discretas-embed.html"
-width="100%" 
-height="680"
-style="border:none;">
+  src="https://stevenggoni.github.io/interactivos/distribuciones-discretas-embed.html"
+  width="100%" 
+  height="750"
+  style="border: 1px solid #33111422; border-radius: 8px; background-color: #F1F5F5;"
+  frameborder="0"
+  scrolling="no">
 </iframe>
-<div>
+:::
