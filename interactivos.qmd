@@ -39,7 +39,7 @@ Propio del campo de la ingeniería de calidad y muestreo de aceptación, este vi
 
 Inspirado en algunas publicaciones científicas, aquí podrá encontrar como la asimetría juega un papel ponderante en el cumplimiento del teorema del límite central (TLC). Con este, busco ayudar a "derrumbar" el mito de que el TLC siempre se cumple con $n=30$.
 
-* [Calculadora de distribuciones de probabilidad e intervalos de confianza](https://homepage.divms.uiowa.edu/~mbognar/){target="_blank"} - Aplicación externa
+* [Calculadora de distribuciones de probabilidad e intervalos de confianza](https://mabognar.github.io/apps/){target="_blank"} - Aplicación externa
 
 De Ph.D. Matt Bognar, aquí encuentra "mini aplicaciones" con las que puede resolver ejercicios de probabilidad y estadística.
 
