@@ -52,6 +52,8 @@ website:
         href: https://scholar.google.com/citations?user=X_3YTJ0AAAAJ&hl=es
       - text: '{{< iconify simple-icons:orcid title="Orcid" >}}'
         href: https://orcid.org/0000-0002-1822-5465
+      - text: '{{< iconify simple-icons:scopus title="Scopus" >}}'
+        href: https://www.scopus.com/authid/detail.uri?authorId=58504295000
       - text: '{{< iconify academicons:researchgate-square title="ResearchGate" >}}'
         href: https://www.researchgate.net/profile/Steven-Garcia-Goni
       - text: '{{< iconify academicons:cv-square title="CV" >}}'
