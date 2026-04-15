@@ -33,6 +33,22 @@
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link rel="stylesheet" href="custom.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -130,7 +146,7 @@
 
   <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 
-  <script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
+  <script src="site_libs/plotly-binding-4.12.0/plotly.js"></script>
 
   <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
 
@@ -140,9 +156,9 @@
 
   <script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 
-  <link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+  <link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
 
-  <script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+  <script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 
 </head>
 <body class="quarto-light">
@@ -161,7 +177,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">26 de febrero de 2026</p>
+  <p class="date">15 de abril de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
@@ -319,16 +335,16 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <p>Las variables categóricas se pueden representar de muchas formas. Dos de ellas son:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-7d44d399e63ed20b8acb" style="width:850px;height:500px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7d44d399e63ed20b8acb">{"x":{"visdat":{"92d855ee67c6":["function () ","plotlyVisDat"]},"cur_data":"92d855ee67c6","attrs":{"92d855ee67c6":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"width":850,"height":500,"margin":{"b":40,"l":60,"t":25,"r":10},"paper_bgcolor":"#F1F5F5","plot_bgcolor":"#F1F5F5","font":{"size":30},"xaxis":{"titlefont":{"size":22},"tickfont":{"size":18}},"yaxis":{"titlefont":{"size":22},"tickfont":{"size":18}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"labels":["Chocolate","Vainilla","Fresa"],"values":[103,92,72],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(241,245,245,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2719a14a1ca52fec9c87" style="width:850px;height:500px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2719a14a1ca52fec9c87">{"x":{"visdat":{"23007309210b":["function () ","plotlyVisDat"]},"cur_data":"23007309210b","attrs":{"23007309210b":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"width":850,"height":500,"margin":{"b":40,"l":60,"t":25,"r":10},"paper_bgcolor":"#F1F5F5","plot_bgcolor":"#F1F5F5","font":{"size":30},"xaxis":{"titlefont":{"size":22},"tickfont":{"size":18}},"yaxis":{"titlefont":{"size":22},"tickfont":{"size":18}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"labels":["Chocolate","Vainilla","Fresa"],"values":[103,92,72],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(241,245,245,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <p>¿Cuál de las dos formas es más apropiada?</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-616e93a257fc7af5d2e3" style="width:850px;height:600px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-616e93a257fc7af5d2e3">{"x":{"visdat":{"92d844b25614":["function () ","plotlyVisDat"]},"cur_data":"92d844b25614","attrs":{"92d844b25614":{"x":{},"y":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"width":850,"height":600,"margin":{"b":40,"l":60,"t":25,"r":10},"paper_bgcolor":"#F1F5F5","plot_bgcolor":"#F1F5F5","font":{"size":30},"xaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Sabor","font":{"size":30}},"tickfont":{"size":25},"type":"category","categoryorder":"array","categoryarray":["Chocolate","Vainilla","Fresa"]},"yaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Votos","font":{"size":30}},"tickfont":{"size":25}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Chocolate","Vainilla","Fresa"],"y":[103,92,72],"type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4343aa8964276d3d2f07" style="width:850px;height:600px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4343aa8964276d3d2f07">{"x":{"visdat":{"23007b145d7a":["function () ","plotlyVisDat"]},"cur_data":"23007b145d7a","attrs":{"23007b145d7a":{"x":{},"y":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"width":850,"height":600,"margin":{"b":40,"l":60,"t":25,"r":10},"paper_bgcolor":"#F1F5F5","plot_bgcolor":"#F1F5F5","font":{"size":30},"xaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Sabor","font":{"size":30}},"tickfont":{"size":25},"type":"category","categoryorder":"array","categoryarray":["Chocolate","Vainilla","Fresa"]},"yaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Votos","font":{"size":30}},"tickfont":{"size":25}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Chocolate","Vainilla","Fresa"],"y":[103,92,72],"type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div></div>
@@ -338,7 +354,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li>Estos conocimientos se van a ir construyendo poco a poco.</li>
 <li>Para <span class="hi">muestras</span> y <span class="hi">poblaciones</span> se usan notaciones diferentes.</li>
-<li>Preste atención a lo largo de este y otros cursos, sobre todo de esta área de conocimiento, a las diferentes notaciones. Por ejemplo, la proporción muestral se denota con <span class="math inline">\(\hat{p}\)</span> mientras que la poblacional con <span class="math inline">\(p\)</span>. De la misma forma el promedio muestral es <span class="math inline">\(\bar{x}\)</span> y el poblacional es <span class="math inline">\(\mu\)</span>.</li>
+<li>Preste atención a lo largo de este y otros cursos, sobre todo de esta área de conocimiento, a las diferentes notaciones. Por ejemplo, la proporción muestral se denota con <span class="math inline">\hat{p}</span> mientras que la poblacional con <span class="math inline">p</span>. De la misma forma el promedio muestral es <span class="math inline">\bar{x}</span> y el poblacional es <span class="math inline">\mu</span>.</li>
 <li>En este sentido, <span class="hi">recuerde</span> que hay una diferencia entre estimador y parámetro.</li>
 </ul>
 </section>
@@ -435,16 +451,16 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h3>¿Qué opina de este gráfico?</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-c83e411bfd0913da1e20" style="width:850px;height:500px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c83e411bfd0913da1e20">{"x":{"visdat":{"92d86b96bef":["function () ","plotlyVisDat"]},"cur_data":"92d86b96bef","attrs":{"92d86b96bef":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"width":850,"height":500,"margin":{"b":40,"l":60,"t":25,"r":10},"paper_bgcolor":"#F1F5F5","plot_bgcolor":"#F1F5F5","font":{"size":22},"xaxis":{"titlefont":{"size":22},"tickfont":{"size":18}},"yaxis":{"titlefont":{"size":22},"tickfont":{"size":18}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"labels":["Vacaciones","Visita a familiares","Religión/peregrinaciones","Educación","Salud","Compras","Incentivo","Otros motivos personales","Reuniones de negocios","Conferencias y congresos","Actividades deportivas/culturales"],"values":[65.099999999999994,9.5999999999999996,6.4000000000000004,5.9000000000000004,0.59999999999999998,0.29999999999999999,0.040000000000000001,1,8.0700000000000003,1.0700000000000001,2],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(241,245,245,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3d775226ccf429b0e587" style="width:850px;height:500px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3d775226ccf429b0e587">{"x":{"visdat":{"230032b05482":["function () ","plotlyVisDat"]},"cur_data":"230032b05482","attrs":{"230032b05482":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"width":850,"height":500,"margin":{"b":40,"l":60,"t":25,"r":10},"paper_bgcolor":"#F1F5F5","plot_bgcolor":"#F1F5F5","font":{"size":22},"xaxis":{"titlefont":{"size":22},"tickfont":{"size":18}},"yaxis":{"titlefont":{"size":22},"tickfont":{"size":18}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"labels":["Vacaciones","Visita a familiares","Religión/peregrinaciones","Educación","Salud","Compras","Incentivo","Otros motivos personales","Reuniones de negocios","Conferencias y congresos","Actividades deportivas/culturales"],"values":[65.099999999999994,9.5999999999999996,6.4000000000000004,5.9000000000000004,0.59999999999999998,0.29999999999999999,0.040000000000000001,1,8.0700000000000003,1.0700000000000001,2],"type":"pie","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(241,245,245,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <h3>¿Resulta más claro este?</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-37fce952d9a034012fce" style="width:850px;height:600px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-37fce952d9a034012fce">{"x":{"visdat":{"92d85b252f43":["function () ","plotlyVisDat"]},"cur_data":"92d85b252f43","attrs":{"92d85b252f43":{"x":{},"y":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"width":850,"height":600,"margin":{"b":40,"l":60,"t":25,"r":10},"paper_bgcolor":"#F1F5F5","plot_bgcolor":"#F1F5F5","font":{"size":25},"xaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Motivo","font":{"size":25}},"tickfont":{"size":20},"tickangle":30,"type":"category","categoryorder":"array","categoryarray":["Actividades deportivas/culturales","Compras","Conferencias y congresos","Educación","Incentivo","Otros motivos personales","Religión/peregrinaciones","Reuniones de negocios","Salud","Vacaciones","Visita a familiares"]},"yaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Porcentaje","font":{"size":25}},"tickfont":{"size":20}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Vacaciones","Visita a familiares","Religión/peregrinaciones","Educación","Salud","Compras","Incentivo","Otros motivos personales","Reuniones de negocios","Conferencias y congresos","Actividades deportivas/culturales"],"y":[65.099999999999994,9.5999999999999996,6.4000000000000004,5.9000000000000004,0.59999999999999998,0.29999999999999999,0.040000000000000001,1,8.0700000000000003,1.0700000000000001,2],"type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e198f0380c525f1b30d8" style="width:850px;height:600px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e198f0380c525f1b30d8">{"x":{"visdat":{"230050a1113":["function () ","plotlyVisDat"]},"cur_data":"230050a1113","attrs":{"230050a1113":{"x":{},"y":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"width":850,"height":600,"margin":{"b":40,"l":60,"t":25,"r":10},"paper_bgcolor":"#F1F5F5","plot_bgcolor":"#F1F5F5","font":{"size":25},"xaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Motivo","font":{"size":25}},"tickfont":{"size":20},"tickangle":30,"type":"category","categoryorder":"array","categoryarray":["Actividades deportivas/culturales","Compras","Conferencias y congresos","Educación","Incentivo","Otros motivos personales","Religión/peregrinaciones","Reuniones de negocios","Salud","Vacaciones","Visita a familiares"]},"yaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Porcentaje","font":{"size":25}},"tickfont":{"size":20}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Vacaciones","Visita a familiares","Religión/peregrinaciones","Educación","Salud","Compras","Incentivo","Otros motivos personales","Reuniones de negocios","Conferencias y congresos","Actividades deportivas/culturales"],"y":[65.099999999999994,9.5999999999999996,6.4000000000000004,5.9000000000000004,0.59999999999999998,0.29999999999999999,0.040000000000000001,1,8.0700000000000003,1.0700000000000001,2],"type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div></div>
@@ -456,8 +472,8 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h3>¿Esta es mejor opción?</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-898958efbbc875231d50" style="width:850px;height:600px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-898958efbbc875231d50">{"x":{"visdat":{"92d82258233f":["function () ","plotlyVisDat"]},"cur_data":"92d82258233f","attrs":{"92d82258233f":{"x":{},"y":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"width":850,"height":600,"margin":{"b":40,"l":60,"t":25,"r":10},"paper_bgcolor":"#F1F5F5","plot_bgcolor":"#F1F5F5","font":{"size":25},"xaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Motivo","font":{"size":25}},"tickfont":{"size":20},"tickangle":-30,"type":"category","categoryorder":"array","categoryarray":["Vacaciones","Visita a familiares","Religión/peregrinaciones","Educación","Salud","Compras","Incentivo","Otros motivos personales","Reuniones de negocios","Conferencias y congresos","Actividades deportivas/culturales"]},"yaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Porcentaje","font":{"size":25}},"tickfont":{"size":20}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Vacaciones","Visita a familiares","Religión/peregrinaciones","Educación","Salud","Compras","Incentivo","Otros motivos personales","Reuniones de negocios","Conferencias y congresos","Actividades deportivas/culturales"],"y":[65.099999999999994,9.5999999999999996,8.0700000000000003,6.4000000000000004,5.9000000000000004,2,1.0700000000000001,1,0.59999999999999998,0.29999999999999999,0.040000000000000001],"type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c8f3fdf9d1e926b52611" style="width:850px;height:600px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c8f3fdf9d1e926b52611">{"x":{"visdat":{"230045036a6a":["function () ","plotlyVisDat"]},"cur_data":"230045036a6a","attrs":{"230045036a6a":{"x":{},"y":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"width":850,"height":600,"margin":{"b":40,"l":60,"t":25,"r":10},"paper_bgcolor":"#F1F5F5","plot_bgcolor":"#F1F5F5","font":{"size":25},"xaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Motivo","font":{"size":25}},"tickfont":{"size":20},"tickangle":-30,"type":"category","categoryorder":"array","categoryarray":["Vacaciones","Visita a familiares","Religión/peregrinaciones","Educación","Salud","Compras","Incentivo","Otros motivos personales","Reuniones de negocios","Conferencias y congresos","Actividades deportivas/culturales"]},"yaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Porcentaje","font":{"size":25}},"tickfont":{"size":20}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Vacaciones","Visita a familiares","Religión/peregrinaciones","Educación","Salud","Compras","Incentivo","Otros motivos personales","Reuniones de negocios","Conferencias y congresos","Actividades deportivas/culturales"],"y":[65.099999999999994,9.5999999999999996,8.0700000000000003,6.4000000000000004,5.9000000000000004,2,1.0700000000000001,1,0.59999999999999998,0.29999999999999999,0.040000000000000001],"type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -539,15 +555,15 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li>¿Qué proporción de mujeres está de acuerdo?
 <ul>
-<li><span class="math inline">\(\frac{363}{1412}=0.26\)</span></li>
+<li><span class="math inline">\frac{363}{1412}=0.26</span></li>
 </ul></li>
 <li>¿Qué proporción de las personas que están de acuerdo son mujeres?
 <ul>
-<li><span class="math inline">\(\frac{363}{735}=0.49\)</span></li>
+<li><span class="math inline">\frac{363}{735}=0.49</span></li>
 </ul></li>
 <li>¿Qué proporción de los hombres está de acuerdo?
 <ul>
-<li><span class="math inline">\(\frac{372}{1213}=0.31\)</span></li>
+<li><span class="math inline">\frac{372}{1213}=0.31</span></li>
 </ul></li>
 <li>¿Es más probable que las mujeres o los hombres crean en el amor verdadero?
 <ul>
@@ -555,7 +571,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </ul></li>
 <li>¿Qué proporción de las personas encuestadas son mujeres?
 <ul>
-<li><span class="math inline">\(\frac{1412}{2625}=0.54\)</span></li>
+<li><span class="math inline">\frac{1412}{2625}=0.54</span></li>
 </ul></li>
 </ul>
 </div></div>
@@ -567,16 +583,16 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h3>Gráficos de barras</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-6b0d25fe56a90197aa2f" style="width:850px;height:600px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6b0d25fe56a90197aa2f">{"x":{"data":[{"orientation":"v","width":[0.44999999999999996,0.45000000000000018,0.45000000000000018],"base":[0,0,0],"x":[0.77500000000000002,1.7749999999999999,2.7749999999999999],"y":[372,807,34],"text":["Respuesta: A favor<br />Cantidad:  372<br />Género: Hombre","Respuesta: En contra<br />Cantidad:  807<br />Género: Hombre","Respuesta: No lo sé<br />Cantidad:   34<br />Género: Hombre"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Hombre","legendgroup":"Hombre","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.45000000000000018,0.45000000000000018,0.45000000000000018],"base":[0,0,0],"x":[1.2250000000000001,2.2250000000000001,3.2250000000000001],"y":[363,1005,44],"text":["Respuesta: A favor<br />Cantidad:  363<br />Género: Mujer","Respuesta: En contra<br />Cantidad: 1005<br />Género: Mujer","Respuesta: No lo sé<br />Cantidad:   44<br />Género: Mujer"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Mujer","legendgroup":"Mujer","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.350076103500765,"r":7.3059360730593621,"b":40.304414003044151,"l":48.949771689497723},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":25},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,3.6000000000000001],"tickmode":"array","ticktext":["A favor","En contra","No lo sé"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["A favor","En contra","No lo sé"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":20},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Respuesta","font":{"color":"rgba(0,0,0,1)","family":"","size":25}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-50.25,1055.25],"tickmode":"array","ticktext":["0","250","500","750","1000"],"tickvals":[0,250,500,750,1000],"categoryorder":"array","categoryarray":["0","250","500","750","1000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":20},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Cantidad","font":{"color":"rgba(0,0,0,1)","family":"","size":25}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"#F1F5F5","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":20},"title":{"text":"Género","font":{"color":"rgba(0,0,0,1)","family":"","size":25}}},"hovermode":"closest","width":850,"height":600,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"92d85d654a01":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"92d85d654a01","visdat":{"92d85d654a01":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3b2371dfa53bc941e2ff" style="width:850px;height:600px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3b2371dfa53bc941e2ff">{"x":{"data":[{"orientation":"v","width":[0.44999999999999996,0.45000000000000018,0.45000000000000018],"base":[0,0,0],"x":[0.77500000000000002,1.7749999999999999,2.7749999999999999],"y":[372,807,34],"text":["Respuesta: A favor<br />Cantidad:  372<br />Género: Hombre","Respuesta: En contra<br />Cantidad:  807<br />Género: Hombre","Respuesta: No lo sé<br />Cantidad:   34<br />Género: Hombre"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Hombre","legendgroup":"Hombre","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.45000000000000018,0.45000000000000018,0.45000000000000018],"base":[0,0,0],"x":[1.2250000000000001,2.2250000000000001,3.2250000000000001],"y":[363,1005,44],"text":["Respuesta: A favor<br />Cantidad:  363<br />Género: Mujer","Respuesta: En contra<br />Cantidad: 1005<br />Género: Mujer","Respuesta: No lo sé<br />Cantidad:   44<br />Género: Mujer"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Mujer","legendgroup":"Mujer","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":48.949771689497723},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":25},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,3.6000000000000001],"tickmode":"array","ticktext":["A favor","En contra","No lo sé"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["A favor","En contra","No lo sé"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":20},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Respuesta","font":{"color":"rgba(0,0,0,1)","family":"","size":25}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-50.25,1055.25],"tickmode":"array","ticktext":["0","250","500","750","1000"],"tickvals":[0,250,500,750,1000],"categoryorder":"array","categoryarray":["0","250","500","750","1000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":20},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Cantidad","font":{"color":"rgba(0,0,0,1)","family":"","size":25}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"rgba(255,255,255,1)","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"#F1F5F5","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":20},"title":{"text":"Género","font":{"color":"rgba(0,0,0,1)","family":"","size":25}}},"hovermode":"closest","width":850,"height":600,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"23003c51e3f":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"23003c51e3f","visdat":{"23003c51e3f":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <h3>Gráficos de barras apiladas</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-7a6b6c2f52977eeaab03" style="width:850px;height:600px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7a6b6c2f52977eeaab03">{"x":{"data":[{"orientation":"v","width":[0.89999999999999991,0.90000000000000013,0.90000000000000036],"base":[0.49387755102040815,0.55463576158940397,0.5641025641025641],"x":[1,2,3],"y":[0.50612244897959191,0.44536423841059603,0.4358974358974359],"text":["Respuesta: A favor<br />Cantidad: 0.5061224<br />Género: Hombre","Respuesta: En contra<br />Cantidad: 0.4453642<br />Género: Hombre","Respuesta: No lo sé<br />Cantidad: 0.4358974<br />Género: Hombre"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Hombre","legendgroup":"Hombre","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.89999999999999991,0.90000000000000013,0.90000000000000036],"base":[0,0,0],"x":[1,2,3],"y":[0.49387755102040815,0.55463576158940397,0.5641025641025641],"text":["Respuesta: A favor<br />Cantidad: 0.4938776<br />Género: Mujer","Respuesta: En contra<br />Cantidad: 0.5546358<br />Género: Mujer","Respuesta: No lo sé<br />Cantidad: 0.5641026<br />Género: Mujer"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Mujer","legendgroup":"Mujer","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.350076103500765,"r":7.3059360730593621,"b":40.304414003044151,"l":48.949771689497723},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":25},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,3.6000000000000001],"tickmode":"array","ticktext":["A favor","En contra","No lo sé"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["A favor","En contra","No lo sé"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":20},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Respuesta","font":{"color":"rgba(0,0,0,1)","family":"","size":25}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.050000000000000003,1.05],"tickmode":"array","ticktext":["0.00","0.25","0.50","0.75","1.00"],"tickvals":[0,0.25,0.5,0.75,1],"categoryorder":"array","categoryarray":["0.00","0.25","0.50","0.75","1.00"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":20},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Cantidad","font":{"color":"rgba(0,0,0,1)","family":"","size":25}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"#F1F5F5","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":20},"title":{"text":"Género","font":{"color":"rgba(0,0,0,1)","family":"","size":25}}},"hovermode":"closest","width":850,"height":600,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"92d86600503b":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"92d86600503b","visdat":{"92d86600503b":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d58f3c84af5f72a406c9" style="width:850px;height:600px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d58f3c84af5f72a406c9">{"x":{"data":[{"orientation":"v","width":[0.89999999999999991,0.90000000000000013,0.90000000000000036],"base":[0.49387755102040815,0.55463576158940397,0.5641025641025641],"x":[1,2,3],"y":[0.50612244897959191,0.44536423841059603,0.4358974358974359],"text":["Respuesta: A favor<br />Cantidad: 0.5061224<br />Género: Hombre","Respuesta: En contra<br />Cantidad: 0.4453642<br />Género: Hombre","Respuesta: No lo sé<br />Cantidad: 0.4358974<br />Género: Hombre"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Hombre","legendgroup":"Hombre","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.89999999999999991,0.90000000000000013,0.90000000000000036],"base":[0,0,0],"x":[1,2,3],"y":[0.49387755102040815,0.55463576158940397,0.5641025641025641],"text":["Respuesta: A favor<br />Cantidad: 0.4938776<br />Género: Mujer","Respuesta: En contra<br />Cantidad: 0.5546358<br />Género: Mujer","Respuesta: No lo sé<br />Cantidad: 0.5641026<br />Género: Mujer"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Mujer","legendgroup":"Mujer","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":48.949771689497723},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":25},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,3.6000000000000001],"tickmode":"array","ticktext":["A favor","En contra","No lo sé"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["A favor","En contra","No lo sé"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":20},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Respuesta","font":{"color":"rgba(0,0,0,1)","family":"","size":25}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.050000000000000003,1.05],"tickmode":"array","ticktext":["0.00","0.25","0.50","0.75","1.00"],"tickvals":[0,0.25,0.5,0.75,1],"categoryorder":"array","categoryarray":["0.00","0.25","0.50","0.75","1.00"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":20},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Cantidad","font":{"color":"rgba(0,0,0,1)","family":"","size":25}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"rgba(255,255,255,1)","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"#F1F5F5","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":20},"title":{"text":"Género","font":{"color":"rgba(0,0,0,1)","family":"","size":25}}},"hovermode":"closest","width":850,"height":600,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"2300ac01f18":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"2300ac01f18","visdat":{"2300ac01f18":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div></div>
@@ -623,16 +639,16 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div><div class="column" style="font-size: 0.92em;">
 <h3>Por ejemplo</h3>
 <ul>
-<li>En una muestra, la media de 5 números <em>aproximadamente</em> similares: 4, 3, 5, 4 y 6 es <span class="math inline">\(\bar{x}=4.4\)</span>.
+<li>En una muestra, la media de 5 números <em>aproximadamente</em> similares: 4, 3, 5, 4 y 6 es <span class="math inline">\bar{x}=4.4</span>.
 <ul>
 <li>Esto sería como una regla <svg aria-hidden="true" role="img" viewbox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 336c0 26.5 21.5 48 48 48l544 0c26.5 0 48-21.5 48-48l0-160c0-26.5-21.5-48-48-48l-64 0 0 80c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-80-64 0 0 80c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-80-64 0 0 80c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-80-64 0 0 80c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-80-64 0 0 80c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-80-64 0c-26.5 0-48 21.5-48 48L0 336z"></path></svg>, “<em>uniforme</em>” en toda la superficie, por lo que el centro de gravedad está en el “<em>centro</em>”.</li>
 </ul></li>
-<li>La media de 5 números con uno sumamente distinto (valor extremo): 2, 3, 5, 4 y 25 es <span class="math inline">\(\bar{x}=8.8\)</span>.
+<li>La media de 5 números con uno sumamente distinto (valor extremo): 2, 3, 5, 4 y 25 es <span class="math inline">\bar{x}=8.8</span>.
 <ul>
 <li>Esto sería como un martillo <svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M413.5 237.5c-28.2 4.8-58.2-3.6-80-25.4l-38.1-38.1C280.4 159 272 138.8 272 117.6V105.5L192.3 62c-5.3-2.9-8.6-8.6-8.3-14.7s3.9-11.5 9.5-14l47.2-21C259.1 4.2 279 0 299.2 0h18.1c36.7 0 72 14 98.7 39.1l44.6 42c24.2 22.8 33.2 55.7 26.6 86L503 183l8-8c9.4-9.4 24.6-9.4 33.9 0l24 24c9.4 9.4 9.4 24.6 0 33.9l-88 88c-9.4 9.4-24.6 9.4-33.9 0l-24-24c-9.4-9.4-9.4-24.6 0-33.9l8-8-17.5-17.5zM27.4 377.1L260.9 182.6c3.5 4.9 7.5 9.6 11.8 14l38.1 38.1c6 6 12.4 11.2 19.2 15.7L134.9 484.6c-14.5 17.4-36 27.4-58.6 27.4C34.1 512 0 477.8 0 435.7c0-22.6 10.1-44.1 27.4-58.6z"></path></svg>, cargado en un extremo.</li>
 <li>También puede darse el caso de que haya valores extremos en ambas direcciones, comportándose como una mancuerna <svg aria-hidden="true" role="img" viewbox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M96 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V224v64V448c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V384H64c-17.7 0-32-14.3-32-32V288c-17.7 0-32-14.3-32-32s14.3-32 32-32V160c0-17.7 14.3-32 32-32H96V64zm448 0v64h32c17.7 0 32 14.3 32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32v64c0 17.7-14.3 32-32 32H544v64c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32V288 224 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32zM416 224v64H224V224H416z"></path></svg>.
 <ul>
-<li>Por ejemplo: 2, 9, 12, 8, 11, 35 tiene como media <span class="math inline">\(\bar{x}=12.83\)</span></li>
+<li>Por ejemplo: 2, 9, 12, 8, 11, 35 tiene como media <span class="math inline">\bar{x}=12.83</span></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -643,23 +659,23 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="columns">
 <div class="column" style="width:50%;">
 <h3>Poblacional</h3>
-<p><span class="math display">\[
+<p><span class="math display">
 \mu=\frac{\sum_{i=1}^N x_i}{N}
-\]</span></p>
+</span></p>
 <ul>
-<li><p>Siendo <span class="math inline">\(\mu\)</span> el promedio, <span class="math inline">\(x_i\)</span> los valores individuales y <span class="math inline">\(N\)</span> la cantidad de datos en la población.</p></li>
-<li><p>En este sentido <span class="math inline">\(\mu\)</span> es un parámetro y <span class="math inline">\(\bar{x}\)</span> es un estimador.</p></li>
+<li><p>Siendo <span class="math inline">\mu</span> el promedio, <span class="math inline">x_i</span> los valores individuales y <span class="math inline">N</span> la cantidad de datos en la población.</p></li>
+<li><p>En este sentido <span class="math inline">\mu</span> es un parámetro y <span class="math inline">\bar{x}</span> es un estimador.</p></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <h3>Muestral</h3>
 <ul>
 <li>Note el cambio en la notación (los símbolos). La notación es muy importante para esta área de conocimiento.</li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 \bar{x}=\frac{\sum_{i=1}^n x_i}{n}
-\]</span></p>
+</span></p>
 <ul>
-<li>Siendo <span class="math inline">\(\bar{x}\)</span> el promedio, <span class="math inline">\(x_i\)</span> los valores individuales y <span class="math inline">\(n\)</span> la cantidad de datos en la muestra.</li>
+<li>Siendo <span class="math inline">\bar{x}</span> el promedio, <span class="math inline">x_i</span> los valores individuales y <span class="math inline">n</span> la cantidad de datos en la muestra.</li>
 </ul>
 </div></div>
 </section>
@@ -672,16 +688,16 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Es un tipo de media que se calcula como la raíz n-esima del producto de un conjunto de números estrictamente positivos</li>
 <li>Se suele usar para calcular medias sobre porcentajes. Es menos sensible a datos extremos.</li>
 </ul>
-<p><span class="math display">\[\bar{x}_G=(x_1 \cdot x_2 \cdots x_n)^\frac{1}{n}\]</span></p>
+<p><span class="math display">\bar{x}_G=(x_1 \cdot x_2 \cdots x_n)^\frac{1}{n}</span></p>
 </div><div class="column" style="width:50%;">
 <h3>1.3 Armónica (H)</h3>
 <ul>
 <li>Es un tipo de media que es igual al número de elementos de un grupo de cifras entre la suma de los inversos de cada una de esas cifras.</li>
 <li>Se suele usar con velocidades, tiempos, entre otros. También es menos sensible a datos extremos y solo funciona en números positivos.</li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 \bar{x}_H=\frac{n}{\frac{1}{x_1} + \frac{1}{x_2} + \cdots +\frac{1}{x_n}}
-\]</span></p>
+</span></p>
 </div></div>
 </section>
 <section class="slide level2 bloques">
@@ -698,11 +714,11 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div><div class="column">
 <h3>Muestral</h3>
 <ul>
-<li><span class="math display">\[\bar{x}=\frac{\sum_{i=1}^n w_i\cdot x_i}{\sum_{i=1}^n w_i}\]</span></li>
+<li><span class="math display">\bar{x}=\frac{\sum_{i=1}^n w_i\cdot x_i}{\sum_{i=1}^n w_i}</span></li>
 </ul>
 <h3>Poblacional</h3>
 <ul>
-<li><span class="math display">\[\bar{x}=\frac{\sum_{i=1}^N w_i\cdot x_i}{\sum_{i=1}^N w_i}\]</span></li>
+<li><span class="math display">\bar{x}=\frac{\sum_{i=1}^N w_i\cdot x_i}{\sum_{i=1}^N w_i}</span></li>
 </ul>
 </div></div>
 </section>
@@ -754,7 +770,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 <ul>
-<li>Se obtiene un promedio ponderado de <span class="math inline">\(\bar{x}_w=\frac{5600}{8}=700\)</span> colones.</li>
+<li>Se obtiene un promedio ponderado de <span class="math inline">\bar{x}_w=\frac{5600}{8}=700</span> colones.</li>
 </ul>
 </div></div>
 </section>
@@ -764,12 +780,12 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Como se ha enfatizado, la <span class="hi">media es bastante sensible</span> a un solo valor extremo.</li>
 <li>La media recortada se calcula “quitando” cierto porcentaje de los valores mayores y menores del conjunto de datos.
 <ul>
-<li>Se eliminan <span class="math inline">\(k\)</span> valores de ambos extremos, no solo de uno.</li>
-<li><span class="math inline">\(\bar{x}_{\text{rec}} = \frac{1}{n - 2k} \sum_{i = k+1}^{n-k} x_{(i)}\)</span></li>
+<li>Se eliminan <span class="math inline">k</span> valores de ambos extremos, no solo de uno.</li>
+<li><span class="math inline">\bar{x}_{\text{rec}} = \frac{1}{n - 2k} \sum_{i = k+1}^{n-k} x_{(i)}</span></li>
 </ul></li>
 <li>Por ejemplo, una media recortada al 10 % se calcula eliminando tanto el 10 % de los valores menores como el 10 % de los valores mayores. Y se calcula el promedio de los valores “sobrevivientes”.
 <ul>
-<li>Si se tienen 7 datos y se elige un recorte de 10 %, <span class="math inline">\(k=7\cdot 0.1=0.7=0\)</span> la media recortada sería igual a la media, pues no se eliminarían datos, si se elige 20 %, <span class="math inline">\(k=7\cdot 0.2=1.4=1\)</span> se eliminaría 1 dato en cada extremo (el menor y el mayor).</li>
+<li>Si se tienen 7 datos y se elige un recorte de 10 %, <span class="math inline">k=7\cdot 0.1=0.7=0</span> la media recortada sería igual a la media, pues no se eliminarían datos, si se elige 20 %, <span class="math inline">k=7\cdot 0.2=1.4=1</span> se eliminaría 1 dato en cada extremo (el menor y el mayor).</li>
 </ul></li>
 </ul>
 </section>
@@ -815,18 +831,18 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="column" style="width:50%;">
 <h3>Poblacional</h3>
 <p>Es literalmente el valor medio de un conjunto de <span class="hi">datos ordenados</span> de menor a mayor.</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \widetilde{X} = \begin{cases} x_{\frac{N+1}{2}} &amp; \text{si N es impar} \\ \frac{1}{2} \cdot (x_{\frac{N}{2}}+x_{\frac{N}{2}+1}) &amp; \text{si N es par} \end{cases}
-\]</span></p>
+</span></p>
 <ul>
-<li><p>Siendo <span class="math inline">\(\tilde{x}\)</span> la mediana.</p></li>
-<li><p>En este sentido <span class="math inline">\(\widetilde{X}\)</span> es un parámetro y <span class="math inline">\(\tilde{x}\)</span> es un estimador.</p></li>
+<li><p>Siendo <span class="math inline">\tilde{x}</span> la mediana.</p></li>
+<li><p>En este sentido <span class="math inline">\widetilde{X}</span> es un parámetro y <span class="math inline">\tilde{x}</span> es un estimador.</p></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <h3>Muestral</h3>
-<p><span class="math display">\[
+<p><span class="math display">
 \tilde{x} = \begin{cases} x_{\frac{n+1}{2}} &amp; \text{si n es impar} \\ \frac{1}{2} \cdot (x_{\frac{n}{2}}+x_{\frac{n}{2}+1}) &amp; \text{si n es par} \end{cases}
-\]</span></p>
+</span></p>
 </div></div>
 </section>
 <section class="slide level2 bloques">
@@ -869,7 +885,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 <p>La mediana es:</p>
-<p><span class="math display">\[\tilde{x}=\frac{1}{2} \cdot (x_{\frac{10}{2}}+x_{\frac{10}{2}+1}) \\ \tilde{x} =\frac{1}{2}\cdot (39 + 40) \\ \tilde{x} =39.5\]</span></p>
+<p><span class="math display">\tilde{x}=\frac{1}{2} \cdot (x_{\frac{10}{2}}+x_{\frac{10}{2}+1}) \\ \tilde{x} =\frac{1}{2}\cdot (39 + 40) \\ \tilde{x} =39.5</span></p>
 </div><div class="column img-fit" style="width:35%;">
 <p><img data-src="img\example.gif"></p>
 </div></div>
@@ -893,7 +909,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li><strong>Percentil</strong> (P): divide a los datos en 100 partes iguales</li>
 <li><strong>Quintil</strong>: divide a los datos en 5 partes iguales</li>
 <li><strong>Cuartil</strong> (Q): divide a los datos en 4 partes iguales</li>
-<li><strong>Mediana</strong>: divide a los datos en 2 partes iguales El <span class="math inline">\(P_50\)</span> es igual al <span class="math inline">\(Q_2\)</span> que es igual a la mediana (<span class="math inline">\(\tilde{x}\)</span>).</li>
+<li><strong>Mediana</strong>: divide a los datos en 2 partes iguales El <span class="math inline">P_50</span> es igual al <span class="math inline">Q_2</span> que es igual a la mediana (<span class="math inline">\tilde{x}</span>).</li>
 </ul></li>
 </ul>
 </section>
@@ -902,7 +918,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="columns">
 <div class="column" style="font-size: 1.2em;">
 <ul>
-<li>Por ejemplo, para el siguiente conjunto de datos el <span class="math inline">\(Q_1\)</span> es 35
+<li>Por ejemplo, para el siguiente conjunto de datos el <span class="math inline">Q_1</span> es 35
 <ul>
 <li>29, 31, 35, 39, 40, 43, 44, 44, 52
 <ul>
@@ -918,13 +934,13 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div><div class="column" style="width:40%;">
 <h3>Algunas equivalencias</h3>
 <ul>
-<li><span class="math inline">\(P_{25}=Q_1\)</span></li>
-<li><span class="math inline">\(P_{50}=Q_2=\tilde{x}\)</span></li>
-<li><span class="math inline">\(P_{75}=Q_3\)</span></li>
-<li><span class="math inline">\(P_{20}=Quintil_1\)</span></li>
-<li><span class="math inline">\(P_{40}=Quintil_2\)</span></li>
-<li><span class="math inline">\(P_{60}=Quintil_3\)</span></li>
-<li><span class="math inline">\(P_{80}=Quintil_4\)</span></li>
+<li><span class="math inline">P_{25}=Q_1</span></li>
+<li><span class="math inline">P_{50}=Q_2=\tilde{x}</span></li>
+<li><span class="math inline">P_{75}=Q_3</span></li>
+<li><span class="math inline">P_{20}=Quintil_1</span></li>
+<li><span class="math inline">P_{40}=Quintil_2</span></li>
+<li><span class="math inline">P_{60}=Quintil_3</span></li>
+<li><span class="math inline">P_{80}=Quintil_4</span></li>
 </ul>
 </div></div>
 </section>
@@ -945,17 +961,17 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li><p>El defecto o desventaja de los rangos es que depende únicamente de dos valores, y por ende es <span class="hi">sensible</span> a si estos son extremos en comparación al resto del conjunto de datos.</p></li>
 <li><p>Se refiere a la diferencia entre el valor máximo y el mínimo.</p></li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 R=Máx-Min
-\]</span></p>
+</span></p>
 </div><div class="column" style="width:50%;">
 <h3>2. Rango Intercuartil (RIC o <em>IQR</em>)</h3>
 <ul>
 <li>Esta reduce el riesgo de la anterior, pues es una medida de dispersión del 50 % central de los datos.</li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 IQR = Q_3-Q_1 \\ IQR = P_{75}-P_{25}
-\]</span></p>
+</span></p>
 </div></div>
 </section>
 <section class="slide level2 bloques">
@@ -980,29 +996,29 @@ IQR = Q_3-Q_1 \\ IQR = P_{75}-P_{25}
 <ul>
 <li>Varianza</li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 \sigma^2=\frac{\sum_{i=1}^{N}(x_i-\mu)^2}{N}
-\]</span></p>
+</span></p>
 <ul>
 <li>Desviación estándar</li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 \sigma=\sqrt{\frac{\sum_{i=1}^{N}(x_i-\mu)^2}{N}}
-\]</span></p>
+</span></p>
 </div><div class="column" style="width:50%;">
 <h3>Muestral</h3>
 <ul>
 <li>Varianza</li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 s^2=\frac{\sum_{i=1}^{N}(x_i-\bar{x})^2}{n-1}
-\]</span></p>
+</span></p>
 <ul>
 <li>Desviación estándar</li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 s=\sqrt{\frac{\sum_{i=1}^{N}(x_i-\bar{x})^2}{n-1}}
-\]</span></p>
+</span></p>
 </div></div>
 </section>
 <section class="slide level2 bloques">
@@ -1011,9 +1027,9 @@ s=\sqrt{\frac{\sum_{i=1}^{N}(x_i-\bar{x})^2}{n-1}}
 <li><p>Se llama la corrección de Bessel</p></li>
 <li><p>Justificación por intuición:</p>
 <ul>
-<li>Básicamente 𝑛−1 provee una estimación insesgada del estimador de la varianza poblacional. El <span class="math inline">\(n-1\)</span> implica que un grado de libertad se pierde (en realidad se usa) para estimar la media muestral <span class="math inline">\(\bar{x}\)</span>.</li>
+<li>Básicamente 𝑛−1 provee una estimación insesgada del estimador de la varianza poblacional. El <span class="math inline">n-1</span> implica que un grado de libertad se pierde (en realidad se usa) para estimar la media muestral <span class="math inline">\bar{x}</span>.</li>
 </ul></li>
-<li><p>Los grados de libertad (tema que se detalla en otras sesiones) son las piezas de información que se utilizan para calcular un estimador, en este caso 1 grado de libertad se usó para calcular la media (<span class="math inline">\(\bar{x}\)</span>), por lo que solo quedarían <span class="math inline">\(n-1\)</span> para la varianza.</p></li>
+<li><p>Los grados de libertad (tema que se detalla en otras sesiones) son las piezas de información que se utilizan para calcular un estimador, en este caso 1 grado de libertad se usó para calcular la media (<span class="math inline">\bar{x}</span>), por lo que solo quedarían <span class="math inline">n-1</span> para la varianza.</p></li>
 <li><p>La justificación por demostración está disponible en este <a href="https://stevenggoni.github.io/interactivos/demostracion_n-1.html" target="_blank">sitio web</a> como material <strong>complementario</strong> y <strong>opcional</strong>.</p></li>
 </ul>
 </section>
@@ -1030,13 +1046,13 @@ s=\sqrt{\frac{\sum_{i=1}^{N}(x_i-\bar{x})^2}{n-1}}
 </ul>
 </div><div class="column" style="width:50%;">
 <h3>Poblacional</h3>
-<p><span class="math display">\[
+<p><span class="math display">
 CV = \frac{\sigma}{\mu}
-\]</span></p>
+</span></p>
 <h3>Muestral</h3>
-<p><span class="math display">\[
+<p><span class="math display">
 \widehat{CV} = \frac{s}{\bar{x}}
-\]</span></p>
+</span></p>
 </div></div>
 </section>
 <section class="slide level2 bloques">
@@ -1065,7 +1081,7 @@ CV = \frac{\sigma}{\mu}
 </ul>
 </section>
 <section class="slide level2 bloques" style="font-size: 1.2em;">
-<h2>Medidas de dispersión o variabilidad</h2>
+<h2>Medidas de forma</h2>
 <ul>
 <li><p>Describen la forma de una distribución de datos. Permiten identificar si una distribución es simétrica o asimétrica, o qué tan agrupados están los datos.</p></li>
 <li><p>Son, probablemente, las medidas que típicamente se interpretan mal.</p></li>
@@ -1082,11 +1098,11 @@ CV = \frac{\sigma}{\mu}
 </ul>
 </div><div class="column" style="width:50%;">
 <ul>
-<li><span class="math inline">\(Sk= \frac{n}{(n-1)(n-2)}\left[\sum_{i=1}^{n}\left(\frac{x_i-\bar{x}}{s}\right)^3\right]\)</span>
+<li><span class="math inline">Sk= \frac{n}{(n-1)(n-2)}\left[\sum_{i=1}^{n}\left(\frac{x_i-\bar{x}}{s}\right)^3\right]</span>
 <ul>
-<li><span class="math inline">\(Sk&lt;0\)</span>: asimetría negativa</li>
-<li><span class="math inline">\(Sk=0\)</span>: distribución simétrica</li>
-<li><span class="math inline">\(Sk&gt;0\)</span>: asimetría positiva</li>
+<li><span class="math inline">Sk&lt;0</span>: asimetría negativa</li>
+<li><span class="math inline">Sk=0</span>: distribución simétrica</li>
+<li><span class="math inline">Sk&gt;0</span>: asimetría positiva</li>
 </ul></li>
 </ul>
 <p><img data-src="img/asimetria.png" width="350"></p>
@@ -1139,17 +1155,17 @@ CV = \frac{\sigma}{\mu}
 <ul>
 <li>Esta fórmula mide el <u>exceso de curtosis</u>, es decir, que tan distinta es de una distribución normal (tema que se aborda más adelante en el curso).</li>
 </ul></li>
-<li><p><span class="math inline">\(ku=\left[ \left(\frac{n(n+1)}{(n-1)(n-2)(n-3)}\sum_{i=1}^{n} \left(\frac{x_i-\bar{x}}{s}\right)^4 \right) \right] - \frac{3(n-1)}{(n-2)(n-3)}\)</span></p>
+<li><p><span class="math inline">ku=\left[ \left(\frac{n(n+1)}{(n-1)(n-2)(n-3)}\sum_{i=1}^{n} \left(\frac{x_i-\bar{x}}{s}\right)^4 \right) \right] - \frac{3(n-1)}{(n-2)(n-3)}</span></p>
 <ul>
-<li><span class="math inline">\(ku&lt;0\)</span> platicúrtica:
+<li><span class="math inline">ku&lt;0</span> platicúrtica:
 <ul>
 <li>Donde la curtosis es menor que la de la distribución normal</li>
 </ul></li>
-<li><span class="math inline">\(ku=0\)</span> mesocúrtica:
+<li><span class="math inline">ku=0</span> mesocúrtica:
 <ul>
 <li>Donde la curtosis es igual a la de la distribución normal</li>
 </ul></li>
-<li><span class="math inline">\(ku&gt;0\)</span> leptocúrtica:
+<li><span class="math inline">ku&gt;0</span> leptocúrtica:
 <ul>
 <li>Donde la curtosis es mayor que la de la distribución normal</li>
 </ul></li>
@@ -1180,9 +1196,9 @@ CV = \frac{\sigma}{\mu}
 <h3>Tablas de frecuencia</h3>
 <p>No existe una “regla” establecida para construir tablas de frecuencia. Pero debe asegurarse que los intervalos establecidos cubran todo el conjunto de datos.</p>
 <ol type="1">
-<li>Determinar la cantidad de datos (<span class="math inline">\(n\)</span>)</li>
+<li>Determinar la cantidad de datos (<span class="math inline">n</span>)</li>
 <li>Escoger la regla de agrupación</li>
-<li>Obtener la medida de variabilidad asociada a la regla de agrupación (<span class="math inline">\(R\)</span>, <span class="math inline">\(IQR\)</span>, <span class="math inline">\(s\)</span>)</li>
+<li>Obtener la medida de variabilidad asociada a la regla de agrupación (<span class="math inline">R</span>, <span class="math inline">IQR</span>, <span class="math inline">s</span>)</li>
 <li>Definir la cantidad de clases empleando la regla de agrupación.</li>
 </ol>
 </div></div>
@@ -1193,35 +1209,35 @@ CV = \frac{\sigma}{\mu}
 <div class="column" style="font-size: 0.83em;">
 <h3>Reglas de agrupación</h3>
 <ul>
-<li>Sturges (<span class="math inline">\(n&lt;200\)</span>)</li>
+<li>Sturges (<span class="math inline">n&lt;200</span>)</li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 k=1+log_2(n)
-\]</span></p>
+</span></p>
 <ul>
-<li>Scott (<span class="math inline">\(n&gt;200\)</span>)</li>
+<li>Scott (<span class="math inline">n&gt;200</span>)</li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 A_S=h=\frac{7\cdot s}{2\cdot \sqrt[3]{n}
 }
-\]</span></p>
+</span></p>
 <ul>
 <li>Freedman-Diaconis</li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 A_{FD}=h=\frac{2\cdot IQR}{\sqrt[3]{n}}
-\]</span></p>
+</span></p>
 </div><div class="column" style="width:50%;">
-<p>Si se definió <span class="math inline">\(k\)</span>, calcule <span class="math inline">\(h\)</span>, por el contrario, si definió <span class="math inline">\(h\)</span>, calcule <span class="math inline">\(k\)</span>.</p>
-<p><span class="math display">\[
+<p>Si se definió <span class="math inline">k</span>, calcule <span class="math inline">h</span>, por el contrario, si definió <span class="math inline">h</span>, calcule <span class="math inline">k</span>.</p>
+<p><span class="math display">
 k= \frac{Rango}{h} \\k=\frac{max-min}{h}
-\]</span></p>
+</span></p>
 </div></div>
 </section>
 <section class="slide level2 bloques">
-<h2>Convencionalismo de redondeo para <span class="math inline">\(k\)</span></h2>
+<h2>Convencionalismo de redondeo para <span class="math inline">k</span></h2>
 <ul>
-<li><span class="math inline">\(k\)</span> es la cantidad de clases y como tal es siempre un número entero positivo.</li>
+<li><span class="math inline">k</span> es la cantidad de clases y como tal es siempre un número entero positivo.</li>
 <li>Si el entero del resultado previo al redondeo es “<em>par</em>” se redondea a la alta y si el entero es “<em>impar</em>” se redondea a la baja, resultando siempre un número impar de clases.
 <ul>
 <li>6.26 redondea a 7.0</li>
@@ -1235,13 +1251,13 @@ k= \frac{Rango}{h} \\k=\frac{max-min}{h}
 <div class="columns">
 <div class="column" style="width:50%;">
 <p>Tomemos el siguiente conjunto de datos, que por conveniencia ya viene ordenado.</p>
-<p>Usemos la regla de Sturges y calculemos <span class="math inline">\(k\)</span></p>
-<p><span class="math display">\[
+<p>Usemos la regla de Sturges y calculemos <span class="math inline">k</span></p>
+<p><span class="math display">
 k=1+log_2(12)=4.58=5
-\]</span> Entonces:</p>
-<p><span class="math display">\[
+</span> Entonces:</p>
+<p><span class="math display">
 h=\frac{77.2-73.8}{5}=0.68
-\]</span></p>
+</span></p>
 </div><div class="column" style="font-size: 0.8em;">
 <div class="cell">
 <div class="cell-output-display">
@@ -1313,35 +1329,35 @@ h=\frac{77.2-73.8}{5}=0.68
 <th>Clases</th>
 <th>LI</th>
 <th>LS</th>
-<th><span class="math inline">\(f_a\)</span></th>
-<th><span class="math inline">\(f_r\)</span></th>
-<th><span class="math inline">\(F_a\)</span></th>
-<th><span class="math inline">\(F_r\)</span></th>
+<th><span class="math inline">f_a</span></th>
+<th><span class="math inline">f_r</span></th>
+<th><span class="math inline">F_a</span></th>
+<th><span class="math inline">F_r</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>1</td>
-<td><span class="math inline">\([Min\)</span></td>
-<td><span class="math inline">\(LI_1 + h[\)</span></td>
+<td><span class="math inline">[Min</span></td>
+<td><span class="math inline">LI_1 + h[</span></td>
 <td>Conteo</td>
-<td><span class="math inline">\(\frac{f_{a1}}{n}\)</span></td>
-<td><span class="math inline">\(f_{a1}\)</span></td>
-<td><span class="math inline">\(\frac{F_{a1}}{n}\)</span></td>
+<td><span class="math inline">\frac{f_{a1}}{n}</span></td>
+<td><span class="math inline">f_{a1}</span></td>
+<td><span class="math inline">\frac{F_{a1}}{n}</span></td>
 </tr>
 <tr class="even">
 <td>2</td>
-<td><span class="math inline">\([LS_1\)</span></td>
-<td><span class="math inline">\(LI_2 + h[\)</span></td>
+<td><span class="math inline">[LS_1</span></td>
+<td><span class="math inline">LI_2 + h[</span></td>
 <td>…</td>
-<td><span class="math inline">\(\frac{f_{a2}}{n}\)</span></td>
-<td><span class="math inline">\(f_{a1}+f_{a2}\)</span></td>
+<td><span class="math inline">\frac{f_{a2}}{n}</span></td>
+<td><span class="math inline">f_{a1}+f_{a2}</span></td>
 <td>…</td>
 </tr>
 <tr class="odd">
 <td>3</td>
-<td><span class="math inline">\([LS_2\)</span></td>
-<td><span class="math inline">\(LI_3 + h[\)</span></td>
+<td><span class="math inline">[LS_2</span></td>
+<td><span class="math inline">LI_3 + h[</span></td>
 <td>…</td>
 <td>…</td>
 <td>…</td>
@@ -1359,11 +1375,11 @@ h=\frac{77.2-73.8}{5}=0.68
 <tr class="odd">
 <td>5</td>
 <td>[…]</td>
-<td><span class="math inline">\(Max]\)</span></td>
+<td><span class="math inline">Max]</span></td>
 <td>…</td>
 <td>…</td>
-<td><span class="math inline">\(f_{a1}+f_{a2}+…+f_{a5}=n\)</span></td>
-<td><span class="math inline">\(\frac{F_{a5}}{n}=1\)</span></td>
+<td><span class="math inline">f_{a1}+f_{a2}+…+f_{a5}=n</span></td>
+<td><span class="math inline">\frac{F_{a5}}{n}=1</span></td>
 </tr>
 </tbody>
 </table>
@@ -1444,8 +1460,8 @@ h=\frac{77.2-73.8}{5}=0.68
 <div class="column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-308bd31d08426dd8722d" style="width:850px;height:600px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-308bd31d08426dd8722d">{"x":{"data":[{"orientation":"v","width":[0.84999999999999432,0.85000000000002274,0.85000000000002274,0.84999999999999432,0.84999999999999432],"base":[0,0,0,0,0],"x":[73.950000000000117,74.800000000000125,75.650000000000119,76.500000000000128,77.350000000000122],"y":[2,1,3,2,4],"text":["count: 2<br />Datos: 73.95","count: 1<br />Datos: 74.80","count: 3<br />Datos: 75.65","count: 2<br />Datos: 76.50","count: 4<br />Datos: 77.35"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(38,50,71,1)","line":{"width":1.8897637795275593,"color":"rgba(193,138,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.350076103500765,"r":7.3059360730593621,"b":40.304414003044151,"l":31.415525114155255},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":25},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[73.312500000000114,77.987500000000125],"tickmode":"array","ticktext":["74","75","76","77"],"tickvals":[74,75,76,77],"categoryorder":"array","categoryarray":["74","75","76","77"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":20},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Intervalos","font":{"color":"rgba(0,0,0,1)","family":"","size":25}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.20000000000000001,4.2000000000000002],"tickmode":"array","ticktext":["0","1","2","3","4"],"tickvals":[0,1,2,3,4],"categoryorder":"array","categoryarray":["0","1","2","3","4"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":20},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Frecuencia","font":{"color":"rgba(0,0,0,1)","family":"","size":25}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"#F1F5F5","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":20},"title":{"font":{"size":25}}},"hovermode":"closest","width":850,"height":600,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"92d8607237ff":{"x":{},"type":"bar"}},"cur_data":"92d8607237ff","visdat":{"92d8607237ff":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-53cdcf111d4c13612bee" style="width:850px;height:600px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-53cdcf111d4c13612bee">{"x":{"data":[{"orientation":"v","width":[0.84999999999999432,0.85000000000002274,0.85000000000002274,0.84999999999999432,0.84999999999999432],"base":[0,0,0,0,0],"x":[73.799999999999997,74.650000000000006,75.5,76.350000000000009,77.200000000000003],"y":[2,0,4,1,5],"text":["count: 2<br />Datos: 73.80","count: 0<br />Datos: 74.65","count: 4<br />Datos: 75.50","count: 1<br />Datos: 76.35","count: 5<br />Datos: 77.20"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(38,50,71,1)","line":{"width":1.8897637795275593,"color":"rgba(193,138,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":31.415525114155255},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":25},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[73.162499999999994,77.837500000000006],"tickmode":"array","ticktext":["74","75","76","77"],"tickvals":[74,75,76,77],"categoryorder":"array","categoryarray":["74","75","76","77"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":20},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Intervalos","font":{"color":"rgba(0,0,0,1)","family":"","size":25}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.25,5.25],"tickmode":"array","ticktext":["0","1","2","3","4","5"],"tickvals":[0,1,2,3,4,5],"categoryorder":"array","categoryarray":["0","1","2","3","4","5"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":20},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Frecuencia","font":{"color":"rgba(0,0,0,1)","family":"","size":25}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"rgba(255,255,255,1)","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"#F1F5F5","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":20},"title":{"font":{"size":25}}},"hovermode":"closest","width":850,"height":600,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"230029b1843":{"x":{},"type":"bar"}},"cur_data":"230029b1843","visdat":{"230029b1843":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -1495,14 +1511,14 @@ h=\frac{77.2-73.8}{5}=0.68
 <ul>
 <li>Es el valor extremo superior más pequeño que se encuentre dentro de:
 <ul>
-<li><span class="math inline">\(LS=Q_3+1.5\cdot IQR\)</span></li>
+<li><span class="math inline">LS=Q_3+1.5\cdot IQR</span></li>
 </ul></li>
 </ul></li>
 <li>Extremo inferior
 <ul>
 <li>Es el valor extremo inferior más pequeño que se encuentre dentro de:
 <ul>
-<li><span class="math inline">\(LI=Q_1-1.5\cdot IQR\)</span></li>
+<li><span class="math inline">LI=Q_1-1.5\cdot IQR</span></li>
 </ul></li>
 </ul></li>
 <li>Cualquier valor fuera de LI y LS es considerado “atípico” y debe estudiarse</li>
@@ -1515,8 +1531,8 @@ h=\frac{77.2-73.8}{5}=0.68
 <div class="column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-642bb723aed5393f43f8" style="width:850px;height:600px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-642bb723aed5393f43f8">{"x":{"visdat":{"92d8279dc3f":["function () ","plotlyVisDat"]},"cur_data":"92d8279dc3f","attrs":{"92d8279dc3f":{"y":{},"boxpoints":"outliers","marker":{"color":"#C18A00"},"line":{"color":"#C18A00"},"fillcolor":"#263247","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"width":850,"height":600,"margin":{"b":40,"l":60,"t":25,"r":10},"paper_bgcolor":"#F1F5F5","plot_bgcolor":"#F1F5F5","font":{"size":25},"yaxis":{"domain":[0,1],"automargin":true,"title":"Valores","tickfont":{"size":20}},"xaxis":{"domain":[0,1],"automargin":true,"showticklabels":false},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"#263247","y":[73.799999999999997,74.200000000000003,75.099999999999994,75.299999999999997,75.5,75.700000000000003,76.5,76.900000000000006,77.099999999999994,77.200000000000003,77.200000000000003,77.200000000000003],"boxpoints":"outliers","marker":{"color":"#C18A00","line":{"color":"rgba(31,119,180,1)"}},"line":{"color":"#C18A00"},"type":"box","name":"#263247","xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9fd3f2175e025d590a73" style="width:850px;height:600px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9fd3f2175e025d590a73">{"x":{"visdat":{"23003214564b":["function () ","plotlyVisDat"]},"cur_data":"23003214564b","attrs":{"23003214564b":{"y":{},"boxpoints":"outliers","marker":{"color":"#C18A00"},"line":{"color":"#C18A00"},"fillcolor":"#263247","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"width":850,"height":600,"margin":{"b":40,"l":60,"t":25,"r":10},"paper_bgcolor":"#F1F5F5","plot_bgcolor":"#F1F5F5","font":{"size":25},"yaxis":{"domain":[0,1],"automargin":true,"title":"Valores","tickfont":{"size":20}},"xaxis":{"domain":[0,1],"automargin":true,"showticklabels":false},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"#263247","y":[73.799999999999997,74.200000000000003,75.099999999999994,75.299999999999997,75.5,75.700000000000003,76.5,76.900000000000006,77.099999999999994,77.200000000000003,77.200000000000003,77.200000000000003],"boxpoints":"outliers","marker":{"color":"#C18A00","line":{"color":"rgba(31,119,180,1)"}},"line":{"color":"#C18A00"},"type":"box","name":"#263247","xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -1562,7 +1578,7 @@ h=\frac{77.2-73.8}{5}=0.68
 <h2>Dos variables cuantitativas</h2>
 <ul>
 <li><p>Se introduce una nueva forma de visualización, donde usted puede visualizar y correspondientemente estudiar la relación que existe entre dos variables.</p></li>
-<li><p>Este gráfico posiblemente ya lo conoce de cursos de ciencias básicas como química y física, donde se muestra en un eje (<span class="math inline">\(x\)</span>) una variable y en el otro (<span class="math inline">\(y\)</span>), de tal modo que se puede apreciar como se relacionan entre sí.</p></li>
+<li><p>Este gráfico posiblemente ya lo conoce de cursos de ciencias básicas como química y física, donde se muestra en un eje (<span class="math inline">x</span>) una variable y en el otro (<span class="math inline">y</span>), de tal modo que se puede apreciar como se relacionan entre sí.</p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -1767,7 +1783,7 @@ h=\frac{77.2-73.8}{5}=0.68
         autoPlayMedia: null,
 
         // Global override for preloading lazy-loaded iframes (null/true/false)
-        preloadIframes: null,
+        preloadIframes: true,
 
         // Number of milliseconds between automatically proceeding to the
         // next slide, disabled when set to 0, this value can be overwritten
@@ -1829,7 +1845,7 @@ h=\frac{77.2-73.8}{5}=0.68
         margin: 5.0e-2,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: '',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

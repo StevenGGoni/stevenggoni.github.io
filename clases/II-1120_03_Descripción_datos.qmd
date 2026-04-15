@@ -365,10 +365,13 @@ amor_plot <- amor %>%
   dplyr::filter(Respuesta != "Total") %>%
   tidyr::pivot_longer(cols = c(Hombre, Mujer),
                names_to = "Género",
-               values_to = "Cantidad")
+               values_to = "Cantidad") %>% 
+  dplyr::select(-Total) %>% 
+  dplyr::mutate(Respuesta = as.factor(Respuesta),
+                Género = as.factor(Género))
 
 g1 <- ggplot(amor_plot, aes(x = Respuesta, y = Cantidad, fill = Género)) +
-  geom_bar(stat = "identity", position = "dodge") +
+  geom_col(position = "dodge") +
   scale_fill_brewer(palette = "Set1") +
   labs(title = "",
        x = "Respuesta",
@@ -829,7 +832,7 @@ $$
 -   ¿Cuál medida de dispersión es la más adecuada para las respectivas medidas de posición?
 -   Para la [media]{.hi} se suele usar la [desviación estándar]{.hi}, mientras que para la [mediana]{.hi} se sugiere usar alguna de las medidas de rango, preferiblemente el [IQR]{.hi}.
 
-## Medidas de dispersión o variabilidad {.bloques style="font-size: 1.2em;"}
+## Medidas de forma {.bloques style="font-size: 1.2em;"}
 
 -   Describen la forma de una distribución de datos. Permiten identificar si una distribución es simétrica o asimétrica, o qué tan agrupados están los datos.
 
