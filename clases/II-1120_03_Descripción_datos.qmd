@@ -667,24 +667,31 @@ $$\tilde{x}=\frac{1}{2} \cdot (x_{\frac{10}{2}}+x_{\frac{10}{2}+1}) \\ \tilde{x}
 -   En simple, es el valor que más repite en una distribución de datos. Como tal no tiene fórmula, pues se trata de un simple conteo.
   * > Es posible que haya conjuntos de datos sin moda o con varias modas.
 
-## 4. Cuantiles {.bloques}
+## 4. Cuantiles {.bloques style="font-size: 0.92em;"}
 
 -   Dividen el conjunto de datos en partes iguales. El procedimiento manual siempre inicia con ordenar los datos de menor a mayor (*en este sentido se sigue la misma lógica de cálculo que en la mediana, pues esta es un caso de los cuantiles*). Y tomar decisiones si la cantidad de datos es par o impar.
     -   **Percentil** (P): divide a los datos en 100 partes iguales
     -   **Quintil**: divide a los datos en 5 partes iguales
     -   **Cuartil** (Q): divide a los datos en 4 partes iguales
-    -   **Mediana**: divide a los datos en 2 partes iguales El $P_50$ es igual al $Q_2$ que es igual a la mediana ($\tilde{x}$).
+    -   **Mediana**: divide a los datos en 2 partes iguales El $P_{50}$ es igual al $Q_2$ que es igual a la mediana ($\tilde{x}$).
+- La fórmula general son
+  * $L = 1 + (n-1)\frac{k}{100}$, 
+  * $L= \frac{k(n+1)}{100}$
+  * Siendo $L$ la posición del percentil ($k$). Si $L$ es un entero, se toma ese dato, caso contrario, se interpola entre los datos vecinos.
 
 ## ¿Cómo se interpretan? {.bloques}
 
 ::::: columns
-::: {.column width="60%" style="font-size: 1.2em;"}
--   Por ejemplo, para el siguiente conjunto de datos el $Q_1$ es 35
+::: {.column width="60%" style="font-size: 0.95em;"}
+-   Por ejemplo, para el siguiente conjunto de datos el $Q_1$ es 35 para la primera fórmula y 33 para la segunda.
     -   29, 31, 35, 39, 40, 43, 44, 44, 52
-        -   En Excel usamos `QUARTILE.INC` en lugar de `QUARTILE.EXC`, si se usa `QUARTILE.EXC` el resultado sería 33 y no 35. La función `QUARTILE.EXC` excluye valores extremos del conjunto de datos.
+    - $L = 1 +(9-1)\frac{25}{100} = 1+8\cdot 0.25 = 3$
+    * $L = \frac{25(9+1)}{100}=2.5$, 
+        -   En Excel `QUARTILE.INC` es la primera fórmula y `QUARTILE.EXC` es la segunda.
 -   [Interpretación]{.hi}:
     -   El 25 % de los datos se encuentran por debajo de 35.
 -   Calcule e interprete otros cuantiles.
+-   [Nota]{.hi}: es más importante la interpretación, que la metodología de cálculo, pues esta puede variar entre los software.
 :::
 
 ::: {.column width="40%"}
