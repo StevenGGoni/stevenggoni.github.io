@@ -31,6 +31,22 @@
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link rel="stylesheet" href="custom.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -143,7 +159,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">26 de febrero de 2026</p>
+  <p class="date">17 de abril de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
@@ -175,7 +191,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Se trabaja con variables aleatorias que siguen la <span class="hi">distribución normal</span>.</li>
 <li>O bien, el <span class="hi">tamaño de muestra es lo suficientemente grande</span> para cumplir con el teorema del límite central (TLC).
 <ul>
-<li>Recuerde que el TLC depende, en gran medida de la asimetría de la distribución de la población y que no es una buena práctica asumir que en todos los casos se necesita <span class="math inline">\(n \ge 30\)</span> (esta idea es prácticamente un fósil de la estadística). En ocasiones puede ser más o puede ser menos.</li>
+<li>Recuerde que el TLC depende, en gran medida de la asimetría de la distribución de la población y que no es una buena práctica asumir que en todos los casos se necesita <span class="math inline">n \ge 30</span> (esta idea es prácticamente un fósil de la estadística). En ocasiones puede ser más o puede ser menos.</li>
 <li>Puede visitar estos enlaces para mejorar su comprensión en este tema:
 <ul>
 <li><a href="https://stevenggoni.github.io/tutoriales_R/Demostracion_TLC.html" target="_blank">Explicación, demostración y tutorial sobre el TLC</a></li>
@@ -222,7 +238,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Estadística no paramétrica</h2>
 <div class="columns">
-<div class="column" style="font-size: 0.9em;">
+<div class="column" style="font-size: 0.88em;">
 <div class="cell">
 <div class="cell-output-display">
 <table class="table caption-top" style="margin-left: auto; margin-right: auto;">
@@ -306,7 +322,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Reflexión</h2>
 <ul>
-<li>El <span class="math inline">\(n&lt;30\)</span> no significa que automáticamente se requiere de un test no paramétrico.
+<li>El <span class="math inline">n&lt;30</span> no significa que automáticamente se requiere de un test no paramétrico.
 <ul>
 <li>Esto es un error que hay que evitar reproducir.</li>
 <li>El test no paramétrico se requiere cuando no se cumplan los supuestos del paramétrico, no por una cuestión del tamaño de muestra.</li>
@@ -336,11 +352,11 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Prueba de signo</h2>
 <ul>
-<li>Es usada para probar hipótesis acerca de la mediana (<span class="math inline">\(\widetilde{X}\)</span>) de una distribución continua o discreta. La mediana es el valor central de una distribución.</li>
+<li>Es usada para probar hipótesis acerca de la mediana (<span class="math inline">\widetilde{X}</span>) de una distribución continua o discreta. La mediana es el valor central de una distribución.</li>
 <li>Las hipótesis son:
 <ul>
-<li><p><span class="math inline">\(H_o: \widetilde{X}=\text{valor}\)</span></p></li>
-<li><p><span class="math inline">\(H_i: \widetilde{X}\ne\text{valor}\)</span></p></li>
+<li><p><span class="math inline">H_o: \widetilde{X}=\text{valor}</span></p></li>
+<li><p><span class="math inline">H_i: \widetilde{X}\ne\text{valor}</span></p></li>
 <li><p>Son también plausibles las hipótesis alternativas con &gt; y &lt;.</p></li>
 </ul></li>
 <li>Sus principales supuestos son: independencia, que el nivel de medición sea al menos ordinal y que la mediana está bien definida</li>
@@ -444,7 +460,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>Ejemplo 01</h2>
 <div class="columns">
 <div class="column" style="font-size: 0.85em;">
-<p>Se calculan las diferencias respecto al valor de <span class="math inline">\(H_o\)</span>.</p>
+<p>Se calculan las diferencias respecto al valor de <span class="math inline">H_o</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table caption-top" style="margin-left: auto; margin-right: auto;">
@@ -571,13 +587,13 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>Ejemplo 01</h2>
 <ul>
 <li><p>Luego, se cuenta los signos positivos y negativos.</p></li>
-<li><p><span class="math inline">\(+ = 14\)</span></p></li>
-<li><p><span class="math inline">\(- = 6\)</span></p></li>
-<li><p>El valor P se obtiene basándose en la distribución binomial (lo que tiene sentido, pues hay dos signos). Se hace de la siguiente manera (con <span class="math inline">\(+\)</span> y con <span class="math inline">\(-\)</span>):</p></li>
-<li><p><span class="math inline">\(2\cdot Bin(x \ge 14, n=20, p = 0.5) = 0.1153\)</span></p></li>
-<li><p><span class="math inline">\(2\cdot Bin(x \le 6, n=20, p = 0.5) = 0.1153\)</span></p>
+<li><p><span class="math inline">+ = 14</span></p></li>
+<li><p><span class="math inline">- = 6</span></p></li>
+<li><p>El valor P se obtiene basándose en la distribución binomial (lo que tiene sentido, pues hay dos signos). Se hace de la siguiente manera (con <span class="math inline">+</span> y con <span class="math inline">-</span>):</p></li>
+<li><p><span class="math inline">2\cdot Bin(x \ge 14, n=20, p = 0.5) = 0.1153</span></p></li>
+<li><p><span class="math inline">2\cdot Bin(x \le 6, n=20, p = 0.5) = 0.1153</span></p>
 <ul>
-<li>Si la hipótesis es unilateral, no se multiplica por 2 y se utiliza la desigualdad (<span class="math inline">\(\le , \ge\)</span>) correspondiente.</li>
+<li>Si la hipótesis es unilateral, no se multiplica por 2 y se utiliza la desigualdad (<span class="math inline">\le , \ge</span>) correspondiente.</li>
 </ul></li>
 </ul>
 </section>
@@ -779,8 +795,8 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li><p>La mediana hipotetizada en la población es de 0.</p></li>
 <li><p>Se cuenta con 8 +’s y 4 -’s.</p></li>
-<li><p><span class="math inline">\(2\cdot Bin(x \ge 8, n=12, p = 0.5) = 0.3877\)</span></p></li>
-<li><p><span class="math inline">\(2\cdot Bin(x \le 4, n=12, p = 0.5) = 0.3877\)</span></p></li>
+<li><p><span class="math inline">2\cdot Bin(x \ge 8, n=12, p = 0.5) = 0.3877</span></p></li>
+<li><p><span class="math inline">2\cdot Bin(x \le 4, n=12, p = 0.5) = 0.3877</span></p></li>
 <li><p>Por lo que, no hay evidencia suficiente para rechazar la hipótesis nula de que los dos dispositivos de medición son iguales.</p></li>
 </ul>
 </section>
@@ -795,8 +811,8 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </ul></li>
 <li>Las hipótesis son:
 <ul>
-<li><span class="math inline">\(H_o: \widetilde{X}=\text{valor}\)</span></li>
-<li><span class="math inline">\(H_i: \widetilde{X}\ne\text{valor}\)</span></li>
+<li><span class="math inline">H_o: \widetilde{X}=\text{valor}</span></li>
+<li><span class="math inline">H_i: \widetilde{X}\ne\text{valor}</span></li>
 </ul></li>
 </ul>
 </section>
@@ -981,11 +997,11 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>Ejemplo 03</h2>
 <ul>
 <li><p>Se realiza la suma los rangos o rankings para cada signo, de tal forma que:</p></li>
-<li><p><span class="math inline">\(W^+=150\)</span></p></li>
-<li><p><span class="math inline">\(W^-=60\)</span></p></li>
-<li><p>El valor P se puede conseguir con esta <a href="https://homepage.divms.uiowa.edu/~mbognar/applets/wilcoxon-signed-rank.html" target="_blank">aplicación</a>.</p></li>
-<li><p>Valor P = <span class="math inline">\(P(W \le w) = P(W \le 60) = 0.04865\)</span></p></li>
-<li><p>Como la distribución es simétrica, también puede: Valor P = <span class="math inline">\(P(W \ge w) = P(W \ge 150) = 0.04865\)</span></p></li>
+<li><p><span class="math inline">W^+=150</span></p></li>
+<li><p><span class="math inline">W^-=60</span></p></li>
+<li><p>El valor P se puede conseguir con esta <a href="https://mabognar.github.io/apps/wilcoxon-signed-rank.html" target="_blank">aplicación</a>.</p></li>
+<li><p>Valor P = <span class="math inline">2\cdot P(W \le w) = 2\cdot P(W \le 60) = 2\cdot 0.04865 = 0.09730</span></p></li>
+<li><p>Como la distribución es simétrica, también puede: Valor P = <span class="math inline">2\cdot P(W \ge w) = 2\cdot P(W \ge 150) = 2\cdot 0.04865 = 0.09730</span></p></li>
 <li><p>Concluya del estudio</p></li>
 </ul>
 </section>
@@ -995,13 +1011,13 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Básicamente es la alternativa a las pruebas de hipótesis sobre dos poblaciones (en paramétrico usamos medias). Lo que evalúa es si las distribuciones de ambas poblaciones son iguales. Por lo que podría interpretarse como una prueba sobre la diferencia de las medianas siempre que el supuesto de forma se cumpla.</li>
 <li>Puede probar la hipótesis de las distribuciones:
 <ul>
-<li><span class="math inline">\(H_o:F_1(x)=F_2(x)\)</span></li>
-<li><span class="math inline">\(H_i:F_1(x) \ne F_2(x)\)</span></li>
+<li><span class="math inline">H_o:F_1(x)=F_2(x)</span></li>
+<li><span class="math inline">H_i:F_1(x) \ne F_2(x)</span></li>
 </ul></li>
 <li>Si la forma de las distribuciones es la misma, puede probar la hipótesis de las medianas:
 <ul>
-<li><span class="math inline">\(H_o:\widetilde{X_1}=\widetilde{X_2}\)</span></li>
-<li><span class="math inline">\(H_i:\widetilde{X_1}\ne\widetilde{X_2}\)</span></li>
+<li><span class="math inline">H_o:\widetilde{X_1}=\widetilde{X_2}</span></li>
+<li><span class="math inline">H_i:\widetilde{X_1}\ne\widetilde{X_2}</span></li>
 </ul></li>
 </ul>
 </section>
@@ -1179,27 +1195,27 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="columns">
 <div class="column">
 <h3>Rangos de Wilcoxon</h3>
-<p><span class="math inline">\(W_i\)</span> es la suma de las posiciones o rankings para cada <span class="math inline">\(i\)</span>.</p>
+<p><span class="math inline">W_i</span> es la suma de las posiciones o rankings para cada <span class="math inline">i</span>.</p>
 <ul>
-<li>Aleación 1 (<span class="math inline">\(n=10\)</span>) = <span class="math inline">\(W_1=99\)</span></li>
-<li>Aleación 2 (<span class="math inline">\(n=10\)</span>) = <span class="math inline">\(W_2=111\)</span></li>
+<li>Aleación 1 (<span class="math inline">n=10</span>) = <span class="math inline">W_1=99</span></li>
+<li>Aleación 2 (<span class="math inline">n=10</span>) = <span class="math inline">W_2=111</span></li>
 </ul>
-<p>Entonces, usando esta <a href="https://homepage.divms.uiowa.edu/~mbognar/applets/wilcoxon-rank-sum.html" target="_blank">aplicación</a>:</p>
+<p>Entonces, usando esta <a href="https://mabognar.github.io/apps/wilcoxon-rank-sum.html" target="_blank">aplicación</a>:</p>
 <ul>
-<li><span class="math inline">\(P(W_1 \ge 99) = 0.68474\)</span></li>
-<li><span class="math inline">\(P(W_2 \le 111) = 0.68474\)</span></li>
+<li><span class="math inline">2 \cdot P(W_1 \le 99) = 2 \cdot 0.34211 = 0.68422</span></li>
+<li><span class="math inline">2 \cdot P(W_2 \ge 111) = 2 \cdot 0.34211  = 0.68422</span></li>
 </ul>
 </div><div class="column">
 <h3>Mann-Whitney</h3>
-<p><span class="math display">\[U_i=W_i-\frac{n_i\cdot (n_i+1)}{2}\]</span></p>
+<p><span class="math display">U_i=W_i-\frac{n_i\cdot (n_i+1)}{2}</span></p>
 <ul>
-<li>Aleación 1 (<span class="math inline">\(n=10\)</span>) = <span class="math inline">\(U_1=44\)</span></li>
-<li>Aleación 2 (<span class="math inline">\(n=10\)</span>) = <span class="math inline">\(U_2=56\)</span></li>
+<li>Aleación 1 (<span class="math inline">n=10</span>) = <span class="math inline">U_1=44</span></li>
+<li>Aleación 2 (<span class="math inline">n=10</span>) = <span class="math inline">U_2=56</span></li>
 </ul>
-<p>Entonces, usando esta <a href="https://homepage.divms.uiowa.edu/~mbognar/applets/mw.html" target="_blank">aplicación</a>:</p>
+<p>Entonces, usando esta <a href="https://mabognar.github.io/apps/mw.html" target="_blank">aplicación</a>:</p>
 <ul>
-<li><span class="math inline">\(P(U_1 \ge 44) = 0.68474\)</span></li>
-<li><span class="math inline">\(P(U_2 \le 56) = 0.68474\)</span></li>
+<li><span class="math inline">2 \cdot P(U_1 \ge 44) = 2 \cdot 0.34211 = 0.68422</span></li>
+<li><span class="math inline">2 \cdot P(U_2 \le 56) = 2 \cdot 0.34211 = 0.68422</span></li>
 </ul>
 </div></div>
 </section>
@@ -1379,7 +1395,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
         autoPlayMedia: null,
 
         // Global override for preloading lazy-loaded iframes (null/true/false)
-        preloadIframes: null,
+        preloadIframes: true,
 
         // Number of milliseconds between automatically proceeding to the
         // next slide, disabled when set to 0, this value can be overwritten
@@ -1441,7 +1457,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
         margin: 5.0e-2,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: '',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
