@@ -39,7 +39,7 @@ library(tidyverse)
       * [Explicación, demostración y tutorial sobre el TLC](https://stevenggoni.github.io/tutoriales_R/Demostracion_TLC.html){target="_blank"}
       * [Efecto de la asimetría sobre el TLC](https://rpubs.com/SGGoni){target="_blank"}
 
-* Igualmente, recuerde que estos los procedimientos paramétricos son, por lo general, [relativamente insensibles]{.hi} a variaciones pequeñas en la normalidad. 
+* Igualmente, recuerde que los procedimientos paramétricos son, por lo general, [relativamente insensibles]{.hi} a variaciones pequeñas en la normalidad. 
   * Incluso si la condición no se cumple **por muy poco**, aún puede usarse el procedimiento.
 
 ## Introducción {.bloques}
@@ -59,7 +59,7 @@ library(tidyverse)
 ::: {.column width="100%"}
 
 * La estadística no paramétrica es una rama de la estadística que permite analizar datos [sin asumir que provienen de una distribución específica]{.hi}.
-  * *Nota del autor de esta presentación: nótese que indica que no provienen de una distribución específica, no solo de la normal, por lo que recomiendo evaluar si no existe una distribución particular que se pueda ajustar a los datos antes de aplicar un test paramétrico* 
+  * *Nota del autor de esta presentación: nótese que indica que no provienen de una distribución específica, no solo de la normal, por lo que recomiendo evaluar si no existe una distribución particular que se pueda ajustar a los datos antes de aplicar un [test no paramétrico]{.hi}* 
 
 * Lo que la hace especialmente útil cuando las condiciones para los métodos paramétricos no se cumplen.
 
@@ -73,10 +73,9 @@ library(tidyverse)
 
 :::::: {.columns}
 
-::: {.column style="font-size: 0.88em;"}
+::: {.column style="font-size: 0.85em;"}
 
 ```{r}
-
 
 data.frame(Caracteristica = c("Distribución de los datos",
                               "Tipo de datos",
