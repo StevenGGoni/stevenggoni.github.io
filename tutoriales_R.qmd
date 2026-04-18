@@ -30,6 +30,10 @@ Para los que nunca han programado, o al menos nunca han programado en R/Rstudio.
 
 Una demostración por intuición de cuándo y por qué funciona el TLC. 
 
+* [Estadística bivariada](tutoriales_R/Estadistica_bivariada.html){target="_blank"}
+
+Un pequeño tutorial con ejercicios resueltos sobre covarianza y correlaciones. 
+
 ## Ingeniería de Calidad `r fontawesome::fa("ruler-combined")`
 
 * [Diagrama de Pareto](tutoriales_R/diagrama_pareto.html){target="_blank"} 
