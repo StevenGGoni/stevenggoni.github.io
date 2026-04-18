@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
+
+  <meta name="author" content="Steven García Goñi steven.garciagoni@ucr.ac.cr">
+  <title>Estadística bivariada</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="custom.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section class="quarto-title-block center">
+  <h1 class="title">Estadística bivariada</h1>
+  <p class="subtitle"><a href="https://stevenggoni.github.io/clases/II-1120_07_Estadistica_bivariada.pdf">Versión PDF</a> <br> II-1120 Estadística para Ingeniería Industrial I</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a> 
+</div>
+</div>
+</div>
+
+  <p class="date">18 de abril de 2026</p>
+</section>
+<section class="slide level2 bloques">
+<h2>Agenda</h2>
+<ul>
+<li>Preguntas generadoras</li>
+<li>Introducción</li>
+<li>Causalidad</li>
+<li>Correlación</li>
+<li>Algunas medidas de asociación entre dos variables</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Preguntas generadoras</h2>
+<ul>
+<li>¿Qué es causalidad?</li>
+<li>¿Qué es correlación?</li>
+<li>¿Cómo se relaciona y se diferencia la correlación de la causalidad?</li>
+<li>¿Qué es covarianza?</li>
+<li>¿Cuáles medidas de asociación entre dos variables existen?</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Introducción</h2>
+<ul>
+<li>Al inicio del curso hablamos de por qué se debe estudiar estadística.</li>
+<li><span class="hi">¿Lo recuerdan?</span></li>
+<li>En esa misma clase introdujimos un término que no volvimos a usar: causalidad</li>
+<li>Repasemos…</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Recordemos …</h2>
+<ul>
+<li><p>La estadística es una <strong>herramienta poderosa</strong>, pero su verdadero valor se obtiene cuando se aplica de <strong>manera adecuada y se interpreta dentro de un</strong> <span class="hi">contexto específico</span>.</p></li>
+<li><p>Sin contexto, los datos y los análisis estadísticos carecen de significado y utilidad práctica.</p>
+<blockquote>
+<p><span class="hi">It’s easy to lie with statistics, but it’s hard to tell the truth without them</span> - <em>Andrejs Dunkels</em></p>
+</blockquote></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Teoría, hipótesis y contexto</h2>
+<ul>
+<li><p>Para Babbie (2000), una teoría es una explicación sistemática de los hechos y leyes observadas que se relacionan con un aspecto específico de la vida.</p></li>
+<li><p>Organizan las observaciones y les asignan un sentido. A menudo, las expectativas comprenden la idea de <span class="hi">causalidad</span> (Dado un evento A -&gt; Ocurre un evento B).</p>
+<blockquote>
+<p><span class="hi">Las teorías no deben confundirse con una opinión</span></p>
+</blockquote></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplos</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>General</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/educacion.png" class="quarto-figure quarto-figure-center" width="100"></p>
+</figure>
+</div>
+<ul>
+<li>Mediante una encuesta, se obtiene que el 90 % de las personas con baja educación son prejuiciosas y que el 30 % de las que tienen mayor educación también lo son. Es decir, que el 70 % no tiene prejuicios.</li>
+<li>La hipótesis sería que “algo” en la educación es la <span class="hi">causa</span> de que la persona sea prejuiciosa o no. La determinación de ese “algo” es la teoría asociada al contexto.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3>Específico</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/reloj.png" class="quarto-figure quarto-figure-center" width="100"></p>
+</figure>
+</div>
+<ul>
+<li>En una fábrica de ensamble de relojes, se hipotetiza que dividir una tarea compleja en partes más pequeñas y asignar cada parte a una persona o equipo especializado aumenta la productividad.</li>
+<li>Hay teorías que sostienen esta afirmación y que pueden estudiarse/comprobarse con el uso de la estadística, mediante un experimento u observación, por ejemplo.</li>
+</ul>
+</div></div>
+</section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>¿Por qué estudiar causalidad?</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Causalidad</h2>
+<ul>
+<li>La causalidad se estudia porque debemos darle sentido a los datos para guiar las acciones y políticas y aprender de los éxitos y los fracasos.</li>
+<li>Por ejemplo
+<ul>
+<li>El efecto de fumar -&gt; Sobre el cáncer de pulmón</li>
+<li>El efecto de la educación -&gt; Sobre los salarios</li>
+<li>El efecto de las emisiones de carbono -&gt; Sobre el clima</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Causalidad</h2>
+<ul>
+<li>De forma más ambiciosa, con estadística se busca entender cómo y por qué las causas influyen en los efectos.</li>
+<li>Por ejemplo, las creencias respecto al dengue de que los mosquitos solo pican de día o que el frío mata al mosquito pueden conducir a decisiones erróneas sobre los efectos.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Causalidad</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>El nombre “malaria” proviene del italiano “mal aria”, que significa “mal aire”. Esta denominación se debe a la antigua creencia de que la enfermedad era transmitida por el aire viciado de los pantanos.</li>
+<li>Saber que la causa son los mosquitos y no el aire es el motivo por el cual se usan mosquiteros y no mascarillas al visitar este tipo de zonas.</li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/malaria.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Recordatorio</h2>
+<ul>
+<li><p>En este curso, hemos trabajado múltiples veces con la idea de causalidad.</p></li>
+<li><p>Por ejemplo, en estadística descriptiva establecíamos relaciones como:</p>
+<ul>
+<li>Si una máquina es más vieja, tendrá más fallos (causa -&gt; efecto)</li>
+</ul></li>
+<li><p>En probabilidad:</p>
+<ul>
+<li>El teorema de Bayes puede interpretarse dentro de algunos modelos causales. <span class="math inline">P(A|B)</span> es la probabilidad de A (efecto) dado B (causa). Nota: Bayes no implica necesariamente causalidad, solo se pretende ilustrar un ejemplo.</li>
+</ul></li>
+<li><p>Como pueden ver, es tema conocido, en esta clase se formaliza el concepto.</p></li>
+</ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Causalidad</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Formalmente</h2>
+<ul>
+<li><p>La causalidad se refiere a una relación de causa y efecto entre dos variables, donde un cambio en una variable (la causa) provoca un cambio en otra (el efecto).</p></li>
+<li><p>Para que exista causalidad:</p>
+<ul>
+<li>Debe existir consistencia, es decir, siempre se repite</li>
+<li>No hay variables confusoras (espurias) que puedan intervenir.</li>
+<li>Debe observarse asociación entre las variables.</li>
+<li>Toda causa precede al efecto (causa -&gt; efecto)</li>
+<li>Coherencia</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Confusores</h2>
+<ul>
+<li><p>Una <span class="hi">variable confusora</span> (o confounding variable) es una <strong>tercera variable</strong> que distorsiona la relación entre dos variables que se están estudiando.</p></li>
+<li><p>Puede hacer parecer que hay una relación causal entre ellas cuando en realidad esa relación es <strong>espuria o exagerada</strong>.</p></li>
+</ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Correlación</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Correlación</h2>
+<ul>
+<li><p>En ciencia e ingeniería a menudo las personas recolectan datos para determinar la relación que existe entre dos variables.</p></li>
+<li><p><span class="hi">Correlación</span>: Indica que dos variables están relacionadas (se mueven juntas), pero no implica necesariamente que una cause a la otra.</p></li>
+<li><p><span class="hi">Causalidad</span>: Implica una dirección clara del efecto. Si A causa B, entonces al intervenir en A, esperaríamos un cambio en B.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Correlación vs Causalidad</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li><p>Se pueden presentar relaciones espurias entre variables.</p></li>
+<li><p><strong>Relación espuria</strong>: relación matemática de dos acontecimientos que NO tienen conexión lógica, aunque puede implicar que la tienen debido a un tercer factor no considerado aún.</p></li>
+</ul>
+</div><div class="column img-fit" style="width:60%;">
+<p><img data-src="img/correlacion_vs_causalidad.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Sesgo</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/sesgo_confusion.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Sesgo</h2>
+<ul>
+<li>Construya un diagrama equivalente para esta situación: La habilidad lectora de un infante está correlacionada con la talla del zapato. ¿Cuál es la variable confusora?</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Recuerda el concepto de sesgo?</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Los ejemplos anteriores se conocen como <span class="hi">sesgo de confusión</span>.
+<ul>
+<li>Donde un cambio producido en una variable (clima caliente) afecta, por separado, a otras dos variables (venta de helados y quemarse la piel), causando la <span class="hi">falsa</span> sensación de que un cambio en la venta de helados causa un cambio en las quemaduras solares (o viceversa)</li>
+</ul></li>
+</ul>
+</div><div class="column">
+<h3>Existen muchos tipos de sesgo</h3>
+<ul>
+<li>De confusión</li>
+<li>Del colisionador</li>
+<li>De selección</li>
+<li>De medición</li>
+<li>De información</li>
+<li>De supervivencia</li>
+<li>Etc</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Por ejemplo</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>El sesgo del superviviente es uno muy famoso. Quizá algún día haya visto esta imagen.</p></li>
+<li><p>Es una falacia lógica que consiste en centrarse en aquellos que han logrado sobrevivir a un proceso, ignorando a aquellos que no lo lograron.</p></li>
+<li><p>En esa imagen, las partes dañadas de los aviones que regresan de la batalla muestran los lugares en los que pueden sufrir daños y aun así volver a casa; los que son alcanzados en los lugares no señalados no sobreviven. Centrarse en reforzar las partes dañadas de los aviones supervivientes es un sesgo de supervivencia.</p></li>
+</ul>
+</div><div class="column img-fit" style="width:45%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Imagen de <a href="https://es.wikipedia.org/wiki/Sesgo_del_superviviente">Wikipedia</a></figcaption>
+<p><img data-src="img/Survivorship-bias.svg.png"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Otro ejemplo</h2>
+<div class="columns">
+<div class="column img-fit" style="width:46%;">
+<video id="video_shortcode_videojs_video1" height="720" class="video-js vjs-default-skin " controls="" preload="auto" data-setup="{}" title=""><source src="img/sesgo_video.mp4"></video>
+</div><div class="column" style="width:60%;">
+<ul>
+<li><p>Tomado de <a href="https://www.instagram.com/picanumeros/?hl=es" target="_blank"><span class="citation" data-cites="picanumeros">@picanumeros</span></a></p></li>
+<li><p>En 2020 se llevó a cabo un estudio para medir la evolución de la salud mental de la población estadounidense durante la pandemia de COVID-19.</p></li>
+<li><p>Dicho estudio se basaba en una encuesta longitudinal con cuatro oleadas (en abril, mayo, junio y septiembre de ese año).</p></li>
+<li><p>Sin embargo, un análisis de los datos en bruto nos daría un resultado sorprendente: que la salud mental mejoró durante el transcurso del estudio, a pesar de seguir en lo más duro de la pandemia.</p></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Por qué volvemos a hablar de sesgo?</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<ul>
+<li>Porque en estadística bivariada, asociar dos variables sin suficiente fundamento teórico nos puede llevar a conclusiones erradas.</li>
+<li>Observe el siguiente ejemplo:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/this_is_fine.jpg" class="quarto-figure quarto-figure-center" width="400"></p>
+</figure>
+</div>
+</div><div class="column img-fit">
+<p><img data-src="img/correlacion_espuria.svg"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Otros problemas</h2>
+<ul>
+<li>Además del sesgo, hay que cuidar la forma en la que analizan los datos
+<ul>
+<li>Agregados o desagregados, pues esta forma de organización puede introducir variables confusoras.</li>
+</ul></li>
+<li>Esto puede llevar a la paradoja de Simpson
+<ul>
+<li>La asociación que se sostiene en una población puede ser inversa a la que se obtiene en cada subgrupo de la población.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Paradoja de Simpson</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><p>La paradoja de Simpson sucede cuando al analizar los datos desagregados por grupos resulta que las conclusiones estadísticas obtenidas entre las variables son <span class="hi">opuestas</span>.</p></li>
+<li><p>En esta falacia estadística cayeron muchas personas en la época de pandemia por COVID – 19. Sobre todo por parte de negacionistas.</p>
+<ul>
+<li>Independientemente de si estamos o no de acuerdo, observemos el comportamiento de la paradoja a la derecha.</li>
+</ul></li>
+<li><p>Hay que tener cuidado con los análisis estadísticos cuando hay en juego variables ocultas.</p></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/paradoja.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Paradoja de Simpson</h2>
+<div class="columns">
+<div class="column img-fit" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Imagen de <a href="https://www.instagram.com/p/CSeyyo2jSSt/?img_index=1" target="{&quot;_blank&quot;">Javier Álvarez Liébana</a></figcaption>
+<p><img data-src="img/paradoja_simpson.jpg"></p>
+</figure>
+</div>
+</div><div class="column img-fit" style="width:40%;">
+<p>Tomado de <a href="https://www.tiktok.com/@picanumeros" target="_blank"><span class="citation" data-cites="picanumeros">@picanumeros</span></a></p>
+<video id="video_shortcode_videojs_video2" height="705" class="video-js vjs-default-skin " controls="" preload="auto" data-setup="{}" title=""><source src="img/simpson_video.mp4"></video>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Paradoja de Simpson</h2>
+<div class="columns">
+<div class="column img-fit" style="width:60%;">
+<ul>
+<li>Las conclusiones a las que se puede llegar son diferentes.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Imagen tomada del libro <em>Causal Inference in Statistics: A primer</em></figcaption>
+<p><img data-src="img/paradoja_agrupado.png"></p>
+</figure>
+</div>
+</div><div class="column img-fit">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Imagen tomada del libro <em>Causal Inference in Statistics: A primer</em></figcaption>
+<p><img data-src="img/paradoja_separados.png"></p>
+</figure>
+</div>
+</div></div>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Medidas de asociación entre dos variables</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Repaso</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Los datos se clasifican por niveles de medición. El nivel de medición y el tipo de variable <span class="hi">determinan los cálculos que se llevan a cabo</span> con el fin de resumir y presentar los datos.</p></li>
+<li><p>Es decir, que no todos los tipos de datos se analizan igual.</p></li>
+</ul>
+</div><div class="column">
+<h3>Niveles de medición</h3>
+<ul>
+<li>Nominal</li>
+<li>Ordinal</li>
+<li>Intervalo</li>
+<li>Razón</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Repaso</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>En visualización de datos, estudiamos el gráfico de dispersión, ese en el que puede observar la relación entre dos variables al graficar una variable en el eje X y otra en el eje Y.</p></li>
+<li><p>Al realizar este tipo de análisis conviene en primer lugar <span class="hi">graficar los datos</span>.</p></li>
+<li><p>Por ejemplo, en el gráfico de la derecha puede encontrar la relación que existe entre el salario promedio mensual y la edad de las personas, clasificadas por género y en general.</p></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/xyplot.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Idea central</h2>
+<div class="columns">
+<div class="column" style="font-size: 1.5em;">
+<blockquote>
+<p><span class="hi">Toda causalidad implica asociación, pero no toda asociación implica causalidad.</span></p>
+</blockquote>
+</div></div>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Dos variables continuas</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Covarianza</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>La <span class="hi">covarianza</span> mide cómo <span class="hi">varían conjuntamente</span> dos variables cuantitativas. Indica si al aumentar una, la otra tiende a aumentar o disminuir.</p></li>
+<li><p>Como la covarianza NO está normalizada, se dificulta su interpretación, por eso se prefiere la <span class="hi">correlación</span>.</p></li>
+<li><p>No obstante, esta tiene múltiples aplicaciones y técnicas como el AFE (que se estudia en psicometría) prefieren el uso de la matriz varianza-covarianza sobre las correlaciones.</p></li>
+</ul>
+</div><div class="column">
+<h3>Poblacional</h3>
+<p><span class="math display">
+Cov(X, Y) = E[(X-\mu_X)(Y-\mu_Y)]
+</span></p>
+<h3>Muestral</h3>
+<p><span class="math display">
+S_{XY} = \frac{1}{n-1} \sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})
+</span></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Interpretación</h2>
+<ul>
+<li><p><span class="math inline">Cov(X,Y) &gt; 0</span>: tienden a aumentar o disminuir juntos linealmente (<span class="math inline">X</span> y <span class="math inline">Y</span>)</p></li>
+<li><p><span class="math inline">Cov(X,Y) &lt; 0</span>: si una aumenta, la otra disminuye, linealmente (<span class="math inline">X</span> y <span class="math inline">Y</span>)</p></li>
+<li><p><span class="math inline">Cov(X,Y) = 0</span>: no hay relación lineal aparente (<span class="math inline">X</span> y <span class="math inline">Y</span>)</p></li>
+<li><p>Recuerde que, como no está normalizada, no es sencillo decir si la relación es fuerte o débil.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 01</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li>Resuelva. Utilice los espacios en blanco para completar el ejercicio o como guía. A la derecha las respuestas.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">i</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(x_i\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(y_i\)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">\(x-\bar{x}\)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">\(y-\bar{y}\)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">\((x-\bar{x}) \cdot (y-\bar{y}\))</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li>Además, interprete los resultados obtenidos.</li>
+</ul>
+</div><div class="column">
+<p>Los promedios son:</p>
+<p><span class="math display">
+\bar{x} = 5 \\ \bar{y} = 4
+</span></p>
+<p>Y por tanto la covarianza es:</p>
+<p><span class="math display">
+S_{XY} = \frac{0 + 2 + 0 + 6}{4-1} = 2.67
+</span></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Correlación de Pearson (<span class="math inline">r</span>)</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>El coeficiente de correlación de Pearson, denotado como <span class="math inline">r</span>, es una medida estadística que cuantifica <span class="hi">la fuerza y dirección de la relación lineal</span> entre dos variables <strong>cuantitativas</strong>.</li>
+</ul>
+<p><span class="math display">r = \frac{Cov(X, Y)}{S_X \cdot S_Y}</span></p>
+</div><div class="column">
+<p>Su valor está siempre entre <span class="math inline">-1</span> y <span class="math inline">1</span></p>
+<ul>
+<li><span class="math inline">r = 1</span>: correlación lineal <strong>positiva perfecta</strong></li>
+<li><span class="math inline">r = -1</span>: correlación lineal <strong>negativa perfecta</strong></li>
+<li><span class="math inline">r = 0</span>: no hay relación lineal
+<ul>
+<li>Esto no implica ausencia de relación</li>
+</ul></li>
+</ul>
+<p>Para aplicar la correlación de Pearson se asume un comportamiento <span class="hi">normal</span> entre ambas variables. Es importante no perder de vista este requisito, aún cuando en este curso no se aborda formalmente la distribución normal.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 02</h2>
+<ul>
+<li><p>Calcule e <span class="hi">interprete</span> la correlación de Pearson a partir de los resultados del Ejemplo 01.</p></li>
+<li><p><span class="math inline">Cov(X, Y) = 2.67</span></p></li>
+<li><p><span class="math inline">S_X=2.58</span></p></li>
+<li><p><span class="math inline">S_Y = 1.63</span></p></li>
+<li><p><span class="math inline">r = \frac{2.67}{2.58\cdot 1.63}=0.63</span></p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Correlación de Spearman (<span class="math inline">\rho</span>)</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Es un prueba de índole no paramétrica que NO asume la normalidad.
+<ul>
+<li>Es una prueba menos sensible que Pearson.</li>
+<li>Si se cumplen las condiciones para usar Pearson y se usa Spearman estaríamos incurriendo en un error.</li>
+</ul></li>
+<li>Permite el cálculo tanto con variables <span class="hi">continuas</span> como <span class="hi">discretas</span>.</li>
+</ul>
+</div><div class="column">
+<p><span class="math display">
+\rho = 1 - \frac{6 \sum D^2}{N(N^2-1)}
+</span></p>
+<ul>
+<li><p>Se deben numerar los datos según su orden de menor a mayor para la primera (<span class="math inline">i</span>) y segunda columna (<span class="math inline">t</span>).</p></li>
+<li><p>La diferencia al cuadrado de los órdenes es <span class="math inline">D^2</span>.</p></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Correlación de Spearman (<span class="math inline">\rho</span>)</h2>
+<ul>
+<li><p>La interpretación es la misma que para Pearson, con la diferencia de que Spearman no evalúa la relación lineal, sino la relación <span class="hi">monótona</span> entre dos variables <strong>continuas o discretas</strong>.</p></li>
+<li><p>En una relación monótona, las variables tienden a cambiar al mismo tiempo, pero no necesariamente a un ritmo constante.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 03</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li><p>Calcule el coeficiente de correlación de Spearman entre el Coeficiente intelectual (CI), que se va a denotar por <span class="math inline">i</span> y las horas de TV a la semana (<span class="math inline">t</span>).</p></li>
+<li><p>Como parte de un ejercicio académico calcule también el coeficiente de correlación de Pearson, aunque no sea lo correcto.</p>
+<ul>
+<li>Compare ambos resultados</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:20%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="font-size: 38px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">i</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">t</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">106</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">28</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">28</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">103</td>
+<td style="text-align: right;">28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">113</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">113</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">17</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column img-fit" style="width:40%;">
+<p>Observe el gráfico, ¿hay alguna relación lineal?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="img/assets/unnamed-chunk-4-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 03</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="font-size: 38px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(i\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(t\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Orden_i\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Orden_t\)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">\(D^2\)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">106</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">4.5</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">4.5</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">103</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">6.0</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: right;">6.0</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">113</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: right;">4.0</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">113</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column" style="width:70%;">
+<h3>Spearman (<span class="math inline">\rho</span>)</h3>
+<p><span class="math display">
+\rho = 1 - \frac{6\cdot 196}{10(10^2-1)} = -0.188
+</span></p>
+<h3>Pearson</h3>
+<p><span class="math display">
+r = -0.071
+</span></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Correlación de Kendall (<span class="math inline">\tau</span>)</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Es una alternativa a Spearman, que se dice que es más robusto, pues es menos sensible a valores atípicos y se comporta mejor con muestras pequeñas.</p></li>
+<li><p>Tanto Kendall como Spearman se pueden usar sin mayor inconveniente con datos continuos, pero siendo consciente que esos datos continuos se transforman a rangos.</p></li>
+</ul>
+</div><div class="column">
+<p><span class="math display">
+\tau = \frac{n_c -n_d}{\frac{1}{2} \cdot n \cdot(n-1)}
+</span></p>
+<p>Siendo <span class="math inline">n_c</span> el número de pares concordantes y <span class="math inline">n_d</span> el número de pares discordantes. Desde luego <span class="math inline">n</span> es el número total de observaciones.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 04</h2>
+<ul>
+<li><p>Se realiza el mismo ejercicio que en el ejemplo 03, pero se resuelve con <span class="math inline">\tau</span> de Kendall.</p></li>
+<li><p>Por su complejidad de cálculo, se recomienda realizar la correlación de Kendall con software estadístico.</p>
+<ul>
+<li>Si <span class="math inline">n = 5</span> se harían 10 comparaciones, si <span class="math inline">n = 10</span> son 45 comparaciones y si <span class="math inline">n = 20</span> son 190 comparaciones.</li>
+</ul></li>
+<li><p>En el caso particular de <code>R</code> puede usar este código <code>cor(x, y, method = "kendall")</code>.</p></li>
+<li><p><span class="math display">\tau = -0.167</span></p></li>
+</ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Una variable continua y una dicotómica</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Punto - Biserial (<span class="math inline">r_p b</span>)</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Se recomienda cuando la variable dicotómica (1 y 0) es natural:
+<ul>
+<li>Hombre / Mujer</li>
+<li>Vivo / Muerto</li>
+</ul></li>
+<li>No obstante también puede usarse cuando la variable dicotómica es generada artificialmente (pero NO se recomienda):
+<ul>
+<li>Reprobado / Aprobado (A partir de un corte como 67.5)</li>
+<li>Baja / Alta productividad (A partir de un estándar como 90 %)</li>
+</ul></li>
+<li>Es similar a la correlación de Pearson, pero se adapta a este tipo específico de variables.</li>
+</ul>
+</div><div class="column">
+<p><span class="math display">
+r_pb= \frac{\bar{X_1}-\bar{X_0}}{S_X} \cdot \sqrt{\frac{n_1 \cdot n_0}{n \cdot (n-1)}}
+</span></p>
+<ul>
+<li><span class="math inline">X_0</span> y <span class="math inline">X_1</span> es la media de <span class="math inline">X</span> para el grupo 0 y 1 respectivamente. <span class="math inline">S_X</span> desviación estándar de <span class="math inline">X</span>. <span class="math inline">n_1</span> y <span class="math inline">n_0</span> es el tamaño para grupo y <span class="math inline">n = n_0 + n_1</span>.</li>
+</ul>
+<blockquote>
+<p>Esta correlación también se conoce como <span class="hi">índice de discriminación</span>, que es un concepto muy usado en encuestas.</p>
+</blockquote>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 05</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p>El tiempo de secado al que se expone una unión de dos dispositivos médicos se cree está relacionado con la producción de piezas buenas (0) y malas (1).</p>
+<p>Se toman los datos que se muestran a la derecha. Calcule e interprete.</p>
+</div><div class="column" style="width:20%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="font-size: 25px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Tiempo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pieza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="font-size: 26px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Medida</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">\(X_1\)</td>
+<td style="text-align: right;">9.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">\(X_0\)</td>
+<td style="text-align: right;">11.29</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">\(S_X\)</td>
+<td style="text-align: right;">4.93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">\(n_1\)</td>
+<td style="text-align: right;">8.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">\(n_0\)</td>
+<td style="text-align: right;">7.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">\(n\)</td>
+<td style="text-align: right;">15.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><span class="math display">
+r_pb=\frac{9-11.29}{4.93}\sqrt{\frac{8\cdot 7}{15 \cdot (15-1)}}=-0.239
+</span></p>
+<ul>
+<li>A mayor tiempo de secado, menor tendencia a obtener piezas defectuosas, aunque la relación es débil.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Correlación biserial (<span class="math inline">r_b</span>)</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Esta se recomienda cuando se tiene una variable continua y una dicotómica artificial.
+<ul>
+<li>Es decir, la dicotomía surge una variable continua dividida (aprobar o no, un curso).</li>
+</ul></li>
+</ul>
+</div><div class="column">
+<p><span class="math display">
+r_b = \frac{\bar{X_1} - \bar{X_0}}{s_x} \cdot \frac{p \cdot q}{y}
+</span></p>
+<p>Donde <span class="math inline">y</span> es un factor de corrección calculado como:</p>
+<p><span class="math display">
+y=\frac{1}{\sqrt{2\pi}}e^{-z^2/2}
+</span></p>
+<p>con <span class="math inline">z</span> asociado al punto de corte <span class="math inline">q</span> entre ambas categorías. La estimación de <span class="math inline">z</span> se aborda en otros cursos.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 06</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p>Suponga la variable <code>Pieza</code> del Ejemplo 05 es construida de forma artificial. Si no soporta una presión de 500 psi, es defectuosa. Resuelva el Ejemplo 05 con la correlación biserial.</p>
+<p>Utilice esta calculadora para obtener el valor de <span class="math inline">z</span>.</p>
+<div class="calc-z-container">
+<p><strong>Calculadora de <span class="math inline">z</span></strong></p>
+<p>Ingrese <span class="math inline">q</span>: <input id="qInput" type="number" step="0.001" value="0.70"> <button onclick="calcZ()">Calcular</button></p>
+<div class="z-result">
+<p>\(z = \) <span id="zOutput">—-</span></p>
+</div>
+</div>
+<script>
+function inverseNormal(p) {
+  let a1=-39.6968302866538, a2=220.946098424521, a3=-275.928510446969;
+  let a4=138.357751867269, a5=-30.6647980661472, a6=2.50662827745924;
+  let b1=-54.4760987982241, b2=161.585836858041, b3=-155.698979859887;
+  let b4=66.8013118877197, b5=-13.2806815528857;
+  let c1=-0.00778489400243029, c2=-0.322396458041136;
+  let c3=-2.40075827716184, c4=-2.54973253934373;
+  let c5=4.37466414146497, c6=2.93816398269878;
+  let d1=0.00778469570904146, d2=0.32246712907004;
+  let d3=2.445134137143, d4=3.75440866190742;
+
+  let plow = 0.02425;
+  let phigh = 1 - plow;
+  let q, r;
+
+  if (p < plow) {
+    q = Math.sqrt(-2*Math.log(p));
+    return (((((c1*q+c2)*q+c3)*q+c4)*q+c5)*q+c6) /
+           ((((d1*q+d2)*q+d3)*q+d4)*q+1);
+  } else if (p > phigh) {
+    q = Math.sqrt(-2*Math.log(1-p));
+    return -(((((c1*q+c2)*q+c3)*q+c4)*q+c5)*q+c6) /
+            ((((d1*q+d2)*q+d3)*q+d4)*q+1);
+  } else {
+    q = p - 0.5;
+    r = q*q;
+    return (((((a1*r+a2)*r+a3)*r+a4)*r+a5)*r+a6)*q /
+           (((((b1*r+b2)*r+b3)*r+b4)*r+b5)*r+1);
+  }
+}
+
+function calcZ() {
+  let q = parseFloat(document.getElementById("qInput").value);
+  if (isNaN(q) || q <= 0 || q >= 1) {
+    document.getElementById("zOutput").innerText = "Error";
+    return;
+  }
+  let z = inverseNormal(q);
+  document.getElementById("zOutput").innerText = z.toFixed(4);
+}
+</script>
+</div><div class="column" style="width:25%;">
+<p>Complete los valores faltantes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Medida</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">\(X_1\)</td>
+<td style="text-align: right;">9.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">\(X_0\)</td>
+<td style="text-align: right;">11.290</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">\(S_X\)</td>
+<td style="text-align: right;">4.930</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">\(p\)</td>
+<td style="text-align: right;">0.533</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">\(q\)</td>
+<td style="text-align: right;">0.467</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">\(z\)</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">\(y\)</td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p>El resultado es:</p>
+<p><span class="math display">
+r_b = -0.291
+</span></p>
+<p>La interpretación es equivalente a la punto-biserial.</p>
+</div></div>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Dos variables dicotómicas</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Coeficiente Phi (<span class="math inline">\Phi</span>)</h2>
+<div class="columns">
+<div class="column">
+<p>Es una medida estadística para determinar la relación que existe entre dos variables dicotómicas naturales. Se basa en tablas de contingencia.</p>
+<p><span class="math display">
+\phi = \frac{a\cdot d - b \cdot c}{\sqrt{(a+b)\cdot(c+d)\cdot(a+c)\cdot(b+d)}}
+</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Y=1</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Y=0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">X=1</td>
+<td style="text-align: left;">a</td>
+<td style="text-align: left;">b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">X=0</td>
+<td style="text-align: left;">c</td>
+<td style="text-align: left;">d</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 07</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p>En el proceso de envasado y etiquetado de una planta de producción de ungüentos y cremas se cree que si la etiqueta está “torcida” (1) aumenta el chance de que el marcado de la fecha de vencimiento resulte ilegible (1).</p>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Ilegible=1</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Legible=0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Torcida=1</td>
+<td style="text-align: left;">a=4</td>
+<td style="text-align: left;">b=1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Recta=0</td>
+<td style="text-align: left;">c=1</td>
+<td style="text-align: left;">d=4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><span class="math display">
+\phi = \frac{4\cdot 4 - 1 \cdot 1}{\sqrt{(4+1)\cdot(1+4)\cdot(4+1)\cdot(1+4)}} \\ \phi = 0.6
+</span></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Correlación tetracórica (<span class="math inline">\rho_t</span>)</h2>
+<ul>
+<li>Se utiliza cuando hay dos variables dicotómicas artificiales</li>
+<li>Dado que son artificiales, se asume que devienen de variables latentes continuas.
+<ul>
+<li>En la siguiente lección se definirá <span class="hi">variable latente</span>.</li>
+</ul></li>
+<li>No se recomienda estimarla manualmente, sino su estimación con software.</li>
+</ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Dos variables ordinales</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Correlación policórica (<span class="math inline">\rho_p</span>)</h2>
+<ul>
+<li>Se usa en presencia de dos variables ordinales, bajo el supuesto de continuidad latente.</li>
+<li>Es muy común cuando se requiere estudiar si las personas responden similar a dos preguntas en una encuesta:
+<ul>
+<li>Califique del 1 al 5 que tan de acuerdo está con estas afirmaciones:
+<ul>
+<li>Me siento motivado en mi trabajo actual</li>
+<li>¿Con qué frecuencia siente que su trabajo es valorado por sus superiores?</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Correlación policórica (<span class="math inline">\rho_p</span>)</h2>
+<ul>
+<li><p>La tetracórica es un caso especial de esta correlación, y por ende, en esta tampoco se recomienda su cálculo a mano.</p></li>
+<li><p>Para ambos casos se le provee de <a href="https://stevenggoni.github.io/tutoriales_R/Estadistica_bivariada.html" target="_blank">código en R</a> para solventar estos ejercicios de ser necesario.</p></li>
+<li><p>Además, cuenta con <strong>otros</strong> ejemplos en <a href="https://stevenggoni.github.io/clases/data/II-1120_07_Medidas%20de%20asociación.xlsx">Excel</a> para todas las correlaciones a excepción de estas.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>La importancia de la visualización</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li><p>Existe un conjunto de datos famoso, conocido como el <a href="https://cran.r-project.org/web/packages/datasauRus/vignettes/Datasaurus.html" target="_blank">Datasaurus</a>, donde una serie de pares de puntos representando algunas formas (círculos, elipses y cruces, entre otros).</p></li>
+<li><p>Todos ellos muestran patrones diferentes pero las principales características numéricas son las mismas.</p></li>
+</ul>
+</div><div class="column img-fit" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Tomado de <a href="https://cartasdelaplace.substack.com/p/carta-2" target="_blank&quot;">Javier Álvarez Liébana</a></figcaption>
+<p><img data-src="img/datasaurio.webp"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Resumen</h2>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="font-size: 33.9px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">Nombre de la correlación</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Tipo de variables involucradas</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Supuestos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Pearson</td>
+<td style="text-align: center;">Continua + Continua</td>
+<td style="text-align: center;">Linealidad, normalidad, métrica</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Spearman</td>
+<td style="text-align: center;">Ordinal + Ordinal o Continua no normal</td>
+<td style="text-align: center;">Basada en rangos (no paramétrica)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Point-Biserial</td>
+<td style="text-align: center;">Continua + Dicotómica natural</td>
+<td style="text-align: center;">La dicotómica representa una categoría real</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Biserial</td>
+<td style="text-align: center;">Continua + Dicotómica artificial</td>
+<td style="text-align: center;">Se asume variable continua subyacente, distribución normal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Phi (ϕ)</td>
+<td style="text-align: center;">Dicotómica + Dicotómica naturales</td>
+<td style="text-align: center;">Ambas categorías reales (no transformadas)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Tetracórica</td>
+<td style="text-align: center;">Dicotómica + Dicotómica artificiales</td>
+<td style="text-align: center;">Ambas variables reflejan continuas latentes normales</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Policórica</td>
+<td style="text-align: center;">Ordinal + Ordinal</td>
+<td style="text-align: center;">Ambas reflejan variables continuas latentes, categorías ordenadas</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Bibliografía</h2>
+<div class="columns">
+<div class="column" style="font-size: 1.2em;">
+<ul>
+<li><p>Las fuentes consultadas para esta sesión son muy variadas y profundizan en exceso en temas que no competen enteramente a este curso. Razón por la cual se omite voluntariamente.</p></li>
+<li><p>Fuentes específicas fueron señaladas a los largo de la presentación.</p></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 center">
+<h2>Estadística básica <br> II-1120 Estadística para Ingeniería Industrial I</h2>
+<h3 class="subtitle">Gracias por su atención <br> Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a></h3>
+<h3>Dudas o correcciones requeridas pueden solicitarse al correo</h3>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p><span class="footer-text">© 2026 <a href="https://stevenggoni.github.io/">Steven García Goñi</a>| <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia CC BY NC 4.0</a></span> <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-02.png" class="footer-logo"></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: true,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.0e-2,
+
+        math: {
+          mathjax: '',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copiado");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copiado");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    <script>videojs(video_shortcode_videojs_video1);</script>
+    <script>videojs(video_shortcode_videojs_video2);</script>
+    
+
+</body></html>

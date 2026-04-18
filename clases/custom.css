@@ -332,10 +332,20 @@
 /* =====================================================
    Estilo para Enlaces (Links)
    ===================================================== */
+
 .reveal .slides section.bloques a {
   color: #C18A00;
   font-weight: 600;
+  text-decoration: underline !important; /* Forza el subrayado */
+  text-underline-offset: 3px;             /* Separa un poco el subrayado del texto para que se vea más limpio */
   transition: all 0.3s ease;
+}
+
+.reveal .slides section.bloques a:hover {
+  color: #263247;                         /* Cambia a azul oscuro al pasar el mouse */
+  text-decoration: underline !important;
+  background-color: rgba(193, 138, 0, 0.1); /* Sutil fondo dorado al hacer hover */
+  border-radius: 4px;
 }
 
 /* =====================================================
@@ -455,4 +465,71 @@
 .reveal th, 
 .reveal td {
   padding: 8px 12px;
+}
+
+/* =====================================================
+   Applet Calculadora de Z - Estilo Aesthetic
+   ===================================================== */
+.calc-z-container {
+    background: rgba(38, 50, 71, 0.05); /* Azul muy tenue */
+    border: 1px solid rgba(38, 50, 71, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.calc-z-container input {
+    border: 2px solid #AFB5BC;
+    border-radius: 8px;
+    padding: 7px;
+    font-family: 'Aller', sans-serif;
+    font-size: 0.9em;        /* <--- AQUÍ: Tamaño mucho más grande */
+    font-weight: 500;        /* Negrita para legibilidad */
+    text-align: center;      /* Centrar el número dentro del cuadro */
+    color: #263247;
+    width: 80px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.calc-z-container input:focus {
+    border-color: #C18A00; /* Dorado al enfocar */
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(193, 138, 0, 0.2);
+}
+
+.calc-z-container button {
+    height: 55px;            /* Alineamos la altura con el nuevo input */
+    vertical-align: middle;
+    font-size: 1em;
+    padding: 0 25px;
+    background-color: #263247; /* Azul oscuro */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-family: 'Aller', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    margin-left: 5px;
+}
+
+.calc-z-container button:hover {
+    background-color: #C18A00; /* Cambio a dorado */
+    transform: scale(1.05);
+}
+
+.z-result {
+    margin-top: 20px;
+    font-size: 1.1em;        /* Resultado también más grande */
+    border-top: 1px dashed #AFB5BC;
+    padding-top: 15px;
+}
+
+#zOutput {
+    color: #C18A00;
+    font-weight: 700;
+    font-family: 'Crimson Pro', serif;
 }

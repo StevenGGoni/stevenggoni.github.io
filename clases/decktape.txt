@@ -15,3 +15,5 @@ decktape reveal --size="1920x1080" II-1120_05_Variables_aleatorias.html II-1120_
 decktape reveal --size="1920x1080" II-1123_04_Estadistica_multivariada.html II-1123_04_Estadistica_multivariada.pdf
 
 decktape reveal --size="1920x1080" II-1120_06_Distribuciones_discretas.html II-1120_06_Distribuciones_discretas.pdf
+
+decktape reveal --size="1920x1080" II-1120_07_Estadistica_bivariada.html II-1120_07_Estadistica_bivariada.pdf
