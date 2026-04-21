@@ -55,3 +55,9 @@ Un análisis de capacidad es una herramienta estadística que evalúa si un proc
 * [Análisis de capacidad para datos no normales](tutoriales_R/capacidad_datos_no_normales.html){target="_blank"}
 
 Es relativamente común encontrarse con procesos que no siguen la distribución normal, ya sea por que así es como debe comportarse o bien, por errores que suceden a la hora de recolectar, almacenar o procesar los datos. 
+
+## Elementos básicos de Machine Learning
+
+* [Aprendizaje no supervisado: Clusters](tutoriales/cluster.html){target="_blank"}
+
+Es una técnica multivariable para detectar agrupamientos en un conjunto de datos. Puede ser agrupamiento de casos o variables. Se usa cuando se desconocen el número de grupos o conglomerados que existen, o las variables que pertenecen a ellos.

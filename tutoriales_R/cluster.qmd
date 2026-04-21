@@ -1,0 +1,350 @@
+---
+title: "Aprendizaje no supervisado: Clusters"
+date: today
+format:
+  html:
+    toc: true
+    collapse-sections: true
+execute:
+  warning: false
+  message: false
+---
+
+# Librerías
+
+```{r}
+
+library(tidyverse)
+library(FactoMineR)
+library(factoextra)
+library(corrplot)
+library(ggdendro)
+library(dbscan)
+
+```
+
+# Aprendizaje NO supervisado
+
+Busca aprender la distribución del set de datos:
+
+-   Conocer o extraer la información contenida en la distribución del set de datos.
+
+Busca representar de forma simplificada un set de datos:
+
+-   Conservando la mayor cantidad de información.
+
+## La maldición de la dimensionalidad
+
+No es un problema único para *Machine Learning.*
+
+El problema se resume en que a mayor cantidad de dimensiones tengan los datos a analizar, más complejo se hace el análisis y el uso de los recursos aumenta.
+
+Incrementar las dimensiones o tomar en cuenta más dimensiones del set de datos en cuestión, va a aportar un mejor desempeño del algoritmo, pero tienen un límite, a partir del cual este desempeño empieza a decrecer conforme se agregan dimensiones.
+
+Veamos un ejemplo sencillo de estadísticas de arrestos para USA en 1973:
+
+-   *Murder*: arrestos por asesinatos por cada 100.000 habitantes
+-   *Assault*: arrestos por asaltos por cada 100.000 habitantes
+-   *UrbanPop*: porcentaje de población urbana
+-   *Rape*: arrestos por violación por cada 100.000 habitantes
+
+```{r}
+
+head(USArrests)
+
+```
+
+Para los algoritmos que vamos a usar las variables **deben** ser numéricas.
+
+```{r}
+
+str(USArrests)
+
+```
+
+Por tanto conviene hacer un gráfico de correlaciones.
+
+```{r}
+
+corrplot::corrplot(cor(USArrests), 
+                   col =  RColorBrewer::brewer.pal(11, "RdBu"),
+                   title = "Gráfico de correlaciones",
+                   method = "number",
+                   type = "upper")
+
+```
+
+## PCA
+
+ACP, por sus siglas en español.
+
+Reduce dimensiones preservando las que tengan mayor varianza.
+
+Para PCA es importante que todas las variables sean numéricas y que estén **estandarizadas.**
+
+Entonces, empecemos por estandarizar las variables, la función `scale()` usa una fórmula conocida:
+
+$$
+z = \frac{x-\mu}{\sigma}
+$$
+
+¿Que hace la estandarización? Hace que todas las variables tengan la misma media ($\mu = 0$) y la misma varianza ($\sigma = 1$).
+
+```{r}
+
+USArrests_std <- scale(USArrests)
+
+head(USArrests_std)
+
+skimr::skim(USArrests_std)
+
+```
+
+Creemos los componentes principales y observemos que se crean dos variables principales, pero ¿qué son? ¿qué significan?
+
+```{r}
+
+acp <- FactoMineR::PCA(USArrests_std, graph = FALSE, scale.unit = FALSE)
+
+factoextra::fviz_pca_var(acp, repel = TRUE) +
+  theme_bw(base_size = 20)
+
+```
+
+Básicamente que la primera dimensión explica el 62 % y la segunda 24.7 %. En total que con dos dimensiones se explica el 86.7 % de la varianza.
+
+¿Cuáles son esas dimensiones?
+
+Veamos el `summary`, en acompañamiento con el gráfico anterior. En la dimensión 1 las variables más representadas son: Murder, Assault y Rape. En la dimensión 2: UrbanPop.
+
+```{r}
+
+summary(acp)
+
+acp$ind$contrib
+
+```
+
+Por ello la dimensión 1 podría llamarse: Crimen, y la dimensión dos: población.
+
+```{r}
+
+factoextra::fviz_pca_var(acp, repel = TRUE) + # var: variables
+  labs(title = "Análisis de componentes principales: variables",
+       x = "Inseguridad ciudadana (62.0 %)",
+       y = "Población (24.7 %)") +
+  theme_bw()
+
+```
+
+Ahora, ¿como se organizan las variables observadas, o sea, los estados
+
+```{r}
+
+factoextra::fviz_pca_ind(acp, axes = c(1, 2), repel = TRUE) + # ind: individuos
+  labs(title = "Análisis de componentes principales: individuos",
+       x = "Crimen (62.0 %)",
+       y = "Población (24.7 %)") +
+  theme_bw()
+
+```
+
+> ¡Interpretemos en conjunto!
+
+Supongamos que necesitamos una escala adicional:
+
+¿Quienes son las dimensiones 3 y 4?
+
+```{r}
+
+factoextra::fviz_pca_ind(acp, axes = c(2, 3), repel = TRUE) + # ind: individuos
+  labs(title = "Análisis de componentes principales: individuos") +
+  theme_bw()
+
+factoextra::fviz_pca_ind(acp, axes = c(3, 4), repel = TRUE) + # ind: individuos
+  labs(title = "Análisis de componentes principales: individuos") +
+  theme_bw()
+
+```
+
+## Clustering
+
+Conocido también como conglomerados.
+
+Es una técnica multivariable para detectar agrupamientos en un conjunto de datos. Puede ser agrupamiento de casos o variables. Se usa cuando se desconocen el número de grupos o conglomerados que existen, o las variables que pertenecen a ellos.
+
+Más concretamente el objetivo del clustering es agrupar casos de manera que:
+
+-   Los pertenecientes a un mismo grupo sean muy parecidos entre sí, es decir que el grupo esté cohesionado internamente.
+
+-   Los pertenecientes a grupos diferentes tengan un comportamiento distinto con respecto a las variables analizadas, es decir, que cada grupo esté aislado externamente de los demás grupos.
+
+En resumen:
+
+-   Que la varianza dentro del grupo sea mínima
+-   Que la varianza entre grupos sea máxima.
+
+Existen varios tipos de conglomerados, veamos dos:
+
+-   k-medias
+
+-   Cluster jerárquico
+
+### k - medias
+
+-   Agrupa casos
+
+-   Trabaja solamente con variables numéricas
+
+-   Se usa generalmente con archivos de datos grandes
+
+-   Se le debe especificar el número de conglomerados deseado
+
+#### Algoritmo
+
+-   Empieza usando los valores de los primeros k casos del archivo como estimaciones de los k medias de los conglomerados, donde k es el número de conglomerados especificado por el usuario.
+
+-   Los centroides de los conglomerados iniciales se construyen asignando cada caso al conglomerado con el centroide más cercano y entonces actualiza el centroide.
+
+-   Un proceso iterativo encuentra los centroides finales.
+
+-   A cada paso, los casos son agrupados en el conglomerado con el centroide más cercano y los centroides de los conglomerados son recalculados.
+
+-   El proceso continua hasta que no ocurran cambios en los centroides o hasta que un número máximo de iteraciones se haya alcanzado.
+
+-   El usuario puede especificar los centroides de los conglomerados y el algoritmo le asigna los casos a estos centroides.
+
+-   Este procedimiento es útil cuando el usuario posee un número grande de casos y cuenta con variables cuantitativas.
+
+-   Estabilidad de la solución final.
+
+<https://x.com/akshay_pachaar/status/1845441930286727334>
+
+> Aplicación del algoritmo
+
+Ahora tenemos que seleccionar la cantidad óptima de clusters. Con base en este gráfico k puede ser 3 o 4.
+
+> ¿Por qué?
+
+```{r}
+
+factoextra::fviz_nbclust(USArrests_std, kmeans, method = "wss", 
+                         k.max = 10, nboot = 500,
+                         linecolor = "darkred") +
+  labs(title = "Método del codo", 
+       x = "Número de clusters k",
+       y = "Varianza intra grupos") +
+  theme_bw()
+
+```
+
+Finalmente, hagamos el algoritmo, con $k=4$
+
+```{r}
+
+kmedias <- kmeans(USArrests_std, centers = 4)
+
+datos_final <- data.frame(USArrests, clusters = kmedias$cluster)
+
+datos_final %>% 
+  dplyr::group_by(clusters) %>% 
+  dplyr::summarise_all(mean)
+
+```
+
+A partir de aquí se pueden representar los resultados por medio de gráficos.
+
+```{r}
+
+datos_final %>% 
+  dplyr::group_by(clusters) %>% 
+  dplyr::summarise_all(mean) %>% 
+  ggplot2::ggplot(aes(clusters, Rape)) +
+  geom_col(fill = "darkred", alpha = 0.7) +
+  labs(title = "Promedio de asesinatos por cluster",
+       x = "Cluster",
+       y = "Asesinatos por cada 100.00 habitantes") +
+  theme_bw()
+
+```
+
+### Cluster jerárquico
+
+Ahora supongamos que no se conoce el valor de k, y se quieren probar varias opciones
+
+```{r}
+
+hc <- hclust(dist(USArrests_std), method = "complete")
+
+ggdendro::ggdendrogram(hc, rotate = FALSE, theme_dendro = TRUE) +
+  geom_hline(yintercept = 4, linetype = 2)
+
+ggdendro::ggdendrogram(hc, rotate = TRUE, theme_dendro = TRUE)
+
+```
+
+Supongamos que nos interesan 4 grupos
+
+```{r}
+
+clusters <- cutree(hc, k = 4)
+
+datos_finales_hc <- data.frame(USArrests, clusters)
+
+```
+
+El resto es similar, hacer agrupaciones, analizar estadísticas descriptivas, etc.
+
+## DBSCAN
+
+Es el acrónimo de Density-based spatial clustering of applications with noise
+
+Es un método de clusterización adecuado para buscar patrones de agrupación en el espacio físico, este método es más adecuado para los datos en los que los métodos jerárquicos no funcionan del todo bien debido al ruido y los valores atípicos.
+
+Este algorítmo agrupa los puntos que están más cercanos respecto a alguna métrica, comúnmente se utiliza la distancia euclidiana, además para este algorítmo se tiene que cada cluster contendrá un mínimo de puntos.
+
+Este método tiene sus ventajas y desventajas respecto otros métodos de clusterización (K-MEANS por ejemplo) y dependiendo del problema que se quiera analizar se debe elegir el método más adecuado, aún así hay varios aspectos que deben ser tomados en cuenta.
+
+-   DBSCAN no necesita que se especifique el número de clusters
+
+-   Es más fácil de implementar y de entender
+
+-   Con este método podemos garantizar que cada cluster tendrá un mínimo número de puntos
+
+También tiene algunas desventajas
+
+-   DBSCAN es menos rápido que K-MEANS
+
+-   No funciona bien en clusters de diferentes densidades
+
+-   Los parámetros deben ser elegidos con mayor cuidado o precisión
+
+```{r}
+
+dbscan::kNNdistplot(USArrests_std, 
+                    k = 5) # >= D + 1, D =  Dimensiones
+
+```
+
+Del gráfico anterior seleccionamos `eps`.
+
+```{r}
+
+cluster <- dbscan::dbscan(USArrests_std, 
+                          eps = 0.5,
+                          minPts = 4)
+
+arrestos <- cbind(USArrests, cluster$cluster)
+
+head(arrestos)
+
+```
+
+Ahora realizamos el gráfico
+
+```{r}
+
+dbscan::hullplot(arrestos,cluster$cluster, 
+                 main = "")
+
+```
