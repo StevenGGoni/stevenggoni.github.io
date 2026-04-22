@@ -1199,7 +1199,7 @@ plotly::plot_ly(data = histograma,
 
 # Medidas para dos variables cuantitativas y cualitativas {.bloques}
 
-## Una variable cuantitativa y otra cuantitativa {.bloques}
+## Una variable cuantitativa y otra cualitativa {.bloques}
 
 -   Suponga que usted como analista desea estudiar el rendimiento (%) de algunas máquinas CNC.
 
