@@ -1117,7 +1117,7 @@ tabla_cor %>%
 :::
 ::::
 
-## Estadística básica <br> II-1120 Estadística para Ingeniería Industrial I {.center}
+## Estadística bivariada <br> II-1120 Estadística para Ingeniería Industrial I {.center}
 
 ### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni\@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
 

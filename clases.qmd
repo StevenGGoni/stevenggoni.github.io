@@ -26,6 +26,8 @@ Aquí encontrará las clases de los diferentes cursos del área de conocimiento 
 
 7. [Estadística bivariada (Correlaciones)](clases/II-1120_07_Estadistica_bivariada.html){target="_blank"}
 
+8. [Elementos básicos de psicometría](clases/II-1120_08_Elementos_psicometria.html){target="_blank"}
+
 ## II-1123 Estadística para Ingeniería Industrial II
 
 1. [Fundamentos de muestreo y manejo de datos](clases/II-1120_02_Fundamentos_muestreo.html){target="_blank"}
