@@ -495,5 +495,12 @@
     "title": "Tutoriales en R",
     "section": "Elementos básicos de Machine Learning",
     "text": "Elementos básicos de Machine Learning\n\nAprendizaje no supervisado: Clusters\n\nEs una técnica multivariable para detectar agrupamientos en un conjunto de datos. Puede ser agrupamiento de casos o variables. Se usa cuando se desconocen el número de grupos o conglomerados que existen, o las variables que pertenecen a ellos."
+  },
+  {
+    "objectID": "clases.html#ii-1123-estadística-para-ingeniería-industrial-iii",
+    "href": "clases.html#ii-1123-estadística-para-ingeniería-industrial-iii",
+    "title": "Material de clases",
+    "section": "II-1123 Estadística para Ingeniería Industrial III",
+    "text": "II-1123 Estadística para Ingeniería Industrial III"
   }
 ]

@@ -37,3 +37,5 @@ Aquí encontrará las clases de los diferentes cursos del área de conocimiento 
 3. [Estadística no paramétrica para una o dos variables](clases/II-1123_03_Est_no_paramétrica.html){target="_blank"}
 
 4. [Estadística multivariada - Regresión y ANOVA](clases/II-1123_04_Estadistica_multivariada.html){target="_blank"}
+
+## II-1123 Estadística para Ingeniería Industrial III
