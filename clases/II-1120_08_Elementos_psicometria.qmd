@@ -663,7 +663,7 @@ Por la "dificultad" de las ecuaciones, en este curso se aborda este tema con el 
   
 * Para construir el índice, se multiplican las respuestas o valores a los ítemes, utilizando las cargas factoriales como pesos, de tal forma que: 
 
-* $$Índice_i: \frac{{It_1}_i \cdot 0.80 + {It_2}_i \cdot 0.87 + {It_3}_i \cdot 0.86}{0.80 + 0.87 + 0.86}$$
+* $$Índice_i = \frac{(It_{1,i} \cdot 0.80) + (It_{2,i} \cdot 0.87) + (It_{3,i} \cdot 0.86)}{0.80 + 0.87 + 0.86}$$
 
 ## Cálculo de índices {.bloques}
 
