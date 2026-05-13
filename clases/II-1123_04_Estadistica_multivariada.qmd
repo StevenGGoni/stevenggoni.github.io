@@ -1025,7 +1025,7 @@ mod1 %>%
   aov() %>% 
   broom::tidy() %>% 
   dplyr::mutate(across(where(is.numeric), ~ round(.x, 3))) %>% 
-  setNames(c("Término", "Estimador", "EE", "Valor T", "Valor P")) %>% 
+  setNames(c("Término", "gl", "SS", "CM", "F", "P")) %>% 
   knitr::kable(format = "html") %>%
   kableExtra::kable_styling()
 
