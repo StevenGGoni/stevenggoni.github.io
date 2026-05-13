@@ -436,7 +436,7 @@ $$
 ## Ejemplo 01 {.bloques}
 
 * Una empresa de confección de telas produce en promedio 580 metros al día y el promedio de manchas por cada metro de tela es de 0.75. Estas variables se consideran independientes. Obtenga el promedio de manchas por día.
-* Resuelva con las propiedades anteriores. La respuesta correcta es 443 $\frac{manchas}{día}$
+* Resuelva con las propiedades anteriores. La respuesta correcta es 435 $\frac{manchas}{día}$
 
 
 

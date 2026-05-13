@@ -6,8 +6,8 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.25">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
 
   <meta name="author" content="Steven García Goñi steven.garciagoni@ucr.ac.cr">
   <title>Variables aleatorias</title>
@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -29,8 +32,24 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link rel="stylesheet" href="custom.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -128,7 +147,7 @@
 
   <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 
-  <script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
+  <script src="site_libs/plotly-binding-4.12.0/plotly.js"></script>
 
   <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
 
@@ -138,9 +157,9 @@
 
   <script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 
-  <link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+  <link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
 
-  <script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+  <script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 
 </head>
 <body class="quarto-light">
@@ -159,7 +178,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">4 de marzo de 2026</p>
+  <p class="date">12 de mayo de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
@@ -219,7 +238,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Variable aleatoria</h2>
 <ul>
-<li><p>Es una función <span class="math inline">\(X: S \rightarrow \mathbb{R}\)</span>, aun cuando lleve el nombre de <span class="hi">variable</span>, que asocia un número real con cada elemento del espacio muestral.</p>
+<li><p>Es una función <span class="math inline">X: S \rightarrow \mathbb{R}</span>, aun cuando lleve el nombre de <span class="hi">variable</span>, que asocia un número real con cada elemento del espacio muestral.</p>
 <ul>
 <li><p>Cuyo dominio es el espacio muestral y cuyo codominio es el conjunto de números reales.</p></li>
 <li><p>Tampoco es <span class="hi">aleatoria</span>, pues está completamente definida por la función.</p></li>
@@ -235,7 +254,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li><p>Las variables aleatorias pueden ser valores “reales”, como la longitud de un borrador, el espacio entre máquinas en una fábrica; o “ficticias”, como la codificación de 1 como bueno y 0 como malo en un producto.</p></li>
 <li><p>Es un <span class="hi">modelo matemático</span> que describe o intenta describir los resultados, usualmente de manera numérica, de un evento cuyos resultados se deben al azar.</p></li>
-<li><p>Es cualquier regla que asocia un número con cada resultado en <span class="math inline">\(S\)</span>.</p></li>
+<li><p>Es cualquier regla que asocia un número con cada resultado en <span class="math inline">S</span>.</p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -337,10 +356,10 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Notación importante</h2>
 <ul>
-<li><p>Función de masa (<em>pmf</em>) /densidad (<em>pdf</em>) <span class="math inline">\(\rightarrow f(x)\)</span></p></li>
-<li><p>Función de distribución acumulada (<em>cdf</em>) <span class="math inline">\(\rightarrow F(x)\)</span></p></li>
-<li><p>Esperanza matemática <span class="math inline">\(\rightarrow E(x)\)</span></p></li>
-<li><p>Varianza matemática <span class="math inline">\(\rightarrow V(x)\)</span></p></li>
+<li><p>Función de masa (<em>pmf</em>) /densidad (<em>pdf</em>) <span class="math inline">\rightarrow f(x)</span></p></li>
+<li><p>Función de distribución acumulada (<em>cdf</em>) <span class="math inline">\rightarrow F(x)</span></p></li>
+<li><p>Esperanza matemática <span class="math inline">\rightarrow E(x)</span></p></li>
+<li><p>Varianza matemática <span class="math inline">\rightarrow V(x)</span></p></li>
 <li><p>Recuerde además: en el contexto de las distribuciones de probabilidad, los parámetros se emplean para describir el comportamiento de los datos. Nosotros buscamos aproximar esos parámetros a partir de <span class="hi">muestreo</span>, es decir, mediante estimadores</p></li>
 </ul>
 </section>
@@ -428,8 +447,8 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="column" style="width:65%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-b1249266b3e3766d9fb5" style="width:1100px;height:650px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b1249266b3e3766d9fb5">{"x":{"data":[{"orientation":"v","width":[0.90000000000000002,0.89999999999999991,0.90000000000000013,0.90000000000000036],"base":[0,0,0,0],"x":[0,1,2,3],"y":[0.125,0.375,0.375,0.125],"text":["Número de escudos \\(x_i\\): 0<br />Probabilidad (teórica): 0.125","Número de escudos \\(x_i\\): 1<br />Probabilidad (teórica): 0.375","Número de escudos \\(x_i\\): 2<br />Probabilidad (teórica): 0.375","Número de escudos \\(x_i\\): 3<br />Probabilidad (teórica): 0.125"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(38,50,71,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":28.363891815946616,"r":7.3059360730593621,"b":42.318229715489998,"l":43.105022831050235},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":30},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.64500000000000002,3.645],"tickmode":"array","ticktext":["0","1","2","3"],"tickvals":[1.1102230246251565e-16,1,2,3],"categoryorder":"array","categoryarray":["0","1","2","3"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Número de escudos","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.018750000000000003,0.39374999999999999],"tickmode":"array","ticktext":["0.0","0.1","0.2","0.3"],"tickvals":[0,0.10000000000000001,0.19999999999999996,0.30000000000000004],"categoryorder":"array","categoryarray":["0.0","0.1","0.2","0.3"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Masa (Probabilidad)","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"#F1F5F5","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":25},"title":{"font":{"size":30}}},"hovermode":"closest","width":1100,"height":650,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"14685ed6335":{"x":{},"y":{},"type":"bar"}},"cur_data":"14685ed6335","visdat":{"14685ed6335":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ddb4d5ce2c268ad17141" style="width:1100px;height:650px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ddb4d5ce2c268ad17141">{"x":{"data":[{"orientation":"v","width":[0.90000000000000002,0.89999999999999991,0.90000000000000013,0.90000000000000036],"base":[0,0,0,0],"x":[0,1,2,3],"y":[0.125,0.375,0.375,0.125],"text":["Número de escudos \\(x_i\\): 0<br />Probabilidad (teórica): 0.125","Número de escudos \\(x_i\\): 1<br />Probabilidad (teórica): 0.375","Número de escudos \\(x_i\\): 2<br />Probabilidad (teórica): 0.375","Número de escudos \\(x_i\\): 3<br />Probabilidad (teórica): 0.125"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(38,50,71,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":43.105022831050235},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":30},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.64500000000000002,3.645],"tickmode":"array","ticktext":["0","1","2","3"],"tickvals":[1.1102230246251565e-16,1,2,3],"categoryorder":"array","categoryarray":["0","1","2","3"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Número de escudos","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.018750000000000003,0.39374999999999999],"tickmode":"array","ticktext":["0.0","0.1","0.2","0.3"],"tickvals":[0,0.10000000000000001,0.19999999999999996,0.30000000000000004],"categoryorder":"array","categoryarray":["0.0","0.1","0.2","0.3"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Masa (Probabilidad)","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"rgba(255,255,255,1)","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"#F1F5F5","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":25},"title":{"font":{"size":30}}},"hovermode":"closest","width":1100,"height":650,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"20d019a271c5":{"x":{},"y":{},"type":"bar"}},"cur_data":"20d019a271c5","visdat":{"20d019a271c5":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div><div class="column" style="width:35%;">
@@ -444,13 +463,13 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Ejemplo</h2>
 <ul>
-<li><p>Finalmente, el ejemplo desarrollado es una distribución Binomial (tema de la clase de distribuciones discretas). No se necesita lanzar <span class="math inline">\(x_\infty\)</span> para obtener las probabilidades, solo necesita conocer o estimar el parámetro que describe esta distribución, en este caso <span class="math inline">\(n:\)</span> cantidad de lanzamientos, que fueron 3 y <span class="math inline">\(p:\)</span> probabilidad, que es 0.5.</p></li>
-<li><p><span class="math inline">\(P(x_i)=\frac{n!}{x_i!(n-x_i)!}p^{x_i}(1-p)^{n-x_i}\)</span></p></li>
+<li><p>Finalmente, el ejemplo desarrollado es una distribución Binomial (tema de la clase de distribuciones discretas). No se necesita lanzar <span class="math inline">x_\infty</span> para obtener las probabilidades, solo necesita conocer o estimar el parámetro que describe esta distribución, en este caso <span class="math inline">n:</span> cantidad de lanzamientos, que fueron 3 y <span class="math inline">p:</span> probabilidad, que es 0.5.</p></li>
+<li><p><span class="math inline">P(x_i)=\frac{n!}{x_i!(n-x_i)!}p^{x_i}(1-p)^{n-x_i}</span></p></li>
 <li><p>Es decir:</p>
 <ul>
-<li><span class="math inline">\(P(0)= \frac{3!}{0!(3-0)!}0.5^0(1-0.5)^{3-0}=0.125\)</span></li>
+<li><span class="math inline">P(0)= \frac{3!}{0!(3-0)!}0.5^0(1-0.5)^{3-0}=0.125</span></li>
 </ul></li>
-<li><p>Resuelva para <span class="math inline">\(1, 2, 3\)</span></p></li>
+<li><p>Resuelva para <span class="math inline">1, 2, 3</span></p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -458,25 +477,25 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li><p>Es una lista mutuamente excluyente de todos los posibles valores numéricos para una variable aleatoria tal que una probabilidad de ocurrencia específica se asocia con cada resultado.</p></li>
 <li><p>Cuando la distribución es discreta, la función suele recibir el nombre de <span class="hi">función de masa</span>.</p></li>
-<li><p>La función de masa <span class="math inline">\(f(x)\)</span>:</p>
+<li><p>La función de masa <span class="math inline">f(x)</span>:</p>
 <ul>
-<li>Es estrictamente no negativa <span class="math inline">\(f(x) \ge 0\)</span></li>
-<li>La suma de las probabilidades de todos sus eventos es igual a 1 <span class="math inline">\(\sum_{i=1}^{n} f(x)=1\)</span></li>
-<li>La probabilidad de un evento <span class="math inline">\(x\)</span> es igual al resultado de la función de masa <span class="math inline">\(P(X=x_i)=f(x_i)\)</span></li>
+<li>Es estrictamente no negativa <span class="math inline">f(x) \ge 0</span></li>
+<li>La suma de las probabilidades de todos sus eventos es igual a 1 <span class="math inline">\sum_{i=1}^{n} f(x)=1</span></li>
+<li>La probabilidad de un evento <span class="math inline">x</span> es igual al resultado de la función de masa <span class="math inline">P(X=x_i)=f(x_i)</span></li>
 </ul></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
 <h2>Distribución de probabilidad discreta</h2>
 <ul>
-<li>La función de distribución acumulada <span class="math inline">\(F(x)\)</span>:
+<li>La función de distribución acumulada <span class="math inline">F(x)</span>:
 <ul>
-<li>Es la sumatoria de la función de masa desde el valor mínimo hasta un valor particular de interés <span class="math inline">\(F(X_i)=P(X\le x_i) = \sum f(x)\)</span></li>
-<li>Por ejemplo, <span class="math inline">\(F(1) = f(0)+f(1)\)</span>
+<li>Es la sumatoria de la función de masa desde el valor mínimo hasta un valor particular de interés <span class="math inline">F(X_i)=P(X\le x_i) = \sum f(x)</span></li>
+<li>Por ejemplo, <span class="math inline">F(1) = f(0)+f(1)</span>
 <ul>
-<li>Resuelva <span class="math inline">\(F(1)\)</span> para el ejemplo de las monedas</li>
+<li>Resuelva <span class="math inline">F(1)</span> para el ejemplo de las monedas</li>
 </ul></li>
-<li>Note que <span class="math inline">\(F(x)\)</span> es siempre NO decreciente.</li>
+<li>Note que <span class="math inline">F(x)</span> es siempre NO decreciente.</li>
 </ul></li>
 </ul>
 </section>
@@ -486,8 +505,8 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="column">
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-8742ef419b9ff49f60da" style="width:1800px;height:650px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8742ef419b9ff49f60da">{"x":{"data":[{"orientation":"v","width":[0.90000000000000002,0.89999999999999991,0.90000000000000013,0.90000000000000036],"base":[0,0,0,0],"x":[0,1,2,3],"y":[0.125,0.5,0.875,1],"text":["Número de escudos \\(x_i\\): 0<br />x: 0.125","Número de escudos \\(x_i\\): 1<br />x: 0.500","Número de escudos \\(x_i\\): 2<br />x: 0.875","Número de escudos \\(x_i\\): 3<br />x: 1.000"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(38,50,71,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":36.231822971549008,"r":7.3059360730593621,"b":50.186160871092397,"l":48.949771689497723},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":30},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.64500000000000002,3.645],"tickmode":"array","ticktext":["0","1","2","3"],"tickvals":[1.1102230246251565e-16,1,2,3],"categoryorder":"array","categoryarray":["0","1","2","3"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Número de escudos","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.050000000000000003,1.05],"tickmode":"array","ticktext":["0.00","0.25","0.50","0.75","1.00"],"tickvals":[0,0.25,0.5,0.75,1],"categoryorder":"array","categoryarray":["0.00","0.25","0.50","0.75","1.00"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Probabilidad","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"#F1F5F5","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":25},"title":{"font":{"size":30}}},"hovermode":"closest","width":1800,"height":650,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1468801c85":{"x":{},"y":{},"type":"bar"}},"cur_data":"1468801c85","visdat":{"1468801c85":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4b917fb9036b8f27e7dc" style="width:1800px;height:650px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4b917fb9036b8f27e7dc">{"x":{"data":[{"orientation":"v","width":[0.90000000000000002,0.89999999999999991,0.90000000000000013,0.90000000000000036],"base":[0,0,0,0],"x":[0,1,2,3],"y":[0.125,0.5,0.875,1],"text":["Número de escudos \\(x_i\\): 0<br />x: 0.125","Número de escudos \\(x_i\\): 1<br />x: 0.500","Número de escudos \\(x_i\\): 2<br />x: 0.875","Número de escudos \\(x_i\\): 3<br />x: 1.000"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(38,50,71,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":48.949771689497723},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":30},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.64500000000000002,3.645],"tickmode":"array","ticktext":["0","1","2","3"],"tickvals":[1.1102230246251565e-16,1,2,3],"categoryorder":"array","categoryarray":["0","1","2","3"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Número de escudos","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.050000000000000003,1.05],"tickmode":"array","ticktext":["0.00","0.25","0.50","0.75","1.00"],"tickvals":[0,0.25,0.5,0.75,1],"categoryorder":"array","categoryarray":["0.00","0.25","0.50","0.75","1.00"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Probabilidad","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"rgba(255,255,255,1)","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"#F1F5F5","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":25},"title":{"font":{"size":30}}},"hovermode":"closest","width":1800,"height":650,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"20d0b9d21b0":{"x":{},"y":{},"type":"bar"}},"cur_data":"20d0b9d21b0","visdat":{"20d0b9d21b0":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div></div>
@@ -500,24 +519,24 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Al ver la fórmula más adelante se comprenderá mejor. Pero requiere conocimientos básicos de cálculo integral.</li>
 </ul></li>
 <li><p>En este caso suele recibir el nombre de <span class="hi">función de densidad</span>.</p></li>
-<li><p>La función de densidad <span class="math inline">\(f(x)\)</span>:</p>
+<li><p>La función de densidad <span class="math inline">f(x)</span>:</p>
 <ul>
-<li>Es no negativa <span class="math inline">\(f(x) \ge 0\)</span> para toda <span class="math inline">\(x \in \mathbb{R}\)</span>
+<li>Es no negativa <span class="math inline">f(x) \ge 0</span> para toda <span class="math inline">x \in \mathbb{R}</span>
 <ul>
 <li>La integral en exactamente un punto es siempre 0, por eso la definición anterior.</li>
 </ul></li>
-<li>La integral de <span class="math inline">\(-\infty\)</span> (o el valor de inicio) hasta <span class="math inline">\(\infty\)</span> o el valor final es igual a 1 <span class="math inline">\(\int_{-\infty}^{\infty} f(x)dx=1\)</span></li>
-<li>La probabilidad se obtiene por intervalos <span class="math inline">\(F(x) = P(a &lt; X &lt; b) = \int_{a}^{b} f(x)dx\)</span></li>
+<li>La integral de <span class="math inline">-\infty</span> (o el valor de inicio) hasta <span class="math inline">\infty</span> o el valor final es igual a 1 <span class="math inline">\int_{-\infty}^{\infty} f(x)dx=1</span></li>
+<li>La probabilidad se obtiene por intervalos <span class="math inline">F(x) = P(a &lt; X &lt; b) = \int_{a}^{b} f(x)dx</span></li>
 </ul></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
 <h2>Distribución de probabilidad continua</h2>
 <ul>
-<li>La función de distribución acumulada <span class="math inline">\(F(x)\)</span>:
+<li>La función de distribución acumulada <span class="math inline">F(x)</span>:
 <ul>
-<li>Es la integral de la función de densidad desde el valor mínimo hasta un valor particular de interés <span class="math inline">\(F(x) = P(X \le x) = \int_{-\infty}^{x} f(t)\, dt\)</span></li>
-<li><span class="math inline">\(F(x)\)</span> es siempre no decreciente</li>
+<li>Es la integral de la función de densidad desde el valor mínimo hasta un valor particular de interés <span class="math inline">F(x) = P(X \le x) = \int_{-\infty}^{x} f(t)\, dt</span></li>
+<li><span class="math inline">F(x)</span> es siempre no decreciente</li>
 </ul></li>
 </ul>
 </section></section>
@@ -529,16 +548,16 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Esperanza matemática</h2>
 <ul>
-<li>La media <span class="math inline">\(\mu\)</span> de una distribución de probabilidad recibe el nombre de valor esperado (Esperanza matemática).</li>
+<li>La media <span class="math inline">\mu</span> de una distribución de probabilidad recibe el nombre de valor esperado (Esperanza matemática).</li>
 <li>Se trata de un <u>promedio ponderado</u> en el que los posibles valores de una variable aleatoria se ponderan con sus correspondientes probabilidades de ocurrir.</li>
-<li><span class="math inline">\(E(x)=\mu=\sum x_i \cdot f(x_i)\)</span></li>
+<li><span class="math inline">E(x)=\mu=\sum x_i \cdot f(x_i)</span></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
 <h2>Varianza matemática</h2>
 <ul>
 <li><p>Como se sabe del tema de descripción de datos, la media constituye un valor típico para resumir datos. Sin embargo, no describe el grado de dispersión (variación o variabilidad) en una distribución. La varianza sí lo hace. Por lo que hay una medida del valor esperado de esta variación.</p></li>
-<li><p><span class="math inline">\(V(x) = \sigma^2 = \sum (x_i-\mu)^2 \cdot f(x_i)\)</span></p></li>
+<li><p><span class="math inline">V(x) = \sigma^2 = \sum (x_i-\mu)^2 \cdot f(x_i)</span></p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -546,23 +565,23 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li>Verifique que el valor de
 <ul>
-<li><span class="math inline">\(E(x) = 1.5\)</span></li>
-<li><span class="math inline">\(V(x) = 0.75\)</span></li>
+<li><span class="math inline">E(x) = 1.5</span></li>
+<li><span class="math inline">V(x) = 0.75</span></li>
 </ul></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
 <h2>Para distribuciones continuas</h2>
 <ul>
-<li><span class="math inline">\(E(x) = \mu = \int_{-\infty}^{\infty} x \cdot f(x)\)</span></li>
-<li><span class="math inline">\(V(x) =  \sigma^2=\int_{-\infty}^{\infty} (x-\mu)^2 \cdot f(x)\)</span></li>
+<li><span class="math inline">E(x) = \mu = \int_{-\infty}^{\infty} x \cdot f(x)</span></li>
+<li><span class="math inline">V(x) =  \sigma^2=\int_{-\infty}^{\infty} (x-\mu)^2 \cdot f(x)</span></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
 <h2>Propiedades de la esperanza</h2>
 <div class="columns">
 <div class="column">
-<p><span class="math display">\[
+<p><span class="math display">
 \begin{aligned}
 \mathbb{E}(aX + b) &amp;= a\mathbb{E}(X) + b \\
 \mathbb{E}(aX) &amp;= a\mathbb{E}(X) \\
@@ -571,14 +590,14 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 \mathbb{E}(XY) &amp;= \mathbb{E}(X)\mathbb{E}(Y)
 \quad \text{si } X \text{ e } Y \text{ son independientes}
 \end{aligned}
-\]</span></p>
+</span></p>
 </div></div>
 </section>
 <section class="slide level2 bloques">
 <h2>Propiedades de la varianza</h2>
 <div class="columns">
 <div class="column">
-<p><span class="math display">\[
+<p><span class="math display">
 \begin{aligned}
 \mathrm{V}(aX + b) &amp;= a^2 \mathrm{V}(X) \\
 \mathrm{V}(aX) &amp;= a^2 \mathrm{V}(X) \\
@@ -588,7 +607,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 \mathrm{V}(aX + bY) &amp;= a^2 \mathrm{V}(X) + b^2 \mathrm{V}(Y)
 \quad \text{si } X \text{ e } Y \text{ son independientes}
 \end{aligned}
-\]</span></p>
+</span></p>
 </div></div>
 </section>
 <section class="slide level2 bloques">
@@ -601,16 +620,16 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>Ejemplo 01</h2>
 <ul>
 <li>Una empresa de confección de telas produce en promedio 580 metros al día y el promedio de manchas por cada metro de tela es de 0.75. Estas variables se consideran independientes. Obtenga el promedio de manchas por día.</li>
-<li>Resuelva con las propiedades anteriores. La respuesta correcta es 443 <span class="math inline">\(\frac{manchas}{día}\)</span></li>
+<li>Resuelva con las propiedades anteriores. La respuesta correcta es 435 <span class="math inline">\frac{manchas}{día}</span></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
 <h2>Ejemplo 02</h2>
 <ul>
 <li><p>Una persona compra un “six pack” de cervezas de 350 mL, se sabe por el fabricante que la varianza de cada lata es de 9 mL. ¿Cuál es la varianza del “six pack”?</p></li>
-<li><p>Resuelva con las propiedades anteriores. La respuesta correcta es 54 <span class="math inline">\(mL^2\)</span>.</p></li>
+<li><p>Resuelva con las propiedades anteriores. La respuesta correcta es 54 <span class="math inline">mL^2</span>.</p></li>
 <li><p>Si en lugar de un six pack la persona compra una sola lata gigante que es exactamente 6 veces el contenido de una pequeña:</p></li>
-<li><p>Resuelva con las propiedades anteriores. La respuesta correcta es 324 <span class="math inline">\(mL^2\)</span>.</p></li>
+<li><p>Resuelva con las propiedades anteriores. La respuesta correcta es 324 <span class="math inline">mL^2</span>.</p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -778,7 +797,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
         autoPlayMedia: null,
 
         // Global override for preloading lazy-loaded iframes (null/true/false)
-        preloadIframes: null,
+        preloadIframes: true,
 
         // Number of milliseconds between automatically proceeding to the
         // next slide, disabled when set to 0, this value can be overwritten
@@ -840,7 +859,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
         margin: 5.0e-2,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: '',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
