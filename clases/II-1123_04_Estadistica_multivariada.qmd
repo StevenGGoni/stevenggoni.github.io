@@ -2578,7 +2578,7 @@ kw %>%
 
 * En resumen, se puede decir que la fuente de datos es correcta y que los datos se recolectaron de forma adecuada. La hipótesis que se sigue, basada en la teoría de las CIMOHU indica que si debiera existir diferencia entre el tiempo de recorrido de los 100 m planos dado los regresores estudiados. 
 
-* Se le hace entrega de los datos, así como del ejercicio parcialmente resuelto ([enlace](https://stevenggoni.github.io/clases/data/II-1123_04_Ejercicio integrador resuelto.pdf){target="_blank"}). 
+* Se le hace entrega de los [datos](https://stevenggoni.github.io/clases/data/II-1123_04_Ejercicio integrador.xlsx), así como del ejercicio parcialmente resuelto ([enlace](https://stevenggoni.github.io/clases/data/II-1123_04_Ejercicio integrador resuelto.pdf){target="_blank"}). 
 * La idea es que la persona estudiante lo realice sin ver la solución y que de ser necesario se guíe con la resolución aportada, pero que a su vez complete los elementos faltantes. 
 
 ## Bibliografía {.bloques}
