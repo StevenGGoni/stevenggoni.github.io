@@ -423,11 +423,11 @@ submuestra %>%
 
 * Si en un día hay espacio para 12 pacientes, determine: 
 * La probabilidad que 8 sean hipertensos. 
-  * 0.2128
+  * 0.12085
 * La probabilidad que máximo 3 sean hipertensos
-  * 0.0153
+  * 0.073
 * La probabilidad que al menos la mitad sean hipertensos
-  * 0.84179
+  * 0.61279
 
 ## Distribución binomial negativa {.bloques}
 
@@ -532,11 +532,11 @@ Lo que si importa es cuántos fracasos suceden antes de que ocurra el segundo é
 
 ## Ejercicio 02 {.bloques}
 
-* Sigamos con el ejemplo anterior, recordemos que ya se estimó 𝑝=0.6. Ahora, al centro de salud, le interesa conocer:
+* Sigamos con el ejemplo anterior, recordemos que ya se estimó p=0.5. Ahora, al centro de salud, le interesa conocer:
   * La probabilidad de que 10 pacientes sean atendidos antes de que 4 sean hipertensos. Es decir, la probabilidad de que hayan 6 fracasos, antes de encontrar 4 éxitos. 
-    * 0.04459
+    * 0.08203
 * La probabilidad de que hayan 4 fracasos o menos, antes de encontrar 1 persona hipertensa
-    * 0.98976
+    * 0.96875
 
 ## Distribución hipergeométrica {.bloques}
 
@@ -614,12 +614,12 @@ height="620"
 ## Ejercicio 03 {.bloques}
 
 * Siguiendo con el ejemplo de la hipertensión. Recuerde que
-  * $N = 15$
-  * $M = 9$
-  * La persona puede decidir sobre usar un valor de n particular. Supongamos $n=4$.
+  * $N = 16$
+  * $M = 8$
+  * La persona puede decidir sobre usar un valor de $n$ particular. Supongamos $n=4$.
   
 * Calcule la probabilidad que en la muestra haya 3 o menos hipertensos. 
-  * 0.90769
+  * 0.96154
 
 ## Distribución Poisson {.bloques}
 
