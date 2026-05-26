@@ -1,0 +1,354 @@
+---
+title: "Metodología de superficie de respuesta (RSM) y optimización"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1125_07_RSM.pdf) <br> II-1125 Estadística para Ingeniería Industrial III"
+date: today
+format: revealjs
+---
+
+```{r}
+
+library(tidyverse)
+
+```
+
+## Agenda {.bloques}
+
+* Conceptos
+
+* Diseños de superficie de respuesta
+
+  * Ascenso empinado
+  * Diseño Central Compuesto (DCC)
+  * Box - Behnken
+  * Mezclas (mención)
+
+* Análisis e interpretación
+  
+* Optimización simultánea
+
+## Perspectiva histórica {.bloques}
+
+* Hay, según diversos autores, cuatro grandes eras en el desarrollo moderno del DdE, una de las más importantes fue la segunda era: 
+
+  * La era de la agricultura liderada por Ronald Fisher.
+  * La era industrial, caracterizada por el desarrollo de la RSM.
+  * La tercera era llega con el ingeniero japonés Genichi Taguchi y el diseño robusto.
+  * La cuarta era que incluye un interés general en el DdE y su incorporación como materia en la mayoría de ingenierías. 
+
+
+## Perspectiva histórica {.bloques}
+
+* La segunda era fue importante, pues [Box & Wilson (1951)]{.hi} reconocen y aprovechan el hecho de que muchos de los experimentos son diferentes a los definidos en la primera era: los agrícolas. 
+
+* Las diferencias encontradas por estos autores son al menos dos principales: 
+
+* [Inmediatez]{.hi}: La variable de respuesta generalmente se puede observar casi inmediatamente.
+
+* [Secuencialidad]{.hi}: El experimentador puede aprender rápidamente información crucial de un grupo pequeño de corridas experimentales que se pueden utilizar para planificar el próximo experimento.
+
+## Perspectiva histórica - La segunda era {.bloques}
+
+* Entre 1950 y 1980 el DdE se convirtió en una herramienta de aplicación frecuente en las áreas de investigación y desarrollo. 
+
+* Hasta 1970, la aplicación común (industria, manufactura, etc) no estaba generalizada, debido a la falta de recursos computacionales y la carencia de formación estadística por parte de las personas profesionales. 
+
+* Es en esta era donde comienzan los trabajos sobre el diseño óptimo de experimentos, que se basa en la idea de seleccionar experimentos basados en criterios específicos de [optimalidad]{.hi}. 
+
+  * >Nota: no confunda diseños para optimización con diseños óptimos.
+
+  * Seleccionar los diseños que produzcan estimación de parámetros con la mejor precisión posible. 
+    * Una forma de entender "precisión" es en función del Error Estándar. 
+
+
+## Perspectiva histórica - La segunda era {.bloques}
+
+* Por su parte, la investigación estadística sobre los experimentos con mezclas tuvo sus inicios en la década de 1950 con Quenouille (1953, 1959). 
+
+* Claringbold (1955) introdujo el diseño símplex con tres componentes y Scheffé (1958) introdujo el diseño símplex lattice (también llamado reticular). 
+
+* >Nota: las RSM con mezclas no son parte de este curso.
+
+# Superficies de respuesta (RSM) {.bloques}
+
+## RSM {.bloques}
+
+* La Metodología de Superficie de Respuesta (RSM) es un conjunto de técnicas matemáticas y estadísticas útiles para el modelado y análisis de problemas en los que una respuesta de interés está influenciada por diversas variables y el objetivo final es [optimizar dicha respuesta]{.hi}.
+
+* En los experimentos factoriales estudiados anteriormente era posible optimizar la respuesta predicha por el modelo ajustado. Sin embargo, estos modelos suelen ser aproximaciones lineales válidas únicamente dentro de una [región experimental]{.hi} limitada, por lo que pueden no representar adecuadamente comportamientos curvos de la respuesta.
+
+## Regiones {.bloques}
+
+* Dos conceptos releventes en la RSM son: 
+
+* [La región de operabilidad]{.hi}: Es la región que está definida por el conjunto de condiciones **donde el equipo o proceso puede ser operado**, por ejemplo: las revoluciones por minuto a las que puede girar el motor de un torno CNC.
+  * Es difícil de delimitar con certeza el tamaño de la región de operabilidad, ya que hay estudiar el efecto en presencia de otros factores. 
+
+
+* [La región de experimentación]{.hi}: Es el espacio que está **delimitado por los rangos de experimentación** utilizados con cada factor.
+  * En las RSM la región de experimentación es por lo general menor a la región de operabilidad, excepto cuando la RSM es de mezclas.
+
+## RSM {.bloques}
+
+* Surgen o se utilizan porque en algunas ocasiones hay experimentos con los que no se obtienen los resultados buscados o las mejoras introducidas son insuficientes, por lo que es necesario experimentar de manera secuencial hasta alcanzar los resultados esperados.
+
+* Por ejemplo, después de una primera etapa experimental puede ser imperativo desplazar la región experimental en una dirección adecuada al objetivo del DdE o bien, explorar con detalle (con otro modelo) la región experimental inicial.
+
+## RSM {.bloques}
+
+* Por lo general en los problemas de RSM no se conoce la forma de la relación entre la variable de respuesta ($y$) y las variables independientes ($x_i$); por tanto, el primer paso corresponde a encontrar una aproximación adecuada de la verdadera relación funcional entre variables dependientes e independientes.
+
+* Como la función real que relaciona estas variables suele ser desconocida y compleja, se utilizan modelos empíricos aproximados, [generalmente polinomios de orden bajo]{.ul} en una región limitada de los datos.
+
+## RSM {.bloques}
+
+* **Modelo de primer orden**: Se utiliza cuando el sistema no presenta curvatura, representando la superficie como un plano
+
+  * $$y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k + \varepsilon$$
+
+## RSM {.bloques}
+
+* **Modelo de segundo orden**: Es el más utilizado debido a su flexibilidad, ya que permite aproximar una gran variedad de superficies reales, incluyendo máximos, mínimos y puntos de silla.
+
+  * $$y = \beta_0 + \sum_{j=1}^k\beta_{j}x_j+\sum_{j=1}^k\beta_{jj} x_j^2 + \sum\sum_{i<j=2}^k \beta_{ij}x_ix_j + \varepsilon$$
+
+* Ambos modelos se estiman con MCO (Mínimos Cuadrados Ordinarios).
+  
+## La naturaleza secuencial de las RSM {.bloques}
+
+* El enfoque de la RSM es de naturaleza secuencial, permitiendo al experimentador aprender del proceso a medida que avanza la investigación
+
+  * [Fase de cribado (screening):]{.hi} Su objetivo es reducir una lista larga de variables potenciales a solo unas pocas que sean realmente importantes para explicar la respuesta. También se conoce como fase 0.
+    * En este curso estudiamos los factoriales fraccionados
+  * [Fase de ascenso empinado:]{.hi} Se utiliza cuando el proceso está lejos del óptimo y se emplea un modelo de primer orden para moverse rápidamente hacia la región de mejor rendimiento. También se conoce como fase 1.
+    * En este curso aprendió sobre experimentos factoriales completos, estos pueden tomarse como base para el ascenso empinado.
+  * [Fase de optimización:]{.hi} Una vez que se alcanza la vecindad del óptimo, se emplea un modelo de segundo orden para localizar las condiciones óptimas con precisión, ya que en esta región suele aparecer curvatura en el sistema. A esta se le conoce como fase 2.
+  
+## La naturaleza secuencial de las RSM {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit}
+
+![](img/naturaleza_secuencial.png)
+
+:::
+
+::::::
+
+## La naturaleza secuencial de las RSM {.bloques}
+
+* Nótese, de la imagen del slide anterior, que la región de operabilidad es difusa, por eso es representada como una nube.
+
+* Las condiciones actuales de operación está representada con un "viejo conocido", un experimento factorial completo $2^3$.
+
+* La ruta de mejora (de ascenso) lleva las condiciones actuales a la región de experimentación del óptimo. El cual se representa con un Diseño Central Compuesto (DCC), que luego será estudiado. 
+
+* Tanto el factorial completo $2^3$ como el DCC son regiones de experimentación. 
+
+## Experimentación secuencial {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* La idea general que se sigue es que con base en un problema, la experimentación secuencial busca, utilizando varios experimentos, encontrar la mejor respuesta posible al problema que se plantea. 
+  * Por varios experimentos se refiere tanto a la cantidad, como al tipo de experimento. 
+  
+* Por lo general la ruta que se sigue en la experimentación secuencial es: 
+  * Explorar la región de operación
+  * Crear modelos de primer orden
+  * Evaluar la necesidad de modelos de segundo orden o superior
+  * Reducir el ruido o hacerlo robusto
+  
+::: 
+
+::: {.column .img-fit width="20%"}
+
+![](img/naturaleza_secuencial2.png)
+
+:::
+
+::::::
+
+## Experimentación secuencial {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit width="100%"}
+
+![](img/naturaleza_secuencial3.png)
+
+:::
+
+::::::
+
+## Objetivos y aplicaciones típicas {.bloques}
+
+* [Mapeo de la superficie]{.hi}: Para predecir cambios en la respuesta ante ajustes en las variables.
+
+* [Optimización]{.hi}: Determinar los niveles exactos que maximizan o minimizan la respuesta.
+
+* [Cumplimiento de especificaciones]{.hi}: Selección de condiciones que satisfagan múltiples requisitos simultáneamente (como costo, rendimiento y calidad), a menudo superponiendo gráficos de contornos.
+
+## Consejos y recomendaciones {.bloques}
+
+* Hacer una RSM es un proceso secuencial, el objetivo es experimentar rápida y eficientemente a través de una ruta de mejora, hacia el óptimo. 
+
+* Por lo general una RSM (por su naturaleza secuencial) es intensiva en recursos, por lo que se aconseja medir tantas variables de respuesta como sean factibles y lógicas.
+
+
+# Tipos de RSM {.bloques}
+
+## Tipos de RSM {.bloques}
+
+* Los diseños típicos empleados para ajustar RSM, son: 
+  * El método del ascenso/descenso empinado
+  * El diseño central compuesto
+  * El diseño de Box - Behnken
+  * Experimentos con mezclas y sus variantes (no estudiados en esta presentación)
+  
+## El método del ascenso empinado {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit width="30%"}
+
+![](img/empinado.svg)
+
+:::
+
+::: {.column}
+
+* Esta es una técnica de optimización basada en un gradiente de primer. El procedimiento consiste en: 
+
+  * [Ajustar un modelo de primer orden]{.hi}: usando un diseño ortogonal como un factorial $2^k$ en una región localizada para obtener una ecuación del tipo: $\hat{y} =  \beta_0 + \sum\beta_i x_i$. En ocasiones se recomienda incluir puntos centrales en este diseño para detectar si hay una curvatura en la superficie. 
+
+:::
+
+::::::
+
+## El método del ascenso empinado {.bloques}
+
+* Esta es una técnica de optimización basada en un gradiente de primer. El procedimiento consiste en: 
+
+  * [Determinar la trayectoria]{.hi}: Es el camino de ascenso máximo, se mueve en una dirección **perpendicular** a las líneas de respuesta constante (contornos). Se busca maximizar la respuesta ($\hat{y}$); para esto se debe elegir una variable base, que normalmente es aquella que tiene el coeficiente más grande (en valor absoluto) o de la que se tiene más conocimiento, y se define un paso (*step*) en unidades codificadas. El paso para cualquier otra variable se calcula como $\Delta x_j = \frac{b_j}{b_i/\Delta x_i}, \quad j = 1, 2, ..., k \quad i \ne j$.
+
+## Ejemplo {.bloques}
+
+* Suponga que se ha obtenido este modelo de primer orden a partir de un experimento factorial completo $2^2$. 
+
+* $$\hat{y}=766.25 - 66.25x_1 + 43.75x_2$$
+
+* Se selecciona el coeficiente de $x_1$ como referencia, entonces $\Delta x_1 = 1.0$, y por tanto $\Delta x_2 = \frac{43.75}{66.25} = 0.66$.
+
+* Como la ruta de ascenso debe ser perpendicular, se debe avanzar desde el punto central, $(0, 0)$ en este caso, en pasos de $-1$ para $x_1$ y $+0.66$ para $x_2$. De tal forma que para aumentar la respuesta se debe disminuir $x_1$ y aumentar $x_2$.
+
+## Ejemplo {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* En el ejemplo desarrollado $x_1$ es *Gap*, en nivel bajo (1.20) y alto (1.60) y $x_2$ es *Power* con nivel bajo (275) y alto (325), los puntos centrales serían 1.40 y 300 respectivamente. El paso está definido en variables codificadas como $\Delta x_1 = 1.60-1.40 = 0.20$ y $\Delta x_2 = 325-300=25$.
+
+  * En $\Delta x_1$ los pasos ocurren cada 0.20 y en $\Delta x_2$ ocurren cada $25 \cdot 0.66 = 16.5$.
+
+* Por lo que el primer paso que se muestra en la imagen de la derecha ocurre en las coordenadas $(1.20, 316.5)$, el segundo en $(1.00, 333)$ y el tercero en $(0.80, 349.5)$.
+
+:::
+
+::: {.column .img-fit width="30%"}
+
+![](img/ascenso_empinado.png)
+
+:::
+
+::::::
+
+## El método del ascenso empinado {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* Esta es una técnica de optimización basada en un gradiente de primer. El procedimiento consiste en: 
+
+  * [Ejecución experimental a lo largo de la trayectoria]{.hi}: Una vez definida la línea, se realizan corridas experimentales siguiendo esos puntos. Se utiliza la siguiente regla de parada: Se continúa experimentando a lo largo de la trayectoria hasta que la respuesta deje de mejorar. Una regla práctica común es detenerse cuando se observan dos disminuciones consecutivas en la respuesta.
+  
+:::
+
+::: {.column .img-fit width="25%"}
+
+![](img/criterio_parada.png)
+
+:::
+
+::::::
+
+## El método del ascenso empinado {.bloques}
+
+* Esta es una técnica de optimización basada en un gradiente de primer. El procedimiento consiste en: 
+
+  * [Reevaluación]{.hi}: Cuando se alcanza el punto máximo en la trayectoria, ese punto se convierte en el centro de un nuevo experimento, siguiendo esta estrategia:
+  
+  * Se ajusta un nuevo modelo de primer orden ("corrección a mitad de camino").
+  * Si la curvatura (detectada por los puntos centrales) o las interacciones se vuelven dominantes, es señal de que se está cerca del óptimo. En ese momento, se abandona el ascenso máximo y se procede a la [optimización de segundo orden]{.hi}.
+
+* Este enfoque secuencial asegura que los recursos se utilicen de manera eficiente.
+
+## Ventajas el ascenso empinado {.bloques}
+
+* Entre sus ventajas se tiene que es muy económico, es decir, en el caso de que el proceso sea muy caro, se puede usar este método.
+
+* Tiene un supuesto que puede ser muy “peligroso”: que un primer orden es suficiente como aproximación. 
+
+* En la práctica se usa como exploratorio para encontrar la mejor región para experimentar con un modelo de segundo orden. 
+
+## El método del ascenso empinado {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit}
+
+![](img/orden_ascenso_empinado.png)
+
+:::
+
+::::::
+
+## El método del ascenso empinado {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* Aunque el método se puede realizar cuadrático, no se recomienda usarlo de esa manera.
+
+* En caso de haber interacciones, se observaría una curvatura, que en caso de ser “pequeña”, se puede despreciar.
+
+
+:::
+
+::: {.column .img-fit}
+
+![](img/ascenso_segundo_orden.png)
+
+:::
+
+::::::
+
+## Ejemplo {.bloques}
+
+* Tome en consideración este caso que cuenta con más de dos variables, en el que se busca minimizar la respuesta (descenso empinado): 
+
+* $$\hat{y} = 80 - 5.28x_1 - 6.22x_2 - 1.21x_3 - 1.07x_4$$
+
+* Donde los niveles bajo y alto son, respectivamente, para $x_1$: 1.0 y 2.0, para $x_2$: 100 y 150, para $x_3$: 500 y 1000 y para $x_4$: 75 y 120.
+
+## Ejemplo {.bloques}
+
+* Por conveniencia se escoge a $x_1$ como la variable de referencia, de tal forma qué(entre paréntesis el valor en unidades naturales): $\Delta x_1 = 1.0 (0.5)$, $\Delta x_2 = \frac{6.22}{5.28}=1.178 (29.45)$, $\Delta x_3 = \frac{1.21}{5.28}=0.23 (57.5)$ y $\Delta x_4 = \frac{1.07}{5.28}=0.203 (4.5)$.
+
+* De esta manera el primer paso a partir de $(0, 0, 0, 0)$ es en unidades naturales $(2.0, 154.45, 807.5, 102.07)$, el segundo es $(2.5, 183.90, 865.0, 106.64)$.
+  * Obtenga usted el paso 3 y 4.
+
