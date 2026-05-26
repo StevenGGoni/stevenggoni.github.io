@@ -42,4 +42,4 @@ Aquí encontrará las clases de los diferentes cursos del área de conocimiento 
 
 Las secciones previas y restantes a la clase de RSM serán incorporadas eventualmente. 
 
-7. [Sperficies de respuesta (RSM)](clases/II-1125_07_RSM.html){target="_blank"}
+7. [Superficies de respuesta (RSM)](clases/II-1125_07_RSM.html){target="_blank"}
