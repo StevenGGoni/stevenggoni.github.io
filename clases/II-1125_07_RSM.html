@@ -141,6 +141,10 @@
       margin-right: 0; 
     }
   </style>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -158,7 +162,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">27 de mayo de 2026</p>
+  <p class="date">29 de mayo de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
@@ -169,10 +173,10 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Ascenso empinado</li>
 <li>Diseño Central Compuesto (DCC)</li>
 <li>Box - Behnken</li>
-<li>Mezclas (mención)</li>
+<li>Otras RSM - Mención</li>
 </ul></li>
-<li><p>Análisis e interpretación</p></li>
 <li><p>Optimización simultánea</p></li>
+<li><p>Criterios de optimalidad - Mención</p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -182,7 +186,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li>La era de la agricultura liderada por Ronald Fisher.</li>
 <li>La era industrial, caracterizada por el desarrollo de la RSM.</li>
-<li>La tercera era llega con el ingeniero japonés Genichi Taguchi y el diseño robusto.</li>
+<li>La tercera era está asociada con el ingeniero japonés Genichi Taguchi y el diseño robusto.</li>
 <li>La cuarta era que incluye un interés general en el DdE y su incorporación como materia en la mayoría de ingenierías.</li>
 </ul></li>
 </ul>
@@ -200,7 +204,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>Perspectiva histórica - La segunda era</h2>
 <ul>
 <li><p>Entre 1950 y 1980 el DdE se convirtió en una herramienta de aplicación frecuente en las áreas de investigación y desarrollo.</p></li>
-<li><p>Hasta 1970, la aplicación común (industria, manufactura, etc) no estaba generalizada, debido a la falta de recursos computacionales y la carencia de formación estadística por parte de las personas profesionales.</p></li>
+<li><p>Hasta 1970, su aplicación en la industria y manufactura no estaba generalizada, debido a la falta de recursos computacionales y la carencia de formación estadística por parte de las personas profesionales.</p></li>
 <li><p>Es en esta era donde comienzan los trabajos sobre el diseño óptimo de experimentos, que se basa en la idea de seleccionar experimentos basados en criterios específicos de <span class="hi">optimalidad</span>.</p>
 <ul>
 <li><blockquote>
@@ -238,10 +242,10 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Regiones</h2>
 <ul>
-<li><p>Dos conceptos releventes en la RSM son:</p></li>
+<li><p>Dos conceptos relevantes en la RSM son:</p></li>
 <li><p><span class="hi">La región de operabilidad</span>: Es la región que está definida por el conjunto de condiciones <strong>donde el equipo o proceso puede ser operado</strong>, por ejemplo: las revoluciones por minuto a las que puede girar el motor de un torno CNC.</p>
 <ul>
-<li>Es difícil de delimitar con certeza el tamaño de la región de operabilidad, ya que hay estudiar el efecto en presencia de otros factores.</li>
+<li>Es difícil de delimitar con certeza el tamaño de la región de operabilidad, ya que hay que estudiar el efecto en presencia de otros factores.</li>
 </ul></li>
 <li><p><span class="hi">La región de experimentación</span>: Es el espacio que está <strong>delimitado por los rangos de experimentación</strong> utilizados con cada factor.</p>
 <ul>
@@ -332,14 +336,14 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Reducir el ruido o hacerlo robusto</li>
 </ul></li>
 </ul>
-</div><div class="column img-fit" style="width:20%;">
+</div><div class="column img-fit" style="width:14%;">
 <p><img data-src="img/naturaleza_secuencial2.png"></p>
 </div></div>
 </section>
 <section class="slide level2 bloques">
 <h2>Experimentación secuencial</h2>
 <div class="columns">
-<div class="column img-fit" style="width:100%;">
+<div class="column img-fit" style="width:75%;">
 <p><img data-src="img/naturaleza_secuencial3.png"></p>
 </div></div>
 </section>
@@ -378,11 +382,11 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>El método del ascenso empinado</h2>
 <div class="columns">
-<div class="column img-fit" style="width:30%;">
+<div class="column img-fit" style="width:50%;">
 <p><img data-src="img/empinado.svg"></p>
 </div><div class="column">
 <ul>
-<li><p>Esta es una técnica de optimización basada en un gradiente de primer. El procedimiento consiste en:</p>
+<li><p>Esta es una técnica de optimización basada en un gradiente de primer orden. El procedimiento consiste en:</p>
 <ul>
 <li><span class="hi">Ajustar un modelo de primer orden</span>: usando un diseño ortogonal como un factorial <span class="math inline">2^k</span> en una región localizada para obtener una ecuación del tipo: <span class="math inline">\hat{y} =  \beta_0 + \sum\beta_i x_i</span>. En ocasiones se recomienda incluir puntos centrales en este diseño para detectar si hay una curvatura en la superficie.</li>
 </ul></li>
@@ -392,7 +396,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>El método del ascenso empinado</h2>
 <ul>
-<li><p>Esta es una técnica de optimización basada en un gradiente de primer. El procedimiento consiste en:</p>
+<li><p>Esta es una técnica de optimización basada en un gradiente de primer orden. El procedimiento consiste en:</p>
 <ul>
 <li><span class="hi">Determinar la trayectoria</span>: Es el camino de ascenso máximo, se mueve en una dirección <strong>perpendicular</strong> a las líneas de respuesta constante (contornos). Se busca maximizar la respuesta (<span class="math inline">\hat{y}</span>); para esto se debe elegir una variable base, que normalmente es aquella que tiene el coeficiente más grande (en valor absoluto) o de la que se tiene más conocimiento, y se define un paso (<em>step</em>) en unidades codificadas. El paso para cualquier otra variable se calcula como <span class="math inline">\Delta x_j = \frac{b_j}{b_i/\Delta x_i}, \quad j = 1, 2, ..., k \quad i \ne j</span>.</li>
 </ul></li>
@@ -404,7 +408,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li><p>Suponga que se ha obtenido este modelo de primer orden a partir de un experimento factorial completo <span class="math inline">2^2</span>.</p></li>
 <li><p><span class="math display">\hat{y}=766.25 - 66.25x_1 + 43.75x_2</span></p></li>
 <li><p>Se selecciona el coeficiente de <span class="math inline">x_1</span> como referencia, entonces <span class="math inline">\Delta x_1 = 1.0</span>, y por tanto <span class="math inline">\Delta x_2 = \frac{43.75}{66.25} = 0.66</span>.</p></li>
-<li><p>Como la ruta de ascenso debe ser perpendicular, se debe avanzar desde el punto central, <span class="math inline">(0, 0)</span> en este caso, en pasos de <span class="math inline">-1</span> para <span class="math inline">x_1</span> y <span class="math inline">+0.66</span> para <span class="math inline">x_2</span>. De tal forma que para aumentar la respuesta se debe disminuir <span class="math inline">x_1</span> y aumentar <span class="math inline">x_2</span>.</p></li>
+<li><p>Como la dirección de máximo ascenso es perpendicular a las curvas de nivel, se debe avanzar desde el punto central, <span class="math inline">(0, 0)</span> en este caso, en pasos de <span class="math inline">-1</span> para <span class="math inline">x_1</span> y <span class="math inline">+0.66</span> para <span class="math inline">x_2</span>. De tal forma que para aumentar la respuesta se debe disminuir <span class="math inline">x_1</span> y aumentar <span class="math inline">x_2</span>.</p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -427,23 +431,23 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="columns">
 <div class="column">
 <ul>
-<li><p>Esta es una técnica de optimización basada en un gradiente de primer. El procedimiento consiste en:</p>
+<li><p>Esta es una técnica de optimización basada en un gradiente de primer orden. El procedimiento consiste en:</p>
 <ul>
 <li><span class="hi">Ejecución experimental a lo largo de la trayectoria</span>: Una vez definida la línea, se realizan corridas experimentales siguiendo esos puntos. Se utiliza la siguiente regla de parada: Se continúa experimentando a lo largo de la trayectoria hasta que la respuesta deje de mejorar. Una regla práctica común es detenerse cuando se observan dos disminuciones consecutivas en la respuesta.</li>
 </ul></li>
 </ul>
-</div><div class="column img-fit" style="width:25%;">
+</div><div class="column img-fit" style="width:28%;">
 <p><img data-src="img/criterio_parada.png"></p>
 </div></div>
 </section>
 <section class="slide level2 bloques">
 <h2>El método del ascenso empinado</h2>
 <ul>
-<li><p>Esta es una técnica de optimización basada en un gradiente de primer. El procedimiento consiste en:</p>
+<li><p>Esta es una técnica de optimización basada en un gradiente de primer orden. El procedimiento consiste en:</p>
 <ul>
 <li><p><span class="hi">Reevaluación</span>: Cuando se alcanza el punto máximo en la trayectoria, ese punto se convierte en el centro de un nuevo experimento, siguiendo esta estrategia:</p></li>
 <li><p>Se ajusta un nuevo modelo de primer orden (“corrección a mitad de camino”).</p></li>
-<li><p>Si la curvatura (detectada por los puntos centrales) o las interacciones se vuelven dominantes, es señal de que se está cerca del óptimo. En ese momento, se abandona el ascenso máximo y se procede a la <span class="hi">optimización de segundo orden</span>.</p></li>
+<li><p>Si la curvatura (detectada por los puntos centrales) o los efectos de interacción se vuelven dominantes, es señal de que se está cerca del óptimo. En ese momento, se abandona el ascenso máximo y se procede a la <span class="hi">optimización de segundo orden</span>.</p></li>
 </ul></li>
 <li><p>Este enfoque secuencial asegura que los recursos se utilicen de manera eficiente.</p></li>
 </ul>
@@ -459,7 +463,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>El método del ascenso empinado</h2>
 <div class="columns">
-<div class="column img-fit">
+<div class="column img-fit" style="width:80%;">
 <p><img data-src="img/orden_ascenso_empinado.png"></p>
 </div></div>
 </section>
@@ -468,8 +472,8 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="columns">
 <div class="column">
 <ul>
-<li><p>Aunque el método se puede realizar cuadrático, no se recomienda usarlo de esa manera.</p></li>
-<li><p>En caso de haber interacciones, se observaría una curvatura, que en caso de ser “pequeña”, se puede despreciar.</p></li>
+<li><p>Aunque es posible plantear trayectorias utilizando modelos cuadráticos, usualmente no se recomienda.</p></li>
+<li><p>En caso de existir interacciones importantes, la trayectoria de ascenso puede dejar de ser una aproximación adecuada.</p></li>
 </ul>
 </div><div class="column img-fit">
 <p><img data-src="img/ascenso_segundo_orden.png"></p>
@@ -492,22 +496,590 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Obtenga usted el paso 3 y 4.</li>
 </ul></li>
 </ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Modelos de segundo orden</h1>
+
 </section>
 <section class="slide level2 bloques">
 <h2>Modelos de segundo orden</h2>
 <ul>
 <li><p>Son técnicas para analizar modelos cuadráticos una vez que la investigación se encuentra en la vecindad del óptimo. Esta es usada en lo que anteriormente fue mencionado como la Fase Dos del estudio de superficie de respuesta.</p></li>
 <li><p>Básicamente, cuando un proceso está cerca del óptimo, la superficie suele presentar curvatura, por lo que un modelo de primer orden ya no es adecuado. El modelo de segundo orden es muy flexible y puede aproximar una gran variedad de superficies reales, incluyendo máximos, mínimos y puntos de silla.</p></li>
-<li><p>El diseño experimental para este modelo debe tener al menos tres niveles para cada variable. *&gt;Nota: recuerde que en experimentos factoriales NO se le recomendaba usar más de dos niveles, pues resultan ineficientes. Son las RSM las que pueden resolver problemas que involucren más de dos niveles en variables continuas.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Modelos de segundo orden</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>El diseño experimental para este modelo debe tener al <span class="hi">menos tres niveles</span> para cada variable.</p>
+<ul>
+<li><blockquote>
+<p>Nota: recuerde que en experimentos factoriales NO se le recomendaba usar más de dos niveles, pues resultaban ineficientes. Son las RSM las que pueden resolver problemas que involucren más de dos niveles en variables continuas.</p>
+</blockquote></li>
+</ul></li>
+<li><p>Además, debe tener al menos <span class="math inline">1 + 2k + k(k+1)/2</span> puntos distintos de diseño.</p></li>
+</ul>
+</div><div class="column img-fit" style="width:65%;">
+<p><img data-src="img/modelo_segundo_orden.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Por qué no usar un factorial <span class="math inline">3^k</span></h2>
+<ul>
+<li><p>Los modelos cuadráticos requieren:</p>
+<ul>
+<li>términos lineales,</li>
+<li>interacciones,</li>
+<li>términos cuadráticos.</li>
+</ul></li>
+<li><p>Un factorial completo <span class="math inline">3^k</span> crece exponencial rápido a medida que se aumenta el número de factores. y se vuelve costoso, por eso se utilizan diseños especializados: DCC, Box-Behnken, etc.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>Suponga el siguiente modelo de segundo orden:</li>
+</ul>
+<p><span class="math display">\hat{y} = 100 + 5x_1 + 10x_2 - 8x_1^2-12x_2^2-12x_1x_2</span></p>
+<ul>
+<li>El punto estacionario es la solución a:</li>
+</ul>
+<p><span class="math display">\frac{\partial \hat{y}}{\partial x_1} = \frac{\partial \hat{y}}{\partial x_2} = 0</span></p>
+</div><div class="column">
+<ul>
+<li><p>Cuyo resultado es:</p>
+<ul>
+<li><span class="math inline">16x_1 + 12x_2 = 5 \\ 12x_1 + 24x_2 = 10</span></li>
+</ul></li>
+<li><p>De tal forma que:</p>
+<ul>
+<li><span class="math inline">x_1 = 0, \quad x_2 = \frac{5}{12}</span></li>
+</ul></li>
+<li><p>Por tanto, el punto estacionario</p>
+<ul>
+<li><span class="math inline">\hat{y} = 102.08</span></li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Punto estacionario</h2>
+<ul>
+<li><p>Recordatorio: Un <span class="hi">punto estacionario</span> de una función se define como cualquier punto donde su tasa de cambio instantánea con respecto a la variable es cero, lo que indica que la pendiente de la función es horizontal en ese punto.</p></li>
+<li><p>Algebraicamente la localización de este punto se calcula mediante la ecuación matricial <span class="math inline">x_s = -\frac{1}{2}\hat{B}^{-1}b</span> (Esta expresión es la generalización multivariable de igualar la derivada a cero), donde <span class="math inline">b</span> es el vector de los coeficientes lineales y <span class="math inline">\hat{B}</span> es la matriz de coeficientes cuadráticos e interacciones.</p></li>
+<li><p>Si todos los autovalores (<em>eigenvalues</em>) de la matriz <span class="math inline">\hat{B}</span> son negativos, es un máximo, si son positivos es un mínimo y si son mixtos es un punto silla.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Suponga que se ha ajustado un modelo de segundo orden:</li>
+</ul>
+<p><span class="math display">79.75 + 10.12x_1 + 4.22x_2 - 8.50x_1^2-5.25x_2^2 - 7.75x_1x_2</span></p>
+<ul>
+<li>Por tanto:</li>
+</ul>
+<p><span class="math display">
+\mathbf{\hat{B}} =
+\begin{bmatrix}
+-8.50 &amp; -3.875 \\
+-3.875 &amp; -5.25
+\end{bmatrix}, \quad
+\mathbf{b} =
+\begin{bmatrix}
+10.12 \\
+4.22
+\end{bmatrix}
+</span></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Entonces el <span class="hi">punto estacionario</span> es:</li>
+</ul>
+<p><span class="math display">
+\begin{aligned}
+\mathbf{x}_s &amp;= -\tfrac{1}{2} \mathbf{B}^{-1} \mathbf{b} \\
+&amp;= -\tfrac{1}{2}
+\begin{bmatrix}
+-0.1773 &amp; 0.1309 \\
+0.1309 &amp; -0.2871
+\end{bmatrix}
+\begin{bmatrix}
+10.12 \\
+4.22
+\end{bmatrix} \\
+&amp;=
+\begin{bmatrix}
+0.6264 \\
+-0.0604
+\end{bmatrix}
+\end{aligned}
+</span></p>
+<ul>
+<li>Cuya respuesta es <span class="math inline">\hat{y} = 82.81</span>. Los autovalores pueden calcularse con software o bien, buscando la solución a la siguiente ecuación:</li>
+</ul>
+</div><div class="column">
+<p><span class="math display">
+|\mathbf{B} - \lambda \mathbf{I}| = 0
+</span></p>
+<p><span class="math display">
+\left|
+\begin{bmatrix}
+-8.50 - \lambda &amp; -3.875 \\
+-3.875 &amp; -5.25 - \lambda
+\end{bmatrix}
+\right| = 0
+</span></p>
+<p><span class="math display">
+\lambda^2 + 13.75 \lambda + 29.61 = 0
+</span></p>
+<p><span class="math display">
+\lambda_1 = -11.0769, \quad \lambda_2 = -2.6731
+</span></p>
+<p>Como ambos son negativos, el punto estacionario es un <span class="hi">máximo</span>.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Propiedades deseables de los diseños RSM</h2>
+<ul>
+<li><p><span class="hi">Buen ajuste</span>: El diseño debe dar como resultado un buen ajuste del modelo a los datos observados.</p></li>
+<li><p><span class="hi">Prueba de falta de ajuste</span>: Debe proporcionar información suficiente para permitir una prueba de falta de ajuste (lack of fit).</p></li>
+<li><p><span class="hi">Naturaleza secuencial</span>: Debe permitir que los modelos de orden creciente (por ejemplo, pasar de primer a segundo orden) se construyan de manera secuencial.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Propiedades deseables de los diseños RSM</h2>
+<ul>
+<li><p><span class="hi">Estimación del error puro</span>: Debe proporcionar una estimación del error experimental “puro”.</p></li>
+<li><p><span class="hi">Robustez ante valores atípicos</span>: El diseño debe ser insensible (robusto) a la presencia de valores atípicos (outliers) en los datos.</p></li>
+<li><p><span class="hi">Robustez ante errores de control</span>: Debe ser robusto ante errores en el control de los niveles de los factores del diseño.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Propiedades deseables de los diseños RSM</h2>
+<ul>
+<li><p><span class="hi">Rentabilidad</span>: El diseño debe ser rentable o eficiente en términos de costo, evitando un número excesivo de corridas experimentales.</p></li>
+<li><p><span class="hi">Formación de bloques</span>: Debe permitir que los experimentos se realicen en bloques para controlar variables extrañas.</p></li>
+<li><p><span class="hi">Verificación de varianza</span>: Debe proporcionar una forma de verificar el supuesto de que la varianza es homogénea (homocedasticidad).</p></li>
+<li><p><span class="hi">Buena distribución de la varianza de predicción</span>: Debe proporcionar una buena distribución de la varianza de predicción escalada (<span class="math inline">Var[\hat{y}(x)]/\sigma^2</span>) en toda la región de interés.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Propiedades deseables de los diseños RSM</h2>
+<ul>
+<li>No todas estas propiedades, enunciadas previamente, son obligatorias en cada aplicación, pero deben considerarse seriamente, ya que a menudo existen compromisos entre ellas al seleccionar el diseño más adecuado.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Propiedades deseables de los diseños RSM</h2>
+<ul>
+<li><p><span class="hi">Diseños de primer orden</span>: La ortogonalidad es la clave, pues minimiza la varianza de los coeficientes del modelo.</p></li>
+<li><p><span class="hi">Diseños de segundo orden</span>: La rotabilidad es una propiedad deseada en los modelos de segundo orden.</p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
 <h2>Diseño Central Compuesto (DCC)</h2>
 <ul>
-<li><p>Son modelos de segundo orden</p></li>
-<li><p>Es un modelo factorial completo <span class="math inline">2^k</span>, compuesto de puntos axiales y centrales.</p></li>
-<li><p>Básicamente, es un factorial completo al que se le ha incrustado una “cruz” con puntos adicionales, la forma de cruz siempre que <span class="math inline">k=2</span>.</p></li>
+<li><p>Es la clase de diseño experimental más popular para ajustar modelos de segundo orden. Su éxito se debe a su eficiencia y a su naturaleza secuencial, lo que permite al investigador construir sobre experimentos previos.</p></li>
+<li><p>Un DCC para <span class="math inline">k</span> factores se compone de tres tipos de corridas experimentales:</p>
+<ul>
+<li><p><span class="hi">Puntos factoriales (<span class="math inline">F</span>)</span>: Provienen de un diseño factorial <span class="math inline">2^k</span> (o una fracción de resolución V). Estos puntos son fundamentales para estimar los efectos lineales y las interacciones entre factores.</p></li>
+<li><p><span class="hi">Puntos axiales o de estrella (<span class="math inline">2k</span>)</span>: Consisten en dos puntos sobre el eje de cada variable a una distancia α del centro (por ejemplo, en las coordenadas (<span class="math inline">\pm \alpha,0 \dots,0</span>)). Estos puntos son los que permiten estimar los términos cuadráticos puros (la curvatura).</p></li>
+<li><p><span class="hi">Puntos Centrales (<span class="math inline">n_c</span>)</span>: Son réplicas en el centro del diseño (coordenadas <span class="math inline">0,0,\dots,0</span>). Proporcionan una estimación del error experimental “puro” y ayudan a estabilizar la varianza de la predicción en toda la región.</p></li>
+</ul></li>
 </ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño Central Compuesto (DCC)</h2>
+<ul>
+<li><p>El uso del DCC está motivado por la experimentación secuencial, en el tanto es un diseño factorial (completo o de resolución V) ampliado con puntos axiales y centrales. En resumen:</p>
+<ul>
+<li>Se inicia con los puntos factoriales y centrales. Esto permite ajustar un modelo de primer orden y realizar una prueba de falta de ajuste para detectar si hay curvatura.</li>
+<li>Si se detecta curvatura significativa, se añaden los puntos axiales. Esta transición se realiza de manera eficiente, ya que no se desperdicia ningún esfuerzo experimental previo para lograr un modelo de segundo orden completo</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño Central Compuesto (DCC)</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/dcc.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Rotabilidad</h2>
+<ul>
+<li><p>Un diseño es rotatable si la varianza de la respuesta predicha (o varianza de predicción) es la misma en todos los puntos que están a la misma distancia del centro del diseño.</p>
+<ul>
+<li>En resumen, cuando <span class="math inline">Var[\hat{y}(x)]/\sigma^2</span> es constante en esferas.</li>
+</ul></li>
+<li><p>En los CCD, esto se logra seleccionando adecuadamente la distancia axial (<span class="math inline">\alpha = \sqrt[4]{F}</span>). Aunque la rotatabilidad es deseable, la estabilidad de la varianza en la región de interés es el objetivo práctico más importante.</p></li>
+<li><p>Un diseño es <span class="hi">rotable</span> si la <span class="hi">varianza de la predicción</span> de la respuesta depende únicamente de la distancia del punto al centro del diseño, y <span class="hi">no de la dirección</span>. La rotabilidad asegura que la incertidumbre de la predicción sea <span class="hi">simétrica</span> alrededor del centro.</p></li>
+</ul>
+</section>
+<section class="slide level2 hi">
+<h2>Rotabilidad</h2>
+<div class="columns">
+<div class="columns img-fit" width="80%">
+<p><img data-src="img/dcc_n1.png"></p>
+</div>
+</div>
+</section>
+<section class="slide level2 hi">
+<h2>Rotabilidad</h2>
+<div class="columns">
+<div class="columns img-fit" width="80%">
+<p><img data-src="img/dcc_n2.png"></p>
+</div>
+</div>
+</section>
+<section class="slide level2 bloques">
+<h2>Rotabilidad</h2>
+<ul>
+<li><p>Nótese como la varianza de predicción es menor en el punto central cuando este se replica independientemente de los demás puntos en el diseño.</p></li>
+<li><p>Puede utilizar la simulación del siguiente slide para comprobar como cambia la varianza de predicción al variar el <span class="math inline">\alpha</span> que estaría asociada a la rotabilidad (note que deja de apreciarse contornos circulares) y el <span class="math inline">n_c</span> que cambiaría la varianza de la predicción en el punto central del diseño.</p>
+<ul>
+<li>Recuerde que según la estrategia secuencial de experimentación se sospecha que el valor óptimo se encuentra centra del centro, por lo que debe estimarse con la mayor precisión.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Varianza de Predicción en el DCC</h2>
+<div class="iframe-card">
+<iframe data-src="diagramas/dcc.html" title="Simulación DCC">
+</iframe>
+</div>
+</section>
+<section class="slide level2 bloques">
+<h2>Otras variantes del DCC</h2>
+<ul>
+<li><p><span class="hi">DCC esférico</span>: Cuando la región de interés es una esfera, se suelen colocar todos los puntos factoriales y axiales sobre una misma superficie esférica de radio <span class="math inline">\sqrt{k}</span>.</p></li>
+<li><p><span class="hi">Cubo Centrado en las Caras (FCD)</span>: Si el investigador no puede experimentar fuera de los niveles factoriales (región cuboidal), se fija <span class="math inline">\alpha=1</span>. Esto sitúa los puntos axiales en el centro de las caras del cubo. En este caso, solo se necesitan uno o dos puntos centrales para estabilizar la varianza, a diferencia del caso esférico que requiere de tres a cinco.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño y análisis estadístico</h2>
+<div class="columns">
+<div class="column" style="width:72%;">
+<ul>
+<li><p>Los datos obtenidos a partir de un DCC se utilizan para ajustar un polinomio de segundo orden mediante el método de mínimos cuadrados (MCO).Este modelo permite localizar el punto estacionario (máximo, mínimo o punto de silla) y caracterizar la forma de la superficie de respuesta.</p></li>
+<li><p>Por ejemplo, para dos factores <span class="math inline">A</span> y <span class="math inline">B</span> se requieren <span class="math inline">F = 2^2 = 4</span> puntos de esquina que provienen de un factorial; <span class="math inline">2k = 2\cdot2 = 4</span> puntos axiales, que si es rotable <span class="math inline">\alpha = \sqrt{2} = 1.414</span> y <span class="math inline">n_c = 6</span> puntos centrales.</p></li>
+<li><p>Por lo general, por la naturaleza secuencial, los axiales y puntos centrales adicionales son considerados bloques.</p></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="font-size: 24px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Corrida</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Orden estándar</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Bloque</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1.000000</td>
+<td style="text-align: right;">-1.000000</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">-1.000000</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">-1.000000</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1.414214</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1.414214</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">-1.414214</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1.414214</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: left;">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>DCC - Secuencial</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/dcc secuencial.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño Box - Behnken (BBD)</h2>
+<ul>
+<li><p>Es una familia de diseños eficientes de tres niveles utilizados para ajustar superficies de respuesta de segundo orden.</p></li>
+<li><p>Se basa en la construcción de diseños de bloques incompletos balanceados (BIBD). Su lógica operativa consiste en combinar factoriales 22 para pares de variables mientras las demás se mantienen fijas en su nivel central (0).</p></li>
+<li><p>A diferencia del Diseño Compuesto Central (DCC), el BBD no contiene puntos factoriales (vértices del cubo) ni puntos axiales. Todos sus puntos de diseño (excepto los centrales) son puntos medios de las aristas del espacio experimental.</p></li>
+<li><p>Es un diseño esférico. En el caso de <span class="math inline">k=3</span> factores, todos los puntos de las aristas están a una distancia de <span class="math inline">\sqrt{2}</span> del centro, lo que significa que no cubre las esquinas del cubo (que estarían a <span class="math inline">\sqrt{3}</span>).</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño Box - Behnken (BBD)</h2>
+<div class="columns">
+<div class="column">
+<p>Ejemplo de construcción:</p>
+<ul>
+<li>Factorial <span class="math inline">2^2</span> con <span class="math inline">A</span> y <span class="math inline">B</span>, siendo <span class="math inline">C = 0</span></li>
+<li>Factorial <span class="math inline">2^2</span> con <span class="math inline">A</span> y <span class="math inline">C</span>, siendo <span class="math inline">B = 0</span></li>
+<li>Factorial <span class="math inline">2^2</span> con <span class="math inline">B</span> y <span class="math inline">C</span>, siendo <span class="math inline">A = 0</span></li>
+<li>Puntos centrales <span class="math inline">(0, 0, 0)</span>.</li>
+</ul>
+</div><div class="column img-fit" style="width:30%;">
+<p><img data-src="img/DBB.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño Box - Behnken (BBD)</h2>
+<ul>
+<li><p>En resumen, se aplica cuando se tiene tres o más factores y suelen ser más eficientes en cuanto al número de corridas.</p></li>
+<li><p>Los puntos de este diseño se ubican en el medio de las aristas del cubo y NO incluye los tratamientos de los vértices.</p></li>
+<li><p>Esto puede ser ventajoso, si los vértices son caros, peligrosos, etc.… de ejecutar.</p>
+<ul>
+<li>Por ejemplo, que en ciertas condiciones de operación extremas un equipo pueda dañarse.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño Box - Behnken (BBD)</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>El BBD es altamente valorado por su economía en el número de pruebas, especialmente cuando se compara con factoriales completos de tres niveles (<span class="math inline">3^k</span>).</p>
+<ul>
+<li>Para <span class="math inline">k=3</span>: Requiere <span class="math inline">12+n_c</span> corridas (donde <span class="math inline">n_c</span> son los puntos centrales), comparado con las <span class="math inline">14+n_c</span> del DCC.</li>
+<li>Para <span class="math inline">k=4</span>: Requiere <span class="math inline">24+n_c</span> corridas, igualando al DCC.</li>
+<li>Para <span class="math inline">k=5</span>: Requiere <span class="math inline">40+n_c</span> corridas (el DCC con fracción de 1/2 requiere solo <span class="math inline">26+n_c</span>).</li>
+</ul></li>
+</ul>
+</div><div class="column img-fit" style="width:20%;">
+<p><img data-src="img/BBD.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño Box - Behnken (BBD)</h2>
+<ul>
+<li><p>El diseño es exactamente rotatable para <span class="math inline">k=4</span> y <span class="math inline">k=7</span> factores. En otros casos, es “casi rotatable”. Esto significa que la varianza de la respuesta predicha es constante (o casi constante) en esferas alrededor del centro.</p></li>
+<li><p>Proporciona suficiente información y grados de libertad para realizar pruebas de falta de ajuste (lack of fit).</p></li>
+<li><p>Se recomienda utilizar de 3 a 5 puntos centrales para evitar la singularidad de la matriz y estabilizar la varianza de la predicción.</p></li>
+<li><p>El BBD permite el bloqueo ortogonal (como el DCC), lo que significa que los efectos de los bloques no interfieren con la estimación de los coeficientes del modelo.</p>
+<ul>
+<li>Para <span class="math inline">k=4</span>, el diseño se puede dividir en 3 bloques de tamaño igual (8 puntos de diseño + puntos centrales iguales por bloque).</li>
+<li>Para <span class="math inline">k=5</span>, se puede dividir en 2 bloques ortogonales.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño Box - Behnken (BBD)</h2>
+<ul>
+<li><p>El uso del Diseño Box-Behnken es más apropiado cuando:</p>
+<ul>
+<li>La región de interés es esférica.</li>
+<li>No es de interés predecir en los extremos (esquinas del cubo), ya que el diseño no tiene puntos allí y la varianza de la predicción en esas zonas es muy alta.</li>
+<li>Se desea evitar situaciones experimentales extremas que podrían ser peligrosas o imposibles de probar (por ejemplo, niveles altos simultáneos de presión y temperatura).</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Optimización simultánea</h2>
+<ul>
+<li>En ocasiones, los experimentos se llevan a cabo y miden múltiples variables de respuesta de forma simultánea.</li>
+<li>Un enfoque común utilizado y recomendado en la optimización simultánea de variables de respuesta en el DdE es el de utilizar la función de deseabilidad propuesta por Derringer &amp; Suich (1980).</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Función de deseabilidad</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Cuando se diseñan y desarrollan productos o procesos acaece un problema común, el cual es la selección del conjunto de condiciones o variables de entrada con las cuales el producto resultante posea una combinación deseable de propiedades de las variables de salida.</p></li>
+<li><p>Esta función consiste en primero traducir cada respuesta <span class="math inline">y_i</span> en una función de deseabilidad individual <span class="math inline">d_i</span> que varía sobre el rango <span class="math inline">0≤d_i≤1</span>, donde si la respuesta <span class="math inline">y_i</span> está en su objetivo o meta, entonces <span class="math inline">d_i=1</span>, caso contrario si está fuera, <span class="math inline">d_i=0</span>.</p></li>
+</ul>
+</div><div class="column img-fit" style="width:30%;">
+<p><img data-src="img/desirability.gif"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Función de deseabilidad</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Las variables de diseño son escogidas para maximizar la deseabilidad compuesta o global <span class="math inline">D=(d_1 \cdot d_2 \cdots d_m)^\frac{1}{m} = \left(\prod_{i=1}^{m} d_i\right)^{\frac{1}{m}}</span></p></li>
+<li><p>Donde <span class="math inline">m</span> es la cantidad de respuestas.</p></li>
+</ul>
+</div><div class="column img-fit" style="width:80%;">
+<p><img data-src="img/deseabilidad.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Otras RSM - Mención</h2>
+<ul>
+<li><p>En ocasiones, la persona experimentadora no puede hacer todas las corridas experimentales en estos diseños. En esas situaciones se pueden usar experimentos saturados o casi – saturados. Es decir, diseños que contienen cerca de (pero no menos de) <span class="math inline">p</span> puntos de diseño donde:</p></li>
+<li><p><span class="math inline">p = 1 + 2k + \frac{k(k+1)}{2}</span></p></li>
+<li><p>De tal forma que obtiene <span class="math inline">1</span> intercepto, <span class="math inline">k</span> términos de primer orden, <span class="math inline">k</span> de segundo orden y <span class="math inline">\frac{k(k+1)}{2}</span> términos de interacción.</p></li>
+<li><p>Estos diseños NO deben usarse salvo que existan costos prohibitivos que impidan el uso de un diseño estándar. Lo aquí tratado es una mención, no se abordarán estos temas.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Otras RSM - Mención</h2>
+<ul>
+<li><p><span class="hi">Diseños de Hoke</span>: Consiste de puntos factoriales, axiales y de frontera que crean arreglos eficientes de segundo orden para <span class="math inline">k=3, 4, 5 \text{ y } 6</span>.</p></li>
+<li><p><span class="hi">Diseños de Koshal</span>: Estos diseños están saturados para el modelado de cualquier superficie de respuesta del orden <span class="math inline">d</span> (<span class="math inline">d=1, 2, \dots</span>)</p></li>
+<li><p><span class="hi">Diseños híbridos</span>: Son diseños eficientes, creados por Roquemore (1976), que son de saturados o casi saturados de segundo orden.</p></li>
+<li><p><span class="hi">DCC reducido</span>: En lugar de estar basado en un factorial completo o de resolución V lo hace con fraccionados de resolución <span class="math inline">III</span> especiales.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Criterios de optimalidad - Mención</h2>
+<ul>
+<li><p>¿Qué ocurre cuando un CCD o un BBD no pueden ejecutarse debido a restricciones físicas o económicas?</p></li>
+<li><p>El término optimalidad ya fue introducido en esta clase.</p>
+<ul>
+<li>Recuerde que se hizo la diferencia entre un diseño optimal y un diseño para optimización.</li>
+</ul></li>
+<li><p>Existen varios criterios de optimalidad de diseño que se pueden utilizar para elegir un conjunto de puntos de diseño. Algunos de los criterios de optimalidad de diseños son el ADGV.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Criterios de optimalidad - Mención</h2>
+<ul>
+<li><p><span class="hi">A – optimalidad</span>: es cuando la traza de <span class="math inline">(X'X)^{-1}</span> es minimizada. En cuyo caso la varianza promedio de los elementos de <span class="math inline">b</span> (el estimador de <span class="math inline">\beta</span>) es minimizada.</p></li>
+<li><p><span class="hi">D – optimalidad</span>: es cuando el determinante <span class="math inline">det|X'X|</span> es maximizado o bien cuando <span class="math inline">det|X'X|^{-1}</span>es minimizado; con ello se minimiza la varianza general de los elementos de <span class="math inline">b</span>.</p></li>
+<li><p><span class="hi">G – optimalidad</span>: busca minimizar la varianza máxima de predicción, <span class="math inline">max \{d=x'(X'X)^{-1}x \}</span>, sobre un conjunto especificado de puntos de diseño.</p></li>
+<li><p><span class="hi">V – optimalidad</span>: busca minimizar el valor promedio de <span class="math inline">d</span> sobre un conjunto especificado de puntos de diseño. Es decir, lo que se quiere minimizar es el apalancamiento promedio.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Bibliografía</h2>
+<div class="columns">
+<div class="column" style="font-size: 1.2em;">
+<ul>
+<li>Myers, R. H., Montgomery, D. C., y Anderson-Cook, C. M. (2011). Response surface methodology: Process and product optimization using designed experiments (3.ª ed.). Wiley.
+<ul>
+<li>Capítulo 1, 2, 5, 6, 7 y 8.</li>
+</ul></li>
+<li>Montgomery, D. C. (2020). Design and analysis of experiments (10.ª ed.). Wiley.
+<ul>
+<li>Capítulo 11.</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 center">
+<h2>Metodología de superficie de respuesta (RSM) y optimización <br> II-1125 Estadística para Ingeniería Industrial III</h2>
+<h3 class="subtitle">Gracias por su atención <br> Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a></h3>
+<h3>Dudas o correcciones requeridas pueden solicitarse al correo</h3>
 
 
 </section></section>

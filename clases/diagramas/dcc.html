@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador DCC - Varianza de Predicción</title>
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 20px;
+            background-color: transparent;
+            color: #212529;
+        }
+        h2 { 
+            text-align: center; 
+            margin-bottom: 25px; 
+            font-weight: 500;
+            color: #331114; /* Tono de énfasis oscuro de la paleta */
+        }
+        .controls {
+            display: flex;
+            justify-content: space-around;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
+            margin-bottom: 25px;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 45%;
+        }
+        label { 
+            font-weight: 500; 
+            margin-bottom: 8px; 
+            color: #495057;
+        }
+        input[type="range"] { 
+            width: 100%; 
+            accent-color: #331114; /* Color de acento de los sliders */
+        }
+        .value-display {
+            font-weight: bold;
+            color: #331114;
+        }
+        .help-text {
+            color: #6c757d; 
+            font-size: 0.85em; 
+            margin-top: 5px;
+            text-align: center;
+        }
+        .plots-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .plot-box {
+            width: 49%;
+            background: #ffffff;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        @media(max-width: 800px) {
+            .plot-box { width: 100%; margin-bottom: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!--<h2>Varianza de Predicción en el Diseño Central Compuesto (DCC)</h2>-->
+
+    <div class="controls">
+        <div class="control-group">
+            <label for="alpha">Distancia Axial (&alpha;): <span id="alpha-val" class="value-display">1.000</span></label>
+            <input type="range" id="alpha" min="0.5" max="3" step="0.01" value="1.4142">
+            <div class="help-text">&alpha; = 1.4142 representa un diseño rotable.</div>
+        </div>
+        <div class="control-group">
+            <label for="nc">Réplicas en el Punto Central (n<sub>c</sub>): <span id="nc-val" class="value-display">5</span></label>
+            <input type="range" id="nc" min="1" max="10" step="1" value="5">
+            <div class="help-text">Estabiliza y distribuye de forma homogénea la varianza en el origen.</div>
+        </div>
+    </div>
+
+    <div class="plots-container">
+        <div id="plot3d" class="plot-box" style="height: 500px;"></div>
+        <div id="plotContour" class="plot-box" style="height: 500px;"></div>
+    </div>
+
+    <script>
+        // Matriz fija para 2 factores en la región [-1, 1]
+        const factorialPoints = [
+            [-1, -1], [1, -1], [-1, 1], [1, 1]
+        ];
+
+        function calcularMatrizX(alpha, nc) {
+            let X = [];
+            
+            // 1. Puntos factoriales
+            factorialPoints.forEach(p => X.push([1, p[0], p[1], p[0]*p[1], p[0]**2, p[1]**2]));
+            
+            // 2. Puntos axiales (limitados por el alpha seleccionado)
+            const axialPoints = [
+                [-alpha, 0], [alpha, 0], [0, -alpha], [0, alpha]
+            ];
+            axialPoints.forEach(p => X.push([1, p[0], p[1], p[0]*p[1], p[0]**2, p[1]**2]));
+            
+            // 3. Puntos centrales
+            for(let i=0; i<nc; i++) {
+                X.push([1, 0, 0, 0, 0, 0]);
+            }
+            return X;
+        }
+
+        function multiplicarMT(M) {
+            let filas = M.length;
+            let columnas = M[0].length;
+            let res = Array(columnas).fill(0).map(() => Array(columnas).fill(0));
+            for(let i=0; i<columnas; i++) {
+                for(let j=0; j<columnas; j++) {
+                    let suma = 0;
+                    for(let k=0; k<filas; k++) {
+                        suma += M[k][i] * M[k][j];
+                    }
+                    res[i][j] = suma;
+                }
+            }
+            return res;
+        }
+
+        function invertirMatriz(M) {
+            let n = M.length;
+            let I = Array(n).fill(0).map((_, i) => Array(n).fill(0).map((_, j) => i === j ? 1 : 0));
+            let C = M.map(row => [...row]);
+
+            for (let i = 0; i < n; i++) {
+                let pivot = C[i][i];
+                if (Math.abs(pivot) < 1e-9) return null;
+                for (let j = 0; j < n; j++) {
+                    C[i][j] /= pivot;
+                    I[i][j] /= pivot;
+                }
+                for (let k = 0; k < n; k++) {
+                    if (k !== i) {
+                        let factor = C[k][i];
+                        for (let j = 0; j < n; j++) {
+                            C[k][j] -= factor * C[i][j];
+                            I[k][j] -= factor * I[i][j];
+                        }
+                    }
+                }
+            }
+            return I;
+        }
+
+        function generarDatosSuperficie(invXtX) {
+            let size = 45;
+            let x1 = [], x2 = [], z = [];
+            
+            // Forzamos el rango estrictamente de -1.0 a 1.0
+            for(let i=0; i<=size; i++) {
+                let v = -1.0 + (2.0 * i / size);
+                x1.push(v);
+                x2.push(v);
+            }
+
+            for(let i=0; i<=size; i++) {
+                let filaZ = [];
+                for(let j=0; j<=size; j++) {
+                    let x_vec = [1, x1[j], x2[i], x1[j]*x2[i], x1[j]**2, x2[i]**2];
+                    
+                    let temp = Array(6).fill(0);
+                    for(let r=0; r<6; r++) {
+                        for(let c=0; c<6; c++) {
+                            temp[r] += x_vec[c] * invXtX[c][r];
+                        }
+                    }
+                    let varPred = 0;
+                    for(let r=0; r<6; r++) {
+                        varPred += temp[r] * x_vec[r];
+                    }
+                    filaZ.push(varPred);
+                }
+                z.push(filaZ);
+            }
+            return { x: x1, y: x2, z: z };
+        }
+
+        function actualizarSimulacion() {
+            const alpha = parseFloat(document.getElementById('alpha').value);
+            const nc = parseInt(document.getElementById('nc').value);
+            
+            document.getElementById('alpha-val').innerText = alpha.toFixed(3);
+            document.getElementById('nc-val').innerText = nc;
+
+            const X = calcularMatrizX(alpha, nc);
+            const XtX = multiplicarMT(X);
+            const invXtX = invertirMatriz(XtX);
+
+            if (!invXtX) return;
+
+            const datos = generarDatosSuperficie(invXtX);
+
+            // Ajuste estético a la escala corporativa/académica (Grisáceos a Vino tinto)
+            const customColorscale = [
+                [0.0, '#9BA1AB'],
+                [0.5, '#6c757d'],
+                [1.0, '#331114']
+            ];
+
+            // 1. Gráfico 3D
+            const data3D = [{
+                x: datos.x, y: datos.y, z: datos.z,
+                type: 'surface',
+                colorscale: customColorscale,
+                showscale: false
+            }];
+            
+            const layout3D = {
+                title: { text: 'Superficie de Varianza de Predicción', font: { color: '#331114' } },
+                autosize: true,
+                scene: {
+                    xaxis: { title: 'X1', range: [-1, 1], gridcolor: '#dee2e6' },
+                    yaxis: { title: 'X2', range: [-1, 1], gridcolor: '#dee2e6' },
+                    zaxis: { title: 'Varianza / σ²', gridcolor: '#dee2e6' }
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                margin: { l: 0, r: 0, b: 0, t: 40 }
+            };
+
+            Plotly.react('plot3d', data3D, layout3D);
+
+            // 2. Gráfico de Contornos
+            const dataContour = [{
+                x: datos.x, y: datos.y, z: datos.z,
+                type: 'contour',
+                colorscale: customColorscale,
+                contours: { coloring: 'heatmap', showlines: true, labelfont: { color: '#fff' } }
+            }];
+
+            const layoutContour = {
+                title: { text: 'Contornos de Varianza en el Espacio [-1, 1]', font: { color: '#331114' } },
+                xaxis: { title: 'X1', range: [-1, 1], gridcolor: '#dee2e6' },
+                yaxis: { title: 'X2', range: [-1, 1], gridcolor: '#dee2e6' },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                margin: { l: 50, r: 30, b: 50, t: 40 }
+            };
+
+            Plotly.react('plotContour', dataContour, layoutContour);
+        }
+
+        document.getElementById('alpha').addEventListener('input', actualizarSimulacion);
+        document.getElementById('nc').addEventListener('input', actualizarSimulacion);
+
+        // Renderizado inicial
+        actualizarSimulacion();
+    </script>
+    
+          <footer style="margin-top: 2em; font-size: 0.8em; text-align: center; color: gray;">
+      Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Mayo 2026
+    </footer>
+</body>
+</html>

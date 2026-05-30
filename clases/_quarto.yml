@@ -6,7 +6,7 @@ project:
     - "!Guia_practicas_laboratoriales.qmd"
 
 author: "Steven García Goñi<br>[steven.garciagoni@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr)"
-license: "CC BY"
+license: "CC BY NC 4.0"
 lang: es
 date-format: long
 knitr: 

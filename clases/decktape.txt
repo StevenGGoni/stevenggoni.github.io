@@ -19,3 +19,5 @@ decktape reveal --size="1920x1080" II-1120_06_Distribuciones_discretas.html II-1
 decktape reveal --size="1920x1080" II-1120_07_Estadistica_bivariada.html II-1120_07_Estadistica_bivariada.pdf
 
 decktape reveal --size="1920x1080" II-1120_08_Elementos_psicometria.html II-1120_08_Elementos_psicometria.pdf
+
+decktape reveal --size="1920x1080" II-1125_07_RSM.html II-1125_07_RSM.pdf
