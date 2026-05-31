@@ -390,7 +390,7 @@ library(rsm)
   * interacciones,
   * términos cuadráticos.
   
-* Un factorial completo $3^k$ crece exponencial rápido a medida que se aumenta el número de factores. y se vuelve costoso, por eso se utilizan diseños especializados: DCC, Box-Behnken, etc.
+* Un factorial completo $3^k$ crece exponencialmente a medida que se aumenta el número de factores. y se vuelve costoso, por eso se utilizan diseños especializados: DCC, Box-Behnken, etc.
 
 ## Ejemplo {.bloques}
 
