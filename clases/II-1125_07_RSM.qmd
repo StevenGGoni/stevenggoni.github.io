@@ -55,10 +55,8 @@ library(rsm)
 
 * Es en esta era donde comienzan los trabajos sobre el diseño óptimo de experimentos, que se basa en la idea de seleccionar experimentos basados en criterios específicos de [optimalidad]{.hi}. 
 
-  * >Nota: no confunda diseños para optimización con diseños óptimos.
-
-  * Seleccionar los diseños que produzcan estimación de parámetros con la mejor precisión posible. 
-    * Una forma de entender "precisión" es en función del Error Estándar. 
+  * Optimalidad se basa en seleccionar los diseños que produzcan estimación de parámetros con la mejor precisión posible. Una forma de entender "precisión" es en función del Error Estándar. 
+    * >Nota: no confunda diseños para optimización con diseños óptimos.
 
 
 ## Perspectiva histórica - La segunda era {.bloques}
@@ -530,7 +528,7 @@ Como ambos son negativos, el punto estacionario es un [máximo]{.hi}.
 
 * [Buen ajuste]{.hi}: El diseño debe dar como resultado un buen ajuste del modelo a los datos observados.
 
-* [Prueba de falta de ajuste]{.hi}: Debe proporcionar información suficiente para permitir una prueba de falta de ajuste (lack of fit).
+* [Prueba de falta de ajuste]{.hi}: Debe proporcionar información suficiente para permitir una prueba de falta de ajuste (*lack of fit*).
 
 * [Naturaleza secuencial]{.hi}: Debe permitir que los modelos de orden creciente (por ejemplo, pasar de primer a segundo orden) se construyan de manera secuencial.
 
@@ -636,7 +634,7 @@ Como ambos son negativos, el punto estacionario es un [máximo]{.hi}.
 * Puede utilizar la simulación del siguiente slide para comprobar como cambia la varianza de predicción al variar el $\alpha$ que estaría asociada a la rotabilidad (note que deja de apreciarse contornos circulares) y el $n_c$ que cambiaría la varianza de la predicción en el punto central del diseño. 
   * Recuerde que según la estrategia secuencial de experimentación se sospecha que el valor óptimo se encuentra centra del centro, por lo que debe estimarse con la mayor precisión. 
   
-## Varianza de Predicción en el DCC {.bloques}
+## Varianza de Predicción en el DCC - Simulación {.bloques}
 
 ::: {.iframe-card}
 <iframe data-src="diagramas/dcc.html" title="Simulación DCC"></iframe>
@@ -719,7 +717,7 @@ Ejemplo de construcción:
 
 :::
 
-::: {.column .img-fit width="30%"}
+::: {.column .img-fit width="20%"}
 
 ![](img/DBB.png)
 
@@ -763,6 +761,8 @@ Ejemplo de construcción:
 * El diseño es exactamente rotatable para $k=4$ y $k=7$ factores. En otros casos, es "casi rotatable". Esto significa que la varianza de la respuesta predicha es constante (o casi constante) en esferas alrededor del centro.
 
 * Proporciona suficiente información y grados de libertad para realizar pruebas de falta de ajuste (lack of fit).
+
+## Diseño Box - Behnken (BBD) {.bloques}
 
 * Se recomienda utilizar de 3 a 5 puntos centrales para evitar la singularidad de la matriz y estabilizar la varianza de la predicción.
 
