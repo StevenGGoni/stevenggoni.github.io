@@ -38,7 +38,9 @@ Aquí encontrará las clases de los diferentes cursos del área de conocimiento 
 
 4. [Estadística multivariada - Regresión y ANOVA](clases/II-1123_04_Estadistica_multivariada.html){target="_blank"}
 
-## II-1123 Estadística para Ingeniería Industrial III
+5. [Fundamentos e introducción al DoE](clases/II-1123_05_Fundamentos_DoE.html){target="_blank"}
+
+## II-1125 Estadística para Ingeniería Industrial III
 
 Las secciones previas y restantes a la clase de RSM serán incorporadas eventualmente. 
 

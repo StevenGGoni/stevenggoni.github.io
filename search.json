@@ -242,7 +242,7 @@
     "href": "clases.html#ii-1123-estadística-para-ingeniería-industrial-ii",
     "title": "Material de clases",
     "section": "II-1123 Estadística para Ingeniería Industrial II",
-    "text": "II-1123 Estadística para Ingeniería Industrial II\n\nFundamentos de muestreo y manejo de datos\nPruebas de bondad de ajuste para distribuciones\nEstadística no paramétrica para una o dos variables\nEstadística multivariada - Regresión y ANOVA"
+    "text": "II-1123 Estadística para Ingeniería Industrial II\n\nFundamentos de muestreo y manejo de datos\nPruebas de bondad de ajuste para distribuciones\nEstadística no paramétrica para una o dos variables\nEstadística multivariada - Regresión y ANOVA\nFundamentos e introducción al DoE"
   },
   {
     "objectID": "infografias.html",
@@ -502,5 +502,12 @@
     "title": "Material de clases",
     "section": "II-1123 Estadística para Ingeniería Industrial III",
     "text": "II-1123 Estadística para Ingeniería Industrial III\nLas secciones previas y restantes a la clase de RSM serán incorporadas eventualmente.\n\nSuperficies de respuesta (RSM)"
+  },
+  {
+    "objectID": "clases.html#ii-1125-estadística-para-ingeniería-industrial-iii",
+    "href": "clases.html#ii-1125-estadística-para-ingeniería-industrial-iii",
+    "title": "Material de clases",
+    "section": "II-1125 Estadística para Ingeniería Industrial III",
+    "text": "II-1125 Estadística para Ingeniería Industrial III\nLas secciones previas y restantes a la clase de RSM serán incorporadas eventualmente.\n\nSuperficies de respuesta (RSM)"
   }
 ]
