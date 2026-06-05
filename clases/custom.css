@@ -259,25 +259,38 @@
   height: auto;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+/* =====================================================
+   Soporte para Columnas Estilo Bloques (CORREGIDO)
+   ===================================================== */
 .reveal .slides section.bloques .column.img-fit {
   background: #F1F5F5;
   border-radius: 18px;
   padding: 15px; 
   box-shadow: 0 5px 15px #9BA1AB;
-  height: fit-content !important;
-  min-height: auto !important;
+  
+  /* Forzamos que la tarjeta respete la altura del layout y oculte desbordes */
+  height: 780px !important; 
+  max-height: 780px !important;
+  box-sizing: border-box;
+  overflow: hidden; /* Evita que cualquier elemento salga de las esquinas redondeadas */
+  
   align-self: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 .reveal .slides section.bloques .column.img-fit img {
   display: block;
   width: 100%;
-  height: auto;
-  max-height: 780px !important;
-  object-fit: contain;
+  height: 100%; /* Forzamos a ocupar el espacio disponible de forma segura */
+  
+  /* Cambiado a max-height calculado: restamos el padding de la tarjeta (15px * 2 = 30px) */
+  max-height: calc(780px - 30px) !important; 
+  
+  /* contain asegura que la imagen se reescale perfectamente sin deformarse ni salirse */
+  object-fit: contain; 
   border-radius: 8px;
 }
 
