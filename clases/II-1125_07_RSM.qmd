@@ -603,11 +603,11 @@ Como ambos son negativos, el punto estacionario es un [máximo]{.hi}.
 
 * Un diseño es [rotable]{.hi} si la [varianza de la predicción]{.hi} de la respuesta depende únicamente de la distancia del punto al centro del diseño, y [no de la dirección]{.hi}. La rotabilidad asegura que la incertidumbre de la predicción sea [simétrica]{.hi} alrededor del centro.
 
-## Rotabilidad {.hi}
+## Rotabilidad {.bloques}
 
 :::::: {.columns}
 
-::: {.columns .img-fit width="80%"}
+::: {.column .img-fit}
 
 ![](img/dcc_n1.png)
 
@@ -615,11 +615,11 @@ Como ambos son negativos, el punto estacionario es un [máximo]{.hi}.
 
 ::::::
 
-## Rotabilidad {.hi}
+## Rotabilidad {.bloques}
 
 :::::: {.columns}
 
-::: {.columns .img-fit width="80%"}
+::: {.column .img-fit}
 
 ![](img/dcc_n2.png)
 
