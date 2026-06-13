@@ -236,7 +236,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </ul></li>
 <li><p>Las variables de bloqueo <span class="hi">NO pueden</span> interactuar entre sí, ni con la variable independiente.</p>
 <ul>
-<li>Esa interacción es imposible de valorarla en un experimento reductor de ruido. Estos modelos no son capaces de separar esta afectación.</li>
+<li>Esa interacción es imposible de valorar en un experimento reductor de ruido. Estos modelos no son capaces de separar esta afectación.</li>
 </ul></li>
 <li><p>Ambos supuestos o requisitos de aplicación se deben probar bajo un fuerte enfoque teórico o experiencia comprobada, como otros diseños experimentales previos que confirmen su cumplimiento.</p></li>
 </ul>
@@ -257,8 +257,8 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>DCA</h2>
 <ul>
 <li><p>La variable de respuesta solamente depende de un predictor, que no está influenciado por ninguna condición externa.</p></li>
-<li><p><span class="math display">y_{ijk} = \mu + \alpha_i + \varepsilon_{ijk}</span></p></li>
-<li><p>El modelo es aditivo: se presupone que cada dato u observación (<span class="math inline">y_{ijk}</span>) es una combinación aditiva de la media total del experimento (<span class="math inline">\mu</span>), el efecto de un determinado tratamiento (<span class="math inline">\alpha_i</span>), y el error (<span class="math inline">\varepsilon_{ijk}</span>).</p></li>
+<li><p><span class="math display">y_{ij} = \mu + \alpha_i + \varepsilon_{ij}</span></p></li>
+<li><p>El modelo es aditivo: se presupone que cada dato u observación (<span class="math inline">y_{ij}</span>) es una combinación aditiva de la media total del experimento (<span class="math inline">\mu</span>), el efecto de un determinado tratamiento (<span class="math inline">\alpha_i</span>), y el error (<span class="math inline">\varepsilon_{ij}</span>).</p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -267,7 +267,12 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li><p>Es un modelo bloqueado en una vía. Solo hay una intervención: el bloqueo.</p></li>
 <li><p>Por ejemplo, se prueba una máquina con diferentes velocidades (tratamiento), con diferentes seres humanos (bloque). De esta manera la variabilidad que deviene de los seres humanos (por sus habilidades, por ejemplo) queda sistemáticamente controlada, sin ser enviada al error y siendo independiente de la variabilidad del tratamiento.</p></li>
 <li><p>Es decir, el bloqueo agrega un efecto adicional ficticio, cuyo objetivo es <span class="hi">separar del error experimental</span>, alguna fuente de variabilidad conocida.</p></li>
-<li><p>Con el bloqueo se consigue una mayor homogeneiddad entre los sujetos o unidades experimentales intra-bloque y una reducción del tamaño experimental del error. Al igual que la aleatorización, tiene como fin asegurar la validez de la inferencia, aumentanto la precisión.</p>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>DBCA</h2>
+<ul>
+<li>Con el bloqueo se consigue una mayor homogeneidad entre los sujetos o unidades experimentales intra-bloque y una reducción del tamaño experimental del error. Al igual que la aleatorización, tiene como fin asegurar la validez de la inferencia, aumentanto la precisión.
 <ul>
 <li>No olvide que el bloqueo se paga con grados de libertad.</li>
 </ul></li>
@@ -286,7 +291,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>Ejemplo</h2>
 <ul>
 <li><p>Las personas pueden ser diferentes y por ello agregan variabilidad al error, la técnica de bloqueo solucionaria esta situación.</p></li>
-<li><p>Se formaron 10 bloques con base a los valores de la variable Cociente Intelectual (CI) Cada bloque representa un determinado cociente intelectual, lo cual requiere la selección previa de los sujetos. Para cada valor de CI se eligieron 3 sujetos o unidades del bloque (recuerde: <em>son 3 métodos de enseñanza</em>) De esta forma, la variación de los sujetos intra-bloque es menor que la de todos los sujetos de la muestra.</p></li>
+<li><p>Se formaron 10 bloques con base en los valores de la variable Cociente Intelectual (CI). Cada bloque representa un determinado cociente intelectual, lo cual requiere la selección previa de los sujetos. Para cada valor de CI se eligieron 3 sujetos o unidades del bloque (recuerde: <em>son 3 métodos de enseñanza</em>) De esta forma, la variación de los sujetos intra-bloque es menor que la de todos los sujetos de la muestra.</p></li>
 <li><p>Las unidades de los bloques se asignan al azar a los tratamientos de modo que, dentro del bloque, cada sujeto recibe un tratamiento distinto. Según este procedimiento, sólo se dispone de un sujeto por casilla o combinación de bloque por tratamiento. Así, cada bloque constituye una réplica entera del experimento (<span class="math inline">n=1</span>).</p></li>
 </ul>
 </section>
@@ -339,8 +344,8 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </tbody>
 </table>
 <p><span class="math display">
-H_o: \mu_1 = \mu_2 = \mu_3 \\
-H_i: \text{por lo menos una es diferente}
+H_0: \mu_1 = \mu_2 = \mu_3 \\
+H_1: \text{por lo menos una es diferente}
 </span></p>
 <ul>
 <li>En caso de rechazar la hipótesis nula, recuerde las pruebas de comparaciones múltiples para encontrar cuál o cuáles son diferentes.</li>
@@ -362,7 +367,7 @@ H_i: \text{por lo menos una es diferente}
 <section class="slide level2 bloques">
 <h2>ANOVA</h2>
 <div class="columns">
-<div class="column">
+<div class="column" style="font-size: 0.95em;">
 <ul>
 <li>Se divide la SS total en los siguientes componentes aditivos: SS de tratamientos (<span class="math inline">SS_T</span>), SS de bloques (<span class="math inline">SS_B</span>) y SS del error (<span class="math inline">SS_E</span>). Esta tabla es aplicable a una réplica.</li>
 </ul>
@@ -387,16 +392,16 @@ H_i: \text{por lo menos una es diferente}
 <tr class="odd">
 <td style="text-align: left;"><strong>Bloque</strong></td>
 <td style="text-align: center;"><span class="math inline">SS_B</span></td>
-<td style="text-align: center;"><span class="math inline">a - 1</span></td>
-<td style="text-align: center;"><span class="math inline">MS_B = \frac{SS_B}{a - 1}</span></td>
-<td style="text-align: center;"><span class="math inline">F_A = \frac{MS_B}{MS_E}</span></td>
+<td style="text-align: center;"><span class="math inline">b - 1</span></td>
+<td style="text-align: center;"><span class="math inline">MS_B = \frac{SS_B}{b - 1}</span></td>
+<td style="text-align: center;"><span class="math inline">F_B = \frac{MS_B}{MS_E}</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Tratamiento</strong></td>
 <td style="text-align: center;"><span class="math inline">SS_T</span></td>
-<td style="text-align: center;"><span class="math inline">b - 1</span></td>
-<td style="text-align: center;"><span class="math inline">MS_T = \frac{SS_T}{b - 1}</span></td>
-<td style="text-align: center;"><span class="math inline">F_B = \frac{MS_T}{MS_E}</span></td>
+<td style="text-align: center;"><span class="math inline">a - 1</span></td>
+<td style="text-align: center;"><span class="math inline">MS_T = \frac{SS_T}{a - 1}</span></td>
+<td style="text-align: center;"><span class="math inline">F_T = \frac{MS_T}{MS_E}</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Error</strong></td>
@@ -427,9 +432,9 @@ H_i: \text{por lo menos una es diferente}
 <section class="slide level2 bloques">
 <h2>Algunas recomendaciones</h2>
 <ul>
-<li><p>La eficacia de este diseño depende del efectgo de los bloques. Si este es pequeño, es más eficaz del DCA ya el denominador en la comparación de tratamientos tiene menos grados de libertad.</p>
+<li><p>La eficacia de este diseño depende del efecto de los bloques. Si este es pequeño, es más eficaz del DCA ya que el denominador en la comparación de tratamientos tiene menos grados de libertad.</p>
 <ul>
-<li>No hay total coincidencia de criterio entre autores. Pero si los bloques no influyen, se pasa facilmente al modelo de un solo factor sumando en la tabla ANOVA la final del factor bloque con la de la variabilidad residual.</li>
+<li>No hay total coincidencia de criterio entre autores. Pero si los bloques no influyen, se pasa fácilmente al modelo de un solo factor sumando en la tabla ANOVA la fila del factor bloque con la de la variabilidad residual.</li>
 </ul></li>
 <li><p>Sin embargo, si los bloques influyen es mucho mejor y más eficaz este modelo, ya que disminuye la variabilidad no explicada. Ciertamente, el bloqueo es una infracción al principio de aleatoriedad, en la práctica se conoce que:</p></li>
 </ul>
@@ -437,9 +442,9 @@ H_i: \text{por lo menos una es diferente}
 <section class="slide level2 bloques">
 <h2>Algunas recomendaciones</h2>
 <ul>
-<li><p>Bloquear sin necesario conduce a prueba de hipótesis menos potentes y a intervalos de confianza más amplios que aquellos que se obtendrían mediante un DCA.</p></li>
+<li><p>Bloquear sin ser necesario conduce a prueba de hipótesis menos potentes y a intervalos de confianza más amplios que aquellos que se obtendrían mediante un DCA.</p></li>
 <li><p>Como ya se aclaró, se espera que no haya interacciones entre bloques y tratamientos, pero en ocasiones esto podría no ocurrir. En estos casos se observarán curvaturas en la gráfica de residuales.</p></li>
-<li><p>En caso de exitir interacciones, el diseño apropiado sería un factorial (tema de otro curso), no un reductor de ruido (el tema que tratamos).</p></li>
+<li><p>En caso de existir interacciones, el diseño apropiado sería un factorial (tema de otro curso), no un reductor de ruido (el tema que tratamos).</p></li>
 <li><p>Frecuentemente, los bloques se consideran factores aleatorios para que las conclusiones sean válidas para toda la población de la cual se extrajeron los bloques.</p></li>
 </ul>
 </section>
@@ -455,7 +460,7 @@ H_i: \text{por lo menos una es diferente}
 <section class="slide level2 bloques">
 <h2>ANOVA</h2>
 <div class="columns">
-<div class="column">
+<div class="column" style="font-size: 0.90em;">
 <table class="caption-top">
 <colgroup>
 <col style="width: 16%">
@@ -477,16 +482,16 @@ H_i: \text{por lo menos una es diferente}
 <tr class="odd">
 <td style="text-align: left;"><strong>Bloque</strong></td>
 <td style="text-align: center;"><span class="math inline">SS_B</span></td>
-<td style="text-align: center;"><span class="math inline">a - 1</span></td>
-<td style="text-align: center;"><span class="math inline">MS_B = \frac{SS_B}{a - 1}</span></td>
-<td style="text-align: center;"><span class="math inline">F_0 = \frac{MS_A}{MS_E}</span></td>
+<td style="text-align: center;"><span class="math inline">b - 1</span></td>
+<td style="text-align: center;"><span class="math inline">MS_B = \frac{SS_B}{b - 1}</span></td>
+<td style="text-align: center;"><span class="math inline">F_B = \frac{MS_A}{MS_E}</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Tratamiento</strong></td>
 <td style="text-align: center;"><span class="math inline">SS_T</span></td>
-<td style="text-align: center;"><span class="math inline">b - 1</span></td>
-<td style="text-align: center;"><span class="math inline">MS_T = \frac{SS_T}{b - 1}</span></td>
-<td style="text-align: center;"><span class="math inline">F_0 = \frac{MS_T}{MS_E}</span></td>
+<td style="text-align: center;"><span class="math inline">a - 1</span></td>
+<td style="text-align: center;"><span class="math inline">MS_T = \frac{SS_T}{a - 1}</span></td>
+<td style="text-align: center;"><span class="math inline">F_T = \frac{MS_T}{MS_E}</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Interacción</strong></td>
@@ -525,7 +530,7 @@ H_i: \text{por lo menos una es diferente}
 <ul>
 <li><p>Son diseños para dos vías, entiéndase que hay un tratamiento y dos factores de bloqueo (bloques), e indefectiblemente deben tratarse como cuadrados, donde las filas y las columnas representan dos restricciones o bloques.</p></li>
 <li><p>Es una estructura de <span class="math inline">p \times p</span> donde cada tratamiento, que es denotado por letras latinas (de ahí su nombre), aparece exactamente una vez en cada fila y en cada columna (tal cual como jugar <a href="https://sudoku.com/es" target="_blank">Sudoku</a>). Requiere que el número de niveles de los factores de bloqueo y del tratamiento sea el mismo.</p></li>
-<li><p>Cada una de las <span class="math inline">p^2</span> deldas contiene una letra latina que corresponde a uno de los <span class="math inline">p</span> niveles del tratamiento. Tanto las filas como las columnas son ortogonales a los tratamientos.</p></li>
+<li><p>Cada una de las <span class="math inline">p^2</span> celdas contiene una letra latina que corresponde a uno de los <span class="math inline">p</span> niveles del tratamiento. Tanto las filas como las columnas son ortogonales a los tratamientos.</p></li>
 </ul>
 </div><div class="column img-fit">
 <p><img data-src="img/cuadrado_latino.png"></p>
@@ -568,7 +573,7 @@ H_i: \text{por lo menos una es diferente}
 <div class="columns">
 <div class="column" style="width:60%;">
 <ul>
-<li><p>En un experimento redcutor de ruido se espera que se cuente con 12 grados de libertad en el error, como mínimo. Por lo que CL muy “pequeños”, es decir, de menos de tres niveles (<span class="math inline">k \le 3</span>) suelen ser ineficientes, pues requieren de muchas réplicas para cumplir con este requisito. Por tanto es usual que se agreguen más niveles.</p></li>
+<li><p>En un experimento reductor de ruido se espera que se cuente con 12 grados de libertad en el error, como mínimo. Por lo que CL muy “pequeños”, es decir, de menos de tres niveles (<span class="math inline">k \le 3</span>) suelen ser ineficientes, pues requieren de muchas réplicas para cumplir con este requisito. Por tanto es usual que se agreguen más niveles.</p></li>
 <li><p>Un error común es correr los tratamientos en el orden de construcción del diseño experimental. Como ya se ha mencionado en suficientes oportunidades la ejecución debe realizarse en orden aleatorio.</p></li>
 </ul>
 </div><div class="column">
@@ -642,9 +647,14 @@ H_i: \text{por lo menos una es diferente}
 <ul>
 <li><p>Se sigue usando ANOVA.</p></li>
 <li><p>Es un caso general del DBCA, en el que se agrega un factor de bloque más (<span class="math inline">\gamma_{k}</span>).</p></li>
-<li><p><span class="math display">y_{ijk}= \mu + \alpha_i + \beta_j + \gamma_k + \varepsilon_{ijk}</span></p></li>
+<li><p><span class="math inline">y_{ijk}= \mu + \alpha_i + \beta_j + \gamma_k + \varepsilon_{ijk}</span></p></li>
 <li><p>En el caso de que <span class="hi">haya réplicas</span>, se suele agregar un sumando asociado al efecto de la replicación (<span class="math inline">\xi_r</span>):</p></li>
-<li><p><span class="math inline">y_{ijk}= \mu + \alpha_i + \beta_j + \gamma_k + \xi_{r}  +  \varepsilon_{ijk}</span></p></li>
+<li><p><span class="math inline">y_{ijk}= \mu + \alpha_i + \beta_j + \gamma_k + \xi_{r}  +  \varepsilon_{ijk}</span></p>
+<ul>
+<li><blockquote>
+<p>No se corren todas las combinaciones de <span class="math inline">i, j, k</span>, sino solo una fracción ortogonal donde <span class="math inline">i, j = 1, \dots ,p</span> y el índice del tratamiento <span class="math inline">k</span> depende de la posición <span class="math inline">(i,j)</span>.</p>
+</blockquote></li>
+</ul></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -661,7 +671,7 @@ H_i: \text{por lo menos una es diferente}
 <li><p>Sean tres métodos de ensamble a valorar para determinar el que minimice el tiempo de ensamble de una figura Lego en forma de árbol.</p>
 <ul>
 <li>Iniciar el armado de la figura de abajo hacia arriba.</li>
-<li>Ensamblar la pieza por extractos para luego unir los diferentes extractos entre sí.</li>
+<li>Ensamblar la pieza por estratos para luego unir los diferentes estratos entre sí.</li>
 <li>Ensamblar la pieza de arriba hacia abajo.</li>
 </ul></li>
 <li><p>Tres operarios con habilidades similares.</p></li>
@@ -678,7 +688,7 @@ H_i: \text{por lo menos una es diferente}
 <div class="columns">
 <div class="column">
 <ul>
-<li><p>¿Cuáles variables son las de bloqueo y cual es la variable de interés para el estudio?</p></li>
+<li><p>¿Cuáles variables son las de bloqueo y cuál es la variable de interés para el estudio?</p></li>
 <li><p>Matriz de diseño</p>
 <ul>
 <li>Es muy importante SIEMPRE hacer la matriz de diseño. Es útil para verificar que todas las combinaciones sean posbles.</li>
@@ -749,7 +759,7 @@ H_i: \text{por lo menos una es diferente}
 <li>El <strong>tiempo de ensamble</strong> es la variable de respuesta establecida.</li>
 </ul>
 </div><div class="column">
-<div style="font-size: 88%; width: 100%; margin: 0 auto;">
+<div style="font-size: 70%; width: 100%; margin: 0 auto;">
 
 
 <table class="caption-top" style="border-collapse: collapse; width: 90%; margin: 0 auto; text-align: right; border-bottom: 2px solid #333;">
@@ -899,9 +909,9 @@ H_i: \text{por lo menos una es diferente}
 <h2>El modelo</h2>
 <ul>
 <li><p>Es un caso general del CL, en el que se agrega un factor de bloque más (<span class="math inline">\Psi_l</span>).</p></li>
-<li><p><span class="math inline">y_{ijk}= \mu + \alpha_i + \beta_j + \gamma_k + \Psi_l + \varepsilon_{ijkl}</span></p></li>
+<li><p><span class="math inline">y_{ijkl}= \mu + \alpha_i + \beta_j + \gamma_k + \Psi_l + \varepsilon_{ijkl}</span></p></li>
 <li><p>En el caso de que <span class="hi">haya réplicas</span>, se suele agregar un sumando asociado al efecto de la replicación (<span class="math inline">\xi_r</span>):</p></li>
-<li><p><span class="math inline">y_{ijk}= \mu + \alpha_i + \beta_j + \gamma_k + \Psi_l + \xi_{r}  +  \varepsilon_{ijkl}</span></p></li>
+<li><p><span class="math inline">y_{ijkl}= \mu + \alpha_i + \beta_j + \gamma_k + \Psi_l + \xi_{r}  +  \varepsilon_{ijkl}</span></p></li>
 <li><p>Para el ANOVA, solo se agrega la fila del nuevo bloque.</p></li>
 </ul>
 </section>
@@ -917,7 +927,7 @@ H_i: \text{por lo menos una es diferente}
 <h2>Resumen</h2>
 <div class="columns">
 <div class="column img-fit">
-<p><img data-src="img\resumen_RR.png"></p>
+<p><img data-src="img/resumen_RR.png"></p>
 </div></div>
 </section>
 <section class="slide level2 bloques">

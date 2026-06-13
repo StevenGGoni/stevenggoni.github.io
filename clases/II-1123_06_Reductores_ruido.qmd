@@ -78,7 +78,7 @@ format: revealjs
   
 * Las variables de bloqueo [NO pueden]{.hi} interactuar entre sí, ni con la variable independiente.
 
-  * Esa interacción es imposible de valorarla en un experimento reductor de ruido. Estos modelos no son capaces de separar esta afectación. 
+  * Esa interacción es imposible de valorar en un experimento reductor de ruido. Estos modelos no son capaces de separar esta afectación. 
   
 * Ambos supuestos o requisitos de aplicación se deben probar bajo un fuerte enfoque teórico o experiencia comprobada, como otros diseños experimentales previos que confirmen su cumplimiento. 
 
@@ -97,9 +97,9 @@ format: revealjs
 
 * La variable de respuesta solamente depende de un predictor, que no está influenciado por ninguna condición externa. 
 
-* $$y_{ijk} = \mu + \alpha_i + \varepsilon_{ijk}$$
+* $$y_{ij} = \mu + \alpha_i + \varepsilon_{ij}$$
 
-* El modelo es aditivo: se presupone que cada dato u observación ($y_{ijk}$) es una combinación aditiva de la media total del experimento ($\mu$), el efecto de un determinado tratamiento ($\alpha_i$), y el error ($\varepsilon_{ijk}$). 
+* El modelo es aditivo: se presupone que cada dato u observación ($y_{ij}$) es una combinación aditiva de la media total del experimento ($\mu$), el efecto de un determinado tratamiento ($\alpha_i$), y el error ($\varepsilon_{ij}$). 
 
 ## DBCA {.bloques}
 
@@ -109,7 +109,9 @@ format: revealjs
   
 * Es decir, el bloqueo agrega un efecto adicional ficticio, cuyo objetivo es [separar del error experimental]{.hi}, alguna fuente de variabilidad conocida. 
 
-* Con el bloqueo se consigue una mayor homogeneiddad entre los sujetos o unidades experimentales intra-bloque y una reducción del tamaño experimental del error. Al igual que la aleatorización, tiene como fin asegurar la validez de la inferencia, aumentanto la precisión. 
+## DBCA {.bloques}
+
+* Con el bloqueo se consigue una mayor homogeneidad entre los sujetos o unidades experimentales intra-bloque y una reducción del tamaño experimental del error. Al igual que la aleatorización, tiene como fin asegurar la validez de la inferencia, aumentanto la precisión. 
   * No olvide que el bloqueo se paga con grados de libertad. 
   
 ## Ejemplo {.bloques}
@@ -126,7 +128,7 @@ format: revealjs
 
 * Las personas pueden ser diferentes y por ello agregan variabilidad al error, la técnica de bloqueo solucionaria esta situación. 
 
-* Se formaron 10 bloques con base a los valores de la variable Cociente Intelectual (CI) Cada bloque representa un determinado cociente intelectual, lo cual requiere la selección previa de los sujetos. Para cada valor de CI se eligieron 3 sujetos o unidades del bloque (recuerde: *son 3 métodos de enseñanza*) De esta forma, la variación de los sujetos intra-bloque es menor que la de todos los sujetos de la muestra.
+* Se formaron 10 bloques con base en los valores de la variable Cociente Intelectual (CI). Cada bloque representa un determinado cociente intelectual, lo cual requiere la selección previa de los sujetos. Para cada valor de CI se eligieron 3 sujetos o unidades del bloque (recuerde: *son 3 métodos de enseñanza*) De esta forma, la variación de los sujetos intra-bloque es menor que la de todos los sujetos de la muestra.
 
 * Las unidades de los bloques se asignan al azar a los tratamientos de modo que, dentro del bloque, cada sujeto recibe un tratamiento distinto. Según este procedimiento, sólo se dispone de un sujeto por casilla o combinación de bloque por tratamiento. Así, cada bloque constituye una réplica entera del experimento ($n=1$).
 
@@ -151,8 +153,8 @@ format: revealjs
 | **Tratamientos** | A1 <br> A2 <br> A3 | A1 <br> A2 <br> A3 | A1 <br> A2 <br> A3 | A1 <br> A2 <br> A3 | ... | A1 <br> A2 <br> A3 |
 
 $$
-H_o: \mu_1 = \mu_2 = \mu_3 \\
-H_i: \text{por lo menos una es diferente}
+H_0: \mu_1 = \mu_2 = \mu_3 \\
+H_1: \text{por lo menos una es diferente}
 $$
 
 * En caso de rechazar la hipótesis nula, recuerde las pruebas de comparaciones múltiples para encontrar cuál o cuáles son diferentes.
@@ -176,14 +178,14 @@ $$
 
 :::::: {.columns}
 
-::: {.column}
+::: {.column style="font-size: 0.95em;"}
 
 * Se divide la SS total en los siguientes componentes aditivos: SS de tratamientos ($SS_T$), SS de bloques ($SS_B$) y SS del error ($SS_E$). Esta tabla es aplicable a una réplica. 
 
 | Fuente de variación | Suma de Cuadrados ($SS$) | Grados de libertad ($df$) | Cuadrado Medio ($MS$) | Estadístico $F_0$ |
 | :--- | :---: | :---: | :---: | :---: |
-| **Bloque** | $SS_B$ | $a - 1$ | $MS_B = \frac{SS_B}{a - 1}$ | $F_A = \frac{MS_B}{MS_E}$ |
-| **Tratamiento** | $SS_T$ | $b - 1$ | $MS_T = \frac{SS_T}{b - 1}$ | $F_B = \frac{MS_T}{MS_E}$ |
+| **Bloque** | $SS_B$ | $b - 1$ | $MS_B = \frac{SS_B}{b - 1}$ | $F_B = \frac{MS_B}{MS_E}$ |
+| **Tratamiento** | $SS_T$ | $a - 1$ | $MS_T = \frac{SS_T}{a - 1}$ | $F_T = \frac{MS_T}{MS_E}$ |
 | **Error** | $SS_E$ | $(a - 1)(b - 1)$ | $MS_E = \frac{SS_E}{(a - 1)(b - 1)}$ | — |
 | **Total** | $SS_{Total}$ | $N - 1$ | — | — |
 
@@ -201,19 +203,19 @@ $$
 
 ## Algunas recomendaciones {.bloques}
 
-* La eficacia de este diseño depende del efectgo de los bloques. Si este es pequeño, es más eficaz del DCA ya el denominador en la comparación de tratamientos tiene menos grados de libertad.
+* La eficacia de este diseño depende del efecto de los bloques. Si este es pequeño, es más eficaz del DCA ya que el denominador en la comparación de tratamientos tiene menos grados de libertad.
 
-  * No hay total coincidencia de criterio entre autores. Pero si los bloques no influyen, se pasa facilmente al modelo de un solo factor sumando en la tabla ANOVA la final del factor bloque con la de la variabilidad residual. 
+  * No hay total coincidencia de criterio entre autores. Pero si los bloques no influyen, se pasa fácilmente al modelo de un solo factor sumando en la tabla ANOVA la fila del factor bloque con la de la variabilidad residual. 
 
 * Sin embargo, si los bloques influyen es mucho mejor y más eficaz este modelo, ya que disminuye la variabilidad no explicada. Ciertamente, el bloqueo es una infracción al principio de aleatoriedad, en la práctica se conoce que: 
 
 ## Algunas recomendaciones {.bloques}
 
-* Bloquear sin necesario conduce a prueba de hipótesis menos potentes y a intervalos de confianza más amplios que aquellos que se obtendrían mediante un DCA. 
+* Bloquear sin ser necesario conduce a prueba de hipótesis menos potentes y a intervalos de confianza más amplios que aquellos que se obtendrían mediante un DCA. 
 
 * Como ya se aclaró, se espera que no haya interacciones entre bloques y tratamientos, pero en ocasiones esto podría no ocurrir. En estos casos se observarán curvaturas en la gráfica de residuales. 
 
-* En caso de exitir interacciones, el diseño apropiado sería un factorial (tema de otro curso), no un reductor de ruido (el tema que tratamos).
+* En caso de existir interacciones, el diseño apropiado sería un factorial (tema de otro curso), no un reductor de ruido (el tema que tratamos).
 
 * Frecuentemente, los bloques se consideran factores aleatorios para que las conclusiones sean válidas para toda la población de la cual se extrajeron los bloques.
 
@@ -231,12 +233,12 @@ $$
 
 :::::: {.columns}
 
-::: {.column}
+::: {.column style="font-size: 0.90em;"}
 
 | Fuente de Variación | Suma de Cuadrados ($SS$) | Grados de Libertad ($df$) | Cuadrado Medio ($MS$) | Estadístico $F_0$ |
 | :--- | :---: | :---: | :---: | :---: |
-| **Bloque** | $SS_B$ | $a - 1$ | $MS_B = \frac{SS_B}{a - 1}$ | $F_0 = \frac{MS_A}{MS_E}$ |
-| **Tratamiento** | $SS_T$ | $b - 1$ | $MS_T = \frac{SS_T}{b - 1}$ | $F_0 = \frac{MS_T}{MS_E}$ |
+| **Bloque** | $SS_B$ | $b - 1$ | $MS_B = \frac{SS_B}{b - 1}$ | $F_B = \frac{MS_A}{MS_E}$ |
+| **Tratamiento** | $SS_T$ | $a - 1$ | $MS_T = \frac{SS_T}{a - 1}$ | $F_T = \frac{MS_T}{MS_E}$ |
 | **Interacción** | $SS_{BT}$ | $(a - 1)(b - 1)$ | $MS_{BT} = \frac{SS_{BT}}{(a - 1)(b - 1)}$ | $F_0 = \frac{MS_{BT}}{MS_E}$ |
 | **Error (Residual)** | $SS_E$ | $a \cdot b \cdot (n - 1)$ | $MS_E = \frac{SS_E}{ab(n - 1)}$ | — |
 | **Total** | $SS_{Total}$ | $N - 1$ | — | — |
@@ -257,7 +259,7 @@ $$
 
 * Es una estructura de $p \times p$ donde cada tratamiento, que es denotado por letras latinas (de ahí su nombre), aparece exactamente una vez en cada fila y en cada columna (tal cual como jugar [Sudoku](https://sudoku.com/es){target="_blank"}). Requiere que el número de niveles de los factores de bloqueo y del tratamiento sea el mismo. 
 
-* Cada una de las $p^2$ deldas contiene una letra latina que corresponde a uno de los $p$ niveles del tratamiento. Tanto las filas como las columnas son ortogonales a los tratamientos. 
+* Cada una de las $p^2$ celdas contiene una letra latina que corresponde a uno de los $p$ niveles del tratamiento. Tanto las filas como las columnas son ortogonales a los tratamientos. 
 
 :::
 
@@ -322,7 +324,7 @@ $$
 
 ::: {.column width="60%"}
 
-* En un experimento redcutor de ruido se espera que se cuente con 12 grados de libertad en el error, como mínimo. Por lo que CL muy "pequeños", es decir, de menos de tres niveles ($k \le 3$) suelen ser ineficientes, pues requieren de muchas réplicas para cumplir con este requisito. Por tanto es usual que se agreguen más niveles. 
+* En un experimento reductor de ruido se espera que se cuente con 12 grados de libertad en el error, como mínimo. Por lo que CL muy "pequeños", es decir, de menos de tres niveles ($k \le 3$) suelen ser ineficientes, pues requieren de muchas réplicas para cumplir con este requisito. Por tanto es usual que se agreguen más niveles. 
 
 * Un error común es correr los tratamientos en el orden de construcción del diseño experimental. Como ya se ha mencionado en suficientes oportunidades la ejecución debe realizarse en orden aleatorio. 
 
@@ -407,11 +409,13 @@ $$
 
 * Es un caso general del DBCA, en el que se agrega un factor de bloque más ($\gamma_{k}$). 
 
-* $$y_{ijk}= \mu + \alpha_i + \beta_j + \gamma_k + \varepsilon_{ijk}$$
+* $y_{ijk}= \mu + \alpha_i + \beta_j + \gamma_k + \varepsilon_{ijk}$
 
 * En el caso de que [haya réplicas]{.hi}, se suele agregar un sumando asociado al efecto de la replicación ($\xi_r$): 
 
 * $y_{ijk}= \mu + \alpha_i + \beta_j + \gamma_k + \xi_{r}  +  \varepsilon_{ijk}$
+
+  * >No se corren todas las combinaciones de $i, j, k$, sino solo una fracción ortogonal donde $i, j = 1, \dots ,p$ y el índice del tratamiento $k$ depende de la posición $(i,j)$.
 
 ## Ejemplo aplicado {.bloques}
 
@@ -426,7 +430,7 @@ $$
 * Sean tres métodos de ensamble a valorar para determinar el que minimice el tiempo de ensamble de una figura Lego en forma de árbol.
 
   * Iniciar el armado de la figura de abajo hacia arriba.
-  * Ensamblar la pieza por extractos para luego unir los diferentes extractos entre sí.
+  * Ensamblar la pieza por estratos para luego unir los diferentes estratos entre sí.
   * Ensamblar la pieza de arriba hacia abajo.
 
 * Tres operarios con habilidades similares.
@@ -441,7 +445,7 @@ $$
 
 ::: {.column}
 
-* ¿Cuáles variables son las de bloqueo y cual es la variable de interés para el estudio?
+* ¿Cuáles variables son las de bloqueo y cuál es la variable de interés para el estudio?
 
 * Matriz de diseño
     * Es muy importante SIEMPRE hacer la matriz de diseño. Es útil para verificar que todas las combinaciones sean posbles. 
@@ -529,7 +533,7 @@ $$
 
 ```{=html}
 
-<div style="font-size: 88%; width: 100%; margin: 0 auto;">
+<div style="font-size: 70%; width: 100%; margin: 0 auto;">
 
 <table style="border-collapse: collapse; width: 90%; margin: 0 auto; text-align: right; border-bottom: 2px solid #333;">
   <thead>
@@ -654,11 +658,11 @@ $$
 
 * Es un caso general del CL, en el que se agrega un factor de bloque más ($\Psi_l$). 
 
-* $y_{ijk}= \mu + \alpha_i + \beta_j + \gamma_k + \Psi_l + \varepsilon_{ijkl}$
+* $y_{ijkl}= \mu + \alpha_i + \beta_j + \gamma_k + \Psi_l + \varepsilon_{ijkl}$
 
 * En el caso de que [haya réplicas]{.hi}, se suele agregar un sumando asociado al efecto de la replicación ($\xi_r$): 
 
-* $y_{ijk}= \mu + \alpha_i + \beta_j + \gamma_k + \Psi_l + \xi_{r}  +  \varepsilon_{ijkl}$
+* $y_{ijkl}= \mu + \alpha_i + \beta_j + \gamma_k + \Psi_l + \xi_{r}  +  \varepsilon_{ijkl}$
 
 * Para el ANOVA, solo se agrega la fila del nuevo bloque. 
 
@@ -676,7 +680,7 @@ $$
 
 ::: {.column .img-fit}
 
-![](img\resumen_RR.png)
+![](img/resumen_RR.png)
 
 :::
 
