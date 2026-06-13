@@ -247,7 +247,7 @@ datos %>%
   
 * Si se prueba nuevamente el tratamiento 1 sobre otro ventilador independiente, eso constituye una réplica.
 
-* Suponga que algunas pruebas se realizan en la mañana y otras en la tarde, cada uno de estos turnos sería un bloque. El turno de trabajo no es un factor de interés, pero podría afectar el ruido medido.
+* Suponga que algunas pruebas se realizan en la mañana y otras en la tarde, cada uno de estos turnos sería nivel de un bloque. El turno de trabajo no es un factor de interés, pero podría afectar el ruido medido.
 
 # Escuelas del DdE {.bloques}
 

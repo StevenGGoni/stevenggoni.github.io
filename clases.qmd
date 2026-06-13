@@ -40,6 +40,8 @@ Aquí encontrará las clases de los diferentes cursos del área de conocimiento 
 
 5. [Fundamentos e introducción al DoE](clases/II-1123_05_Fundamentos_DoE.html){target="_blank"}
 
+6. [Experimentos de un factor: Reductores de ruido](clases/II-1123_06_Reductores_ruido.html){target="_blank"}
+
 ## II-1125 Estadística para Ingeniería Industrial III
 
 Las secciones previas y restantes a la clase de RSM serán incorporadas eventualmente. 
