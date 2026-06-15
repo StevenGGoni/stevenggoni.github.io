@@ -451,10 +451,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#reglas-empíricas-de-green" id="toc-reglas-empíricas-de-green" class="nav-link" data-scroll-target="#reglas-empíricas-de-green">Reglas empíricas de Green</a></li>
   <li><a href="#análisis-de-potencia-mediante-el-f2-de-cohen" id="toc-análisis-de-potencia-mediante-el-f2-de-cohen" class="nav-link" data-scroll-target="#análisis-de-potencia-mediante-el-f2-de-cohen">Análisis de potencia mediante el <span class="math inline">\(f^2\)</span> de Cohen</a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#experimentos-reductores-de-ruido-anova-en-dos-o-tres-vías" id="toc-experimentos-reductores-de-ruido-anova-en-dos-o-tres-vías" class="nav-link" data-scroll-target="#experimentos-reductores-de-ruido-anova-en-dos-o-tres-vías">Experimentos reductores de ruido (ANOVA en dos o tres vías)</a></li>
   <li><a href="#experimentos-factoriales" id="toc-experimentos-factoriales" class="nav-link" data-scroll-target="#experimentos-factoriales">Experimentos factoriales</a></li>
-  </ul></li>
-  </ul></li>
   <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía">Bibliografía</a></li>
   </ul>
 </nav>
@@ -476,7 +476,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">14 de junio de 2026</p>
+      <p class="date">15 de junio de 2026</p>
     </div>
   </div>
   
@@ -748,8 +748,10 @@ f^2 = \frac{0.09}{1-0.09} = 0.09890
 </ul>
 </section>
 </section>
-<section id="experimentos-reductores-de-ruido-anova-en-dos-o-tres-vías" class="level3">
-<h3 class="anchored" data-anchor-id="experimentos-reductores-de-ruido-anova-en-dos-o-tres-vías">Experimentos reductores de ruido (ANOVA en dos o tres vías)</h3>
+</section>
+</section>
+<section id="experimentos-reductores-de-ruido-anova-en-dos-o-tres-vías" class="level1">
+<h1>Experimentos reductores de ruido (ANOVA en dos o tres vías)</h1>
 <p>En un Cuadrado Latino tenemos un factor de tratamiento con <span class="math inline">\(k\)</span> niveles y dos variables de bloqueo (tradicionalmente llamadas Filas y Columnas), las cuales también deben tener obligatoriamente <span class="math inline">\(k\)</span> niveles. Esto significa que el experimento tiene un tamaño muestral fijo y rígido de <span class="math inline">\(N=k^2\)</span> observaciones (a menos que se replique el cuadrado completo).</p>
 <p>La partición de los grados de libertad del ANOVA es la siguiente:</p>
 <ul>
@@ -802,8 +804,8 @@ f^2 = \frac{2^2}{2(5)\cdot 0.8^2} = 0.625
 <p>Para tres o más vías siga la lógica de repartición de los grados de libertad.</p>
 </blockquote>
 </section>
-<section id="experimentos-factoriales" class="level3">
-<h3 class="anchored" data-anchor-id="experimentos-factoriales">Experimentos factoriales</h3>
+<section id="experimentos-factoriales" class="level1">
+<h1>Experimentos factoriales</h1>
 <p>Este caso también puede emplearse para estimar la potencia en experimentos factoriales. Suponga el caso en el que se quiere llevar a cabo un experimento factorial completo <span class="math inline">\(2^4\)</span>, el cual tiene 16 tratamientos. Mediante una prueba piloto se ha estimado la desviación estándar <span class="math inline">\(s = 0.29\)</span>. Se sabe que efectos de 0.2 son importantes de detectar. <span class="math display">\[
 f = \frac{\Delta}{2s} = \frac{0.2}{2 \cdot 0.29} = 0.3448
 \]</span></p>
@@ -849,8 +851,6 @@ f^2 = 0.3448^2 = 0.1189
 <blockquote class="blockquote">
 <p>Existen ligeras diferencias entre estos resultados y los que pueden obtenerse con Minitab, debido a sus propias diferencias en los algoritmos.</p>
 </blockquote>
-</section>
-</section>
 </section>
 <section id="bibliografía" class="level1">
 <h1>Bibliografía</h1>

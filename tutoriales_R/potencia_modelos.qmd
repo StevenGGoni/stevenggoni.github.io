@@ -289,7 +289,7 @@ pwr::pwr.f2.test(u = 1,               # Cantidad de predictores
 * Interpretación: Con $N=81$ el modelo tiene potencia suficiente para detectar, el 80% de las veces, el efecto marginal de cualquier predictor individual que aporte al menos $R^2_{cambio}=0.09$ a la varianza explicada, más allá de los demás predictores ya incluidos en el modelo. 
 
 
-### Experimentos reductores de ruido (ANOVA en dos o tres vías)
+# Experimentos reductores de ruido (ANOVA en dos o tres vías)
 
 En un Cuadrado Latino tenemos un factor de tratamiento con $k$ niveles y dos variables de bloqueo (tradicionalmente llamadas Filas y Columnas), las cuales también deben tener obligatoriamente $k$ niveles. Esto significa que el experimento tiene un tamaño muestral fijo y rígido de $N=k^2$ observaciones (a menos que se replique el cuadrado completo).
 
@@ -342,7 +342,7 @@ pwr::pwr.f2.test(u = 4,
 
 > Para tres o más vías siga la lógica de repartición de los grados de libertad.
 
-### Experimentos factoriales
+# Experimentos factoriales
 
 Este caso también puede emplearse para estimar la potencia en experimentos factoriales. Suponga el caso en el que se quiere llevar a cabo un experimento factorial completo $2^4$, el cual tiene 16 tratamientos. Mediante una prueba piloto se ha estimado la desviación estándar $s = 0.29$. Se sabe que efectos de 0.2 son importantes de detectar. 
 $$

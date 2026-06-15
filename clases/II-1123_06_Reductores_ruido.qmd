@@ -716,7 +716,7 @@ El equipo de experimentación decide realizar dos réplicas, aleatorizadas. Los 
 
 1.	Haga una esquematización del experimento.
 2.	Haga la matriz de diseño
-3.	Exponga sus consideraciones sobre la cantidad de réplicas del diseño. Incluya el efecto que se puede detectar con una potencia del 80 %.
+3.	Exponga sus consideraciones sobre la cantidad de réplicas del diseño. Incluya el efecto que se puede detectar con una potencia del 80 %. Use este [tutorial](https://stevenggoni.github.io/tutoriales_R/potencia_modelos.html){target="_blank"} como apoyo.
 4.	Valore de la calidad de los resultados obtenidos
 5.	¿A qué conclusiones se puede llegar?
 
