@@ -1,0 +1,386 @@
+---
+title: "Tamaño de muestra: Potencia estadística en Regresión (ANOVA)"
+date: today
+format:
+  html:
+    toc: true
+    collapse-sections: true
+execute:
+  warning: false
+  message: false
+---
+
+# Librerías
+
+```{r}
+
+library(pwr) # para el cálculo de potencia
+
+```
+
+# Introducción 
+
+Para determinar el tamaño de muestra ($N$) en modelos de regresión lineal, ANOVA o ANCOVA, es necesario especificar cuatro parámetros interrelacionados:
+
+1. El nivel de significancia ($\alpha$): No es un valor genérico; se debe escoger en función del contexto y las consecuencias de cometer un Error Tipo I. Puede utilizar esta [infografía](https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf){target="_blank"} como guía.
+
+2. El tamaño del efecto ($ES$): Magnitud del fenómeno que se desea detectar, seleccionada bajo criterios científicos o prácticos del entorno de ingeniería.
+
+3. La potencia estadística deseada ($1−\beta$): Probabilidad de rechazar correctamente la hipótesis nula cuando la hipótesis alternativa es verdadera.
+
+4. Los grados de libertad del numerador ($u$): Vinculados al número de variables, predictores o grupos involucrados en el contraste.
+
+# Análisis de Varianza (ANOVA)
+
+En el diseño experimental basado en ANOVA (comparación de $k$ medias), el tamaño del efecto se mide mediante el índice f de Cohen. Este índice representa la desviación estándar de las medias poblacionales estandarizadas. Puede conceptualizarse y calcularse de tres maneras principales:
+
+## Varianza explicada ($\eta^2$)
+
+Es la proporción de la varianza total de la variable dependiente que es explicada por la pertenencia a los diferentes factores o grupos. La relación matemática para transformar este efecto a la métrica $f$ es:
+
+$$
+f = \sqrt{\frac{\eta^2}{1-\eta^2}}
+$$
+
+### ¿Qué es $\eta^2$?
+
+El eta cuadrado ($\eta^2$) es una medida del tamaño del efecto para una variable específica dentro de un modelo ANOVA, una vez consideradas las demás variables incluidas en el análisis. Esta medida describe la proporción de la varianza de la variable de respuesta que puede atribuirse a un predictor determinado.
+
+En el contexto del ANOVA, el $\eta^2$ cuantifica qué parte de la variabilidad total de la variable dependiente está asociada con cada efecto principal o efecto de interacción que se está evaluando.
+
+* El $\eta^2$ clásico (global) mide la variabilidad explicada por el factor respecto a la variabilidad total del modelo, ignorando si hay otras variables.
+
+* El $\eta_p^2$ parcial es el que calcula la variabilidad explicada respecto a la variabilidad no explicada por otros factores (es decir, "una vez consideradas las demás variables").
+
+En un ANOVA de un solo factor (un solo predictor categórico), $\eta^2$ y $\eta_p^2$ son idénticos.
+
+## Rango estandarizado ($d_{rango}$)
+
+Se basa en la distancia máxima esperada entre la media más pequeña ($m_{min}$) y la más grande ($m_{max}$), expresada en unidades de la desviación estándar común del error ($\sigma$):
+
+$$
+d_{rango} = \frac{m_{max}-m_{min}}{\sigma}
+$$
+
+El valor final de $f$ dependerá de cómo se asuma que se distribuyen las restantes $k−2$ medias entre esos dos extremos. Cohen define tres patrones fundamentales:
+
+* **Patrón 1 (Variabilidad mínima)**: Las dos medias extremas están en los bordes y las restantes k−2 medias se sitúan exactamente en el punto medio del rango.
+
+$$
+f = d_{rango}\sqrt{\frac{1}{2k}}
+$$
+
+
+
+* **Patrón 2 (Variabilidad intermedia)**: Las $k$ medias están espaciadas uniformemente a lo largo de todo el rango $d_{rango}$.
+
+$$
+f = d_{rango}\sqrt{\frac{k+1}{12(k-1)}}
+$$
+
+* **Patrón 3 (Variabilidad máxima)**: Las medias se acumulan exclusivamente en los dos extremos del rango. Si k es par, la mitad de las medias se asigna a $m_{min}$ y la otra mitad a $m_{max}$. Si $k$ es impar, el grupo sobrante se asigna inevitablemente al punto medio exacto del rango.
+
+  * Para $k$ par:
+
+$$
+f = \frac{1}{2}d_{rango}
+$$
+
+* Para $k$ impar:
+
+$$
+f = d_{rango} \frac{\sqrt{(k^2-1)}}{2k}
+$$
+
+## Valores convencionales
+
+Cohen propuso umbrales estandarizados para **su uso exclusivo cuando no existe literatura previa ni datos históricos del proceso**:
+
+* Pequeño ($f=0.10$): El factor explica $\approx 1\%$ de la varianza total ($\eta^2 \approx 0.01$).
+
+* Medio ($f=0.25$): El factor explica $≈6\%$ de la varianza total ($\eta^2 \approx 0.06$).
+
+* Grande ($f=0.40$): El factor explica $\approx 14\%$ de la varianza total ($\eta^2 \approx 0.14$).
+
+### Caso 0: ANOVA de una vía con grupos de igual tamaño o balanceados
+
+Este escenario asume que todos los $k$ grupos poseen exactamente la misma cantidad de observaciones ($n$). Para resolverlo, identificamos los grados de libertad del numerador como $u=k−1$, fijamos el nivel de significancia ($\alpha$) y establecemos la potencia mínima requerida.
+
+* Ejemplo de cálculo
+
+Este ejemplo es extraído de la documentación oficial Minitab, lo que nos permite contrastar y validar los resultados obtenidos en R.
+
+Tome en cuenta que Minitab usa el Patrón 1 (Variabilidad mínima) en sus cálculos internos. Minitab calcula la potencia posicionándose estrictamente en el peor escenario teórico. 
+
+*Un analista de la calidad planea un experimento y desea determinar si el experimento tendrá una potencia adecuada. El experimento planeado determinará si 4 tratamientos ($k$) afectan el rendimiento de un producto utilizando cinco observaciones por tratamiento ($n$). El analista sabe que la media del grupo de control es aproximadamente 8 y quiere encontrar diferencias significativas de por lo menos 4 ($m_{max}-m_{min} = 8-4=4$). Investigaciones anteriores indican que la desviación estándar ($\sigma$) de la población es 1.64. Use un $\alpha=0.05$. Obtenga la potencia.*
+
+$$
+d_{rango} =  \frac{4}{1.64} = 2.4390 \\
+f = 2.4390 \sqrt{\frac{1}{2\cdot 4}} = 0.8623
+$$
+
+```{r}
+
+pwr::pwr.anova.test(k = 4, 
+                    n = 5,
+                    f = 0.8623, 
+                    sig.level = 0.05, 
+                    power = NULL)
+
+```
+
+
+En Minitab utilice: *Estadísticas > Potencia y tamaño de la muestra > ANOVA de un solo factor*.
+
+![Potencia para ANOVA balanceado en Minitab](img\potencia_minitab_anova.png)
+
+### Caso 1: Anova de una vía con grupos desbalanceados
+
+En la práctica de la ingeniería y la investigación, los diseños desbalanceados (diferente tamaño de muestra $n_i$ por grupo) ocurren debido a la pérdida de unidades experimentales, problemas de presupuesto en ciertos tratamientos, o datos históricos preexistentes.
+
+En este caso se recurre a la media aritmética de los tamaños de muestra de los grupos $\frac{{\sum n}}{k}$, o bien, se recomienda usar la media armónica $ñ$.
+
+$$
+ñ=\frac{k}{\sum_{i=1}^k \frac{1}{n_i}}
+$$
+
+Tome en cuenta que la aproximación por media armónica es robusta y precisa si el desbalance es moderado. Sin embargo, si los tamaños de muestra son severamente dispares (por ejemplo, un grupo con $n=2$ y otro con $n=50$), la aproximación pierde precisión. Un desbalance extremo penaliza severamente la potencia del grupo con menor muestra, afectando la varianza conjunta.
+
+El resto funciona igual, use $ñ$ en lugar de $n$ para los cálculos. 
+
+# Regresión Lineal Múltiple 
+
+Para la regresión lineal, el sistema se basa en proporciones de varianza ($R^2$) y utiliza el índice de tamaño del efecto $f^2$.
+
+## Enfoques para la determinación del tamaño de muestra
+
+Existen dos aproximaciones principales para abordar el tamaño de muestra ($N$) en este escenario: reglas empíricas basadas en el número de predictores y el análisis formal de potencia estadística mediante el marco de Cohen.
+
+### Reglas empíricas de Green
+
+Como alternativa inicial o heurística para asegurar la detección de efectos "medianos" ($0.15$), Green (1991) propone dos reglas generales. Es fundamental destacar que ambas reglas asumen implícitamente un nivel de significancia $\alpha=0.05$ y una potencia estadística del 80%:
+
+* **Enfoque en el modelo completo**: Determina si el conjunto global de predictores explica una proporción significativa de la variabilidad de la variable de respuesta ($Y$).
+
+$$n=50+8 \cdot \text{predictores}$$
+
+* **Enfoque en los coeficientes individuales**: Se centra en la capacidad del modelo para detectar la significancia marginal de cada coeficiente $\beta_i$ individual de manera aislada.
+
+$$n=104+\text{predictores}$$
+
+Estas reglas de "dedo" permiten establecer rápidamente una base muestral mínima sin requerir la especificación explícita de un valor de potencia ($1−\beta$) o un nivel de significancia ($\alpha$). No obstante, para un diseño metodológico riguroso en ingeniería, se debe proceder con el cálculo formal de potencia.
+
+### Análisis de potencia mediante el $f^2$ de Cohen
+
+Cuando el análisis se realiza bajo el marco formal de potencia, la regresión lineal múltiple utiliza la función de la prueba general de modelos lineales basada en la distribución F no central. El índice del tamaño del efecto $f^2$ se define en función del coeficiente de determinación ($R^2$) y su interpretación cambia según el enfoque del investigador.
+
+
+#### Caso A: Enfoque del modelo completo (Evaluación global)
+
+Si el objetivo es determinar si el modelo completo, es decir, el conjunto de todos los predictores simultáneamente, explica una cantidad significativa de varianza, el tamaño del efecto se calcula directamente a partir del $R^2$ global esperado:
+
+$$
+f^2 = \frac{R^2}{1-R^2}
+$$
+En este escenario:
+
+  * Los grados de libertad del numerador ($u$) equivalen al número total de predictores en el modelo.
+  
+  * Los grados de libertad del error ($v$) representan el valor que el software debe calcular para satisfacer la potencia.
+  
+  * El tamaño de muestra total final se obtiene como: N=v+u+1.
+
+* Ejemplo de cálculo para el modelo completo
+
+*Un equipo de ingeniería planea desarrollar un modelo de regresión lineal múltiple con 5 predictores para estimar el rendimiento de un sistema de manufactura. Basados en proyectos similares, se espera que el modelo sea capaz de explicar al menos un 18% de la variabilidad total ($R^2=0.18$). Defina el tamaño de muestra requerido para garantizar una potencia del 80% con un nivel de significancia α=0.05.*
+
+
+$$
+f^2 = \frac{0.18}{1-0.18} = 0.21951
+$$
+
+```{r}
+
+pwr::pwr.f2.test(u = 5,          # Número de predictores totales
+                 v = NULL,       # Grados de libertad del error a calcular
+                 f2 = 0.21951,   # Efecto global f^2
+                 sig.level = 0.05, 
+                 power = 0.80)
+
+```
+
+Por lo tanto, $N = 58.2 + 5 + 1 = 65$, por redondeo.
+
+Si para este mismo problema con 5 predictores se hubiese aplicado ciegamente la Regla 1 de Green para el modelo completo, el resultado habría sido $n=50+8(5)=90$. El análisis formal revela que, para un efecto global de $R^2=0.18$ (que se clasifica entre mediano y grande), recolectar 65 observaciones es estadísticamente suficiente, ahorrando el costo de 25 unidades muestradas sin sacrificar la potencia del 80%.
+
+#### Caso B: Enfoque en los coeficientes individuales
+
+El índice del tamaño del efecto $f^2$ se define matemáticamente en función del coeficiente de determinación incremental ($R^2$) esperado:
+
+$$f^2=\frac{R_{cambio}^2}{1-R_{global}^2}$$
+
+En este enfoque se evalúa la capacidad del modelo para detectar el efecto marginal de un predictor individual. El $R^2_{cambio}$ representa la proporción de varianza adicional que ese predictor aporta más allá de los demás.
+
+Cuando no se dispone de estimación del $R^2_{global}$ del modelo completo, se adopta el supuesto conservador de que $R^2_{global} \approx R^2_{cambio}$, equivalente a evaluar el predictor en aislamiento. Esto sobreestima ligeramente el $N$ requerido.
+
+En el contexto de procesos industriales, el $R^2$ objetivo puede deducirse si se conoce la variabilidad residual o desviación estándar del error del proceso ($\sigma$) y la mínima magnitud de cambio o efecto absoluto ($\delta$) que se desea que el modelo sea capaz de capturar como estadísticamente significativo:
+
+$$
+R^2 = \frac{\sigma^2_{modelo}}{\sigma^2_{total}} = \frac{\delta^2}{\sigma^2_{total}}
+$$
+
+
+Una vez obtenido $f^2$, se calculan los grados de libertad del error ($v$) requeridos para satisfacer la potencia y la significancia fijadas. Finalmente, el tamaño de muestra total necesario se determina por la suma de los componentes del modelo:
+
+$$
+N=v+u+1
+$$
+Donde:
+
+  * $v$: Grados de libertad del error (calculados por el software).
+  * $u$: Cantidad de regresores o predictores en el modelo.
+  * $1$: Grado de libertad correspondiente a la media general o intercepto del modelo.
+
+
+* Ejemplo aplicado
+
+Supongamos un escenario de ingeniería donde se estructurará un modelo con 7 predictores ($u=7$). Se requiere una potencia estadística del 80% ($1−\beta=0.80$) y un nivel de significancia $\alpha=0.05$.
+
+El equipo de investigación conoce por datos históricos que la desviación estándar del proceso es $\sigma=3$ MPa y se desea identificar de forma significativa cualquier factor que incremente el rendimiento en al menos $\delta=0.9$ MPa.
+
+Calculamos el $R^2$ incremental esperado y el parámetro $f^2$:
+
+$$
+R^2=\frac{0.9^2}{3^2} = 0.09
+$$
+
+$$
+f^2 = \frac{0.09}{1-0.09} = 0.09890
+$$
+
+
+```{r}
+
+pwr::pwr.f2.test(u = 7,               # Cantidad de predictores
+                 v = NULL,            # Grados de libertad del error a calcular
+                 f2 = 0.09890,        # Tamaño del efecto de Cohen
+                 sig.level = 0.05,    # Nivel de significancia
+                 power = 0.80)         # Potencia estadística deseada
+
+```
+
+
+Por tanto, el tamaño de muestra total es $N = 144.27 + 7 + 1 = 153$, por redondeo.
+
+*Interpretación*: Con $N=153$ el modelo tiene potencia suficiente para detectar, el 80% de las veces, que el bloque completo de 7 predictores, considerado simultáneamente, produce un cambio incremental de al menos $R^2_{cambio}=0.09$ respecto a un modelo nulo. Esta es una prueba conjunta en 7 dimensiones: la hipótesis nula es que ninguno de los 7 predictores contribuye a explicar la varianza de $Y$.
+
+Si se desea detectar el efecto marginal de **un predictor específico** dentro de un modelo de 7 predictores. Se estima que ese predictor individual aporta $R^2_{cambio}=0.09$. Bajo el supuesto conservador se usa $u=1$ en el numerador, pues se evalúa un solo contraste.
+
+```{r}
+
+pwr::pwr.f2.test(u = 1,               # Cantidad de predictores
+                 v = NULL,            # Grados de libertad del error a calcular
+                 f2 = 0.09890,        # Tamaño del efecto de Cohen
+                 sig.level = 0.05,    # Nivel de significancia
+                 power = 0.80)         # Potencia estadística deseada
+
+```
+
+* Interpretación: Con $N=81$ el modelo tiene potencia suficiente para detectar, el 80% de las veces, el efecto marginal de cualquier predictor individual que aporte al menos $R^2_{cambio}=0.09$ a la varianza explicada, más allá de los demás predictores ya incluidos en el modelo. 
+
+
+### Experimentos reductores de ruido (ANOVA en dos o tres vías)
+
+En un Cuadrado Latino tenemos un factor de tratamiento con $k$ niveles y dos variables de bloqueo (tradicionalmente llamadas Filas y Columnas), las cuales también deben tener obligatoriamente $k$ niveles. Esto significa que el experimento tiene un tamaño muestral fijo y rígido de $N=k^2$ observaciones (a menos que se replique el cuadrado completo).
+
+La partición de los grados de libertad del ANOVA es la siguiente:
+
+* Total: $gl_{total}=k^2−1$
+
+* Tratamiento (Efecto principal, u): $u=k−1$
+
+* Bloque 1 (Filas): $gl_{filas}=k−1$
+* Bloque 2 (Columnas): $gl_{columnas}=k−1$
+* Error ($v$): Se calcula por residuo restando los bloques del total:
+
+$$
+v=(k^2−1)−3(k−1) = (k−1)(k−2)
+$$
+
+El tamaño del efecto estandarizado de Cohen para el peor escenario del tratamiento (Patrón 1) es:
+
+$$
+f = d_{rango}\sqrt{\frac{1}{2k}}
+$$
+
+$$
+f^2 = \frac{(m_{max}- m_{min})^2}{2k\cdot \sigma^2}
+$$
+
+* Ejemplo aplicado
+
+*Un ingeniero industrial desea evaluar el impacto de $k=5$ tipos de catalizadores (Tratamiento) sobre el rendimiento. Para controlar la variabilidad, bloquea por Operario (5 filas) y por Turno (5 columnas) utilizando un Cuadrado Latino 5×5 ($N=25$ observaciones totales). Se desea detectar una diferencia mínima de rendimiento de 2 unidades ($m_{max}−m_{min}=2$) con una desviación estándar estimada de $\sigma=0.8$ y un $\alpha=0.05$.*
+
+Entonces:
+
+* $u = 4$
+* $v = (5-1)(5-2) = 12$
+
+$$
+f^2 = \frac{2^2}{2(5)\cdot 0.8^2} = 0.625
+$$
+
+```{r}
+
+pwr::pwr.f2.test(u = 4, 
+                 v = 12, # en caso de replicarse este valor sube
+                 f2 = 0.625, 
+                 sig.level = 0.05, 
+                 power = NULL)
+
+```
+
+> Para tres o más vías siga la lógica de repartición de los grados de libertad.
+
+### Experimentos factoriales
+
+Este caso también puede emplearse para estimar la potencia en experimentos factoriales. Suponga el caso en el que se quiere llevar a cabo un experimento factorial completo $2^4$, el cual tiene 16 tratamientos. Mediante una prueba piloto se ha estimado la desviación estándar $s = 0.29$. Se sabe que efectos de 0.2 son importantes de detectar. 
+$$
+f = \frac{\Delta}{2s} = \frac{0.2}{2 \cdot 0.29} = 0.3448
+$$
+
+$$
+f^2 = 0.3448^2 = 0.1189
+$$
+
+$\Delta$ representa la diferencia entre el nivel alto y el nivel bajo del efecto. Se usa $u=1$ (aún cuando en el ejemplo hay 4 efectos principales, 6 interacciones de dos factores, etc.) pues equivale a evaluar cada contraste por separado bajo la distribución F con un grado de libertad en el numerador, que es la convención estándar en diseño factorial. 
+
+```{r}
+
+pwr::pwr.f2.test(u = 1,           # Un efecto individual
+                 v = NULL,        # Grados de libertad del error
+                 f2 = 0.1189,     # Tamaño del efecto marginal
+                 sig.level = 0.05, 
+                 power = 0.80)
+
+```
+
+Como los experimentos deben ser balanceados, se elige el valor mayor que complete un múltiplo de 16 ($2^4$). En este caso $N = 65.98 + 1 + 1 = 67.98$, que redondeando al próximo múltiplo de 16, daría un total de 5 réplicas completas (80 corridas).
+
+```{r}
+
+pwr::pwr.f2.test(u = 1,         # Un efecto individual
+                 v = 78,        # 16*5-1-1
+                 f2 = 0.1189,   # Tamaño del efecto marginal
+                 sig.level = 0.05, 
+                 power = NULL)
+
+```
+
+>Existen ligeras diferencias entre estos resultados y los que pueden obtenerse con Minitab, debido a sus propias diferencias en los algoritmos.
+
+# Bibliografía
+
+* Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). Hillsdale,NJ: Lawrence Erlbaum.
+
+* Green, S. B. (1991). How many subjects are needed to a regression analysis? *Multivariate Behavioral Research, 26*(3), 499–510. https://doi.org/10.1207/s15327906mbr2603_7

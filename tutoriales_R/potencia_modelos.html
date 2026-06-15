@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xml:lang="es-ES"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Tamaño de muestra: Potencia estadística en Regresión (ANOVA) – Steven García Goñi Estadística e Ingeniería</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-53ccac5bf6d5e6640b46cd35981ed5da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-328d1cbd98b1d2c79f3537d7d6c4fd96.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-53ccac5bf6d5e6640b46cd35981ed5da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<script src="https://cdn.userway.org/widget.js" data-account="AJmG8zlfIo"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="Logo de un cuervo" class="navbar-logo light-content">
+    <img src="../images/logo.png" alt="Logo de un cuervo" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Steven García Goñi <span class="navbar-subtitle">Estadística e Ingeniería</span></span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../publicaciones.html"> 
+<span class="menu-text">Publicaciones</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-recursos-académicos" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Recursos académicos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-recursos-académicos">    
+        <li>
+    <a class="dropdown-item" href="../infografias.html">
+ <span class="dropdown-text">Infografías</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../interactivos.html">
+ <span class="dropdown-text">Simulaciones y visualizadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../recursos_graficos.html">
+ <span class="dropdown-text">Construcción de gráficos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutoriales_R.html">
+ <span class="dropdown-text">Tutoriales en R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../clases.html">
+ <span class="dropdown-text">Material de clases</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sobre-mí" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sobre mí</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sobre-mí">    
+        <li>
+    <a class="dropdown-item" href="../resume.pdf" target="_blank">
+ <span class="dropdown-text">Currículum</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../logo.html">
+ <span class="dropdown-text">Identidad visual</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="mailto:steven.garciagoni@ucr.ac.cr"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-solid:envelope" aria-label="Icon envelope from fa6-solid Iconify.design set." title="Correo electrónico"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/StevenGGoni"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:github" aria-label="Icon github from mdi Iconify.design set." title="GitHub"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/sggoni/"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:linkedin" aria-label="Icon linkedin from mdi Iconify.design set." title="LinkedIn"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=X_3YTJ0AAAAJ&amp;hl=es"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:google-scholar" aria-label="Icon google-scholar from fa6-brands Iconify.design set." title="Google Académico"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://orcid.org/0000-0002-1822-5465"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="simple-icons:orcid" aria-label="Icon orcid from simple-icons Iconify.design set." title="Orcid"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.scopus.com/authid/detail.uri?authorId=58504295000"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="simple-icons:scopus" aria-label="Icon scopus from simple-icons Iconify.design set." title="Scopus"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.researchgate.net/profile/Steven-Garcia-Goni"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="academicons:researchgate-square" aria-label="Icon researchgate-square from academicons Iconify.design set." title="ResearchGate"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://stevenggoni.github.io/resume.pdf"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="academicons:cv-square" aria-label="Icon cv-square from academicons Iconify.design set." title="CV"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#librerías" id="toc-librerías" class="nav-link active" data-scroll-target="#librerías">Librerías</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#análisis-de-varianza-anova" id="toc-análisis-de-varianza-anova" class="nav-link" data-scroll-target="#análisis-de-varianza-anova">Análisis de Varianza (ANOVA)</a>
+  <ul class="collapse">
+  <li><a href="#varianza-explicada-eta2" id="toc-varianza-explicada-eta2" class="nav-link" data-scroll-target="#varianza-explicada-eta2">Varianza explicada (<span class="math inline">\(\eta^2\)</span>)</a>
+  <ul class="collapse">
+  <li><a href="#qué-es-eta2" id="toc-qué-es-eta2" class="nav-link" data-scroll-target="#qué-es-eta2">¿Qué es <span class="math inline">\(\eta^2\)</span>?</a></li>
+  </ul></li>
+  <li><a href="#rango-estandarizado-d_rango" id="toc-rango-estandarizado-d_rango" class="nav-link" data-scroll-target="#rango-estandarizado-d_rango">Rango estandarizado (<span class="math inline">\(d_{rango}\)</span>)</a></li>
+  <li><a href="#valores-convencionales" id="toc-valores-convencionales" class="nav-link" data-scroll-target="#valores-convencionales">Valores convencionales</a>
+  <ul class="collapse">
+  <li><a href="#caso-0-anova-de-una-vía-con-grupos-de-igual-tamaño-o-balanceados" id="toc-caso-0-anova-de-una-vía-con-grupos-de-igual-tamaño-o-balanceados" class="nav-link" data-scroll-target="#caso-0-anova-de-una-vía-con-grupos-de-igual-tamaño-o-balanceados">Caso 0: ANOVA de una vía con grupos de igual tamaño o balanceados</a></li>
+  <li><a href="#caso-1-anova-de-una-vía-con-grupos-desbalanceados" id="toc-caso-1-anova-de-una-vía-con-grupos-desbalanceados" class="nav-link" data-scroll-target="#caso-1-anova-de-una-vía-con-grupos-desbalanceados">Caso 1: Anova de una vía con grupos desbalanceados</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#regresión-lineal-múltiple" id="toc-regresión-lineal-múltiple" class="nav-link" data-scroll-target="#regresión-lineal-múltiple">Regresión Lineal Múltiple</a>
+  <ul class="collapse">
+  <li><a href="#enfoques-para-la-determinación-del-tamaño-de-muestra" id="toc-enfoques-para-la-determinación-del-tamaño-de-muestra" class="nav-link" data-scroll-target="#enfoques-para-la-determinación-del-tamaño-de-muestra">Enfoques para la determinación del tamaño de muestra</a>
+  <ul class="collapse">
+  <li><a href="#reglas-empíricas-de-green" id="toc-reglas-empíricas-de-green" class="nav-link" data-scroll-target="#reglas-empíricas-de-green">Reglas empíricas de Green</a></li>
+  <li><a href="#análisis-de-potencia-mediante-el-f2-de-cohen" id="toc-análisis-de-potencia-mediante-el-f2-de-cohen" class="nav-link" data-scroll-target="#análisis-de-potencia-mediante-el-f2-de-cohen">Análisis de potencia mediante el <span class="math inline">\(f^2\)</span> de Cohen</a></li>
+  <li><a href="#experimentos-reductores-de-ruido-anova-en-dos-o-tres-vías" id="toc-experimentos-reductores-de-ruido-anova-en-dos-o-tres-vías" class="nav-link" data-scroll-target="#experimentos-reductores-de-ruido-anova-en-dos-o-tres-vías">Experimentos reductores de ruido (ANOVA en dos o tres vías)</a></li>
+  <li><a href="#experimentos-factoriales" id="toc-experimentos-factoriales" class="nav-link" data-scroll-target="#experimentos-factoriales">Experimentos factoriales</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía">Bibliografía</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tamaño de muestra: Potencia estadística en Regresión (ANOVA)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">14 de junio de 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="librerías" class="level1">
+<h1>Librerías</h1>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pwr) <span class="co"># para el cálculo de potencia</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>Para determinar el tamaño de muestra (<span class="math inline">\(N\)</span>) en modelos de regresión lineal, ANOVA o ANCOVA, es necesario especificar cuatro parámetros interrelacionados:</p>
+<ol type="1">
+<li><p>El nivel de significancia (<span class="math inline">\(\alpha\)</span>): No es un valor genérico; se debe escoger en función del contexto y las consecuencias de cometer un Error Tipo I. Puede utilizar esta <a href="https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf" target="_blank">infografía</a> como guía.</p></li>
+<li><p>El tamaño del efecto (<span class="math inline">\(ES\)</span>): Magnitud del fenómeno que se desea detectar, seleccionada bajo criterios científicos o prácticos del entorno de ingeniería.</p></li>
+<li><p>La potencia estadística deseada (<span class="math inline">\(1−\beta\)</span>): Probabilidad de rechazar correctamente la hipótesis nula cuando la hipótesis alternativa es verdadera.</p></li>
+<li><p>Los grados de libertad del numerador (<span class="math inline">\(u\)</span>): Vinculados al número de variables, predictores o grupos involucrados en el contraste.</p></li>
+</ol>
+</section>
+<section id="análisis-de-varianza-anova" class="level1">
+<h1>Análisis de Varianza (ANOVA)</h1>
+<p>En el diseño experimental basado en ANOVA (comparación de <span class="math inline">\(k\)</span> medias), el tamaño del efecto se mide mediante el índice f de Cohen. Este índice representa la desviación estándar de las medias poblacionales estandarizadas. Puede conceptualizarse y calcularse de tres maneras principales:</p>
+<section id="varianza-explicada-eta2" class="level2">
+<h2 class="anchored" data-anchor-id="varianza-explicada-eta2">Varianza explicada (<span class="math inline">\(\eta^2\)</span>)</h2>
+<p>Es la proporción de la varianza total de la variable dependiente que es explicada por la pertenencia a los diferentes factores o grupos. La relación matemática para transformar este efecto a la métrica <span class="math inline">\(f\)</span> es:</p>
+<p><span class="math display">\[
+f = \sqrt{\frac{\eta^2}{1-\eta^2}}
+\]</span></p>
+<section id="qué-es-eta2" class="level3">
+<h3 class="anchored" data-anchor-id="qué-es-eta2">¿Qué es <span class="math inline">\(\eta^2\)</span>?</h3>
+<p>El eta cuadrado (<span class="math inline">\(\eta^2\)</span>) es una medida del tamaño del efecto para una variable específica dentro de un modelo ANOVA, una vez consideradas las demás variables incluidas en el análisis. Esta medida describe la proporción de la varianza de la variable de respuesta que puede atribuirse a un predictor determinado.</p>
+<p>En el contexto del ANOVA, el <span class="math inline">\(\eta^2\)</span> cuantifica qué parte de la variabilidad total de la variable dependiente está asociada con cada efecto principal o efecto de interacción que se está evaluando.</p>
+<ul>
+<li><p>El <span class="math inline">\(\eta^2\)</span> clásico (global) mide la variabilidad explicada por el factor respecto a la variabilidad total del modelo, ignorando si hay otras variables.</p></li>
+<li><p>El <span class="math inline">\(\eta_p^2\)</span> parcial es el que calcula la variabilidad explicada respecto a la variabilidad no explicada por otros factores (es decir, “una vez consideradas las demás variables”).</p></li>
+</ul>
+<p>En un ANOVA de un solo factor (un solo predictor categórico), <span class="math inline">\(\eta^2\)</span> y <span class="math inline">\(\eta_p^2\)</span> son idénticos.</p>
+</section>
+</section>
+<section id="rango-estandarizado-d_rango" class="level2">
+<h2 class="anchored" data-anchor-id="rango-estandarizado-d_rango">Rango estandarizado (<span class="math inline">\(d_{rango}\)</span>)</h2>
+<p>Se basa en la distancia máxima esperada entre la media más pequeña (<span class="math inline">\(m_{min}\)</span>) y la más grande (<span class="math inline">\(m_{max}\)</span>), expresada en unidades de la desviación estándar común del error (<span class="math inline">\(\sigma\)</span>):</p>
+<p><span class="math display">\[
+d_{rango} = \frac{m_{max}-m_{min}}{\sigma}
+\]</span></p>
+<p>El valor final de <span class="math inline">\(f\)</span> dependerá de cómo se asuma que se distribuyen las restantes <span class="math inline">\(k−2\)</span> medias entre esos dos extremos. Cohen define tres patrones fundamentales:</p>
+<ul>
+<li><strong>Patrón 1 (Variabilidad mínima)</strong>: Las dos medias extremas están en los bordes y las restantes k−2 medias se sitúan exactamente en el punto medio del rango.</li>
+</ul>
+<p><span class="math display">\[
+f = d_{rango}\sqrt{\frac{1}{2k}}
+\]</span></p>
+<ul>
+<li><strong>Patrón 2 (Variabilidad intermedia)</strong>: Las <span class="math inline">\(k\)</span> medias están espaciadas uniformemente a lo largo de todo el rango <span class="math inline">\(d_{rango}\)</span>.</li>
+</ul>
+<p><span class="math display">\[
+f = d_{rango}\sqrt{\frac{k+1}{12(k-1)}}
+\]</span></p>
+<ul>
+<li><p><strong>Patrón 3 (Variabilidad máxima)</strong>: Las medias se acumulan exclusivamente en los dos extremos del rango. Si k es par, la mitad de las medias se asigna a <span class="math inline">\(m_{min}\)</span> y la otra mitad a <span class="math inline">\(m_{max}\)</span>. Si <span class="math inline">\(k\)</span> es impar, el grupo sobrante se asigna inevitablemente al punto medio exacto del rango.</p>
+<ul>
+<li>Para <span class="math inline">\(k\)</span> par:</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+f = \frac{1}{2}d_{rango}
+\]</span></p>
+<ul>
+<li>Para <span class="math inline">\(k\)</span> impar:</li>
+</ul>
+<p><span class="math display">\[
+f = d_{rango} \frac{\sqrt{(k^2-1)}}{2k}
+\]</span></p>
+</section>
+<section id="valores-convencionales" class="level2">
+<h2 class="anchored" data-anchor-id="valores-convencionales">Valores convencionales</h2>
+<p>Cohen propuso umbrales estandarizados para <strong>su uso exclusivo cuando no existe literatura previa ni datos históricos del proceso</strong>:</p>
+<ul>
+<li><p>Pequeño (<span class="math inline">\(f=0.10\)</span>): El factor explica <span class="math inline">\(\approx 1\%\)</span> de la varianza total (<span class="math inline">\(\eta^2 \approx 0.01\)</span>).</p></li>
+<li><p>Medio (<span class="math inline">\(f=0.25\)</span>): El factor explica <span class="math inline">\(≈6\%\)</span> de la varianza total (<span class="math inline">\(\eta^2 \approx 0.06\)</span>).</p></li>
+<li><p>Grande (<span class="math inline">\(f=0.40\)</span>): El factor explica <span class="math inline">\(\approx 14\%\)</span> de la varianza total (<span class="math inline">\(\eta^2 \approx 0.14\)</span>).</p></li>
+</ul>
+<section id="caso-0-anova-de-una-vía-con-grupos-de-igual-tamaño-o-balanceados" class="level3">
+<h3 class="anchored" data-anchor-id="caso-0-anova-de-una-vía-con-grupos-de-igual-tamaño-o-balanceados">Caso 0: ANOVA de una vía con grupos de igual tamaño o balanceados</h3>
+<p>Este escenario asume que todos los <span class="math inline">\(k\)</span> grupos poseen exactamente la misma cantidad de observaciones (<span class="math inline">\(n\)</span>). Para resolverlo, identificamos los grados de libertad del numerador como <span class="math inline">\(u=k−1\)</span>, fijamos el nivel de significancia (<span class="math inline">\(\alpha\)</span>) y establecemos la potencia mínima requerida.</p>
+<ul>
+<li>Ejemplo de cálculo</li>
+</ul>
+<p>Este ejemplo es extraído de la documentación oficial Minitab, lo que nos permite contrastar y validar los resultados obtenidos en R.</p>
+<p>Tome en cuenta que Minitab usa el Patrón 1 (Variabilidad mínima) en sus cálculos internos. Minitab calcula la potencia posicionándose estrictamente en el peor escenario teórico.</p>
+<p><em>Un analista de la calidad planea un experimento y desea determinar si el experimento tendrá una potencia adecuada. El experimento planeado determinará si 4 tratamientos (<span class="math inline">\(k\)</span>) afectan el rendimiento de un producto utilizando cinco observaciones por tratamiento (<span class="math inline">\(n\)</span>). El analista sabe que la media del grupo de control es aproximadamente 8 y quiere encontrar diferencias significativas de por lo menos 4 (<span class="math inline">\(m_{max}-m_{min} = 8-4=4\)</span>). Investigaciones anteriores indican que la desviación estándar (<span class="math inline">\(\sigma\)</span>) de la población es 1.64. Use un <span class="math inline">\(\alpha=0.05\)</span>. Obtenga la potencia.</em></p>
+<p><span class="math display">\[
+d_{rango} =  \frac{4}{1.64} = 2.4390 \\
+f = 2.4390 \sqrt{\frac{1}{2\cdot 4}} = 0.8623
+\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.anova.test</span>(<span class="at">k =</span> <span class="dv">4</span>, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">n =</span> <span class="dv">5</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">f =</span> <span class="fl">0.8623</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sig.level =</span> <span class="fl">0.05</span>, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">power =</span> <span class="cn">NULL</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Balanced one-way analysis of variance power calculation 
+
+              k = 4
+              n = 5
+              f = 0.8623
+      sig.level = 0.05
+          power = 0.8268356
+
+NOTE: n is number in each group</code></pre>
+</div>
+</div>
+<p>En Minitab utilice: <em>Estadísticas &gt; Potencia y tamaño de la muestra &gt; ANOVA de un solo factor</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img\potencia_minitab_anova.png" class="img-fluid figure-img"></p>
+<figcaption>Potencia para ANOVA balanceado en Minitab</figcaption>
+</figure>
+</div>
+</section>
+<section id="caso-1-anova-de-una-vía-con-grupos-desbalanceados" class="level3">
+<h3 class="anchored" data-anchor-id="caso-1-anova-de-una-vía-con-grupos-desbalanceados">Caso 1: Anova de una vía con grupos desbalanceados</h3>
+<p>En la práctica de la ingeniería y la investigación, los diseños desbalanceados (diferente tamaño de muestra <span class="math inline">\(n_i\)</span> por grupo) ocurren debido a la pérdida de unidades experimentales, problemas de presupuesto en ciertos tratamientos, o datos históricos preexistentes.</p>
+<p>En este caso se recurre a la media aritmética de los tamaños de muestra de los grupos <span class="math inline">\(\frac{{\sum n}}{k}\)</span>, o bien, se recomienda usar la media armónica <span class="math inline">\(ñ\)</span>.</p>
+<p><span class="math display">\[
+ñ=\frac{k}{\sum_{i=1}^k \frac{1}{n_i}}
+\]</span></p>
+<p>Tome en cuenta que la aproximación por media armónica es robusta y precisa si el desbalance es moderado. Sin embargo, si los tamaños de muestra son severamente dispares (por ejemplo, un grupo con <span class="math inline">\(n=2\)</span> y otro con <span class="math inline">\(n=50\)</span>), la aproximación pierde precisión. Un desbalance extremo penaliza severamente la potencia del grupo con menor muestra, afectando la varianza conjunta.</p>
+<p>El resto funciona igual, use <span class="math inline">\(ñ\)</span> en lugar de <span class="math inline">\(n\)</span> para los cálculos.</p>
+</section>
+</section>
+</section>
+<section id="regresión-lineal-múltiple" class="level1">
+<h1>Regresión Lineal Múltiple</h1>
+<p>Para la regresión lineal, el sistema se basa en proporciones de varianza (<span class="math inline">\(R^2\)</span>) y utiliza el índice de tamaño del efecto <span class="math inline">\(f^2\)</span>.</p>
+<section id="enfoques-para-la-determinación-del-tamaño-de-muestra" class="level2">
+<h2 class="anchored" data-anchor-id="enfoques-para-la-determinación-del-tamaño-de-muestra">Enfoques para la determinación del tamaño de muestra</h2>
+<p>Existen dos aproximaciones principales para abordar el tamaño de muestra (<span class="math inline">\(N\)</span>) en este escenario: reglas empíricas basadas en el número de predictores y el análisis formal de potencia estadística mediante el marco de Cohen.</p>
+<section id="reglas-empíricas-de-green" class="level3">
+<h3 class="anchored" data-anchor-id="reglas-empíricas-de-green">Reglas empíricas de Green</h3>
+<p>Como alternativa inicial o heurística para asegurar la detección de efectos “medianos” (<span class="math inline">\(0.15\)</span>), Green (1991) propone dos reglas generales. Es fundamental destacar que ambas reglas asumen implícitamente un nivel de significancia <span class="math inline">\(\alpha=0.05\)</span> y una potencia estadística del 80%:</p>
+<ul>
+<li><strong>Enfoque en el modelo completo</strong>: Determina si el conjunto global de predictores explica una proporción significativa de la variabilidad de la variable de respuesta (<span class="math inline">\(Y\)</span>).</li>
+</ul>
+<p><span class="math display">\[n=50+8 \cdot \text{predictores}\]</span></p>
+<ul>
+<li><strong>Enfoque en los coeficientes individuales</strong>: Se centra en la capacidad del modelo para detectar la significancia marginal de cada coeficiente <span class="math inline">\(\beta_i\)</span> individual de manera aislada.</li>
+</ul>
+<p><span class="math display">\[n=104+\text{predictores}\]</span></p>
+<p>Estas reglas de “dedo” permiten establecer rápidamente una base muestral mínima sin requerir la especificación explícita de un valor de potencia (<span class="math inline">\(1−\beta\)</span>) o un nivel de significancia (<span class="math inline">\(\alpha\)</span>). No obstante, para un diseño metodológico riguroso en ingeniería, se debe proceder con el cálculo formal de potencia.</p>
+</section>
+<section id="análisis-de-potencia-mediante-el-f2-de-cohen" class="level3">
+<h3 class="anchored" data-anchor-id="análisis-de-potencia-mediante-el-f2-de-cohen">Análisis de potencia mediante el <span class="math inline">\(f^2\)</span> de Cohen</h3>
+<p>Cuando el análisis se realiza bajo el marco formal de potencia, la regresión lineal múltiple utiliza la función de la prueba general de modelos lineales basada en la distribución F no central. El índice del tamaño del efecto <span class="math inline">\(f^2\)</span> se define en función del coeficiente de determinación (<span class="math inline">\(R^2\)</span>) y su interpretación cambia según el enfoque del investigador.</p>
+<section id="caso-a-enfoque-del-modelo-completo-evaluación-global" class="level4">
+<h4 class="anchored" data-anchor-id="caso-a-enfoque-del-modelo-completo-evaluación-global">Caso A: Enfoque del modelo completo (Evaluación global)</h4>
+<p>Si el objetivo es determinar si el modelo completo, es decir, el conjunto de todos los predictores simultáneamente, explica una cantidad significativa de varianza, el tamaño del efecto se calcula directamente a partir del <span class="math inline">\(R^2\)</span> global esperado:</p>
+<p><span class="math display">\[
+f^2 = \frac{R^2}{1-R^2}
+\]</span> En este escenario:</p>
+<ul>
+<li><p>Los grados de libertad del numerador (<span class="math inline">\(u\)</span>) equivalen al número total de predictores en el modelo.</p></li>
+<li><p>Los grados de libertad del error (<span class="math inline">\(v\)</span>) representan el valor que el software debe calcular para satisfacer la potencia.</p></li>
+<li><p>El tamaño de muestra total final se obtiene como: N=v+u+1.</p></li>
+<li><p>Ejemplo de cálculo para el modelo completo</p></li>
+</ul>
+<p><em>Un equipo de ingeniería planea desarrollar un modelo de regresión lineal múltiple con 5 predictores para estimar el rendimiento de un sistema de manufactura. Basados en proyectos similares, se espera que el modelo sea capaz de explicar al menos un 18% de la variabilidad total (<span class="math inline">\(R^2=0.18\)</span>). Defina el tamaño de muestra requerido para garantizar una potencia del 80% con un nivel de significancia α=0.05.</em></p>
+<p><span class="math display">\[
+f^2 = \frac{0.18}{1-0.18} = 0.21951
+\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.f2.test</span>(<span class="at">u =</span> <span class="dv">5</span>,          <span class="co"># Número de predictores totales</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">v =</span> <span class="cn">NULL</span>,       <span class="co"># Grados de libertad del error a calcular</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">f2 =</span> <span class="fl">0.21951</span>,   <span class="co"># Efecto global f^2</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sig.level =</span> <span class="fl">0.05</span>, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">power =</span> <span class="fl">0.80</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Multiple regression power calculation 
+
+              u = 5
+              v = 58.20384
+             f2 = 0.21951
+      sig.level = 0.05
+          power = 0.8</code></pre>
+</div>
+</div>
+<p>Por lo tanto, <span class="math inline">\(N = 58.2 + 5 + 1 = 65\)</span>, por redondeo.</p>
+<p>Si para este mismo problema con 5 predictores se hubiese aplicado ciegamente la Regla 1 de Green para el modelo completo, el resultado habría sido <span class="math inline">\(n=50+8(5)=90\)</span>. El análisis formal revela que, para un efecto global de <span class="math inline">\(R^2=0.18\)</span> (que se clasifica entre mediano y grande), recolectar 65 observaciones es estadísticamente suficiente, ahorrando el costo de 25 unidades muestradas sin sacrificar la potencia del 80%.</p>
+</section>
+<section id="caso-b-enfoque-en-los-coeficientes-individuales" class="level4">
+<h4 class="anchored" data-anchor-id="caso-b-enfoque-en-los-coeficientes-individuales">Caso B: Enfoque en los coeficientes individuales</h4>
+<p>El índice del tamaño del efecto <span class="math inline">\(f^2\)</span> se define matemáticamente en función del coeficiente de determinación incremental (<span class="math inline">\(R^2\)</span>) esperado:</p>
+<p><span class="math display">\[f^2=\frac{R_{cambio}^2}{1-R_{global}^2}\]</span></p>
+<p>En este enfoque se evalúa la capacidad del modelo para detectar el efecto marginal de un predictor individual. El <span class="math inline">\(R^2_{cambio}\)</span> representa la proporción de varianza adicional que ese predictor aporta más allá de los demás.</p>
+<p>Cuando no se dispone de estimación del <span class="math inline">\(R^2_{global}\)</span> del modelo completo, se adopta el supuesto conservador de que <span class="math inline">\(R^2_{global} \approx R^2_{cambio}\)</span>, equivalente a evaluar el predictor en aislamiento. Esto sobreestima ligeramente el <span class="math inline">\(N\)</span> requerido.</p>
+<p>En el contexto de procesos industriales, el <span class="math inline">\(R^2\)</span> objetivo puede deducirse si se conoce la variabilidad residual o desviación estándar del error del proceso (<span class="math inline">\(\sigma\)</span>) y la mínima magnitud de cambio o efecto absoluto (<span class="math inline">\(\delta\)</span>) que se desea que el modelo sea capaz de capturar como estadísticamente significativo:</p>
+<p><span class="math display">\[
+R^2 = \frac{\sigma^2_{modelo}}{\sigma^2_{total}} = \frac{\delta^2}{\sigma^2_{total}}
+\]</span></p>
+<p>Una vez obtenido <span class="math inline">\(f^2\)</span>, se calculan los grados de libertad del error (<span class="math inline">\(v\)</span>) requeridos para satisfacer la potencia y la significancia fijadas. Finalmente, el tamaño de muestra total necesario se determina por la suma de los componentes del modelo:</p>
+<p><span class="math display">\[
+N=v+u+1
+\]</span> Donde:</p>
+<ul>
+<li><p><span class="math inline">\(v\)</span>: Grados de libertad del error (calculados por el software).</p></li>
+<li><p><span class="math inline">\(u\)</span>: Cantidad de regresores o predictores en el modelo.</p></li>
+<li><p><span class="math inline">\(1\)</span>: Grado de libertad correspondiente a la media general o intercepto del modelo.</p></li>
+<li><p>Ejemplo aplicado</p></li>
+</ul>
+<p>Supongamos un escenario de ingeniería donde se estructurará un modelo con 7 predictores (<span class="math inline">\(u=7\)</span>). Se requiere una potencia estadística del 80% (<span class="math inline">\(1−\beta=0.80\)</span>) y un nivel de significancia <span class="math inline">\(\alpha=0.05\)</span>.</p>
+<p>El equipo de investigación conoce por datos históricos que la desviación estándar del proceso es <span class="math inline">\(\sigma=3\)</span> MPa y se desea identificar de forma significativa cualquier factor que incremente el rendimiento en al menos <span class="math inline">\(\delta=0.9\)</span> MPa.</p>
+<p>Calculamos el <span class="math inline">\(R^2\)</span> incremental esperado y el parámetro <span class="math inline">\(f^2\)</span>:</p>
+<p><span class="math display">\[
+R^2=\frac{0.9^2}{3^2} = 0.09
+\]</span></p>
+<p><span class="math display">\[
+f^2 = \frac{0.09}{1-0.09} = 0.09890
+\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.f2.test</span>(<span class="at">u =</span> <span class="dv">7</span>,               <span class="co"># Cantidad de predictores</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">v =</span> <span class="cn">NULL</span>,            <span class="co"># Grados de libertad del error a calcular</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">f2 =</span> <span class="fl">0.09890</span>,        <span class="co"># Tamaño del efecto de Cohen</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sig.level =</span> <span class="fl">0.05</span>,    <span class="co"># Nivel de significancia</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">power =</span> <span class="fl">0.80</span>)         <span class="co"># Potencia estadística deseada</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Multiple regression power calculation 
+
+              u = 7
+              v = 144.2763
+             f2 = 0.0989
+      sig.level = 0.05
+          power = 0.8</code></pre>
+</div>
+</div>
+<p>Por tanto, el tamaño de muestra total es <span class="math inline">\(N = 144.27 + 7 + 1 = 153\)</span>, por redondeo.</p>
+<p><em>Interpretación</em>: Con <span class="math inline">\(N=153\)</span> el modelo tiene potencia suficiente para detectar, el 80% de las veces, que el bloque completo de 7 predictores, considerado simultáneamente, produce un cambio incremental de al menos <span class="math inline">\(R^2_{cambio}=0.09\)</span> respecto a un modelo nulo. Esta es una prueba conjunta en 7 dimensiones: la hipótesis nula es que ninguno de los 7 predictores contribuye a explicar la varianza de <span class="math inline">\(Y\)</span>.</p>
+<p>Si se desea detectar el efecto marginal de <strong>un predictor específico</strong> dentro de un modelo de 7 predictores. Se estima que ese predictor individual aporta <span class="math inline">\(R^2_{cambio}=0.09\)</span>. Bajo el supuesto conservador se usa <span class="math inline">\(u=1\)</span> en el numerador, pues se evalúa un solo contraste.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.f2.test</span>(<span class="at">u =</span> <span class="dv">1</span>,               <span class="co"># Cantidad de predictores</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">v =</span> <span class="cn">NULL</span>,            <span class="co"># Grados de libertad del error a calcular</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">f2 =</span> <span class="fl">0.09890</span>,        <span class="co"># Tamaño del efecto de Cohen</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sig.level =</span> <span class="fl">0.05</span>,    <span class="co"># Nivel de significancia</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">power =</span> <span class="fl">0.80</span>)         <span class="co"># Potencia estadística deseada</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Multiple regression power calculation 
+
+              u = 1
+              v = 79.32768
+             f2 = 0.0989
+      sig.level = 0.05
+          power = 0.8</code></pre>
+</div>
+</div>
+<ul>
+<li>Interpretación: Con <span class="math inline">\(N=81\)</span> el modelo tiene potencia suficiente para detectar, el 80% de las veces, el efecto marginal de cualquier predictor individual que aporte al menos <span class="math inline">\(R^2_{cambio}=0.09\)</span> a la varianza explicada, más allá de los demás predictores ya incluidos en el modelo.</li>
+</ul>
+</section>
+</section>
+<section id="experimentos-reductores-de-ruido-anova-en-dos-o-tres-vías" class="level3">
+<h3 class="anchored" data-anchor-id="experimentos-reductores-de-ruido-anova-en-dos-o-tres-vías">Experimentos reductores de ruido (ANOVA en dos o tres vías)</h3>
+<p>En un Cuadrado Latino tenemos un factor de tratamiento con <span class="math inline">\(k\)</span> niveles y dos variables de bloqueo (tradicionalmente llamadas Filas y Columnas), las cuales también deben tener obligatoriamente <span class="math inline">\(k\)</span> niveles. Esto significa que el experimento tiene un tamaño muestral fijo y rígido de <span class="math inline">\(N=k^2\)</span> observaciones (a menos que se replique el cuadrado completo).</p>
+<p>La partición de los grados de libertad del ANOVA es la siguiente:</p>
+<ul>
+<li><p>Total: <span class="math inline">\(gl_{total}=k^2−1\)</span></p></li>
+<li><p>Tratamiento (Efecto principal, u): <span class="math inline">\(u=k−1\)</span></p></li>
+<li><p>Bloque 1 (Filas): <span class="math inline">\(gl_{filas}=k−1\)</span></p></li>
+<li><p>Bloque 2 (Columnas): <span class="math inline">\(gl_{columnas}=k−1\)</span></p></li>
+<li><p>Error (<span class="math inline">\(v\)</span>): Se calcula por residuo restando los bloques del total:</p></li>
+</ul>
+<p><span class="math display">\[
+v=(k^2−1)−3(k−1) = (k−1)(k−2)
+\]</span></p>
+<p>El tamaño del efecto estandarizado de Cohen para el peor escenario del tratamiento (Patrón 1) es:</p>
+<p><span class="math display">\[
+f = d_{rango}\sqrt{\frac{1}{2k}}
+\]</span></p>
+<p><span class="math display">\[
+f^2 = \frac{(m_{max}- m_{min})^2}{2k\cdot \sigma^2}
+\]</span></p>
+<ul>
+<li>Ejemplo aplicado</li>
+</ul>
+<p><em>Un ingeniero industrial desea evaluar el impacto de <span class="math inline">\(k=5\)</span> tipos de catalizadores (Tratamiento) sobre el rendimiento. Para controlar la variabilidad, bloquea por Operario (5 filas) y por Turno (5 columnas) utilizando un Cuadrado Latino 5×5 (<span class="math inline">\(N=25\)</span> observaciones totales). Se desea detectar una diferencia mínima de rendimiento de 2 unidades (<span class="math inline">\(m_{max}−m_{min}=2\)</span>) con una desviación estándar estimada de <span class="math inline">\(\sigma=0.8\)</span> y un <span class="math inline">\(\alpha=0.05\)</span>.</em></p>
+<p>Entonces:</p>
+<ul>
+<li><span class="math inline">\(u = 4\)</span></li>
+<li><span class="math inline">\(v = (5-1)(5-2) = 12\)</span></li>
+</ul>
+<p><span class="math display">\[
+f^2 = \frac{2^2}{2(5)\cdot 0.8^2} = 0.625
+\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.f2.test</span>(<span class="at">u =</span> <span class="dv">4</span>, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">v =</span> <span class="dv">12</span>, <span class="co"># en caso de replicarse este valor sube</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">f2 =</span> <span class="fl">0.625</span>, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sig.level =</span> <span class="fl">0.05</span>, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">power =</span> <span class="cn">NULL</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Multiple regression power calculation 
+
+              u = 4
+              v = 12
+             f2 = 0.625
+      sig.level = 0.05
+          power = 0.5583745</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Para tres o más vías siga la lógica de repartición de los grados de libertad.</p>
+</blockquote>
+</section>
+<section id="experimentos-factoriales" class="level3">
+<h3 class="anchored" data-anchor-id="experimentos-factoriales">Experimentos factoriales</h3>
+<p>Este caso también puede emplearse para estimar la potencia en experimentos factoriales. Suponga el caso en el que se quiere llevar a cabo un experimento factorial completo <span class="math inline">\(2^4\)</span>, el cual tiene 16 tratamientos. Mediante una prueba piloto se ha estimado la desviación estándar <span class="math inline">\(s = 0.29\)</span>. Se sabe que efectos de 0.2 son importantes de detectar. <span class="math display">\[
+f = \frac{\Delta}{2s} = \frac{0.2}{2 \cdot 0.29} = 0.3448
+\]</span></p>
+<p><span class="math display">\[
+f^2 = 0.3448^2 = 0.1189
+\]</span></p>
+<p><span class="math inline">\(\Delta\)</span> representa la diferencia entre el nivel alto y el nivel bajo del efecto. Se usa <span class="math inline">\(u=1\)</span> (aún cuando en el ejemplo hay 4 efectos principales, 6 interacciones de dos factores, etc.) pues equivale a evaluar cada contraste por separado bajo la distribución F con un grado de libertad en el numerador, que es la convención estándar en diseño factorial.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.f2.test</span>(<span class="at">u =</span> <span class="dv">1</span>,           <span class="co"># Un efecto individual</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">v =</span> <span class="cn">NULL</span>,        <span class="co"># Grados de libertad del error</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">f2 =</span> <span class="fl">0.1189</span>,     <span class="co"># Tamaño del efecto marginal</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sig.level =</span> <span class="fl">0.05</span>, </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">power =</span> <span class="fl">0.80</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Multiple regression power calculation 
+
+              u = 1
+              v = 65.98745
+             f2 = 0.1189
+      sig.level = 0.05
+          power = 0.8</code></pre>
+</div>
+</div>
+<p>Como los experimentos deben ser balanceados, se elige el valor mayor que complete un múltiplo de 16 (<span class="math inline">\(2^4\)</span>). En este caso <span class="math inline">\(N = 65.98 + 1 + 1 = 67.98\)</span>, que redondeando al próximo múltiplo de 16, daría un total de 5 réplicas completas (80 corridas).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.f2.test</span>(<span class="at">u =</span> <span class="dv">1</span>,         <span class="co"># Un efecto individual</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">v =</span> <span class="dv">78</span>,        <span class="co"># 16*5-1-1</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">f2 =</span> <span class="fl">0.1189</span>,   <span class="co"># Tamaño del efecto marginal</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sig.level =</span> <span class="fl">0.05</span>, </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">power =</span> <span class="cn">NULL</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Multiple regression power calculation 
+
+              u = 1
+              v = 78
+             f2 = 0.1189
+      sig.level = 0.05
+          power = 0.8612611</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Existen ligeras diferencias entre estos resultados y los que pueden obtenerse con Minitab, debido a sus propias diferencias en los algoritmos.</p>
+</blockquote>
+</section>
+</section>
+</section>
+<section id="bibliografía" class="level1">
+<h1>Bibliografía</h1>
+<ul>
+<li><p>Cohen, J. (1988). <em>Statistical power analysis for the behavioral sciences</em> (2nd ed.). Hillsdale,NJ: Lawrence Erlbaum.</p></li>
+<li><p>Green, S. B. (1991). How many subjects are needed to a regression analysis? <em>Multivariate Behavioral Research, 26</em>(3), 499–510. https://doi.org/10.1207/s15327906mbr2603_7</p></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Creado con <a href="https://quarto.org"><iconify-icon role="img" inline="" icon="simple-icons:quarto" aria-label="Quarto Logo" title="Quarto Logo"></iconify-icon> Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

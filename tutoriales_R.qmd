@@ -34,6 +34,12 @@ Una demostración por intuición de cuándo y por qué funciona el TLC.
 
 Un pequeño tutorial con ejercicios resueltos sobre covarianza y correlaciones. 
 
+* [Potencia estadística: Regresión y ANOVA](tutoriales_R/potencia_modelos.html){target="_blank"}
+
+Una guía práctica para determinar el tamaño de muestra en modelos de regresión lineal 
+y ANOVA. Cubre desde diseños balanceados y desbalanceados hasta experimentos factoriales 
+y reductores de ruido, utilizando el índice $f$ de Cohen y la librería `pwr` de R.
+
 ## Ingeniería de Calidad `r fontawesome::fa("ruler-combined")`
 
 * [Diagrama de Pareto](tutoriales_R/diagrama_pareto.html){target="_blank"} 
