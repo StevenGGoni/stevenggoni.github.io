@@ -1,74 +1,225 @@
-<div style="background-color: #f8f9fa; padding: 25px; border-radius: 8px; border: 1px solid #e9ecef; max-width: 480px; margin: 20px auto; font-family: system-ui, -apple-system, sans-serif;">
-  <h5 style="margin-top: 0; color: #2c3e50; text-align: center; margin-bottom: 15px;">Región de Exploración: Interfaz de Pruebas "Tork"</h5>
-  
-  <div style="margin-bottom: 15px;">
-    <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.9em; color: #34495e;">Velocidad Horizontal (Factor A):</label>
-    <div style="display: flex; gap: 10px; align-items: center;">
-      <input type="number" id="inputX1" value="0.0" step="0.1" style="width: 100px; padding: 6px; border: 1px solid #ccc; border-radius: 4px; text-align: center;">
-      <span style="font-size: 0.85em; color: #7f8c8d;">unidades codificadas (<math><msub><mi>x</mi><mn>1</mn></msub></math>)</span>
-    </div>
-    <div style="font-size: 0.8em; color: #95a5a6; margin-top: 4px; padding-left: 5px;">
-      Equivalente natural: <strong id="natA">6000</strong> mm/s
-    </div>
-  </div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700&display=swap">
+    <style>
+        /* Estilos base para coincidir con tu sitio */
+        .simulador-body {
+            font-family: "Aller", sans-serif;
+            font-size: 18px; 
+            line-height: 1.4;
+            box-sizing: border-box; 
+            background-color: transparent;
+            color: #2c3e50;
+        }
+        
+        .simulador-container {
+            max-width: 550px; 
+            margin: 20px auto; 
+            padding: 25px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #33111422;
+        }
 
-  <div style="margin-bottom: 20px;">
-    <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.9em; color: #34495e;">Velocidad Vertical (Factor B):</label>
-    <div style="display: flex; gap: 10px; align-items: center;">
-      <input type="number" id="inputX2" value="0.0" step="0.1" style="width: 100px; padding: 6px; border: 1px solid #ccc; border-radius: 4px; text-align: center;">
-      <span style="font-size: 0.85em; color: #7f8c8d;">unidades codificadas (<math><msub><mi>x</mi><mn>2</mn></msub></math>)</span>
-    </div>
-    <div style="font-size: 0.8em; color: #95a5a6; margin-top: 4px; padding-left: 5px;">
-      Equivalente natural: <strong id="natB">150</strong> mm/s
-    </div>
-  </div>
+        .simulador-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4em;
+            color: #331114;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
 
-  <button onclick="ejecutarCorrida()" style="width: 100%; background-color: #34495e; color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; transition: background 0.2s;">
-    Ejecutar Corrida Experimental
-  </button>
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-  <div style="margin-top: 20px; background-color: #ffffff; padding: 15px; border-radius: 6px; text-align: center; border: 1px solid #e9ecef;">
-    <span style="font-size: 0.8em; text-transform: uppercase; color: #95a5a6; letter-spacing: 0.5px;">Distancia de desvío observada (Y)</span>
-    <div id="resultadoY" style="font-size: 1.8em; font-weight: bold; color: #2c3e50; margin-top: 5px;">--</div>
-  </div>
-</div>
+        .simulador-label { 
+            display: block;
+            font-weight: 600; 
+            font-size: 0.95em; 
+            margin-bottom: 6px;
+        }
+        
+        .input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .simulador-input {
+            font-family: "Aller", sans-serif;
+            font-size: 16px;
+            width: 100px; 
+            padding: 8px; 
+            border: 1px solid #33111444; 
+            border-radius: 4px; 
+            text-align: center;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .simulador-input:focus {
+            border-color: #331114;
+        }
+
+        .unit-span {
+            font-size: 0.85em;
+            color: #7f8c8d;
+        }
+        
+        .natural-hint {
+            font-size: 0.8em; 
+            color: #95a5a6; 
+            margin-top: 5px; 
+            padding-left: 2px;
+        }
+
+        .natural-hint strong {
+            color: #331114;
+        }
+
+        /* Botón con tu color institucional de realce */
+        .simulador-btn {
+            font-family: "Aller", sans-serif;
+            width: 100%; 
+            background-color: #331114; 
+            color: white; 
+            border: none; 
+            padding: 12px; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            font-size: 0.95em;
+            cursor: pointer; 
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        .simulador-btn:hover {
+            background-color: #4a1a1e;
+        }
+
+        /* Bloque de salida sutil y neutral */
+        .output-box {
+            margin-top: 25px; 
+            background-color: #ffffff; 
+            padding: 18px; 
+            border-radius: 6px; 
+            text-align: center; 
+            border: 1px solid #33111411;
+        }
+        
+        .output-label {
+            font-size: 0.8em; 
+            text-transform: uppercase; 
+            color: #95a5a6; 
+            letter-spacing: 0.5px;
+        }
+
+        .output-value {
+            font-size: 2em; 
+            font-weight: bold; 
+            color: #2c3e50; 
+            margin-top: 5px;
+        }
+          
+        .simulador-footer {
+            margin-top: 30px;
+            font-size: 0.75em;
+            text-align: center;
+            color: gray;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body class="simulador-body">
+
+    <div class="simulador-container">
+        <h5 class="simulador-title">Región de exploración: Interfaz de pruebas "Tork"</h5>
+        
+        <div class="form-group">
+            <label class="simulador-label" for="inputX1">Velocidad horizontal (Factor A):</label>
+            <div class="input-wrapper">
+                <input type="number" id="inputX1" value="0.0" step="0.1" class="simulador-input" oninput="actualizarNaturales()">
+                <span class="unit-span">unidades codificadas (<math><msub><mi>x</mi><mn>1</mn></msub></math>)</span>
+            </div>
+            <div class="natural-hint">
+                Equivalente natural: <strong id="natA">6000</strong> mm/s
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="simulador-label" for="inputX2">Velocidad vertical (Factor B):</label>
+            <div class="input-wrapper">
+                <input type="number" id="inputX2" value="0.0" step="0.1" class="simulador-input" oninput="actualizarNaturales()">
+                <span class="unit-span">unidades codificadas (<math><msub><mi>x</mi><mn>2</mn></msub></math>)</span>
+            </div>
+            <div class="natural-hint">
+                Equivalente natural: <strong id="natB">150</strong> mm/s
+            </div>
+        </div>
+
+        <button onclick="ejecutarCorrida()" class="simulador-btn">
+            Ejecutar corrida experimental
+        </button>
+
+        <div class="output-box">
+            <span class="output-label">Distancia de desvío observada (Y)</span>
+            <div id="resultadoY" class="output-value">--</div>
+        </div>
+        
+        <footer class="simulador-footer">
+            Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px; margin-left: 2px;"> · Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Junio 2026
+        </footer>
+    </div>
 
 <script>
-function ejecutarCorrida() {
-  // Obtener y validar las entradas numéricas
-  const x1 = parseFloat(document.getElementById('inputX1').value) || 0;
-  const x2 = parseFloat(document.getElementById('inputX2').value) || 0;
+function actualizarNaturales() {
+    const x1 = parseFloat(document.getElementById('inputX1').value) || 0;
+    const x2 = parseFloat(document.getElementById('inputX2').value) || 0;
 
-  // Actualizar la equivalencia en unidades naturales mostrada en la interfaz
-  // Centro inicial: A = 6000 (paso = 1000), B = 150 (paso = 30)
-  document.getElementById('natA').innerText = Math.round(6000 + (x1 * 1000));
-  document.getElementById('natB').innerText = Math.round(150 + (x2 * 30));
-
-  // 1. Modelo matemático de base (Tendencia lineal del Amplificador)
-  let yBase = 4.50 + (1.20 * x1) + (0.85 * x2);
-  
-  // 2. Simulación de la zona de inflexión (curvatura al descender)
-  if (x1 < -3.0 || x2 < -2.0) {
-    const excesoX1 = Math.max(0, -3.0 - x1);
-    const excesoX2 = Math.max(0, -2.0 - x2);
-    yBase = 0.81 + (excesoX1 * 1.5) + (excesoX2 * 1.5);
-  }
-
-  // 3. Inclusión del componente aleatorio (Error experimental puro)
-  // Genera un número pseudoaleatorio usando la transformación de Box-Muller para aproximar una distribución normal
-  // Media = 0, Desviación estándar (sigma) = 0.05 mm
-  let u1 = Math.random();
-  let u2 = Math.random();
-  if(u1 === 0) u1 = 0.0001; // Evitar indeterminación por logaritmo de 0
-  let errorAleatorio = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2) * 0.05;
-
-  // Respuesta final combinada
-  let yObservada = yBase + errorAleatorio;
-
-  // Restricción física: la distancia euclidiana de error no puede ser negativa
-  yObservada = Math.max(0.35, yObservada);
-
-  // Desplegar el resultado en la pantalla
-  document.getElementById('resultadoY').innerText = yObservada.toFixed(3) + " mm";
+    // Centro inicial: A = 6000 (paso = 1000), B = 150 (paso = 30)
+    document.getElementById('natA').innerText = Math.round(6000 + (x1 * 1000));
+    document.getElementById('natB').innerText = Math.round(150 + (x2 * 30));
 }
+
+function ejecutarCorrida() {
+    const x1 = parseFloat(document.getElementById('inputX1').value) || 0;
+    const x2 = parseFloat(document.getElementById('inputX2').value) || 0;
+
+    actualizarNaturales();
+
+    // 1. Modelo matemático base (Efectos principales significativos)
+    let yBase = 4.50 + (1.20 * x1) + (0.85 * x2);
+    
+    // 2. Simulación de la curvatura en la vecindad óptima local
+    if (x1 < -3.0 || x2 < -2.0) {
+        const excesoX1 = Math.max(0, -3.0 - x1);
+        const excesoX2 = Math.max(0, -2.0 - x2);
+        yBase = 0.81 + (excesoX1 * 1.5) + (excesoX2 * 1.5);
+    }
+
+    // 3. Transformación de Box-Muller para ruido blanco gaussiano N(0, 0.05^2)
+    let u1 = Math.random();
+    let u2 = Math.random();
+    if(u1 === 0) u1 = 0.0001; 
+    let errorAleatorio = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2) * 0.05;
+
+    // Respuesta final combinada
+    let yObservada = yBase + errorAleatorio;
+
+    // Restricción física (distancia euclidiana mínima del error)
+    yObservada = Math.max(0.35, yObservada);
+
+    // Desplegar resultado final sutilmente con 3 decimales
+    document.getElementById('resultadoY').innerText = yObservada.toFixed(3) + " mm";
+}
+
+// Inicializar valores al cargar
+actualizarNaturales();
 </script>
+
+</body>
+</html>
