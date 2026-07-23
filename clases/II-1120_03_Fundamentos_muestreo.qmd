@@ -1,6 +1,6 @@
 ---
 title: "Fundamentos de muestreo y manejo de datos"
-subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1120_02_Fundamentos_muestreo.pdf) <br> II-1120 Estadística para Ingeniería Industrial I"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1120_03_Fundamentos_muestreo.pdf) <br> II-1120 Estadística para Ingeniería Industrial I"
 date: today
 format: revealjs
 ---
