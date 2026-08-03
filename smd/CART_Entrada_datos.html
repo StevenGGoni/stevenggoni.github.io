@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clasificador Árbol de Decisión - Carga de Datos y Lift</title>
+    <title>Clasificador Árbol de Decisión</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Librería para procesar archivos Excel en el navegador -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <style>
          :root {
@@ -108,19 +107,19 @@
             font-size: 0.8rem;
         }
 
-        /* Estilo para Carga de Archivos */
         .file-upload-box {
             border: 2px dashed var(--surface-border);
             border-radius: 12px;
-            padding: 16px;
+            padding: 20px 16px;
             text-align: center;
             cursor: pointer;
-            transition: border-color 0.2s;
+            transition: all 0.2s;
             background: rgba(15, 23, 42, 0.4);
         }
 
         .file-upload-box:hover {
             border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
         }
 
         input[type="file"] {
@@ -128,14 +127,14 @@
         }
 
         .upload-label-btn {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--primary-light);
             font-weight: 600;
             cursor: pointer;
         }
 
         .file-info {
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             color: var(--text-muted);
             margin-top: 6px;
             word-break: break-all;
@@ -165,12 +164,18 @@
             box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
         }
 
-        button:hover {
+        button:disabled {
+            background: #334155;
+            color: #64748b;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        button:hover:not(:disabled) {
             transform: translateY(-1px);
             box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
         }
 
-        /* Results Display */
         .results-header {
             display: grid;
             grid-template-columns: 280px 1fr;
@@ -236,7 +241,19 @@
             color: var(--text-muted);
         }
 
-        /* Tree Structure */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        /* Estrutura Árbol */
         .tree-viewport {
             overflow-x: auto;
             padding: 20px 10px;
@@ -266,13 +283,8 @@
             transform: translateY(-2px);
         }
 
-        .tree-card.leaf-normal {
-            border-left: 4px solid var(--normal-cls);
-        }
-
-        .tree-card.leaf-falla {
-            border-left: 4px solid var(--falla-cls);
-        }
+        .tree-card.leaf-normal { border-left: 4px solid var(--normal-cls); }
+        .tree-card.leaf-falla { border-left: 4px solid var(--falla-cls); }
 
         .node-feat {
             font-size: 0.82rem;
@@ -358,7 +370,7 @@
 <div class="container">
     <header>
         <h1>Simulador de Árbol de Decisión</h1>
-        <p class="subtitle">Laboratorio interactivo con evaluación de Accuracy y Lift metric</p>
+        <p class="subtitle">Laboratorio interactivo de clasificación predictiva</p>
     </header>
 
     <div class="grid">
@@ -367,9 +379,9 @@
             <div class="card-title">1. Carga de Datos</div>
             <div class="control-group">
                 <div class="file-upload-box" onclick="document.getElementById('fileInput').click()">
-                    <span class="upload-label-btn">📁 Seleccionar Excel / CSV</span>
+                    <span class="upload-label-btn">📁 Subir Excel (.xlsx) o CSV</span>
                     <input type="file" id="fileInput" accept=".xlsx, .xls, .csv">
-                    <div class="file-info" id="fileName">Dataset por defecto cargado</div>
+                    <div class="file-info" id="fileName">Ningún archivo seleccionado</div>
                 </div>
             </div>
 
@@ -397,7 +409,7 @@
                 <input type="range" id="splitRatioRange" min="50" max="90" value="70" step="5">
             </div>
 
-            <button id="btnTrain">Entrenar Modelo</button>
+            <button id="btnTrain" disabled>Entrenar Modelo</button>
         </div>
 
         <!-- Panel de Resultados -->
@@ -441,28 +453,21 @@
             </div>
 
             <div class="card">
-                <div class="card-title">Estructura Visually Interactive del Árbol</div>
-                <div class="tree-viewport" id="treeOutput"></div>
+                <div class="card-title">Estructura del Árbol de Decisión</div>
+                <div class="tree-viewport" id="treeOutput">
+                    <div class="empty-state">
+                        <span class="empty-state-icon">📊</span>
+                        <p>Por favor, sube un conjunto de datos en formato Excel o CSV para construir el árbol.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-let currentDataset = [
-  {"vibracion_RMS":3.885,"temperatura":84.012,"corriente_motor":21.258,"tiempo_ult_mantenimiento":165.955,"presion_sist_hidraulico":2137.996,"nivel_lubricante":36.4,"estado_operacional":1,"ruido":92.207},
-  {"vibracion_RMS":3.823,"temperatura":81.957,"corriente_motor":18.261,"tiempo_ult_mantenimiento":171.917,"presion_sist_hidraulico":2080.72,"nivel_lubricante":44.003,"estado_operacional":1,"ruido":90.82},
-  {"vibracion_RMS":2.238,"temperatura":54.92,"corriente_motor":13.503,"tiempo_ult_mantenimiento":8.091,"presion_sist_hidraulico":2957.789,"nivel_lubricante":80.405,"estado_operacional":0,"ruido":69.805},
-  {"vibracion_RMS":4.39,"temperatura":86.61,"corriente_motor":19.035,"tiempo_ult_mantenimiento":169.535,"presion_sist_hidraulico":2159.623,"nivel_lubricante":42.425,"estado_operacional":1,"ruido":90.929},
-  {"vibracion_RMS":3.518,"temperatura":81.843,"corriente_motor":19.999,"tiempo_ult_mantenimiento":156.945,"presion_sist_hidraulico":1982.642,"nivel_lubricante":44.279,"estado_operacional":1,"ruido":90.91},
-  {"vibracion_RMS":2.164,"temperatura":58.825,"corriente_motor":11.755,"tiempo_ult_mantenimiento":32.327,"presion_sist_hidraulico":3024.126,"nivel_lubricante":84.043,"estado_operacional":0,"ruido":73.454},
-  {"vibracion_RMS":4.218,"temperatura":87.424,"corriente_motor":20.315,"tiempo_ult_mantenimiento":178.69,"presion_sist_hidraulico":1901.815,"nivel_lubricante":40.046,"estado_operacional":1,"ruido":91.952},
-  {"vibracion_RMS":1.995,"temperatura":58.814,"corriente_motor":11.666,"tiempo_ult_mantenimiento":15.011,"presion_sist_hidraulico":2941.25,"nivel_lubricante":80.976,"estado_operacional":0,"ruido":72.181},
-  {"vibracion_RMS":4.044,"temperatura":85.043,"corriente_motor":19.967,"tiempo_ult_mantenimiento":173.342,"presion_sist_hidraulico":2087.618,"nivel_lubricante":37.387,"estado_operacional":1,"ruido":92.569},
-  {"vibracion_RMS":2.417,"temperatura":60.597,"corriente_motor":13.067,"tiempo_ult_mantenimiento":39.559,"presion_sist_hidraulico":3004.913,"nivel_lubricante":81.161,"estado_operacional":0,"ruido":71.932}
-];
-
-let targetVariable = "estado_operacional";
+let currentDataset = null;
+let targetVariable = "";
 let allFeatures = [];
 
 function updateDatasetStructure(data) {
@@ -470,8 +475,11 @@ function updateDatasetStructure(data) {
     currentDataset = data;
     const keys = Object.keys(data[0]);
 
+    // Buscar target automático
     if (keys.includes("estado_operacional")) {
         targetVariable = "estado_operacional";
+    } else if (keys.includes("target")) {
+        targetVariable = "target";
     } else {
         targetVariable = keys[keys.length - 1];
     }
@@ -481,13 +489,15 @@ function updateDatasetStructure(data) {
     const targetSelect = document.getElementById('targetSelect');
     targetSelect.innerHTML = keys.map(k => `<option value="${k}" ${k === targetVariable ? 'selected' : ''}>${k}</option>`).join('');
     document.getElementById('targetGroup').style.display = 'block';
+    
+    document.getElementById('btnTrain').disabled = false;
 }
 
 document.getElementById('fileInput').addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (!file) return;
 
-    document.getElementById('fileName').innerText = `Cargado: ${file.name}`;
+    document.getElementById('fileName').innerText = `📄 ${file.name}`;
     const reader = new FileReader();
 
     reader.onload = function(evt) {
@@ -501,7 +511,7 @@ document.getElementById('fileInput').addEventListener('change', function(e) {
             updateDatasetStructure(json);
             trainModel();
         } else {
-            alert("El archivo está vacío o no tiene un formato válido.");
+            alert("El archivo está vacío o no contiene datos válidos.");
         }
     };
 
@@ -538,8 +548,6 @@ function getNoisyDataset(noisePercent) {
 }
 
 function initUI() {
-    updateDatasetStructure(currentDataset);
-
     document.getElementById('noiseRange').addEventListener('input', (e) => {
         document.getElementById('noiseVal').innerText = `${e.target.value}%`;
     });
@@ -554,8 +562,6 @@ function initUI() {
     });
 
     document.getElementById('btnTrain').addEventListener('click', trainModel);
-
-    trainModel();
 }
 
 function calculateGini(data) {
@@ -669,6 +675,8 @@ function renderAestheticTree(node) {
 }
 
 function trainModel() {
+    if (!currentDataset) return;
+
     const noisePercent = parseInt(document.getElementById('noiseRange').value);
     const maxDepth = parseInt(document.getElementById('maxDepthRange').value);
     const splitRatio = parseInt(document.getElementById('splitRatioRange').value) / 100;
@@ -697,7 +705,6 @@ function trainModel() {
     const total = testData.length;
     const accuracy = total > 0 ? (tp + tn) / total : 0;
     
-    // Cálculo de Precisión, Prevalencia y Lift
     const precision = (tp + fp) > 0 ? tp / (tp + fp) : 0;
     const prevalence = total > 0 ? (tp + fn) / total : 0;
     const lift = prevalence > 0 ? precision / prevalence : 0;
