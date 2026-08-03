@@ -1,6 +1,6 @@
 ---
 title: "Pruebas de bondad de ajuste para distribuciones"
-subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_02_Bondad_ajuste.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_04_Bondad_ajuste.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
 date: today
 format: revealjs
 ---
@@ -999,7 +999,7 @@ par_aux <- c(reg_100[1] %>% exp(), # alpha
              reg_100[3] %>% exp()) # lambda
 
 residuos <- data.frame(X1 =  X1, X2 = X2, y = y) %>% 
-  dplyr::mutate(y_hat_lineal = cbind(1, X1, X2) %*% coeficientes_regresion,
+  dplyr::mutate(y_hat_lineal = drop(cbind(1, X1, X2) %*% coeficientes_regresion),
                 y_hat = exp(y_hat_lineal),
                 residuos_resp = y - y_hat,
                 signo = if_else(residuos_resp > 0, 1, -1),
@@ -1021,13 +1021,24 @@ texto_label <- paste(
 
   # QQ plot
 
-p1 <- residuos %>%
-  ggplot2::ggplot(aes(sample = residuos_dev)) +
-  stat_qq () +
-  stat_qq_line(color = "#556070") +
-  labs(x = "Datos",
-       y = "Cuantiles") +
-  theme_bw()
+qq <- qqnorm(residuos$residuos_dev, plot.it = FALSE)
+
+# Cuantiles teóricos y observados
+qq_data <- data.frame(teorico = qq$x,  observado = qq$y)
+
+# Parámetros de la recta de referencia
+qq_line <- data.frame(x = range(qq_data$teorico),
+                      y = range(qq_data$teorico))
+
+p1 <- ggplot2::ggplot(qq_data,
+                      ggplot2::aes(x = teorico, y = observado)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_line(data = qq_line,
+                     ggplot2::aes(x = x, y = y),
+                     color = "#556070") +
+  ggplot2::labs(x = "Cuantiles teóricos",
+                y = "Cuantiles observados") +
+  ggplot2::theme_bw()
 
 # histograma
 

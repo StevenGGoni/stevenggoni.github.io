@@ -30,17 +30,21 @@ Aquí encontrará las clases de los diferentes cursos del área de conocimiento 
 
 ## II-1123 Estadística para Ingeniería Industrial II
 
-1. [Fundamentos de muestreo y manejo de datos](clases/II-1120_02_Fundamentos_muestreo.html){target="_blank"}
+1. [Distribuciones de probabilidad continuas](clases/II-1123_01_Distribuciones_continuas.html){target="_blank"}
 
-2. [Pruebas de bondad de ajuste para distribuciones](clases/II-1123_02_Bondad_ajuste.html){target="_blank"}
+2. [Distribuciones muestrales y Teorema del Límite Central (TLC)](clases/II-1123_02_Distribuciones_muestrales.html){target="_blank"}
 
-3. [Estadística no paramétrica para una o dos variables](clases/II-1123_03_Est_no_paramétrica.html){target="_blank"}
+3. [Pruebas de hipótesis e intervalos de confianza](clases/II-1123_03_Pruebas_hipotesis_IC.html){target="_blank"}
 
-4. [Estadística multivariada - Regresión y ANOVA](clases/II-1123_04_Estadistica_multivariada.html){target="_blank"}
+4. [Pruebas de bondad de ajuste para distribuciones](clases/II-1123_04_Bondad_ajuste.html){target="_blank"}
 
-5. [Fundamentos e introducción al DoE](clases/II-1123_05_Fundamentos_DoE.html){target="_blank"}
+5. [Estadística no paramétrica para una o dos variables](clases/II-1123_05_Est_no_paramétrica.html){target="_blank"}
 
-6. [Experimentos de un factor: Reductores de ruido](clases/II-1123_06_Reductores_ruido.html){target="_blank"}
+6. [Estadística multivariada - Regresión y ANOVA](clases/II-1123_06_Estadistica_multivariada.html){target="_blank"}
+
+7. [Fundamentos e introducción al DoE](clases/II-1123_07_Fundamentos_DoE.html){target="_blank"}
+
+8. [Experimentos de un factor: Reductores de ruido](clases/II-1123_08_Reductores_ruido.html){target="_blank"}
 
 ## II-1125 Estadística para Ingeniería Industrial III
 

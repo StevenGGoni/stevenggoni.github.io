@@ -1,6 +1,6 @@
 ---
 title: "Estadística multivariada: Regresión y ANOVA"
-subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_04_Estadistica_multivariada.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_06_Estadistica_multivariada.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
 date: today
 format: revealjs
 ---
@@ -610,6 +610,7 @@ data.frame(IC = c("\\(\\beta_0\\)", "\\(\\beta_1\\)"),
 ::: {.column .img-fit width="100%"}
 
 ![Tomado de Montgomery et al. (2012)](img/ANOVA.png)
+
 Ahora, construya la tabla ANOVA para el ejemplo 01.
 
 ```{r}

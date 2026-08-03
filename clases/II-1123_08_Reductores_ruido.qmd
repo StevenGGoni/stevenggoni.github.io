@@ -1,6 +1,6 @@
 ---
 title: "Experimentos de un factor: Reductores de Ruido"
-subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_06_Reductores_ruido.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_08_Reductores_ruido.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
 date: today
 format: revealjs
 ---

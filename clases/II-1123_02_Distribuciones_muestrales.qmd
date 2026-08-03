@@ -1,0 +1,16 @@
+---
+title: "Distribuciones muestrales y TLC"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_02_Distribuciones_muestrales.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
+date: today
+format: revealjs
+---
+
+```{r}
+
+library(tidyverse)
+
+```
+
+## Agenda {.bloques}
+
+* En construcción

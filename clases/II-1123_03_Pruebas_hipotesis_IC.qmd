@@ -1,0 +1,16 @@
+---
+title: "Pruebas de hipótesis e Intervalos de confianza"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_03_Pruebas_hipotesis_IC.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
+date: today
+format: revealjs
+---
+
+```{r}
+
+library(tidyverse)
+
+```
+
+## Agenda {.bloques}
+
+* En construcción

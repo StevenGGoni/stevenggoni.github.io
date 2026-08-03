@@ -1,0 +1,1179 @@
+---
+title: "Estadística no paramétrica para una o dos variables"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_05_Est_no_paramétrica.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
+date: today
+format: revealjs
+---
+
+
+::: {.cell}
+
+:::
+
+
+## Agenda {.bloques}
+
+* Preguntas generadoras
+* Introducción
+  * Usos, ventajas y desventajas
+* Prueba de signo
+* Prueba de rango con signo
+* Wilcoxon y Mann-Whitney
+* Para la varianza
+
+
+## Preguntas generadoras {.bloques}
+
+* ¿Qué significa ser “*paramétrico*” y “*no paramétrico*”?
+* ¿Cuándo se debe recurrir a estadística no paramétrica? 
+* ¿Cuáles son las desventajas de los procedimientos no paramétricos?
+
+## Introducción {.bloques}
+
+* La mayoría de procedimientos que han sido abordados en este curso y otros anteriores tienen un supuesto [importantísimo]{.hi}:
+
+  * Se trabaja con variables aleatorias que siguen la [distribución normal]{.hi}. 
+  * O bien, el [tamaño de muestra es lo suficientemente grande]{.hi} para cumplir con el teorema del límite central (TLC).
+    * Recuerde que el TLC depende, en gran medida de la asimetría de la distribución de la población y que no es una buena práctica asumir que en todos los casos se necesita $n \ge 30$ (esta idea es prácticamente un fósil de la estadística). En ocasiones puede ser más o puede ser menos. 
+    * Puede visitar estos enlaces para mejorar su comprensión en este tema:
+      * [Explicación, demostración y tutorial sobre el TLC](https://stevenggoni.github.io/tutoriales_R/Demostracion_TLC.html){target="_blank"}
+      * [Efecto de la asimetría sobre el TLC](https://rpubs.com/SGGoni){target="_blank"}
+
+* Igualmente, recuerde que los procedimientos paramétricos son, por lo general, [relativamente insensibles]{.hi} a variaciones pequeñas en la normalidad. 
+  * Incluso si la condición no se cumple **por muy poco**, aún puede usarse el procedimiento.
+
+## Introducción {.bloques}
+
+* Existen procedimientos que son [libres de distribución]{.hi} o no paramétricos que usualmente [no hacen supuestos acerca de la distribución]{.ul} subyacente de los datos en la población.
+  * En algunas ocasiones puede existir el supuesto de continuidad, es decir, que los datos sean continuos. 
+* Los métodos no paramétricos no están libres de supuestos, porque algunos de los métodos más comunes, como la prueba de rango con signo y de suma de rangos que vemos en nuestro curso, parten del supuesto de simetría aproximada. 
+
+* Lo que nos lleva a que en realidad los métodos [no son aplicables de modo universal]{.hi}
+
+* Nótese que lo no paramétrico no es necesariamente "inferior" ni lo paramétrico es "mejor" o superior.
+
+## Estadística no paramétrica {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="100%"}
+
+* La estadística no paramétrica es una rama de la estadística que permite analizar datos [sin asumir que provienen de una distribución específica]{.hi}.
+  * *Nota del autor de esta presentación: nótese que indica que no provienen de una distribución específica, no solo de la normal, por lo que recomiendo evaluar si no existe una distribución particular que se pueda ajustar a los datos antes de aplicar un [test no paramétrico]{.hi}* 
+
+* Lo que la hace especialmente útil cuando las condiciones para los métodos paramétricos no se cumplen.
+
+  * >Este slide y el siguiente están basados en material de [PhD. Isabel Escudero](https://www.researchgate.net/profile/Isabel-Escudero-7){target="_blank"} facilitado el 23 de agosto 2025 en la Lección Inaugural II Ciclo 2025 de la Escuela de Estadística y Programa de Posgrado en Estadística.  
+  
+:::
+
+::::::
+
+## Estadística no paramétrica {.bloques}
+
+:::::: {.columns}
+
+::: {.column style="font-size: 0.85em;"}
+
+
+::: {.cell}
+::: {.cell-output-display}
+`````{=html}
+<table class="table" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Característica </th>
+   <th style="text-align:left;"> Paramétrico </th>
+   <th style="text-align:left;"> No paramétrico </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Distribución de los datos </td>
+   <td style="text-align:left;"> Requieren que los datos sigan una distribución específica (normal) </td>
+   <td style="text-align:left;"> No requieren distribución específica </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Tipo de datos </td>
+   <td style="text-align:left;"> Datos de intervalo o razón </td>
+   <td style="text-align:left;"> Datos ordinales, nominales o no normalmente distribuidos </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Supuestos previos </td>
+   <td style="text-align:left;"> Más estrictos </td>
+   <td style="text-align:left;"> Más flexibles </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Potencia estadística </td>
+   <td style="text-align:left;"> Mayor si se cumplen los supuestos </td>
+   <td style="text-align:left;"> Menor, pero más robustos ante violaciones de supuestos </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sensibilidad a outliers </td>
+   <td style="text-align:left;"> Alta (afectados por valores extremos) </td>
+   <td style="text-align:left;"> Baja (más resistentes a outliers) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Tamaño de muestra necesario </td>
+   <td style="text-align:left;"> Generalmente mayor </td>
+   <td style="text-align:left;"> Funciona bien con muestras pequeñas </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+:::
+:::
+
+
+>Material de [PhD. Isabel Escudero](https://www.researchgate.net/profile/Isabel-Escudero-7){target="_blank"}
+
+:::
+
+::::::
+
+## Estadística no paramétrica {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+### Ventajas
+
+* Fácil aplicación computacional.
+* **Puede** servir de método de evaluación rápido, antes de determinar si se requiere de un método más elaborado. 
+
+* Muchos supuestos que típicamente se deben hacer respecto a la población en estadística paramétrica,  no son requeridos. Pero sigue requiriendo independencia y otros supuestos. 
+
+* Útil cuando el tamaño de muestra no es el adecuado (muy pequeño) para cumplir con el TLC.
+
+:::
+
+::: {.column width="50%"}
+
+### Desventajas
+
+* Conceptualmente, no siempre son de fácil aplicación.
+
+* Si se puede aplicar una técnica paramétrica, porque se cumplen sus supuestos,  es mejor, pues este generalmente es un método más eficiente: tiene más potencia para un mismo tamaño muestral.  
+
+* En general, cuando los supuestos paramétricos se cumplen, las pruebas no paramétricas tienen menor eficiencia, por lo que pueden requerir una muestra mayor para alcanzar la misma potencia.
+
+
+:::
+
+::::::
+
+## Reflexión {.bloques}
+
+* La estadística inferencial se basa o depende del proceso de extracción de la muestra y de si este es efectivamente aleatorio y está bien hecho: libre de sesgos evidentes, etc; lo cual es requisito de cualquiera de las pruebas estadísticas.
+
+  * [Ningún test, paramétrico o no, corrige un diseño erróneo.]{.hi} 
+
+* En ocasiones sucede que la población sigue la distribución normal, pero que el método de extracción de los datos no lo refleja, pues no es correcto (aleatoriedad, el instrumento de medición no es adecuado, etc). 
+
+## Reflexión {.bloques}
+
+* El $n<30$ no significa que automáticamente se requiere de un test no paramétrico. 
+  * Esto es un error que hay que evitar reproducir. 
+  * El test no paramétrico se requiere cuando no se cumplan los supuestos del paramétrico, no por una cuestión del tamaño de muestra. 
+
+* Por ejemplo, para hacer hipótesis de tendencia central: 
+  * La población es normal
+      * Test paramétrico
+  * La población no es normal, pero la muestra es suficientemente grande
+      * Test paramétrico es adecuado por el TLC
+  * La población es claramente no normal y la muestra es pequeña
+      * Test no paramétrico
+
+# Tests no paramétricos {.bloques}
+
+## Prueba de signo {.bloques}
+
+* Es usada para probar hipótesis acerca de la mediana ($\widetilde{X}$) de una distribución continua o discreta. La mediana es el valor central de una distribución. 
+* Las hipótesis son: 
+  * $H_o: \widetilde{X}=\text{valor}$
+  * $H_i: \widetilde{X}\ne\text{valor}$
+
+  * Son también plausibles las hipótesis alternativas con > y <.
+* Sus principales supuestos son: independencia, que el nivel de medición sea al menos ordinal y que la mediana está bien definida
+* Básicamente es la alternativa no paramétrica a las pruebas de hipótesis sobre tendencia central, como por ejemplo: una media.
+
+
+## Ejemplo 01 {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+* >Nota: todos los ejercicios serán resueltos de forma manual, pero también pueden resolverse con software estadístico. 
+
+* Se desea comprobar que la resistencia al corte de 20 motores seleccionados al azar sea de 2000 psi, con un 95% de confianza.
+  * Los datos no provienen de una población normal (o no se puede asumir) y no se cumple el TLC, por lo que una prueba no paramétrica resulta apropiada. 
+
+* Para ello se le proveen de 20 observaciones. 
+
+:::
+
+::: {.column style="font-size: 0.85em;"}
+
+
+::: {.cell}
+::: {.cell-output-display}
+`````{=html}
+<table class="table" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Observación </th>
+   <th style="text-align:right;"> Resistencia </th>
+   <th style="text-align:right;"> Observación </th>
+   <th style="text-align:right;"> Resistencia </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2158.70 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 2165.20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 1678.15 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 2399.55 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2316.00 </td>
+   <td style="text-align:right;"> 13 </td>
+   <td style="text-align:right;"> 1779.80 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 2061.30 </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 2336.75 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 2207.50 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 1765.30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 1708.30 </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 2053.50 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 1784.70 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:right;"> 2414.40 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 2575.10 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:right;"> 2200.50 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 2357.90 </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:right;"> 2654.20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 2256.70 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1753.70 </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+:::
+:::
+
+
+
+:::
+
+::::::
+
+## Ejemplo 01 {.bloques}
+
+:::::: {.columns}
+
+::: {.column style="font-size: 0.85em;"}
+
+Se calculan las diferencias respecto al valor de $H_o$.
+
+
+::: {.cell}
+::: {.cell-output-display}
+`````{=html}
+<table class="table" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Observación </th>
+   <th style="text-align:right;"> Resistencia </th>
+   <th style="text-align:right;"> Diferencias </th>
+   <th style="text-align:left;"> Signo </th>
+   <th style="text-align:right;"> Observación </th>
+   <th style="text-align:right;"> Resistencia </th>
+   <th style="text-align:right;"> Diferencias </th>
+   <th style="text-align:left;"> Signo </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2158.70 </td>
+   <td style="text-align:right;"> 158.70 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 2165.20 </td>
+   <td style="text-align:right;"> 165.20 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 1678.15 </td>
+   <td style="text-align:right;"> -321.85 </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 2399.55 </td>
+   <td style="text-align:right;"> 399.55 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2316.00 </td>
+   <td style="text-align:right;"> 316.00 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 13 </td>
+   <td style="text-align:right;"> 1779.80 </td>
+   <td style="text-align:right;"> -220.20 </td>
+   <td style="text-align:left;"> - </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 2061.30 </td>
+   <td style="text-align:right;"> 61.30 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 2336.75 </td>
+   <td style="text-align:right;"> 336.75 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 2207.50 </td>
+   <td style="text-align:right;"> 207.50 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 1765.30 </td>
+   <td style="text-align:right;"> -234.70 </td>
+   <td style="text-align:left;"> - </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 1708.30 </td>
+   <td style="text-align:right;"> -291.70 </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 2053.50 </td>
+   <td style="text-align:right;"> 53.50 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 1784.70 </td>
+   <td style="text-align:right;"> -215.30 </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:right;"> 2414.40 </td>
+   <td style="text-align:right;"> 414.40 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 2575.10 </td>
+   <td style="text-align:right;"> 575.10 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:right;"> 2200.50 </td>
+   <td style="text-align:right;"> 200.50 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 2357.90 </td>
+   <td style="text-align:right;"> 357.90 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:right;"> 2654.20 </td>
+   <td style="text-align:right;"> 654.20 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 2256.70 </td>
+   <td style="text-align:right;"> 256.70 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1753.70 </td>
+   <td style="text-align:right;"> -246.30 </td>
+   <td style="text-align:left;"> - </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+:::
+:::
+
+
+:::
+
+:::::
+
+## Ejemplo 01 {.bloques}
+
+* Luego, se cuenta los signos positivos y negativos.
+
+* $+ = 14$
+* $- = 6$
+
+* El valor P se obtiene basándose en la distribución binomial (lo que tiene sentido, pues hay dos signos). Se hace de la siguiente manera (con $+$ y con $-$):
+
+* $2\cdot Bin(x \ge 14, n=20, p = 0.5) = 0.1153$
+* $2\cdot Bin(x \le 6, n=20, p = 0.5) = 0.1153$
+
+  * Si la hipótesis es unilateral, no se multiplica por 2 y se utiliza la desigualdad ($\le , \ge$) correspondiente. 
+
+## Ejemplo 02 (Pareado) {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+* Se instalan dos tipos de  dispositivos de medición en el sistema electrónico de inyección de combustible de 12 automóviles. 
+
+ * Se desea determinar si existe diferencia en los datos de rendimiento entre dispositivos. Use un nivel de significancia de 0.05.
+
+:::
+
+::: {.column style="font-size: 0.81em;"}
+
+
+::: {.cell}
+::: {.cell-output-display}
+`````{=html}
+<table class="table" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Automóvil </th>
+   <th style="text-align:right;"> D1 </th>
+   <th style="text-align:right;"> D2 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 17.6 </td>
+   <td style="text-align:right;"> 16.8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 19.4 </td>
+   <td style="text-align:right;"> 20.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 19.5 </td>
+   <td style="text-align:right;"> 18.2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 17.1 </td>
+   <td style="text-align:right;"> 16.4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 15.3 </td>
+   <td style="text-align:right;"> 16.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 15.9 </td>
+   <td style="text-align:right;"> 15.4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 16.3 </td>
+   <td style="text-align:right;"> 16.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 18.4 </td>
+   <td style="text-align:right;"> 18.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 17.3 </td>
+   <td style="text-align:right;"> 16.4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 19.1 </td>
+   <td style="text-align:right;"> 20.1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 17.8 </td>
+   <td style="text-align:right;"> 16.7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 18.2 </td>
+   <td style="text-align:right;"> 17.9 </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+:::
+:::
+
+
+
+:::
+
+::::::
+
+## Ejemplo 02 (Pareado) {.bloques}
+
+:::::: {.columns}
+
+::: {.column style="font-size: 0.81em;"}
+
+
+::: {.cell}
+::: {.cell-output-display}
+`````{=html}
+<table class="table" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Automóvil </th>
+   <th style="text-align:right;"> D1 </th>
+   <th style="text-align:right;"> D2 </th>
+   <th style="text-align:right;"> Diferencia </th>
+   <th style="text-align:left;"> Signo </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 17.6 </td>
+   <td style="text-align:right;"> 16.8 </td>
+   <td style="text-align:right;"> 0.8 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 19.4 </td>
+   <td style="text-align:right;"> 20.0 </td>
+   <td style="text-align:right;"> -0.6 </td>
+   <td style="text-align:left;"> - </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 19.5 </td>
+   <td style="text-align:right;"> 18.2 </td>
+   <td style="text-align:right;"> 1.3 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 17.1 </td>
+   <td style="text-align:right;"> 16.4 </td>
+   <td style="text-align:right;"> 0.7 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 15.3 </td>
+   <td style="text-align:right;"> 16.0 </td>
+   <td style="text-align:right;"> -0.7 </td>
+   <td style="text-align:left;"> - </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 15.9 </td>
+   <td style="text-align:right;"> 15.4 </td>
+   <td style="text-align:right;"> 0.5 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 16.3 </td>
+   <td style="text-align:right;"> 16.5 </td>
+   <td style="text-align:right;"> -0.2 </td>
+   <td style="text-align:left;"> - </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 18.4 </td>
+   <td style="text-align:right;"> 18.0 </td>
+   <td style="text-align:right;"> 0.4 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 17.3 </td>
+   <td style="text-align:right;"> 16.4 </td>
+   <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 19.1 </td>
+   <td style="text-align:right;"> 20.1 </td>
+   <td style="text-align:right;"> -1.0 </td>
+   <td style="text-align:left;"> - </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 17.8 </td>
+   <td style="text-align:right;"> 16.7 </td>
+   <td style="text-align:right;"> 1.1 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 18.2 </td>
+   <td style="text-align:right;"> 17.9 </td>
+   <td style="text-align:right;"> 0.3 </td>
+   <td style="text-align:left;"> + </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+:::
+:::
+
+
+
+:::
+
+::::::
+
+## Ejemplo 02 (Pareado) {.bloques}
+
+* La mediana hipotetizada en la población es de 0.
+* Se cuenta con 8 +'s y 4 -'s.
+
+* $2\cdot Bin(x \ge 8, n=12, p = 0.5) = 0.3877$
+* $2\cdot Bin(x \le 4, n=12, p = 0.5) = 0.3877$
+
+* Por lo que, no hay evidencia suficiente para rechazar la hipótesis nula de que los dos dispositivos de medición son iguales. 
+
+## Prueba de rango con signo de Wilcoxon {.bloques}
+
+* Se utiliza para probar la hipótesis sobre la mediana de una distribución continua, si la distribución es simétrica alrededor de esa mediana.
+* Por lo que un supuesto de aplicación es esa simetría, además de la independencia y que la variable sea al menos ordinal.
+* Básicamente es la alternativa no paramétrica a las pruebas de hipótesis sobre tendencia central, como por ejemplo: una media.
+  * Es una alternativa más potente a la prueba de signos. Pues esta incorpora más información
+
+* Las hipótesis son: 
+  * $H_o: \widetilde{X}=\text{valor}$
+  * $H_i: \widetilde{X}\ne\text{valor}$
+  
+## Ejemplo 03 {.bloques}
+
+* Resuelva el ejercicio del Ejemplo 01, pero con esta técnica no paramétrica. 
+
+* Los ejercicios resueltos los puede encontrar en este archivo [Excel](https://stevenggoni.github.io/clases/data/II-1123_03_Ejemplos y ejercicios resueltos.xlsx) 
+
+## Ejemplo 03 {.bloques}
+
+:::::: {.columns}
+
+::: {.column style="font-size: 0.7em;"}
+
+
+::: {.cell}
+::: {.cell-output-display}
+`````{=html}
+<table class="table" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Observación </th>
+   <th style="text-align:right;"> Resistencia </th>
+   <th style="text-align:right;"> Diferencias </th>
+   <th style="text-align:left;"> Signo </th>
+   <th style="text-align:right;"> Diferencia absoluta </th>
+   <th style="text-align:right;"> Rango </th>
+   <th style="text-align:right;"> Observación </th>
+   <th style="text-align:right;"> Resistencia </th>
+   <th style="text-align:right;"> Diferencias </th>
+   <th style="text-align:left;"> Signo </th>
+   <th style="text-align:right;"> Diferencia absoluta </th>
+   <th style="text-align:right;"> Rango </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 2053.5 </td>
+   <td style="text-align:right;"> 53.5 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 53.5 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 2256.70 </td>
+   <td style="text-align:right;"> 256.70 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 256.70 </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 2061.3 </td>
+   <td style="text-align:right;"> 61.3 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 61.3 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 1708.30 </td>
+   <td style="text-align:right;"> -291.70 </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:right;"> 291.70 </td>
+   <td style="text-align:right;"> 12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2158.7 </td>
+   <td style="text-align:right;"> 158.7 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 158.7 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2316.00 </td>
+   <td style="text-align:right;"> 316.00 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 316.00 </td>
+   <td style="text-align:right;"> 13 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 2165.2 </td>
+   <td style="text-align:right;"> 165.2 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 165.2 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 1678.15 </td>
+   <td style="text-align:right;"> -321.85 </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:right;"> 321.85 </td>
+   <td style="text-align:right;"> 14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:right;"> 2200.5 </td>
+   <td style="text-align:right;"> 200.5 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 200.5 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 2336.75 </td>
+   <td style="text-align:right;"> 336.75 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 336.75 </td>
+   <td style="text-align:right;"> 15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 2207.5 </td>
+   <td style="text-align:right;"> 207.5 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 207.5 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 2357.90 </td>
+   <td style="text-align:right;"> 357.90 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 357.90 </td>
+   <td style="text-align:right;"> 16 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 1784.7 </td>
+   <td style="text-align:right;"> -215.3 </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:right;"> 215.3 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 2399.55 </td>
+   <td style="text-align:right;"> 399.55 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 399.55 </td>
+   <td style="text-align:right;"> 17 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 13 </td>
+   <td style="text-align:right;"> 1779.8 </td>
+   <td style="text-align:right;"> -220.2 </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:right;"> 220.2 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:right;"> 2414.40 </td>
+   <td style="text-align:right;"> 414.40 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 414.40 </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 1765.3 </td>
+   <td style="text-align:right;"> -234.7 </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:right;"> 234.7 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 2575.10 </td>
+   <td style="text-align:right;"> 575.10 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 575.10 </td>
+   <td style="text-align:right;"> 19 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1753.7 </td>
+   <td style="text-align:right;"> -246.3 </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:right;"> 246.3 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:right;"> 2654.20 </td>
+   <td style="text-align:right;"> 654.20 </td>
+   <td style="text-align:left;"> + </td>
+   <td style="text-align:right;"> 654.20 </td>
+   <td style="text-align:right;"> 20 </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+:::
+:::
+
+
+:::
+
+::::::
+
+## Ejemplo 03 {.bloques}
+
+* Se realiza la suma los rangos o rankings para cada signo, de tal forma que: 
+
+* $W^+=150$
+* $W^-=60$
+
+* El valor P se puede conseguir con esta [aplicación](https://mabognar.github.io/apps/wilcoxon-signed-rank.html){target="_blank"}.
+
+* Valor P = $2\cdot P(W \le w) = 2\cdot P(W \le 60) = 2\cdot 0.04865 = 0.09730$
+
+* Como la distribución es simétrica, también puede: Valor P = $2\cdot P(W \ge w) = 2\cdot P(W \ge 150) = 2\cdot 0.04865 = 0.09730$
+
+* Concluya del estudio
+
+## Suma de rangos de Wilcoxon (Mann-Whitney) {.bloques}
+
+* Básicamente es la alternativa a las pruebas de hipótesis sobre dos poblaciones (en paramétrico usamos medias). Lo que evalúa es si las distribuciones de ambas poblaciones son iguales. Por lo que podría interpretarse como una prueba sobre la diferencia de las medianas siempre que el supuesto de forma se cumpla.
+* Puede probar la hipótesis de las distribuciones:
+  * $H_o:F_1(x)=F_2(x)$
+  * $H_i:F_1(x) \ne F_2(x)$
+
+* Si la forma de las distribuciones es la misma, puede probar la hipótesis de las medianas:
+  * $H_o:\widetilde{X_1}=\widetilde{X_2}$
+  * $H_i:\widetilde{X_1}\ne\widetilde{X_2}$
+
+## Ejemplo 04 {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+* Se quiere verificar que una nueva aleación más ligera (aleación 2) tiene más resistencia a la tensión que la aleación tradicional. Utilice una significancia del 5%. 
+* No se cumplen las condiciones para realizar un test paramétrico, por lo que se recurre a uno no paramétrico. 
+
+:::
+
+::: {.column style="font-size: 0.9em;"}
+
+
+::: {.cell}
+::: {.cell-output-display}
+`````{=html}
+<table class="table" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Aleación1 </th>
+   <th style="text-align:right;"> Aleación2 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 3238 </td>
+   <td style="text-align:right;"> 3261 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3195 </td>
+   <td style="text-align:right;"> 3187 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3246 </td>
+   <td style="text-align:right;"> 3209 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3190 </td>
+   <td style="text-align:right;"> 3212 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3204 </td>
+   <td style="text-align:right;"> 3258 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3254 </td>
+   <td style="text-align:right;"> 3248 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3229 </td>
+   <td style="text-align:right;"> 3215 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3225 </td>
+   <td style="text-align:right;"> 3226 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3217 </td>
+   <td style="text-align:right;"> 3240 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3241 </td>
+   <td style="text-align:right;"> 3234 </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+:::
+:::
+
+
+
+:::
+
+::::::
+
+## Ejemplo 04 {.bloques}
+
+:::::: {.columns}
+
+::: {.column style="font-size: 0.95em;"}
+
+
+::: {.cell}
+::: {.cell-output-display}
+`````{=html}
+<table class="table" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Aleación </th>
+   <th style="text-align:right;"> Valores </th>
+   <th style="text-align:right;"> Rango </th>
+   <th style="text-align:left;"> Aleación </th>
+   <th style="text-align:right;"> Valores </th>
+   <th style="text-align:right;"> Rango </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Aleación2 </td>
+   <td style="text-align:right;"> 3187 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Aleación1 </td>
+   <td style="text-align:right;"> 3229 </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Aleación1 </td>
+   <td style="text-align:right;"> 3190 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Aleación2 </td>
+   <td style="text-align:right;"> 3234 </td>
+   <td style="text-align:right;"> 12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Aleación1 </td>
+   <td style="text-align:right;"> 3195 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> Aleación1 </td>
+   <td style="text-align:right;"> 3238 </td>
+   <td style="text-align:right;"> 13 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Aleación1 </td>
+   <td style="text-align:right;"> 3204 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aleación2 </td>
+   <td style="text-align:right;"> 3240 </td>
+   <td style="text-align:right;"> 14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Aleación2 </td>
+   <td style="text-align:right;"> 3209 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Aleación1 </td>
+   <td style="text-align:right;"> 3241 </td>
+   <td style="text-align:right;"> 15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Aleación2 </td>
+   <td style="text-align:right;"> 3212 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> Aleación1 </td>
+   <td style="text-align:right;"> 3246 </td>
+   <td style="text-align:right;"> 16 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Aleación2 </td>
+   <td style="text-align:right;"> 3215 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> Aleación2 </td>
+   <td style="text-align:right;"> 3248 </td>
+   <td style="text-align:right;"> 17 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Aleación1 </td>
+   <td style="text-align:right;"> 3217 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:left;"> Aleación1 </td>
+   <td style="text-align:right;"> 3254 </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Aleación1 </td>
+   <td style="text-align:right;"> 3225 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> Aleación2 </td>
+   <td style="text-align:right;"> 3258 </td>
+   <td style="text-align:right;"> 19 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Aleación2 </td>
+   <td style="text-align:right;"> 3226 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:left;"> Aleación2 </td>
+   <td style="text-align:right;"> 3261 </td>
+   <td style="text-align:right;"> 20 </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+:::
+:::
+
+
+
+:::
+
+::::::
+
+## Ejemplo 04 {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+### Rangos de Wilcoxon
+
+$W_i$ es la suma de las posiciones o rankings para cada $i$.
+
+* Aleación 1 ($n=10$) = $W_1=99$
+* Aleación 2 ($n=10$) = $W_2=111$
+
+Entonces, usando esta [aplicación](https://mabognar.github.io/apps/wilcoxon-rank-sum.html){target="_blank"}: 
+
+* $2 \cdot P(W_1 \le 99) = 2 \cdot 0.34211 = 0.68422$
+* $2 \cdot P(W_2 \ge 111) = 2 \cdot 0.34211  = 0.68422$
+
+:::
+
+::: {.column}
+
+### Mann-Whitney
+
+$$U_i=W_i-\frac{n_i\cdot (n_i+1)}{2}$$
+
+* Aleación 1 ($n=10$) = $U_1=44$
+* Aleación 2 ($n=10$) = $U_2=56$
+
+Entonces, usando esta [aplicación](https://mabognar.github.io/apps/mw.html){target="_blank"}: 
+
+* $2 \cdot P(U_1 \ge 44) = 2 \cdot 0.34211 = 0.68422$
+* $2 \cdot P(U_2 \le 56) = 2 \cdot 0.34211 = 0.68422$
+
+:::
+
+::::::
+
+## Pruebas para la varianza {.bloques}
+
+* Para el caso de varianzas (y en `Minitab` de forma específica para dos varianzas) no hay TLC, ni cantidad de datos que nos salven. 
+  * Los datos deben seguir una distribución normal.
+* Algunas de las alternativas a la no normalidad son la prueba de Bonett y la de Levene. 
+  * Por lo general, Bonett es más potente, salvo que tengo muy pocos datos o la distribución es muy asimétrica. 
+
+* No son pruebas no paramétricas; son robustas frente a violaciones de normalidad. 
+
+## Ejemplo 05 {.bloques}
+
+* Se utilizan los datos del Ejemplo 05, que puede encontrar en el Excel, para evaluar si la varianza de tres grupos es la misma. 
+
+* En R 
+  * `car::leveneTest(Respuesta ~ Grupo, data = datos)` 
+  * `intervcomp::Bonett.Seier.test(Grupo1, Grupo2, alternative = "two.sided")`
+
+* En Minitab Stat>Basic Statistics>2 Variances...>Options
+  * Si el "Use test and confidence intervals based on normal distribution" está marcado, se ejecutará el test F, caso contrario, se ejecuta Bonett y Levene (No paramétricos o robustos a la no normalidad). 
+
+* Resuelva este ejemplo por cuenta propia. Tome en cuenta que por diferencias algorítmicas, puede obtener valores distintos en función del software. 
+
+
+## Bibliografía {.bloques}
+
+:::: columns
+::: {.column width="100%" style="font-size: 1.3em;"}
+
+* Montgomery, D; Runger, G. (2011) Applied Statistics and Probability for Engineers (5th Edition)
+  * Capítulo 9.9, 10.3
+
+:::
+::::
+
+## Estadística no paramétrica para una o dos variables <br> II-1123 Estadística para Ingeniería Industrial II {.center}
+
+### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni\@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
+
+### Dudas o correcciones requeridas pueden solicitarse al correo

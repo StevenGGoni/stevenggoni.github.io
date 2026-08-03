@@ -1,6 +1,6 @@
 ---
 title: "Fundamentos del diseño de experimentos (DoE)"
-subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_05_Fundamentos_DoE.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_07_Fundamentos_DoE.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
 date: today
 format: revealjs
 ---

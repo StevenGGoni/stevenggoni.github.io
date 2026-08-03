@@ -1,6 +1,6 @@
 ---
 title: "Estadística no paramétrica para una o dos variables"
-subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_03_Est_no_paramétrica.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1123_05_Est_no_paramétrica.pdf) <br> II-1123 Estadística para Ingeniería Industrial II"
 date: today
 format: revealjs
 ---
