@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xml:lang="es-ES"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Distribuciones continuas interactivas – Steven García Goñi Estadística e Ingeniería</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -33,19 +36,18 @@ ul.task-list li input[type="checkbox"] {
 <link href="../images/logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6b7ec8ef6d90767f3a3afcb5c97d53f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-7f60fac5262d0c77e50dbb41b072b5d5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-6b7ec8ef6d90767f3a3afcb5c97d53f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-53ccac5bf6d5e6640b46cd35981ed5da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-328d1cbd98b1d2c79f3537d7d6c4fd96.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-53ccac5bf6d5e6640b46cd35981ed5da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -377,7 +379,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">10 de abril de 2026</p>
+      <p class="date">5 de agosto de 2026</p>
     </div>
   </div>
   
@@ -413,6 +415,7 @@ ul.task-list li input[type="checkbox"] {
       <option value="normal">Normal</option>
       <option value="exponential">Exponencial</option>
       <option value="gamma">Gamma</option>
+      <option value="erlang">Erlang</option>
       <option value="weibull">Weibull</option>
       <option value="lognormal">Lognormal</option>
       <option value="beta">Beta</option>
@@ -453,6 +456,10 @@ ul.task-list li input[type="checkbox"] {
       } else if (dist === "gamma") {
         html += controlSlider("r", "r (forma)", 0.5, 10, 2, 0.1);
         html += controlSlider("lambda", "λ (escala)", 0.1, 5, 1);
+
+      } else if (dist === "erlang") {
+        html += controlSlider("k", "k (forma - entero)", 1, 20, 2, 1);
+        html += controlSlider("lambda", "λ (tasa)", 0.1, 5, 1);
 
       } else if (dist === "weibull") {
         html += controlSlider("beta", "β (forma)", 0.1, 10, 2);
@@ -523,6 +530,21 @@ ul.task-list li input[type="checkbox"] {
             name:`Gamma (r=${r}, λ=${lambda})`
           });
           title = `Gamma (r=${r}, λ=${lambda})`;
+
+        } else if (dist === "erlang") {
+          const k = parseInt(document.getElementById("k").value);
+          const lambda = parseFloat(document.getElementById("lambda").value);
+          xmax = jStat.gamma.inv(0.995, k, lambda);
+          for (let i = 0; i <= xmax; i += 0.1) {
+            x.push(i);
+            y.push(jStat.gamma.pdf(i, k, lambda));
+          }
+          traces.push({
+            x, y, type:"scatter", mode:"lines",
+            line:{color:COLOR_SINGLE, width:2},
+            name:`Erlang (k=${k}, λ=${lambda})`
+          });
+          title = `Erlang (k=${k}, λ=${lambda})`;
       
         } else if (dist === "weibull") {
           const beta = parseFloat(document.getElementById("beta").value);
@@ -615,7 +637,7 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
   <footer style="margin-top: 2em; font-size: 0.8em; text-align: center; color: gray;">
-      Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026
+      Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Agosto 2026
     </footer>
   </div>
 

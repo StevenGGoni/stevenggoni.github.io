@@ -5,12 +5,11 @@ date: today
 format: revealjs
 ---
 
-```{r}
 
-library(tidyverse)
-library(kableExtra)
+::: {.cell}
 
-```
+:::
+
 
 ## Agenda {.bloques style="font-size: 0.9em;"}
 
@@ -306,21 +305,61 @@ height="620"
 
 ::: {.column}
 
-```{r}
-datos <- data.frame(V1 = c(314.31, 308.69, 301.00, 304.48, 298.01, 291.13),
-                    V2 = c(287.76, 280.17, 286.73, 313.01, 296.15, 321.36),
-                    V3 = c(295.48, 300.38, 306.57, 306.22, 298.25, 286.03),
-                    V4 = c(299.71, 292.00, 308.22, 295.36, 301.36, 303.15),
-                    V5 = c(317.82, 279.35, 310.25, 305.18, 292.36, 300.29))
 
-datos %>%
-  dplyr::mutate(across(everything(), ~ sprintf("%.2f", .x))) %>%
-  knitr::kable( format = "html", 
-                escape = FALSE, 
-                col.names = NULL) %>%
-  kableExtra::kable_styling(full_width = FALSE,
-                            bootstrap_options = c("bordered", "condensed"))
-```
+::: {.cell}
+::: {.cell-output-display}
+`````{=html}
+<table class="table table-bordered table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 314.31 </td>
+   <td style="text-align:left;"> 287.76 </td>
+   <td style="text-align:left;"> 295.48 </td>
+   <td style="text-align:left;"> 299.71 </td>
+   <td style="text-align:left;"> 317.82 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 308.69 </td>
+   <td style="text-align:left;"> 280.17 </td>
+   <td style="text-align:left;"> 300.38 </td>
+   <td style="text-align:left;"> 292.00 </td>
+   <td style="text-align:left;"> 279.35 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 301.00 </td>
+   <td style="text-align:left;"> 286.73 </td>
+   <td style="text-align:left;"> 306.57 </td>
+   <td style="text-align:left;"> 308.22 </td>
+   <td style="text-align:left;"> 310.25 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 304.48 </td>
+   <td style="text-align:left;"> 313.01 </td>
+   <td style="text-align:left;"> 306.22 </td>
+   <td style="text-align:left;"> 295.36 </td>
+   <td style="text-align:left;"> 305.18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 298.01 </td>
+   <td style="text-align:left;"> 296.15 </td>
+   <td style="text-align:left;"> 298.25 </td>
+   <td style="text-align:left;"> 301.36 </td>
+   <td style="text-align:left;"> 292.36 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 291.13 </td>
+   <td style="text-align:left;"> 321.36 </td>
+   <td style="text-align:left;"> 286.03 </td>
+   <td style="text-align:left;"> 303.15 </td>
+   <td style="text-align:left;"> 300.29 </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+:::
+:::
+
 
 
 :::
@@ -445,27 +484,43 @@ height="620"
 
 Se registra la cantidad de vehículos que llegan al parqueo de un centro comercial cada hora (nótese que esta es una variable discreta: Poisson).
 
-```{r}
 
-datos <- data.frame(V1  = c(2, 3),
-                    V2  = c(3, 3),
-                    V3  = c(1, 5),
-                    V4  = c(2, 3),
-                    V5  = c(3, 3),
-                    V6  = c(3, 2),
-                    V7  = c(5, 7),
-                    V8  = c(4, 4),
-                    V9  = c(3, 4),
-                    V10 = c(4, 4))
+::: {.cell}
+::: {.cell-output-display}
+`````{=html}
+<table class="table table-bordered table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+</tbody>
+</table>
 
-datos %>%
-  knitr::kable(format = "html", 
-               escape = FALSE, 
-               col.names = NULL) %>%
-  kableExtra::kable_styling(full_width = FALSE,
-                            bootstrap_options = c("bordered", "condensed"))
+`````
+:::
+:::
 
-```
 
 :::
 
@@ -499,23 +554,54 @@ En un banco estatal, el tiempo (en minutos) [variable continua] que se tarda en 
 
 ::: {.column}
 
-```{r}
 
-datos <- data.frame(V1 = c(1.620, 16.074, 2.806, 5.630, 6.479),
-                    V2 = c(1.943,  2.141, 2.398, 2.324, 0.724),
-                    V3 = c(7.519, 25.896, 2.690, 3.503, 0.907),
-                    V4 = c(7.796,  1.815, 0.327, 11.755, 5.484),
-                    V5 = c(4.184,  2.554, 4.435, 5.177, 0.210))
+::: {.cell}
+::: {.cell-output-display}
+`````{=html}
+<table class="table table-bordered table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 1.620 </td>
+   <td style="text-align:left;"> 1.943 </td>
+   <td style="text-align:left;"> 7.519 </td>
+   <td style="text-align:left;"> 7.796 </td>
+   <td style="text-align:left;"> 4.184 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 16.074 </td>
+   <td style="text-align:left;"> 2.141 </td>
+   <td style="text-align:left;"> 25.896 </td>
+   <td style="text-align:left;"> 1.815 </td>
+   <td style="text-align:left;"> 2.554 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2.806 </td>
+   <td style="text-align:left;"> 2.398 </td>
+   <td style="text-align:left;"> 2.690 </td>
+   <td style="text-align:left;"> 0.327 </td>
+   <td style="text-align:left;"> 4.435 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 5.630 </td>
+   <td style="text-align:left;"> 2.324 </td>
+   <td style="text-align:left;"> 3.503 </td>
+   <td style="text-align:left;"> 11.755 </td>
+   <td style="text-align:left;"> 5.177 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 6.479 </td>
+   <td style="text-align:left;"> 0.724 </td>
+   <td style="text-align:left;"> 0.907 </td>
+   <td style="text-align:left;"> 5.484 </td>
+   <td style="text-align:left;"> 0.210 </td>
+  </tr>
+</tbody>
+</table>
 
-datos %>%
-  dplyr::mutate(across(everything(), ~ sprintf("%.3f", .x))) %>%
-  knitr::kable(format = "html", 
-               escape = FALSE, 
-               col.names = NULL) %>%
-  kableExtra::kable_styling(full_width = FALSE,
-                            bootstrap_options = c("bordered", "condensed"))
+`````
+:::
+:::
 
-```
 
 
 :::
@@ -720,23 +806,59 @@ Se ha recolectado la información de la cantidad de llamadas que ingresan por mi
 
 ::: {.column}
 
-```{r}
 
-datos <- data.frame(V1 = c(3, 4, 10, 7, 3),
-                    V2 = c(4, 8, 7, 3, 4),
-                    V3 = c(8, 4, 9, 5, 3),
-                    V4 = c(5, 4, 7, 5, 4),
-                    V5 = c(6, 2, 4, 3, 8),
-                    V6 = c(2, 4, 5, 6, 4))
+::: {.cell}
+::: {.cell-output-display}
+`````{=html}
+<table class="table table-bordered table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+</tbody>
+</table>
 
-datos %>%
-  knitr::kable( format = "html", 
-                escape = FALSE, 
-                col.names = NULL) %>%
-  kableExtra::kable_styling(full_width = FALSE,
-                            bootstrap_options = c("bordered", "condensed"))
+`````
+:::
+:::
 
-```
 
 
 :::
@@ -928,24 +1050,59 @@ height="620"
 
 La vida útil de un semiconductor se asume que tiene una distribución lognormal. Se han recolectado 30 datos, que se muestran a continuación:
 
-```{r}
 
-datos <- data.frame(V1 = c(10145.52, 17974.57, 4923.55, 15703.43, 1959.749),
-                    V2 = c(83033.85, 289125.7, 19313.8, 25796.46, 132115.2),
-                    V3 = c(2419.838, 10021.32, 75400.1, 20807.28, 142724),
-                    V4 = c(28695.02, 4383.572, 35340.52, 7798.73, 70860.4),
-                    V5 = c(4791.649, 17961.96, 3985.5, 4815.787, 7066.812),
-                    V6 = c(17321.48, 24641.49, 727854.4, 132544.1, 3038.707))
+::: {.cell}
+::: {.cell-output-display}
+`````{=html}
+<table class="table table-bordered table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 10145.52 </td>
+   <td style="text-align:left;"> 83033.85 </td>
+   <td style="text-align:left;"> 2419.84 </td>
+   <td style="text-align:left;"> 28695.02 </td>
+   <td style="text-align:left;"> 4791.65 </td>
+   <td style="text-align:left;"> 17321.48 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 17974.57 </td>
+   <td style="text-align:left;"> 289125.70 </td>
+   <td style="text-align:left;"> 10021.32 </td>
+   <td style="text-align:left;"> 4383.57 </td>
+   <td style="text-align:left;"> 17961.96 </td>
+   <td style="text-align:left;"> 24641.49 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 4923.55 </td>
+   <td style="text-align:left;"> 19313.80 </td>
+   <td style="text-align:left;"> 75400.10 </td>
+   <td style="text-align:left;"> 35340.52 </td>
+   <td style="text-align:left;"> 3985.50 </td>
+   <td style="text-align:left;"> 727854.40 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 15703.43 </td>
+   <td style="text-align:left;"> 25796.46 </td>
+   <td style="text-align:left;"> 20807.28 </td>
+   <td style="text-align:left;"> 7798.73 </td>
+   <td style="text-align:left;"> 4815.79 </td>
+   <td style="text-align:left;"> 132544.10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1959.75 </td>
+   <td style="text-align:left;"> 132115.20 </td>
+   <td style="text-align:left;"> 142724.00 </td>
+   <td style="text-align:left;"> 70860.40 </td>
+   <td style="text-align:left;"> 7066.81 </td>
+   <td style="text-align:left;"> 3038.71 </td>
+  </tr>
+</tbody>
+</table>
 
-datos %>%
-  dplyr::mutate(across(everything(), ~ sprintf("%.2f", .x))) %>%
-  knitr::kable(format = "html",
-               escape = FALSE,
-               col.names = NULL) %>%
-  kableExtra::kable_styling(full_width = FALSE,
-                            bootstrap_options = c("bordered", "condensed"))
+`````
+:::
+:::
 
-```
 
 
 :::
@@ -1159,3 +1316,4 @@ height="620"
 ### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni\@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
 
 ### Dudas o correcciones requeridas pueden solicitarse al correo
+

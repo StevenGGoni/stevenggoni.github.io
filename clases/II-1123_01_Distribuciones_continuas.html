@@ -141,6 +141,10 @@
       margin-right: 0; 
     }
   </style>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -160,7 +164,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 
   <p class="date">5 de agosto de 2026</p>
 </section>
-<section class="slide level2 bloques">
+<section class="slide level2 bloques" style="font-size: 0.9em;">
 <h2>Agenda</h2>
 <ul>
 <li>Preguntas generadoras</li>
@@ -169,7 +173,8 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li>Normal</li>
 <li>Exponencial</li>
-<li>Gamma y casos especiales</li>
+<li>Erlang</li>
+<li>Gamma</li>
 <li>Weibull</li>
 <li>Lognormal</li>
 </ul></li>
@@ -198,7 +203,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="columns">
 <div class="column" style="width:60%;">
 <ul>
-<li><p>No es lo mismo decir que un producto está bueno o malo (fenómeno Bernoulli) por su peso, que especificar el valor del valor del peso y que tan fuera se encuentra de la especificación.</p></li>
+<li><p>No es lo mismo decir que un producto está bueno o malo (fenómeno Bernoulli) por su peso, que especificar el valor del peso y que tan fuera se encuentra de la especificación.</p></li>
 <li><p>Por ejemplo, el producto debe pesar <span class="math inline">100 \, g \pm 1 \, g</span> y al pesarlo da como valor <span class="math inline">102.6 \,g</span>. Este caso provee más información.</p></li>
 </ul>
 </div><div class="column img-fit">
@@ -245,7 +250,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li>Cuide el uso del vocabulario técnico correcto.</li>
 </ul></li>
-<li>Entonces, si una distribución cualquiera NO se ajusta a un conjunto de datos, <span class="hi">es la distribución la que no “sirve”</span> como modelo, no los datos.
+<li>Entonces, si una distribución cualquiera NO se ajusta a un conjunto de datos, <span class="hi">es la distribución la que no “es adecuada”</span> como modelo, no los datos.
 <ul>
 <li>Nota: Esto bajo la consideración de que la forma en que se recolectaron los datos y la cantidad de los mismos son adecuados.</li>
 </ul></li>
@@ -290,7 +295,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Cierre de la analogía</h2>
 <div class="columns">
-<div class="column" style="text-align: center; font-size: 1.6em;">
+<div class="column" style="text-align: center; font-size: 1.5em;">
 <p>Las distribuciones de probabilidad <span class="hi">no son recetas para memorizar</span>, sino herramientas para modelar la realidad.</p>
 <p>Quien ejerce la ingeniería no aplica modelos de forma mecánica. Más bien los selecciona y los ajusta a la realidad, como un sastre ajusta una prenda al cuerpo.</p>
 </div></div>
@@ -314,11 +319,11 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="columns">
 <div class="column" style="width:50%;">
 <h3><span class="hi">Parámetros</span></h3>
-<p><span class="math display">\mu</span></p>
-<p><span class="math display">\sigma</span></p>
+<p><span class="math display">\mu = \text{media}</span></p>
+<p><span class="math display">\sigma = \text{desviación}</span></p>
 <h3><span class="hi">Funciones</span></h3>
 <p><span class="math display">
-f(x|\mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}
+f(x|\mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
 </span></p>
 <p><span class="math display">
 F(x|\mu, \sigma) = \frac{1}{2} \left[1 + erf \left(\frac{x-\mu}{\sigma \sqrt{2}}\right)\right]
@@ -332,7 +337,7 @@ E(x|\mu, \sigma) = \mu
 V(x|\mu, \sigma) = \sigma^2
 </span></p>
 <ul>
-<li><p>La notación <span class="math inline">N(\mu, \sigma)</span> es comunmente empleada para representar esta distribición</p></li>
+<li><p>La notación <span class="math inline">N(\mu, \sigma^2)</span> es comunmente empleada para representar esta distribición</p></li>
 <li><p><span class="math inline">-\infty &lt; x &lt; \infty</span></p></li>
 </ul>
 </div></div>
@@ -355,7 +360,7 @@ V(x|\mu, \sigma) = \sigma^2
 </iframe>
 </div></div>
 </section>
-<section class="slide level2 hi">
+<section class="slide level2 bloques">
 <h2>Distribución normal estándar</h2>
 <ul>
 <li><p>Ocurre cuando <span class="math inline">\mu=0</span> y <span class="math inline">\sigma=1</span>.</p></li>
@@ -364,18 +369,18 @@ V(x|\mu, \sigma) = \sigma^2
 <li><p><span class="math display">z = \frac{x - \mu}{\sigma}</span></p></li>
 </ul>
 </section>
-<section class="slide level2 hi">
+<section class="slide level2 bloques">
 <h2>Distribución normal estándar</h2>
 <ul>
 <li><p>El procedimiento (sobre todo tiempo atrás), es utilizar la función estandarizadora para la resolución de problemas.</p></li>
 <li><p>Sobre todo, porque era necesario consultar el valor de una tabla normal estándar.</p></li>
-<li><p>Esto porque <span class="math inline">P(z) = P(x)</span>.</p></li>
+<li><p>Esto porque <span class="math inline">P(X\le x) = P\left(Z \le \frac{x-\mu}{\sigma}\right)</span>.</p></li>
 <li><p><span class="math inline">z</span>, en este contexto mide la desviación de <span class="math inline">x</span> respecto a la <span class="math inline">\mu</span> en unidades de la desviación estándar.</p></li>
 <li><p>Hoy en día, se usa cada vez menos las <a href="https://www.um.es/documents/877924/4876701/Tabla+de+la+distribuci%C3%B3n+normal.pdf/c812f3b4-7780-46e0-abfa-8c7cd452e407" target="_blank">tablas de probabilidades</a>, incluyendo la normal estándar, ¿el motivo?</p></li>
 <li><p>El poder computacional y la tecnología ha avanzado lo suficiente para que tengamos a mano el valor de casi cualquier distribución sin la necesidad de recurrir a tablas.</p></li>
 </ul>
 </section>
-<section class="slide level2 hi">
+<section class="slide level2 bloques">
 <h2>Distribución normal estándar</h2>
 <ul>
 <li>¿Esto significa que la distribución normal estándar perdió utilidad?</li>
@@ -385,6 +390,787 @@ V(x|\mu, \sigma) = \sigma^2
 <li>La utilidad de la normal estándar está en los valores de sus percentiles.</li>
 </ul></li>
 </ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 01</h2>
+<ul>
+<li><p>El tiempo que dura una persona realizando el ensamble del mecanismo de reclinación del asiento de un automóvil se espera que se distribuya según la distribución normal.</p></li>
+<li><p>La persona ingeniera de manufactura recolecta los siguientes datos del tiempo del proceso de ensamble (en segundos)</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 01</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Estime los parámetros de la distribución</p></li>
+<li><p>Se espera que las personas operadoras trabajen a un ritmo estándar de 300 segundos por ensamble.</p></li>
+<li><p>¿Cuál es la probabilidad que duren al menos 10 segundos de más que lo esperado?</p></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">314.31</td>
+<td style="text-align: left;">287.76</td>
+<td style="text-align: left;">295.48</td>
+<td style="text-align: left;">299.71</td>
+<td style="text-align: left;">317.82</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">308.69</td>
+<td style="text-align: left;">280.17</td>
+<td style="text-align: left;">300.38</td>
+<td style="text-align: left;">292.00</td>
+<td style="text-align: left;">279.35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">301.00</td>
+<td style="text-align: left;">286.73</td>
+<td style="text-align: left;">306.57</td>
+<td style="text-align: left;">308.22</td>
+<td style="text-align: left;">310.25</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">304.48</td>
+<td style="text-align: left;">313.01</td>
+<td style="text-align: left;">306.22</td>
+<td style="text-align: left;">295.36</td>
+<td style="text-align: left;">305.18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">298.01</td>
+<td style="text-align: left;">296.15</td>
+<td style="text-align: left;">298.25</td>
+<td style="text-align: left;">301.36</td>
+<td style="text-align: left;">292.36</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">291.13</td>
+<td style="text-align: left;">321.36</td>
+<td style="text-align: left;">286.03</td>
+<td style="text-align: left;">303.15</td>
+<td style="text-align: left;">300.29</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 01 - Solución</h2>
+<ul>
+<li><p>Es importante recalcar que este ejercicio es académico, y que la noción de al menos 10 s de más, debería tener un <span class="hi">sustento práctico</span>, por ejemplo, que ese atraso implicaría no completar las órdenes de producción a tiempo, la necesidad de recurrir a horas extras, etc.</p>
+<ul>
+<li>Recuerde que no hacemos estadística solo porque si</li>
+</ul></li>
+<li><p>Esto ejercicios pueden resolverse en esta <a href="https://mabognar.github.io/apps/" target="_blank">web app</a>.</p></li>
+<li><p><span class="math inline">\bar{x}=300.03</span>, <span class="math inline">s=10.41</span></p></li>
+<li><p><span class="math inline">P(x&gt;310)=0.1691</span></p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 02</h2>
+<ul>
+<li><p>Con base en el ejercicio anterior, aplique la transformación lineal <span class="math inline">z</span>.</p></li>
+<li><p>A partir de ese valor, obtenga la probabilidad de que la persona dure al menos más de 10 segundos que lo esperado.</p></li>
+<li><p>El resultado obtendo debe ser igual al del Ejercicio 01.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución exponencial</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3><span class="hi">Parámetros</span></h3>
+<p><span class="math display">\lambda = \text{tasa o escala}</span></p>
+<h3><span class="hi">Funciones</span></h3>
+<p><span class="math display">
+f(x|\lambda) = \lambda e^{-\lambda x}
+</span></p>
+<p><span class="math display">
+F(x|\lambda) = 1-e^{-\lambda x}
+</span></p>
+</div><div class="column" style="width:50%;">
+<h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
+<p><span class="math display">
+E(x|\lambda) = \frac{1}{\lambda}
+</span></p>
+<p><span class="math display">
+V(x|\lambda) = \frac{1}{\lambda^2}
+</span></p>
+<ul>
+<li><p><span class="math inline">x \ge 0</span></p></li>
+<li><p>Es el mismo <span class="math inline">\lambda</span> que en la Poisson, pues ambas distribuciones están íntimamente relacionadas.</p></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución exponencial</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<h3>Características:</h3>
+<ul>
+<li><p>Es, al igual que la normal, una distribución muy usada en disciplinas de ingeniería y ciencias.</p></li>
+<li><p>Es una distribución asimétrica definida de 0 en adelante.</p></li>
+<li><p>Está asociada a los tiempos entre ocurrencias y se define por el parámetro <span class="math inline">\lambda</span>.</p></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<h3>Exponencial interactiva</h3>
+<iframe src="https://stevenggoni.github.io/interactivos/distribuciones-continuas-embed.html?dist=exponential" width="100%" height="620" style="border: 1px solid #33111422; border-radius: 8px; background-color: #F1F5F5; overflow: hidden;" frameborder="0" scrolling="no">
+</iframe>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Relación entre Poisson y Exponencial</h2>
+<ul>
+<li><p>Con la distribución de Poisson se puede modelar el número de eventos que ocurren en un tiempo determinado (u otra variable continua), mientras que con la exponencial se modela el tiempo (o la otra variable continua) entre eventos consecutivos.</p></li>
+<li><p><strong>Si el número de eventos tiene una distribución Poisson, el tiempo entre eventos tiene una distribución exponencial.</strong></p></li>
+<li><p>En la exponencial, la variable aleatoria <span class="math inline">x</span> es igual a la distancia entre eventos consecutivos de un proceso Poisson con media igual al número de eventos.</p></li>
+<li><p>Es importante que se usen unidades <strong>CONSISTENTES</strong> en el cálculo de probabilidades, medias y varianzas.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Falta de memoria</h2>
+<ul>
+<li><p>La exponencial tiene una propiedad que se llama la falta de memoria:</p></li>
+<li><p>Si el tiempo de espera hasta ahora ha sido de <span class="math inline">t</span> minutos, la probabilidad de esperar <span class="math inline">s</span> minutos más es exactamente la misma que si acabáramos de empezar a esperar</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 03</h2>
+<div class="columns">
+<div class="column">
+<p>Se registra la cantidad de vehículos que llegan al parqueo de un centro comercial cada hora (nótese que esta es una variable discreta: Poisson).</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column">
+<ul>
+<li><p>Estime el parámetro de la distribución</p>
+<ul>
+<li>Como la variable es Poisson <span class="math inline">E(x) = \lambda = 3.4</span></li>
+</ul></li>
+<li><p>Encuentra la probabilidad de que el tiempo entre llegadas (variable continua) de vehículos sea:</p>
+<ul>
+<li><p>Menor que 5 minutos (Unidades consistentes: 5/60 horas) = <span class="math inline">0.2467</span></p></li>
+<li><p>Al menos 45 minutos (Unidades consistentes: 45/60 horas) = <span class="math inline">0.0781</span></p></li>
+<li><p>El promedio del tiempo entre llegadas = <span class="math inline">E(x|\lambda) = 0.294</span></p></li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 04</h2>
+<div class="columns">
+<div class="column">
+<p>En un banco estatal, el tiempo (en minutos) [variable continua] que se tarda en atender a cada persona en la ventanilla ha sido muestreado por un grupo de personas estudiantes, obteniendo los siguientes resultados.</p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1.620</td>
+<td style="text-align: left;">1.943</td>
+<td style="text-align: left;">7.519</td>
+<td style="text-align: left;">7.796</td>
+<td style="text-align: left;">4.184</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">16.074</td>
+<td style="text-align: left;">2.141</td>
+<td style="text-align: left;">25.896</td>
+<td style="text-align: left;">1.815</td>
+<td style="text-align: left;">2.554</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2.806</td>
+<td style="text-align: left;">2.398</td>
+<td style="text-align: left;">2.690</td>
+<td style="text-align: left;">0.327</td>
+<td style="text-align: left;">4.435</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5.630</td>
+<td style="text-align: left;">2.324</td>
+<td style="text-align: left;">3.503</td>
+<td style="text-align: left;">11.755</td>
+<td style="text-align: left;">5.177</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">6.479</td>
+<td style="text-align: left;">0.724</td>
+<td style="text-align: left;">0.907</td>
+<td style="text-align: left;">5.484</td>
+<td style="text-align: left;">0.210</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 04</h2>
+<ul>
+<li>Estime el parámetro de la distribución
+<ul>
+<li><span class="math inline">E(x) = \frac{1}{\lambda = 5.056} \rightarrow \lambda = \frac{1}{5.056}=0.1978</span></li>
+</ul></li>
+<li>La probabilidad de durar menos de 10 minutos
+<ul>
+<li><span class="math inline">0.86156</span></li>
+</ul></li>
+<li>La probabilidad de durar más de 5 minutos
+<ul>
+<li><span class="math inline">0.37195</span></li>
+</ul></li>
+<li>El promedio de personas atendidas por hora (discreta, Poisson)
+<ul>
+<li><span class="math inline">E(x[min])=0.1978 \rightarrow E(x[h])=11.87 = \lambda</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Importante</h2>
+<ul>
+<li><p>En algunos softwares y paquetes puede cambiar la definición de escala como <span class="math inline">\frac{1}{\lambda}</span>.</p></li>
+<li><p>Se le recomienda revisar esta definición en el software que utilicen antes de realizar los cálculos respectivos.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución Erlang</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3><span class="hi">Parámetros</span></h3>
+<p><span class="math display">\lambda = \text{escala}</span></p>
+<p><span class="math display">r = \text{forma (entero positivo)}</span></p>
+<h3><span class="hi">Funciones</span></h3>
+<p><span class="math display">
+f(x|\lambda, r) = \frac{\lambda^r x^{r-1} e^{-\lambda x}}{(r-1)!}
+</span></p>
+<p><span class="math display">
+F(x|\lambda, r) = \sum_{k=0}^{r-1} \frac{e^{-\lambda x}(\lambda x)^k}{k!}
+</span></p>
+</div><div class="column" style="width:50%;">
+<h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
+<p><span class="math display">
+E(x|\lambda, r) = \frac{r}{\lambda}
+</span></p>
+<p><span class="math display">
+V(x|\lambda, r) = \frac{r}{\lambda^2}
+</span></p>
+<ul>
+<li><p><span class="math inline">x \ge 0</span>, <span class="math inline">r \in \mathbb{Z}^+</span></p></li>
+<li><p>Es una generalización de la función exponencial. Cuando <span class="math inline">r=1</span> Erlang es la función exponencial.</p></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución Erlang</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<h3>Características:</h3>
+<ul>
+<li><p>Se puede interpretar como:</p>
+<ul>
+<li>El tiempo (u otra variable continua relacionada) hasta el <span class="math inline">r-esimo</span> evento es la suma de <span class="math inline">r</span> exponenciales independientes, idénticamente distribuidas.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<h3>Erlang interactiva</h3>
+<iframe src="https://stevenggoni.github.io/interactivos/distribuciones-continuas-embed.html?dist=erlang" width="100%" height="620" style="border: 1px solid #33111422; border-radius: 8px; background-color: #F1F5F5; overflow: hidden;" frameborder="0" scrolling="no">
+</iframe>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución gamma</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3><span class="hi">Parámetros</span></h3>
+<p><span class="math display">\lambda = \text{escala}</span></p>
+<p><span class="math display">r = \text{forma (cualquier valor no negativo)}</span></p>
+<h3><span class="hi">Funciones</span></h3>
+<p><span class="math display">
+f(x|\lambda, r) = \frac{\lambda^r x^{r-1} e^{-\lambda x}}{\Gamma(r)}
+</span></p>
+<p><span class="math display">
+F(x|\lambda, r) = \frac{\gamma(\lambda, r)}{\Gamma(r)}
+</span></p>
+</div><div class="column" style="width:50%;">
+<h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
+<p><span class="math display">
+E(x|\lambda, r) = \frac{r}{\lambda}
+</span></p>
+<p><span class="math display">
+V(x|\lambda, r) = \frac{r}{\lambda^2}
+</span></p>
+<ul>
+<li><p><span class="math inline">x \ge 0</span>, <span class="math inline">r&gt;0</span></p></li>
+<li><p>Es una generalización de la función exponencial. También de la Erlang cuando <span class="math inline">r</span> es cuaquier valor positivo.</p></li>
+<li><p><span class="math inline">\Gamma(r) = \int_{0}^{\infty} x^{r-1} e^{-x} dx</span></p></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución gamma</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<h3>Características:</h3>
+<p>Es una distribución asimétrica, de la cual se derivan otras distribuciones como la Erlang si <span class="math inline">r</span> es entero positivo y la exponencial (si <span class="math inline">r=1</span>).</p>
+<p><span class="math display">
+f(x|\lambda, r) =\frac{\lambda^1 x^{1-1} e^{-\lambda x}}{\Gamma(1)}=\frac{\lambda x^0 e^{-\lambda x}}{1} = \lambda e^{-\lambda x}
+</span></p>
+</div><div class="column" style="width:45%;">
+<h3>Gamma interactiva</h3>
+<iframe src="https://stevenggoni.github.io/interactivos/distribuciones-continuas-embed.html?dist=gamma" width="100%" height="620" style="border: 1px solid #33111422; border-radius: 8px; background-color: #F1F5F5; overflow: hidden;" frameborder="0" scrolling="no">
+</iframe>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución gamma</h2>
+<ul>
+<li><p>La exponencial describe la “distancia/tiempo, etc.” hasta que el primer evento suceda (<span class="math inline">r=1</span>).</p></li>
+<li><p>La generalización ocurre cuando se describe la “distancia/tiempo etc.” hasta que <span class="math inline">r</span> eventos suceden.</p></li>
+<li><p>Por ende, gamma también tiene relación con la Poisson.</p></li>
+<li><p>Entendiendo que Erlang es un caso especial de gamma, resulta equivalente trabajar con gamma siempre.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 05</h2>
+<div class="columns">
+<div class="column">
+<p>Se ha recolectado la información de la cantidad de llamadas que ingresan por minuto a un call center. Se estima que estas llamadas sigan una distribución Poisson. Los datos recolectados son los siguientes:</p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 05</h2>
+<ul>
+<li>Estime el parámetro <span class="math inline">\lambda</span>
+<ul>
+<li>5.033</li>
+</ul></li>
+<li>¿Cuál es el promedio de tiempo transcurrido hasta la 10ma llamada?
+<ul>
+<li><span class="math inline">r=10 \rightarrow E(x) = \frac{10}{5.03}=1.9868</span></li>
+</ul></li>
+<li>¿Cuál es el promedio de tiempo transcurrido entre la 9na y 10ma llamada?
+<ul>
+<li><span class="math inline">r=1 \rightarrow E(x) = \frac{1}{5.03}=0.1987</span> (Nótese que es lo mismo que en la exponencial)</li>
+</ul></li>
+<li>¿Cuál es la probabilidad de que el tiempo hasta la 8va llamada exceda los 2 minutos?
+<ul>
+<li>0.2143</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución Weibull</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<h3><span class="hi">Parámetros</span></h3>
+<p><span class="math display">\delta = \text{escala}</span></p>
+<p><span class="math display">\beta = \text{forma}</span></p>
+<h3><span class="hi">Funciones</span></h3>
+<p><span class="math display">
+f(x|\delta, \beta) = \frac{\beta}{\delta}\left(\frac{x}{\delta}\right)^{\beta-1}e^{-\left(\frac{x}{\delta}\right)^\beta}
+</span></p>
+<p><span class="math display">
+F(x|\delta, \beta) = 1- e^{-\left(\frac{x}{\delta}\right)^\beta}
+</span></p>
+</div><div class="column" style="font-size: 0.9em;">
+<h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
+<p><span class="math display">
+E(x|\delta, \beta) = \delta \Gamma\left(1+\frac{1}{\beta}\right)
+</span></p>
+<p><span class="math display">
+V(x\vert{}\delta, \beta) = \delta^2 \left[ \Gamma\left(1 + \frac{2}{\beta}\right) - \left( \Gamma\left(1 + \frac{1}{\beta}\right) \right)^2 \right]
+</span></p>
+<ul>
+<li><p><span class="math inline">x \ge 0</span></p></li>
+<li><p>Nota para el estudiante: Como los parámetros de esta distribución son difíciles de estimar, se le serán dados en todas las ocasiones. Si <span class="math inline">\beta=1</span> se obtiene la exponencial</p></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución Weibull</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<h3>Características:</h3>
+<p>Es una distribución que a menudo es usada para modelar el <span class="hi">tiempo hasta que fallen diversos sistemas físicos</span>.</p>
+<p>Sus parámetros proveen una gran flexibilidad para modelar sistemas en los que los fallos aumentan en el tiempo, disminuyen en el tiempo o permanecen constantes en el tiempo.</p>
+</div><div class="column" style="width:45%;">
+<h3>Weibull interactiva</h3>
+<iframe src="https://stevenggoni.github.io/interactivos/distribuciones-continuas-embed.html?dist=weibull" width="100%" height="620" style="border: 1px solid #33111422; border-radius: 8px; background-color: #F1F5F5; overflow: hidden;" frameborder="0" scrolling="no">
+</iframe>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 06</h2>
+<ul>
+<li><p>El tiempo para que falle un rodamiento en un eje mecánico, en horas, es satisfactoriamente modelado con una distribución Weibull con los siguientes parámetros 𝛽=2 (forma) y 𝛿=5000 (escala). <span class="hi">Recuerde revisar a que corresponde cada valor en el software que esté usando</span>.</p></li>
+<li><p>Determine el promedio de tiempo para que falle un rodamiento</p>
+<ul>
+<li><span class="math inline">E(x) = 4431.16</span></li>
+</ul></li>
+<li><p>La probabilidad de que un rodamiento dure al menos 6000 horas</p>
+<ul>
+<li><span class="math inline">P(x&gt;6000)=0.2369</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución lognormal</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3><span class="hi">Parámetros</span></h3>
+<p><span class="math display">\theta = \text{media}</span></p>
+<p><span class="math display">\omega = \text{desviación}</span></p>
+<h3><span class="hi">Funciones</span></h3>
+<p><span class="math display">
+f(x|\theta, \omega) = \frac{1}{x\omega\sqrt{2\pi}}e^{-\frac{(ln(x)-\theta)^2}{2\omega^2}}
+</span></p>
+<p><span class="math display">
+F(x|\theta, \omega) = \frac{1}{2}[1+erf\left(\frac{ln(x)-\theta}{\omega\sqrt{2}}\right)]
+</span></p>
+</div><div class="column" style="width:50%;">
+<h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
+<p><span class="math display">
+E(x|\theta, \omega) = e^{\theta+\frac{\omega^2}{2}}
+</span></p>
+<p><span class="math display">
+V(x|\theta, \omega) = e^{2\theta+\omega^2}(e^{\omega^2}-1)
+</span></p>
+<ul>
+<li><p>Para obtener los parámetros de esta distribución, siga la sigueinte definición:</p>
+<ul>
+<li><p>Sea <span class="math inline">W</span> una variable aleatoria con distribución normal, con media <span class="math inline">\theta</span> y varianza <span class="math inline">\omega^2</span>.</p></li>
+<li><p>Entonces <span class="math inline">X=e^W</span> sigue una distribución lognormal.</p></li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución lognormal</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<h3>Características:</h3>
+<p>Esta es una distribución que se usa con frecuencia para modelar al vida útil de un producto que se degrada en el tiempo.</p>
+<p>Weibull también puede encargarse de ello, pero lognormal es un poco más simple de entender.</p>
+</div><div class="column" style="width:45%;">
+<h3>Lognormal interactiva</h3>
+<iframe src="https://stevenggoni.github.io/interactivos/distribuciones-continuas-embed.html?dist=lognormal" width="100%" height="620" style="border: 1px solid #33111422; border-radius: 8px; background-color: #F1F5F5; overflow: hidden;" frameborder="0" scrolling="no">
+</iframe>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 07</h2>
+<div class="columns">
+<div class="column">
+<p>La vida útil de un semiconductor se asume que tiene una distribución lognormal. Se han recolectado 30 datos, que se muestran a continuación:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">10145.52</td>
+<td style="text-align: left;">83033.85</td>
+<td style="text-align: left;">2419.84</td>
+<td style="text-align: left;">28695.02</td>
+<td style="text-align: left;">4791.65</td>
+<td style="text-align: left;">17321.48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">17974.57</td>
+<td style="text-align: left;">289125.70</td>
+<td style="text-align: left;">10021.32</td>
+<td style="text-align: left;">4383.57</td>
+<td style="text-align: left;">17961.96</td>
+<td style="text-align: left;">24641.49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4923.55</td>
+<td style="text-align: left;">19313.80</td>
+<td style="text-align: left;">75400.10</td>
+<td style="text-align: left;">35340.52</td>
+<td style="text-align: left;">3985.50</td>
+<td style="text-align: left;">727854.40</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">15703.43</td>
+<td style="text-align: left;">25796.46</td>
+<td style="text-align: left;">20807.28</td>
+<td style="text-align: left;">7798.73</td>
+<td style="text-align: left;">4815.79</td>
+<td style="text-align: left;">132544.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1959.75</td>
+<td style="text-align: left;">132115.20</td>
+<td style="text-align: left;">142724.00</td>
+<td style="text-align: left;">70860.40</td>
+<td style="text-align: left;">7066.81</td>
+<td style="text-align: left;">3038.71</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques" style="font-size: 0.95em;">
+<h2>Ejercicio 07</h2>
+<ul>
+<li><p>Estime los parámetros de la distribución.</p>
+<ul>
+<li><p>Como <span class="math inline">\theta</span> y <span class="math inline">\omega</span> son la media y desviación de <span class="math inline">W</span> y los datos anteriores son <span class="math inline">X</span>.</p></li>
+<li><p>Bastaría con entender la relación <span class="math inline">X=e^W \rightarrow W=ln(X)</span></p></li>
+<li><p><span class="math inline">\theta = E(W)=9.90</span></p></li>
+<li><p><span class="math inline">\omega = \sqrt{Var(W)}=1.490</span></p></li>
+</ul></li>
+<li><p>Cuál es la probabilidad de que la vida útil exceda 10 000 horas?</p>
+<ul>
+<li>0.67827</li>
+</ul></li>
+<li><p>Qué vida útil es excedida por el 99 % de los semiconductores?</p>
+<ul>
+<li>Note que esta pregunta es inversa, se le da la probabilidad y se le pregunta por la variable aleatoria <span class="math inline">X</span>.</li>
+<li><span class="math inline">x_0=622.50</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución beta</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3><span class="hi">Parámetros</span></h3>
+<p><span class="math display">\alpha = \text{forma 1}</span></p>
+<p><span class="math display">\beta = \text{forma 2}</span></p>
+<h3><span class="hi">Funciones</span></h3>
+<p><span class="math display">
+f(x|\alpha, \beta) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}
+</span></p>
+<p><span class="math display">
+F(x|\alpha, \beta) = I_X(\alpha, \beta)
+</span></p>
+</div><div class="column" style="width:50%;">
+<h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
+<p><span class="math display">
+E(x|\alpha, \beta) = \frac{\alpha}{\alpha + \beta}
+</span></p>
+<p><span class="math display">
+V(x|\alpha, \beta) = \frac{\alpha \beta}{(\alpha + \beta)^2(\alpha + \beta + 1)}
+</span></p>
+<ul>
+<li><p><span class="math inline">0\le x \ge 1</span></p></li>
+<li><p><span class="math inline">\alpha&gt;0</span>, <span class="math inline">\beta&gt;0</span></p></li>
+<li><p><span class="math inline">I_X</span> es la función beta incompleta regularizada (Excede el curso, para ello recurrimos a aplicaciones)</p></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución beta</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<h3>Características:</h3>
+<ul>
+<li><p>Es una distribución que es <span class="hi">sumamente flexible</span>, pero que está acotada a un rango finito (a diferencia de todas las demás). Este rango finito se encuentra de 0-1.</p></li>
+<li><p>Esta característica la vuelve muy útil para modelos de probabilidad. Como por ejemplo:</p>
+<ul>
+<li>La proporción de radiación solar absorbida por un material</li>
+<li>El porcentaje de utilización de un recurso.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<h3>Beta interactiva</h3>
+<iframe src="https://stevenggoni.github.io/interactivos/distribuciones-continuas-embed.html?dist=beta" width="100%" height="620" style="border: 1px solid #33111422; border-radius: 8px; background-color: #F1F5F5; overflow: hidden;" frameborder="0" scrolling="no">
+</iframe>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 08</h2>
+<ul>
+<li><p>En el desarrollo de un parque industrial se determina un tiempo máximo cualquiera para su terminación. Si el Desarrollo termina en 80 % o menos del tiempo máximo, la empresa constructora obtiene una bonificación.</p></li>
+<li><p>La constructora, estima que la duración sigue una beta con <span class="math inline">\alpha=2.5</span> y <span class="math inline">\beta=1</span>. ¿Cuál es la probabilidad de obtener el bono?</p>
+<ul>
+<li><span class="math inline">P(X&lt;0.8)=0.57243</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Otras distribuciones relevantes</h2>
+<ul>
+<li>Estas no se detallan en esta presentación, pero es importante que las conozca, pues serán utilizadas en las siguientes clases y tienen aplicaciones en cursos futuros.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Otras distribuciones continuas</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>Distribución uniforme</h3>
+<ul>
+<li>En metrología se conoce como la <em>rectangular</em> y su varianza <span class="math inline">V(x)</span> se suele usar en el cálculo de incertidumbres.</li>
+<li>Su función de distribución acumulada (CDF) es la función <strong>ReLU</strong> (la función de activación más utilizada en redes neuronales).</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3>Distribución triangular</h3>
+<ul>
+<li>También suele usarse su varianza <span class="math inline">V(x)</span> en metrología para el cálculo de incertidumbres.</li>
+<li>Es ampliamente utilizada en simulación y teoría de la posibilidad para modelar <span class="hi">números difusos</span>.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Otras distribuciones continuas</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<h3>t-Student</h3>
+<ul>
+<li>Depende de los grados de libertad <span class="math inline">\nu = n - 1</span>.</li>
+<li>Es similar a la normal, pero cuando <span class="math inline">\nu</span> es pequeño sus colas son <span class="hi">más anchas</span>.</li>
+<li>Se usa en intervalos de confianza para medias y en regresión.</li>
+</ul>
+</div><div class="column" style="width:33%;">
+<h3>F de Fisher-Snedecor</h3>
+<ul>
+<li>Utilizada en pruebas de hipótesis para <span class="hi">dos varianzas</span> y como estadístico base en ANOVA.</li>
+<li>Descríbala mediante <span class="math inline">\nu_1</span> y <span class="math inline">\nu_2</span> (grados de libertad del numerador y denominador).</li>
+</ul>
+</div><div class="column" style="width:33%;">
+<h3>Chi-Cuadrado (<span class="math inline">\chi^2</span>)</h3>
+<ul>
+<li>Base para pruebas de bondad de ajuste, independencia y varianza de una población.</li>
+<li>Se fundamenta directamente en la distribución normal.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Generalización</h2>
+<ul>
+<li><p>Así como hay muchas prendas de ropa, hay muchísimas distribuciones. Todas tienen sus campos de aplicación.</p></li>
+<li><p>A partir de un pantalón se pueden obtener diferentes prendas de ropa al hacer algunas modificaciones.</p>
+<ul>
+<li>Shorts a partir de un pantalón, por ejemplo.</li>
+</ul></li>
+<li><p>De la misma manera se pueden obtener otras distribuciones con pequeños cambios.</p>
+<ul>
+<li>Como que a partir de gamma se puede obtener una Erlang y una exponencial.</li>
+</ul></li>
+<li><p>El universo de distribuciones es muy amplio.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Advertencias</h2>
+<ul>
+<li><p>Nótese que las distribuciones aquí estudiadas tienen sus propias características, no se deben usar indiscriminadamente. <span class="hi">Las pruebas estadísticas no pueden supeditar la teoría y el sentido común</span>.</p></li>
+<li><p>Por otro lado recuerde que la formalidad para determinar si una distribución es adecuada, además de sus características, está dada por pruebas de <span class="hi">bondad de ajuste y rutinas gráficas</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Bibliografía</h2>
+<div class="columns">
+<div class="column" style="font-size: 1.2em;">
+<ul>
+<li>Walpole, R.; Myers, R.; Myers, S. y Ye, K. Probabilidad y estadística para ingeniería y ciencias (9na Edición).
+<ul>
+<li>Capítulo 6</li>
+</ul></li>
+<li>Devore, J. Probabilidad y Estadística para Ingeniería y Ciencias (7ma Edición).
+<ul>
+<li>Capítulo 4</li>
+</ul></li>
+<li>Montgomery, D; Runger, G. Applied Statistics and Probabilty for Engineers (5th Edition)
+<ul>
+<li><strong>Capítulo 4</strong></li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 center">
+<h2>Distribuciones de probabilidad continuas <br> II-1123 Estadística para Ingeniería Industrial II</h2>
+<h3 class="subtitle">Gracias por su atención <br> Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a></h3>
+<h3>Dudas o correcciones requeridas pueden solicitarse al correo</h3>
 
 
 </section></section>

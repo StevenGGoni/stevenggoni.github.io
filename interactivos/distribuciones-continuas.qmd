@@ -32,6 +32,7 @@ La diferencia más visible está en la cola de la distribución. Para grados de 
       <option value="normal">Normal</option>
       <option value="exponential">Exponencial</option>
       <option value="gamma">Gamma</option>
+      <option value="erlang">Erlang</option>
       <option value="weibull">Weibull</option>
       <option value="lognormal">Lognormal</option>
       <option value="beta">Beta</option>
@@ -72,6 +73,10 @@ La diferencia más visible está en la cola de la distribución. Para grados de 
       } else if (dist === "gamma") {
         html += controlSlider("r", "r (forma)", 0.5, 10, 2, 0.1);
         html += controlSlider("lambda", "λ (escala)", 0.1, 5, 1);
+
+      } else if (dist === "erlang") {
+        html += controlSlider("k", "k (forma - entero)", 1, 20, 2, 1);
+        html += controlSlider("lambda", "λ (tasa)", 0.1, 5, 1);
 
       } else if (dist === "weibull") {
         html += controlSlider("beta", "β (forma)", 0.1, 10, 2);
@@ -142,6 +147,21 @@ La diferencia más visible está en la cola de la distribución. Para grados de 
             name:`Gamma (r=${r}, λ=${lambda})`
           });
           title = `Gamma (r=${r}, λ=${lambda})`;
+
+        } else if (dist === "erlang") {
+          const k = parseInt(document.getElementById("k").value);
+          const lambda = parseFloat(document.getElementById("lambda").value);
+          xmax = jStat.gamma.inv(0.995, k, lambda);
+          for (let i = 0; i <= xmax; i += 0.1) {
+            x.push(i);
+            y.push(jStat.gamma.pdf(i, k, lambda));
+          }
+          traces.push({
+            x, y, type:"scatter", mode:"lines",
+            line:{color:COLOR_SINGLE, width:2},
+            name:`Erlang (k=${k}, λ=${lambda})`
+          });
+          title = `Erlang (k=${k}, λ=${lambda})`;
       
         } else if (dist === "weibull") {
           const beta = parseFloat(document.getElementById("beta").value);
@@ -234,7 +254,7 @@ La diferencia más visible está en la cola de la distribución. Para grados de 
   </script>
 
   <footer style="margin-top: 2em; font-size: 0.8em; text-align: center; color: gray;">
-      Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026
+      Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Agosto 2026
     </footer>
   </div>
 </body>
