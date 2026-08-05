@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700&display=swap">
+    <style>
+        /* Estilos base para que coincida con tu sitio */
+        body {
+            font-family: "Aller", sans-serif;
+            margin: 0;
+            padding: 15px; 
+            font-size: 18px; 
+            line-height: 1.2;
+            box-sizing: border-box; 
+            background-color: transparent;
+            overflow: hidden; 
+        }
+        
+        #controls {
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        label { font-weight: 600; font-size: 1.0em; }
+        
+        select {
+            font-size: 15px;
+            padding: 6px;
+        }
+
+        /* Estilo de los Sliders */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 300px;
+            max-width: 80%;
+            height: 6px;
+            background: #33111422;
+            border-radius: 4px;
+            outline: none;
+            margin: 5px 0;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px; height: 14px;
+            background: #331114;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 14px; height: 14px;
+            background: #331114;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .main-container {
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        #plot {
+            width: 100%;
+            height: 450px;
+            margin-top: 5px;
+        }
+        
+        span[id$="-val"] {
+            font-weight: bold;
+            color: #331114;
+            margin-left: 10px;
+            font-size: 0.9em;
+        }
+        
+        label[for="dist-select"] {
+            font-family: 'Aller', sans-serif;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        footer {
+            margin-top: 0px;
+            font-size: 0.8em;
+            text-align: center;
+            padding-bottom: 0px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width: 900px; margin: 0 auto;">
+        <label>Seleccione una distribución:</label>
+        <select id="distribution" onchange="renderControls(); updatePlot();" style="padding: 4px; border-radius: 4px; border: 1px solid #33111455;">
+            <option value="normal">Normal</option>
+            <option value="exponential">Exponencial</option>
+            <option value="gamma">Gamma</option>
+            <option value="weibull">Weibull</option>
+            <option value="lognormal">Lognormal</option>
+            <option value="beta">Beta</option>
+            <option value="normal_vs_t">Comparación: Normal vs t-Student</option>
+        </select>
+
+        <div id="controls"></div>
+        <div id="plot"></div>
+
+        <script>
+            const COLOR_SINGLE = "#331114";   // Para distribuciones individuales
+            const COLOR_T = "#331114";        // t-Student
+            const COLOR_NORMAL = "#9BA1AB";   // Normal en comparación
+
+            function renderControls() {
+                const dist = document.getElementById("distribution").value;
+                const controls = document.getElementById("controls");
+                let html = "";
+
+                function controlSlider(id, label, min, max, value, step = 0.1) {
+                    return `
+                        <label>
+                            ${label}:
+                            <input type="range" id="${id}" min="${min}" max="${max}" value="${value}" step="${step}" 
+                                oninput="updatePlot(); document.getElementById('${id}-val').textContent = this.value;">
+                            <span id="${id}-val">${value}</span>
+                        </label><br>
+                    `;
+                }
+
+                if (dist === "normal") {
+                    html += controlSlider("mu", "μ (media)", -10, 10, 0);
+                    html += controlSlider("sigma", "σ (desviación)", 0.1, 10, 1);
+                } else if (dist === "exponential") {
+                    html += controlSlider("lambda", "λ (tasa)", 0.1, 5, 1);
+                } else if (dist === "gamma") {
+                    html += controlSlider("r", "r (forma)", 0.5, 10, 2, 0.1);
+                    html += controlSlider("lambda", "λ (escala)", 0.1, 5, 1);
+                } else if (dist === "weibull") {
+                    html += controlSlider("beta", "β (forma)", 0.1, 10, 2);
+                    html += controlSlider("delta", "δ (escala)", 0.1, 10, 1);
+                } else if (dist === "lognormal") {
+                    html += controlSlider("theta", "θ (media log)", -2, 2, 0);
+                    html += controlSlider("omega", "ω (desv. log)", 0.1, 2, 0.5);
+                } else if (dist === "beta") {
+                    html += controlSlider("alpha", "α", 0.5, 10, 2);
+                    html += controlSlider("beta", "β", 0.5, 10, 2);
+                } else if (dist === "normal_vs_t") {
+                    html += controlSlider("n", "Grados de libertad (n)", 1, 100, 10, 1);
+                }
+
+                controls.innerHTML = html;
+            }
+
+            function updatePlot() {
+                const dist = document.getElementById("distribution").value;
+                let x = [], y = [], traces = [];
+                let title = "";
+
+                if (dist === "normal") {
+                    const mu = parseFloat(document.getElementById("mu").value);
+                    const sigma = parseFloat(document.getElementById("sigma").value);
+                    const xmin = mu - 4 * sigma;
+                    const xmax = mu + 4 * sigma;
+                    for (let i = xmin; i <= xmax; i += (xmax - xmin) / 200) {
+                        x.push(i);
+                        y.push(jStat.normal.pdf(i, mu, sigma));
+                    }
+                    traces.push({
+                        x: x, y: y, type: "scatter", mode: "lines",
+                        line: { color: COLOR_SINGLE, width: 2 },
+                        name: `Normal (μ=${mu}, σ=${sigma})`
+                    });
+                    title = `Normal (μ=${mu}, σ=${sigma})`;
+
+                } else if (dist === "exponential") {
+                    const lambda = parseFloat(document.getElementById("lambda").value);
+                    const xmax = 10 / lambda;
+                    for (let i = 0; i <= xmax; i += xmax / 200) {
+                        x.push(i);
+                        y.push(jStat.exponential.pdf(i, lambda));
+                    }
+                    traces.push({
+                        x: x, y: y, type: "scatter", mode: "lines",
+                        line: { color: COLOR_SINGLE, width: 2 },
+                        name: `Exponencial (λ=${lambda})`
+                    });
+                    title = `Exponencial (λ=${lambda})`;
+
+                } else if (dist === "gamma") {
+                    const r = parseFloat(document.getElementById("r").value);
+                    const lambda = parseFloat(document.getElementById("lambda").value);
+                    const xmax = jStat.gamma.inv(0.995, r, lambda);
+                    for (let i = 0; i <= xmax; i += xmax / 200) {
+                        x.push(i);
+                        y.push(jStat.gamma.pdf(i, r, lambda));
+                    }
+                    traces.push({
+                        x: x, y: y, type: "scatter", mode: "lines",
+                        line: { color: COLOR_SINGLE, width: 2 },
+                        name: `Gamma (r=${r}, λ=${lambda})`
+                    });
+                    title = `Gamma (r=${r}, λ=${lambda})`;
+
+                } else if (dist === "weibull") {
+                    const beta = parseFloat(document.getElementById("beta").value);
+                    const delta = parseFloat(document.getElementById("delta").value);
+                    const xmax = delta * 5;
+                    for (let i = 0; i <= xmax; i += xmax / 200) {
+                        x.push(i);
+                        y.push(jStat.weibull.pdf(i, beta, delta));
+                    }
+                    traces.push({
+                        x: x, y: y, type: "scatter", mode: "lines",
+                        line: { color: COLOR_SINGLE, width: 2 },
+                        name: `Weibull (β=${beta}, δ=${delta})`
+                    });
+                    title = `Weibull (β=${beta}, δ=${delta})`;
+
+                } else if (dist === "lognormal") {
+                    const theta = parseFloat(document.getElementById("theta").value);
+                    const omega = parseFloat(document.getElementById("omega").value);
+                    const xmin = 0.01;
+                    const xmax = jStat.lognormal.inv(0.995, theta, omega);
+                    for (let i = xmin; i <= xmax; i += (xmax - xmin) / 200) {
+                        x.push(i);
+                        y.push(jStat.lognormal.pdf(i, theta, omega));
+                    }
+                    traces.push({
+                        x: x, y: y, type: "scatter", mode: "lines",
+                        line: { color: COLOR_SINGLE, width: 2 },
+                        name: `Lognormal (θ=${theta}, ω=${omega})`
+                    });
+                    title = `Lognormal (θ=${theta}, ω=${omega})`;
+
+                } else if (dist === "beta") {
+                    const alpha = parseFloat(document.getElementById("alpha").value);
+                    const beta = parseFloat(document.getElementById("beta").value);
+                    for (let i = 0.001; i <= 0.999; i += 0.005) {
+                        x.push(i);
+                        y.push(jStat.beta.pdf(i, alpha, beta));
+                    }
+                    traces.push({
+                        x: x, y: y, type: "scatter", mode: "lines",
+                        line: { color: COLOR_SINGLE, width: 2 },
+                        name: `Beta (α=${alpha}, β=${beta})`
+                    });
+                    title = `Beta (α=${alpha}, β=${beta})`;
+
+                } else if (dist === "normal_vs_t") {
+                    const n = parseInt(document.getElementById("n").value);
+                    let yNormal = [], yT = [];
+                    for (let i = -5; i <= 5; i += 0.05) {
+                        x.push(i);
+                        yNormal.push(jStat.normal.pdf(i, 0, 1));
+                        yT.push(jStat.studentt.pdf(i, n));
+                    }
+                    traces.push({
+                        x: x, y: yNormal, type: "scatter", mode: "lines",
+                        line: { color: COLOR_NORMAL, width: 2 },
+                        name: "Normal estándar"
+                    });
+                    traces.push({
+                        x: x, y: yT, type: "scatter", mode: "lines",
+                        line: { color: COLOR_T, width: 2 },
+                        name: `t-Student (n=${n})`
+                    });
+                    title = `Normal estándar vs t-Student (n=${n})`;
+                }
+
+                Plotly.newPlot("plot", traces, {
+                    title: { text: title, font: { family: "Crimson Pro" } },
+                    xaxis: { 
+                        title: "x", 
+                        titlefont: { family: "Aller" },
+                        tickfont: { family: "Aller" } 
+                    },
+                    yaxis: { 
+                        title: "Densidad", 
+                        titlefont: { family: "Aller" },
+                        tickfont: { family: "Aller" }
+                    },
+                    legend: { font: { family: "Aller" } },
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    plot_bgcolor: 'rgba(0,0,0,0)'
+                });
+            }
+
+            // Lectura de parámetro URL (?dist=...)
+            const params = new URLSearchParams(window.location.search);
+            const distParam = params.get("dist");
+
+            if (distParam) {
+                const select = document.getElementById("distribution");
+                if ([...select.options].some(o => o.value === distParam)) {
+                    select.value = distParam;
+                }
+            }
+
+            renderControls();
+            updatePlot();
+        </script>
+
+        <footer>
+            Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Enero 2026
+        </footer>
+    </div>
+</body>
+</html>

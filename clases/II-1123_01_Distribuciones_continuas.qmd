@@ -13,4 +13,271 @@ library(tidyverse)
 
 ## Agenda {.bloques}
 
-* En construcción
+* Preguntas generadoras
+* Introducción
+* Algunas distribuciones continuas
+  * Normal
+  * Exponencial
+  * Gamma y casos especiales
+  * Weibull
+  * Lognormal
+* Otras distribuciones relevantes
+* Generalización y advertencias
+
+## Preguntas generadoras {.bloques}
+
+* ¿Cuándo se utiliza cada tipo de distribución?
+* ¿Cómo se calcula la probabilidad en cada tipo de distribución?
+* ¿Cuáles parámetros describen cada tipo de distribución?
+
+## Introducción {.bloques}
+
+* Con diferencia, las distribuciones de probabilidad continua son más utilizadas que las discretas. 
+
+* Esta afirmación [no debe confundirse]{.hi} con que una u otras sean más importante. 
+
+* No obstante, se dice que se obtiene más información de una variable continua que de una discreta. 
+
+## Introducción {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="60%"}
+
+* No es lo mismo decir que un producto está bueno o malo (fenómeno Bernoulli) por su peso, que especificar el valor del valor del peso y que tan fuera se encuentra de la especificación.
+
+* Por ejemplo, el producto debe pesar $100 \, g \pm 1 \, g$ y al pesarlo da como valor $102.6 \,g$. Este caso provee más información.
+
+:::
+
+::: {.column .img-fit}
+
+![](img/balanza.gif)
+
+:::
+
+::::::
+
+
+## ¡Recuerde! {.bloques}
+
+:::: columns
+::: {.column width="100%" style="text-align: center; font-size: 2em;"}
+All models are wrong, [but some are useful]{.hi} - *George E. P. Box*
+:::
+::::
+
+## Construcción de analogía {.bloques}
+
+
+* En esta clase utilizaremos la misma analogía que en la clase de [distribuciones discretas](https://stevenggoni.github.io/clases/II-1120_06_Distribuciones_discretas.html#/){target="_blank"} porque lo importante [no es memorizar]{.hi} una lista de distribuciones, sino [entender]{.hi} las ideas que hay detrás de ellas. 
+
+* Una vez que se comprenden estas distribuciones fundamentales, es mucho más fácil reconocer y trabajar con [otras distribuciones menos conocidas]{.hi}.
+
+  * Es probable que las evaluaciones incluyan este tipo de distribuciones para que pueda demostrar su capacidad para extrapolar el conocimiento. 
+
+
+
+## Construcción de analogía {.bloques}
+
+* En este sentido, los modelos estadísticos, y, en particular, las distribuciones de probabilidad, son como *prendas de ropa*. 
+
+* Para vestirse, las personas escogen prendas que se ajusten a sus cuerpos y gustos.
+
+* En primer lugar, las personas escogen una prenda ([distribución]{.hi}) que sea adecuada para la situación ([contexto]{.hi}). 
+  * No vamos a una boda con la ropa del gimnasio, tampoco vamos a la piscina con ropa de gala. 
+
+* Luego, se prueba la talla ([parámetros]{.hi}) de la prenda de ropa ([distribución]{.hi}) que mejor se ajuste al cuerpo ([la realidad que se desea describir]{.hi}).
+
+## Recuerde {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit width="22%"}
+
+![](img/zapato.jpg)
+
+:::
+
+
+::: {.column width="70%"}
+
+* Ojo, son las [distribuciones las que se ajustan a los datos]{.hi} y nunca los datos a las distribuciones.
+  * Cuide el uso del vocabulario técnico correcto. 
+* Entonces, si una distribución cualquiera NO se ajusta a un conjunto de datos, [es la distribución la que no “sirve”]{.hi} como modelo, no los datos. 
+  * Nota: Esto bajo la consideración de que la forma en que se recolectaron los datos y la cantidad de los mismos son adecuados. 
+
+* ¿Podemos suponer que el pie ([datos]{.hi}) está mal? ¿O escogimos mal el zapato ([distribución]{.hi})?
+
+:::
+
+::::::
+
+## Construcción de analogía {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit width="30%"}
+
+![Guía de tallas de [MUSCARI](https://muscaricollection.es/pages/guia-de-tallas-vestidos?srsltid=AfmBOopt-gTDcXvuZ-YK6pjsijMvWEOJZ87vzPsMOj2dTcWeZ7v7jZnu){target="_blank"}](img/guia_tallas_mujer.webp)
+
+:::
+
+::: {.column width="70%"}
+
+* Suponga que, para la [situación/contexto]{.ul} se selecciona un vestido ([distribución]{.hi}). 
+* Los **parámetros** son $1$ Pecho, $2$ Cintura, $3$ Cadera y $4$ Largo, que buscan aproximar las medidas del cuerpo. Por ejemplo, la página de MUSCARI (link en la imagen) recomienda que si la medida de la cadera es de 94-96 cm, la talla o parámetro es **S**.
+* Entonces, esta prenda de ropa está descrita por estos cuatro parámetros.
+* Estos parámetros se estiman mediante **estimadores**.
+
+
+:::
+
+::::::
+
+## Resumen de la analogía {.bloques}
+
+* En estadística, hay dos etapas conceptualmente distintas: 
+
+  * [Elegir el modelo]{.hi}: Según el contexto, la naturaleza del experimento, las características de la variable, los supuestos probabilísticos, entre otros. 
+  
+  * [Estimar los parámetros]{.hi}: Una vez elegido el modelo, necesitamos encontrar qué valores de los parámetros lo hacen ajustarse a los datos.
+
+* Es decir: 
+
+  * Primero escogemos el tipo de prenda que creemos adecuada para la situación: esto corresponde a elegir una distribución de probabilidad.
+  * Luego debemos encontrar qué talla de esa prenda se ajusta mejor al cuerpo. En estadística, esto corresponde a estimar los parámetros del modelo mediante estimadores.
+  
+## Cierre de la analogía {.bloques}
+
+:::: columns
+::: {.column width="100%" style="text-align: center; font-size: 1.6em;"}
+
+Las distribuciones de probabilidad [no son recetas para memorizar]{.hi}, sino herramientas para modelar la realidad.
+
+Quien ejerce la ingeniería no aplica modelos de forma mecánica.
+Más bien los selecciona y los ajusta a la realidad, como un sastre ajusta una prenda al cuerpo.
+
+:::
+::::
+
+## Cierre de la analogía {.bloques}
+
+:::: columns
+::: {.column width="100%" style="text-align: center; font-size: 1.5em;"}
+
+*Fitting models to data is a bit like designing shirts to fit people. If you fit a shirt too closely to one particular person, it will fit other people poorly. Likewise, a model that fits a particular data set too well might not fit other data sets well*. - Rahul Parsa
+
+[Por eso]{.hi}: 
+
+*All models are wrong, but some are useful* - George Box
+
+:::
+
+::::
+
+# Algunas distribuciones continuas {.bloques}
+
+## Distribución normal {.bloques}
+
+::::::  {.columns}
+
+::: {.column width="50%"}
+
+### [Parámetros]{.hi}
+
+$$\mu = \text{media}$$
+
+$$\sigma = \text{desviación}$$
+
+### [Funciones]{.hi}
+
+$$
+f(x|\mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}
+$$
+
+$$
+F(x|\mu, \sigma) = \frac{1}{2} \left[1 + erf \left(\frac{x-\mu}{\sigma \sqrt{2}}\right)\right]
+$$
+
+:::
+
+::: {.column width="50%"}
+
+### [Esperanza $E(x)$ y varianza $V(x)$]{.hi}
+
+$$
+E(x|\mu, \sigma) = \mu
+$$
+
+$$
+V(x|\mu, \sigma) = \sigma^2
+$$
+
+* La notación $N(\mu, \sigma)$ es comunmente empleada para representar esta distribición
+
+* $-\infty < x < \infty$
+
+:::
+
+::::::
+
+## Distribución normal {.bloques}
+
+::::::  {.columns}
+
+::: {.column width="55%"}
+
+### Características: 
+* Es con [diferencia]{.hi} la distribución [más importante]{.hi} en toda la probabilidad y estadística. 
+
+  * Ya que muchas poblaciones numéricas pueden ser representadas por una curva normal. Además del resultado de distribuciones muestrales (tema de la otra clase)
+
+* Está definida en todo el rango de los números reales. 
+
+:::
+
+::: {.column width="45%"}
+
+### Normal interactiva
+
+<iframe 
+src="https://stevenggoni.github.io/interactivos/distribuciones-continuas-embed.html?dist=normal"
+width="100%" 
+height="620" 
+  style="border: 1px solid #33111422; border-radius: 8px; background-color: #F1F5F5; overflow: hidden;"
+  frameborder="0"
+  scrolling="no">
+</iframe>
+
+:::
+
+::::::
+
+## Distribución normal estándar {.hi}
+
+* Ocurre cuando $\mu=0$ y $\sigma=1$.
+
+* No es una función que surja con frecuencia de forma natural, pero es una distribución de referencia que se utiliza para obtener información de otra distribución normal.
+* Esto mediante una función estandarizadora
+
+* $$z = \frac{x - \mu}{\sigma}$$
+
+## Distribución normal estándar {.hi}
+
+* El procedimiento (sobre todo tiempo atrás), es utilizar la función estandarizadora para la resolución de problemas. 
+* Sobre todo, porque era necesario consultar el valor de una tabla normal estándar. 
+* Esto porque $P(z) = P(x)$.
+* $z$, en este contexto mide la desviación de $x$ respecto a la $\mu$ en unidades de la desviación estándar.
+
+* Hoy en día, se usa cada vez menos las [tablas de probabilidades](https://www.um.es/documents/877924/4876701/Tabla+de+la+distribuci%C3%B3n+normal.pdf/c812f3b4-7780-46e0-abfa-8c7cd452e407){target="_blank"}, incluyendo la normal estándar, ¿el motivo?
+
+* El poder computacional y la tecnología ha avanzado lo suficiente para que tengamos a mano el valor de casi cualquier distribución sin la necesidad de recurrir a tablas. 
+
+
+## Distribución normal estándar {.hi}
+
+* ¿Esto significa que la distribución normal estándar perdió utilidad?
+* [NO]{.hi}
+* Los valores estandarizados $(z)$ se emplean en diversas pruebas estadísticas, algunas de las cuales vamos a aprender en próximas lecciones. 
+  * La utilidad de la normal estándar está en los valores de sus percentiles. 

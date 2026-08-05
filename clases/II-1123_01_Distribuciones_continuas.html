@@ -34,6 +34,22 @@
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link rel="stylesheet" href="custom.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -142,16 +158,236 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">3 de agosto de 2026</p>
+  <p class="date">5 de agosto de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
 <ul>
-<li>En construcción</li>
+<li>Preguntas generadoras</li>
+<li>Introducción</li>
+<li>Algunas distribuciones continuas
+<ul>
+<li>Normal</li>
+<li>Exponencial</li>
+<li>Gamma y casos especiales</li>
+<li>Weibull</li>
+<li>Lognormal</li>
+</ul></li>
+<li>Otras distribuciones relevantes</li>
+<li>Generalización y advertencias</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Preguntas generadoras</h2>
+<ul>
+<li>¿Cuándo se utiliza cada tipo de distribución?</li>
+<li>¿Cómo se calcula la probabilidad en cada tipo de distribución?</li>
+<li>¿Cuáles parámetros describen cada tipo de distribución?</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Introducción</h2>
+<ul>
+<li><p>Con diferencia, las distribuciones de probabilidad continua son más utilizadas que las discretas.</p></li>
+<li><p>Esta afirmación <span class="hi">no debe confundirse</span> con que una u otras sean más importante.</p></li>
+<li><p>No obstante, se dice que se obtiene más información de una variable continua que de una discreta.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Introducción</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><p>No es lo mismo decir que un producto está bueno o malo (fenómeno Bernoulli) por su peso, que especificar el valor del valor del peso y que tan fuera se encuentra de la especificación.</p></li>
+<li><p>Por ejemplo, el producto debe pesar <span class="math inline">100 \, g \pm 1 \, g</span> y al pesarlo da como valor <span class="math inline">102.6 \,g</span>. Este caso provee más información.</p></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/balanza.gif"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¡Recuerde!</h2>
+<div class="columns">
+<div class="column" style="text-align: center; font-size: 2em;">
+<p>All models are wrong, <span class="hi">but some are useful</span> - <em>George E. P. Box</em></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Construcción de analogía</h2>
+<ul>
+<li><p>En esta clase utilizaremos la misma analogía que en la clase de <a href="https://stevenggoni.github.io/clases/II-1120_06_Distribuciones_discretas.html#/" target="_blank">distribuciones discretas</a> porque lo importante <span class="hi">no es memorizar</span> una lista de distribuciones, sino <span class="hi">entender</span> las ideas que hay detrás de ellas.</p></li>
+<li><p>Una vez que se comprenden estas distribuciones fundamentales, es mucho más fácil reconocer y trabajar con <span class="hi">otras distribuciones menos conocidas</span>.</p>
+<ul>
+<li>Es probable que las evaluaciones incluyan este tipo de distribuciones para que pueda demostrar su capacidad para extrapolar el conocimiento.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Construcción de analogía</h2>
+<ul>
+<li><p>En este sentido, los modelos estadísticos, y, en particular, las distribuciones de probabilidad, son como <em>prendas de ropa</em>.</p></li>
+<li><p>Para vestirse, las personas escogen prendas que se ajusten a sus cuerpos y gustos.</p></li>
+<li><p>En primer lugar, las personas escogen una prenda (<span class="hi">distribución</span>) que sea adecuada para la situación (<span class="hi">contexto</span>).</p>
+<ul>
+<li>No vamos a una boda con la ropa del gimnasio, tampoco vamos a la piscina con ropa de gala.</li>
+</ul></li>
+<li><p>Luego, se prueba la talla (<span class="hi">parámetros</span>) de la prenda de ropa (<span class="hi">distribución</span>) que mejor se ajuste al cuerpo (<span class="hi">la realidad que se desea describir</span>).</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Recuerde</h2>
+<div class="columns">
+<div class="column img-fit" style="width:22%;">
+<p><img data-src="img/zapato.jpg"></p>
+</div><div class="column" style="width:70%;">
+<ul>
+<li>Ojo, son las <span class="hi">distribuciones las que se ajustan a los datos</span> y nunca los datos a las distribuciones.
+<ul>
+<li>Cuide el uso del vocabulario técnico correcto.</li>
+</ul></li>
+<li>Entonces, si una distribución cualquiera NO se ajusta a un conjunto de datos, <span class="hi">es la distribución la que no “sirve”</span> como modelo, no los datos.
+<ul>
+<li>Nota: Esto bajo la consideración de que la forma en que se recolectaron los datos y la cantidad de los mismos son adecuados.</li>
+</ul></li>
+<li>¿Podemos suponer que el pie (<span class="hi">datos</span>) está mal? ¿O escogimos mal el zapato (<span class="hi">distribución</span>)?</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Construcción de analogía</h2>
+<div class="columns">
+<div class="column img-fit" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Guía de tallas de <a href="https://muscaricollection.es/pages/guia-de-tallas-vestidos?srsltid=AfmBOopt-gTDcXvuZ-YK6pjsijMvWEOJZ87vzPsMOj2dTcWeZ7v7jZnu" target="_blank">MUSCARI</a></figcaption>
+<p><img data-src="img/guia_tallas_mujer.webp"></p>
+</figure>
+</div>
+</div><div class="column" style="width:70%;">
+<ul>
+<li>Suponga que, para la <u>situación/contexto</u> se selecciona un vestido (<span class="hi">distribución</span>).</li>
+<li>Los <strong>parámetros</strong> son <span class="math inline">1</span> Pecho, <span class="math inline">2</span> Cintura, <span class="math inline">3</span> Cadera y <span class="math inline">4</span> Largo, que buscan aproximar las medidas del cuerpo. Por ejemplo, la página de MUSCARI (link en la imagen) recomienda que si la medida de la cadera es de 94-96 cm, la talla o parámetro es <strong>S</strong>.</li>
+<li>Entonces, esta prenda de ropa está descrita por estos cuatro parámetros.</li>
+<li>Estos parámetros se estiman mediante <strong>estimadores</strong>.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Resumen de la analogía</h2>
+<ul>
+<li><p>En estadística, hay dos etapas conceptualmente distintas:</p>
+<ul>
+<li><p><span class="hi">Elegir el modelo</span>: Según el contexto, la naturaleza del experimento, las características de la variable, los supuestos probabilísticos, entre otros.</p></li>
+<li><p><span class="hi">Estimar los parámetros</span>: Una vez elegido el modelo, necesitamos encontrar qué valores de los parámetros lo hacen ajustarse a los datos.</p></li>
+</ul></li>
+<li><p>Es decir:</p>
+<ul>
+<li>Primero escogemos el tipo de prenda que creemos adecuada para la situación: esto corresponde a elegir una distribución de probabilidad.</li>
+<li>Luego debemos encontrar qué talla de esa prenda se ajusta mejor al cuerpo. En estadística, esto corresponde a estimar los parámetros del modelo mediante estimadores.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Cierre de la analogía</h2>
+<div class="columns">
+<div class="column" style="text-align: center; font-size: 1.6em;">
+<p>Las distribuciones de probabilidad <span class="hi">no son recetas para memorizar</span>, sino herramientas para modelar la realidad.</p>
+<p>Quien ejerce la ingeniería no aplica modelos de forma mecánica. Más bien los selecciona y los ajusta a la realidad, como un sastre ajusta una prenda al cuerpo.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Cierre de la analogía</h2>
+<div class="columns">
+<div class="column" style="text-align: center; font-size: 1.5em;">
+<p><em>Fitting models to data is a bit like designing shirts to fit people. If you fit a shirt too closely to one particular person, it will fit other people poorly. Likewise, a model that fits a particular data set too well might not fit other data sets well</em>. - Rahul Parsa</p>
+<p><span class="hi">Por eso</span>:</p>
+<p><em>All models are wrong, but some are useful</em> - George Box</p>
+</div></div>
+</section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Algunas distribuciones continuas</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución normal</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3><span class="hi">Parámetros</span></h3>
+<p><span class="math display">\mu</span></p>
+<p><span class="math display">\sigma</span></p>
+<h3><span class="hi">Funciones</span></h3>
+<p><span class="math display">
+f(x|\mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}
+</span></p>
+<p><span class="math display">
+F(x|\mu, \sigma) = \frac{1}{2} \left[1 + erf \left(\frac{x-\mu}{\sigma \sqrt{2}}\right)\right]
+</span></p>
+</div><div class="column" style="width:50%;">
+<h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
+<p><span class="math display">
+E(x|\mu, \sigma) = \mu
+</span></p>
+<p><span class="math display">
+V(x|\mu, \sigma) = \sigma^2
+</span></p>
+<ul>
+<li><p>La notación <span class="math inline">N(\mu, \sigma)</span> es comunmente empleada para representar esta distribición</p></li>
+<li><p><span class="math inline">-\infty &lt; x &lt; \infty</span></p></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Distribución normal</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<h3>Características:</h3>
+<ul>
+<li><p>Es con <span class="hi">diferencia</span> la distribución <span class="hi">más importante</span> en toda la probabilidad y estadística.</p>
+<ul>
+<li>Ya que muchas poblaciones numéricas pueden ser representadas por una curva normal. Además del resultado de distribuciones muestrales (tema de la otra clase)</li>
+</ul></li>
+<li><p>Está definida en todo el rango de los números reales.</p></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<h3>Normal interactiva</h3>
+<iframe src="https://stevenggoni.github.io/interactivos/distribuciones-continuas-embed.html?dist=normal" width="100%" height="620" style="border: 1px solid #33111422; border-radius: 8px; background-color: #F1F5F5; overflow: hidden;" frameborder="0" scrolling="no">
+</iframe>
+</div></div>
+</section>
+<section class="slide level2 hi">
+<h2>Distribución normal estándar</h2>
+<ul>
+<li><p>Ocurre cuando <span class="math inline">\mu=0</span> y <span class="math inline">\sigma=1</span>.</p></li>
+<li><p>No es una función que surja con frecuencia de forma natural, pero es una distribución de referencia que se utiliza para obtener información de otra distribución normal.</p></li>
+<li><p>Esto mediante una función estandarizadora</p></li>
+<li><p><span class="math display">z = \frac{x - \mu}{\sigma}</span></p></li>
+</ul>
+</section>
+<section class="slide level2 hi">
+<h2>Distribución normal estándar</h2>
+<ul>
+<li><p>El procedimiento (sobre todo tiempo atrás), es utilizar la función estandarizadora para la resolución de problemas.</p></li>
+<li><p>Sobre todo, porque era necesario consultar el valor de una tabla normal estándar.</p></li>
+<li><p>Esto porque <span class="math inline">P(z) = P(x)</span>.</p></li>
+<li><p><span class="math inline">z</span>, en este contexto mide la desviación de <span class="math inline">x</span> respecto a la <span class="math inline">\mu</span> en unidades de la desviación estándar.</p></li>
+<li><p>Hoy en día, se usa cada vez menos las <a href="https://www.um.es/documents/877924/4876701/Tabla+de+la+distribuci%C3%B3n+normal.pdf/c812f3b4-7780-46e0-abfa-8c7cd452e407" target="_blank">tablas de probabilidades</a>, incluyendo la normal estándar, ¿el motivo?</p></li>
+<li><p>El poder computacional y la tecnología ha avanzado lo suficiente para que tengamos a mano el valor de casi cualquier distribución sin la necesidad de recurrir a tablas.</p></li>
+</ul>
+</section>
+<section class="slide level2 hi">
+<h2>Distribución normal estándar</h2>
+<ul>
+<li>¿Esto significa que la distribución normal estándar perdió utilidad?</li>
+<li><span class="hi">NO</span></li>
+<li>Los valores estandarizados <span class="math inline">(z)</span> se emplean en diversas pruebas estadísticas, algunas de las cuales vamos a aprender en próximas lecciones.
+<ul>
+<li>La utilidad de la normal estándar está en los valores de sus percentiles.</li>
+</ul></li>
 </ul>
 
 
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
