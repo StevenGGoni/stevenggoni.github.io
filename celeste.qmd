@@ -1,24 +1,24 @@
 ---
-author: Steven García Goñi
-title: Ingeniero Industrial (II-38999) y M.Sc en Estadística
+author: Celeste Briceño Mena (la mejor novia)
+title: Estudiante del Programa de Bachillerato y Licenciatura en Sociología
 format:
   classic-cv-pdf: default
 cvfooter:
-  left: "https://stevenggoni.github.io/"
+  left: "https://cr.linkedin.com/in/celeste-mena-9b981b296"
   right: "https://github.com/StevenGGoni"
 cvcolor: 161A21 #without `#`
-bgcolor: 9BA1AB
+bgcolor: 161A21
 cvfont: fetamont #texlive fonts like raleway,fetamont,gillius,comfortaa
 cvmeta:
   - title: Cargo
-    left: Docente e investigador para la EII de la UCR
+    left: Estudiante de tercer nivel de la carrera
     right: San José, Costa Rica
   - title: Campo
-    left: Ingeniería industrial, diseño de experimentos, estadística
-    right: https://stevenggoni.github.io/
+    left: Género, Migraciiones
+    right: 
   - title: Tecnologías
-    left: R/RStudio, Excel, Minitab, Python
-    right: steven.garciagoni@ucr.ac.cr - 8774 8919
+    left: Paquete de Office
+    right: maria.briceno.mena@est.una.ac.cr - 8691 6638
 execute:
   echo: false
 ---
@@ -128,7 +128,7 @@ tibble::tribble(
     "Diseño y ejecución de instrumentos de medición (encuestas y grupos focales)"),
   
   "Asistente de cursos", "UCR - Escuela de Ingeniería Industrial", "Ago. 2017 - Dic. 2018", 
-  c("Curso Ingeniería de manufactura", 
+  c("Curso Ingeniería de Manufactura", 
     "Curso Investigación de operaciones avanzada", 
     "Curso Diseño de experimentos básico",
     "Curso Distribución y localización de instalaciones")
@@ -197,7 +197,7 @@ tibble::tribble(
 ```
 
 
-# Charlas y congresos
+# Charlas
 
 ```{r }
 #| label: oral
