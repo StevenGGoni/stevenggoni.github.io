@@ -13,42 +13,42 @@ format:
     documentclass: scrreprt
     papersize: letter
     mainfont: Aller
+    indent: true
     fig-cap-location: top
 header-includes:
   - \usepackage{sectsty}
   - \allsectionsfont{\fontspec{Crimson Pro}}
   - \usepackage{indentfirst}
   - \usepackage{pdflscape}
-  - \setlength{\parindent}{1.25cm}
 ---
 
 # Introducción
 
-La estadística es una herramienta esencial para analizar datos, mejorar y automatizar diseños, procesos y sistemas; además de garantizar la eficiencia y confiabilidad. Sin importar el área de especialización de la persona ingeniera (manufactura, calidad, metrología, energía, ambiente, robótica y automatización, entre otros) es necesario el conocimiento estadístico ya que las personas que son capaces de analizar esta nueva información son y serán valiosos en prácticamente cualquier campo de estudio.
+La estadística es una herramienta esencial para analizar datos, mejorar y automatizar diseños, procesos y sistemas, así como para garantizar su eficiencia y confiabilidad. Sin importar el área de especialización de la persona ingeniera (manufactura, calidad, metrología, energía, ambiente, robótica y automatización, entre otras), el conocimiento estadístico es indispensable, pues quienes son capaces de analizar esta información son y serán valiosas en prácticamente cualquier campo de estudio.
 
-El propósito que motivó la construcción de esta Guía para informes de prácticas laboratoriales es proveer a la persona estudiante de ub documento sobre el contenido esperado básico en los reportes de las prácticas de laboratorio a desarrollar durante el curso. Incluye, además, directrices y recomendaciones para la construcción de cuadros y gráficos, así como la rúbrica de evaluación, la cual es de observancia obligatoria, es decir, en función del contexto de la práctica, algunos de los elementos de esta guía podrían no estar presentes en los reportes entregados por las personas estudiantes, pero los elementos de la rúbrica si deberían estarlo.
+El propósito que motivó la construcción de esta *Guía para informes de prácticas laboratoriales* es proveer a la persona estudiante de un documento sobre el contenido básico esperado en los reportes de las prácticas de laboratorio que se desarrollarán durante el curso. Incluye, además, directrices y recomendaciones para la construcción de cuadros y gráficos, así como la rúbrica de evaluación, la cual es de observancia obligatoria. Es decir, en función del contexto de la práctica, algunos elementos de esta guía podrían no estar presentes en los reportes entregados, pero los elementos de la rúbrica sí deberán estarlo.
 
-Las prácticas de laboratorio están diseñadas para complementar los contenidos del cuso y que, además, la persona estudiante se pueda familiarizar con las técnicas estadísticas comunes y las formas de recolección de datos que existen; también se espera el desarrollo de habilidades y destrezas en el manejo de software estadístico, así como en la capacidad analítica y la correcta presentación de datos estadísticos.
+Las prácticas de laboratorio están diseñadas para **complementar los contenidos del curso** y permitir que la persona estudiante se familiarice con las técnicas estadísticas habituales y los métodos de recolección de datos. Asimismo, se busca fomentar el desarrollo de habilidades en el manejo de software especializado, el pensamiento analítico y la correcta presentación de datos.
 
 # Instrucciones para el trabajo en la sesión de laboratorio
 
 ## Grupos de trabajo
 
-El trabajo en el laboratorio se realiza en grupos de trabajo que se conforman durante las primeras semanas del curso en función del espacio asignado para el desarrollo de las lecciones y las instrucciones que brinde la persona docente. De observarse situaciones grupales que impidan el logro de los objetivos de aprendizaje, se pueden reestructurar los grupos de trabajo al solo juicio de la persona docente.
+El trabajo en el laboratorio se realiza en grupos de trabajo que se conforman durante las primeras semanas del curso en función del espacio asignado para el desarrollo de las lecciones y las instrucciones que brinde la persona docente. De observarse situaciones grupales que impidan el logro de los objetivos de aprendizaje, se pueden reestructurar los grupos de trabajo a criterio exclusivo de la persona docente.
 
 ## Normas básicas
 
-Para el uso de los laboratorios de cómputo debe tomarse en cuenta las siguientes indicaciones:
+Para el uso de los laboratorios de cómputo deben tomarse en cuenta las siguientes indicaciones:
 
--   No se deben desconectar los equipos de los tomacorrientes.
+-   No desconectar los equipos de los tomacorrientes.
 
--   No se deben cambiar de lugar los monitores, mouse, teclados ni CPUs.
+-   No cambiar de lugar los monitores, mouse, teclados ni CPUs.
 
 -   Cada usuario debe apagar su equipo al terminar la sesión y debe mantener limpio y ordenado su espacio.
 
--   No se deben ingerir alimentos ni bebidas dentro de los laboratorios.
+-   No ingerir alimentos ni bebidas dentro de los laboratorios.
 
-Por otro lado, en caso de que la persona estudiante haga uso de las instalaciones de otros laboratorios debe atenerse a las normas de Seguridad y Salud Ocupacional que apliquen a las mismas. Además, la persona estudiante es responsable del cuido de las instalaciones y de los equipos que se le suministren. De observarse situaciones que atenten contra la seguridad propia y de ajenos, así como de la infraestructura, se procede según la normativa universitaria vigente.
+Por otro lado, en caso de que la persona estudiante haga uso de las instalaciones de otros laboratorios debe atenerse a las normas de Seguridad y Salud Ocupacional que apliquen a las mismas. Además, la persona estudiante es responsable del cuido de las instalaciones y de los equipos que se le suministren. De observarse situaciones que atenten contra la seguridad propia y de terceros, así como de la infraestructura, se procede según la normativa universitaria vigente.
 
 # Guía para informes de prácticas de laboratorio
 
@@ -58,23 +58,25 @@ Por otro lado, en caso de que la persona estudiante haga uso de las instalacione
 
 ### Redacción:
 
--   Todo el documento debe redactarse en presente indicativo y tercera persona singular. Por ejemplo, en vez de escribir “realizamos un análisis de datos”, la forma correcta de redacción sería “se realiza un análisis de datos”. • Debe emplear lenguaje formal y preciso. Evite cae en expresiones vagas o coloquiales como: “lo que pasó fue que…” o “los datos son muy malos”.
+-   Todo el documento debe redactarse en presente indicativo y tercera persona singular. Por ejemplo, en vez de escribir “realizamos un análisis de datos”, la forma correcta de redacción sería “se realiza un análisis de datos”. 
 
--   Evite la repetición innecesaria de palabras, el uso de muletillas y términos coloquiales. Por ejemplo, escribir al inicio en cada párrafo: “… es importante”.
+-   Debe emplear lenguaje formal y preciso. Evite caer en expresiones vagas o coloquiales como: “lo que pasó fue que…” o “los datos son muy malos”.
+
+-   Evite la repetición innecesaria de palabras, el uso de muletillas y términos coloquiales. Por ejemplo, escribir al inicio de cada párrafo: “… es importante”.
 
 -   La redacción debe seguir un hilo conductor coherente. Se aconseja la lectura repetida del trabajo antes de ser entregado, sobre todo al ser este desarrollado en grupos de trabajo. Evite repetir lo que ya fue mencionado anteriormente en secciones previas y mantenga un orden lógico.
 
-    ### Puntuación:
+### Puntuación:
 
 -   Todas las oraciones deben terminar con un signo ortográfico: punto, signo de interrogación o exclamación, etc. Además, los títulos y subtítulos de secciones, gráficos o tablas no llevan punto final.
 
--   Antes de una cita no se coloca punto, por ejemplo, el punto marcado en rojo no se debe colocar: “… la harina de lenteja germinada supera en 7 % a la harina de trigo integral”. (García, 2024).
+-   Antes de una cita parentética no se coloca punto, por ejemplo, el punto marcado en rojo no se debe colocar: “… la harina de lenteja germinada supera en 7 % a la harina de trigo integral”$\textcolor{red}{.}$ (García, 2024). Solo se coloca punto al final si la cita termina un párrafo u oración. 
 
 -   Por lo general, los párrafos no deben estar conformados por únicamente una oración, ni tampoco deben ser demasiado extensos.
 
 ### Ortografía:
 
--   La primera letra de cualquier título o subtítulo de secciones, gráficos o tablas, así como de las oraciones, se debe escribir con mayúscula. Los nombres de organizaciones e instancias organizacionales deben de utilizar mayúscula inicial en todas las palabras principales que los componen.
+-   La primera letra de cualquier título o subtítulo de secciones, gráficos o tablas, así como de las oraciones, se debe escribir con mayúscula. Los nombres de organizaciones e instancias organizacionales deben utilizar mayúscula inicial en todas las palabras principales que los componen.
 
 -   Debe procurar una buena ortografía a lo largo de todo el documento.
 
@@ -82,25 +84,29 @@ Por otro lado, en caso de que la persona estudiante haga uso de las instalacione
 
 -   Debe especificar las unidades de todo valor numérico siempre que lo amerite, respetando los símbolos o nombres correctos de las unidades. Por ejemplo, si está midiendo la magnitud de tiempo en segundos, el símbolo de la unidad debe ser “s” y no “seg” o cualquier otra variación no permitida por el SI.
 
--   Los decimales deben separarse por comas (i.e. 1,5 ml) y los miles por espacios (i.e. 10 000). Esto incluye los cuadros y gráficos estadísticos.
+-   Los decimales deben separarse por comas (i.e. 1,5 mL) y los miles por espacios (i.e. 10 000). Esto incluye los cuadros y gráficos estadísticos.
 
 ### Formato:
 
--   Debe utilizar el formato para informes de prácticas de laboratorio proporcionado por la coordinación del área, según el curso.
+-   Debe utilizar el formato para informes de prácticas de laboratorio proporcionado por la coordinación del área.
 
 -   Se debe emplear letra tipo ejecutiva, tamaño 12 y espaciado 1.15.
 
-## Construcción de cuadros y gráficos estadísticos
+- El formato lo puede descargar en este [enlace](https://stevenggoni.github.io/clases/Formato_informes.docx){target="_blank"}.
+
+## Construcción de cuadros y gráficos estadísticos {#sec-cuadros}
 
 Las siguientes son directrices y recomendaciones para la construcción y presentación de cuadros y gráficos de índole estadístico. Dicho material es tomado del siguiente [enlace](https://admin.inec.cr/sites/default/files/media/mepresentinfoestadist-21122017_2.pdf), el cual puede consultarse para ampliar en detalles. Algunos otros consejos son:
 
--   Evitar la duplicidad de información: escoja una única forma de presentar la información (cuadro o gráfico, no ambas). Por otro lado, no es necesario repetir la información en la redacción del informe, por ejemplo, si coloca un cuadro donde se muestran las medidas de tendencia central no escriba en el texto: “como se ve en el Cuadro X.X la mediana de los datos es 25”; pues estaría repitiendo información. No implica que ignore el dato, la idea es que le de significado a ese valor con base en el contexto del problema abordado. .
+-   Evitar la duplicidad de información: escoja una única forma de presentar la información (cuadro o gráfico, no ambas). Por otro lado, no es necesario repetir la información en la redacción del informe, por ejemplo, si incluye un cuadro con las medidas de tendencia central, evite escribir en el texto: “como se observa en el *Cuadro X.X*, la mediana de los datos es 25”, ya que estaría duplicando la información. Esto no significa que deba ignorar el dato, sino que debe darle significado a ese valor dentro del contexto del problema analizado.
 
 -   Los cuadros o gráficos están diseñados para sintetizar la información, de tal modo que en una sola mirada la persona analista pueda extraer conclusiones. Si usted necesita explicar en detalle el cuadro o gráfico, es probable que esté mal construido o que no sea la forma correcta de presentar la información. Ejemplos de cuadros y gráficos estadísticos construidos de forma adecuada los puede encontrar en la @fig-cuadro y @fig-grafico.
 
 ![Ejemplo de cuadro estadístico](img/cuadro_estadistico.png){#fig-cuadro fig-align="center" width="520"}
 
 ![Ejemplo de gráfico estadístico](img/grafico_estadistico.png){#fig-grafico fig-align="center" width="520"}
+
+Una guía adicional que le puse servir de ayuda fue preparada por Fabián Ramírez Hidalgo y se encuentra disponible en este [enlace](https://stevenggoni.github.io/clases/Guia_FormatoTablasCuadros.pdf){target="_blank"}.
 
 ## Título del reporte
 
@@ -116,12 +122,12 @@ Establezca y redacte el objetivo general de su estudio estadístico. Este objeti
 
 Aquí, un ejemplo de un objetivo general completo:
 
-*Analizar la variabilidad en los tiempos de entrega de los pedidos de una tienda virtual, durante el primer trimestre 2025, mediante estadística descriptiva, con el fin de identificar patrones y proponer oportunidades de mejora.*
+*Analizar la variabilidad en los tiempos de entrega de los pedidos de una tienda virtual, durante el primer trimestre de 2025, mediante estadística descriptiva, con el fin de identificar patrones y proponer oportunidades de mejora.*
 
 -   Qué va a estudiar: Analizar la variabilidad en los tiempos de entrega de los pedidos de una tienda virtual.
 -   Cómo va a abordar su estudio: mediante estadística descriptiva.
 -   Para qué va a realizar su estudio: con el fin de identificar patrones y proponer oportunidades de mejora.
--   Información adicional: el estudio se realiza durante el primer trimestre 2025.
+-   Información adicional: el estudio se realiza durante el primer trimestre de 2025.
 
 ### Objetivos específicos
 
@@ -276,7 +282,7 @@ Los datos del fenómeno sujeto a estudio fueron recolectados a partir de una obs
 -   Especifica la cantidad de constructos que mide la encuesta.
 -   Describe los constructos evaluados.
 -   Indica y describe la cantidad de preguntas o ítems asociados a cada constructo.
--   Especifica y describe las preguntas que no forman parte de los constructos (por ejemplo: género, carrera u otros datos generales).
+-   Especifica y describe las preguntas que no forman parte de los constructos (por ejemplo: género, carrera, u otros datos generales).
 -   Clasifica las variables, preguntas o ítems según su tipo y nivel de medición.
 -   Adjunta el enlace a la encuesta o la encuesta completa como apéndice.
 
@@ -312,7 +318,7 @@ La presentación de los resultados se organiza siguiendo el mismo orden en que f
 
 ### Uso de cuadros y gráficos
 
-Los datos se presentan de forma clara y estructurada mediante cuadros y gráficos estadísticos, tales como gráficos de barras, histogramas, diagramas de dispersión u otros recursos visuales adecuados, siguiendo las recomendaciones establecidas en la sección de [Construcción de cuadros y gráficos estadísticos]
+Los datos se presentan de forma clara y estructurada mediante cuadros y gráficos estadísticos, tales como gráficos de barras, histogramas, diagramas de dispersión u otros recursos visuales adecuados, siguiendo las recomendaciones establecidas en la sección @sec-cuadros.
 
 Todos los cuadros y gráficos cumplen con los siguientes requerimientos:
 
