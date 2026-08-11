@@ -144,7 +144,7 @@ Las personas ingenieras deberían usar a la estadística como un borracho usa un
 ::: {.column width="30%"}
 ### Población
 
--   Todos los miembros de un grupos acerca de los cuales se desea obtener una conclusión
+-   Todos los miembros de un grupo acerca de los cuales se desea obtener una conclusión
 :::
 
 ::: {.column width="30%"}
@@ -543,7 +543,9 @@ function checkAnswers() {
 ## ¡Crucigrama de repaso! {.bloques}
 
 ::: iframe-card
-<iframe src="https://www.teachize.com/es/crossword/view/?id=7d24f2fe-f259-4b8f-bfb9-77bbab7bde4d" frameborder="0">
+<iframe 
+
+src="diagramas/crucigrama.html" frameborder="0">
 
 </iframe>
 :::

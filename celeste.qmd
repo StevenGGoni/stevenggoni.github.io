@@ -1,17 +1,16 @@
 ---
-author: Celeste Briceño Mena (la mejor novia)
-title: Estudiante del Programa de Bachillerato y Licenciatura en Sociología
+author: Celeste Briceño Mena
+title: Estudiante del Programa de Bachillerato y Licenciatura en Sociología de la Universidad Nacional y del Programa de Bachillerato y Licenciatura en Psicología de la Universidad de Costa Rica
 format:
   classic-cv-pdf: default
 cvfooter:
   left: "https://cr.linkedin.com/in/celeste-mena-9b981b296"
-  right: "https://github.com/StevenGGoni"
 cvcolor: 161A21 #without `#`
 bgcolor: 161A21
 cvfont: fetamont #texlive fonts like raleway,fetamont,gillius,comfortaa
 cvmeta:
   - title: Cargo
-    left: Estudiante de tercer nivel de la carrera
+    left: Estudiante de tercer nivel de la carrera de Sociología
     right: San José, Costa Rica
   - title: Campo
     left: Género, Migraciiones
@@ -43,7 +42,7 @@ cvevents <- function(tbl, when, what, where, details) {
 
 # Resumen
 
-Ingeniero Industrial y M.Sc. en Estadística con experiencia en docencia universitaria, investigación aplicada y consultoría técnica. Mis áreas de interés incluyen el diseño estadístico de experimentos, la estadística industrial, la ingeniería de calidad y el aprendizaje automático aplicado a procesos. He participado en proyectos de investigación, normalización técnica y evaluación de programas públicos. Cuento con publicaciones arbitradas y experiencia en la dirección y asesoría de trabajos finales de graduación.
+Estudiante avanzada de Sociología (UNA) y Psicología (UCR) interesada en estudios de género, diversidad socio-sexual y procesos migratorios. Con experiencia en metodologías participativas (grupos focales, talleres), levantamiento de campo, diseño de encuestas y análisis cualitativo/cuantitativo. Destaca por su participación como ponente en congresos internacionales (ALAS) y el abordaje de problemáticas comunitarias y sociales desde un enfoque interseccional.
 
 # Formación
 
@@ -52,160 +51,83 @@ Ingeniero Industrial y M.Sc. en Estadística con experiencia en docencia univers
 #| output: asis
 tibble::tribble(
   ~degree, ~uni, ~loc, ~dates, ~details,
-  "M.Sc. en Estadística", "Universidad de Costa Rica", "San José, Costa Rica", "2020 - 2025",
-  c("Tesis: Algoritmo para la reducción de tratamientos en diseños experimentales con mezclas de vértices extremos, basado en la recuperación de la forma regular de un simplex",
-    "Graduación con honores"),
+  "Est. Bach. Sociología", "Universidad Nacional", "Heredia, Costa Rica", "2023 - Actualidad",
+  c("Cursando tercer año de la carrera"),
   
-  "Lic. en Ingeniería Industrial", "Universidad de Costa Rica", "San José, Costa Rica", "2012 - 2020", 
-  c("Trabajo Final de Graduación: Desarrollo de una materia prima para alimentos, a partir de granos germinados, basado en diseño de experimentos", 
-    "Trabajo aprobado con honores")
+  "Est. Bach. Psicología", "Universidad de Costa Rica", "San José, Costa Rica", "2024 - Actualidad", 
+  c("Cursando segundo año de la carrera")
 ) |>
   cvevents(when = "dates", what = "degree", where = "loc", details = "details")
 ```
 
-# Experiencia profesional y académica
+# Experiencia académica
 
 ```{r results='asis'}
 #| label: experience
 #| output: asis
 tibble::tribble(
   ~role, ~institution, ~dates, ~tasks,
-  "Docente universitario e investigador", "UCR | Escuela de Ingeniería Industrial", "Mar. 2022 - Actualidad", 
-  c("Docente de los cursos de Probabilidad y estadística, Ingeniería de Calidad, Diseño de experimentos básico, Diseño de experimentos avanzado y otros relacionados con estadística multivariada y Machine Learning", 
-    "Docente de cursos extracurriculares y de extensión docente en temas como: Excel como herramienta para la automatización de tareas repetitivas, Metrología aplicada a la toma efectiva de decisiones y Métodos cuantitativos para la Mejora de procesos (MCMP)",
-    "\\href{https://vinv.ucr.ac.cr/sigpro/web/researchers/115790137}{Investigador asociado} en tópicos relativos a la estadística e ingeniería industrial", 
-    "Docente tutor y asesor de Trabajos Finales de Graduación de la Escuela de Ingeniería Industrial",
-    "Miembro de distintas comisiones de la EII, incluyendo Acción Social y Asuntos Estudiantiles"),
   
-  "Docente universitario", "UCR | Programa de Posgrado en Estadística", "Ago. 2025 - Dic. 2025", 
-  c("Docente del curso Tópicos de diseños experimentales"),
+  "Estudiante", "Universidad Nacional", "2026", 
+  c("Participación a Feria de Derechos Sexuales y Reproductivos por parte al curso \"Sociología del Cuerpo y las sexualidades\" Tema de Stand: Sexualidad entre mujeres. Estereotipos de la comunidad, practicas sexuales, ITS- ETS, cuidados sexuales"),  
   
-  "Instructor - Servicios profesionales (bajo demanda)", "School of Medical Devices (SMD)", "2024 - Actualidad", 
-  c("Desarrollo del material pedagógico formativo concerniente al curso Caracterización de Procesos con Diseño de Experimentos", 
-    "Instructor del curso: Applied Statistics for Medical Device Industry", 
-    "Instructor del curso: Process Characterization with DoE"),
+  "Estudiante", "Universidad Nacional", "2026",
+  c("Formulación de encuesta, análisis de datos encuestados y creación de gráficos y cuadros, trabajo analizar la percepción de la población estudiantil becada sobre  el monto económico y beneficios adicionales brindados"),
+
+  "Estudiante", "Universidad Nacional", "2026",
+  c("Ejecución de entrevista al movimiento social \"Hartas\""),  
+   
+  "Estudiante", "Universidad Nacional", "2025", 
+  c("\"Identidad Lésbica en una sociedad heterocapitalista\" Revisión bibliografía, junto con analisis desde la teoría de Karl Marx sobre papel de sistemas como la  heteronormatividad y capitalismo  deshumanizan y oprimen a las mujeres de la comunidad lesbica."),
   
-  "Servicios profesionales", "Universidad Fidélitas", "Set. 2024 - Oct. 2024", 
-  c("Desarrollo de productos académicos para los cursos: Diseño de experimentos, Estadística descriptiva e inferencia y Estadística aplicada para la analítica de datos"),
+  "Estudiante", "Universidad Nacional", "2025", 
+  c("Voces Taiwanesas: ANALIZAR LAS DIFERENCIAS Y DESAFÍOS CULTURALES EXPERIMENTADOS POR PERSONAS MIGRANTES TAIWANESES RESIDENTES EN HEREDIA Y SAN JOSÉ. Diseño y facilitación de metodologías cualitativas (grupos focales y talleres) para el análisis de redes y desafíos de integración socio-cultural en poblaciones migrantes"),
   
-  "Investigador asociado", "CIOdD | UCR | HiVOS", "Mar. 2023 - Dic. 2023", 
-  c("Construcción y diseño del Plan de Operaciones estadísticas y sus principales indicadores de VIH para Costa Rica", 
-    "Levantamiento de procesos y procedimientos actuales a nivel de flujo de datos y actividades asociadas para las principales operaciones estadísticas en VIH"),
-  
-  "Consultor", "FUNDES | PROCOMER", "Dic. 2021",  
-  c("Auditoría de segunda parte y presencial a tres PyME de Costa Rica para aplicar el diagnóstico de cumplimiento en la Norma AS9100D: Requisitos para las organizaciones de aviación, espacio y defensa"),
-  
-  "Servicios profesionales (bajo demanda)", "", "2021 - Actualidad", 
-  c("Programación de herramientas en VBA en MS Excel para finanzas, RRHH, supervisión de producción, control de calidad y contabilidad", 
-    "Programación de aplicaciones web interactivas en Shiny, incluyendo conexión con bases de datos",
-    "Mantenimiento de herramientas programadas"),
-  
-  "Miembro del CTN 061: Aeroespacial", "INTECO", "Mar. 2020 - Jun. 2023",
-  c("Desarrollo y revisión de los trabajos de normalización en el campo aeroespacial, incluyendo la adaptación de aproximadamente 21 normas internacionales"), 
-  
-  "Consultor y analista de datos", "Dr. Max, Centro de Salud", "Dic. 2020 - May. 2021", 
-  c("Analista de datos (R y RStudio)",
-    "Proyección y modelado por series de tiempo de las ventas (R y RStudio)", 
-    "Limpieza y actualización de base de datos (PostgreSQL)", 
-    "Asesor del equipo de gerencia general, finanzas y RRHH en temas estratégicos y operativos"),
-  
-  "Ingeniero de mejora continua", "TechShop Internacional, S.A.", "Nov. 2018 - Mar. 2021",  
-  c("Diseño y mejora de procesos", 
-    "Creación y actualización de indicadores de desempeño (KPI)", 
-    "Automatización de tareas repetitivas con VBA y R",
-    "Administración y programación de evento (Workflows) en el sistema Syteline ERP (Infor)"), 
-  
-  "Gestor de calidad (AS9100)", "TechShop Internacional, S.A.", "Ene. 2016 - Mar. 2021",  
-  c("Creación, implementación, mantenimiento y actualización del Sistema de Gestión de Calidad AS9100C (Aeroespacial) e ISO 9001:2008, siendo la tercer empresa en obtener esta certificación a nivel nacional", 
-    "Creación, implementación, mantenimiento y actualización del Sistema de Gestión de Calidad AS9100D (Aeroespacial) e ISO 9001:2015, migrando de la versión anterior de la norma", 
-    "Auditor interno principal del Sistema de Gestión de Calidad",
-    "Diseño y capacitación de los auditores internos de la organización",
-    "Capacitación de la mayoría de procedimientos e instructivos de la organización"), 
-  
-  "Asistente de consultoría", "UCR | MIDEPLAN | PRONAMYPE", "Set. 2016 - Jul. 2017", 
-  c("Evaluación del PRONAMYPE", 
-    "Levantamiento de procesos", 
-    "Diseño y ejecución de instrumentos de medición (encuestas y grupos focales)"),
-  
-  "Asistente de cursos", "UCR - Escuela de Ingeniería Industrial", "Ago. 2017 - Dic. 2018", 
-  c("Curso Ingeniería de Manufactura", 
-    "Curso Investigación de operaciones avanzada", 
-    "Curso Diseño de experimentos básico",
-    "Curso Distribución y localización de instalaciones")
+  "Estudiante", "Universidad Nacional", "2025",
+  c("\"Reivindicación de la identidad de mujeres bisexuales en un mundo heteropatriarcal\" Revisión bibligráfica, enfoque sociológico comparativo histórico. Análisis sobre las vivencias de las mujeres bisexuales fuera del sistema normativo y dentro de la comunidad LGBTIQ+"),
+
+  "Estudiante", "Universidad Nacional", "2024",
+  c("Diseño y aplicación de instrumentos cuantitativos para evaluar el impacto socio-ambiental y la percepción sobre la calidad de recursos hídricos."),    
+
 ) |>
   cvevents(when = "dates", what = "role", where = "institution", details = "tasks")
 ```
 
 # Cursos, certificados y reconocimientos
 
-\* Inglés intermedio - alto (B2) - *Universidad de Costa Rica*
-
-\* Competencias Digitales para la Docencia - *Universidad de Costa Rica*
-
-\* Calibración de sonómetros - *LACOMET (LCM)*
-
-\* Participación CTN 061 Aeroespacial - *INTECO*
-
-\* Scrum Foundation - *CertiProf*
-
-\* MongoDB - *UDEMY*
-
-\* Machine Learning - R y Python para Data Science - *UDEMY*
-
-\* Técnicas estadísticas para la gestión ambiental - *Universidad de Costa Rica*
-
-\* Auditor interno AS9100C e ISO 9001:2008 - *TechShop Internacional, S.A.*
-
-\* Auditor interno AS9100D e ISO 9001:2015 - *TechShop Internacional, S.A.*
+\* Excel Básico - *Universidad Estatal a Distancia*
 
 
-# Publicaciones indexadas
-
-```{r }
-#| label: publications
-#| output: asis
-tibble::tribble(
-  ~degree, ~uni, ~loc, ~dates, ~details,
-
-  "Revista de Iniciación Científica", "",  "Artículo", "2024", 
-  c("\\href{https://doi.org/10.33412/rev-ric.v10.1.4001}{Diseño de parcelas divididas para el desarrollo de una harina mejorada y funcional de granos germinados de lenteja o arveja}"), 
-  
-  "UNICIENCIA", "", "Artículo",  "2023", 
-  c("\\href{http://dx.doi.org/10.15359/ru.37-1.19}{Efectos del sexismo hacia las mujeres sobre la autoeficacia y desempeño en matemática de los hombres: Modelos de ecuaciones estructurales desde la teoría del sexismo ambivalente}")
-) |>
-  cvevents(when = "dates", what = "degree", where = "loc", details = "details")
-```
-
-# Tesis y documentos técnicos
-
-```{r}
-#| label: publications1
-#| output: asis
-tibble::tribble(
-  ~degree, ~uni, ~loc, ~dates, ~details,
-  "Universidad de Costa Rica", "", "Tesis", "2025",
-  c("\\href{https://www.kerwa.ucr.ac.cr/items/9f121a2f-9871-4d27-b7cf-3efc8fb30494}{Algoritmo para la reducción de tratamientos en diseños experimentales con mezclas de vértices extremos, basado en la recuperación de la forma regular de un simplex}"),
-  
-  "Universidad de Costa Rica", "", "Trabajo Final de Graduación", "2019", 
-  c("\\href{https://repositorio.sibdi.ucr.ac.cr/items/3d1cf307-1bb7-4af0-a70a-e241a2b3481f}{Desarrollo de una materia prima para alimentos, a partir de granos germinados, basado en diseño de experimentos}"),
-  
-  "MIDEPLAN", "", "Informe final", "2017", 
-  c("\\href{https://repositorio-snp.mideplan.go.cr/bitstream/handle/123456789/159/EE.07.01-RE.pdf?}{Evaluación del Programa Nacional de Apoyo a la Microempresa y la Movilidad Social (PRONAMYPE) del Ministerio de Trabajo y Seguridad Social}")
-) |>
-  cvevents(when = "dates", what = "degree", where = "loc", details = "details")
-
-```
-
-
-# Charlas
+# Congresos
 
 ```{r }
 #| label: oral
 #| output: asis
 tibble::tribble(
   ~degree, ~uni, ~loc, ~dates, ~details,
-  "Universidad de Costa Rica", "", "Grupo de Ingeniería Aeroespacial", "22 Jun. 2023",
-  c("Calidad y Normalización en la Industria Aeroespacial"),
+  "Universidad Nacional", "", "XXXV Congreso Latino-Americano de Sociología", "26-31 Jul. 2026",
+  c("Voices Taiwanesas: Analizar las diferencias y desafíos culturales experimentados por personas migrantes taiwaneses residentes en Heredia y San José"),
+) |>
+  cvevents(when = "dates", what = "degree", where = "loc", details = "details")
+```
+
+# Idiomas
+
+```{r }
+#| label: lang
+#| output: asis
+tibble::tribble(
+  ~degree, ~uni, ~loc, ~dates, ~details,
+  
+  "Nivel", "", "Nativa", "",
+  c("Español"),
+  
+  "Nivel", "", "Usuaria independiente (B2)", "",
+  c("Inglés"),
+  
+    "Nivel", "", "Usuaria básica (A1)", "",
+  c("Portugués")
+
 ) |>
   cvevents(when = "dates", what = "degree", where = "loc", details = "details")
 ```
@@ -217,23 +139,13 @@ tibble::tribble(
 #| output: asis
 tibble::tribble(
   ~degree, ~uni, ~loc, ~dates, ~details,
-  "Nivel", "", "Avanzado", "",
-  c("R y RStudio",
-    "Minitab", 
-    "MS Excel (VBA)"),
-  
-  "Nivel", "", "Intermedio", "",
-  c("Python",
-    "Git",
-    "Markdown",
-    "LaTeX",
+  "Nivel", "", "Básico-Intermedio", "",
+  c("MS Word",
+    "MS Power Point", 
+    "MS Excel", 
     "Jamovi"),
-  
-  "Nivel", "", "Básico", "",
-  c("AutoDesk Fusion 360",
-    "SQL",
-    "MongoDB", 
-    "PowerBI")
+
 ) |>
   cvevents(when = "dates", what = "degree", where = "loc", details = "details")
 ```
+

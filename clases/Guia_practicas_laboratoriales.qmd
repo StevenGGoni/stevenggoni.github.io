@@ -403,6 +403,10 @@ No se consideran válidas las siguientes referencias:
 
 La rúbrica puede obtenerse en este [enlace](https://stevenggoni.github.io/clases/Rúbrica%20de%20evaluación%20(Excel).xlsx).
 
+Las prácticas de laboratorio constituyen una unidad pedagógica completa e insustituible. Por esta razón, en caso de ausencia a la sesión de ejecución, la nota asignada a la persona estudiante será de **cero en la totalidad de la práctica (100 % del valor del informe)**. Si la ausencia es debidamente justificada, se procederá según lo establecido en el programa del curso.
+
+Para garantizar el principio de integridad académica y tener derecho al porcentaje asociado a la **Ejecución de la práctica**, las personas estudiantes deben enviar los datos recolectados a la persona docente (y a la persona asistente, si aplica) inmediatamente después de finalizada la sesión; de lo contrario, la nota consignada en dicho componente será cero.
+
 En resumen:
 
 | Componente                         | Valor   |
@@ -419,3 +423,4 @@ En resumen:
 | **Total**                          | **100** |
 
 : Resumen de evaluación
+
