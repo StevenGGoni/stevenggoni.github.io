@@ -525,7 +525,7 @@ datos %>%
 ## Ejercicio 04 {.bloques}
 
 * Estime el parámetro de la distribución
-  * $E(x) = \frac{1}{\lambda = 5.056} \rightarrow \lambda = \frac{1}{5.056}=0.1978$
+  * $E(x) = \frac{1}{\lambda} = 5.056 \rightarrow \lambda = \frac{1}{5.056}=0.1978$
 * La probabilidad de durar menos de 10 minutos
   * $0.86156$
 * La probabilidad de durar más de 5 minutos
