@@ -879,7 +879,7 @@ $$
 V(x|\theta, \omega) = e^{2\theta+\omega^2}(e^{\omega^2}-1)
 $$
 
-* Para obtener los parámetros de esta distribución, siga la sigueinte definición: 
+* Para obtener los parámetros de esta distribución, siga la siguiente definición: 
 
   * Sea $W$ una variable aleatoria con distribución normal, con media $\theta$ y varianza $\omega^2$. 
   
