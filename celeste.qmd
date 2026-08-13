@@ -3,8 +3,6 @@ author: Celeste Briceño Mena
 title: Estudiante del Programa de Bachillerato y Licenciatura en Sociología de la Universidad Nacional y del Programa de Bachillerato y Licenciatura en Psicología de la Universidad de Costa Rica
 format:
   classic-cv-pdf: default
-cvfooter:
-  left: "https://cr.linkedin.com/in/celeste-mena-9b981b296"
 cvcolor: 161A21 #without `#`
 bgcolor: 161A21
 cvfont: fetamont #texlive fonts like raleway,fetamont,gillius,comfortaa
@@ -13,7 +11,7 @@ cvmeta:
     left: Estudiante de tercer nivel de la carrera de Sociología
     right: San José, Costa Rica
   - title: Campo
-    left: Género, Migraciiones
+    left: Género, Sexualidad
     right: 
   - title: Tecnologías
     left: Paquete de Office
@@ -42,7 +40,7 @@ cvevents <- function(tbl, when, what, where, details) {
 
 # Resumen
 
-Estudiante avanzada de Sociología (UNA) y Psicología (UCR) interesada en estudios de género, diversidad socio-sexual y procesos migratorios. Con experiencia en metodologías participativas (grupos focales, talleres), levantamiento de campo, diseño de encuestas y análisis cualitativo/cuantitativo. Destaca por su participación como ponente en congresos internacionales (ALAS) y el abordaje de problemáticas comunitarias y sociales desde un enfoque interseccional.
+Estudiante avanzada de Sociología (UNA) y Psicología (UCR) interesada en estudios de género y diversidad socio-sexual. Con experiencia en metodologías participativas (grupos focales, talleres), levantamiento de campo, diseño de encuestas y análisis cualitativo/cuantitativo. Destaca por su participación como ponente en congresos internacionales (ALAS) y el abordaje de problemáticas comunitarias y sociales desde un enfoque interseccional.
 
 # Formación
 
@@ -55,7 +53,7 @@ tibble::tribble(
   c("Cursando tercer año de la carrera"),
   
   "Est. Bach. Psicología", "Universidad de Costa Rica", "San José, Costa Rica", "2024 - Actualidad", 
-  c("Cursando segundo año de la carrera")
+  c("Cursando primer año de la carrera")
 ) |>
   cvevents(when = "dates", what = "degree", where = "loc", details = "details")
 ```

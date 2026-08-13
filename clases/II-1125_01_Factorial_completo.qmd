@@ -1,0 +1,8 @@
+---
+title: "Diseño factorial completo $2^k$"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1125_01_Factorial_completo.pdf) <br> II-1125 Estadística para Ingeniería Industrial III"
+date: today
+format: revealjs
+---
+
+## Agenda {.bloques}

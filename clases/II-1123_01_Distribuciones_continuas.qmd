@@ -216,7 +216,7 @@ $$
 V(x|\mu, \sigma) = \sigma^2
 $$
 
-* La notación $N(\mu, \sigma^2)$ es comunmente empleada para representar esta distribición
+* La notación $N(\mu, \sigma^2)$ es comunmente empleada para representar esta distribución
 
 * $-\infty < x < \infty$
 
