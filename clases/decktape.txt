@@ -29,3 +29,5 @@ decktape reveal --size="1920x1080" II-1123_08_Reductores_ruido.html II-1123_08_R
 decktape reveal --size="1920x1080" II-1123_01_Distribuciones_continuas.html II-1123_01_Distribuciones_continuas.pdf
 
 decktape reveal --size="1920x1080" II-1123_02_Distribuciones_muestrales.html II-1123_02_Distribuciones_muestrales.pdf
+
+decktape reveal --size="1920x1080" II-1125_01_Factorial_completo.html II-1125_01_Factorial_completo.pdf

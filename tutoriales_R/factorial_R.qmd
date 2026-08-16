@@ -1,0 +1,152 @@
+---
+title: "Diseño factorial completo $2^k$ en `R`"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    collapse-sections: true
+execute:
+  warning: false
+  message: false
+---
+
+# Librerías
+
+Al inicio de todas las clase se colocarán las librerías que se van a utilizar para el desarrollo de los casos.
+
+```{r}
+
+library(tidyverse)
+library(FrF2)
+library(broom)
+library(flextable)
+
+```
+
+# Introducción
+
+Diseñar un experimento factorial es bastante simple, y hacerlo en `R` no es la excepción. En particular, a mi me gusta usar el `tidyverse` para casi todo.
+
+Por lo general se parte de una matriz de diseño y con base en ella se trabaja con variables codificadas.
+
+Supongamos una situación en la que interesa diseñar un experimento factorial $2^4$\$2\^4\$.
+
+```{r}
+
+A <- B <- C <- D <- c(-1, 1)
+
+diseno <- tidyr::expand_grid(A, B, C, D)
+
+diseno
+
+```
+
+Lo anterior corresponde a un diseño factorial $2^4$, pero sin réplicas. Para replicarlo, se puede usar `rbind()` o alguna función compuesta que lo genere.
+
+En este caso, vamos a replicarlo 2 veces.
+
+```{r}
+
+diseno <- rbind(diseno, diseno)
+
+diseno
+
+```
+
+Finalmente, solo nos falta aleatorizarlo
+
+```{r}
+
+diseno <- diseno[order(sample(1:32)), ]
+
+```
+
+Con esto, tenemos un diseño factorial generado $2^4$, con lo cual se puede expandir a otras cantidades de factores y niveles.
+
+Este diseño también se puede relizar con liberías, por ejemplo usando `FrF2`.
+
+```{r}
+
+FrF2::FrF2(nruns = 2^4, 
+           nfactors = 4, 
+           replications = 2, 
+           blocks = 1,
+           randomize = TRUE)
+
+```
+
+No obstante, este tipo de librarias, a título personal, no me encantan. ¿Pueden deducir por qué?
+
+Trabajemos con el diseño creado con `R base`, agreguemos una respuesta ficticia, solo a modo de ejemplo.
+
+```{r}
+
+R <- rnorm(32, 30, 2)
+
+resultados <- cbind(diseno, R)
+
+```
+
+Se procede con el análisis
+
+```{r}
+
+modelo1 <- lm(R ~ A*B*C*D, 
+              data = resultados)
+
+broom::tidy(modelo1) %>% 
+  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) %>% 
+  flextable::flextable()
+
+broom::tidy(aov(modelo1)) %>% 
+  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) %>% 
+  flextable::flextable()
+
+```
+
+Algunos resultados gráficos:
+
+```{r}
+
+FrF2::DanielPlot(modelo1) # gráfico de daniel
+FrF2::MEPlot(modelo1) # Efectos principales
+FrF2::IAPlot(modelo1) # Efectos de interacción
+
+```
+
+Para un gráfico de Pareto
+
+```{r}
+
+efectos <- coef(modelo1)[-1]  # quitamos intercepto
+df_efectos <- data.frame(
+  factor = names(efectos),
+  efecto = abs(efectos))
+
+ggplot(df_efectos, aes(x = reorder(factor, efecto), y = efecto)) +
+  geom_bar(stat = "identity", fill =  "darksalmon") +
+  coord_flip() +
+  labs(x = "Factor/Interacción", y = "Magnitud del efecto",
+       title = "Pareto de efectos factoriales") +
+  theme_bw()
+
+```
+
+¿Qué nos falta?
+
+Pues eliminar todo aquello que no aporte al modelo, esta es una forma de hacerlo automático, pero en DdE puede ser más valioso hacerlo paso a paso.
+
+```{r}
+
+modelo_final <- step(modelo1, direction  = "backward")
+
+broom::tidy(modelo_final) %>% 
+  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) %>% 
+  flextable::flextable()
+
+broom::tidy(aov(modelo_final)) %>% 
+  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) %>% 
+  flextable::flextable()
+
+```

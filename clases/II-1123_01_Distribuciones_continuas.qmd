@@ -23,6 +23,7 @@ library(kableExtra)
   * Gamma
   * Weibull
   * Lognormal
+  * Beta
 * Otras distribuciones relevantes
 * Generalización y advertencias
 

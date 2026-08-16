@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xml:lang="es-ES"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Diseño factorial completo 2^k en R – Steven García Goñi &lt;span class='navbar-subtitle'&gt;Estadística e Ingeniería&lt;/span&gt;</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-53ccac5bf6d5e6640b46cd35981ed5da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-328d1cbd98b1d2c79f3537d7d6c4fd96.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-53ccac5bf6d5e6640b46cd35981ed5da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<script src="https://cdn.userway.org/widget.js" data-account="AJmG8zlfIo"></script>
+<link href="../site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+
+<script src="../site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="Logo de un cuervo" class="navbar-logo light-content">
+    <img src="../images/logo.png" alt="Logo de un cuervo" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Steven García Goñi <span class="navbar-subtitle">Estadística e Ingeniería</span></span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../publicaciones.html"> 
+<span class="menu-text">Publicaciones</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-recursos-académicos" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Recursos académicos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-recursos-académicos">    
+        <li>
+    <a class="dropdown-item" href="../infografias.html">
+ <span class="dropdown-text">Infografías</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../interactivos.html">
+ <span class="dropdown-text">Simulaciones y visualizadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../recursos_graficos.html">
+ <span class="dropdown-text">Construcción de gráficos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutoriales_R.html">
+ <span class="dropdown-text">Tutoriales en R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../clases.html">
+ <span class="dropdown-text">Material de clases</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sobre-mí" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sobre mí</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sobre-mí">    
+        <li>
+    <a class="dropdown-item" href="../resume.pdf" target="_blank">
+ <span class="dropdown-text">Currículum</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../logo.html">
+ <span class="dropdown-text">Identidad visual</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="mailto:steven.garciagoni@ucr.ac.cr"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-solid:envelope" aria-label="Icon envelope from fa6-solid Iconify.design set." title="Correo electrónico"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/StevenGGoni"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:github" aria-label="Icon github from mdi Iconify.design set." title="GitHub"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/sggoni/"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:linkedin" aria-label="Icon linkedin from mdi Iconify.design set." title="LinkedIn"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=X_3YTJ0AAAAJ&amp;hl=es"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:google-scholar" aria-label="Icon google-scholar from fa6-brands Iconify.design set." title="Google Académico"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://orcid.org/0000-0002-1822-5465"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="simple-icons:orcid" aria-label="Icon orcid from simple-icons Iconify.design set." title="Orcid"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.scopus.com/authid/detail.uri?authorId=58504295000"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="simple-icons:scopus" aria-label="Icon scopus from simple-icons Iconify.design set." title="Scopus"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.researchgate.net/profile/Steven-Garcia-Goni"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="academicons:researchgate-square" aria-label="Icon researchgate-square from academicons Iconify.design set." title="ResearchGate"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://stevenggoni.github.io/resume.pdf"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="academicons:cv-square" aria-label="Icon cv-square from academicons Iconify.design set." title="CV"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#librerías" id="toc-librerías" class="nav-link active" data-scroll-target="#librerías">Librerías</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción">Introducción</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Diseño factorial completo <span class="math inline">\(2^k\)</span> en <code>R</code></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">15 de agosto de 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="librerías" class="level1">
+<h1>Librerías</h1>
+<p>Al inicio de todas las clase se colocarán las librerías que se van a utilizar para el desarrollo de los casos.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FrF2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>Diseñar un experimento factorial es bastante simple, y hacerlo en <code>R</code> no es la excepción. En particular, a mi me gusta usar el <code>tidyverse</code> para casi todo.</p>
+<p>Por lo general se parte de una matriz de diseño y con base en ella se trabaja con variables codificadas.</p>
+<p>Supongamos una situación en la que interesa diseñar un experimento factorial <span class="math inline">\(2^4\)</span>$2^4$.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> B <span class="ot">&lt;-</span> C <span class="ot">&lt;-</span> D <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>diseno <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">expand_grid</span>(A, B, C, D)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>diseno</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 4
+       A     B     C     D
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1    -1    -1    -1    -1
+ 2    -1    -1    -1     1
+ 3    -1    -1     1    -1
+ 4    -1    -1     1     1
+ 5    -1     1    -1    -1
+ 6    -1     1    -1     1
+ 7    -1     1     1    -1
+ 8    -1     1     1     1
+ 9     1    -1    -1    -1
+10     1    -1    -1     1
+11     1    -1     1    -1
+12     1    -1     1     1
+13     1     1    -1    -1
+14     1     1    -1     1
+15     1     1     1    -1
+16     1     1     1     1</code></pre>
+</div>
+</div>
+<p>Lo anterior corresponde a un diseño factorial <span class="math inline">\(2^4\)</span>, pero sin réplicas. Para replicarlo, se puede usar <code>rbind()</code> o alguna función compuesta que lo genere.</p>
+<p>En este caso, vamos a replicarlo 2 veces.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>diseno <span class="ot">&lt;-</span> <span class="fu">rbind</span>(diseno, diseno)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>diseno</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 32 × 4
+       A     B     C     D
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1    -1    -1    -1    -1
+ 2    -1    -1    -1     1
+ 3    -1    -1     1    -1
+ 4    -1    -1     1     1
+ 5    -1     1    -1    -1
+ 6    -1     1    -1     1
+ 7    -1     1     1    -1
+ 8    -1     1     1     1
+ 9     1    -1    -1    -1
+10     1    -1    -1     1
+# ℹ 22 more rows</code></pre>
+</div>
+</div>
+<p>Finalmente, solo nos falta aleatorizarlo</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>diseno <span class="ot">&lt;-</span> diseno[<span class="fu">order</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">32</span>)), ]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Con esto, tenemos un diseño factorial generado <span class="math inline">\(2^4\)</span>, con lo cual se puede expandir a otras cantidades de factores y niveles.</p>
+<p>Este diseño también se puede relizar con liberías, por ejemplo usando <code>FrF2</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>FrF2<span class="sc">::</span><span class="fu">FrF2</span>(<span class="at">nruns =</span> <span class="dv">2</span><span class="sc">^</span><span class="dv">4</span>, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">nfactors =</span> <span class="dv">4</span>, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">replications =</span> <span class="dv">2</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">blocks =</span> <span class="dv">1</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">randomize =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   run.no run.no.std.rp  A  B  C  D Blocks
+1       1           7.1 -1  1  1 -1     .1
+2       2          11.1 -1  1 -1  1     .1
+3       3           5.1 -1 -1  1 -1     .1
+4       4          14.1  1 -1  1  1     .1
+5       5          15.1 -1  1  1  1     .1
+6       6           8.1  1  1  1 -1     .1
+7       7           1.1 -1 -1 -1 -1     .1
+8       8           2.1  1 -1 -1 -1     .1
+9       9          10.1  1 -1 -1  1     .1
+10     10          16.1  1  1  1  1     .1
+11     11           4.1  1  1 -1 -1     .1
+12     12           3.1 -1  1 -1 -1     .1
+13     13           9.1 -1 -1 -1  1     .1
+14     14           6.1  1 -1  1 -1     .1
+15     15          13.1 -1 -1  1  1     .1
+16     16          12.1  1  1 -1  1     .1
+17     17           8.2  1  1  1 -1     .2
+18     18           2.2  1 -1 -1 -1     .2
+19     19          14.2  1 -1  1  1     .2
+20     20          11.2 -1  1 -1  1     .2
+21     21          16.2  1  1  1  1     .2
+22     22          10.2  1 -1 -1  1     .2
+23     23          15.2 -1  1  1  1     .2
+24     24           5.2 -1 -1  1 -1     .2
+25     25           1.2 -1 -1 -1 -1     .2
+26     26           6.2  1 -1  1 -1     .2
+27     27          12.2  1  1 -1  1     .2
+28     28          13.2 -1 -1  1  1     .2
+29     29           4.2  1  1 -1 -1     .2
+30     30           7.2 -1  1  1 -1     .2
+31     31           3.2 -1  1 -1 -1     .2
+32     32           9.2 -1 -1 -1  1     .2
+class=design, type= full factorial 
+NOTE: columns run.no and run.no.std.rp  are annotation, 
+ not part of the data frame</code></pre>
+</div>
+</div>
+<p>No obstante, este tipo de librarias, a título personal, no me encantan. ¿Pueden deducir por qué?</p>
+<p>Trabajemos con el diseño creado con <code>R base</code>, agreguemos una respuesta ficticia, solo a modo de ejemplo.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">32</span>, <span class="dv">30</span>, <span class="dv">2</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">cbind</span>(diseno, R)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Se procede con el análisis</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>modelo1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(R <span class="sc">~</span> A<span class="sc">*</span>B<span class="sc">*</span>C<span class="sc">*</span>D, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> resultados)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(modelo1) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> <span class="fu">round</span>(., <span class="dv">2</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  flextable<span class="sc">::</span><span class="fu">flextable</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-95b0c1de{}.cl-9596c464{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-95a66acc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-95a66afe{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-95a783d0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95a783f8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95a78402{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95a78416{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95a78420{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95a7842a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-95b0c1de"><thead><tr style="overflow-wrap:break-word;"><th class="cl-95a783d0"><p class="cl-95a66acc"><span class="cl-9596c464">term</span></p></th><th class="cl-95a783f8"><p class="cl-95a66afe"><span class="cl-9596c464">estimate</span></p></th><th class="cl-95a783f8"><p class="cl-95a66afe"><span class="cl-9596c464">std.error</span></p></th><th class="cl-95a783f8"><p class="cl-95a66afe"><span class="cl-9596c464">statistic</span></p></th><th class="cl-95a783f8"><p class="cl-95a66afe"><span class="cl-9596c464">p.value</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">(Intercept)</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">29.58</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">86.55</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">A</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-0.35</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-1.03</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.32</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">B</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-0.03</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-0.09</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.93</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">C</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-0.43</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-1.27</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.22</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">D</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-0.73</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-2.15</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.05</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">A:B</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.60</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">1.75</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.10</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">A:C</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.21</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.63</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.54</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">B:C</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.14</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.40</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.70</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">A:D</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-0.14</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-0.40</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.69</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">B:D</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-0.23</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-0.69</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.50</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">C:D</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.29</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.86</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.40</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">A:B:C</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-0.32</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-0.95</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.36</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">A:B:D</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-0.39</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">-1.14</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.27</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">A:C:D</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.17</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.49</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.63</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78402"><p class="cl-95a66acc"><span class="cl-9596c464">B:C:D</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.35</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">1.02</span></p></td><td class="cl-95a78416"><p class="cl-95a66afe"><span class="cl-9596c464">0.32</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95a78420"><p class="cl-95a66acc"><span class="cl-9596c464">A:B:C:D</span></p></td><td class="cl-95a7842a"><p class="cl-95a66afe"><span class="cl-9596c464">0.24</span></p></td><td class="cl-95a7842a"><p class="cl-95a66afe"><span class="cl-9596c464">0.34</span></p></td><td class="cl-95a7842a"><p class="cl-95a66afe"><span class="cl-9596c464">0.71</span></p></td><td class="cl-95a7842a"><p class="cl-95a66afe"><span class="cl-9596c464">0.49</span></p></td></tr></tbody></table></div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="fu">aov</span>(modelo1)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> <span class="fu">round</span>(., <span class="dv">2</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  flextable<span class="sc">::</span><span class="fu">flextable</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-95e0ec7e{}.cl-95d219ba{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-95d5aa26{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-95d5aa3a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-95d5cf56{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95d5cf60{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95d5cf6a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95d5cf6b{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95d5cf74{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95d5cf75{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-95e0ec7e"><thead><tr style="overflow-wrap:break-word;"><th class="cl-95d5cf56"><p class="cl-95d5aa26"><span class="cl-95d219ba">term</span></p></th><th class="cl-95d5cf60"><p class="cl-95d5aa3a"><span class="cl-95d219ba">df</span></p></th><th class="cl-95d5cf60"><p class="cl-95d5aa3a"><span class="cl-95d219ba">sumsq</span></p></th><th class="cl-95d5cf60"><p class="cl-95d5aa3a"><span class="cl-95d219ba">meansq</span></p></th><th class="cl-95d5cf60"><p class="cl-95d5aa3a"><span class="cl-95d219ba">statistic</span></p></th><th class="cl-95d5cf60"><p class="cl-95d5aa3a"><span class="cl-95d219ba">p.value</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">A</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">3.99</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">3.99</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1.07</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.32</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">B</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.03</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.03</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.01</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.93</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">C</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">6.04</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">6.04</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1.61</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.22</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">D</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">17.20</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">17.20</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">4.60</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.05</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">A:B</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">11.45</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">11.45</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">3.06</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.10</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">A:C</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1.46</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1.46</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.39</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.54</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">B:C</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.59</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.59</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.16</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.70</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">A:D</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.61</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.61</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.16</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.69</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">B:D</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1.76</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1.76</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.47</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.50</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">C:D</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">2.76</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">2.76</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.74</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.40</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">A:B:C</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">3.36</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">3.36</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.90</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.36</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">A:B:D</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">4.87</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">4.87</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1.30</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.27</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">A:C:D</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.88</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.88</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.24</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.63</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">B:C:D</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">3.90</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">3.90</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1.04</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.32</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf6a"><p class="cl-95d5aa26"><span class="cl-95d219ba">A:B:C:D</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1.90</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">1.90</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.51</span></p></td><td class="cl-95d5cf6b"><p class="cl-95d5aa3a"><span class="cl-95d219ba">0.49</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95d5cf74"><p class="cl-95d5aa26"><span class="cl-95d219ba">Residuals</span></p></td><td class="cl-95d5cf75"><p class="cl-95d5aa3a"><span class="cl-95d219ba">16</span></p></td><td class="cl-95d5cf75"><p class="cl-95d5aa3a"><span class="cl-95d219ba">59.80</span></p></td><td class="cl-95d5cf75"><p class="cl-95d5aa3a"><span class="cl-95d219ba">3.74</span></p></td><td class="cl-95d5cf75"><p class="cl-95d5aa3a"><span class="cl-95d219ba"></span></p></td><td class="cl-95d5cf75"><p class="cl-95d5aa3a"><span class="cl-95d219ba"></span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>Algunos resultados gráficos:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>FrF2<span class="sc">::</span><span class="fu">DanielPlot</span>(modelo1) <span class="co"># gráfico de daniel</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="factorial_R_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>FrF2<span class="sc">::</span><span class="fu">MEPlot</span>(modelo1) <span class="co"># Efectos principales</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="factorial_R_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>FrF2<span class="sc">::</span><span class="fu">IAPlot</span>(modelo1) <span class="co"># Efectos de interacción</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="factorial_R_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Para un gráfico de Pareto</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>efectos <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo1)[<span class="sc">-</span><span class="dv">1</span>]  <span class="co"># quitamos intercepto</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df_efectos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">factor =</span> <span class="fu">names</span>(efectos),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">efecto =</span> <span class="fu">abs</span>(efectos))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_efectos, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(factor, efecto), <span class="at">y =</span> efecto)) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span>  <span class="st">"darksalmon"</span>) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Factor/Interacción"</span>, <span class="at">y =</span> <span class="st">"Magnitud del efecto"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Pareto de efectos factoriales"</span>) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="factorial_R_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>¿Qué nos falta?</p>
+<p>Pues eliminar todo aquello que no aporte al modelo, esta es una forma de hacerlo automático, pero en DdE puede ser más valioso hacerlo paso a paso.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>modelo_final <span class="ot">&lt;-</span> <span class="fu">step</span>(modelo1, <span class="at">direction  =</span> <span class="st">"backward"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=52.01
+R ~ A * B * C * D
+
+          Df Sum of Sq    RSS    AIC
+- A:B:C:D  1    1.9048 61.702 51.011
+&lt;none&gt;                 59.797 52.007
+
+Step:  AIC=51.01
+R ~ A + B + C + D + A:B + A:C + B:C + A:D + B:D + C:D + A:B:C + 
+    A:B:D + A:C:D + B:C:D
+
+        Df Sum of Sq    RSS    AIC
+- A:C:D  1    0.8826 62.585 49.465
+- A:B:C  1    3.3577 65.060 50.706
+- B:C:D  1    3.9018 65.604 50.973
+&lt;none&gt;               61.702 51.011
+- A:B:D  1    4.8668 66.569 51.440
+
+Step:  AIC=49.47
+R ~ A + B + C + D + A:B + A:C + B:C + A:D + B:D + C:D + A:B:C + 
+    A:B:D + B:C:D
+
+        Df Sum of Sq    RSS    AIC
+- A:B:C  1    3.3577 65.942 49.137
+- B:C:D  1    3.9018 66.487 49.400
+&lt;none&gt;               62.585 49.465
+- A:B:D  1    4.8668 67.451 49.862
+
+Step:  AIC=49.14
+R ~ A + B + C + D + A:B + A:C + B:C + A:D + B:D + C:D + A:B:D + 
+    B:C:D
+
+        Df Sum of Sq    RSS    AIC
+- A:C    1    1.4611 67.403 47.839
+- B:C:D  1    3.9018 69.844 48.977
+&lt;none&gt;               65.942 49.137
+- A:B:D  1    4.8668 70.809 49.416
+
+Step:  AIC=47.84
+R ~ A + B + C + D + A:B + B:C + A:D + B:D + C:D + A:B:D + B:C:D
+
+        Df Sum of Sq    RSS    AIC
+- B:C:D  1    3.9018 71.305 47.640
+&lt;none&gt;               67.403 47.839
+- A:B:D  1    4.8668 72.270 48.070
+
+Step:  AIC=47.64
+R ~ A + B + C + D + A:B + B:C + A:D + B:D + C:D + A:B:D
+
+        Df Sum of Sq    RSS    AIC
+- B:C    1    0.5892 71.895 45.903
+- C:D    1    2.7622 74.068 46.856
+&lt;none&gt;               71.305 47.640
+- A:B:D  1    4.8668 76.172 47.752
+
+Step:  AIC=45.9
+R ~ A + B + C + D + A:B + A:D + B:D + C:D + A:B:D
+
+        Df Sum of Sq    RSS    AIC
+- C:D    1    2.7622 74.657 45.109
+&lt;none&gt;               71.895 45.903
+- A:B:D  1    4.8668 76.761 45.999
+
+Step:  AIC=45.11
+R ~ A + B + C + D + A:B + A:D + B:D + A:B:D
+
+        Df Sum of Sq    RSS    AIC
+&lt;none&gt;               74.657 45.109
+- A:B:D  1    4.8668 79.524 45.130
+- C      1    6.0355 80.692 45.597</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(modelo_final) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> <span class="fu">round</span>(., <span class="dv">2</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  flextable<span class="sc">::</span><span class="fu">flextable</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-971647c4{}.cl-96ee35ea{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-96fedbd4{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-96fedc06{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-970024bc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-97002502{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-97002516{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9700252a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-97002534{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-97002548{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-971647c4"><thead><tr style="overflow-wrap:break-word;"><th class="cl-970024bc"><p class="cl-96fedbd4"><span class="cl-96ee35ea">term</span></p></th><th class="cl-97002502"><p class="cl-96fedc06"><span class="cl-96ee35ea">estimate</span></p></th><th class="cl-97002502"><p class="cl-96fedc06"><span class="cl-96ee35ea">std.error</span></p></th><th class="cl-97002502"><p class="cl-96fedc06"><span class="cl-96ee35ea">statistic</span></p></th><th class="cl-97002502"><p class="cl-96fedc06"><span class="cl-96ee35ea">p.value</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-97002516"><p class="cl-96fedbd4"><span class="cl-96ee35ea">(Intercept)</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">29.58</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.32</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">92.87</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-97002516"><p class="cl-96fedbd4"><span class="cl-96ee35ea">A</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">-0.35</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.32</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">-1.11</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.28</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-97002516"><p class="cl-96fedbd4"><span class="cl-96ee35ea">B</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">-0.03</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.32</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">-0.10</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.92</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-97002516"><p class="cl-96fedbd4"><span class="cl-96ee35ea">C</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">-0.43</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.32</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">-1.36</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.19</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-97002516"><p class="cl-96fedbd4"><span class="cl-96ee35ea">D</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">-0.73</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.32</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">-2.30</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.03</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-97002516"><p class="cl-96fedbd4"><span class="cl-96ee35ea">A:B</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.60</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.32</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">1.88</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.07</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-97002516"><p class="cl-96fedbd4"><span class="cl-96ee35ea">A:D</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">-0.14</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.32</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">-0.43</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.67</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-97002516"><p class="cl-96fedbd4"><span class="cl-96ee35ea">B:D</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">-0.23</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.32</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">-0.74</span></p></td><td class="cl-9700252a"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.47</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-97002534"><p class="cl-96fedbd4"><span class="cl-96ee35ea">A:B:D</span></p></td><td class="cl-97002548"><p class="cl-96fedc06"><span class="cl-96ee35ea">-0.39</span></p></td><td class="cl-97002548"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.32</span></p></td><td class="cl-97002548"><p class="cl-96fedc06"><span class="cl-96ee35ea">-1.22</span></p></td><td class="cl-97002548"><p class="cl-96fedc06"><span class="cl-96ee35ea">0.23</span></p></td></tr></tbody></table></div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="fu">aov</span>(modelo_final)) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> <span class="fu">round</span>(., <span class="dv">2</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  flextable<span class="sc">::</span><span class="fu">flextable</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-975aa040{}.cl-973f1e06{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-974a2b70{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-974a2ba2{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-974b3790{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-974b37c2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-974b37cc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-974b37e0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-974b37e1{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-974b37fe{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-975aa040"><thead><tr style="overflow-wrap:break-word;"><th class="cl-974b3790"><p class="cl-974a2b70"><span class="cl-973f1e06">term</span></p></th><th class="cl-974b37c2"><p class="cl-974a2ba2"><span class="cl-973f1e06">df</span></p></th><th class="cl-974b37c2"><p class="cl-974a2ba2"><span class="cl-973f1e06">sumsq</span></p></th><th class="cl-974b37c2"><p class="cl-974a2ba2"><span class="cl-973f1e06">meansq</span></p></th><th class="cl-974b37c2"><p class="cl-974a2ba2"><span class="cl-973f1e06">statistic</span></p></th><th class="cl-974b37c2"><p class="cl-974a2ba2"><span class="cl-973f1e06">p.value</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-974b37cc"><p class="cl-974a2b70"><span class="cl-973f1e06">A</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">1</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">3.99</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">3.99</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">1.23</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.28</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-974b37cc"><p class="cl-974a2b70"><span class="cl-973f1e06">B</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">1</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.03</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.03</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.01</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.92</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-974b37cc"><p class="cl-974a2b70"><span class="cl-973f1e06">C</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">1</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">6.04</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">6.04</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">1.86</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.19</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-974b37cc"><p class="cl-974a2b70"><span class="cl-973f1e06">D</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">1</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">17.20</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">17.20</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">5.30</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.03</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-974b37cc"><p class="cl-974a2b70"><span class="cl-973f1e06">A:B</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">1</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">11.45</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">11.45</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">3.53</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.07</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-974b37cc"><p class="cl-974a2b70"><span class="cl-973f1e06">A:D</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">1</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.61</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.61</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.19</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.67</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-974b37cc"><p class="cl-974a2b70"><span class="cl-973f1e06">B:D</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">1</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">1.76</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">1.76</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.54</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.47</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-974b37cc"><p class="cl-974a2b70"><span class="cl-973f1e06">A:B:D</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">1</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">4.87</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">4.87</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">1.50</span></p></td><td class="cl-974b37e0"><p class="cl-974a2ba2"><span class="cl-973f1e06">0.23</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-974b37e1"><p class="cl-974a2b70"><span class="cl-973f1e06">Residuals</span></p></td><td class="cl-974b37fe"><p class="cl-974a2ba2"><span class="cl-973f1e06">23</span></p></td><td class="cl-974b37fe"><p class="cl-974a2ba2"><span class="cl-973f1e06">74.66</span></p></td><td class="cl-974b37fe"><p class="cl-974a2ba2"><span class="cl-973f1e06">3.25</span></p></td><td class="cl-974b37fe"><p class="cl-974a2ba2"><span class="cl-973f1e06"></span></p></td><td class="cl-974b37fe"><p class="cl-974a2ba2"><span class="cl-973f1e06"></span></p></td></tr></tbody></table></div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Creado con <a href="https://quarto.org"><iconify-icon role="img" inline="" icon="simple-icons:quarto" aria-label="Quarto Logo" title="Quarto Logo"></iconify-icon> Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

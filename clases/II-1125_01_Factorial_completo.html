@@ -141,6 +141,26 @@
       margin-right: 0; 
     }
   </style>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+  <script src="site_libs/plotly-binding-4.12.0/plotly.js"></script>
+
+  <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+  <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+  <link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+  <script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+  <link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+
+  <script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -158,13 +178,971 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">11 de agosto de 2026</p>
+  <p class="date">15 de agosto de 2026</p>
 </section>
-<section class="slide level2">
-
-
+<section class="slide level2 bloques">
+<h2>Agenda</h2>
+<ul>
+<li><p>Algunos conceptos</p></li>
+<li><p>Definiciones y ventajas</p></li>
+<li><p>Diseño factorial <span class="math inline">2^k</span></p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Algunos conceptos</h2>
+<ul>
+<li><p><span class="hi">Región de operabilidad</span>: Es la región que está definida por el conjunto de condiciones donde el equipo o proceso puede ser operado.</p></li>
+<li><p>Es difícil de delimitar con certeza el tamaño de la región de operabilidad, ya que hay estudiar el efecto en presencia de otros factores. Por ejemplo, las revoluciones por minuto de la máquina se pueden operar a su capacidad máxima siempre que la fuerza y la temperatura se mantengan bajos.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Algunos conceptos</h2>
+<ul>
+<li><p><span class="hi">Región de experimentación</span>: Es el espacio que está delimitado por los rangos de experimentación utilizados con cada factor.</p></li>
+<li><p>La región de experimentación es <em><u>por lo general</u></em> menor a la región de operabilidad.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Tipos de DdE</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Es sumamente importante comprender que cada tipo de diseño de experimento tiene una capacidad resolutiva que lo hace apropiado a un objetivo experimental particular.</p></li>
+<li><p>Por ello lo primero que debe establecerse es el objetivo del experimento.</p></li>
+</ul>
+<p><span class="hi">No se empieza una casa por el tejado</span></p>
+</div><div class="column img-fit">
+<p><img data-src="img/casa_tejado.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Tipos de DdE</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/tipos_doe.png"></p>
+</div></div>
+</section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Contextos, objetivos y su tipo de DdE</h1>
 
 </section>
+<section class="slide level2 bloques">
+<h2>Cribados/Exploración</h2>
+<ul>
+<li><p>Cuando un sistema o proceso es nuevo y se desea conocer cuáles factores tienen mayor influencia en las respuestas de interés.</p></li>
+<li><p>A menudo hay muchos factores, lo que implica que se desconoce mucho del sistema o proceso y es imperativo cribar los factores para encontrar solo aquellos verdaderamente importantes.</p></li>
+<li><p>No se usa para modelar respuestas.</p></li>
+<li><p>Diseños:</p>
+<ul>
+<li>Factoriales altamente fraccionados</li>
+<li>Cribado definitivo</li>
+<li>Plackett-Burman</li>
+<li>Algunas aplicaciones de Taguchi</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Modelado y mejora (optimización)</h2>
+<ul>
+<li><p>Cuando el proceso está caracterizado y los factores importantes identificados.</p></li>
+<li><p>Se usa para encontrar los niveles de los factores que resultan en valores deseables de la respuesta.</p></li>
+<li><p>Diseños de mejora:</p>
+<ul>
+<li>Factoriales completos</li>
+</ul></li>
+<li><p>Diseños de optimización:</p>
+<ul>
+<li>Superficies de respuesta</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Confirmación</h2>
+<ul>
+<li><p>Cuando se quiere verificar que el proceso o sistema funciona o se comporta en la manera esperada según la experiencia.</p></li>
+<li><p>Se utiliza para comparar, un factor a la vez (OFAT), generalmente en presencia de muchos factores de ruido que se encuentran bloqueados.</p></li>
+<li><p>Por eso también se conocen como reductores de ruido.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Confirmación</h2>
+<ul>
+<li><p>Por ejemplo, si tres materiales en apariencia iguales, pero con diferente costo, tienen el mismo rendimiento, al ser probados por tres operarios en tres máquinas.</p></li>
+<li><p>Diseños:</p>
+<ul>
+<li>OFAT</li>
+<li>DBCA</li>
+<li>Cuadrado latino</li>
+<li>Cuadrado grecolatino</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Por lo general…</h2>
+<ul>
+<li><p>Los cursos de DdE se enseñan al revés, lo que <span class="hi">no implica que se enseñen mal</span>.</p></li>
+<li><p>Se hace de esta manera con un sentido didáctico, pero en la práctica se aplican de forma inversa a como se enseñan:</p>
+<ul>
+<li>Cribados</li>
+<li>Fraccionados</li>
+<li>Amplificadores de señal</li>
+<li>Optimización</li>
+<li>Confirmación</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Experimentos factoriales</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Repaso sobre los principios del DdE</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/principios_doe.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial</h2>
+<ul>
+<li><p>Los diseños factoriales se usan ampliamente en experimentos que incluyen varios factores cuando es necesario estudiar el <span class="hi">efecto conjunto</span> de los factores sobre una respuesta.</p></li>
+<li><p>Hay varios casos especiales del diseño factorial general que son importantes debido a su uso generalizado en el trabajo de investigación y constituyen las bases de otros diseños de gran valor práctico.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial</h2>
+<ul>
+<li><p>El más importante de estos casos especiales es el de <span class="math inline">k</span> factores, cada uno con dos niveles.</p></li>
+<li><p>Estos niveles pueden ser cuantitativos, como dos valores de temperatura, presión o tiempo, o bien cualitativos, como dos máquinas, dos operadores, los niveles <em>Alto</em> y <em>Bajo</em> de un factor, o quizá la presencia o ausencia de un factor.</p></li>
+<li><p>Un réplica completa de este diseño requiere <span class="math inline">2\cdot2\cdot2\cdots2 = 2^k</span> observaciones y se le llama diseño factorial <span class="math inline">2^k</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial</h2>
+<ul>
+<li><p>Es aquel en el que interesa estudiar el efecto de dos o más factores de forma simultánea, sobre una o más variables de respuesta, cuando se tiene el <span class="hi">mismo interés</span> en todos los factores.</p></li>
+<li><p>Este tipo de diseño resulta más eficiente que estudiar cada factor de forma independiente (conocidos como OFAT).</p>
+<ul>
+<li>Eficiente: proporciona el menor número de corridas con las que pueden estudiarse <span class="math inline">k</span> factores.</li>
+</ul></li>
+<li><p>Se supone, además qué:</p>
+<ul>
+<li>Los factores son fijos</li>
+<li>Los diseños son completamente aleatorizados</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial</h2>
+<ul>
+<li><p>Una de sus grandes ventajas es que trabaja con variables codificadas (por ejemplo: −1 y +1).</p></li>
+<li><p>Esto permite trabajar con factores cuantitativos, cualitativos o mixtos (ambos a la vez).</p></li>
+<li><p>Son necesarios cuando las interacciones pueden estar presentes, de tal forma que se evitan conclusiones engañosas.</p></li>
+<li><p>Este diseño es de particular utilidad en las etapas iniciales del trabajo experimental, cuando probablemente se estén investigando muchos factores.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial</h2>
+<ul>
+<li><p>En un factorial se corren aleatoriamente todas las posibles combinaciones.</p></li>
+<li><p>Para que sea efectivo, es necesario elegir al menos dos niveles de prueba para cada factor.</p></li>
+<li><p>Cuando el factorial es completo, es un diseño “amplificador de señal”.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial</h2>
+<ul>
+<li><p>Por tanto, estos experimentos se deben realizar en etapas específicas para que resulten efectivos y eficientes.</p></li>
+<li><p>Por ejemplo, si hay un desconocimiento amplio del objeto de estudio, este experimento NO es adecuado.</p></li>
+<li><p>Pues requiere que los factores que se introduzcan al diseño, tengan algún sentido, para que se amplifique dicha señal.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial</h2>
+<ul>
+<li><p>Cuidado, no lo confunda.</p></li>
+<li><p>Se sabe que los factores afectan, pero no se sabe cuanto afectan y por ende no se puede decidir sobre si es importante o no.</p></li>
+<li><p>A esto se refiere con que amplifica una señal existente.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial</h2>
+<ul>
+<li>¿Qué abordamos en este curso respecto al factorial?
+<ul>
+<li>Factoriales completos</li>
+<li>Factoriales completos bloqueados</li>
+<li>Factoriales completos bloqueados y confundidos</li>
+<li>Factoriales fraccionados</li>
+</ul></li>
+<li>Todos se abordan desde el enfoque de los dos niveles.</li>
+<li>Luego veremos el por qué de esta decisión.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial</h2>
+<ul>
+<li>Desde luego, también presenta algunas <span class="hi">desventajas</span>.</li>
+<li>Se necesitan más corridas que con un experimento OFAT</li>
+<li>Se obtienen resultados de combinaciones que podrían no ser útiles.</li>
+<li>La interpretación de las interacciones suele ser más complicada.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Nomenclatura</h2>
+<ul>
+<li><p>Los diseños factoriales de dos niveles se representan de esta manera:</p></li>
+<li><p><span class="math display">2^k</span></p></li>
+<li><p>Donde <span class="math inline">k</span> representa la cantidad de factores y 2 la cantidad de niveles.</p></li>
+<li><p>Los diseños factoriales son sobre todo efectivos y eficientes en dos niveles.</p>
+<ul>
+<li>Tómese el tiempo para discutir con la persona docente esta afirmación.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Nomenclatura</h2>
+<ul>
+<li><p>Por ejemplo un experimento <span class="math inline">2^5</span> tiene dos niveles y 5 factores.</p>
+<ul>
+<li>La solución de la ecuación anterior da como resultado la cantidad de tratamientos, en el ejemplo anterior se contaría con 32 tratamientos.</li>
+</ul></li>
+<li><p>Cada experimento <span class="math inline">2^k</span> es capaz de estimar hasta <span class="math inline">2^{k}-1</span> efectos. Es decir, siguiendo el ejemplo anterior, se podrían estimar hasta 31 efectos.</p></li>
+<li><p>Puesto que hay dos niveles para cada factor, se supone que la respuesta es aproximadamente lineal en el rango elegido para los niveles de los factores.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimento factorial <span class="math inline">2^k</span></h2>
+<ul>
+<li><p>Si usted está interesado en usar más dos niveles en uno o más factores, puede que le convenga plantearse un experimento más eficiente.</p></li>
+<li><p>Por ejemplo, en un experimento <span class="math inline">3^3</span> con todos los factores continuos, se estudiarían 27 tratamientos y lo más que se conseguiría es un modelo <span class="hi">capaz de detectar curvaturas</span>, pero <span class="hi">no describirlas</span>.</p></li>
+<li><p>Un diseño más eficiente y eficaz serían un DCC, que con 20 corridas detecte y describe (modela) la curvatura.</p>
+<ul>
+<li>Este experimento es para de las RSM.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial <span class="math inline">2^k</span></h2>
+<ul>
+<li><p>Es decir…</p></li>
+<li><p>Los diseños factoriales son más eficientes en experimentos con 2 niveles.</p></li>
+<li><p>Evite utilizar 3 o más niveles, ya que resultan ineficientes ante otras alternativas:</p>
+<ul>
+<li>Superficies de respuesta</li>
+<li>Experimentos con puntos centrales.</li>
+</ul></li>
+<li><p>Solo se recomiendan 3 o más niveles cuando estos existan de forma “natural”, por ejemplo: tres velocidades en una secadora.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Recomendaciones</h2>
+<ul>
+<li><p>No se recomienda extrapolar los resultados fuera de la región de experimentación.</p></li>
+<li><p>Por ejemplo, si usted probó el Factor A en 20 rpm y en 50 rpm, y en el resultado encuentra una pendiente positiva.</p>
+<ul>
+<li>No debe decir que en 60 rpm habrá mejores resultados basado en la pendiente del efecto del Factor A.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial completo <span class="math inline">2^k</span></h2>
+<ul>
+<li><p>Se prueba todas las combinaciones de condiciones de los factores.</p></li>
+<li><p>Son fáciles de seguir por su patrón repetitivo.</p></li>
+<li><p>Producen información de los efectos factoriales 4 o más veces la de un factor a la vez (OFAT).</p></li>
+<li><p>Pueden identificar y ayudar a comprender las interacciones entre factores.</p></li>
+<li><p>Son fáciles de analizar.</p></li>
+<li><p>Pueden cuantificar las relaciones entre las <span class="math inline">X</span> y la <span class="math inline">Y</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial completo <span class="math inline">2^2</span></h2>
+<ul>
+<li><p>El primer diseño de la serie <span class="math inline">2^k</span> es el que solo tiene dos factores, por ejemplo: <em>A</em> y <em>B</em>; cada uno se corre a dos niveles.</p></li>
+<li><p>Los niveles de los factores pueden denominarse arbitrariamente <em>bajo</em> y <em>alto</em>.</p></li>
+<li><p>A este diseño se le llama <strong>diseño factorial <span class="math inline">2^2</span></strong>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo <span class="math inline">2^2</span></h2>
+<ul>
+<li><p>Considere la investigación del efecto de la concentración del reactivo y de la cantidad del catalizador sobre la conversión (rendimiento) de un proceso químico.</p></li>
+<li><p>Sea la concentración del reactivo el factor A, y 15 y 25 por ciento los dos niveles de interés.</p></li>
+<li><p>El catalizador es el factor B, con el nivel alto denotando el uso de 2 libras de catalizador y el nivel bajo con 1 libra. Se hacen tres réplicas del experimento y los datos son los siguientes:</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo <span class="math inline">2^2</span></h2>
+<div class="columns">
+<div class="column" style="font-size: 0.9em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-striped table-hover table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Factor
+</div></th>
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Réplica
+</div></th>
+<th data-quarto-table-cell-role="th" style="text-align: center; empty-cells: hide; border-bottom: hidden;"></th>
+</tr>
+<tr class="even">
+<th style="text-align: center;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Tratamiento</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">1</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">2</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">3</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">A bajo, B bajo</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">80</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">A alto, B bajo</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: left;">A bajo, B alto</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">60</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: left;">A alto, B alto</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">90</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li>Las combinaciones de los tratamientos se muestran gráficamente a continuación</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo <span class="math inline">2^2</span></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Los valores mostrados en el cubo son el promedio de cada uno de los tratamientos:</p>
+<ul>
+<li>(1): todos los factores en bajo</li>
+<li>a: solo A en alto.</li>
+<li>b: solo B en alto.</li>
+<li>ab: tanto A como B en alto.</li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-6cf220ddb16cb4dcf694" style="width:850px;height:670px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6cf220ddb16cb4dcf694">{"x":{"data":[{"x":[-1,1,1,-1,-1],"y":[-1,-1,1,1,-1],"text":["x: -1<br />y: -1","x:  1<br />y: -1","x:  1<br />y:  1","x: -1<br />y:  1","x: -1<br />y: -1"],"type":"scatter","mode":"lines","line":{"width":3.7795275590551185,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1,1,-1,1],"y":[-1,-1,1,1],"text":["A: -1<br />B: -1","A:  1<br />B: -1","A: -1<br />B:  1","A:  1<br />B:  1"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1,1,-1,1],"y":[-1.3500000000000001,-1.3500000000000001,1.3,1.3],"text":["(1) = 26.67<br />(28 + 25 + 27)/3","a = 33.33<br />(36 + 32 + 32)/3","b = 20<br />(18 + 19 + 23)/3","ab = 30<br />(31 + 30 + 29)/3"],"hovertext":["A: -1<br />y_pos: -1.35<br />Label: (1) = 26.67<br />(28 + 25 + 27)/3","A:  1<br />y_pos: -1.35<br />Label: a = 33.33<br />(36 + 32 + 32)/3","A: -1<br />y_pos:  1.30<br />Label: b = 20<br />(18 + 19 + 23)/3","A:  1<br />y_pos:  1.30<br />Label: ab = 30<br />(31 + 30 + 29)/3"],"textfont":{"size":26.45669291338583,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1,-1],"y":[-1,-1.1000000000000001],"text":"x: -1<br />xend: -1<br />y: -1<br />yend: -1.1","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,1],"y":[-1,-1.1000000000000001],"text":"x: 1<br />xend: 1<br />y: -1<br />yend: -1.1","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1.1000000000000001],"y":[-1.1000000000000001],"text":"-","hovertext":"x: -1.1<br />y: -1.1","textfont":{"size":34.015748031496067,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.1000000000000001],"y":[-1.1000000000000001],"text":"+","hovertext":"x: 1.1<br />y: -1.1","textfont":{"size":34.015748031496067,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1,-1.1000000000000001],"y":[-1,-1],"text":"x: -1<br />xend: -1.1<br />y: -1<br />yend: -1","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1,-1.1000000000000001],"y":[1,1],"text":"x: -1<br />xend: -1.1<br />y: 1<br />yend: 1","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1.1000000000000001],"y":[1.1000000000000001],"text":"-","hovertext":"x: -1.1<br />y: 1.1","textfont":{"size":34.015748031496067,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.1000000000000001],"y":[1.1000000000000001],"text":"+","hovertext":"x: 1.1<br />y: 1.1","textfont":{"size":34.015748031496067,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":10.958904109589042,"l":10.958904109589042},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":30},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.2100000000000002,1.2100000000000002],"tickmode":"array","ticktext":["-1.0","-0.5","0.0","0.5","1.0"],"tickvals":[-1,-0.5,0,0.5,0.99999999999999978],"categoryorder":"array","categoryarray":["-1.0","-0.5","0.0","0.5","1.0"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":false,"tickfont":{"color":null,"family":null,"size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":null,"family":null,"size":30}},"scaleanchor":"y","scaleratio":1,"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.4825000000000002,1.4325000000000001],"tickmode":"array","ticktext":["-1.0","-0.5","0.0","0.5","1.0"],"tickvals":[-1,-0.5,0,0.5,0.99999999999999978],"categoryorder":"array","categoryarray":["-1.0","-0.5","0.0","0.5","1.0"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":false,"tickfont":{"color":null,"family":null,"size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"","font":{"color":null,"family":null,"size":30}},"scaleanchor":"x","scaleratio":1,"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":"#F1F5F5","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":25},"title":{"font":{"size":30}}},"hovermode":"closest","width":850,"height":670,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"362c7c8256a2":{"x":{},"y":{},"type":"scatter"},"362c1a2b3603":{"x":{},"y":{}},"362c5a90425f":{"x":{},"y":{},"label":{}},"362c11823b97":{"x":{},"xend":{},"y":{},"yend":{}},"362c355164e5":{"x":{},"xend":{},"y":{},"yend":{}},"362c31ce6256":{"x":{},"y":{}},"362c4c6716e3":{"x":{},"y":{}},"362c6a553081":{"x":{},"xend":{},"y":{},"yend":{}},"362c50e639ac":{"x":{},"xend":{},"y":{},"yend":{}},"362c796b42d":{"x":{},"y":{}},"362c1d581f2f":{"x":{},"y":{}}},"cur_data":"362c7c8256a2","visdat":{"362c7c8256a2":["function (y) ","x"],"362c1a2b3603":["function (y) ","x"],"362c5a90425f":["function (y) ","x"],"362c11823b97":["function (y) ","x"],"362c355164e5":["function (y) ","x"],"362c31ce6256":["function (y) ","x"],"362c4c6716e3":["function (y) ","x"],"362c6a553081":["function (y) ","x"],"362c50e639ac":["function (y) ","x"],"362c796b42d":["function (y) ","x"],"362c1d581f2f":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial completo <span class="math inline">2^2</span></h2>
+<ul>
+<li><p>En un diseño factorial con dos niveles, el efecto promedio de un factor puede definirse como el cambio en la respuesta producido por un cambio en el nivel de ese factor promediado por los niveles del otro factor.</p></li>
+<li><p>El efecto de un factor es el cambio en la respuesta media cuando el factor cambia del nivel bajo al alto. También se conoce como efecto principal.</p></li>
+<li><p>El efecto de interacción es cuando hay diferencia en los valores entre los niveles de un factor que no es el mismo en todos los niveles de los otros factores</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo <span class="math inline">2^2</span></h2>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-a85a9f3abf9934a0fa2b" style="width:850px;height:670px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a85a9f3abf9934a0fa2b">{"x":{"data":[{"x":[-1,1,1,-1,-1],"y":[-1,-1,1,1,-1],"text":["x: -1<br />y: -1","x:  1<br />y: -1","x:  1<br />y:  1","x: -1<br />y:  1","x: -1<br />y: -1"],"type":"scatter","mode":"lines","line":{"width":3.7795275590551185,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1,1,-1,1],"y":[-1,-1,1,1],"text":["A: -1<br />B: -1","A:  1<br />B: -1","A: -1<br />B:  1","A:  1<br />B:  1"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1,1,-1,1],"y":[-1.3500000000000001,-1.3500000000000001,1.3,1.3],"text":["(1) = 26.67<br />(28 + 25 + 27)/3","a = 33.33<br />(36 + 32 + 32)/3","b = 20<br />(18 + 19 + 23)/3","ab = 30<br />(31 + 30 + 29)/3"],"hovertext":["A: -1<br />y_pos: -1.35<br />Label: (1) = 26.67<br />(28 + 25 + 27)/3","A:  1<br />y_pos: -1.35<br />Label: a = 33.33<br />(36 + 32 + 32)/3","A: -1<br />y_pos:  1.30<br />Label: b = 20<br />(18 + 19 + 23)/3","A:  1<br />y_pos:  1.30<br />Label: ab = 30<br />(31 + 30 + 29)/3"],"textfont":{"size":26.45669291338583,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1,-1],"y":[-1,-1.1000000000000001],"text":"x: -1<br />xend: -1<br />y: -1<br />yend: -1.1","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,1],"y":[-1,-1.1000000000000001],"text":"x: 1<br />xend: 1<br />y: -1<br />yend: -1.1","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1.1000000000000001],"y":[-1.1000000000000001],"text":"-","hovertext":"x: -1.1<br />y: -1.1","textfont":{"size":34.015748031496067,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.1000000000000001],"y":[-1.1000000000000001],"text":"+","hovertext":"x: 1.1<br />y: -1.1","textfont":{"size":34.015748031496067,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1,-1.1000000000000001],"y":[-1,-1],"text":"x: -1<br />xend: -1.1<br />y: -1<br />yend: -1","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1,-1.1000000000000001],"y":[1,1],"text":"x: -1<br />xend: -1.1<br />y: 1<br />yend: 1","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1.1000000000000001],"y":[1.1000000000000001],"text":"-","hovertext":"x: -1.1<br />y: 1.1","textfont":{"size":34.015748031496067,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.1000000000000001],"y":[1.1000000000000001],"text":"+","hovertext":"x: 1.1<br />y: 1.1","textfont":{"size":34.015748031496067,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":10.958904109589042,"l":10.958904109589042},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":30},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.2100000000000002,1.2100000000000002],"tickmode":"array","ticktext":["-1.0","-0.5","0.0","0.5","1.0"],"tickvals":[-1,-0.5,0,0.5,0.99999999999999978],"categoryorder":"array","categoryarray":["-1.0","-0.5","0.0","0.5","1.0"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":false,"tickfont":{"color":null,"family":null,"size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":null,"family":null,"size":30}},"scaleanchor":"y","scaleratio":1,"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.4825000000000002,1.4325000000000001],"tickmode":"array","ticktext":["-1.0","-0.5","0.0","0.5","1.0"],"tickvals":[-1,-0.5,0,0.5,0.99999999999999978],"categoryorder":"array","categoryarray":["-1.0","-0.5","0.0","0.5","1.0"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":false,"tickfont":{"color":null,"family":null,"size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"","font":{"color":null,"family":null,"size":30}},"scaleanchor":"x","scaleratio":1,"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":"#F1F5F5","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":25},"title":{"font":{"size":30}}},"hovermode":"closest","width":850,"height":670,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"362c267d35":{"x":{},"y":{},"type":"scatter"},"362c417f400":{"x":{},"y":{}},"362c14535b08":{"x":{},"y":{},"label":{}},"362c624f32f5":{"x":{},"xend":{},"y":{},"yend":{}},"362c637d28a7":{"x":{},"xend":{},"y":{},"yend":{}},"362c5a52718a":{"x":{},"y":{}},"362c582a4c9e":{"x":{},"y":{}},"362c2eb960b6":{"x":{},"xend":{},"y":{},"yend":{}},"362c3dc319bd":{"x":{},"xend":{},"y":{},"yend":{}},"362c7df64fb":{"x":{},"y":{}},"362ce136cb3":{"x":{},"y":{}}},"cur_data":"362c267d35","visdat":{"362c267d35":["function (y) ","x"],"362c417f400":["function (y) ","x"],"362c14535b08":["function (y) ","x"],"362c624f32f5":["function (y) ","x"],"362c637d28a7":["function (y) ","x"],"362c5a52718a":["function (y) ","x"],"362c582a4c9e":["function (y) ","x"],"362c2eb960b6":["function (y) ","x"],"362c3dc319bd":["function (y) ","x"],"362c7df64fb":["function (y) ","x"],"362ce136cb3":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div><div class="column">
+<ul>
+<li>El efecto principal de</li>
+</ul>
+<p><span class="math inline">A = \frac{33.33+30}{2} - \frac{26.67+20}{2} = 8.33</span></p>
+<p><span class="math inline">B = \frac{20+30}{2} - \frac{26.67+33.33}{2} = -5</span></p>
+<ul>
+<li>El efecto de la interacción</li>
+</ul>
+<p><span class="math inline">AB = \frac{30+26.67}{2} - \frac{20+33.33}{2} = 1.67</span></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial completo <span class="math inline">2^2</span></h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<ul>
+<li>Esto también lo podemos resolver a través de la matriz de Yates, siguiendo la siguiente lógica:</li>
+</ul>
+<p><span class="math display">\hat{y}_{+1}-\hat{y}_{-1}</span></p>
+<ul>
+<li>Con base en esto se derivan las fórmulas del slide anterior.</li>
+</ul>
+</div><div class="column" style="font-size: 0.95em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">AB</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Réplica 1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Réplica 2</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Réplica 3</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Promedio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(1)</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">26.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">a</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">33.33</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">b</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">20.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ab</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">30.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial completo <span class="math inline">2^2</span></h2>
+<ul>
+<li><p>En muchos experimentos que incluyen diseños <span class="math inline">2^k</span>, se examinará la magnitud y dirección de los efectos de los factores a fin de determinar las variabels que son de posible importancia.</p></li>
+<li><p>En la mayoría de los casos puede usarse el análisis de varianza (ANOVA) para confirmar esta interpretación.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial completo <span class="math inline">2^3</span></h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>El espacio de condiciones experimentales puede representarse mediante un cubo (<span class="math inline">k=3</span>).</p></li>
+<li><p>Incluye todas las combinaciones posibles (<span class="math inline">2^3 = 8</span>).</p></li>
+</ul>
+<p><img data-src="img/factorial23.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo <span class="math inline">2^3</span></h2>
+<ul>
+<li><p>Se requiere estudiar el efecto de la rapidez de corte (A), la configuración (B) y el ángulo de corte (C) sobre la duración de una herramienta.</p></li>
+<li><p>Se eligen dos niveles para cada factor y se realizan tres réplicas en cada condición experimental.</p></li>
+<li><p>Los resultados se muestran a continuación.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo <span class="math inline">2^3</span></h2>
+<div class="columns">
+<div class="column">
+<p>Se requiere estimar los efectos de cada factor, además de cuáles son significativos sobre la respuesta y recomendar condiciones de operación.</p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Punto</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">I</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">II</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">III</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Promedio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(1)</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">26.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">a</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">34.67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">b</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">39.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ab</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">49.33</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">c</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">42.33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ac</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">37.67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bc</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">54.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abc</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">42.33</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo <span class="math inline">2^3</span></h2>
+<div class="columns">
+<div class="column">
+<p>Utilice un <span class="math inline">\alpha = 0.05</span> y concluya.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Término</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">GL</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SC</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">CM</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">F</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">P</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.67</td>
+<td style="text-align: right;">0.67</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.88</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">770.67</td>
+<td style="text-align: right;">770.67</td>
+<td style="text-align: right;">25.55</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">280.17</td>
+<td style="text-align: right;">280.17</td>
+<td style="text-align: right;">9.29</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A:B</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">16.67</td>
+<td style="text-align: right;">16.67</td>
+<td style="text-align: right;">0.55</td>
+<td style="text-align: right;">0.47</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A:C</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">468.17</td>
+<td style="text-align: right;">468.17</td>
+<td style="text-align: right;">15.52</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B:C</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">48.17</td>
+<td style="text-align: right;">48.17</td>
+<td style="text-align: right;">1.60</td>
+<td style="text-align: right;">0.22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A:B:C</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">28.17</td>
+<td style="text-align: right;">28.17</td>
+<td style="text-align: right;">0.93</td>
+<td style="text-align: right;">0.35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residuals</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">482.67</td>
+<td style="text-align: right;">30.17</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo <span class="math inline">2^3</span></h2>
+<ul>
+<li><p>Es claro que el factor B debe estar en nivel alto.</p></li>
+<li><p>Para determinar qué hacer con <span class="math inline">A</span> y <span class="math inline">C</span>, nótese que de los tres efectos (<span class="math inline">A</span>, <span class="math inline">C</span> y <span class="math inline">AC</span>) el que tiene el menor valor absoluto es <span class="math inline">A</span>. Eso quiere decir que debemos colocar <span class="math inline">C</span> y <span class="math inline">AC</span> en condiciones óptimas y sacrificar (si es necesario) la contribución de <span class="math inline">A</span>. Esto se logra colocando <span class="math inline">C</span> en alto y <span class="math inline">A</span> en bajo (vea los signos de los efectos).</p></li>
+<li><p>Siempre, en todos los casos, es necesario verificar los supuestos del modelo. Esto, se espera, sea un tema que ya esté dominado.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Otro ejemplo</h2>
+<div class="columns">
+<div class="column">
+<p>Se está diseñando un experimento para evaluar el efecto de tres factores y sus interacciones sobre una variable de respuesta particular.</p>
+<p>Esto se conoce como matriz de arreglo factorial</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Factor</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Nivel Alto (+)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Nivel Bajo (-)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A: Temperatura (°C)</td>
+<td style="text-align: right;">300</td>
+<td style="text-align: right;">250</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B: Presión (psi)</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C: Tiempo (s)</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Otro ejemplo</h2>
+<ul>
+<li><p>Con base en esa matriz de arreglo factorial, vamos crear la matriz de diseño (en Excel), con su respectivo orden estándar (también conocido como orden de Yates).</p></li>
+<li><p>Es <a href="https://stevenggoni.github.io/clases/data/II-1125_01_Matriz_diseno.xlsx" target="_blank">esta matriz de diseño (descargar)</a> la que posteriormente se va a aleatorizar para la ejecución del experimento.</p></li>
+<li><p>Estas dos matrices son importantes para evaluar la viabilidad de todas las corridas.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio 01</h2>
+<ul>
+<li><p>Un grupo de estudiantes sumamente inexpertos, decide realizar un experimento factorial para evaluar la cobertura de la pintura (respuesta) ante tres factores con dos niveles (alto y bajo):</p>
+<ul>
+<li>Tipo de pintura (Agua y Aceite)</li>
+<li>Tipo de diluyente (Agua y Aguarrás)</li>
+<li>Superficie por pintar (Lisa y porosa)</li>
+</ul></li>
+<li><p>Realice la matriz de arreglo factorial y la matriz de diseño.</p></li>
+<li><p>¿Qué puede concluir?</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño factorial <span class="math inline">2^k</span></h2>
+<div class="columns">
+<div class="column img.fit">
+<ul>
+<li>El espacio de condiciones puede representarse por partes de cubos para <span class="math inline">k&gt;3</span>.</li>
+</ul>
+<p><img data-src="img/pares_cubos.png"></p>
+<ul>
+<li>Si se dispone de solo una réplica del experimento entonces la suma de cuadrados del error es nula y no es posible utilizar una tabla de análisis de varianza para determinar cuales efectos son significativos.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos de una sola réplica</h2>
+<ul>
+<li><p>Bajo algunas condiciones especiales pueden no existir los recursos suficientes para ejecutar más de una réplica.</p></li>
+<li><p>En esta situación, puede aplicar de forma simultanea el principio de jerarquía y el de dispersión de efectos.</p></li>
+<li><p>De tal forma que, obtendrá los suficientes grados de libertad para estimar el modelo.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Por ejemplo…</h2>
+<ul>
+<li><p>Suponga que en un laboratorio se desean estudiar 5 factores en dos niveles (2^5), la persona analista sabe que lo correcto es utilizar un experimento factorial, que se compone de 32 tratamientos.</p></li>
+<li><p>Con base en los principios de experimentación clásica, sabemos que replicar este experimento es lo prudente, pero que no resultaría práctico, porque implicarían 64 corridas y no hay suficientes recursos en el laboratorio.</p></li>
+<li><p>Por esta razón, se decide realizar una sola réplica.</p></li>
+<li><p>Notará, que al analizar este experimento, no tendrá grados de libertad para obtener una estimación del valor F y valor P.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Sobre los grados de libertad</h2>
+<ul>
+<li><p>En un experimento factorial completo, los grados de libertad totales siempre son el resultado de esta ecuación:</p></li>
+<li><p><span class="math inline">GL = r\cdot 2^k - 1</span></p></li>
+<li><p>Donde <span class="math inline">r</span> es la cantidad de replicas y <span class="math inline">k</span> es la cantidad de factores.</p></li>
+<li><p>En un experimento <span class="math inline">2^4</span> de una replica la ecuación daría como resultado:</p></li>
+<li><p><span class="math inline">GL = 1\cdot 2^4 - 1 = 15</span></p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Sobre los grados de libertad</h2>
+<ul>
+<li><p>Esos 15 GL se usaron para calcular o estimar los efectos de <span class="math inline">A, B, C, AB, AC,\dots, ABCD</span>.</p></li>
+<li><p>Los GL del error se asignan con lo que sobra de la asignación anterior, por ello en estos experimentos (de una réplica) el error se queda sin nada (0 GL).</p></li>
+<li><p>¿Cuántos GL debo tener en el error para un experimento factorial completo? Idealmente 8.</p>
+<ul>
+<li><p>Esta es una regla práctica.</p></li>
+<li><p>Los GL son importantes en el error, porque se utilizan para calcular el valor F y el valor P y están íntimamente relacionados con la potencia estadística.</p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Temas para discusión</h2>
+<ul>
+<li>Trate de responder estas preguntas:
+<ul>
+<li>¿Cuántas réplicas necesito en un factorial completo <span class="math inline">2^2</span> para obtener una estimación adecuada en una regresión/ANOVA?</li>
+<li>Este experimento, ¿es eficiente?</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Otros principios experimentales</h2>
+<ul>
+<li>Dispersión de efectos
+<ul>
+<li>El modelo estará dominado por los efectos principales y los efectos de interacción de orden inferior.</li>
+</ul></li>
+<li>Jerarquía
+<ul>
+<li>Indica que, si un modelo contiene un efecto de orden superior como AB, también debe contener a los de orden inferior como A y B.</li>
+</ul></li>
+<li>Parsimonia
+<ul>
+<li>La explicación más simple suele ser la más probable.</li>
+<li>En este contexto, implica que, respetando los principios anteriores, haga el modelo más simple eliminando aquellos efectos no significativos.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Otras consideraciones</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>La oleada en los diagramas de Pareto</p></li>
+<li><p>El principio de oleada dice que, si se conectan los efectos ordenados por magnitud, los efectos “reales” tienden a aparecer como una primera oleada que se despega del resto, mientras que los efectos menores forman una segunda/tercera/etc oleada alrededor de cero.</p></li>
+</ul>
+<p><img data-src="img/oleada.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseños factoriales completos <span class="math inline">2^k</span> bloqueados</h2>
+<ul>
+<li><p>A menudo, el bloqueo se utiliza para reducir o eliminar la variabilidad transmitida por factores de ruido, es decir, <span class="hi">factores que pueden influir en la respuesta experimental, pero en los que no se está directamente interesado</span>.</p></li>
+<li><p>Una característica esencial del bloqueo:</p>
+<ul>
+<li>Por definición, cualquier factor de bloqueo debe estar altamente relacionado con la variable de respuesta pero NO debe interactuar con otros factores de bloqueo u otros factores.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseños factoriales completos <span class="math inline">2^k</span> bloqueados</h2>
+<ul>
+<li>En resumen
+<ul>
+<li>El bloqueo es un efecto ficticio, que no es de interés, que se introduce para mejorar la capacidad resolutiva del modelo.</li>
+</ul></li>
+<li>El bloqueo tiene un costo: grados de libertad.</li>
+<li>Los grados de libertad se relacionan directamente con la potencia estadística, menos GL <span class="math inline">\rightarrow</span> Menos potencia estadística.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseños factoriales completos <span class="math inline">2^k</span> bloqueados</h2>
+<ul>
+<li><p>Si el factor de bloqueo resultase de interés o bien, si interactúa con otros factores, entonces no se llamaría bloque y por otro lado, <span class="hi">conduciría a otro tipo de DdE</span>.</p></li>
+<li><p>Finalmente, pero no menos importante, los factoriales son ortogonales y para garantizar que eso siga siendo así, cada bloque debe estar conformado por exactamente una réplica.</p>
+<ul>
+<li>Excepciones a esta regla serán abordadas en clases posteriores.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo de un factorial completo <span class="math inline">2^3</span> bloqueado</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<ul>
+<li>Ejemplo de un <span class="math inline">2^3</span> con dos bloques (uno por réplica)</li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/factorial_bloqueado.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Qué pasa con la aleatorización?</h2>
+<ul>
+<li><p>El bloqueo es una infracción al principio de aleatoriedad; no obstante, esto no es una excusa para no aplicarlo.</p></li>
+<li><p>Se debe:</p>
+<ul>
+<li>Aleatorizar los bloques</li>
+<li>Aleatorizar las corridas intra bloques</li>
+</ul></li>
+<li><p>Aún con sus desventajas, el bloqueo viene con muchas ventajas.</p></li>
+<li><p>Pues al infringir el principio de aleatoriedad, nos permite ejecutar los bloques de forma simultánea.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Cómo crear un factorial completo en R</h2>
+<ul>
+<li><p>En caso de que no quiera usar Minitab, por costo, licenciamiento u otras razones, se le provee de un tutorial en R para el diseño y análisis de experimentos factoriales.</p></li>
+<li><p>Lo puede encontrar en este <a href="https://stevenggoni.github.io/tutoriales_R/factorial_R.html" target="_blank">enlace</a>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Bibliografía</h2>
+<div class="columns">
+<div class="column" style="font-size: 1.3em;">
+<ul>
+<li>Montgomery, D. C. (2020). Design and analysis of experiments (10.ª ed.). Wiley.
+<ul>
+<li>Capítulo 5 y 6.</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 center">
+<h2>Diseño factorial completo <span class="math inline">2^k</span> <br> II-1125 Estadística para Ingeniería Industrial III</h2>
+<h3 class="subtitle">Gracias por su atención <br> Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a></h3>
+<h3>Dudas o correcciones requeridas pueden solicitarse al correo</h3>
+
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -380,6 +1358,82 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
         ]
       });
     </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
