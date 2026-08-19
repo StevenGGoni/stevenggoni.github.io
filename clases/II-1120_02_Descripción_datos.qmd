@@ -527,11 +527,11 @@ $$
 ::: column
 ### Muestral
 
--   $$\bar{x}=\frac{\sum_{i=1}^n w_i\cdot x_i}{\sum_{i=1}^n w_i}$$
+-   $$\bar{x}_w = \frac{\sum_{i=1}^{n} w_i \cdot x_i}{\sum_{i=1}^{n} w_i}$$
 
 ### Poblacional
 
--   $$\bar{x}=\frac{\sum_{i=1}^N w_i\cdot x_i}{\sum_{i=1}^N w_i}$$
+-   $$\mu_w = \frac{\sum_{i=1}^{N} w_i \cdot x_i}{\sum_{i=1}^{N} w_i}$$
 :::
 :::::
 
