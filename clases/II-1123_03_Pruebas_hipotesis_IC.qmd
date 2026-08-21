@@ -13,4 +13,328 @@ library(tidyverse)
 
 ## Agenda {.bloques}
 
-* En construcción
+* Preguntas generadoras
+* Conceptos iniciales
+* Estimación puntual
+* Tamaño de muestra
+  * Para intervalos
+  * Para pruebas de hipótesis
+* Intervalos de confianza y pruebas de hipótesis
+  * Una muestra
+  * Dos muestras
+
+## Preguntas generadoras {.bloques style="font-size: 0.95em;"}
+
+* ¿Por qué no se deben analizar estimadores puntuales?
+* ¿Cómo se selecciona un nivel de confianza?
+* ¿Qué es un intervalo de confianza y cuáles parámetros le afectan?
+* ¿Qué es error Tipo I, Tipo II, nivel de significancia y valores P?
+* ¿Cómo se calculan los tamaños de muestra necesarios? ¿Qué es un efecto y qué es potencia?
+* ¿Qué es una hipótesis?
+* ¿Qué es una prueba de hipótesis?
+* ¿Cómo se prueba una hipótesis?
+
+## Conceptos iniciales {.center}
+
+### Para conversar tod@s en el mismo idioma
+
+## Idioma común {.bloques}
+
+* Comencemos por la simbología: 
+
+* $\alpha:$ También conocida como [nivel de significancia]{.hi}, está asociada con el error [tipo I]{.hi}.
+
+* $1-\alpha:$ Es el [nivel de confianza]{.hi}, es el complemento del nivel de significancia. 
+
+* $\beta:$ Es el error [tipo II]{.hi}.
+
+* $1-\beta:$ Es el complemento del error tipo II y se conoce como la [potencia estadística]{.hi}.
+
+## Idioma común {.bloques}
+
+* [Contraste (prueba) de hipótesis]{.hi}: 
+
+  * Es una pretensión o aseveración, que se asume como inicialmente cierta, sobre: el valor verdadero de un parámetro, los valores de varios parámetros o la forma de la distribución de probabilidad completa. 
+  
+* Está compuesta por: 
+
+  * $H_o:$ Hipótesis nula, que se supone como incialmente cierta. 
+  
+  * $H_i:$ Hipótesis alternativa, que es **una** aseveración contraria. 
+
+## Idioma común {.bloques}
+
+* [Contraste (prueba) de hipótesis]{.hi}: 
+
+* Si no se contradice [fuertemente]{.hi} la hipótesis nula, se continuará creyendo que esta es verdad. 
+
+* Las dos conclusiones posibles derivadas de este análisis [siempre]{.hi .ul} son [rechazar]{.hi} o [no rechazar]{.hi}. 
+  * Nunca, bajo ningún concepto es aceptar y esta no es una cuestión semántica es de la construcción de la prueba.
+  
+## Idioma común {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* [Valor P]{.hi}
+
+* Es una probabilidad que mide la evidencia en contra de la hipótesis nula. Aunque parezca contraintuitivo, entre más bajo, más fuerte será la evidencia en contra. 
+  
+* Este valor se compara contra el nivel de significancia ($\alpha$).
+
+:::
+
+::: {.column .img-fit}
+
+![](img/int_valorP.png)
+
+:::
+
+::::::
+
+## Idioma común {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="20%"}
+
+* [Valor P]{.hi}
+
+  * De forma un poco más formal, un valor P es la probabilidad bajo un modelo estadístico especificado que un resumen estadístico de los datos sería igual o más extremo que su valor observado
+
+
+:::
+
+::: {.column .img-fit}
+
+![](img/ASA_discussion.png)
+
+:::
+
+::::::
+
+## Idioma común {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+* [Valor P]{.hi}
+
+* Usualmente el valor P  se interpreta mal, sobre todo por algunos malentendidos históricos.
+
+* En este [enlace](https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf){target="blank"} encontrará una infografía con cuidados e interpretaciones que debemos tener con el valor P, así como 6 principios fundamentales. Este materia [NO es opcional]{.hi}, por lo que se le solicita que recurra a su estudio de forma individual y autónoma. 
+
+
+
+:::
+
+::: {.column .img-fit}
+
+![](img/que_p_valorP.png)
+
+:::
+
+::::::
+
+## Idioma común {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="15%"}
+
+* El valor P [no es el protagonista]{.hi}, es solo una medida estadística adicional, que se [interpreta en conjunto]{.hi} con las demás medidas.
+
+* Ilustración de [Allison Horst](https://allisonhorst.com/){target="_blank"}
+
+:::
+
+::: {.column .img-fit}
+
+![](img/ensemple_p.jpg)
+
+:::
+
+::::::
+
+## Idioma común {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+### Error Tipo I
+
+Asociado con el nivel de significancia $\alpha$.
+
+Es el error que se comete cuando el investigador rechaza la hipótesis nula cuando esta es verdadera en la población.
+
+:::
+
+::: {.column}
+
+### Error Tipo II
+
+Es el error que se comete cuando el investigador NO rechaza la hipótesis nula, cuando esta es falsa en la población.
+
+:::
+
+::::::
+
+## Idioma común {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit}
+
+![](img/error_tipo_I_II.png)
+
+:::
+
+::::::
+
+## Idioma común {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit}
+
+![](img/error_pregnant.png)
+
+:::
+
+::::::
+
+## Idioma común {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit}
+
+![](img/error_tipo_I.png)
+
+:::
+
+::::::
+
+## Idioma común {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit}
+
+![](img/error_tipo_II.png)
+
+:::
+
+::::::
+
+## Estimación puntual {.center}
+
+## Introducción y repaso {.bloques}
+
+* La inferencia estadística está siempre enfocada en obtener conclusiones acerca de uno o más parámetros de una población. 
+
+* Una parte importante de este proceso es obtener [estimadores]{.hi} acerca de los [parámetros]{.hi}.
+
+* El objetivo de la [estimación puntual]{.hi} es utilizar una muestra para calcular un número que representa en cierto sentido una buena [suposición]{.hi} del valor verdadero del parámetro.
+
+
+## Estimación {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img-fit}
+
+![](img/diagrama.png)
+
+:::
+
+::::::
+
+## Estimación puntual {.bloques}
+
+* La estimación puntual se puede obtener mediante, al menos, dos métodos, **ninguno se abarca a detalle en este curso**, se menciona como parte de su formación, no para evaluación, pero el primero es el que hemos estado usando en este curso: 
+  * Método de momentos
+  * Método de máxima verosimilitud
+  * Método de estimación bayesiana
+  
+## Estimación puntual {.bloques}
+
+* En técnicas estadísticas más avanzadas, se suelen usar con mucha más frecuencia el método de máxima verosimilitud (ML), por ejemplo, para estimar regresiones, modelos lineales generalizados, etc. 
+
+* Cuando hay “problemas” en la estimación por ML (como que una varianza de negativa, lo cual es imposible, pero puede pasar en modelos complejos) se puede usar la estimación bayesiana.  
+
+
+## Estimación puntual {.bloques}
+
+* Formalmente: 
+  * Una estimación puntual de un parámetros $\theta$ de alguna población es un único valor numérico $\hat{\theta}$ de un estadístico $\hat{\Theta}$.
+  * El estadístico $\hat{\Theta}$ es llamado estimador puntual. 
+
+* Por ejemplo:
+
+  * El valor de $\bar{ximg}$ del estadístico $\bar{X}$, que se calcula a partir de una muestra de tamaño $n$, es una estimación puntual del parámetro de la población $\mu$.
+
+## Los estimadores deben... {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="20%"}
+
+Esto es para mención, el detalle necesita demostraciones matemáticas
+
+:::
+
+::: {.column .img-fit}
+
+![](img/estimadores.png)
+
+:::
+
+::::::
+
+## Estimadores insesgados {.bloques}
+
+* Un estimador puntual $\hat{\Theta}$ es una estimación insesgada del parámetros $\theta$ si $E(\hat{\theta}) = \theta$.
+
+* Recuerde que sesgo es la diferencia que hay entre $\theta$ y $\hat{\theta}$.
+
+## Estimadores insesgados {.bloques}
+
+* ¿Recuerda la corrección que se hace en el cálculo de la varianza muestra? También conocida como corrección de Bessel. 
+
+* Para **estimar** la varianza de una población usamos: 
+
+* $s^2 = \frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}$
+
+* En lugar de: 
+
+* $s^2 = \frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n}$
+
+* El primero es un estimador INSESGADO de la varianza poblacional. Mientras que el segundo NO LO ES. Esto se sabe por demostraciones con el método de momentos, por ejemplo. 
+
+## Estimación por intervalos {.center}
+
+## Estimación por intervalos {.bloques}
+
+* Una estimación puntual, por el hecho de ser un solo número no proporciona información sobre la [precisión]{.hi} y [confiabilidad]{.hi} de la estimación. 
+
+* Debido a las variabilidades del muestreo, virtualmente nunca se dará el caso de $\theta = \hat{\theta}$.
+
+* Una alternativa para mitigar este riesgo es utilizar intervalos de confianza. 
+
+* Un intervalo de confianza siempre se calcula seleccionando [primero]{.hi} un nivel de confianza.
+
+* Por ejemplo, un intervalo de confianza al 95 % implica que 95 % de todas las muestras dará un intervalo que contiene a $\theta$.
+
+## Estimación por intervalos {.bloques}
+
+* Mientras mayor es el nivel de confianza, más fuerte es la creencia de que el valor del parámetro que se está estimando queda dentro del intervalo. 
+
+* Si el nivel de confianza es alto y el intervalo resultante es bastante angosto, el conocimiento del valor del parámetro es bastante preciso.
+
+* Un amplio intervalo de confianza transmite el mensaje de que existe gran cantidad de incertidumbre sobre el valor que se está estimando.
+
+

@@ -34,6 +34,22 @@
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link rel="stylesheet" href="custom.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -142,12 +158,245 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">3 de agosto de 2026</p>
+  <p class="date">20 de agosto de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
 <ul>
-<li>En construcción</li>
+<li>Preguntas generadoras</li>
+<li>Conceptos iniciales</li>
+<li>Estimación puntual</li>
+<li>Tamaño de muestra
+<ul>
+<li>Para intervalos</li>
+<li>Para pruebas de hipótesis</li>
+</ul></li>
+<li>Intervalos de confianza y pruebas de hipótesis
+<ul>
+<li>Una muestra</li>
+<li>Dos muestras</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques" style="font-size: 0.95em;">
+<h2>Preguntas generadoras</h2>
+<ul>
+<li>¿Por qué no se deben analizar estimadores puntuales?</li>
+<li>¿Cómo se selecciona un nivel de confianza?</li>
+<li>¿Qué es un intervalo de confianza y cuáles parámetros le afectan?</li>
+<li>¿Qué es error Tipo I, Tipo II, nivel de significancia y valores P?</li>
+<li>¿Cómo se calculan los tamaños de muestra necesarios? ¿Qué es un efecto y qué es potencia?</li>
+<li>¿Qué es una hipótesis?</li>
+<li>¿Qué es una prueba de hipótesis?</li>
+<li>¿Cómo se prueba una hipótesis?</li>
+</ul>
+</section>
+<section class="slide level2 center">
+<h2>Conceptos iniciales</h2>
+<h3>Para conversar tod@s en el mismo idioma</h3>
+</section>
+<section class="slide level2 bloques">
+<h2>Idioma común</h2>
+<ul>
+<li><p>Comencemos por la simbología:</p></li>
+<li><p><span class="math inline">\alpha:</span> También conocida como <span class="hi">nivel de significancia</span>, está asociada con el error <span class="hi">tipo I</span>.</p></li>
+<li><p><span class="math inline">1-\alpha:</span> Es el <span class="hi">nivel de confianza</span>, es el complemento del nivel de significancia.</p></li>
+<li><p><span class="math inline">\beta:</span> Es el error <span class="hi">tipo II</span>.</p></li>
+<li><p><span class="math inline">1-\beta:</span> Es el complemento del error tipo II y se conoce como la <span class="hi">potencia estadística</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Idioma común</h2>
+<ul>
+<li><p><span class="hi">Contraste (prueba) de hipótesis</span>:</p>
+<ul>
+<li>Es una pretensión o aseveración, que se asume como inicialmente cierta, sobre: el valor verdadero de un parámetro, los valores de varios parámetros o la forma de la distribución de probabilidad completa.</li>
+</ul></li>
+<li><p>Está compuesta por:</p>
+<ul>
+<li><p><span class="math inline">H_o:</span> Hipótesis nula, que se supone como incialmente cierta.</p></li>
+<li><p><span class="math inline">H_i:</span> Hipótesis alternativa, que es <strong>una</strong> aseveración contraria.</p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Idioma común</h2>
+<ul>
+<li><p><span class="hi">Contraste (prueba) de hipótesis</span>:</p></li>
+<li><p>Si no se contradice <span class="hi">fuertemente</span> la hipótesis nula, se continuará creyendo que esta es verdad.</p></li>
+<li><p>Las dos conclusiones posibles derivadas de este análisis <span class="hi"><u>siempre</u></span> son <span class="hi">rechazar</span> o <span class="hi">no rechazar</span>.</p>
+<ul>
+<li>Nunca, bajo ningún concepto es aceptar y esta no es una cuestión semántica es de la construcción de la prueba.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Idioma común</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p><span class="hi">Valor P</span></p></li>
+<li><p>Es una probabilidad que mide la evidencia en contra de la hipótesis nula. Aunque parezca contraintuitivo, entre más bajo, más fuerte será la evidencia en contra.</p></li>
+<li><p>Este valor se compara contra el nivel de significancia (<span class="math inline">\alpha</span>).</p></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/int_valorP.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Idioma común</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<ul>
+<li><p><span class="hi">Valor P</span></p>
+<ul>
+<li>De forma un poco más formal, un valor P es la probabilidad bajo un modelo estadístico especificado que un resumen estadístico de los datos sería igual o más extremo que su valor observado</li>
+</ul></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/ASA_discussion.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Idioma común</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><p><span class="hi">Valor P</span></p></li>
+<li><p>Usualmente el valor P se interpreta mal, sobre todo por algunos malentendidos históricos.</p></li>
+<li><p>En este <a href="https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf" target="blank">enlace</a> encontrará una infografía con cuidados e interpretaciones que debemos tener con el valor P, así como 6 principios fundamentales. Este materia <span class="hi">NO es opcional</span>, por lo que se le solicita que recurra a su estudio de forma individual y autónoma.</p></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/que_p_valorP.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Idioma común</h2>
+<div class="columns">
+<div class="column" style="width:15%;">
+<ul>
+<li><p>El valor P <span class="hi">no es el protagonista</span>, es solo una medida estadística adicional, que se <span class="hi">interpreta en conjunto</span> con las demás medidas.</p></li>
+<li><p>Ilustración de <a href="https://allisonhorst.com/" target="_blank">Allison Horst</a></p></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/ensemple_p.jpg"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Idioma común</h2>
+<div class="columns">
+<div class="column">
+<h3>Error Tipo I</h3>
+<p>Asociado con el nivel de significancia <span class="math inline">\alpha</span>.</p>
+<p>Es el error que se comete cuando el investigador rechaza la hipótesis nula cuando esta es verdadera en la población.</p>
+</div><div class="column">
+<h3>Error Tipo II</h3>
+<p>Es el error que se comete cuando el investigador NO rechaza la hipótesis nula, cuando esta es falsa en la población.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Idioma común</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/error_tipo_I_II.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Idioma común</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/error_pregnant.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Idioma común</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/error_tipo_I.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Idioma común</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/error_tipo_II.png"></p>
+</div></div>
+</section>
+<section class="slide level2 center">
+<h2>Estimación puntual</h2>
+</section>
+<section class="slide level2 bloques">
+<h2>Introducción y repaso</h2>
+<ul>
+<li><p>La inferencia estadística está siempre enfocada en obtener conclusiones acerca de uno o más parámetros de una población.</p></li>
+<li><p>Una parte importante de este proceso es obtener <span class="hi">estimadores</span> acerca de los <span class="hi">parámetros</span>.</p></li>
+<li><p>El objetivo de la <span class="hi">estimación puntual</span> es utilizar una muestra para calcular un número que representa en cierto sentido una buena <span class="hi">suposición</span> del valor verdadero del parámetro.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Estimación</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/diagrama.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Estimación puntual</h2>
+<ul>
+<li>La estimación puntual se puede obtener mediante, al menos, dos métodos, <strong>ninguno se abarca a detalle en este curso</strong>, se menciona como parte de su formación, no para evaluación, pero el primero es el que hemos estado usando en este curso:
+<ul>
+<li>Método de momentos</li>
+<li>Método de máxima verosimilitud</li>
+<li>Método de estimación bayesiana</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Estimación puntual</h2>
+<ul>
+<li><p>En técnicas estadísticas más avanzadas, se suelen usar con mucha más frecuencia el método de máxima verosimilitud (ML), por ejemplo, para estimar regresiones, modelos lineales generalizados, etc.</p></li>
+<li><p>Cuando hay “problemas” en la estimación por ML (como que una varianza de negativa, lo cual es imposible, pero puede pasar en modelos complejos) se puede usar la estimación bayesiana.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Estimación puntual</h2>
+<ul>
+<li><p>Formalmente:</p>
+<ul>
+<li>Una estimación puntual de un parámetros <span class="math inline">\theta</span> de alguna población es un único valor numérico <span class="math inline">\hat{\theta}</span> de un estadístico <span class="math inline">\hat{\Theta}</span>.</li>
+<li>El estadístico <span class="math inline">\hat{\Theta}</span> es llamado estimador puntual.</li>
+</ul></li>
+<li><p>Por ejemplo:</p>
+<ul>
+<li>El valor de <span class="math inline">\bar{ximg}</span> del estadístico <span class="math inline">\bar{X}</span>, que se calcula a partir de una muestra de tamaño <span class="math inline">n</span>, es una estimación puntual del parámetro de la población <span class="math inline">\mu</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Los estimadores deben…</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p>Esto es para mención, el detalle necesita demostraciones matemáticas</p>
+</div><div class="column img-fit">
+<p><img data-src="img/estimadores.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Estimadores insesgados</h2>
+<ul>
+<li><p>Un estimador puntual <span class="math inline">\hat{\Theta}</span> es una estimación insesgada del parámetros <span class="math inline">\theta</span> si <span class="math inline">E(\hat{\theta}) = \theta</span>.</p></li>
+<li><p>Recuerde que sesgo es la diferencia que hay entre <span class="math inline">\theta</span> y <span class="math inline">\hat{\theta}</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Estimadores insesgados</h2>
+<ul>
+<li><p>¿Recuerda la corrección que se hace en el cálculo de la varianza muestra? También conocida como corrección de Bessel.</p></li>
+<li><p>Para <strong>estimar</strong> la varianza de una población usamos:</p></li>
+<li><p><span class="math inline">s^2 = \frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}</span></p></li>
+<li><p>En lugar de:</p></li>
+<li><p><span class="math inline">s^2 = \frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n}</span></p></li>
+<li><p>El primero es un estimador INSESGADO de la varianza poblacional. Mientras que el segundo NO LO ES. Esto se sabe por demostraciones con el método de momentos, por ejemplo.</p></li>
 </ul>
 
 

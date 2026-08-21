@@ -1,0 +1,366 @@
+---
+title: "Ejercicios resueltos: Intervalos de confianza y pruebas de hipótesis"
+subtitle: "Cátedra de II-0306 Probabilidad y Estadística"
+author: "Ing. Steven García Goñi"
+format: html
+self-contained: true
+toc: true
+toc-depth: 2
+number-sections: true
+lang: es
+execute: 
+  warning: false
+  message: false
+editor: visual
+---
+
+# Librerías
+
+Aquí se enlistas todas las librerías que se van a utilizar durante la resolución de estos ejercicios.
+
+Recuerde que, de no tenerlos instalado, debe hacerlo.
+
+```{r}
+
+library(samplingbook)
+library(BSDA)
+library(EnvStats)
+
+```
+
+# Tamaño de muestra para estimación puntual
+
+## Ejemplo 01
+
+-   Para población infinita
+
+```{r}
+
+samplingbook::sample.size.mean(e = 3, # precisión
+                               S = 5.6, # desviación de la población
+                               N = Inf, # población infinita
+                               level = 0.95)
+
+```
+
+-   Para población finita
+
+```{r}
+
+samplingbook::sample.size.mean(e = 3, # precisión
+                               S = 5.6, # desviación de la población
+                               N = 50, # población finita
+                               level = 0.95)
+
+```
+
+## Ejemplo 02
+
+-   Para población infinita
+
+```{r}
+
+samplingbook::sample.size.prop(e = 0.08,
+                               P = 0.5, # proporción esperada
+                               N = Inf,
+                               level = 0.95)
+
+```
+
+-   Para población finita
+
+```{r}
+
+samplingbook::sample.size.prop(e = 0.08,
+                               P = 0.5, # proporción esperada
+                               N = 350,
+                               level = 0.95)
+
+```
+
+# Potencia estadística
+
+Para el primer ejemplo desarrollado en clase sobre este tema, se puede obtener de esta manera, con `R Base`.
+
+> Recuerde redondear hacia arriba
+
+```{r}
+
+power.t.test(n = NULL, # ausente, se va a estimar
+             delta = 0.01, # tamaño del efecto
+             sd = 0.0035,
+             power = 0.85, # potencia
+             sig.level = 0.01, # alpha
+             type = "two.sample", # tipo de t.test
+             alternative = "two.sided") # tipo de H1
+
+
+```
+
+Se requieren 6 muestras para cada instrumento de medición, es decir, 12 en total.
+
+A continuación se muestra un forma de obtener el tamaño de muestra vía potencia estadística para cada una de las pruebas de hipótesis que se estudian en el curso.
+
+Todos los casos desarrollados son hipotéticos, no están ligados a un ejemplo o contexto.
+
+## Para una media
+
+```{r}
+
+power.t.test(n = NULL, # ausente, se va a estimar
+             delta = 0.01, # tamaño del efecto
+             sd = 0.0035,
+             power = 0.85, # potencia
+             sig.level = 0.01, # alpha
+             type = "one.sample", # tipo de t.test
+             alternative = "two.sided") # tipo de H1
+
+```
+
+## Para dos medias
+
+```{r}
+
+power.t.test(n = NULL, # ausente, se va a estimar
+             delta = 0.01, # tamaño del efecto
+             sd = 0.0035,
+             power = 0.85, # potencia
+             sig.level = 0.01, # alpha
+             type = "two.sample", # tipo de t.test
+             alternative = "two.sided") # tipo de H1
+
+```
+
+## Para una proporción
+
+```{r}
+
+power.prop.test(n = NULL, 
+                p1 = 0.6,         # Expected proportion
+                p2 = 0.5,         # Null hypothesis proportion
+                power = 0.8,      # Desired power
+                sig.level = 0.05, # Significance level
+                alternative = "two.sided")
+
+```
+
+Aunque `power.prop.test()` se diseñó principalmente para comparar dos proporciones, puedes simular una prueba de una proporción comparando una proporción esperada (`p1`) contra una proporción de referencia (`p2`) como si fueran dos "grupos", donde uno representa la hipótesis nula.
+
+Tome en cuenta que el resultado obtenido es para UNA proporción. Solo hay un grupo.
+
+## Para dos proporciones
+
+```{r}
+
+power.prop.test(n = NULL, 
+                p1 = 0.4,         # Proportion in group 1
+                p2 = 0.6,         # Proportion in group 2
+                power = 0.8,      # Desired power
+                sig.level = 0.05, # Alpha level
+                alternative = "two.sided")
+
+```
+
+## Para varianzas
+
+En R no está programada (de forma sencilla) ninguna función para obtener el tamaño de muestra con potencia para una o dos varianzas.
+
+# Pruebas de hipótesis e intervalos de confianza
+
+## Para medias
+
+### Ejemplo 03
+
+```{r}
+
+ej03 <- c(263.159, 309.995, 237.145, 270.551, 306.858, 279.408, 295.008, 
+          326.719, 305.023, 295.736, 292.73, 243.248, 303.176, 294.263, 
+          290.109, 279.716, 239.869, 282.608, 315.649, 259.649, 223.975, 
+          333.141, 261.072, 312.211, 296.722)
+
+BSDA::z.test(x = ej03, 
+             mu = 275, #Ho
+             conf.level = 0.95,
+             alternative = "two.sided", # bilateral
+             sigma.x = 30) # var conocida
+
+
+```
+
+### Ejemplo 04
+
+```{r}
+
+t.test(x = ej03, 
+       mu = 275, 
+       conf.level = 0.95, 
+       alternative = "two.sided") 
+
+```
+
+### Ejemplo 05
+
+```{r}
+
+ej05 <- c(43047.902, 43003.054, 44033.682, 44617.979, 40341.941, 
+          39706.334, 41643.008, 41265.756, 43216.151, 39004.942, 
+          41384.962, 41210.716, 40236.298, 40703.158, 39773.312,
+          41100.646)
+
+t.test(x = ej05, 
+       mu = 45000, 
+       conf.level = 0.95, 
+       alternative = "greater") # greater = inferior, less = superior
+
+```
+
+### Ejemplo 06
+
+```{r}
+
+ej06_M1 <- c(103.371, 110.136, 102.679, 102.387, 107.033, 
+             100.321, 109.539, 105.526, 102.164, 102.284)
+
+ej06_M2 <- c(98.358, 103.286, 101.273, 97.24, 102.727, 
+             102.3, 100.342, 100.88, 104.718, 106.056)
+
+t.test(x = ej06_M1, 
+       y = ej06_M2, 
+       mu = 0,
+       var.equal = TRUE, # Varianzas iguales
+       conf.level = 0.95,
+       alternative = "two.sided") 
+
+```
+
+### Ejemplo 07
+
+```{r}
+
+ej07_G1 <- c(5.139, 2.445, 6.3, 5.946, 6.057, 
+             6.016, 4.95, 9.761, 3.041, 2.881)
+
+ej07_G2 <- c(5.067,  4.51,  5.457,  4.373,  5.723,  
+             5.535,  5.091,  4.958,  5.651,  5.256,  
+             5.449,  5.416,  5.654)
+
+t.test(x = ej07_G1, 
+       y = ej07_G2, 
+       mu = 0,
+       var.equal = FALSE, # Varianzas diferentes
+       conf.level = 0.95,
+       alternative = "two.sided") 
+
+```
+
+### Ejemplo 08
+
+```{r}
+
+
+ej08_A <- c(6.869, 4.569, 5.281, 6.927, 8.349, 7.352, 5.265, 
+            4.654, 5.506, 5.844, 6.809, 7.659, 4.268, 7.573, 
+            5.241, 7.849, 8.276, 6.2, 5.782, 6.616, 6.919, 
+            7.508, 4.994, 5.68, 7.922)
+
+ej08_B <- c(4.431, 3.722, 3.127, 1.176, 1.525, 3.004, 3.864, 
+            4.336, 3.293, 3.193, 4.277, 1.476, 1.8, 3.409, 
+            3.916, 2.709, 0.97, 3.649, 4.113, 4.548, 1.28, 
+            1.211, 2.189, 0.778, 4.42)
+
+ej08_dif <- ej08_A - ej08_B
+
+# Usando pruebas pareadas
+
+t.test(x = ej08_A, 
+       y = ej08_B, 
+       mu = 0,
+       conf.level = 0.99,
+       paired = TRUE)
+
+# Usando la diferencia entre muestras
+
+t.test(x = ej08_dif, 
+       mu = 0, 
+       conf.level = 0.99)
+
+```
+
+## Para proporciones
+
+### Ejemplo 09
+
+```{r}
+
+ej09 <- c(0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 
+          1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+          1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 
+          0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+intentos <- sum(ej09)
+
+intentos
+
+prop.test(x = 13, # success / éxitos
+          n = 75, # trials / intentos
+          p = 0.10, # probabilidad de éxito
+          conf.level = 0.95,
+          alternative = "two.sided") 
+
+```
+
+### Ejemplo 10
+
+```{r}
+
+prop.test(x = c(82, 47), # éxitos para cada par 1, 2 
+          n = c(120, 90), # intentos para cada par 1,2
+          p = NULL, # es null, porque lo que interesa es contrastar si son ='s
+          conf.level = 0.95,
+          alternative = "two.sided",
+          correct = FALSE)
+
+```
+
+## Para varianzas
+
+### Ejemplo 11
+
+```{r}
+
+ej11 <- c(355.622, 355.238, 355.438, 355.09, 355.303, 354.455, 
+          354.641, 355.370, 354.932, 354.616, 354.05, 354.762, 
+          354.112, 356.055, 354.849, 355.657, 354.778, 355.054, 
+          354.789, 355.528)
+
+EnvStats::varTest(x = ej11, 
+                  conf.level = 0.95, 
+                  sigma.squared = 0.5,
+                  alternative = "less")
+
+```
+
+### Ejemplo 12
+
+```{r}
+
+var.test(x = ej06_M1, 
+         y = ej06_M2, 
+         ratio = 1, #Ho
+         conf.level = 0.95, 
+         alternative = "two.sided")
+
+```
+
+### Ejemplo 13
+
+```{r}
+
+var.test(x = ej07_G1,
+         y = ej07_G2, 
+         ratio = 1, #Ho
+         conf.level = 0.95, 
+         alternative = "two.sided")
+
+```

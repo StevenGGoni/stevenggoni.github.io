@@ -84,6 +84,7 @@ format:
       dark: cyborg
     toc: false
     include-in-header: userway.html
+    include-after-body: analytics.html
     lang: es-ES
     css: styles.css
     
