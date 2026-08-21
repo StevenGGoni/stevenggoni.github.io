@@ -160,7 +160,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">20 de agosto de 2026</p>
+  <p class="date">21 de agosto de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
@@ -537,6 +537,44 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Los intervalos de confianza no requieren prueba de hipótesis.</li>
 </ul></li>
 </ul>
+</section>
+<section class="slide level2 center">
+<h2>Pruebas de hipótesis e IC para la media</h2>
+</section>
+<section class="slide level2 bloques">
+<h2>Supuestos</h2>
+<ul>
+<li><p>La(s) población(es) de las que se extraen las muestras siguen la distribución normal.</p></li>
+<li><p>No se sigue la normal, pero el tamaño de muestra es lo suficientemente grande para cumplir con el teorema de límite central (TLC)</p>
+<ul>
+<li><p>Recuerde que “grande” es relativo a la asimetría de la población, y que en caso de desconocerse o tener idea alguna, el valor de <span class="math inline">n \ge 30</span> <span class="hi">puede</span> resultar en una aproximación válida.</p></li>
+<li><p>También recuerde la ley de los grandes números, a mayor muestra, mejor.</p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Una media (Varianza conocida)</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Se emplea el estadístico <span class="math inline">z</span></li>
+</ul>
+<p><span class="math display">z = \frac{x-\mu}{\frac{\sigma}{\sqrt{n}}}</span></p>
+<ul>
+<li>El intervalor bilateral está compuesto por:</li>
+</ul>
+<p><span class="math display">\bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}</span></p>
+<ul>
+<li>Los intervalos unilaterales están compuestos por:</li>
+</ul>
+<p>Para la cola izquierda</p>
+<p><span class="math display">\bar{x} - z_{\alpha} \cdot \frac{\sigma}{\sqrt{n}}</span></p>
+<p>Para la cola derecha</p>
+<p><span class="math display">\bar{x} + z_{\alpha} \cdot \frac{\sigma}{\sqrt{n}}</span></p>
+</div><div class="column">
+<p>Este escenario es irreal, porque típicamente AMBOS parámetros (<span class="math inline">\mu</span> y <span class="math inline">\sigma</span>) son desconocidos.</p>
+<p>Por lo que su aplicabilidad es sumamente limitada; sobre todo cuando de un proceso previo se asume que continuará con la misma <span class="math inline">\sigma</span>.</p>
+</div></div>
 
 
 </section>

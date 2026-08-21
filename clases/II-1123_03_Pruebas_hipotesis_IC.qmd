@@ -482,3 +482,73 @@ $$ \Rightarrow \bar{x} - z_{\frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}} < \m
 * En este contexto (en este marco del curso se enseñará la dualidad entre ambos, no es un requisito universal):
   * Toda prueba de hipótesis, involucra un intervalo de confianza.
   * Los intervalos de confianza no requieren prueba de hipótesis.
+
+## Pruebas de hipótesis e IC para la media {.center}
+
+## Supuestos {.bloques}
+
+* La(s) población(es) de las que se extraen las muestras siguen la distribución normal. 
+
+* No se sigue la normal, pero el tamaño de muestra es lo suficientemente grande para cumplir con el teorema de límite central (TLC)
+
+  * Recuerde que "grande" es relativo a la asimetría de la población, y que en caso de desconocerse o tener idea alguna, el valor de $n \ge 30$ [puede]{.hi} resultar en una aproximación válida.
+  
+  * También recuerde la ley de los grandes números, a mayor muestra, mejor.
+  
+## Una media (Varianza conocida) {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+
+* Se emplea el estadístico $z$
+
+$$z = \frac{x-\mu}{\frac{\sigma}{\sqrt{n}}}$$
+
+* El intervalor bilateral está compuesto por: 
+
+$$\bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$$
+
+* Los intervalos unilaterales están compuestos por: 
+
+Para la cola izquierda
+
+$$\bar{x} - z_{\alpha} \cdot \frac{\sigma}{\sqrt{n}}$$
+
+Para la cola derecha
+
+$$\bar{x} + z_{\alpha} \cdot \frac{\sigma}{\sqrt{n}}$$
+
+
+:::
+
+::: {.column}
+
+Este escenario es irreal, porque típicamente AMBOS parámetros ($\mu$ y $\sigma$) son desconocidos. 
+
+Por lo que su aplicabilidad es sumamente limitada; sobre todo cuando de un proceso previo se asume que continuará con la misma $\sigma$.
+
+
+:::
+
+::::::
+
+## Ejemplo {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+Un técnico de control de calidad está investigando la resistencia interna a la presión de botellas de vidrio para bebidas gaseosas de 1 L. Se sabe que este proceso sigue una distribución normal con 𝜎=30 𝑝𝑠𝑖. Se recolectan los siguientes datos.
+
+
+:::
+
+::: {.column}
+
+
+
+:::
+
+::::::

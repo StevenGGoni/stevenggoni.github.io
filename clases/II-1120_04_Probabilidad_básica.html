@@ -6,10 +6,10 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/quarto-contrib/videojs/video.min.js"></script>
 <link href="site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.25">
+  <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Steven García Goñi steven.garciagoni@ucr.ac.cr">
   <title>Probabilidad básica</title>
@@ -19,6 +19,9 @@
   <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -31,8 +34,24 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link rel="stylesheet" href="custom.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -128,7 +147,7 @@
 
   <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
-  <link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+  <link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 
   <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 
@@ -136,7 +155,7 @@
 
   <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 
-  <script src="site_libs/grViz-binding-1.0.11/grViz.js"></script>
+  <script src="site_libs/grViz-binding-1.0.12/grViz.js"></script>
 
 </head>
 <body class="quarto-light">
@@ -155,7 +174,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">14 de marzo de 2026</p>
+  <p class="date">21 de agosto de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
@@ -211,10 +230,10 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Aquí es también importante recordar o estudiar el concepto de sesgo estadístico, y los tipos que existen</li>
 </ul>
 </div><div class="column" style="width:30%;">
-<h3>Estimador <span class="math inline">\(\hat{\theta}\)</span></h3>
+<h3>Estimador <span class="math inline">\hat{\theta}</span></h3>
 <p>Estadístico que es función de la muestra usado para estimar un parámetro desconocido de la población</p>
 </div><div class="column" style="width:30%;">
-<h3>Parámetro <span class="math inline">\(\theta\)</span></h3>
+<h3>Parámetro <span class="math inline">\theta</span></h3>
 <p>Estadísticos que son función de una población, que indefectiblemente resumen una “gran” cantidad de datos en una o varias variables estadísticas</p>
 </div></div>
 </section>
@@ -222,7 +241,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>Sesgo</h2>
 <ul>
 <li><p>Cuando el método de recopilación de datos hace que los datos de la muestra reflejen incorrectamente la población.</p></li>
-<li><p>En términos simples, es la diferencia que hay entre un estimador y un parámetro <span class="math inline">\(\text{sesgo}=|\hat{\theta}-\theta|\)</span></p></li>
+<li><p>En términos simples, es la diferencia que hay entre un estimador y un parámetro <span class="math inline">\text{sesgo}=|\hat{\theta}-\theta|</span></p></li>
 <li><p><strong>Nota</strong>: lo ideal es que el sesgo sea cero, pero eso es <span class="hi">prácticamente imposible</span>, entonces lo que se busca es <strong>minimizarlo</strong> y <strong>controlarlo</strong>, para que no cambie las conclusiones prácticas del estudio.</p></li>
 </ul>
 </section>
@@ -235,7 +254,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li><p>Un <span class="hi">sesgo</span> nos puede hacer pensar a partir de solo la sombra, que lo que estamos describiendo es una rana/sapo y no una persona..</p></li>
 </ul>
 </div><div class="column img-fit" style="width:40%;">
-<video id="video_shortcode_videojs_video1" height="710" class="video-js vjs-default-skin " controls="" preload="auto" data-setup="{}" title=""><source src="img/sombra_sapo.mp4"></video>
+<video id="video_shortcode_videojs_video1" height="710" class="video-js vjs-default-skin vjs-big-play-centered " controls="" preload="auto" data-setup="{}" title=""><source src="img/sombra_sapo.mp4"></video>
 </div></div>
 </section>
 <section>
@@ -279,7 +298,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Por ejemplo, ¿cuál es la probabilidad de “Escudo” en una moneda?</li>
 <li>¿Necesitó tirar la moneda varias veces para saber ese resultado? ¿Cómo lo supo?</li>
 </ul></li>
-<li><span class="math inline">\(P(x)=\frac{x}{T}\)</span> siendo <span class="math inline">\(T\)</span> el número de resultados posibles.</li>
+<li><span class="math inline">P(x)=\frac{x}{T}</span> siendo <span class="math inline">T</span> el número de resultados posibles.</li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -289,7 +308,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li><p>Se basan en datos observados, no en un conocimiento previo del proceso.</p></li>
 <li><p>Se fundamenta en la ley de los grandes números.</p></li>
 <li><p>También se conoce como probabilidad frecuentista.</p></li>
-<li><p><span class="math inline">\(P(x)=\frac{\text{Número de veces que el evento x ocurre}}{\text{Número total de observaciones}}\)</span></p></li>
+<li><p><span class="math inline">P(x)=\frac{\text{Número de veces que el evento x ocurre}}{\text{Número total de observaciones}}</span></p></li>
 <li><p>Se basa en <span class="hi">observación</span> y <span class="hi">experimentación</span>.</p></li>
 </ul>
 </section>
@@ -335,7 +354,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Espacio muestral</h2>
 <ul>
-<li>Es el conjunto de todos los posibles resultados de un experimento (Se puede denotar por <span class="math inline">\(S\)</span>).
+<li>Es el conjunto de todos los posibles resultados de un experimento (Se puede denotar por <span class="math inline">S</span>).
 <ul>
 <li>Cara o cruz</li>
 <li>As de corazones, 3 de diamantes, etc. (las 52 cartas).</li>
@@ -369,10 +388,10 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </ul>
 </div><div class="column" style="width:60%;">
 <ul>
-<li>La probabilidad de cualquier suceso o evento <span class="math inline">\(E\)</span> es no negativa.</li>
-<li>La probabilidad del espacio muestral es 1 <span class="math inline">\(\rightarrow P(S)=1\)</span>.</li>
-<li>La probabilidad de un conjunto vacío y de eventos mutuamente excluyentes, es cero <span class="math inline">\(\rightarrow P(\emptyset)=0\)</span></li>
-<li>Si un evento <span class="math inline">\(A\)</span> está contenido en otro <span class="math inline">\(B\)</span>, la probabilidad de <span class="math inline">\(A\)</span> será menor o igual a la de <span class="math inline">\(B\)</span>. Es decir si <span class="math inline">\(A \subseteq B \rightarrow P(A) \le P(B)\)</span>.</li>
+<li>La probabilidad de cualquier suceso o evento <span class="math inline">E</span> es no negativa.</li>
+<li>La probabilidad del espacio muestral es 1 <span class="math inline">\rightarrow P(S)=1</span>.</li>
+<li>La probabilidad de un conjunto vacío y de eventos mutuamente excluyentes, es cero <span class="math inline">\rightarrow P(\emptyset)=0</span></li>
+<li>Si un evento <span class="math inline">A</span> está contenido en otro <span class="math inline">B</span>, la probabilidad de <span class="math inline">A</span> será menor o igual a la de <span class="math inline">B</span>. Es decir si <span class="math inline">A \subseteq B \rightarrow P(A) \le P(B)</span>.</li>
 </ul>
 </div></div>
 </section></section>
@@ -406,14 +425,14 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Ejercicio 01</h2>
 <ul>
-<li><p>Sea un conjunto <span class="math inline">\(A=\{0, 1, 2, 3, 4\}\)</span>, uno <span class="math inline">\(B=\{3, 4, 5, 6\}\)</span> y uno <span class="math inline">\(C=\{1, 3, 5\}\)</span>.</p></li>
+<li><p>Sea un conjunto <span class="math inline">A=\{0, 1, 2, 3, 4\}</span>, uno <span class="math inline">B=\{3, 4, 5, 6\}</span> y uno <span class="math inline">C=\{1, 3, 5\}</span>.</p></li>
 <li><p>Dibuje un diagrama de Venn.</p></li>
 <li><p>Obtenga:</p>
 <ul>
-<li><span class="math inline">\(A \cup B\)</span></li>
-<li><span class="math inline">\(A\cap B\)</span></li>
-<li><span class="math inline">\(A'\)</span></li>
-<li><span class="math inline">\((A\cup B)'\)</span></li>
+<li><span class="math inline">A \cup B</span></li>
+<li><span class="math inline">A\cap B</span></li>
+<li><span class="math inline">A'</span></li>
+<li><span class="math inline">(A\cup B)'</span></li>
 </ul></li>
 <li><p>Se le recomienda como ejercicio <span class="hi">individual</span> se plante y resuelva otros ejercicios.</p></li>
 </ul>
@@ -434,10 +453,10 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div><div class="column" style="width:45%;">
 <h3>Respuestas</h3>
 <ul>
-<li><span class="math inline">\(A \cup B = \{0, 1, 2, 3, 4, 5, 6\}\)</span></li>
-<li><span class="math inline">\(A\cap B = \{3, 4\}\)</span></li>
-<li><span class="math inline">\(A' = \{5, 6\}\)</span></li>
-<li><span class="math inline">\((A\cup B)'=\{\emptyset\}\)</span></li>
+<li><span class="math inline">A \cup B = \{0, 1, 2, 3, 4, 5, 6\}</span></li>
+<li><span class="math inline">A\cap B = \{3, 4\}</span></li>
+<li><span class="math inline">A' = \{5, 6\}</span></li>
+<li><span class="math inline">(A\cup B)'=\{\emptyset\}</span></li>
 </ul>
 </div></div>
 </section></section>
@@ -636,7 +655,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li>Se refiere a la probabilidad de ocurrencia de un evento simple.
 <ul>
-<li>Por ejemplo: <span class="math inline">\(P(A)\)</span></li>
+<li>Por ejemplo: <span class="math inline">P(A)</span></li>
 </ul></li>
 </ul>
 <h3>Ejercicio</h3>
@@ -645,11 +664,11 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li><p>En la submuestra</p></li>
 </ul>
 <ul>
-<li><p><span class="math inline">\(P(H = 1) = \frac{8}{16} = 0.5\)</span></p></li>
+<li><p><span class="math inline">P(H = 1) = \frac{8}{16} = 0.5</span></p></li>
 <li><p>En la muestra</p></li>
 </ul>
 <ul>
-<li><span class="math inline">\(P(H = 1) = \frac{1190}{2403} = 0.4952143\)</span></li>
+<li><span class="math inline">P(H = 1) = \frac{1190}{2403} = 0.4952143</span></li>
 </ul>
 </div><div class="column" style="font-size: 0.61em;">
 <div class="cell">
@@ -730,11 +749,11 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </ul></li>
 </ul>
 <ul>
-<li><p><span class="math inline">\(P(S=M \cap H=sí) = \frac{4}{16} = 0.25\)</span></p></li>
+<li><p><span class="math inline">P(S=M \cap H=sí) = \frac{4}{16} = 0.25</span></p></li>
 <li><p>En la muestra</p></li>
 </ul>
 <ul>
-<li><span class="math inline">\(P(S=M \cap H=sí) = \frac{727}{2403} = 0.3025385\)</span></li>
+<li><span class="math inline">P(S=M \cap H=sí) = \frac{727}{2403} = 0.3025385</span></li>
 </ul>
 </div><div class="column" style="font-size: 0.61em;">
 <div class="cell">
@@ -890,8 +909,8 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>Ley de la suma</h2>
 <ul>
 <li>Esta ley nos permite encontrar la probabilidad de evento “A o B”. Para <span class="hi">dos eventos</span> esta regla se define como:</li>
-<li><span class="math inline">\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\)</span></li>
-<li>Si A y B son mutuamente excluyentes, entonces <span class="math inline">\(P(A\cap B)=0\)</span>.</li>
+<li><span class="math inline">P(A\cup B)=P(A)+P(B)-P(A\cap B)</span></li>
+<li>Si A y B son mutuamente excluyentes, entonces <span class="math inline">P(A\cap B)=0</span>.</li>
 <li>Tome en cuenta que esta ley tiene diferentes fórmulas en función de la cantidad de eventos (A, B, C, D, …)</li>
 </ul>
 </section>
@@ -899,7 +918,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>Ley de la suma</h2>
 <ul>
 <li><p>Esta ley nos permite encontrar la probabilidad de que ocurra “A o B o C”. Para <span class="hi">tres eventos</span> esta regla se define como:</p></li>
-<li><p><span class="math inline">\(P(A\cup B\cup C)=P(A)+P(B)+P(C)\\-P(A\cap B)-P(A\cap C)-P(B\cap C)\\+P(A\cap B\cap C)\)</span></p></li>
+<li><p><span class="math inline">P(A\cup B\cup C)=P(A)+P(B)+P(C)\\-P(A\cap B)-P(A\cap C)-P(B\cap C)\\+P(A\cap B\cap C)</span></p></li>
 <li><p>Observe que primero se suman las probabilidades individuales, luego se restan las intersecciones dobles y finalmente se suma la intersección triple.</p></li>
 <li><p>Este patrón se conoce como el principio de inclusión-exclusión.</p></li>
 </ul>
@@ -908,7 +927,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>Ley de la suma</h2>
 <ul>
 <li><p>Para <span class="hi">más de tres eventos</span>, la ley sigue un patrón alternado de sumas y restas conocido como principio de inclusión-exclusión:</p></li>
-<li><p><span class="math inline">\(P\left(\bigcup_{i=1}^{n} A_i\right)=\sum_{i=1}^{n}P(A_i) \\ -\sum_{i&lt;j}P(A_i\cap A_j) \\ +\sum_{i&lt;j&lt;k}P(A_i\cap A_j\cap A_k)-\\;\cdots;\\+(-1)^{n+1}P(A_1\cap A_2\cap\cdots\cap A_n)\)</span></p></li>
+<li><p><span class="math inline">P\left(\bigcup_{i=1}^{n} A_i\right)=\sum_{i=1}^{n}P(A_i) \\ -\sum_{i&lt;j}P(A_i\cap A_j) \\ +\sum_{i&lt;j&lt;k}P(A_i\cap A_j\cap A_k)-\\;\cdots;\\+(-1)^{n+1}P(A_1\cap A_2\cap\cdots\cap A_n)</span></p></li>
 <li><p><u>El signo alterna</u>: se suman probabilidades individuales, se restan intersecciones dobles, se suman triples, se restan cuádruples, y así sucesivamente.</p></li>
 </ul>
 </section>
@@ -916,15 +935,15 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>Ley de la suma - Ejercicio</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
-<p>Calcule la probabilidad de aleatoriamente, se obtenga un hombre o una persona hipertensa. Nótese de la redacción que se solicita <span class="math inline">\(P(A \text{ o } B) = P(A\cup B)\)</span></p>
+<p>Calcule la probabilidad de aleatoriamente, se obtenga un hombre o una persona hipertensa. Nótese de la redacción que se solicita <span class="math inline">P(A \text{ o } B) = P(A\cup B)</span></p>
 <ul>
 <li>En la submuestra</li>
 </ul>
-<p><span class="math inline">\(P(A\cup B) = P(A) + P(B) - P(A\cap B) \\= 0.5625 + 0.5 - 0.25 = 0.8125\)</span></p>
+<p><span class="math inline">P(A\cup B) = P(A) + P(B) - P(A\cap B) \\= 0.5625 + 0.5 - 0.25 = 0.8125</span></p>
 <ul>
 <li>En la muestra</li>
 </ul>
-<p><span class="math inline">\(P(A\cup B) = P(A) + P(B) - P(A\cap B) \\= 0.4644195 + 0.4952143 - 0.1926758 \\= 0.766958\)</span></p>
+<p><span class="math inline">P(A\cup B) = P(A) + P(B) - P(A\cap B) \\= 0.4644195 + 0.4952143 - 0.1926758 \\= 0.766958</span></p>
 </div><div class="column" style="font-size: 0.61em;">
 <div class="cell">
 <div class="cell-output-display">
@@ -1010,10 +1029,10 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>Ley de la multiplicación</h2>
 <ul>
 <li>Considera la ocurrencia de dos o más eventos de forma simultánea (A y B).</li>
-<li><span class="math inline">\(P(A\cap B) = P(A)\cdot P(B|A)\)</span> (Regla general)</li>
-<li>Si son independientes, entonces <span class="math inline">\(P(B|A)=P(B)\)</span> y por tanto <span class="math inline">\(P(A\cap B) = P(A)\cdot P(B)\)</span>.
+<li><span class="math inline">P(A\cap B) = P(A)\cdot P(B|A)</span> (Regla general)</li>
+<li>Si son independientes, entonces <span class="math inline">P(B|A)=P(B)</span> y por tanto <span class="math inline">P(A\cap B) = P(A)\cdot P(B)</span>.
 <ul>
-<li><span class="math inline">\(P(B|A)\)</span> se lee: la probabilidad de B dado A y es una probabilidad condicional.</li>
+<li><span class="math inline">P(B|A)</span> se lee: la probabilidad de B dado A y es una probabilidad condicional.</li>
 </ul></li>
 </ul>
 </section>
@@ -1022,12 +1041,12 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li>Antes de continuar con la ley de la multiplicación, se explica este concepto.</li>
 <li>Es la probabilidad de que ocurra un evento, dado que ya se sabe que otro ha ocurrido.</li>
-<li><span class="math inline">\(P(A|B) = \frac{P(A\cap B)}{P(B)}\)</span>, en el denominador siempre va el que condiciona (A <span class="hi">dado B</span>)
+<li><span class="math inline">P(A|B) = \frac{P(A\cap B)}{P(B)}</span>, en el denominador siempre va el que condiciona (A <span class="hi">dado B</span>)
 <ul>
 <li>Por ejemplo:</li>
 </ul></li>
-<li>En una clase el 30 % son hombres <span class="math inline">\(P(A)\)</span> y el 10 % son hombres y fumadores <span class="math inline">\(P(A\cap B)\)</span>. Entonces la probabilidad de ser fumador (B) dado que es hombre (A).</li>
-<li><span class="math inline">\(P(B|A) = \frac{P(A\cap B)}{P(A)} = \frac{0.10}{0.30} = 0.333\)</span></li>
+<li>En una clase el 30 % son hombres <span class="math inline">P(A)</span> y el 10 % son hombres y fumadores <span class="math inline">P(A\cap B)</span>. Entonces la probabilidad de ser fumador (B) dado que es hombre (A).</li>
+<li><span class="math inline">P(B|A) = \frac{P(A\cap B)}{P(A)} = \frac{0.10}{0.30} = 0.333</span></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -1063,7 +1082,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li>Si un evento ocurre, no tiene ningún efecto sobre la probabilidad que otro acontezca.</li>
 <li>Por ejemplo, si yo lanzo dos monedas, ¿el valor de la primera afecta el valor de la segunda?</li>
-<li>En términos matemáticos, cuando <span class="math inline">\(P(B|A)=P(B)\)</span></li>
+<li>En términos matemáticos, cuando <span class="math inline">P(B|A)=P(B)</span></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -1071,14 +1090,14 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="columns">
 <div class="column">
 <ul>
-<li><p>Calcule la probabilidad de que sea hipertenso (A) y tenga diabetes no controlada (B) (note la redacción). Es decir: <span class="math inline">\(P(A)\cdot P(B|A)\)</span></p></li>
+<li><p>Calcule la probabilidad de que sea hipertenso (A) y tenga diabetes no controlada (B) (note la redacción). Es decir: <span class="math inline">P(A)\cdot P(B|A)</span></p></li>
 <li><p>En la submuestra</p></li>
 </ul>
-<p><span class="math inline">\(P(A)\cdot P(B|A) \\= 0.5 \cdot 0.125 = 0.0625\)</span></p>
+<p><span class="math inline">P(A)\cdot P(B|A) \\= 0.5 \cdot 0.125 = 0.0625</span></p>
 <ul>
 <li>En la muestra</li>
 </ul>
-<p><span class="math inline">\(P(A)\cdot P(B|A) \\= 0.4952143 \cdot 0.1487395 = 0.0736579\)</span></p>
+<p><span class="math inline">P(A)\cdot P(B|A) \\= 0.4952143 \cdot 0.1487395 = 0.0736579</span></p>
 </div><div class="column" style="font-size: 0.61em;">
 <div class="cell">
 <div class="cell-output-display">
@@ -1190,8 +1209,8 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="column">
 <ul>
 <li><p>Estos ejercicios también pueden resolverse con tablas de contingencia.</p></li>
-<li><p>En la submuestra: <span class="math inline">\(P(A)\cdot P(B|A) = \frac{1}{16} = 0.0625\)</span></p></li>
-<li><p>En la submuestra: <span class="math inline">\(P(A)\cdot P(B|A) = \frac{177}{2403} = 0.0736579\)</span></p></li>
+<li><p>En la submuestra: <span class="math inline">P(A)\cdot P(B|A) = \frac{1}{16} = 0.0625</span></p></li>
+<li><p>En la submuestra: <span class="math inline">P(A)\cdot P(B|A) = \frac{177}{2403} = 0.0736579</span></p></li>
 </ul>
 </div><div class="column">
 <h3>En la submuestra</h3>
@@ -1269,7 +1288,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li>¿Cuál es la probabilidad de que ambos estén con los hilos de rosca dañados?</li>
 </ul></li>
-<li><span class="math inline">\(P(J \cap M)= P(J) \cdot P(M|J) = \frac{25}{75} \cdot \frac{24}{74}=0.1081\)</span></li>
+<li><span class="math inline">P(J \cap M)= P(J) \cdot P(M|J) = \frac{25}{75} \cdot \frac{24}{74}=0.1081</span></li>
 </ul>
 </section></section>
 <section>
@@ -1295,7 +1314,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="column">
 <h3>Probabilidad conjunta</h3>
 <ul>
-<li>En una fábrica de tornillos, el 80 % de los producidos son de buena calidad, si un tornillo es de buena calidad, tiene una probabilidad del 90 % de ser aprobado en la inspección final. La probabilidad de que un tornillo sea de buena calidad y pase la inspección final es de <span class="math inline">\(0.8\cdot 0.9=0.72\)</span></li>
+<li>En una fábrica de tornillos, el 80 % de los producidos son de buena calidad, si un tornillo es de buena calidad, tiene una probabilidad del 90 % de ser aprobado en la inspección final. La probabilidad de que un tornillo sea de buena calidad y pase la inspección final es de <span class="math inline">0.8\cdot 0.9=0.72</span></li>
 </ul>
 </div><div class="column">
 <h3>Teorema de Bayes</h3>
@@ -1305,12 +1324,12 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li>Más adelante ahondamos en la fórmula, de momento se quiere dejar en claro la diferencia entre probabilidad conjunta y teorema de Bayes</li>
 </ul></li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 P(Buena|Pasó) = \frac{0.9\cdot 0.8}{0.9\cdot 0.8 + 0.5\cdot 0.2}
-\]</span></p>
-<p><span class="math display">\[
+</span></p>
+<p><span class="math display">
 P(Buena|Pasó) = 0.878
-\]</span></p>
+</span></p>
 </div></div>
 </section>
 <section class="slide level2 bloques">
@@ -1330,9 +1349,9 @@ P(Buena|Pasó) = 0.878
 <ul>
 <li>El teorema de Bayes, como se observa en la fórmula, integra los conceptos de la Ley de la suma (el denominador) y la Ley de la multiplicación (el numerador).</li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 P(A|B)= \frac{P(A\cap B)}{P(B)} = \frac{P(B|A)\cdot P(A)}{\sum_{i=1}^{k}P(B|A_i)P(A_i)}
-\]</span> * Donde: * <span class="math inline">\(P(A)\)</span>: es también conocida como probabilidad a priori * <span class="math inline">\(P(A|B)\)</span>: recibe el nombre de probabilidad a posteriori</p>
+</span> * Donde: * <span class="math inline">P(A)</span>: es también conocida como probabilidad a priori * <span class="math inline">P(A|B)</span>: recibe el nombre de probabilidad a posteriori</p>
 </div></div>
 </section>
 <section class="slide level2 bloques">
@@ -1348,7 +1367,7 @@ P(A|B)= \frac{P(A\cap B)}{P(B)} = \frac{P(B|A)\cdot P(A)}{\sum_{i=1}^{k}P(B|A_i)
 <h2>Siguiendo el ejemplo de diabetes…</h2>
 <ul>
 <li>Suponga que se selecciona una persona al azar y se le realiza una prueba con la que se determina que tiene diabetes no controlada.</li>
-<li>Calculemos la probabilidad de que una persona sea hipertensa dado que tiene diabetes no controlada <span class="math inline">\(P(H=sí|D=sí)\)</span>.</li>
+<li>Calculemos la probabilidad de que una persona sea hipertensa dado que tiene diabetes no controlada <span class="math inline">P(H=sí|D=sí)</span>.</li>
 <li>Utilice un diagrama de árbol.</li>
 </ul>
 </section>
@@ -1357,9 +1376,9 @@ P(A|B)= \frac{P(A\cap B)}{P(B)} = \frac{P(B|A)\cdot P(A)}{\sum_{i=1}^{k}P(B|A_i)
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
-<li><p>Siga las ramas donde el resultado sea <span class="math inline">\(P(D=sí)\)</span>. En el numerador va la rama de interés (tener diabetes no controlada dado que se es hipertenso.) mientras que en el denominador va la probabilidad total de tener diabetes no controlada, tenga hipertensión o no. En este ejercicio particular es <span class="hi">casualidad</span> que las dos ramas tengan el mismo valor.</p></li>
-<li><p><span class="math inline">\(P(H=sí|D=sí) = \frac{P(H=sí \cap D =sí)}{P(D=sí)}\)</span></p></li>
-<li><p><span class="math inline">\(P(H=sí|D=sí) = \frac{0.0625}{0.0625 + 0.0625} = 0.5\)</span></p></li>
+<li><p>Siga las ramas donde el resultado sea <span class="math inline">P(D=sí)</span>. En el numerador va la rama de interés (tener diabetes no controlada dado que se es hipertenso.) mientras que en el denominador va la probabilidad total de tener diabetes no controlada, tenga hipertensión o no. En este ejercicio particular es <span class="hi">casualidad</span> que las dos ramas tengan el mismo valor.</p></li>
+<li><p><span class="math inline">P(H=sí|D=sí) = \frac{P(H=sí \cap D =sí)}{P(D=sí)}</span></p></li>
+<li><p><span class="math inline">P(H=sí|D=sí) = \frac{0.0625}{0.0625 + 0.0625} = 0.5</span></p></li>
 </ul>
 </div><div class="column img-fit" style="width:100%;">
 <div class="cell">
@@ -1376,11 +1395,11 @@ P(A|B)= \frac{P(A\cap B)}{P(B)} = \frac{P(B|A)\cdot P(A)}{\sum_{i=1}^{k}P(B|A_i)
 <div class="column">
 <ul>
 <li>En este caso, da lo mismo que resolverlo con probabilidad condicional.</li>
-<li><span class="math inline">\(P(H=sí|D=sí)\)</span>: Probabilidad de que sea hipertenso, dado que tiene diabetes no controlada</li>
+<li><span class="math inline">P(H=sí|D=sí)</span>: Probabilidad de que sea hipertenso, dado que tiene diabetes no controlada</li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 P(H=sí|D=sí) = \frac{1}{2}=0.5
-\]</span></p>
+</span></p>
 </div><div class="column">
 <div class="cell">
 <div class="cell-output-display">
@@ -1416,19 +1435,19 @@ P(H=sí|D=sí) = \frac{1}{2}=0.5
 <section class="slide level2 bloques">
 <h2>Como por ejemplo</h2>
 <ul>
-<li><p>Solo 1 de 1000 (0.001) adultos padece una enfermedad rara (<span class="math inline">\(A_{sí}\)</span>) para la cual se ha creado una prueba de diagnóstico (<span class="math inline">\(B\)</span>).</p></li>
-<li><p>Un resultado positivo se presentará en el 99 % de las veces cuando se tenga la enfermedad <span class="math inline">\((B_+|A_{sí})\)</span> y solo se presentará positivo el 2% cuando no se tenga la enfermedad <span class="math inline">\((B_+|A_{no})\)</span>.</p></li>
-<li><p>Se selecciona y somete al azar a un individuo y el resultado es positivo (<span class="hi">ya ocurrió el evento</span>). ¿Cuál es la probabilidad de que tenga la enfermedad? <span class="math inline">\(P(A_{sí}|B_+)\)</span>.</p></li>
-<li><p>Construya el diagrama de árbol y encuentre la probabilidad, ¿Compare la <span class="math inline">\(P(A_{sí})\)</span> contra la obtenida anteriormente <span class="math inline">\(P(A_{sí}|B_+)\)</span>.</p></li>
+<li><p>Solo 1 de 1000 (0.001) adultos padece una enfermedad rara (<span class="math inline">A_{sí}</span>) para la cual se ha creado una prueba de diagnóstico (<span class="math inline">B</span>).</p></li>
+<li><p>Un resultado positivo se presentará en el 99 % de las veces cuando se tenga la enfermedad <span class="math inline">(B_+|A_{sí})</span> y solo se presentará positivo el 2% cuando no se tenga la enfermedad <span class="math inline">(B_+|A_{no})</span>.</p></li>
+<li><p>Se selecciona y somete al azar a un individuo y el resultado es positivo (<span class="hi">ya ocurrió el evento</span>). ¿Cuál es la probabilidad de que tenga la enfermedad? <span class="math inline">P(A_{sí}|B_+)</span>.</p></li>
+<li><p>Construya el diagrama de árbol y encuentre la probabilidad, ¿Compare la <span class="math inline">P(A_{sí})</span> contra la obtenida anteriormente <span class="math inline">P(A_{sí}|B_+)</span>.</p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
 <h2>Solución</h2>
 <ul>
 <li>Se omite intencionalmente la secuencia de pasos para que la persona estudiante trate de resolverlo por su propia cuenta.</li>
-<li><span class="math inline">\(P(A_{sí}|B_+)=0.047\)</span></li>
-<li><span class="math inline">\(P(A_{sí}) = 0.001\)</span> (ya venía dada por el enunciado)</li>
-<li>Dado que el resultado de la prueba es positivo, la probabilidad de padecer la enfermedad incrementa en 47 veces. Aunque en términos absolutos sigue siendo baja (<span class="math inline">\(4.7\%\)</span>).</li>
+<li><span class="math inline">P(A_{sí}|B_+)=0.047</span></li>
+<li><span class="math inline">P(A_{sí}) = 0.001</span> (ya venía dada por el enunciado)</li>
+<li>Dado que el resultado de la prueba es positivo, la probabilidad de padecer la enfermedad incrementa en 47 veces. Aunque en términos absolutos sigue siendo baja (<span class="math inline">4.7\%</span>).</li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -1661,7 +1680,7 @@ P(H=sí|D=sí) = \frac{1}{2}=0.5
         margin: 5.0e-2,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: '',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1687,6 +1706,7 @@ P(H=sí|D=sí) = \frac{1}{2}=0.5
         ]
       });
     </script>
+    <script data-goatcounter="https://stevenggoni.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
     
 
     <script>
