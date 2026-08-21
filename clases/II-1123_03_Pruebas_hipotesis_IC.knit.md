@@ -5,11 +5,11 @@ date: today
 format: revealjs
 ---
 
-```{r}
 
-library(tidyverse)
+::: {.cell}
 
-```
+:::
+
 
 ## Agenda {.bloques}
 
@@ -482,3 +482,4 @@ $$ \Rightarrow \bar{x} - z_{\frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}} < \m
 * En este contexto (en este marco del curso se enseñará la dualidad entre ambos, no es un requisito universal):
   * Toda prueba de hipótesis, involucra un intervalo de confianza.
   * Los intervalos de confianza no requieren prueba de hipótesis.
+

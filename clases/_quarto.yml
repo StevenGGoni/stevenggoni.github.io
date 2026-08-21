@@ -23,6 +23,7 @@ format:
     incremental: false
     transition: fade
     hash-type: number
+    include-after-body: analytics.html
     width: 1920
     height: 1080
     margin: 0.05

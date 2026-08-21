@@ -6,7 +6,9 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Steven García Goñi steven.garciagoni@ucr.ac.cr">
@@ -368,7 +370,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </ul></li>
 <li><p>Por ejemplo:</p>
 <ul>
-<li>El valor de <span class="math inline">\bar{ximg}</span> del estadístico <span class="math inline">\bar{X}</span>, que se calcula a partir de una muestra de tamaño <span class="math inline">n</span>, es una estimación puntual del parámetro de la población <span class="math inline">\mu</span>.</li>
+<li>El valor de <span class="math inline">\bar{x}</span> del estadístico <span class="math inline">\bar{X}</span>, que se calcula a partir de una muestra de tamaño <span class="math inline">n</span>, es una estimación puntual del parámetro de la población <span class="math inline">\mu</span>.</li>
 </ul></li>
 </ul>
 </section>
@@ -397,6 +399,143 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <li><p>En lugar de:</p></li>
 <li><p><span class="math inline">s^2 = \frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n}</span></p></li>
 <li><p>El primero es un estimador INSESGADO de la varianza poblacional. Mientras que el segundo NO LO ES. Esto se sabe por demostraciones con el método de momentos, por ejemplo.</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+<h2>Estimación por intervalos</h2>
+</section>
+<section class="slide level2 bloques">
+<h2>Estimación por intervalos</h2>
+<ul>
+<li><p>Una estimación puntual, por el hecho de ser un solo número no proporciona información sobre la <span class="hi">precisión</span> y <span class="hi">confiabilidad</span> de la estimación.</p></li>
+<li><p>Debido a las variabilidades del muestreo, virtualmente nunca se dará el caso de <span class="math inline">\theta = \hat{\theta}</span>.</p></li>
+<li><p>Una alternativa para mitigar este riesgo es utilizar intervalos de confianza.</p></li>
+<li><p>Un intervalo de confianza siempre se calcula seleccionando <span class="hi">primero</span> un nivel de confianza.</p></li>
+<li><p>Por ejemplo, un intervalo de confianza al 95 % implica que 95 % de todas las muestras dará un intervalo que contiene a <span class="math inline">\theta</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Estimación por intervalos</h2>
+<ul>
+<li><p>Mientras mayor es el nivel de confianza, más fuerte es la creencia de que el valor del parámetro que se está estimando queda dentro del intervalo.</p></li>
+<li><p>Si el nivel de confianza es alto y el intervalo resultante es bastante angosto, el conocimiento del valor del parámetro es bastante preciso.</p></li>
+<li><p>Un amplio intervalo de confianza transmite el mensaje de que existe gran cantidad de incertidumbre sobre el valor que se está estimando.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Estimación por intervalos</h2>
+<div class="columns">
+<div class="column">
+<iframe src="https://stevenggoni.github.io/interactivos/IC-embed.html?dist=normal" width="100%" height="620" style="border: 1px solid #33111422; border-radius: 8px; background-color: #F1F5F5; overflow: hidden;" frameborder="0" scrolling="no">
+</iframe>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Estimación por intervalos</h2>
+<ul>
+<li><p>Del TLC recordamos que:</p>
+<ul>
+<li><p>La variabilidad se expresa como <span class="math inline">\frac{s}{\sqrt{n}}</span>, y a esto lo vamos a llamar Error Estándar, este es un estimador de la precisión.</p></li>
+<li><p>Además, <span class="math inline">z = \frac{x-\mu}{\frac{\sigma}{\sqrt{n}}}</span></p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Estimación por intervalos</h2>
+<div class="columns">
+<div class="column">
+<p><span class="math display"> P \left( -z_{\frac{\alpha}{2}} &lt; \frac{\bar{x} - \mu}{\frac{\sigma}{\sqrt{n}}} &lt; z_{\frac{\alpha}{2}} \right) = 1 - \alpha </span></p>
+<p><span class="math display"> \Rightarrow -z_{\frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}} &lt; \bar{x} - \mu &lt; z_{\frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}} </span></p>
+<p><span class="math display"> \Rightarrow -\bar{x} - z_{\frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}} &lt; -\mu &lt; -\bar{x} + z_{\frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}} </span></p>
+<p><span class="math display"> \Rightarrow \bar{x} - z_{\frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}} &lt; \mu &lt; \bar{x} + z_{\frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}} </span></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Cómo se interpreta?</h2>
+<ul>
+<li><p>La interpretación es simple, pero no hay que confundirla con otros intervalos:</p>
+<ul>
+<li>El intervalo observado contiene el valor verdadero del parámetro, por ejemplo <span class="math inline">\mu</span>, con una confianza de <span class="math inline">1-\alpha</span>.</li>
+</ul></li>
+<li><p><span class="hi">NO ES CORRECTO</span> decir que:</p>
+<ul>
+<li>El parámetro verdadero, por ejemplo <span class="math inline">\mu</span> se encuentra dentro del intervalo con un <span class="math inline">1-\alpha</span> de probabilidad.</li>
+</ul></li>
+<li><p>Reflexione:</p>
+<ul>
+<li>En este enfoque, se trata al parámetro como una variable aleatoria.</li>
+<li>En el enfoque correcto, la variable aleatoria son los intervalos generados.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Cómo se interpreta?</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>¿Es lógico no? Es natural pensar que el valor verdadero es siempre FIJO, lo que cambia es la estimación de los intervalos porque dependen de una muestra.</p></li>
+<li><p>Así se muestra en la imagen adjunta (y en la aplicación anterior), lo que cambia es el intervalo, no el parámetro.</p></li>
+</ul>
+<p><img data-src="img/IC.svg"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Cómo se interpreta?</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Es lo mismo que jugar “<em>reverse basketball</em>”, la bola está fija (parámetro), lo que cambia es el aro (Intervalo).</p></li>
+<li><p>Que aunque sea del mismo tamaño, varía la “precisión” (EE) del lanzador.</p></li>
+<li><p>Ver video</p></li>
+</ul>
+</div><div class="column img-fit" style="width:40%;">
+<video id="video_shortcode_videojs_video1" height="710" class="video-js vjs-default-skin vjs-big-play-centered " controls="" preload="auto" data-setup="{}" title=""><source src="img/reverse_basketball.mp4"></video>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Cómo se interpreta?</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Una analogía menos peligrosa, para intentar en casa, es este juego para niños.</p></li>
+<li><p>Las barras fijas, representan el parámetro y los aros representan los intervalos de confianza.</p></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/juego_aros.jpeg"></p>
+</div></div>
+</section>
+<section class="slide level2 center">
+<h2>Pruebas de hipótesis</h2>
+</section>
+<section class="slide level2 bloques">
+<h2>Pruebas de hipótesis</h2>
+<ul>
+<li><p>Muchos problemas en ingeniería requieren que se decida sobre cual de dos afirmaciones sobre un parámetro es verdades. Estas afirmaciones se denominan <span class="hi">hipótesis</span> y el proceso para la toma de decisiones se conoce como <span class="hi">prueba de hipótesis</span>.</p></li>
+<li><p><em>Una hipótesis estadística es una declaración sobre los parámetros de una o más poblaciones.</em></p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Pruebas de hipótesis</h2>
+<ul>
+<li><p>Esta declaración se asume como inicialmente cierta. Y se busca evidencia en contra de dicha afirmación.</p></li>
+<li><p>Es por eso que el resultado de la prueba de hipótesis es:</p>
+<ul>
+<li>Tengo o no tengo evidencia suficiente en contra de dicha afirmación. Por tanto se rechaza o no se rechaza.</li>
+<li><u>Nunca se acepta.</u></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Pruebas de hipótesis e Intervalos de confianza</h2>
+<ul>
+<li><p>Aunque son dos temas diferentes, se van a abordar de manera simultánea. Pues, <span class="hi">en este contexto</span> se necesita de un intervalo de confianza para dar respuesta a la prueba de hipótesis.</p></li>
+<li><p>Dicho de otra forma, puede haber intervalo de confianza sin prueba de hipótesis, pero no prueba de hipótesis sin intervalo de confianza.</p></li>
+<li><p>Por ello, es que se esta clase se aborda desde la prueba de hipótesis, ya que simultáneamente se obtendrá un intervalo de confianza.</p></li>
+<li><p>En este contexto (en este marco del curso se enseñará la dualidad entre ambos, no es un requisito universal):</p>
+<ul>
+<li>Toda prueba de hipótesis, involucra un intervalo de confianza.</li>
+<li>Los intervalos de confianza no requieren prueba de hipótesis.</li>
+</ul></li>
 </ul>
 
 
@@ -616,6 +755,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
         ]
       });
     </script>
+    <script data-goatcounter="https://stevenggoni.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
     
 
     <script>
@@ -860,6 +1000,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
         }
       });
       </script>
+    <script>videojs(video_shortcode_videojs_video1);</script>
     
 
 </body></html>
