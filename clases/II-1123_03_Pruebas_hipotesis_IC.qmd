@@ -495,7 +495,7 @@ $$ \Rightarrow \bar{x} - z_{\frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}} < \m
   
   * También recuerde la ley de los grandes números, a mayor muestra, mejor.
   
-## Una media (Varianza conocida) {.bloques}
+## Una media ([Varianza conocida]{.hi}) {.bloques}
 
 :::::: {.columns}
 
@@ -506,9 +506,12 @@ $$ \Rightarrow \bar{x} - z_{\frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}} < \m
 
 $$z = \frac{x-\mu}{\frac{\sigma}{\sqrt{n}}}$$
 
-* El intervalor bilateral está compuesto por: 
+* El intervalo bilateral está compuesto por: 
 
 $$\bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$$
+:::
+
+::: {.column}
 
 * Los intervalos unilaterales están compuestos por: 
 
@@ -534,21 +537,388 @@ Por lo que su aplicabilidad es sumamente limitada; sobre todo cuando de un proce
 
 ::::::
 
-## Ejemplo {.bloques}
+## Ejemplo 01 {.bloques}
 
 :::::: {.columns}
 
-::: {.column}
+::: {.column width="40%"}
 
-Un técnico de control de calidad está investigando la resistencia interna a la presión de botellas de vidrio para bebidas gaseosas de 1 L. Se sabe que este proceso sigue una distribución normal con 𝜎=30 𝑝𝑠𝑖. Se recolectan los siguientes datos.
+Un técnico de control de calidad está investigando la resistencia interna a la presión de botellas de vidrio para bebidas gaseosas de 1 L. Se sabe que este proceso sigue una distribución normal con $\sigma=30$ psi. Se recolectan los siguientes datos.
 
 
 :::
 
 ::: {.column}
 
+```{r}
+
+ej01 <- c(279.408, 263.159, 223.975, 279.716, 292.730,
+           295.008, 309.995, 333.141, 239.869, 243.248,
+           326.719, 237.145, 261.072, 282.608, 303.176,
+           305.023, 270.551, 312.211, 315.649, 294.263,
+           295.736, 306.858, 296.722, 259.649, 290.109)
+
+matrix(ej01, ncol = 5) |> 
+  knitr::kable(format = "html", 
+               escape = FALSE, 
+               col.names = NULL) |> 
+  kableExtra::kable_styling(full_width = FALSE,
+                            bootstrap_options = c("bordered", "condensed"))
+
+```
 
 
 :::
 
 ::::::
+
+## Ejemplo 01 {.bloques}
+
+* Se desea calcular un intervalo bilateral al 95 % para la media. 
+
+  * $\bar{x} = 284.7096$
+  * $\sigma = 30$
+  * $n = 25$
+  * $z_{0.025} = 1.96$, este valor lo puede obtener con lo visto en distribuciones continuas. 
+
+* Respuesta:$(272.94982, 296.46938)$
+
+## Ejemplo 01 {.bloques}
+
+* El técnico dice que la resistencia media verdadera es de 275 ($H_o$), ¿a qué conclusión se puede llegar? 
+  * Valor $p = 0.10559$.
+  
+* R/ No hay evidencia suficiente para rechazar la hipótesis nula de que la resistencia media es de 275 psi
+
+* Note que el valor de 275 está dentro del IC
+
+## Ejemplo 01 {.bloques}
+
+* Aunque la solución con software es simple, es importante que comprenda de donde viene el valor P. En el ejemplo anterior estamos usando la distribución normal estándar $(z)$.
+
+* $z = \frac{x-\mu}{\frac{\sigma}{\sqrt{n}}} = 1.6183$
+
+* $P(z > 1.6183) = 0.0528$, como es bilateral, entonces $0.0528 \cdot 2 = 0.1056$.
+
+## Una media ([varianza desconocida]{.hi}) {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+
+* Se emplea el estadístico $t$
+
+$$t = \frac{x-\mu}{\frac{s}{\sqrt{n}}}$$
+
+* El intervalo bilateral está compuesto por: 
+
+$$\bar{x} \pm t_{\alpha/2} \cdot \frac{s}{\sqrt{n}}$$
+
+:::
+
+::: {.column}
+
+* Los intervalos unilaterales están compuestos por: 
+
+Para la cola izquierda
+
+$$\bar{x} - t_{\alpha} \cdot \frac{s}{\sqrt{n}}$$
+
+Para la cola derecha
+
+$$\bar{x} + t_{\alpha} \cdot \frac{s}{\sqrt{n}}$$
+
+
+:::
+
+::: {.column}
+
+Este escenario es más plausible. 
+
+Los grados de libertad para $t$ son: 
+
+$$\nu = n-1$$
+
+:::
+
+::::::
+
+## Ejemplo 02 {.bloques}
+
+* Resuelva el Ejemplo 01, pero en un escenario más realista o plausible, en el que no se conoce el valor de la varianza poblacional. 
+
+* Compare estos resultados con los previos. 
+
+* $\bar{x}=284.7096 \quad s = 28.7621 \quad n = 25$
+
+* $t_{0.025}=2.0639$
+
+* IC: $(272.8372, 296.16923)$
+
+* Valor P = 0.1044
+
+## Ejemplo 03 {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+Un ingeniero está investigando las características de desgaste de un tipo particular de llantas radiales para automóvil empleadas por la flotilla de la compañía. Se selecciona una muestra aleatoria de 16 llantas y cada llanta se corre hasta que aparezcan bandas de desgastes. Se registra así, los kilómetros que ha recorrido la llanta hasta llegar a ese punto.
+
+
+:::
+
+::: {.column}
+
+```{r}
+
+ej03 <- c(43047.9, 44033.68, 40341.94, 41643.01, 43216.15, 
+          41384.96, 40236.3, 39773.31, 43003.05, 44617.98, 
+          39706.33, 41265.76, 39004.94, 41210.72, 40703.16, 41100.65)
+
+matrix(ej03, ncol = 4) |> 
+  knitr::kable(format = "html", 
+               escape = FALSE, 
+               col.names = NULL) |> 
+  kableExtra::kable_styling(full_width = FALSE,
+                            bootstrap_options = c("bordered", "condensed"))
+
+```
+
+
+:::
+
+::::::
+
+## Ejemplo 03 {.bloques}
+
+* $\bar{x}=41\,518.12 \quad s = 1\,634.323$.
+
+* Calcule el intervalo unilateral inferior de confianza del 95% con respecto al desgaste medio. 
+
+  * IC: $(40\,801.85738,\infty)$
+  
+* ¿La cantidad de kilómetros son 45000?
+
+  * $H_o: \mu = 45\,000$
+  * $H_i: \mu>45\,000$
+  
+* R/: El valor P = 1.00, no hay evidencia suficiente para rechazar la hipótesis nula. 
+
+## Algunos consejos {.bloques}
+
+* Un intervalo [unilateral inferior]{.hi}, implica una hipótesis (ojo a la alternativa) de este tipo
+
+  * $H_o: \mu = 45\,000$
+  * $H_i: \mu > 45\,000$
+
+* Puede pensarlo de esta manera, esa hipótesis alternativa dice que la media tiene que ser como [mínimo]{.hi} 45 000. Relacione ese [mínimo]{.ul} con el término [inferior]{.ul}. 
+
+
+## Algunos consejos {.bloques}
+
+* Un intervalo [unilateral superior]{.hi}, implica una hipótesis (ojo a la alternativa) de este tipo
+
+  * $H_o: \mu = 45\,000$
+  * $H_i: \mu < 45\,000$
+
+* Puede pensarlo de esta manera, esa hipótesis alternativa dice que la media tiene que ser como [máximo]{.hi} 45 000. Relacione ese [máximo]{.ul} con el término [superior]{.ul}. 
+
+## Dos medias ([varianzas desconocidas e iguales]{.hi}) {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="40%"}
+
+
+* Se emplea el estadístico $t$:
+  * $t = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}$
+  * $s_p = \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}$
+
+* El intervalo bilateral está compuesto por:
+  * $(\bar{x}_1 - \bar{x}_2) \pm t_{\frac{\alpha}{2}, \, n_1+n_2-2} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$
+
+:::
+
+::: {.column width="40%"}
+
+* Los intervalos unilaterales están compuestos por: 
+
+Para la cola izquierda
+
+$(\bar{x}_1 - \bar{x}_2) - t_{\alpha, \, n_1+n_2-2} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$
+
+Para la cola derecha
+
+$(\bar{x}_1 - \bar{x}_2) + t_{\alpha, \, n_1+n_2-2} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$
+
+:::
+
+::: {.column width="20%"}
+
+
+Los grados de libertad para $t$ son: 
+
+$$\nu = n_1+n_2-2$$
+
+:::
+
+::::::
+
+## ¿Cómo sé si las varianzas son iguales? {.bloques}
+
+* De momento se le va a pedir que confíe.
+
+* En estos ejercicios, [DE MOMENTO]{.hi}, se le va a indicar si las varianzas son iguales o no. 
+
+* Luego, en esta sesión (o presentación), se le va a indicar como hacer una prueba de hipótesis para comprobar esto.
+
+  * Cuando tenga que resolver ejercicios de este tipo se espera que primero haga la prueba de varianzas y luego de la de medias. 
+
+## Ejemplo 04 {.bloques}
+
+* Dos estudiantes de la UCR estudian las propiedades físico-mecánicas de un conglomerante para su eventual uso en construcciones en la luna. Se toman 10 especímenes de dos tipos de mezcla (10 especímenes de la mezcla 1 y 10 de la mezcla 2).
+
+* Se conoce que la resistencia sigue una distribución normal y sus varianzas son iguales, con un 95% de confianza, ¿las medias poblacionales son iguales?
+
+## Ejemplo 04 {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+```{r}
+ej04 <- data.frame(M1 = c(103.371, 110.136, 102.679, 102.387, 107.033, 
+                          100.321, 109.539, 105.526, 102.164, 102.284),
+                   M2 = c(98.358, 103.286, 101.273, 97.24, 102.727, 
+                          102.3, 100.342, 100.88, 104.718, 106.056))
+
+matrix(ej03, ncol = 4) |> 
+  knitr::kable(format = "html", 
+               escape = FALSE, 
+               col.names = NULL) |> 
+  kableExtra::kable_styling(full_width = FALSE,
+                            bootstrap_options = c("bordered", "condensed"))
+
+```
+
+
+:::
+
+
+::: {.column}
+
+¿Las medias son iguales? 
+
+$H_o: \mu_{M1}=\mu{M2} \rightarrow \mu_{M1}-\mu{M2} = 0$
+
+$H_i: \mu_{M1}\ne\mu{M2} \rightarrow \mu_{M1}-\mu{M2} \ne 0$
+
+IC: $(−0.03792, 5.68992)$
+
+Valor P = 0.05279
+
+:::
+
+::::::
+
+## Volvamos al valor P {.bloques}
+
+* Recordemos que los valores P son una probabilidad que mide la evidencia en contra de la hipótesis nula. Nunca la evidencia a favor. 
+
+* Y que como se ha aclarado antes, los valores P no se interpretan por si solos, sino que se acompañan del resto de información estadística. 
+
+* En ocasiones nos vemos tentados a emplear [terminología incorrecta]{.hi} como: 
+  * Es MUY significativo, cuando un valor P es muy bajo. 
+
+* Es importante aclarar que la significancia estadística es un límite: solo se puede ser o no ser significativo. 
+* [No puedo ser muy o poco significativo]{.hi}. 
+
+## Volvamos al valor P {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="50%"}
+
+Piénselo de esta manera: 
+
+* ¿Yo soy “más tico” por nacer en San José centro que alguien que nació en Los Chiles?   
+  *  ¿Verdad que no?
+
+* Entonces tampoco puedo ser más significativo con base en un valor P.
+
+
+:::
+
+::: {.column .img-fit}
+
+![](img/mapa_cr_2.jpg)
+
+:::
+
+::::::
+
+## Volvamos al valor P {.bloques}
+
+* Lo que puedo estar es más o menos seguro de que “soy tico” y para ello es relevante analizar el valor P en CONJUNTO con:
+
+  * Evidencias externas del contexto (diseño del estudio, calidad de mediciones)
+  * Evidencias internas (otros estadísticos como la estimación del intervalo de confianza).
+
+* En el ejemplo que acabamos de desarrollar, estamos poco segur@s de que la media sea 0, aún cuando el valor $P > \alpha$.
+
+* ¿No cree que el IC "apenas" y contiene a $\mu = 0$? Por eso el $\alpha$ se debe escoger con base en criterios razonables y con ética y no se debe reemplazar a conveniencia.
+
+## Volvamos al valor P {.bloques}
+
+:::::: {.columns}
+
+::: {.column .img.fit .center}
+
+```{r}
+
+t_95 <- t.test(ej04$M1, ej04$M2, var.equal = TRUE, conf.level = 0.95)
+t_90 <- t.test(ej04$M1, ej04$M2, var.equal = TRUE, conf.level = 0.90)
+
+df_ic <- data.frame(Nivel = factor(c("90%", "95%"), levels = c("95%", "90%")),
+                    Diferencia = as.numeric(diff(rev(t_95$estimate))),
+                    LI = c(t_90$conf.int[1], t_95$conf.int[1]),
+                    LS = c(t_90$conf.int[2], t_95$conf.int[2]))
+
+g4 <- ggplot(df_ic, aes(x = Nivel, y = Diferencia, color = Nivel)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "firebrick", linewidth = 0.8) +
+  geom_errorbar(aes(ymin = LI, ymax = LS), width = 0.15, linewidth = 1.2) +
+  geom_point(size = 4) +
+  scale_color_manual(values = c("95%" = "#2b5c8f", "90%" = "#e67e22")) +
+  coord_flip() +
+  labs(title = "Intervalo de Confianza para μ₁ - μ₂",
+       subtitle = "x̄₁ - x̄₂ = 2.826",
+       x = "Nivel de confianza",
+       y = "Diferencia de medias",
+       color = "Nivel") +
+  theme_minimal(base_size = 20) +
+  theme(legend.position = "none")
+
+plotly::ggplotly(g4, height = 650, width = 1850) %>% 
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 35),
+                 xaxis = list(
+                   title = list( font = list(size = 30)),
+                   tickfont = list(size = 25)),
+                 yaxis = list(title = list(font = list(size = 30)),
+                              tickfont = list(size = 25)),
+                 legend = list(title = list(font = list(size = 25)),
+                               font = list(size = 20),
+                               bgcolor = "#F1F5F5"))
+
+```
+
+
+:::
+
+::::::
+
+## Dos medias ([Varianzas desconocidas y diferentes]{.hi}){.bloques}
+

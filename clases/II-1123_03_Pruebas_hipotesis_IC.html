@@ -143,6 +143,26 @@
       margin-right: 0; 
     }
   </style>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+  <script src="site_libs/plotly-binding-4.12.0/plotly.js"></script>
+
+  <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+  <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+  <link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+  <script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+  <link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+
+  <script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -553,7 +573,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </ul>
 </section>
 <section class="slide level2 bloques">
-<h2>Una media (Varianza conocida)</h2>
+<h2>Una media (<span class="hi">Varianza conocida</span>)</h2>
 <div class="columns">
 <div class="column">
 <ul>
@@ -561,9 +581,10 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </ul>
 <p><span class="math display">z = \frac{x-\mu}{\frac{\sigma}{\sqrt{n}}}</span></p>
 <ul>
-<li>El intervalor bilateral está compuesto por:</li>
+<li>El intervalo bilateral está compuesto por:</li>
 </ul>
 <p><span class="math display">\bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}</span></p>
+</div><div class="column">
 <ul>
 <li>Los intervalos unilaterales están compuestos por:</li>
 </ul>
@@ -574,6 +595,347 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div><div class="column">
 <p>Este escenario es irreal, porque típicamente AMBOS parámetros (<span class="math inline">\mu</span> y <span class="math inline">\sigma</span>) son desconocidos.</p>
 <p>Por lo que su aplicabilidad es sumamente limitada; sobre todo cuando de un proceso previo se asume que continuará con la misma <span class="math inline">\sigma</span>.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 01</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p>Un técnico de control de calidad está investigando la resistencia interna a la presión de botellas de vidrio para bebidas gaseosas de 1 L. Se sabe que este proceso sigue una distribución normal con <span class="math inline">\sigma=30</span> psi. Se recolectan los siguientes datos.</p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">279.408</td>
+<td style="text-align: right;">295.008</td>
+<td style="text-align: right;">326.719</td>
+<td style="text-align: right;">305.023</td>
+<td style="text-align: right;">295.736</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">263.159</td>
+<td style="text-align: right;">309.995</td>
+<td style="text-align: right;">237.145</td>
+<td style="text-align: right;">270.551</td>
+<td style="text-align: right;">306.858</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">223.975</td>
+<td style="text-align: right;">333.141</td>
+<td style="text-align: right;">261.072</td>
+<td style="text-align: right;">312.211</td>
+<td style="text-align: right;">296.722</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">279.716</td>
+<td style="text-align: right;">239.869</td>
+<td style="text-align: right;">282.608</td>
+<td style="text-align: right;">315.649</td>
+<td style="text-align: right;">259.649</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">292.730</td>
+<td style="text-align: right;">243.248</td>
+<td style="text-align: right;">303.176</td>
+<td style="text-align: right;">294.263</td>
+<td style="text-align: right;">290.109</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 01</h2>
+<ul>
+<li><p>Se desea calcular un intervalo bilateral al 95 % para la media.</p>
+<ul>
+<li><span class="math inline">\bar{x} = 284.7096</span></li>
+<li><span class="math inline">\sigma = 30</span></li>
+<li><span class="math inline">n = 25</span></li>
+<li><span class="math inline">z_{0.025} = 1.96</span>, este valor lo puede obtener con lo visto en distribuciones continuas.</li>
+</ul></li>
+<li><p>Respuesta:<span class="math inline">(272.94982, 296.46938)</span></p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 01</h2>
+<ul>
+<li><p>El técnico dice que la resistencia media verdadera es de 275 (<span class="math inline">H_o</span>), ¿a qué conclusión se puede llegar?</p>
+<ul>
+<li>Valor <span class="math inline">p = 0.10559</span>.</li>
+</ul></li>
+<li><p>R/ No hay evidencia suficiente para rechazar la hipótesis nula de que la resistencia media es de 275 psi</p></li>
+<li><p>Note que el valor de 275 está dentro del IC</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 01</h2>
+<ul>
+<li><p>Aunque la solución con software es simple, es importante que comprenda de donde viene el valor P. En el ejemplo anterior estamos usando la distribución normal estándar <span class="math inline">(z)</span>.</p></li>
+<li><p><span class="math inline">z = \frac{x-\mu}{\frac{\sigma}{\sqrt{n}}} = 1.6183</span></p></li>
+<li><p><span class="math inline">P(z &gt; 1.6183) = 0.0528</span>, como es bilateral, entonces <span class="math inline">0.0528 \cdot 2 = 0.1056</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Una media (<span class="hi">varianza desconocida</span>)</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Se emplea el estadístico <span class="math inline">t</span></li>
+</ul>
+<p><span class="math display">t = \frac{x-\mu}{\frac{s}{\sqrt{n}}}</span></p>
+<ul>
+<li>El intervalo bilateral está compuesto por:</li>
+</ul>
+<p><span class="math display">\bar{x} \pm t_{\alpha/2} \cdot \frac{s}{\sqrt{n}}</span></p>
+</div><div class="column">
+<ul>
+<li>Los intervalos unilaterales están compuestos por:</li>
+</ul>
+<p>Para la cola izquierda</p>
+<p><span class="math display">\bar{x} - t_{\alpha} \cdot \frac{s}{\sqrt{n}}</span></p>
+<p>Para la cola derecha</p>
+<p><span class="math display">\bar{x} + t_{\alpha} \cdot \frac{s}{\sqrt{n}}</span></p>
+</div><div class="column">
+<p>Este escenario es más plausible.</p>
+<p>Los grados de libertad para <span class="math inline">t</span> son:</p>
+<p><span class="math display">\nu = n-1</span></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 02</h2>
+<ul>
+<li><p>Resuelva el Ejemplo 01, pero en un escenario más realista o plausible, en el que no se conoce el valor de la varianza poblacional.</p></li>
+<li><p>Compare estos resultados con los previos.</p></li>
+<li><p><span class="math inline">\bar{x}=284.7096 \quad s = 28.7621 \quad n = 25</span></p></li>
+<li><p><span class="math inline">t_{0.025}=2.0639</span></p></li>
+<li><p>IC: <span class="math inline">(272.8372, 296.16923)</span></p></li>
+<li><p>Valor P = 0.1044</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 03</h2>
+<div class="columns">
+<div class="column">
+<p>Un ingeniero está investigando las características de desgaste de un tipo particular de llantas radiales para automóvil empleadas por la flotilla de la compañía. Se selecciona una muestra aleatoria de 16 llantas y cada llanta se corre hasta que aparezcan bandas de desgastes. Se registra así, los kilómetros que ha recorrido la llanta hasta llegar a ese punto.</p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">43047.90</td>
+<td style="text-align: right;">43216.15</td>
+<td style="text-align: right;">43003.05</td>
+<td style="text-align: right;">39004.94</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">44033.68</td>
+<td style="text-align: right;">41384.96</td>
+<td style="text-align: right;">44617.98</td>
+<td style="text-align: right;">41210.72</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">40341.94</td>
+<td style="text-align: right;">40236.30</td>
+<td style="text-align: right;">39706.33</td>
+<td style="text-align: right;">40703.16</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">41643.01</td>
+<td style="text-align: right;">39773.31</td>
+<td style="text-align: right;">41265.76</td>
+<td style="text-align: right;">41100.65</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 03</h2>
+<ul>
+<li><p><span class="math inline">\bar{x}=41\,518.12 \quad s = 1\,634.323</span>.</p></li>
+<li><p>Calcule el intervalo unilateral inferior de confianza del 95% con respecto al desgaste medio.</p>
+<ul>
+<li>IC: <span class="math inline">(40\,801.85738,\infty)</span></li>
+</ul></li>
+<li><p>¿La cantidad de kilómetros son 45000?</p>
+<ul>
+<li><span class="math inline">H_o: \mu = 45\,000</span></li>
+<li><span class="math inline">H_i: \mu&gt;45\,000</span></li>
+</ul></li>
+<li><p>R/: El valor P = 1.00, no hay evidencia suficiente para rechazar la hipótesis nula.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Algunos consejos</h2>
+<ul>
+<li><p>Un intervalo <span class="hi">unilateral inferior</span>, implica una hipótesis (ojo a la alternativa) de este tipo</p>
+<ul>
+<li><span class="math inline">H_o: \mu = 45\,000</span></li>
+<li><span class="math inline">H_i: \mu &gt; 45\,000</span></li>
+</ul></li>
+<li><p>Puede pensarlo de esta manera, esa hipótesis alternativa dice que la media tiene que ser como <span class="hi">mínimo</span> 45 000. Relacione ese <u>mínimo</u> con el término <u>inferior</u>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Algunos consejos</h2>
+<ul>
+<li><p>Un intervalo <span class="hi">unilateral superior</span>, implica una hipótesis (ojo a la alternativa) de este tipo</p>
+<ul>
+<li><span class="math inline">H_o: \mu = 45\,000</span></li>
+<li><span class="math inline">H_i: \mu &lt; 45\,000</span></li>
+</ul></li>
+<li><p>Puede pensarlo de esta manera, esa hipótesis alternativa dice que la media tiene que ser como <span class="hi">máximo</span> 45 000. Relacione ese <u>máximo</u> con el término <u>superior</u>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Dos medias (<span class="hi">varianzas desconocidas e iguales</span>)</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li>Se emplea el estadístico <span class="math inline">t</span>:
+<ul>
+<li><span class="math inline">t = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}</span></li>
+<li><span class="math inline">s_p = \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}</span></li>
+</ul></li>
+<li>El intervalo bilateral está compuesto por:
+<ul>
+<li><span class="math inline">(\bar{x}_1 - \bar{x}_2) \pm t_{\frac{\alpha}{2}, \, n_1+n_2-2} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}</span></li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<ul>
+<li>Los intervalos unilaterales están compuestos por:</li>
+</ul>
+<p>Para la cola izquierda</p>
+<p><span class="math inline">(\bar{x}_1 - \bar{x}_2) - t_{\alpha, \, n_1+n_2-2} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}</span></p>
+<p>Para la cola derecha</p>
+<p><span class="math inline">(\bar{x}_1 - \bar{x}_2) + t_{\alpha, \, n_1+n_2-2} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}</span></p>
+</div><div class="column" style="width:20%;">
+<p>Los grados de libertad para <span class="math inline">t</span> son:</p>
+<p><span class="math display">\nu = n_1+n_2-2</span></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Cómo sé si las varianzas son iguales?</h2>
+<ul>
+<li><p>De momento se le va a pedir que confíe.</p></li>
+<li><p>En estos ejercicios, <span class="hi">DE MOMENTO</span>, se le va a indicar si las varianzas son iguales o no.</p></li>
+<li><p>Luego, en esta sesión (o presentación), se le va a indicar como hacer una prueba de hipótesis para comprobar esto.</p>
+<ul>
+<li>Cuando tenga que resolver ejercicios de este tipo se espera que primero haga la prueba de varianzas y luego de la de medias.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 04</h2>
+<ul>
+<li><p>Dos estudiantes de la UCR estudian las propiedades físico-mecánicas de un conglomerante para su eventual uso en construcciones en la luna. Se toman 10 especímenes de dos tipos de mezcla (10 especímenes de la mezcla 1 y 10 de la mezcla 2).</p></li>
+<li><p>Se conoce que la resistencia sigue una distribución normal y sus varianzas son iguales, con un 95% de confianza, ¿las medias poblacionales son iguales?</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 04</h2>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">43047.90</td>
+<td style="text-align: right;">43216.15</td>
+<td style="text-align: right;">43003.05</td>
+<td style="text-align: right;">39004.94</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">44033.68</td>
+<td style="text-align: right;">41384.96</td>
+<td style="text-align: right;">44617.98</td>
+<td style="text-align: right;">41210.72</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">40341.94</td>
+<td style="text-align: right;">40236.30</td>
+<td style="text-align: right;">39706.33</td>
+<td style="text-align: right;">40703.16</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">41643.01</td>
+<td style="text-align: right;">39773.31</td>
+<td style="text-align: right;">41265.76</td>
+<td style="text-align: right;">41100.65</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column">
+<p>¿Las medias son iguales?</p>
+<p><span class="math inline">H_o: \mu_{M1}=\mu{M2} \rightarrow \mu_{M1}-\mu{M2} = 0</span></p>
+<p><span class="math inline">H_i: \mu_{M1}\ne\mu{M2} \rightarrow \mu_{M1}-\mu{M2} \ne 0</span></p>
+<p>IC: <span class="math inline">(−0.03792, 5.68992)</span></p>
+<p>Valor P = 0.05279</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Volvamos al valor P</h2>
+<ul>
+<li><p>Recordemos que los valores P son una probabilidad que mide la evidencia en contra de la hipótesis nula. Nunca la evidencia a favor.</p></li>
+<li><p>Y que como se ha aclarado antes, los valores P no se interpretan por si solos, sino que se acompañan del resto de información estadística.</p></li>
+<li><p>En ocasiones nos vemos tentados a emplear <span class="hi">terminología incorrecta</span> como:</p>
+<ul>
+<li>Es MUY significativo, cuando un valor P es muy bajo.</li>
+</ul></li>
+<li><p>Es importante aclarar que la significancia estadística es un límite: solo se puede ser o no ser significativo.</p></li>
+<li><p><span class="hi">No puedo ser muy o poco significativo</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Volvamos al valor P</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Piénselo de esta manera:</p>
+<ul>
+<li>¿Yo soy “más tico” por nacer en San José centro que alguien que nació en Los Chiles?
+<ul>
+<li>¿Verdad que no?</li>
+</ul></li>
+<li>Entonces tampoco puedo ser más significativo con base en un valor P.</li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/mapa_cr_2.jpg"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Volvamos al valor P</h2>
+<ul>
+<li><p>Lo que puedo estar es más o menos seguro de que “soy tico” y para ello es relevante analizar el valor P en CONJUNTO con:</p>
+<ul>
+<li>Evidencias externas del contexto (diseño del estudio, calidad de mediciones)</li>
+<li>Evidencias internas (otros estadísticos como la estimación del intervalo de confianza).</li>
+</ul></li>
+<li><p>En el ejemplo que acabamos de desarrollar, estamos poco segur@s de que la media sea 0, aún cuando el valor <span class="math inline">P &gt; \alpha</span>.</p></li>
+<li><p>¿No cree que el IC “apenas” y contiene a <span class="math inline">\mu = 0</span>? Por eso el <span class="math inline">\alpha</span> se debe escoger con base en criterios razonables y con ética y no se debe reemplazar a conveniencia.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Volvamos al valor P</h2>
+<div class="columns">
+<div class="column img.fit center">
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-dc1b792b94b0dda5bb63" style="width:1850px;height:650px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dc1b792b94b0dda5bb63">{"x":{"data":[{"x":[0,0],"y":[0.40000000000000002,2.6000000000000001],"text":"yintercept: 0","type":"scatter","mode":"lines","line":{"width":3.0236220472440949,"color":"rgba(178,34,34,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.8259999999999934],"y":[1],"text":"Nivel: 95%<br />Diferencia: 2.826<br />Nivel: 95%<br />LI: -0.03809325<br />LS: 5.690093","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_x":{"array":[2.8640932503557748],"arrayminus":[2.8640932503557757],"type":"data","width":5.1579072262721226,"symmetric":false,"color":"rgba(43,92,143,1)"},"name":"95%","legendgroup":"95%","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.8259999999999934],"y":[2],"text":"Nivel: 90%<br />Diferencia: 2.826<br />Nivel: 90%<br />LI:  0.46202848<br />LS: 5.189972","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_x":{"array":[2.3639715212046024],"arrayminus":[2.3639715212046024],"type":"data","width":5.1579072262721386,"symmetric":false,"color":"rgba(230,126,34,1)"},"name":"90%","legendgroup":"90%","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.8259999999999934],"y":[1],"text":"Nivel: 95%<br />Diferencia: 2.826<br />Nivel: 95%","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(43,92,143,1)","opacity":1,"size":15.118110236220474,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(43,92,143,1)"}},"hoveron":"points","name":"95%","legendgroup":"95%","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.8259999999999934],"y":[2],"text":"Nivel: 90%<br />Diferencia: 2.826<br />Nivel: 90%","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(230,126,34,1)","opacity":1,"size":15.118110236220474,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(230,126,34,1)"}},"hoveron":"points","name":"90%","legendgroup":"90%","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":61.16396845163969,"r":13.283520132835205,"b":67.745952677459542,"l":78.372768783727707},"paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":35},"title":{"text":"Intervalo de Confianza para μ₁ - μ₂","font":{"color":"rgba(0,0,0,1)","family":"","size":31.880448318804483},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.32450257539135974,5.9765025753913461],"tickmode":"array","ticktext":["0","2","4"],"tickvals":[0,2,4],"categoryorder":"array","categoryarray":["0","2","4"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":6.6417600664176026,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":1.2075927393486552,"zeroline":false,"anchor":"y","title":{"text":"Diferencia de medias","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,2.6000000000000001],"tickmode":"array","ticktext":["95%","90%"],"tickvals":[1,2],"categoryorder":"array","categoryarray":["95%","90%"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":6.6417600664176026,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":1.2075927393486547,"zeroline":false,"anchor":"x","title":{"text":"Nivel de confianza","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":"#F1F5F5","bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":20},"title":{"font":{"size":25}}},"hovermode":"closest","width":1850,"height":650,"barmode":"relative","plot_bgcolor":"#F1F5F5"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"24b815072b0a":{"yintercept":{},"type":"scatter"},"24b8424f4fc6":{"x":{},"y":{},"colour":{},"ymin":{},"ymax":{}},"24b850002e27":{"x":{},"y":{},"colour":{}}},"cur_data":"24b815072b0a","visdat":{"24b815072b0a":["function (y) ","x"],"24b8424f4fc6":["function (y) ","x"],"24b850002e27":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
 </div></div>
 
 
