@@ -1,17 +1,13 @@
 ---
 title: "Solución: Ejercicio Integrador: Pruebas de hipótesis e intervalos de confianza"
-subtitle: "Cátedra de II-0306 Probabilidad y Estadística"
-author: "Ing. Steven García Goñi"
-format: html
-self-contained: true
-toc: true
-toc-depth: 2
-number-sections: true
-lang: es
-execute: 
+date: today
+format:
+  html:
+    toc: true
+    collapse-sections: true
+execute:
   warning: false
   message: false
-editor: visual
 ---
 
 # Librerías
@@ -48,9 +44,9 @@ proveedor_B <- c(505.243, 495.27, 494.9515, 488.8753, 495.1143,
 
 Para usarlo en el caso de la media debo cumplir al menos, uno de dos requisitos:
 
--   Que la población sea una normal
+- Que la población sea una normal
 
--   Que el tamaño de muestra sea suficiente para cumplir el TLC.
+- Que el tamaño de muestra sea suficiente para cumplir el TLC.
 
 Comprobemos si nuestros datos se parecen a la normal
 
@@ -78,9 +74,9 @@ Aproximadamente, con base en la forma del histograma y tomando en cuenta la cant
 
 Con el gráfico podemos concluir dos cosas:
 
--   Parece que la media si es diferente (Pero nos falta una prueba de hipótesis)
+- Parece que la media si es diferente (Pero nos falta una prueba de hipótesis)
 
--   Parece que las varianzas no son iguales, nótese en los RIC (Pero también nos falta una prueba de hipótesis).
+- Parece que las varianzas no son iguales, nótese en los RIC (Pero también nos falta una prueba de hipótesis).
 
 ```{r}
 

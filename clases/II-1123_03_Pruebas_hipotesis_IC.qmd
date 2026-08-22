@@ -729,33 +729,35 @@ matrix(ej03, ncol = 4) |>
 
 :::::: {.columns}
 
-::: {.column width="40%"}
+::: {.column width="35%"}
 
 
 * Se emplea el estadístico $t$:
-  * $t = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}$
-  * $s_p = \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}$
+$t = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}$
+
+$s_p = \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}$
 
 * El intervalo bilateral está compuesto por:
-  * $(\bar{x}_1 - \bar{x}_2) \pm t_{\frac{\alpha}{2}, \, n_1+n_2-2} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$
+
+$(\bar{x}_1 - \bar{x}_2) \pm t_{\frac{\alpha}{2}} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$
 
 :::
 
-::: {.column width="40%"}
+::: {.column width="35%"}
 
 * Los intervalos unilaterales están compuestos por: 
 
 Para la cola izquierda
 
-$(\bar{x}_1 - \bar{x}_2) - t_{\alpha, \, n_1+n_2-2} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$
+$(\bar{x}_1 - \bar{x}_2) - t_{\alpha} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$
 
 Para la cola derecha
 
-$(\bar{x}_1 - \bar{x}_2) + t_{\alpha, \, n_1+n_2-2} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$
+$(\bar{x}_1 - \bar{x}_2) + t_{\alpha} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$
 
 :::
 
-::: {.column width="20%"}
+::: {.column width="30%"}
 
 
 Los grados de libertad para $t$ son: 
@@ -788,16 +790,15 @@ $$\nu = n_1+n_2-2$$
 
 ::: {.column}
 
-```{r}
+```{r style="font-size: 0.95em;"}
 ej04 <- data.frame(M1 = c(103.371, 110.136, 102.679, 102.387, 107.033, 
                           100.321, 109.539, 105.526, 102.164, 102.284),
                    M2 = c(98.358, 103.286, 101.273, 97.24, 102.727, 
                           102.3, 100.342, 100.88, 104.718, 106.056))
 
-matrix(ej03, ncol = 4) |> 
+ej04 |> 
   knitr::kable(format = "html", 
-               escape = FALSE, 
-               col.names = NULL) |> 
+               escape = FALSE) |> 
   kableExtra::kable_styling(full_width = FALSE,
                             bootstrap_options = c("bordered", "condensed"))
 
@@ -922,3 +923,833 @@ plotly::ggplotly(g4, height = 650, width = 1850) %>%
 
 ## Dos medias ([Varianzas desconocidas y diferentes]{.hi}){.bloques}
 
+:::::: {.columns}
+
+::: {.column width="35%"}
+
+
+* Se emplea el estadístico $t$:
+
+$t = \frac{(\bar{x_1}-\bar{x_2}) - (\mu_1-\mu_2))}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}$
+
+* El intervalo bilateral está compuesto por:
+
+$(\bar{x}_1 - \bar{x}_2) \pm t_{\frac{\alpha}{2}} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$
+
+:::
+
+::: {.column width="35%"}
+
+* Los intervalos unilaterales están compuestos por: 
+
+Para la cola izquierda
+
+$(\bar{x}_1 - \bar{x}_2) - t_{\alpha} \cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$
+
+Para la cola derecha
+
+$(\bar{x}_1 - \bar{x}_2) + t_{\alpha} \cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$
+
+:::
+
+::: {.column width="30%"}
+
+
+Los grados de libertad para $t$ son: 
+
+$$\nu \approx \frac{\left(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}\right)^2}{\frac{(s_1^2/n_1)^2}{n_1 - 1} + \frac{(s_2^2/n_2)^2}{n_2 - 1}}$$
+
+También se conocen como los grados de libertad de Welch-Satterthwaite.
+
+:::
+
+::::::
+
+## Ejemplo 05 {.bloques}
+
+* El tiempo entre dos condiciones de tueste en el proceso de torrefacción de granos de café sigue una distribución normal. Se quiere ver si hay diferencias en este tiempo entre dos tamaños diferentes de grano. Se realizan 10 mediciones para el grano 1 y 13 para el grano 2.
+* Se asume que las varianzas no son iguales. ¿Los procesos son iguales? Con un 90 % de confianza.
+
+## Ejemplo 05 {.bloques}
+
+:::::: {.columns}
+
+::: {.column style="font-size: 0.75em;"}
+
+```{r}
+ej05 <- data.frame(Grano_1 = c(5.139, 2.445, 6.3, 5.946, 6.057, 6.016, 
+                               4.95, 9.761, 3.041, 2.881, NA, NA, NA),
+                   Grano_2 = c(5.067, 4.51, 5.457, 4.373, 5.723, 5.535, 5.091, 
+                               4.958, 5.651, 5.256, 5.449, 5.416, 5.654))
+
+ej05 |> 
+  knitr::kable(format = "html", 
+               escape = FALSE) |> 
+  kableExtra::kable_styling(full_width = FALSE,
+                            bootstrap_options = c("bordered", "condensed"))
+
+```
+
+
+:::
+
+
+::: {.column}
+
+$\bar{x_1} = 5.254 \quad \bar{x_2}=5.242$
+
+$s_1 = 2.151 \quad s_2=0.428$
+
+IC: $(−1.24549, 1.26949)$
+
+Valor P = 0.98649
+
+:::
+
+::::::
+
+
+## Dos medias ([Varianzas conocidas]{.hi}){.bloques}
+
+:::::: {.columns}
+
+::: {.column width="35%"}
+
+* Se emplea el estadístico $Z$:
+
+$$z = \frac{(\bar{x}_1-\bar{x}_2) - (\mu_1-\mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}$$
+
+* El intervalo bilateral está compuesto por:
+
+$$(\bar{x}_1 - \bar{x}_2) \pm z_{\frac{\alpha}{2}} \cdot \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}$$
+
+:::
+
+::: {.column width="35%"}
+
+* Los intervalos unilaterales están compuestos por:
+
+Para el límite inferior:
+
+$$(\bar{x}_1 - \bar{x}_2) - z_{\alpha} \cdot \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}$$
+
+Para el límite superior:
+
+$$(\bar{x}_1 - \bar{x}_2) + z_{\alpha} \cdot \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}$$
+
+:::
+
+::: {.column width="30%"}
+
+### Observaciones clave:
+
+* Al **conocer las varianzas poblacionales** ($\sigma_1^2, \sigma_2^2$), la distribución de referencia es la **Normal Estándar ($Z$)**, independientemente del tamaño de muestra.
+
+* No se requiere estimar grados de libertad ni calcular varianzas agrupadas ($s_p$).
+
+:::
+
+::::::
+
+## Muestras pareadas {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="35%"}
+
+
+* Se emplea el estadístico $t$ y ocurre con muestras pareadas:
+$t = \frac{\bar{d}-\mu_d}{\frac{s_d}{\sqrt{n}}}$
+
+Donde $d$ es la diferencia entre los pares.
+
+* El intervalo bilateral está compuesto por:
+
+$\bar{d} \pm t_{\frac{\alpha}{2}} \cdot \frac{s_d}{\sqrt{n}}$
+
+:::
+
+::: {.column width="35%"}
+
+* Los intervalos unilaterales están compuestos por: 
+
+Para la cola izquierda
+
+$\bar{d} - t_{\alpha} \cdot \frac{s_d}{\sqrt{n}}$
+
+Para la cola derecha
+
+$\bar{d} + t_{\alpha} \cdot \frac{s_d}{\sqrt{n}}$
+
+:::
+
+::: {.column width="30%"}
+
+
+Los grados de libertad para $t$ son: 
+
+$$\nu = n - 1$$
+
+:::
+
+::::::
+
+## Ejemplo 06 {.bloques}
+
+* Se desea determinar si dos materiales para suelas de zapatos son igual de resistentes al desgaste. Se toman 25 zapatos derechos con suelas del material A y sus pares izquierdos con el material B y se le asignan a 25 niños para que los usen durante un mes, ya que se quiere probar el desgaste en condiciones reales. 
+
+* Luego de un mes se mide la diferencia en el espesor de las suelas en un punto específico.
+
+* Una muestra pareada, como su nombre lo indica, se recoge por pares. 
+
+* Este ejercicio se resuelve con el [promedio de la diferencia $\bar{d}$]{.hi} entre las dos muestras. [No con la diferencia de los promedios]{.hi}. 
+
+## Ejemplo 06 {.bloques}
+
+:::::: {.columns}
+
+::: {.column style="font-size: 0.75em;"}
+
+```{r}
+ej06 <- data.frame(A = c(6.869, 4.569, 5.281, 6.927, 8.349, 7.352, 5.265, 
+                         4.654, 5.506, 5.844, 6.809, 7.659, 4.268, 7.573, 
+                         5.241, 7.849, 8.276, 6.2, 5.782, 6.616, 6.919, 
+                         7.508, 4.994, 5.68, 7.922),
+                   B = c(4.431, 3.722, 3.127, 1.176, 1.525, 3.004, 3.864, 
+                         4.336, 3.293, 3.193, 4.277, 1.476, 1.8, 3.409, 
+                         3.916, 2.709, 0.97, 3.649, 4.113, 4.548, 1.28, 
+                         1.211, 2.189, 0.778, 4.42)) |> 
+  dplyr::mutate(d = A - B)
+
+ej06[1:13, ] |>
+  cbind.data.frame(rbind(ej06[14:25,], data.frame(A = NA, B = NA, d = NA))) |> 
+  knitr::kable(format = "html", 
+               escape = FALSE) |> 
+  kableExtra::kable_styling(full_width = FALSE,
+                            bootstrap_options = c("bordered", "condensed"))
+
+```
+
+
+:::
+
+
+::: {.column width="60%"}
+
+* ¿Con un 99 % de confianza, el desgaste es el mismo? 
+
+  * En simple, es una prueba t para una muestra, siendo esa muestra la diferencia $d$ entre A y B. Aunque no cambia decisión final (rechazar o no rechazar), tenga cuidado, no es lo mismo $d=B-A$ que $d=A-B$, analice y concluya en función de como se construye la variable $d$.
+
+R: El desgaste por material no es el mismo
+
+$\bar{d} = 3.500 \quad s_d=2.004$
+
+IC: $(2.37899, 4.62101)$
+
+Valor P = 0.000
+
+:::
+
+::::::
+
+## Pruebas de hipótesis e IC para proporciones {.center}
+
+## Supuestos {.bloques}
+
+* El tamaño de muestra debe ser el suficiente para cumplir el TLC y su aproximación a la normal. 
+
+* Ademas, $n\cdot p \ge 5$ y $n\cdot (1-p) \ge 5$.
+
+* Nota: de no cumplirse este supuesto, se pueden utilizar alternativas resistentes o robustas a la infracción. 
+
+
+## Una proporción {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* Usa el estadístico $z$
+
+$$z = \frac{\hat{p}-p_o}{\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}}$$
+
+* El intervalo bilateral está compuesto por: 
+
+$$\hat{p} \pm z_{\frac{\alpha}{2}}\cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+
+:::
+
+::: {.column}
+
+* Los intervalos unilaterales están compuestos por: 
+
+Para la cola izquierda
+
+$$\hat{p} - z_{\alpha}\cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+
+Para la cola derecha
+
+$$\hat{p} + z_{\alpha}\cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+
+
+:::
+
+::: {.column}
+
+Se basa en una aproximación de la binomial a la normal, por ello es que emplea $z$. 
+
+El método utilizado es el de *Wald*. Como ya fue mencionado, existen otros métodos que pueden ser resistentes o robustos a la infracción de los supuestos. 
+
+:::
+
+::::::
+
+## Ejemplo 07 {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* Un cliente indica que en promedio su proceso produce 10 % de defectos (acabado superficial correcto o incorrecto). Para verificar esto se toma una muestra de 75 productos.
+
+$$\hat{p} = \frac{13}{75}=0.1733$$
+
+IC: $(0.08764, 0.25896)$
+
+Valor P = 0.09352
+
+:::
+
+::: {.column width = "60%"}
+
+```{r}
+
+ej07 <- c(0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 
+          0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 
+          0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+matrix(ej07, ncol = 15) |> 
+  knitr::kable(format = "html", 
+               escape = FALSE, 
+               col.names = NULL) |> 
+  kableExtra::kable_styling(full_width = FALSE,
+                            bootstrap_options = c("bordered", "condensed"))
+
+```
+
+
+:::
+
+::::::
+
+## Advertencia {.bloques}
+
+* El método que estamos empleando se llama el [método de Wald]{.hi}.
+
+  * Puede ser inexacto con muestras pequeñas o cuando la proporción está cerca de 0 o 1. Tiende a subestimar o sobrestimar la verdadera probabilidad, dando resultados poco confiables.
+ 
+* Por ello, en función del software, puede obtener resultados distintos. No se dedique a "presionar" botones, comprenda lo que está haciendo. 
+
+## Advertencia {.bloques}
+
+* Softwares especializados como R y Minitab emplean metodologías robustas a este problema como:
+
+  * Blaker ajustado (exacto)
+  * Wilson-score
+  * Agresti-Coull
+
+* Dado que [el uso de software es permitido]{.ul}, se le aconseja [coordinar con la persona docente]{.hi} la metodología a emplear en evaluaciones específicas y generales.  
+
+## Dos proporciones {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="35%"}
+
+* Usa el estadístico $z$:
+
+$z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}}$
+
+* El intervalo bilateral está compuesto por:
+
+$(\hat{p}_1 - \hat{p}_2) \pm z_{\frac{\alpha}{2}} \cdot \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}$
+
+:::
+
+::: {.column width="35%"}
+
+* Los intervalos unilaterales están compuestos por:
+
+Para la cola izquierda
+
+$(\hat{p}_1 - \hat{p}_2) - z_{\alpha} \cdot \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}$
+
+Para la cola derecha
+
+$(\hat{p}_1 - \hat{p}_2) + z_{\alpha} \cdot \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}$
+
+:::
+
+::: {.column width="30%"}
+
+Se basa en la aproximación de la distribución binomial a la normal para la diferencia de dos proporciones independientes, por ello utiliza $z$.
+
+Al igual que en una muestra, este método utiliza las estimaciones muestrales para el error estándar.
+
+:::
+
+::::::
+
+## Ejemplo 08 {.bloques}
+
+* En la GAM se le pregunta a 120 personas si estarían dispuestas a comprar un producto y 82 contestan afirmativamente. Fuera de la GAM se le pregunta a 90 personas y 47 contestan afirmativamente. Con un 95% de confianza ¿Hay diferencia entre las zonas en cuánto a la disposición de compra?
+
+* IC: $(0.02853,0.29369)$
+
+* Valor P = 0.01762
+
+  * Si utiliza la aplicación recomendada marque la opción `Use pooled standard error`.
+
+
+## Momento de reflexión {.center}
+
+## Reflexión {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* Note que en los intervalos de confianza para medias y proporciones, se sigue un mismo patrón: 
+
+$$\text{Estimación} \pm \text{Valor crítico} \cdot \text{Error Estándar}$$
+
+$$\hat{\theta} \pm (z \text{ o } t) \cdot EE$$
+
+* El producto $(z \text{ o } t) \cdot EE$ constituye el **Margen de Error**, el cual dicta la amplitud del intervalo:
+
+  * Un **intervalo angosto** indica que tenemos una estimación **muy precisa** del parámetro poblacional (generalmente logrado con un tamaño de muestra $n$ grande).
+
+  * Un **intervalo amplio** transmite la existencia de una **gran incertidumbre** sobre el verdadero valor del parámetro.
+  
+:::
+
+::::::
+  
+## Problemas del EE {.bloques}
+
+* En el denominador del error estándar, de una u otra forma, se encuentra la raíz del tamaño de muestra ($\sqrt{n}$).
+
+* Esta es una crítica generalizada en la estadística frecuentista: tanto el valor $p$ como los intervalos de confianza pueden ser "manipulados" (o altamente influenciados) simplemente aumentando el tamaño de la muestra.
+
+* Es aquí donde toman un papel crucial conceptos como el [tamaño de efecto]{.hi}, el [tamaño de muestra]{.hi} y la [potencia estadística]{.hi}, temas que abordaremos más adelante.
+
+## Pruebas de hipótesis e IC para varianzas {.center}
+
+## Supuestos {.bloques}
+
+* En esta ocasión no hay TLC que nos salve. [La población debe ser normal]{.hi}.
+
+* Solo se sigue una $\chi^2=\frac{s^2(n-1)}{\sigma^2}$ si los datos son normales. Si no lo son, los resultados pueden ser [muy inexactos]{.hi} incluso con muestras grandes. 
+
+* Se abordará en otras lecciones las alternativas al incumplimiento de este supuesto. 
+
+## Una varianza {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* Usa el estadístico Chi-cuadrado ($\chi^2$):
+
+$$\chi^2 = \frac{(n-1)s^2}{\sigma^2}$$
+
+* El intervalo bilateral está dado por:
+
+$$\frac{(n-1)s^2}{\chi^2_{\alpha/2}} < \sigma^2 < \frac{(n-1)s^2}{\chi^2_{1-\alpha/2}}$$
+
+:::
+
+::: {.column}
+
+* Los intervalos unilaterales están compuestos por:
+
+Para la cola izquierda:
+
+$$\sigma^2 > \frac{(n-1)s^2}{\chi^2_{\alpha}}$$
+
+Para la cola derecha:
+
+$$0 < \sigma^2 < \frac{(n-1)s^2}{\chi^2_{1-\alpha}}$$
+
+:::
+
+::: {.column}
+
+Los grados de libertad para $\chi^2$ son:
+
+$$\nu = n - 1$$
+
+*Tome en cuenta:* La distribución $\chi^2$ está definida en el dominio $[0, \infty)$, por lo que el límite inferior de la varianza jamás puede ser negativo ($-\infty$).
+
+:::
+
+::::::
+
+## Ejemplo 09 {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* Una máquina llena latas con una bebida gaseosa y el fabricante desea obtener una estimación de intervalo de confianza de la varianza del volumen de llenado (si la varianza es demasiado grande, un alto porcentaje de las latas se llenarán con un volumen del producto que es menor que la cantidad nominal [355 ml]).
+
+* $\bar{x} = 355.0170, \quad s = 0.5199$
+
+:::
+
+::: {.column}
+
+```{r}
+
+ej09 <- c(354.05, 355.622, 354.762, 355.238, 354.112, 355.438, 356.055, 
+          355.09, 354.849, 355.303, 355.657, 354.455, 354.778, 354.641, 
+          355.054, 355.37, 354.789, 354.932, 355.528, 354.616)
+
+
+matrix(ej09, ncol = 2) |> 
+  knitr::kable(format = "html", 
+               escape = FALSE, 
+               col.names = NULL) |> 
+  kableExtra::kable_styling(full_width = FALSE,
+                            bootstrap_options = c("bordered", "condensed"))
+
+```
+
+
+:::
+
+::::::
+
+## Ejemplo 09 {.bloques}
+
+* Dado que el problema se daría por mucha variabilidad, obtenga el intervalo superior de confianza al 95 % para $\sigma^2$.
+
+  * IC: $(0.0000, 0.5076)$
+
+* Realice este contraste de hipótesis:
+
+  * $H_o: \sigma^2=0.5$
+  * $H_i \sigma < 0.5$
+  * Valor P = 0.0540
+  
+## Dos varianzas {.bloques}
+
+:::::: {.columns}
+
+::: {.column width="38%"}
+
+* Usa el estadístico $F$ de Snedecor-Fisher:
+
+$$f = \frac{s_1^2}{s_2^2}$$
+
+* El intervalo bilateral está dado por:
+
+$\frac{s_1^2}{s_2^2} \cdot \frac{1}{f_{\alpha/2, \nu_1, \nu_2}} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{s_1^2}{s_2^2} \cdot f_{\alpha/2, \nu_2, \nu_1}$
+
+:::
+
+::: {.column width="32%"}
+
+* Los intervalos unilaterales están compuestos por:
+
+Para la cola izquierda:
+
+$$\frac{\sigma_1^2}{\sigma_2^2} < \frac{s_1^2}{s_2^2} \cdot f_{\alpha, \nu_2, \nu_1}$$
+
+Para la cola derecha:
+
+$$\frac{\sigma_1^2}{\sigma_2^2} > \frac{s_1^2}{s_2^2} \cdot \frac{1}{f_{\alpha, \nu_1, \nu_2}}$$
+
+:::
+
+::: {.column width="30%"}
+
+Los grados de libertad para $F$ son:
+
+$\nu_1 = n_1 - 1 \quad \text{(num.)}$
+$\nu_2 = n_2 - 1 \quad \text{(denom.)}$
+
+  * *Nota:* Al igual que $\chi^2$, la distribución $F$ toma valores exclusivamente no negativos ($F \ge 0$).
+
+:::
+
+::::::
+
+## Ejemplo 10 {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+Retome los datos del Ejemplo 04. Verifique el supuesto de que ambas varianzas son iguales. 
+
+La hipótesis nula en el caso de las varianzas es un poco diferente. Pues se hace con cocientes. 
+
+$$H_o: \frac{s^2_{M_1}}{s^2_{M_2}} = 1$$
+
+$$H_i: \frac{s^2_{M_1}}{s^2_{M_2}} \ne 1$$
+
+:::
+
+::: {.column style="font-size: 0.95em;"}
+
+```{r}
+
+ej04 |> 
+  knitr::kable(format = "html", 
+               escape = FALSE) |> 
+  kableExtra::kable_styling(full_width = FALSE,
+                            bootstrap_options = c("bordered", "condensed"))
+
+```
+
+
+:::
+
+::::::
+
+## Ejemplo 10 {.bloques}
+
+* Entonces, ¿son las varianzas iguales? ¿asumimos bien en el Ejemplo 04?
+
+* Ahora, ya tiene elementos téoricos y prácticos para comprobar este supuesto en la prueba de dos medias. 
+
+* IC: $(0.3833, 6.2123)$
+
+* Valor P = 0.5283
+
+## Ejemplo 11 {.bloques}
+
+* Repita el procedimiento para el Ejemplo 05.
+
+* ¿Las varianzas son iguales? No, no lo son, entonces asumimos bien. 
+
+* IC: $(7.3482, 97.6619)$
+
+* Valor P = 0.000
+
+## Resumen {.center}
+
+## Resumen {.bloques}
+
+* Todas las pruebas de hipótesis estudiadas se encuentran resumidas en [los tres diagramas de decisión](https://stevenggoni.github.io/infografias/esquema_PH.pdf){target="_blank"} que se le proveen.
+
+* Este material ha sido preparado por la Inga. Valentina Campos Aguilar y modificado por el autor de esta presentación. 
+
+## Tamaño de muestra {.center}
+
+## Tamaño de muestra para intervalos {.center}
+
+## Tamaño de muestra {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* Con esta fórmula podemos estar "seguros" con un $(1-\alpha)$ de confianza que el error $|\bar{x}-\mu|$ no va a exceder el valor $e$.
+
+* Entendiendo que $\lceil \cdot \rceil$ significa redondeado al siguiente entero.
+
+:::
+
+::: {.column}
+
+### Para la media
+
+$$n = \left\lceil \left(\frac{z_{\frac{\alpha}{2}}\cdot \sigma}{e}\right)^2 \right\rceil$$
+
+### Para proporciones
+
+$$ n = \left\lceil\left(\frac{z_{\frac{\alpha}{2}}}{e}\right)^2 \cdot p \cdot (1-p)\right\rceil$$
+
+
+:::
+
+::::::
+
+## Tamaño de muestra {.bloques}
+
+* Garantiza que el **método de estimación** produzca un margen de error menor o igual a $e$, con una tasa de éxito a largo plazo del $(1-\alpha)\%$.
+
+* Sirve para fijar la **precisión deseada** (ancho del intervalo) antes de recolectar los datos, evitando muestras innecesariamente grandes o insuficientemente precisas.
+
+## Tamaño de muestra {.bloques}
+
+* Importante: El cálculo de $n$ debe dar un resultado [adimensional]{.hi}, por lo que las unidades de $\sigma$ y $e$ deben estar en la misma dimensión. 
+
+* Naturalmente, en el caso de proporciones, $p$ y $e$ deben estar en unidades de proporcioens (o porcentajes).
+
+## Tamaño de muestra {.bloques}
+
+* Continuando...
+
+  * ¿Qué es $e$? ¿Cómo escojo $\alpha$?
+  
+  * Es el máximo error permitido por la persona investigadora que tiene un [IMPACTO]{.hi} sobre el contexto en el que se enmarca el muestreo. Lo mismo con $\alpha$, de[pende del contexto]{.hi}.
+  
+* Por ejemplo, la estimación del tiempo que se tarda en completar una tarea no puede ser diferente al valor real en [a lo sumo X segundos]{.hi}, con una confianza igual $(1-\alpha)$ porque esto es importante para el [contexto particular]{.hi} en el que se enmarca la estimación del tiempo. 
+
+## Tamaño de muestra {.bloques}
+
+* Continuando...
+
+  * ¿De dónde saco $\sigma$?
+  
+  * Se debe estimar ($s$), a partir de: 
+  
+    * Fuente secundaria: existen datos históricos.
+    * Fuente primaria: hay que realizar un premuestreo. 
+  
+
+## Tamaño de muestra {.bloques}
+
+* ¿Qué pasa si la población es [finita]{.hi}? 
+
+* Esto es más común en observaciones y encuestas que en experimentos. 
+
+* En estos casos se utiliza un factor de corrección para población finita:
+
+* $$n = \left\lceil\frac{n_0}{1+\frac{n_0}{N}}\right\rceil$$
+
+* Donde $N$ es la población y $n_0$ es el resultado de la fórmula de población **infinita**.
+
+## Ejemplo 12 {.bloques}
+
+* Calcule el tamaño de muestra, con una desviación de 5.6 s y un error de 3 s con un nivel de confianza del 95%, para población infinita y para una población de 50.
+
+* Infinita: 14
+* Finita: 11
+
+## Ejemplo 13 {.bloques}
+
+* A resolver de forma asincrónica por la persona estudiante
+
+* Calcule el tamaño de muestra, con una proporción esperada de 0.5 y un error de 0.08, a un nivel de confianza de 95%, para población infinita y una población de 350.
+* 150.06 ~ 151
+* 105.49 ~ 106
+
+## Tamaño de muestra para pruebas de hipótesis {.center}
+
+## Potencia estadística {.bloques}
+
+* La potencia es la probabilidad de rechazar la hipótesis nula dado que esta es falsa. En otras palabras, es la probabilidad de encontrar un “efecto” significativo dado que en la población ese “efecto” existe. 
+
+* El objetivo es tener [alta probabilidad de detectar un efecto real]{.hi}, si existe (es decir, evitar errores tipo II).
+
+## Potencia estadística {.bloques}
+
+* Este concepto es muy importante en el diseño de investigaciones, porque no se quiere tener un tamaño de muestra [suficientemente grande]{.hi} para detectar el efecto de interés como significativo, [pero no demasiado grande]{.hi} como para encontrar que relaciones pequeñas sean importantes de reportar.
+
+## Potencia estadística {.bloques}
+
+* Lo que diferencia al cálculo de la muestra con potencia estadística del cálculo para estimación por intervalo es que en este caso se requiere una prueba de hipótesis. 
+
+* Implica definir un [efecto mínimo relevante]{.hi}, y determinar cuántas observaciones necesitas para que la probabilidad de detectarlo (potencia) sea alta.
+
+## Potencia estadística {.bloques}
+
+* Suponga un ejemplo:
+
+* En la industria de la manufactura CNC de componentes mecánicos para turbina de avión, la tolerancia dimensional de las partes es vital, pues las piezas deben ensamblar sin dejar espacio a fugas.
+
+* Una pieza particular tiene una especificación dimensional de $20\,mm \pm 0.01\,mm$, la cual se puede considerar muy ajustada. 
+
+## Potencia estadística {.bloques}
+
+* Se desea realizar un estudio comparando dos instrumentos de medición (A y B). Si la diferencia entre los promedios es de al menos 0.01, se podrían estar produciendo partes que no cumplan con la especificación. 
+
+* ¿Qué tamaño de muestra es necesario para detectar diferencias de al menos 0.01, con un 99 % de confianza el 85 % de las veces? 
+
+* Suponga que la desviación estándar es de 0.0035
+
+## Potencia estadística {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* Efecto = 0.01
+
+* Como en el caso anterior, la desviación estándar se obtiene de datos previos o un pre-muestreo $s = 0.0035$.
+
+* $1 - \beta = 85\%$
+
+* $\alpha = 0.01$
+
+:::
+
+::: {.column}
+
+Hipótesis
+
+$$H_o: \bar{x_A} - \bar{x_B} = 0$$
+
+$$H_i: \bar{x_A} - \bar{x_B} \ne 0$$
+
+Con estos valores se va calcular el tamaño de muestra necesario, para detectar, [SI ES QUE EXISTE]{.hi}, una diferencia entre los instrumentos de medición (A y B) de 0.01 mm, el 85 % de las veces.
+
+
+:::
+
+::::::
+
+## Potencia estadística {.bloques}
+
+* Se le provee, para estudio asincrónico y para el uso en las Prácticas de laboratorio una [guía general para el cálculo de potencia en Minitab](https://stevenggoni.github.io/clases/data/II_1123_03 Potencia en Minitab.pdf){target="_blank"}.
+
+* Se hace énfasis en que la guía es general, desarrolla el ejemplo anterior, pero la misma “metodología” se puede seguir para el desarrollo del cálculo de tamaño de muestra por potencia para otros contrastes de hipótesis. 
+
+
+## Ejercicio integrador {.center}
+### A realizar de forma sincrónica o asincrónica, a juicio de la persona docente.
+
+## Enunciado {.bloques}
+
+* Una empresa utiliza dos proveedores de materia prima (Acero Inoxidable 304) para un proceso de manufactura. Cada proveedor ha enviado 20 piezas  para ser sometidas a una prueba de tracción (MPa). 
+
+* El suplidor que ofrezca mayor media será el seleccionado. Si ambos son estadísticamente iguales se decidirá por otras variables (como económicas, distancia, tiempos de entrega, etc). 
+
+## Asignación {.bloques}
+
+* ¿Cómo debe proceder la empresa?
+* Para responder siga los siguientes pasos: 
+  * Verifique con rutinas gráficas si la muestra se parece a la normal (un histograma por ejemplo). En la siguiente clase aprenderá a hacer esto con pruebas estadísticas. 
+  
+  * Realice un gráfico de Cajas y Bigotes, esto le ayudará a describir las varianzas y darse una idea inicial de si son iguales o no. 
+  
+  * Realice una prueba de igualdad de varianzas (93 %)
+
+  * Con base en el resultado de dicha prueba, realice un prueba de dos medias (93 %) y concluya sobre el estudio. 
+
+## Asignación {.bloques}
+
+* Se le hace entrega del [conjunto de datos en Excel](https://stevenggoni.github.io/clases/data/II_1123_03 Datos para ejercicio integrador PH.xlsx){target="_blank"}.
+
+* Además, del [ejercicio resuelto en R](https://stevenggoni.github.io/tutoriales_R/Ejercicio_integrador_PH){target="_blank"} para que pueda comparar sus resultados. 
+
+  * Se le recomienda realizar el ejercicio antes de ver la solución.
+
+  * No hay problema con que no use R, la idea es que le sirva de orientación para resolverlo, el ejercicio puede resolverse en Excel u otro software.
+
+## Ejercicios adicionales {.bloques}
+
+* También se le hace entrega de un [listado de ejercicios](https://stevenggoni.github.io/clases/data/II_1123_03 Ejercicios adicionales PH.pdf){target="_blank"}, independientes a la asignación anterior, para que practique a modo de estudio.  No se le brinda la solución pero si las respuestas. 
+
+* La solución en R de todos los ejercicios de esta sesión también está disponible en este [enlace](https://stevenggoni.github.io/tutoriales_R/Pruebas_hipotesis.html){target="_blank"}. Ese documento también incluye la forma para calcular el tamaño de muestra vía potencia estadística del ejemplo desarrollado.
+
+## Pruebas de hipótesis e Intervalos de confianza <br> II-1123 Estadística para Ingeniería Industrial II {.center}
+
+### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
+
+### Dudas o correcciones requeridas pueden solicitarse al correo

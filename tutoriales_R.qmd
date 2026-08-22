@@ -34,6 +34,14 @@ Una demostración por intuición de cuándo y por qué funciona el TLC.
 
 Un pequeño tutorial con ejercicios resueltos sobre covarianza y correlaciones. 
 
+* [Intervalos de confianza, Pruebas de hipótesis y tamaño de muestra](tutoriales_R/Pruebas_hipotesis.html){target="_blank"}
+
+Ejercicios resueltos de la clase de Intervalos de Confianza y Pruebas de hipótesis. Incluye consideraciones para el cálculo del tamaño de muestra de forma clásica (intervalos) y con potencia estadística. 
+
+* [Ejercicio integrador resuelto](tutoriales_R/Ejercicio_integrador_PH.html){target="_blank"}
+
+Este es un ejercicio integrador, del tema de pruebas de hipótesis, intervalos de confianza y tamaño de muestra. El mismo se encuentra resuelto. 
+
 * [Potencia estadística: Regresión y ANOVA](tutoriales_R/potencia_modelos.html){target="_blank"}
 
 Una guía práctica para determinar el tamaño de muestra en modelos de regresión lineal 
@@ -44,7 +52,7 @@ y reductores de ruido, utilizando el índice $f$ de Cohen y la librería `pwr` d
 
 * [Diagrama de Pareto](tutoriales_R/diagrama_pareto.html){target="_blank"} 
 
-Aprenda a realizar un gráfico de Pareto en R. Este es un principio que dice que una pequeña cantidad de causas suele explicar la mayor parte de los efectos
+Aprenda a realizar un gráfico de Pareto en R. Este es un principio que dice que una pequeña cantidad de causas suele explicar la mayor parte de los efectos.
 
 * [Gráficos de control para variables](tutoriales_R/graficos_control.html){target="_blank"}
 

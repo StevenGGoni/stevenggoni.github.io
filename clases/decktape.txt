@@ -14,9 +14,11 @@ decktape reveal --size="1920x1080" II-1120_07_Estadistica_bivariada.html II-1120
 
 decktape reveal --size="1920x1080" II-1120_08_Elementos_psicometria.html II-1120_08_Elementos_psicometria.pdf
 
-decktape reveal --size="1920x1080" II-1123_01_Distribuciones_continuas.html II-1123_01_Distribuciones_continuas.pdf
+decktape reveal --size="1920x1080" --page-load-timeout 60000 --load-pause 2000 II-1123_01_Distribuciones_continuas.html II-1123_01_Distribuciones_continuas.pdf
 
 decktape reveal --size="1920x1080" II-1123_02_Distribuciones_muestrales.html II-1123_02_Distribuciones_muestrales.pdf
+
+decktape reveal --size="1920x1080" --page-load-timeout 60000 --load-pause 2000 II-1123_03_Pruebas_hipotesis_IC.html II-1123_03_Pruebas_hipotesis_IC.pdf
 
 decktape reveal --size="1920x1080" II-1123_04_Bondad_ajuste.html II-1123_04_Bondad_ajuste.pdf
 

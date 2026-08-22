@@ -27,3 +27,7 @@ Esta infografía presenta la definición del valor P, criterios para su interpre
 * [El mito del $n \ge 30$](infografias/dogma_n_30.pdf){target="_blank"} 
 
 La cifra 30 se ha convertido en una especie de "*número mágico*" que, supuestamente, garantiza la normalidad gracias al Teorema del Límite Central (TLC). Sin embargo, esta noción es peligrosa.
+
+* [Diagrama de decisión para pruebas de hipótesis](infografias/esquema_PH.pdf){target="_blank"} 
+
+Este diagrama le puede ayudar a tomar decisiones sobre la prueba de hipótesis que debe llevarse a cabo. 

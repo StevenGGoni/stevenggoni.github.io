@@ -180,7 +180,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">21 de agosto de 2026</p>
+  <p class="date">22 de agosto de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
@@ -798,27 +798,24 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Dos medias (<span class="hi">varianzas desconocidas e iguales</span>)</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
+<div class="column" style="width:35%;">
 <ul>
-<li>Se emplea el estadístico <span class="math inline">t</span>:
-<ul>
-<li><span class="math inline">t = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}</span></li>
-<li><span class="math inline">s_p = \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}</span></li>
-</ul></li>
-<li>El intervalo bilateral está compuesto por:
-<ul>
-<li><span class="math inline">(\bar{x}_1 - \bar{x}_2) \pm t_{\frac{\alpha}{2}, \, n_1+n_2-2} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}</span></li>
-</ul></li>
+<li>Se emplea el estadístico <span class="math inline">t</span>: <span class="math inline">t = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}</span></li>
 </ul>
-</div><div class="column" style="width:40%;">
+<p><span class="math inline">s_p = \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}</span></p>
+<ul>
+<li>El intervalo bilateral está compuesto por:</li>
+</ul>
+<p><span class="math inline">(\bar{x}_1 - \bar{x}_2) \pm t_{\frac{\alpha}{2}} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}</span></p>
+</div><div class="column" style="width:35%;">
 <ul>
 <li>Los intervalos unilaterales están compuestos por:</li>
 </ul>
 <p>Para la cola izquierda</p>
-<p><span class="math inline">(\bar{x}_1 - \bar{x}_2) - t_{\alpha, \, n_1+n_2-2} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}</span></p>
+<p><span class="math inline">(\bar{x}_1 - \bar{x}_2) - t_{\alpha} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}</span></p>
 <p>Para la cola derecha</p>
-<p><span class="math inline">(\bar{x}_1 - \bar{x}_2) + t_{\alpha, \, n_1+n_2-2} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}</span></p>
-</div><div class="column" style="width:20%;">
+<p><span class="math inline">(\bar{x}_1 - \bar{x}_2) + t_{\alpha} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}</span></p>
+</div><div class="column" style="width:30%;">
 <p>Los grados de libertad para <span class="math inline">t</span> son:</p>
 <p><span class="math display">\nu = n_1+n_2-2</span></p>
 </div></div>
@@ -845,33 +842,55 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <h2>Ejemplo 04</h2>
 <div class="columns">
 <div class="column">
-<div class="cell">
+<div class="cell" style="font-size: 0.95em;">
 <div class="cell-output-display">
 <table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">M1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">M2</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">43047.90</td>
-<td style="text-align: right;">43216.15</td>
-<td style="text-align: right;">43003.05</td>
-<td style="text-align: right;">39004.94</td>
+<td style="text-align: right;">103.371</td>
+<td style="text-align: right;">98.358</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">44033.68</td>
-<td style="text-align: right;">41384.96</td>
-<td style="text-align: right;">44617.98</td>
-<td style="text-align: right;">41210.72</td>
+<td style="text-align: right;">110.136</td>
+<td style="text-align: right;">103.286</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">40341.94</td>
-<td style="text-align: right;">40236.30</td>
-<td style="text-align: right;">39706.33</td>
-<td style="text-align: right;">40703.16</td>
+<td style="text-align: right;">102.679</td>
+<td style="text-align: right;">101.273</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">41643.01</td>
-<td style="text-align: right;">39773.31</td>
-<td style="text-align: right;">41265.76</td>
-<td style="text-align: right;">41100.65</td>
+<td style="text-align: right;">102.387</td>
+<td style="text-align: right;">97.240</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">107.033</td>
+<td style="text-align: right;">102.727</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100.321</td>
+<td style="text-align: right;">102.300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">109.539</td>
+<td style="text-align: right;">100.342</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">105.526</td>
+<td style="text-align: right;">100.880</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">102.164</td>
+<td style="text-align: right;">104.718</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">102.284</td>
+<td style="text-align: right;">106.056</td>
 </tr>
 </tbody>
 </table>
@@ -932,11 +951,980 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="column img.fit center">
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-dc1b792b94b0dda5bb63" style="width:1850px;height:650px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-dc1b792b94b0dda5bb63">{"x":{"data":[{"x":[0,0],"y":[0.40000000000000002,2.6000000000000001],"text":"yintercept: 0","type":"scatter","mode":"lines","line":{"width":3.0236220472440949,"color":"rgba(178,34,34,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.8259999999999934],"y":[1],"text":"Nivel: 95%<br />Diferencia: 2.826<br />Nivel: 95%<br />LI: -0.03809325<br />LS: 5.690093","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_x":{"array":[2.8640932503557748],"arrayminus":[2.8640932503557757],"type":"data","width":5.1579072262721226,"symmetric":false,"color":"rgba(43,92,143,1)"},"name":"95%","legendgroup":"95%","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.8259999999999934],"y":[2],"text":"Nivel: 90%<br />Diferencia: 2.826<br />Nivel: 90%<br />LI:  0.46202848<br />LS: 5.189972","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_x":{"array":[2.3639715212046024],"arrayminus":[2.3639715212046024],"type":"data","width":5.1579072262721386,"symmetric":false,"color":"rgba(230,126,34,1)"},"name":"90%","legendgroup":"90%","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.8259999999999934],"y":[1],"text":"Nivel: 95%<br />Diferencia: 2.826<br />Nivel: 95%","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(43,92,143,1)","opacity":1,"size":15.118110236220474,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(43,92,143,1)"}},"hoveron":"points","name":"95%","legendgroup":"95%","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.8259999999999934],"y":[2],"text":"Nivel: 90%<br />Diferencia: 2.826<br />Nivel: 90%","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(230,126,34,1)","opacity":1,"size":15.118110236220474,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(230,126,34,1)"}},"hoveron":"points","name":"90%","legendgroup":"90%","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":61.16396845163969,"r":13.283520132835205,"b":67.745952677459542,"l":78.372768783727707},"paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":35},"title":{"text":"Intervalo de Confianza para μ₁ - μ₂","font":{"color":"rgba(0,0,0,1)","family":"","size":31.880448318804483},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.32450257539135974,5.9765025753913461],"tickmode":"array","ticktext":["0","2","4"],"tickvals":[0,2,4],"categoryorder":"array","categoryarray":["0","2","4"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":6.6417600664176026,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":1.2075927393486552,"zeroline":false,"anchor":"y","title":{"text":"Diferencia de medias","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,2.6000000000000001],"tickmode":"array","ticktext":["95%","90%"],"tickvals":[1,2],"categoryorder":"array","categoryarray":["95%","90%"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":6.6417600664176026,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":1.2075927393486547,"zeroline":false,"anchor":"x","title":{"text":"Nivel de confianza","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":"#F1F5F5","bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":20},"title":{"font":{"size":25}}},"hovermode":"closest","width":1850,"height":650,"barmode":"relative","plot_bgcolor":"#F1F5F5"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"24b815072b0a":{"yintercept":{},"type":"scatter"},"24b8424f4fc6":{"x":{},"y":{},"colour":{},"ymin":{},"ymax":{}},"24b850002e27":{"x":{},"y":{},"colour":{}}},"cur_data":"24b815072b0a","visdat":{"24b815072b0a":["function (y) ","x"],"24b8424f4fc6":["function (y) ","x"],"24b850002e27":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-eb70fb95e1c9675526bf" style="width:1850px;height:650px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-eb70fb95e1c9675526bf">{"x":{"data":[{"x":[0,0],"y":[0.40000000000000002,2.6000000000000001],"text":"yintercept: 0","type":"scatter","mode":"lines","line":{"width":3.0236220472440949,"color":"rgba(178,34,34,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.8259999999999934],"y":[1],"text":"Nivel: 95%<br />Diferencia: 2.826<br />Nivel: 95%<br />LI: -0.03809325<br />LS: 5.690093","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_x":{"array":[2.8640932503557748],"arrayminus":[2.8640932503557757],"type":"data","width":5.1579072262721226,"symmetric":false,"color":"rgba(43,92,143,1)"},"name":"95%","legendgroup":"95%","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.8259999999999934],"y":[2],"text":"Nivel: 90%<br />Diferencia: 2.826<br />Nivel: 90%<br />LI:  0.46202848<br />LS: 5.189972","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_x":{"array":[2.3639715212046024],"arrayminus":[2.3639715212046024],"type":"data","width":5.1579072262721386,"symmetric":false,"color":"rgba(230,126,34,1)"},"name":"90%","legendgroup":"90%","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.8259999999999934],"y":[1],"text":"Nivel: 95%<br />Diferencia: 2.826<br />Nivel: 95%","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(43,92,143,1)","opacity":1,"size":15.118110236220474,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(43,92,143,1)"}},"hoveron":"points","name":"95%","legendgroup":"95%","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.8259999999999934],"y":[2],"text":"Nivel: 90%<br />Diferencia: 2.826<br />Nivel: 90%","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(230,126,34,1)","opacity":1,"size":15.118110236220474,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(230,126,34,1)"}},"hoveron":"points","name":"90%","legendgroup":"90%","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":61.16396845163969,"r":13.283520132835205,"b":67.745952677459542,"l":78.372768783727707},"paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":35},"title":{"text":"Intervalo de Confianza para μ₁ - μ₂","font":{"color":"rgba(0,0,0,1)","family":"","size":31.880448318804483},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.32450257539135974,5.9765025753913461],"tickmode":"array","ticktext":["0","2","4"],"tickvals":[0,2,4],"categoryorder":"array","categoryarray":["0","2","4"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":6.6417600664176026,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":1.2075927393486552,"zeroline":false,"anchor":"y","title":{"text":"Diferencia de medias","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,2.6000000000000001],"tickmode":"array","ticktext":["95%","90%"],"tickvals":[1,2],"categoryorder":"array","categoryarray":["95%","90%"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":6.6417600664176026,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":1.2075927393486547,"zeroline":false,"anchor":"x","title":{"text":"Nivel de confianza","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":"#F1F5F5","bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":20},"title":{"font":{"size":25}}},"hovermode":"closest","width":1850,"height":650,"barmode":"relative","plot_bgcolor":"#F1F5F5"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"2d8c631b2315":{"yintercept":{},"type":"scatter"},"2d8c26e52127":{"x":{},"y":{},"colour":{},"ymin":{},"ymax":{}},"2d8c6e7c2a9c":{"x":{},"y":{},"colour":{}}},"cur_data":"2d8c631b2315","visdat":{"2d8c631b2315":["function (y) ","x"],"2d8c26e52127":["function (y) ","x"],"2d8c6e7c2a9c":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Dos medias (<span class="hi">Varianzas desconocidas y diferentes</span>)</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<ul>
+<li>Se emplea el estadístico <span class="math inline">t</span>:</li>
+</ul>
+<p><span class="math inline">t = \frac{(\bar{x_1}-\bar{x_2}) - (\mu_1-\mu_2))}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}</span></p>
+<ul>
+<li>El intervalo bilateral está compuesto por:</li>
+</ul>
+<p><span class="math inline">(\bar{x}_1 - \bar{x}_2) \pm t_{\frac{\alpha}{2}} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}</span></p>
+</div><div class="column" style="width:35%;">
+<ul>
+<li>Los intervalos unilaterales están compuestos por:</li>
+</ul>
+<p>Para la cola izquierda</p>
+<p><span class="math inline">(\bar{x}_1 - \bar{x}_2) - t_{\alpha} \cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}</span></p>
+<p>Para la cola derecha</p>
+<p><span class="math inline">(\bar{x}_1 - \bar{x}_2) + t_{\alpha} \cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}</span></p>
+</div><div class="column" style="width:30%;">
+<p>Los grados de libertad para <span class="math inline">t</span> son:</p>
+<p><span class="math display">\nu \approx \frac{\left(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}\right)^2}{\frac{(s_1^2/n_1)^2}{n_1 - 1} + \frac{(s_2^2/n_2)^2}{n_2 - 1}}</span></p>
+<p>También se conocen como los grados de libertad de Welch-Satterthwaite.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 05</h2>
+<ul>
+<li>El tiempo entre dos condiciones de tueste en el proceso de torrefacción de granos de café sigue una distribución normal. Se quiere ver si hay diferencias en este tiempo entre dos tamaños diferentes de grano. Se realizan 10 mediciones para el grano 1 y 13 para el grano 2.</li>
+<li>Se asume que las varianzas no son iguales. ¿Los procesos son iguales? Con un 90 % de confianza.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 05</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.75em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Grano_1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Grano_2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">5.139</td>
+<td style="text-align: right;">5.067</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2.445</td>
+<td style="text-align: right;">4.510</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6.300</td>
+<td style="text-align: right;">5.457</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5.946</td>
+<td style="text-align: right;">4.373</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6.057</td>
+<td style="text-align: right;">5.723</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6.016</td>
+<td style="text-align: right;">5.535</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4.950</td>
+<td style="text-align: right;">5.091</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9.761</td>
+<td style="text-align: right;">4.958</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3.041</td>
+<td style="text-align: right;">5.651</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2.881</td>
+<td style="text-align: right;">5.256</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">5.449</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">5.416</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">5.654</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column">
+<p><span class="math inline">\bar{x_1} = 5.254 \quad \bar{x_2}=5.242</span></p>
+<p><span class="math inline">s_1 = 2.151 \quad s_2=0.428</span></p>
+<p>IC: <span class="math inline">(−1.24549, 1.26949)</span></p>
+<p>Valor P = 0.98649</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Dos medias (<span class="hi">Varianzas conocidas</span>)</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<ul>
+<li>Se emplea el estadístico <span class="math inline">Z</span>:</li>
+</ul>
+<p><span class="math display">z = \frac{(\bar{x}_1-\bar{x}_2) - (\mu_1-\mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}</span></p>
+<ul>
+<li>El intervalo bilateral está compuesto por:</li>
+</ul>
+<p><span class="math display">(\bar{x}_1 - \bar{x}_2) \pm z_{\frac{\alpha}{2}} \cdot \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}</span></p>
+</div><div class="column" style="width:35%;">
+<ul>
+<li>Los intervalos unilaterales están compuestos por:</li>
+</ul>
+<p>Para el límite inferior:</p>
+<p><span class="math display">(\bar{x}_1 - \bar{x}_2) - z_{\alpha} \cdot \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}</span></p>
+<p>Para el límite superior:</p>
+<p><span class="math display">(\bar{x}_1 - \bar{x}_2) + z_{\alpha} \cdot \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}</span></p>
+</div><div class="column" style="width:30%;">
+<h3>Observaciones clave:</h3>
+<ul>
+<li><p>Al <strong>conocer las varianzas poblacionales</strong> (<span class="math inline">\sigma_1^2, \sigma_2^2</span>), la distribución de referencia es la <strong>Normal Estándar (<span class="math inline">Z</span>)</strong>, independientemente del tamaño de muestra.</p></li>
+<li><p>No se requiere estimar grados de libertad ni calcular varianzas agrupadas (<span class="math inline">s_p</span>).</p></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Muestras pareadas</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<ul>
+<li>Se emplea el estadístico <span class="math inline">t</span> y ocurre con muestras pareadas: <span class="math inline">t = \frac{\bar{d}-\mu_d}{\frac{s_d}{\sqrt{n}}}</span></li>
+</ul>
+<p>Donde <span class="math inline">d</span> es la diferencia entre los pares.</p>
+<ul>
+<li>El intervalo bilateral está compuesto por:</li>
+</ul>
+<p><span class="math inline">\bar{d} \pm t_{\frac{\alpha}{2}} \cdot \frac{s_d}{\sqrt{n}}</span></p>
+</div><div class="column" style="width:35%;">
+<ul>
+<li>Los intervalos unilaterales están compuestos por:</li>
+</ul>
+<p>Para la cola izquierda</p>
+<p><span class="math inline">\bar{d} - t_{\alpha} \cdot \frac{s_d}{\sqrt{n}}</span></p>
+<p>Para la cola derecha</p>
+<p><span class="math inline">\bar{d} + t_{\alpha} \cdot \frac{s_d}{\sqrt{n}}</span></p>
+</div><div class="column" style="width:30%;">
+<p>Los grados de libertad para <span class="math inline">t</span> son:</p>
+<p><span class="math display">\nu = n - 1</span></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 06</h2>
+<ul>
+<li><p>Se desea determinar si dos materiales para suelas de zapatos son igual de resistentes al desgaste. Se toman 25 zapatos derechos con suelas del material A y sus pares izquierdos con el material B y se le asignan a 25 niños para que los usen durante un mes, ya que se quiere probar el desgaste en condiciones reales.</p></li>
+<li><p>Luego de un mes se mide la diferencia en el espesor de las suelas en un punto específico.</p></li>
+<li><p>Una muestra pareada, como su nombre lo indica, se recoge por pares.</p></li>
+<li><p>Este ejercicio se resuelve con el <span class="hi">promedio de la diferencia <span class="math inline">\bar{d}</span></span> entre las dos muestras. <span class="hi">No con la diferencia de los promedios</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 06</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.75em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">d</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">d</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">6.869</td>
+<td style="text-align: right;">4.431</td>
+<td style="text-align: right;">2.438</td>
+<td style="text-align: right;">7.573</td>
+<td style="text-align: right;">3.409</td>
+<td style="text-align: right;">4.164</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4.569</td>
+<td style="text-align: right;">3.722</td>
+<td style="text-align: right;">0.847</td>
+<td style="text-align: right;">5.241</td>
+<td style="text-align: right;">3.916</td>
+<td style="text-align: right;">1.325</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.281</td>
+<td style="text-align: right;">3.127</td>
+<td style="text-align: right;">2.154</td>
+<td style="text-align: right;">7.849</td>
+<td style="text-align: right;">2.709</td>
+<td style="text-align: right;">5.140</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6.927</td>
+<td style="text-align: right;">1.176</td>
+<td style="text-align: right;">5.751</td>
+<td style="text-align: right;">8.276</td>
+<td style="text-align: right;">0.970</td>
+<td style="text-align: right;">7.306</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8.349</td>
+<td style="text-align: right;">1.525</td>
+<td style="text-align: right;">6.824</td>
+<td style="text-align: right;">6.200</td>
+<td style="text-align: right;">3.649</td>
+<td style="text-align: right;">2.551</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7.352</td>
+<td style="text-align: right;">3.004</td>
+<td style="text-align: right;">4.348</td>
+<td style="text-align: right;">5.782</td>
+<td style="text-align: right;">4.113</td>
+<td style="text-align: right;">1.669</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.265</td>
+<td style="text-align: right;">3.864</td>
+<td style="text-align: right;">1.401</td>
+<td style="text-align: right;">6.616</td>
+<td style="text-align: right;">4.548</td>
+<td style="text-align: right;">2.068</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4.654</td>
+<td style="text-align: right;">4.336</td>
+<td style="text-align: right;">0.318</td>
+<td style="text-align: right;">6.919</td>
+<td style="text-align: right;">1.280</td>
+<td style="text-align: right;">5.639</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.506</td>
+<td style="text-align: right;">3.293</td>
+<td style="text-align: right;">2.213</td>
+<td style="text-align: right;">7.508</td>
+<td style="text-align: right;">1.211</td>
+<td style="text-align: right;">6.297</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5.844</td>
+<td style="text-align: right;">3.193</td>
+<td style="text-align: right;">2.651</td>
+<td style="text-align: right;">4.994</td>
+<td style="text-align: right;">2.189</td>
+<td style="text-align: right;">2.805</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6.809</td>
+<td style="text-align: right;">4.277</td>
+<td style="text-align: right;">2.532</td>
+<td style="text-align: right;">5.680</td>
+<td style="text-align: right;">0.778</td>
+<td style="text-align: right;">4.902</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7.659</td>
+<td style="text-align: right;">1.476</td>
+<td style="text-align: right;">6.183</td>
+<td style="text-align: right;">7.922</td>
+<td style="text-align: right;">4.420</td>
+<td style="text-align: right;">3.502</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4.268</td>
+<td style="text-align: right;">1.800</td>
+<td style="text-align: right;">2.468</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<ul>
+<li><p>¿Con un 99 % de confianza, el desgaste es el mismo?</p>
+<ul>
+<li>En simple, es una prueba t para una muestra, siendo esa muestra la diferencia <span class="math inline">d</span> entre A y B. Aunque no cambia decisión final (rechazar o no rechazar), tenga cuidado, no es lo mismo <span class="math inline">d=B-A</span> que <span class="math inline">d=A-B</span>, analice y concluya en función de como se construye la variable <span class="math inline">d</span>.</li>
+</ul></li>
+</ul>
+<p>R: El desgaste por material no es el mismo</p>
+<p><span class="math inline">\bar{d} = 3.500 \quad s_d=2.004</span></p>
+<p>IC: <span class="math inline">(2.37899, 4.62101)</span></p>
+<p>Valor P = 0.000</p>
+</div></div>
+</section>
+<section class="slide level2 center">
+<h2>Pruebas de hipótesis e IC para proporciones</h2>
+</section>
+<section class="slide level2 bloques">
+<h2>Supuestos</h2>
+<ul>
+<li><p>El tamaño de muestra debe ser el suficiente para cumplir el TLC y su aproximación a la normal.</p></li>
+<li><p>Ademas, <span class="math inline">n\cdot p \ge 5</span> y <span class="math inline">n\cdot (1-p) \ge 5</span>.</p></li>
+<li><p>Nota: de no cumplirse este supuesto, se pueden utilizar alternativas resistentes o robustas a la infracción.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Una proporción</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Usa el estadístico <span class="math inline">z</span></li>
+</ul>
+<p><span class="math display">z = \frac{\hat{p}-p_o}{\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}}</span></p>
+<ul>
+<li>El intervalo bilateral está compuesto por:</li>
+</ul>
+<p><span class="math display">\hat{p} \pm z_{\frac{\alpha}{2}}\cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}</span></p>
+</div><div class="column">
+<ul>
+<li>Los intervalos unilaterales están compuestos por:</li>
+</ul>
+<p>Para la cola izquierda</p>
+<p><span class="math display">\hat{p} - z_{\alpha}\cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}</span></p>
+<p>Para la cola derecha</p>
+<p><span class="math display">\hat{p} + z_{\alpha}\cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}</span></p>
+</div><div class="column">
+<p>Se basa en una aproximación de la binomial a la normal, por ello es que emplea <span class="math inline">z</span>.</p>
+<p>El método utilizado es el de <em>Wald</em>. Como ya fue mencionado, existen otros métodos que pueden ser resistentes o robustos a la infracción de los supuestos.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 07</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Un cliente indica que en promedio su proceso produce 10 % de defectos (acabado superficial correcto o incorrecto). Para verificar esto se toma una muestra de 75 productos.</li>
+</ul>
+<p><span class="math display">\hat{p} = \frac{13}{75}=0.1733</span></p>
+<p>IC: <span class="math inline">(0.08764, 0.25896)</span></p>
+<p>Valor P = 0.09352</p>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Advertencia</h2>
+<ul>
+<li><p>El método que estamos empleando se llama el <span class="hi">método de Wald</span>.</p>
+<ul>
+<li>Puede ser inexacto con muestras pequeñas o cuando la proporción está cerca de 0 o 1. Tiende a subestimar o sobrestimar la verdadera probabilidad, dando resultados poco confiables.</li>
+</ul></li>
+<li><p>Por ello, en función del software, puede obtener resultados distintos. No se dedique a “presionar” botones, comprenda lo que está haciendo.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Advertencia</h2>
+<ul>
+<li><p>Softwares especializados como R y Minitab emplean metodologías robustas a este problema como:</p>
+<ul>
+<li>Blaker ajustado (exacto)</li>
+<li>Wilson-score</li>
+<li>Agresti-Coull</li>
+</ul></li>
+<li><p>Dado que <u>el uso de software es permitido</u>, se le aconseja <span class="hi">coordinar con la persona docente</span> la metodología a emplear en evaluaciones específicas y generales.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Dos proporciones</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<ul>
+<li>Usa el estadístico <span class="math inline">z</span>:</li>
+</ul>
+<p><span class="math inline">z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}}</span></p>
+<ul>
+<li>El intervalo bilateral está compuesto por:</li>
+</ul>
+<p><span class="math inline">(\hat{p}_1 - \hat{p}_2) \pm z_{\frac{\alpha}{2}} \cdot \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}</span></p>
+</div><div class="column" style="width:35%;">
+<ul>
+<li>Los intervalos unilaterales están compuestos por:</li>
+</ul>
+<p>Para la cola izquierda</p>
+<p><span class="math inline">(\hat{p}_1 - \hat{p}_2) - z_{\alpha} \cdot \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}</span></p>
+<p>Para la cola derecha</p>
+<p><span class="math inline">(\hat{p}_1 - \hat{p}_2) + z_{\alpha} \cdot \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}</span></p>
+</div><div class="column" style="width:30%;">
+<p>Se basa en la aproximación de la distribución binomial a la normal para la diferencia de dos proporciones independientes, por ello utiliza <span class="math inline">z</span>.</p>
+<p>Al igual que en una muestra, este método utiliza las estimaciones muestrales para el error estándar.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 08</h2>
+<ul>
+<li><p>En la GAM se le pregunta a 120 personas si estarían dispuestas a comprar un producto y 82 contestan afirmativamente. Fuera de la GAM se le pregunta a 90 personas y 47 contestan afirmativamente. Con un 95% de confianza ¿Hay diferencia entre las zonas en cuánto a la disposición de compra?</p></li>
+<li><p>IC: <span class="math inline">(0.02853,0.29369)</span></p></li>
+<li><p>Valor P = 0.01762</p>
+<ul>
+<li>Si utiliza la aplicación recomendada marque la opción <code>Use pooled standard error</code>.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 center">
+<h2>Momento de reflexión</h2>
+</section>
+<section class="slide level2 bloques">
+<h2>Reflexión</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Note que en los intervalos de confianza para medias y proporciones, se sigue un mismo patrón:</li>
+</ul>
+<p><span class="math display">\text{Estimación} \pm \text{Valor crítico} \cdot \text{Error Estándar}</span></p>
+<p><span class="math display">\hat{\theta} \pm (z \text{ o } t) \cdot EE</span></p>
+<ul>
+<li><p>El producto <span class="math inline">(z \text{ o } t) \cdot EE</span> constituye el <strong>Margen de Error</strong>, el cual dicta la amplitud del intervalo:</p>
+<ul>
+<li><p>Un <strong>intervalo angosto</strong> indica que tenemos una estimación <strong>muy precisa</strong> del parámetro poblacional (generalmente logrado con un tamaño de muestra <span class="math inline">n</span> grande).</p></li>
+<li><p>Un <strong>intervalo amplio</strong> transmite la existencia de una <strong>gran incertidumbre</strong> sobre el verdadero valor del parámetro.</p></li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Problemas del EE</h2>
+<ul>
+<li><p>En el denominador del error estándar, de una u otra forma, se encuentra la raíz del tamaño de muestra (<span class="math inline">\sqrt{n}</span>).</p></li>
+<li><p>Esta es una crítica generalizada en la estadística frecuentista: tanto el valor <span class="math inline">p</span> como los intervalos de confianza pueden ser “manipulados” (o altamente influenciados) simplemente aumentando el tamaño de la muestra.</p></li>
+<li><p>Es aquí donde toman un papel crucial conceptos como el <span class="hi">tamaño de efecto</span>, el <span class="hi">tamaño de muestra</span> y la <span class="hi">potencia estadística</span>, temas que abordaremos más adelante.</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+<h2>Pruebas de hipótesis e IC para varianzas</h2>
+</section>
+<section class="slide level2 bloques">
+<h2>Supuestos</h2>
+<ul>
+<li><p>En esta ocasión no hay TLC que nos salve. <span class="hi">La población debe ser normal</span>.</p></li>
+<li><p>Solo se sigue una <span class="math inline">\chi^2=\frac{s^2(n-1)}{\sigma^2}</span> si los datos son normales. Si no lo son, los resultados pueden ser <span class="hi">muy inexactos</span> incluso con muestras grandes.</p></li>
+<li><p>Se abordará en otras lecciones las alternativas al incumplimiento de este supuesto.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Una varianza</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Usa el estadístico Chi-cuadrado (<span class="math inline">\chi^2</span>):</li>
+</ul>
+<p><span class="math display">\chi^2 = \frac{(n-1)s^2}{\sigma^2}</span></p>
+<ul>
+<li>El intervalo bilateral está dado por:</li>
+</ul>
+<p><span class="math display">\frac{(n-1)s^2}{\chi^2_{\alpha/2}} &lt; \sigma^2 &lt; \frac{(n-1)s^2}{\chi^2_{1-\alpha/2}}</span></p>
+</div><div class="column">
+<ul>
+<li>Los intervalos unilaterales están compuestos por:</li>
+</ul>
+<p>Para la cola izquierda:</p>
+<p><span class="math display">\sigma^2 &gt; \frac{(n-1)s^2}{\chi^2_{\alpha}}</span></p>
+<p>Para la cola derecha:</p>
+<p><span class="math display">0 &lt; \sigma^2 &lt; \frac{(n-1)s^2}{\chi^2_{1-\alpha}}</span></p>
+</div><div class="column">
+<p>Los grados de libertad para <span class="math inline">\chi^2</span> son:</p>
+<p><span class="math display">\nu = n - 1</span></p>
+<p><em>Tome en cuenta:</em> La distribución <span class="math inline">\chi^2</span> está definida en el dominio <span class="math inline">[0, \infty)</span>, por lo que el límite inferior de la varianza jamás puede ser negativo (<span class="math inline">-\infty</span>).</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 09</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Una máquina llena latas con una bebida gaseosa y el fabricante desea obtener una estimación de intervalo de confianza de la varianza del volumen de llenado (si la varianza es demasiado grande, un alto porcentaje de las latas se llenarán con un volumen del producto que es menor que la cantidad nominal [355 ml]).</p></li>
+<li><p><span class="math inline">\bar{x} = 355.0170, \quad s = 0.5199</span></p></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">354.050</td>
+<td style="text-align: right;">355.657</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">355.622</td>
+<td style="text-align: right;">354.455</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">354.762</td>
+<td style="text-align: right;">354.778</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">355.238</td>
+<td style="text-align: right;">354.641</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">354.112</td>
+<td style="text-align: right;">355.054</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">355.438</td>
+<td style="text-align: right;">355.370</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">356.055</td>
+<td style="text-align: right;">354.789</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">355.090</td>
+<td style="text-align: right;">354.932</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">354.849</td>
+<td style="text-align: right;">355.528</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">355.303</td>
+<td style="text-align: right;">354.616</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 09</h2>
+<ul>
+<li><p>Dado que el problema se daría por mucha variabilidad, obtenga el intervalo superior de confianza al 95 % para <span class="math inline">\sigma^2</span>.</p>
+<ul>
+<li>IC: <span class="math inline">(0.0000, 0.5076)</span></li>
+</ul></li>
+<li><p>Realice este contraste de hipótesis:</p>
+<ul>
+<li><span class="math inline">H_o: \sigma^2=0.5</span></li>
+<li><span class="math inline">H_i \sigma &lt; 0.5</span></li>
+<li>Valor P = 0.0540</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Dos varianzas</h2>
+<div class="columns">
+<div class="column" style="width:38%;">
+<ul>
+<li>Usa el estadístico <span class="math inline">F</span> de Snedecor-Fisher:</li>
+</ul>
+<p><span class="math display">f = \frac{s_1^2}{s_2^2}</span></p>
+<ul>
+<li>El intervalo bilateral está dado por:</li>
+</ul>
+<p><span class="math inline">\frac{s_1^2}{s_2^2} \cdot \frac{1}{f_{\alpha/2, \nu_1, \nu_2}} &lt; \frac{\sigma_1^2}{\sigma_2^2} &lt; \frac{s_1^2}{s_2^2} \cdot f_{\alpha/2, \nu_2, \nu_1}</span></p>
+</div><div class="column" style="width:32%;">
+<ul>
+<li>Los intervalos unilaterales están compuestos por:</li>
+</ul>
+<p>Para la cola izquierda:</p>
+<p><span class="math display">\frac{\sigma_1^2}{\sigma_2^2} &lt; \frac{s_1^2}{s_2^2} \cdot f_{\alpha, \nu_2, \nu_1}</span></p>
+<p>Para la cola derecha:</p>
+<p><span class="math display">\frac{\sigma_1^2}{\sigma_2^2} &gt; \frac{s_1^2}{s_2^2} \cdot \frac{1}{f_{\alpha, \nu_1, \nu_2}}</span></p>
+</div><div class="column" style="width:30%;">
+<p>Los grados de libertad para <span class="math inline">F</span> son:</p>
+<p><span class="math inline">\nu_1 = n_1 - 1 \quad \text{(num.)}</span> <span class="math inline">\nu_2 = n_2 - 1 \quad \text{(denom.)}</span></p>
+<ul>
+<li><em>Nota:</em> Al igual que <span class="math inline">\chi^2</span>, la distribución <span class="math inline">F</span> toma valores exclusivamente no negativos (<span class="math inline">F \ge 0</span>).</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 10</h2>
+<div class="columns">
+<div class="column">
+<p>Retome los datos del Ejemplo 04. Verifique el supuesto de que ambas varianzas son iguales.</p>
+<p>La hipótesis nula en el caso de las varianzas es un poco diferente. Pues se hace con cocientes.</p>
+<p><span class="math display">H_o: \frac{s^2_{M_1}}{s^2_{M_2}} = 1</span></p>
+<p><span class="math display">H_i: \frac{s^2_{M_1}}{s^2_{M_2}} \ne 1</span></p>
+</div><div class="column" style="font-size: 0.95em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-bordered table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">M1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">M2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">103.371</td>
+<td style="text-align: right;">98.358</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">110.136</td>
+<td style="text-align: right;">103.286</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">102.679</td>
+<td style="text-align: right;">101.273</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">102.387</td>
+<td style="text-align: right;">97.240</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">107.033</td>
+<td style="text-align: right;">102.727</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100.321</td>
+<td style="text-align: right;">102.300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">109.539</td>
+<td style="text-align: right;">100.342</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">105.526</td>
+<td style="text-align: right;">100.880</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">102.164</td>
+<td style="text-align: right;">104.718</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">102.284</td>
+<td style="text-align: right;">106.056</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 10</h2>
+<ul>
+<li><p>Entonces, ¿son las varianzas iguales? ¿asumimos bien en el Ejemplo 04?</p></li>
+<li><p>Ahora, ya tiene elementos téoricos y prácticos para comprobar este supuesto en la prueba de dos medias.</p></li>
+<li><p>IC: <span class="math inline">(0.3833, 6.2123)</span></p></li>
+<li><p>Valor P = 0.5283</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 11</h2>
+<ul>
+<li><p>Repita el procedimiento para el Ejemplo 05.</p></li>
+<li><p>¿Las varianzas son iguales? No, no lo son, entonces asumimos bien.</p></li>
+<li><p>IC: <span class="math inline">(7.3482, 97.6619)</span></p></li>
+<li><p>Valor P = 0.000</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+<h2>Resumen</h2>
+</section>
+<section class="slide level2 bloques">
+<h2>Resumen</h2>
+<ul>
+<li><p>Todas las pruebas de hipótesis estudiadas se encuentran resumidas en <a href="https://stevenggoni.github.io/infografias/esquema_PH.pdf" target="_blank">los tres diagramas de decisión</a> que se le proveen.</p></li>
+<li><p>Este material ha sido preparado por la Inga. Valentina Campos Aguilar y modificado por el autor de esta presentación.</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+<h2>Tamaño de muestra</h2>
+</section>
+<section class="slide level2 center">
+<h2>Tamaño de muestra para intervalos</h2>
+</section>
+<section class="slide level2 bloques">
+<h2>Tamaño de muestra</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Con esta fórmula podemos estar “seguros” con un <span class="math inline">(1-\alpha)</span> de confianza que el error <span class="math inline">|\bar{x}-\mu|</span> no va a exceder el valor <span class="math inline">e</span>.</p></li>
+<li><p>Entendiendo que <span class="math inline">\lceil \cdot \rceil</span> significa redondeado al siguiente entero.</p></li>
+</ul>
+</div><div class="column">
+<h3>Para la media</h3>
+<p><span class="math display">n = \left\lceil \left(\frac{z_{\frac{\alpha}{2}}\cdot \sigma}{e}\right)^2 \right\rceil</span></p>
+<h3>Para proporciones</h3>
+<p><span class="math display"> n = \left\lceil\left(\frac{z_{\frac{\alpha}{2}}}{e}\right)^2 \cdot p \cdot (1-p)\right\rceil</span></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Tamaño de muestra</h2>
+<ul>
+<li><p>Garantiza que el <strong>método de estimación</strong> produzca un margen de error menor o igual a <span class="math inline">e</span>, con una tasa de éxito a largo plazo del <span class="math inline">(1-\alpha)\%</span>.</p></li>
+<li><p>Sirve para fijar la <strong>precisión deseada</strong> (ancho del intervalo) antes de recolectar los datos, evitando muestras innecesariamente grandes o insuficientemente precisas.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Tamaño de muestra</h2>
+<ul>
+<li><p>Importante: El cálculo de <span class="math inline">n</span> debe dar un resultado <span class="hi">adimensional</span>, por lo que las unidades de <span class="math inline">\sigma</span> y <span class="math inline">e</span> deben estar en la misma dimensión.</p></li>
+<li><p>Naturalmente, en el caso de proporciones, <span class="math inline">p</span> y <span class="math inline">e</span> deben estar en unidades de proporcioens (o porcentajes).</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Tamaño de muestra</h2>
+<ul>
+<li><p>Continuando…</p>
+<ul>
+<li><p>¿Qué es <span class="math inline">e</span>? ¿Cómo escojo <span class="math inline">\alpha</span>?</p></li>
+<li><p>Es el máximo error permitido por la persona investigadora que tiene un <span class="hi">IMPACTO</span> sobre el contexto en el que se enmarca el muestreo. Lo mismo con <span class="math inline">\alpha</span>, de<span class="hi">pende del contexto</span>.</p></li>
+</ul></li>
+<li><p>Por ejemplo, la estimación del tiempo que se tarda en completar una tarea no puede ser diferente al valor real en <span class="hi">a lo sumo X segundos</span>, con una confianza igual <span class="math inline">(1-\alpha)</span> porque esto es importante para el <span class="hi">contexto particular</span> en el que se enmarca la estimación del tiempo.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Tamaño de muestra</h2>
+<ul>
+<li><p>Continuando…</p>
+<ul>
+<li><p>¿De dónde saco <span class="math inline">\sigma</span>?</p></li>
+<li><p>Se debe estimar (<span class="math inline">s</span>), a partir de:</p>
+<ul>
+<li>Fuente secundaria: existen datos históricos.</li>
+<li>Fuente primaria: hay que realizar un premuestreo.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Tamaño de muestra</h2>
+<ul>
+<li><p>¿Qué pasa si la población es <span class="hi">finita</span>?</p></li>
+<li><p>Esto es más común en observaciones y encuestas que en experimentos.</p></li>
+<li><p>En estos casos se utiliza un factor de corrección para población finita:</p></li>
+<li><p><span class="math display">n = \left\lceil\frac{n_0}{1+\frac{n_0}{N}}\right\rceil</span></p></li>
+<li><p>Donde <span class="math inline">N</span> es la población y <span class="math inline">n_0</span> es el resultado de la fórmula de población <strong>infinita</strong>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 12</h2>
+<ul>
+<li><p>Calcule el tamaño de muestra, con una desviación de 5.6 s y un error de 3 s con un nivel de confianza del 95%, para población infinita y para una población de 50.</p></li>
+<li><p>Infinita: 14</p></li>
+<li><p>Finita: 11</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo 13</h2>
+<ul>
+<li><p>A resolver de forma asincrónica por la persona estudiante</p></li>
+<li><p>Calcule el tamaño de muestra, con una proporción esperada de 0.5 y un error de 0.08, a un nivel de confianza de 95%, para población infinita y una población de 350.</p></li>
+<li><p>150.06 ~ 151</p></li>
+<li><p>105.49 ~ 106</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+<h2>Tamaño de muestra para pruebas de hipótesis</h2>
+</section>
+<section class="slide level2 bloques">
+<h2>Potencia estadística</h2>
+<ul>
+<li><p>La potencia es la probabilidad de rechazar la hipótesis nula dado que esta es falsa. En otras palabras, es la probabilidad de encontrar un “efecto” significativo dado que en la población ese “efecto” existe.</p></li>
+<li><p>El objetivo es tener <span class="hi">alta probabilidad de detectar un efecto real</span>, si existe (es decir, evitar errores tipo II).</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Potencia estadística</h2>
+<ul>
+<li>Este concepto es muy importante en el diseño de investigaciones, porque no se quiere tener un tamaño de muestra <span class="hi">suficientemente grande</span> para detectar el efecto de interés como significativo, <span class="hi">pero no demasiado grande</span> como para encontrar que relaciones pequeñas sean importantes de reportar.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Potencia estadística</h2>
+<ul>
+<li><p>Lo que diferencia al cálculo de la muestra con potencia estadística del cálculo para estimación por intervalo es que en este caso se requiere una prueba de hipótesis.</p></li>
+<li><p>Implica definir un <span class="hi">efecto mínimo relevante</span>, y determinar cuántas observaciones necesitas para que la probabilidad de detectarlo (potencia) sea alta.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Potencia estadística</h2>
+<ul>
+<li><p>Suponga un ejemplo:</p></li>
+<li><p>En la industria de la manufactura CNC de componentes mecánicos para turbina de avión, la tolerancia dimensional de las partes es vital, pues las piezas deben ensamblar sin dejar espacio a fugas.</p></li>
+<li><p>Una pieza particular tiene una especificación dimensional de <span class="math inline">20\,mm \pm 0.01\,mm</span>, la cual se puede considerar muy ajustada.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Potencia estadística</h2>
+<ul>
+<li><p>Se desea realizar un estudio comparando dos instrumentos de medición (A y B). Si la diferencia entre los promedios es de al menos 0.01, se podrían estar produciendo partes que no cumplan con la especificación.</p></li>
+<li><p>¿Qué tamaño de muestra es necesario para detectar diferencias de al menos 0.01, con un 99 % de confianza el 85 % de las veces?</p></li>
+<li><p>Suponga que la desviación estándar es de 0.0035</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Potencia estadística</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Efecto = 0.01</p></li>
+<li><p>Como en el caso anterior, la desviación estándar se obtiene de datos previos o un pre-muestreo <span class="math inline">s = 0.0035</span>.</p></li>
+<li><p><span class="math inline">1 - \beta = 85\%</span></p></li>
+<li><p><span class="math inline">\alpha = 0.01</span></p></li>
+</ul>
+</div><div class="column">
+<p>Hipótesis</p>
+<p><span class="math display">H_o: \bar{x_A} - \bar{x_B} = 0</span></p>
+<p><span class="math display">H_i: \bar{x_A} - \bar{x_B} \ne 0</span></p>
+<p>Con estos valores se va calcular el tamaño de muestra necesario, para detectar, <span class="hi">SI ES QUE EXISTE</span>, una diferencia entre los instrumentos de medición (A y B) de 0.01 mm, el 85 % de las veces.</p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Potencia estadística</h2>
+<ul>
+<li><p>Se le provee, para estudio asincrónico y para el uso en las Prácticas de laboratorio una <a href="https://stevenggoni.github.io/clases/data/II_1123_03%20Potencia%20en%20Minitab.pdf" target="_blank">guía general para el cálculo de potencia en Minitab</a>.</p></li>
+<li><p>Se hace énfasis en que la guía es general, desarrolla el ejemplo anterior, pero la misma “metodología” se puede seguir para el desarrollo del cálculo de tamaño de muestra por potencia para otros contrastes de hipótesis.</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+<h2>Ejercicio integrador</h2>
+<h3>A realizar de forma sincrónica o asincrónica, a juicio de la persona docente.</h3>
+</section>
+<section class="slide level2 bloques">
+<h2>Enunciado</h2>
+<ul>
+<li><p>Una empresa utiliza dos proveedores de materia prima (Acero Inoxidable 304) para un proceso de manufactura. Cada proveedor ha enviado 20 piezas para ser sometidas a una prueba de tracción (MPa).</p></li>
+<li><p>El suplidor que ofrezca mayor media será el seleccionado. Si ambos son estadísticamente iguales se decidirá por otras variables (como económicas, distancia, tiempos de entrega, etc).</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Asignación</h2>
+<ul>
+<li>¿Cómo debe proceder la empresa?</li>
+<li>Para responder siga los siguientes pasos:
+<ul>
+<li><p>Verifique con rutinas gráficas si la muestra se parece a la normal (un histograma por ejemplo). En la siguiente clase aprenderá a hacer esto con pruebas estadísticas.</p></li>
+<li><p>Realice un gráfico de Cajas y Bigotes, esto le ayudará a describir las varianzas y darse una idea inicial de si son iguales o no.</p></li>
+<li><p>Realice una prueba de igualdad de varianzas (93 %)</p></li>
+<li><p>Con base en el resultado de dicha prueba, realice un prueba de dos medias (93 %) y concluya sobre el estudio.</p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Asignación</h2>
+<ul>
+<li><p>Se le hace entrega del <a href="https://stevenggoni.github.io/clases/data/II_1123_03%20Datos%20para%20ejercicio%20integrador%20PH.xlsx" target="_blank">conjunto de datos en Excel</a>.</p></li>
+<li><p>Además, del <a href="https://stevenggoni.github.io/tutoriales_R/Ejercicio_integrador_PH" target="_blank">ejercicio resuelto en R</a> para que pueda comparar sus resultados.</p>
+<ul>
+<li><p>Se le recomienda realizar el ejercicio antes de ver la solución.</p></li>
+<li><p>No hay problema con que no use R, la idea es que le sirva de orientación para resolverlo, el ejercicio puede resolverse en Excel u otro software.</p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicios adicionales</h2>
+<ul>
+<li><p>También se le hace entrega de un <a href="https://stevenggoni.github.io/clases/data/II_1123_03%20Ejercicios%20adicionales%20PH.pdf" target="_blank">listado de ejercicios</a>, independientes a la asignación anterior, para que practique a modo de estudio. No se le brinda la solución pero si las respuestas.</p></li>
+<li><p>La solución en R de todos los ejercicios de esta sesión también está disponible en este <a href="https://stevenggoni.github.io/tutoriales_R/Pruebas_hipotesis.html" target="_blank">enlace</a>. Ese documento también incluye la forma para calcular el tamaño de muestra vía potencia estadística del ejemplo desarrollado.</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+<h2>Pruebas de hipótesis e Intervalos de confianza <br> II-1123 Estadística para Ingeniería Industrial II</h2>
+<h3 class="subtitle">Gracias por su atención <br> Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a></h3>
+<h3>Dudas o correcciones requeridas pueden solicitarse al correo</h3>
 
 
 </section>

@@ -1,5 +1,13 @@
 ---
 title: "Publicaciones"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-expand: false
+    code-fold: false
+    collapse-sections: true
+    collapse-open: false
 ---
 
 A continuación se presentan algunas de mis contribuciones en investigación y consultoría. Puede consultar el listado completo en mi perfil de [{{< iconify fa6-brands:google-scholar >}} Google Scholar](https://scholar.google.com/citations?user=X_3YTJ0AAAAJ&hl=es){target="_blank"}.
