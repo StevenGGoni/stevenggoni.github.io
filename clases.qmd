@@ -52,4 +52,8 @@ Las secciones previas y restantes a la clase de RSM serán incorporadas eventual
 
 1. [Experimento factorial completo $2^k$](clases/II-1125_01_Factorial_completo.html){target="_blank"}
 
-7. [Superficies de respuesta (RSM)](clases/II-1125_07_RSM.html){target="_blank"}
+2. [Diseño factorial completo, bloqueado y confundido $2^{k-p}$]
+
+3. [Diseño factorial fraccionado]
+
+4. [Superficies de respuesta (RSM)](clases/II-1125_07_RSM.html){target="_blank"}

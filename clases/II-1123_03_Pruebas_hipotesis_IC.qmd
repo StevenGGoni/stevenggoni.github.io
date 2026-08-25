@@ -654,7 +654,7 @@ $$\nu = n-1$$
 
 * $t_{0.025}=2.0639$
 
-* IC: $(272.8372, 296.16923)$
+* IC: $(272.8372, 296.58201)$
 
 * Valor P = 0.1044
 
@@ -791,6 +791,7 @@ $$\nu = n_1+n_2-2$$
 ::: {.column}
 
 ```{r style="font-size: 0.95em;"}
+
 ej04 <- data.frame(M1 = c(103.371, 110.136, 102.679, 102.387, 107.033, 
                           100.321, 109.539, 105.526, 102.164, 102.284),
                    M2 = c(98.358, 103.286, 101.273, 97.24, 102.727, 
@@ -816,7 +817,7 @@ $H_o: \mu_{M1}=\mu{M2} \rightarrow \mu_{M1}-\mu{M2} = 0$
 
 $H_i: \mu_{M1}\ne\mu{M2} \rightarrow \mu_{M1}-\mu{M2} \ne 0$
 
-IC: $(−0.03792, 5.68992)$
+IC: $(-0.03809325, 5.69009325)$
 
 Valor P = 0.05279
 
@@ -888,7 +889,8 @@ df_ic <- data.frame(Nivel = factor(c("90%", "95%"), levels = c("95%", "90%")),
                     LS = c(t_90$conf.int[2], t_95$conf.int[2]))
 
 g4 <- ggplot(df_ic, aes(x = Nivel, y = Diferencia, color = Nivel)) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "firebrick", linewidth = 0.8) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "firebrick", 
+             linewidth = 0.8) +
   geom_errorbar(aes(ymin = LI, ymax = LS), width = 0.15, linewidth = 1.2) +
   geom_point(size = 4) +
   scale_color_manual(values = c("95%" = "#2b5c8f", "90%" = "#e67e22")) +
@@ -934,7 +936,7 @@ $t = \frac{(\bar{x_1}-\bar{x_2}) - (\mu_1-\mu_2))}{\sqrt{\frac{s_1^2}{n_1} + \fr
 
 * El intervalo bilateral está compuesto por:
 
-$(\bar{x}_1 - \bar{x}_2) \pm t_{\frac{\alpha}{2}} \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$
+$(\bar{x}_1 - \bar{x}_2) \pm t_{\frac{\alpha}{2}} \cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}$
 
 :::
 
@@ -1000,7 +1002,7 @@ $\bar{x_1} = 5.254 \quad \bar{x_2}=5.242$
 
 $s_1 = 2.151 \quad s_2=0.428$
 
-IC: $(−1.24549, 1.26949)$
+IC: $(−1.52638, 1.56038)$
 
 Valor P = 0.98649
 
