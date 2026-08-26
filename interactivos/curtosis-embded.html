@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Misma Curtosis, Diferentes Picos - Westfall (2014)</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700&display=swap">
+    <style>
+        body {
+            font-family: "Aller", sans-serif;
+            margin: 0;
+            padding: 15px; 
+            font-size: 18px; 
+            line-height: 1.2;
+            box-sizing: border-box; 
+            background-color: transparent;
+            overflow: hidden; 
+        }
+        
+        .main-container {
+            max-width: 900px; 
+            margin: 0 auto;
+        }
+
+        #info-box {
+            background-color: rgba(51, 17, 20, 0.05);
+            border-left: 4px solid #331114;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        #plot {
+            width: 100%;
+            height: 480px;
+            margin-top: 5px;
+        }
+        
+        footer {
+            margin-top: 10px;
+            font-size: 0.8em;
+            text-align: center;
+            padding-bottom: 0px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+      <h1 style="font-family: 'Crimson Pro', serif; font-size: 24px; color: #331114; margin-bottom: 10px;">
+        Misma Curtosis, Diferentes Picos - 
+        <a href="https://doi.org/10.1080/00031305.2014.917055" target="_blank" style="color: #331114; text-decoration: underline;">Westfall (2014)</a>
+    </h1>
+        <div id="info-box">
+            <strong>Misma Curtosis, diferentes Picos:</strong><br>
+            Demostración visual del artículo de Westfall (2014). Aunque las tres distribuciones tienen la misma cantidad de masa en las colas (misma curtosis), el comportamiento en el pico central es completamente distinto.
+        </div>
+
+        <div id="plot"></div>
+
+        <script>
+            // Paleta de colores ajustada a tu sitio
+            const COLOR_PLANO = "#9BA1AB";       // Pico plano / Platicúrtica visual
+            const COLOR_PUNTIAGUDO = "#331114";  // Pico puntiagudo / Leptocúrtica visual
+            const COLOR_BIMODAL = "#7A2E35";     // Modelo "Slip-Dress" / Bimodal
+
+            // Generación de puntos X
+            const x = [];
+            for (let i = -4; i <= 4; i += 0.01) {
+                x.push(parseFloat(i.toFixed(2)));
+            }
+
+            // 1. Pico Plano: Mezcla de Uniformes (o aproximación suave para mostrar pico chato)
+            const yPlano = x.map(v => {
+                if (Math.abs(v) > 2.2) return 0;
+                return 0.25 * Math.exp(-Math.pow(v / 1.8, 6)); // Gaussiana generalizada plana
+            });
+
+            // 2. Pico Puntiagudo: Mezcla Normal con componente en el centro muy concentrado
+            const yPuntiagudo = x.map(v => {
+                const c1 = 0.5 * (1 / (0.3 * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow(v / 0.3, 2));
+                const c2 = 0.5 * (1 / (1.5 * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow(v / 1.5, 2));
+                return c1 + c2;
+            });
+
+            // 3. Pico Bimodal ("Slip-Dress"): Mezcla Bimodal
+            const yBimodal = x.map(v => {
+                const b1 = 0.4 * (1 / (0.4 * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((v - 1.1) / 0.4, 2));
+                const b2 = 0.4 * (1 / (0.4 * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((v + 1.1) / 0.4, 2));
+                const b3 = 0.2 * (1 / (1.8 * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow(v / 1.8, 2));
+                return b1 + b2 + b3;
+            });
+
+            // Traces de Plotly
+            const traces = [
+                {
+                    x: x,
+                    y: yPlano,
+                    type: "scatter",
+                    mode: "lines",
+                    name: "Pico Plano",
+                    line: { color: COLOR_PLANO, width: 2.5 }
+                },
+                {
+                    x: x,
+                    y: yPuntiagudo,
+                    type: "scatter",
+                    mode: "lines",
+                    name: "Pico Puntiagudo",
+                    line: { color: COLOR_PUNTIAGUDO, width: 2.5 }
+                },
+                {
+                    x: x,
+                    y: yBimodal,
+                    type: "scatter",
+                    mode: "lines",
+                    name: 'Modelo "Slip-Dress" (Bimodal)',
+                    line: { color: COLOR_BIMODAL, width: 2.5, dash: 'dash' }
+                }
+            ];
+
+            // Configuración del layout
+            const layout = {
+                title: { 
+                    text: "Misma Curtosis (2.4) — Formas de Pico Distintas", 
+                    font: { family: "Crimson Pro", size: 22 } 
+                },
+                xaxis: { 
+                    title: "x", 
+                    titlefont: { family: "Aller" },
+                    tickfont: { family: "Aller" },
+                    zeroline: false
+                },
+                yaxis: { 
+                    title: "Densidad", 
+                    titlefont: { family: "Aller" },
+                    tickfont: { family: "Aller" },
+                    zeroline: false
+                },
+                legend: { 
+                    font: { family: "Aller" },
+                    orientation: "h",
+                    x: 0.1,
+                    y: -0.2
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                annotations: [
+                    {
+                        x: 0,
+                        y: 0.7,
+                        text: "Curtosis constante = 2.4",
+                        showarrow: false,
+                        font: { family: "Crimson Pro", size: 16, color: "#331114" },
+                        bgcolor: "#ffffff",
+                        bordercolor: "#331114",
+                        borderwidth: 1,
+                        borderpad: 4
+                    }
+                ]
+            };
+
+            Plotly.newPlot("plot", traces, layout, { responsive: true });
+        </script>
+
+        <footer>
+            Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Agosto 2026
+        </footer>
+    </div>
+</body>
+</html>

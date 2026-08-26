@@ -900,34 +900,45 @@ $$
 
 ## 2. Curtosis {.bloques}
 
--   Se define técnicamente como el cuarto momento estandarizado esperado de una variable aleatoria
+- Se define técnicamente como el cuarto momento estandarizado esperado de una variable aleatoria $X$.
 
--   Mide la concentración relativa de los valores en el centro de la distribución al compararlos con las colas y se basa en las diferencias respecto a la media elevadas a la cuarta potencia.
+- Se basa en la desviación respecto a la media elevada a la cuarta potencia ($E[(X-\mu)^4] / \sigma^4$), lo que magnifica exponencialmente el impacto de las observaciones distantes.
 
--   La interpretación de la curtosis es en términos de la extremidad de las colas; es decir, mide la propensión de una distribución a producir valores atípicos (*outliers*), y no la "puntiagudez" (*peakedness*) o forma del pico central.
+- La interpretación correcta de la curtosis es en términos de la **extremidad de las colas**: mide la propensión de una distribución a producir valores atípicos (*outliers*), y **no** la "puntiagudez" (*peakedness*) o forma del pico central.
 
--   A veces se confunde con cuán escarpada, achatada, etc, se encuentra una distribución de datos.
+- Tradicionalmente se ha confundido con cuán escarpada o achatada se encuentra una distribución; sin embargo, esta interpretación es un mito estadístico desmentido (Westfall, 2014).
 
 ## 2. Curtosis {.bloques}
 
 ::::: columns
-::: {.column width="60%"}
--   Usamos la misma fórmula que MS Excel:
+::: {.column width="50%"}
 
-    -   Esta fórmula mide el [exceso de curtosis]{.underline}, es decir, que tan distinta es de una distribución normal (tema que se aborda más adelante en el curso).
+- Usamos la misma fórmula muestral que MS Excel:
 
--   $ku=\left[ \left(\frac{n(n+1)}{(n-1)(n-2)(n-3)}\sum_{i=1}^{n} \left(\frac{x_i-\bar{x}}{s}\right)^4 \right) \right] - \frac{3(n-1)}{(n-2)(n-3)}$
+    - Mide el [exceso de curtosis]{.underline}; es decir, la diferencia respecto a una distribución normal (tema que se abordará más adelante).
 
-    -   $ku<0$ platicúrtica:
-        -   Donde la curtosis es menor que la de la distribución normal
-    -   $ku=0$ mesocúrtica:
-        -   Donde la curtosis es igual a la de la distribución normal
-    -   $ku>0$ leptocúrtica:
-        -   Donde la curtosis es mayor que la de la distribución normal
+- $ku = \left[ \frac{n(n+1)}{(n-1)(n-2)(n-3)} \sum_{i=1}^{n} \left(\frac{x_i-\bar{x}}{s}\right)^4 \right] - \frac{3(n-1)^2}{(n-2)(n-3)}$
+
+    - $ku < 0$ **Platicúrtica**:
+        - Muestra una curtosis menor que la normal. Indica una baja propensión a producir valores atípicos.
+    - $ku = 0$ **Mesocúrtica**:
+        - Presenta una curtosis idéntica a la de la distribución normal.
+    - $ku > 0$ **Leptocúrtica**:
+        - Muestra una curtosis mayor que la normal. Indica una alta propensión a producir valores atípicos (colas pesadas).
+        
 :::
 
-::: {.column .img-fit width="30%"}
-![](img\curtosis.png)
+::: {.column .img-fit}
+
+<iframe 
+src="https://stevenggoni.github.io/interactivos/curtosis-embded.html"
+width="100%" 
+height="620" 
+  style="border: 1px solid #33111422; border-radius: 8px; background-color: #F1F5F5; overflow: hidden;"
+  frameborder="0"
+  scrolling="no">
+</iframe>
+
 :::
 :::::
 
