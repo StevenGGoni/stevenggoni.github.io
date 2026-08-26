@@ -272,8 +272,9 @@ plotly::plot_ly(motivo_visita,
 ```{r}
 
 motivo_ord <- motivo_visita[order(-motivo_visita$Porcentaje), ]
-motivo_ord$Motivo <- factor(motivo_visita$Motivo,
-                          levels = motivo_visita$Motivo)
+
+motivo_ord$Motivo <- factor(motivo_ord$Motivo,
+                          levels = motivo_ord$Motivo)
 
 plotly::plot_ly(motivo_ord,
                 x = ~Motivo,
