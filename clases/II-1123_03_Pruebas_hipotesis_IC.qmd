@@ -124,7 +124,7 @@ library(tidyverse)
 
 * Usualmente el valor P  se interpreta mal, sobre todo por algunos malentendidos históricos.
 
-* En este [enlace](https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf){target="blank"} encontrará una infografía con cuidados e interpretaciones que debemos tener con el valor P, así como 6 principios fundamentales. Este materia [NO es opcional]{.hi}, por lo que se le solicita que recurra a su estudio de forma individual y autónoma. 
+* En este [enlace](https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf){target="blank"} encontrará una infografía con cuidados e interpretaciones que debemos tener con el valor P, así como 6 principios fundamentales. Este material [NO es opcional]{.hi}, por lo que se le solicita que recurra a su estudio de forma individual y autónoma. 
 
 
 
@@ -936,7 +936,7 @@ $t = \frac{(\bar{x_1}-\bar{x_2}) - (\mu_1-\mu_2))}{\sqrt{\frac{s_1^2}{n_1} + \fr
 
 * El intervalo bilateral está compuesto por:
 
-$(\bar{x}_1 - \bar{x}_2) \pm t_{\frac{\alpha}{2}} \cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}$
+$(\bar{x}_1 - \bar{x}_2) \pm t_{\frac{\alpha}{2}} \cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$
 
 :::
 
