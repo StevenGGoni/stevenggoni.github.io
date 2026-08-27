@@ -303,7 +303,7 @@ Esto es para mención, el detalle necesita demostraciones matemáticas
 
 ## Estimadores insesgados {.bloques}
 
-* ¿Recuerda la corrección que se hace en el cálculo de la varianza muestra? También conocida como corrección de Bessel. 
+* ¿Recuerda la corrección que se hace en el cálculo de la varianza muestral? También conocida como corrección de Bessel. 
 
 * Para **estimar** la varianza de una población usamos: 
 
