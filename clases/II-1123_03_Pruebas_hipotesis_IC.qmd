@@ -458,7 +458,7 @@ $$ \Rightarrow \bar{x} - z_{\frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}} < \m
 
 ## Pruebas de hipótesis {.bloques}
 
-* Muchos problemas en ingeniería requieren que se decida sobre cual de dos afirmaciones sobre un parámetro es verdades. Estas afirmaciones se denominan [hipótesis]{.hi} y el proceso para la toma de decisiones se conoce como [prueba de hipótesis]{.hi}. 
+* Muchos problemas en ingeniería requieren que se decida sobre cual de dos afirmaciones sobre un parámetro es verdadera. Estas afirmaciones se denominan [hipótesis]{.hi} y el proceso para la toma de decisiones se conoce como [prueba de hipótesis]{.hi}. 
 
 * *Una hipótesis estadística es una declaración sobre los parámetros de una o más poblaciones.*
 
