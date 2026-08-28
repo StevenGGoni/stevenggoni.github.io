@@ -1,0 +1,419 @@
+---
+title: "Actualización Bayesiana para Estimación de Tiempos"
+date: today
+---
+
+## Introducción
+
+En contextos de producción de alta variedad y bajo volumen (**HMLV**, por sus siglas en inglés) o en etapas tempranas de diseño de procesos, la recolección masiva de datos mediante muestreo de tiempos tradicional resulta costosa o inviable. 
+
+Frecuentemente, los métodos estadísticos clásicos demandan tamaños muestrales considerables para ofrecer estimaciones estables. En su lugar, la estadística bayesiana ofrece un marco riguroso para incorporar la **incertidumbre epistémica** mediante el uso del criterio experto o información de procesos análogos (**distribución previa** o *prior*), combinándolo de forma óptima con unas cuantas observaciones empíricas (**verosimilitud**).
+
+### El modelo conjugado Normal-Normal
+
+Cuando el tiempo de ciclo $X$ posee una variabilidad de proceso $\sigma^2$ conocida (o estimada empíricamente de la muestra), y el tiempo promedio esperado $\mu$ posee una creencia previa descrita por una distribución Normal, la distribución posterior se resuelve de forma analítica exacta:
+
+* **Previa (Experto):** $\mu \sim \mathcal{N}(\mu_0, \sigma_0^2)$, donde $\mu_0$ representa el valor esperado por el experto y $\sigma_0$ refleja su nivel de incertidumbre.
+* **Verosimilitud (Datos):** $X \mid \mu \sim \mathcal{N}(\mu, \sigma^2)$. Para una muestra de $n$ tiempos observados con media $\bar{x}$, la función de verosimilitud de la media equivale a $\mathcal{N}\left(\bar{x}, \frac{\sigma^2}{n}\right)$.
+* **Posterior:** $\mu \mid X \sim \mathcal{N}(\mu_p, \sigma_p^2)$, donde las precisiones (inversa de la varianza) se suman linealmente:
+
+$$\frac{1}{\sigma_p^2} = \frac{1}{\sigma_0^2} + \frac{n}{\sigma^2}$$
+
+$$\mu_p = \sigma_p^2 \left( \frac{\mu_0}{\sigma_0^2} + \frac{n \cdot \bar{x}}{\sigma^2} \right)$$
+
+### Intervalo de Máxima Densidad Posterior (HDI)
+
+El **Intervalo de Máxima Densidad Posterior (HDI)** representa el rango de menor amplitud que acumula la probabilidad deseada $(1-\alpha)$ sobre el parámetro $\mu$. Al ser la distribución posterior simétrica (Normal), se calcula directamente mediante el cuantil $z_{1-\alpha/2}$:
+
+$$\text{HDI} = \mu_p \pm z_{1-\alpha/2} \cdot \sigma_p$$
+
+## Instrucciones de uso
+
+Esta herramienta interactiva permite evaluar la actualización de tiempos estándar ingresando tanto parámetros de previa sin restricciones de rango como datos crudos observados en planta.
+
+1. **Previa (Experto):** Ingrese cualquier valor para la media esperada ($\mu_0$) y la desviación estándar ($\sigma_0$).
+2. **Muestra (Datos Crudos):** Pegue o digite las observaciones directas de tiempo separadas por comas, espacios o saltos de línea.
+3. **Desviación Estándar del Proceso ($\sigma$):** Por defecto se calcula automáticamente a partir de los datos ingresados ($s$), pero puede ingresar manualmente un $\sigma$ histórico conocido marcando la casilla correspondiente.
+4. **Nivel HDI:** Seleccione el porcentaje de credibilidad deseado para el intervalo posterior.
+
+```{=html}
+<div class="widget-box">
+
+<head>
+  <style>
+    .widget-box {
+      font-family: sans-serif;
+    }
+
+    .widget-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-bottom: 20px;
+    }
+
+    .controls h3 {
+      margin-bottom: 8px;
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+
+    .input-group {
+      margin-bottom: 10px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.9em;
+      margin-bottom: 3px;
+    }
+
+    .widget-box input[type=number],
+    .widget-box textarea {
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+
+    .widget-box textarea {
+      height: 75px;
+      resize: vertical;
+    }
+
+    .widget-box input[type=range] {
+      width: 70%;
+      vertical-align: middle;
+    }
+
+    .alert-box {
+      display: none;
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 10px 15px;
+      border: 1px solid #f5c6cb;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      font-size: 0.9em;
+    }
+
+    .stats-panel {
+      background-color: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 4px;
+      padding: 12px;
+      margin-top: 15px;
+      font-size: 0.9em;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      text-align: center;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 5px;
+      font-size: 0.85em;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="widget-container">
+
+  <div id="alertBox" class="alert-box"></div>
+
+  <div class="controls">
+
+    <div>
+      <h3>Previa (Experto)</h3>
+      <div class="input-group">
+        <label for="mu0">Media esperada (&mu;<sub>0</sub>):</label>
+        <input type="number" id="mu0" value="45" step="any" oninput="calcular();">
+      </div>
+      <div class="input-group">
+        <label for="sigma0">Desviación estándar (&sigma;<sub>0</sub>):</label>
+        <input type="number" id="sigma0" value="10" min="0.0001" step="any" oninput="calcular();">
+      </div>
+    </div>
+
+    <div>
+      <h3>Muestra (Datos Crudos)</h3>
+      <div class="input-group">
+        <label for="rawData">Observaciones (separadas por coma, espacio o salto de línea):</label>
+        <textarea id="rawData" placeholder="Ej: 52, 48, 55, 50" oninput="calcular();">52, 48, 55, 51, 49</textarea>
+      </div>
+      
+      <div class="input-group">
+        <label for="sigmaProc">&sigma; del proceso:</label>
+        <input type="number" id="sigmaProc" value="2.739" min="0.0001" step="any" oninput="calcular();" disabled>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="useManualSigma" onchange="toggleSigmaInput(); calcular();">
+        <label for="useManualSigma">Fijar &sigma; manualmente (no usar s muestral)</label>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-bottom: 15px; background: #fafafa; padding: 10px; border-radius: 4px;">
+    <label for="credibilidad">
+      Nivel HDI (Credibilidad): <strong><span id="credibilidadval">95%</span></strong>
+    </label><br>
+    <input type="range" id="credibilidad" min="0.50" max="0.99" step="0.01" value="0.95" oninput="calcular();">
+  </div>
+
+  <div id="plot" style="width:100%; min-height:450px;"></div>
+
+  <div id="statsPanel" class="stats-panel">
+    <div class="stats-grid">
+      <div><strong>Media Posterior (&mu;<sub>p</sub>):</strong> <br><span id="resMuP" style="font-size: 1.1em;">-</span></div>
+      <div><strong>Desv. Est. Posterior (&sigma;<sub>p</sub>):</strong> <br><span id="resSigmaP" style="font-size: 1.1em;">-</span></div>
+      <div><strong>HDI Posterior:</strong> <br>[<span id="resHdiLow">-</span>, <span id="resHdiHigh">-</span>]</div>
+    </div>
+  </div>
+
+<script>
+// Carga de Plotly.js en entornos Quarto
+
+(function loadPlotly() {
+  if (window.Plotly) return;
+  const script = document.createElement("script");
+  script.src = "https://cdn.plot.ly/plotly-2.29.1.min.js";
+  script.onload = () => { if (typeof calcular === "function") calcular(); };
+  document.head.appendChild(script);
+})();
+
+const N_POINTS = 600;
+
+function normalDensity(x, mu, sigma) {
+  if (sigma <= 0 || isNaN(sigma)) return 0;
+  return Math.exp(-0.5 * ((x - mu) / sigma) ** 2) / (sigma * Math.sqrt(2 * Math.PI));
+}
+
+// Inversa de la CDF normal estándar corregida
+function getZScore(p) {
+  if (p <= 0 || p >= 1) return 0;
+  // Para la cola superior de un intervalo simétrico:
+  const q = p > 0.5 ? 1 - p : p;
+  const t = Math.sqrt(-2 * Math.log(q));
+  
+  const c0 = 2.515517, c1 = 0.802853, c2 = 0.010328;
+  const d1 = 1.432788, d2 = 0.189269, d3 = 0.001308;
+  
+  let z = t - ((c2 * t + c1) * t + c0) / (((d3 * t + d2) * t + d1) * t + 1);
+  return p > 0.5 ? z : -z;
+}
+
+function showAlert(message) {
+  const alert = document.getElementById("alertBox");
+  alert.textContent = message;
+  alert.style.display = "block";
+}
+
+function hideAlert() {
+  const alert = document.getElementById("alertBox");
+  alert.style.display = "none";
+}
+
+function toggleSigmaInput() {
+  const manual = document.getElementById("useManualSigma").checked;
+  document.getElementById("sigmaProc").disabled = !manual;
+}
+
+function parseRawData(text) {
+  if (!text) return [];
+  const tokens = text.replace(/,/g, '.').split(/[\s;\n\t]+/);
+  const numbers = [];
+  for (let t of tokens) {
+    if (t.trim() !== "") {
+      const val = parseFloat(t);
+      if (!isNaN(val) && isFinite(val)) {
+        numbers.push(val);
+      }
+    }
+  }
+  return numbers;
+}
+
+function calcular() {
+  hideAlert();
+
+  // Previa
+  const mu0 = parseFloat(document.getElementById("mu0").value);
+  const sigma0 = parseFloat(document.getElementById("sigma0").value);
+
+  if (isNaN(mu0) || isNaN(sigma0) || sigma0 <= 0) {
+    showAlert("Alerta: Ingrese valores válidos para la Media y Desviación de la Previa (σ₀ > 0).");
+    return;
+  }
+
+  // Datos Crudos
+  const rawText = document.getElementById("rawData").value;
+  const data = parseRawData(rawText);
+  const n = data.length;
+
+  if (n === 0) {
+    showAlert("Alerta: Ingrese al menos una observación numérica válida.");
+    return;
+  }
+
+  const xbar = data.reduce((a, b) => a + b, 0) / n;
+
+  // Desviación muestral
+  let sMuestral = 0;
+  if (n > 1) {
+    const variance = data.reduce((acc, val) => acc + (val - xbar) ** 2, 0) / (n - 1);
+    sMuestral = Math.sqrt(variance);
+  } else {
+    sMuestral = sigma0;
+  }
+
+  const useManual = document.getElementById("useManualSigma").checked;
+  let sigma = useManual ? parseFloat(document.getElementById("sigmaProc").value) : sMuestral;
+
+  if (!useManual) {
+    document.getElementById("sigmaProc").value = sMuestral.toFixed(3);
+  }
+
+  if (isNaN(sigma) || sigma <= 0) {
+    showAlert("Alerta: La desviación estándar del proceso debe ser estrictamente mayor a 0.");
+    return;
+  }
+
+  // Cálculos Bayesianos
+  const credibilidad = parseFloat(document.getElementById("credibilidad").value);
+  document.getElementById("credibilidadval").textContent = Math.round(credibilidad * 100) + "%";
+
+  const sigmaSE = sigma / Math.sqrt(n);
+  const precisionPrior = 1 / (sigma0 ** 2);
+  const precisionData = 1 / (sigmaSE ** 2);
+  const precisionPosterior = precisionPrior + precisionData;
+
+  const varPosterior = 1 / precisionPosterior;
+  const sigmaPosterior = Math.sqrt(varPosterior);
+  const muPosterior = varPosterior * (precisionPrior * mu0 + precisionData * xbar);
+
+  // Cálculo corregido del HDI (cuantil 1 - alpha/2)
+const alpha = 1 - credibilidad;
+const z = getZScore(1 - alpha / 2); // z positivo correcto (ej. 1.645 para 90%)
+
+const hdiLow = muPosterior - z * sigmaPosterior;
+const hdiHigh = muPosterior + z * sigmaPosterior;
+
+  // Despliegue numérico exclusivo de la posterior
+  document.getElementById("resMuP").textContent = muPosterior.toFixed(3);
+  document.getElementById("resSigmaP").textContent = sigmaPosterior.toFixed(3);
+  document.getElementById("resHdiLow").textContent = hdiLow.toFixed(3);
+  document.getElementById("resHdiHigh").textContent = hdiHigh.toFixed(3);
+
+  // Dominio dinámico adaptado
+  const minDomain = Math.min(mu0 - 3.5 * sigma0, xbar - 3.5 * sigmaSE, muPosterior - 3.5 * sigmaPosterior);
+  const maxDomain = Math.max(mu0 + 3.5 * sigma0, xbar + 3.5 * sigmaSE, muPosterior + 3.5 * sigmaPosterior);
+  const dx = (maxDomain - minDomain) / N_POINTS;
+
+  const x = [];
+  const yPrior = [];
+  const yData = [];
+  const yPosterior = [];
+
+  for (let i = 0; i <= N_POINTS; i++) {
+    const xi = minDomain + i * dx;
+    x.push(xi);
+    yPrior.push(normalDensity(xi, mu0, sigma0));
+    yData.push(normalDensity(xi, xbar, sigmaSE));
+    yPosterior.push(normalDensity(xi, muPosterior, sigmaPosterior));
+  }
+
+  // Traza del área HDI
+  const xHdi = [hdiLow];
+  const yHdi = [0];
+  const stepHdi = (hdiHigh - hdiLow) / 100;
+  
+  for (let i = 0; i <= 100; i++) {
+    const xi = hdiLow + i * stepHdi;
+    xHdi.push(xi);
+    yHdi.push(normalDensity(xi, muPosterior, sigmaPosterior));
+  }
+  xHdi.push(hdiHigh);
+  yHdi.push(0);
+
+  const traces = [
+    {
+      x: xHdi,
+      y: yHdi,
+      fill: "tozeroy",
+      fillcolor: "rgba(51, 17, 20, 0.15)",
+      line: { color: "transparent" },
+      name: `HDI (${Math.round(credibilidad * 100)}%)`,
+      hoverinfo: "none"
+    },
+    {
+      x: x,
+      y: yPrior,
+      name: "Previa (Experto)",
+      mode: "lines",
+      line: { color: "#9BA1AB", width: 2 }
+    },
+    {
+      x: x,
+      y: yData,
+      name: "Verosimilitud (Muestra)",
+      mode: "lines",
+      line: { color: "#9BA1AB", width: 2, dash: "dot" }
+    },
+    {
+      x: x,
+      y: yPosterior,
+      name: "Posterior",
+      mode: "lines",
+      line: { color: "#331114", width: 3 }
+    }
+  ];
+
+  const layout = {
+    title: { text: "Actualización Bayesiana de Tiempos Estándar" },
+    xaxis: { title: "Tiempo (minutos)" },
+    yaxis: { title: "Densidad de Probabilidad" },
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: "rgba(0,0,0,0)",
+    margin: { t: 50, b: 40, l: 50, r: 20 },
+    legend: { orientation: "h", y: -0.25 }
+  };
+
+  if (window.Plotly) {
+    Plotly.react("plot", traces, layout);
+  }
+}
+
+// Inicialización diferida
+if (document.readyState === "complete" || document.readyState === "interactive") {
+  setTimeout(calcular, 200);
+} else {
+  document.addEventListener("DOMContentLoaded", () => setTimeout(calcular, 200));
+}
+</script>
+
+      <footer style="margin-top: 2em; font-size: 0.8em; text-align: center; color: gray;">
+      Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Agosto 2026
+    </footer>
+
+</div>
+</body>
+</div>
+
+```

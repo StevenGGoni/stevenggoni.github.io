@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xml:lang="es-ES"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Actualización Bayesiana para Estimación de Tiempos – Steven García Goñi Estadística e Ingeniería</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-53ccac5bf6d5e6640b46cd35981ed5da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-328d1cbd98b1d2c79f3537d7d6c4fd96.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-53ccac5bf6d5e6640b46cd35981ed5da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<script src="https://cdn.userway.org/widget.js" data-account="AJmG8zlfIo"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="Logo de un cuervo" class="navbar-logo light-content">
+    <img src="../images/logo.png" alt="Logo de un cuervo" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Steven García Goñi <span class="navbar-subtitle">Estadística e Ingeniería</span></span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../publicaciones.html"> 
+<span class="menu-text">Publicaciones</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-recursos-académicos" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Recursos académicos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-recursos-académicos">    
+        <li>
+    <a class="dropdown-item" href="../infografias.html">
+ <span class="dropdown-text">Infografías</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../interactivos.html">
+ <span class="dropdown-text">Simulaciones y visualizadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../recursos_graficos.html">
+ <span class="dropdown-text">Construcción de gráficos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutoriales_R.html">
+ <span class="dropdown-text">Tutoriales en R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../clases.html">
+ <span class="dropdown-text">Material de clases</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sobre-mí" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sobre mí</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sobre-mí">    
+        <li>
+    <a class="dropdown-item" href="../resume.pdf" target="_blank">
+ <span class="dropdown-text">Currículum</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../logo.html">
+ <span class="dropdown-text">Identidad visual</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="mailto:steven.garciagoni@ucr.ac.cr"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-solid:envelope" aria-label="Icon envelope from fa6-solid Iconify.design set." title="Correo electrónico"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/StevenGGoni"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:github" aria-label="Icon github from mdi Iconify.design set." title="GitHub"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/sggoni/"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:linkedin" aria-label="Icon linkedin from mdi Iconify.design set." title="LinkedIn"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=X_3YTJ0AAAAJ&amp;hl=es"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:google-scholar" aria-label="Icon google-scholar from fa6-brands Iconify.design set." title="Google Académico"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://orcid.org/0000-0002-1822-5465"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="simple-icons:orcid" aria-label="Icon orcid from simple-icons Iconify.design set." title="Orcid"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.scopus.com/authid/detail.uri?authorId=58504295000"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="simple-icons:scopus" aria-label="Icon scopus from simple-icons Iconify.design set." title="Scopus"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.researchgate.net/profile/Steven-Garcia-Goni"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="academicons:researchgate-square" aria-label="Icon researchgate-square from academicons Iconify.design set." title="ResearchGate"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://stevenggoni.github.io/resume.pdf"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="academicons:cv-square" aria-label="Icon cv-square from academicons Iconify.design set." title="CV"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Actualización Bayesiana para Estimación de Tiempos</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">26 de agosto de 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>En contextos de producción de alta variedad y bajo volumen (<strong>HMLV</strong>, por sus siglas en inglés) o en etapas tempranas de diseño de procesos, la recolección masiva de datos mediante muestreo de tiempos tradicional resulta costosa o inviable.</p>
+<p>Frecuentemente, los métodos estadísticos clásicos demandan tamaños muestrales considerables para ofrecer estimaciones estables. En su lugar, la estadística bayesiana ofrece un marco riguroso para incorporar la <strong>incertidumbre epistémica</strong> mediante el uso del criterio experto o información de procesos análogos (<strong>distribución previa</strong> o <em>prior</em>), combinándolo de forma óptima con unas cuantas observaciones empíricas (<strong>verosimilitud</strong>).</p>
+<section id="el-modelo-conjugado-normal-normal" class="level3">
+<h3 class="anchored" data-anchor-id="el-modelo-conjugado-normal-normal">El modelo conjugado Normal-Normal</h3>
+<p>Cuando el tiempo de ciclo <span class="math inline">\(X\)</span> posee una variabilidad de proceso <span class="math inline">\(\sigma^2\)</span> conocida (o estimada empíricamente de la muestra), y el tiempo promedio esperado <span class="math inline">\(\mu\)</span> posee una creencia previa descrita por una distribución Normal, la distribución posterior se resuelve de forma analítica exacta:</p>
+<ul>
+<li><strong>Previa (Experto):</strong> <span class="math inline">\(\mu \sim \mathcal{N}(\mu_0, \sigma_0^2)\)</span>, donde <span class="math inline">\(\mu_0\)</span> representa el valor esperado por el experto y <span class="math inline">\(\sigma_0\)</span> refleja su nivel de incertidumbre.</li>
+<li><strong>Verosimilitud (Datos):</strong> <span class="math inline">\(X \mid \mu \sim \mathcal{N}(\mu, \sigma^2)\)</span>. Para una muestra de <span class="math inline">\(n\)</span> tiempos observados con media <span class="math inline">\(\bar{x}\)</span>, la función de verosimilitud de la media equivale a <span class="math inline">\(\mathcal{N}\left(\bar{x}, \frac{\sigma^2}{n}\right)\)</span>.</li>
+<li><strong>Posterior:</strong> <span class="math inline">\(\mu \mid X \sim \mathcal{N}(\mu_p, \sigma_p^2)\)</span>, donde las precisiones (inversa de la varianza) se suman linealmente:</li>
+</ul>
+<p><span class="math display">\[\frac{1}{\sigma_p^2} = \frac{1}{\sigma_0^2} + \frac{n}{\sigma^2}\]</span></p>
+<p><span class="math display">\[\mu_p = \sigma_p^2 \left( \frac{\mu_0}{\sigma_0^2} + \frac{n \cdot \bar{x}}{\sigma^2} \right)\]</span></p>
+</section>
+<section id="intervalo-de-máxima-densidad-posterior-hdi" class="level3">
+<h3 class="anchored" data-anchor-id="intervalo-de-máxima-densidad-posterior-hdi">Intervalo de Máxima Densidad Posterior (HDI)</h3>
+<p>El <strong>Intervalo de Máxima Densidad Posterior (HDI)</strong> representa el rango de menor amplitud que acumula la probabilidad deseada <span class="math inline">\((1-\alpha)\)</span> sobre el parámetro <span class="math inline">\(\mu\)</span>. Al ser la distribución posterior simétrica (Normal), se calcula directamente mediante el cuantil <span class="math inline">\(z_{1-\alpha/2}\)</span>:</p>
+<p><span class="math display">\[\text{HDI} = \mu_p \pm z_{1-\alpha/2} \cdot \sigma_p\]</span></p>
+</section>
+</section>
+<section id="instrucciones-de-uso" class="level2">
+<h2 class="anchored" data-anchor-id="instrucciones-de-uso">Instrucciones de uso</h2>
+<p>Esta herramienta interactiva permite evaluar la actualización de tiempos estándar ingresando tanto parámetros de previa sin restricciones de rango como datos crudos observados en planta.</p>
+<ol type="1">
+<li><strong>Previa (Experto):</strong> Ingrese cualquier valor para la media esperada (<span class="math inline">\(\mu_0\)</span>) y la desviación estándar (<span class="math inline">\(\sigma_0\)</span>).</li>
+<li><strong>Muestra (Datos Crudos):</strong> Pegue o digite las observaciones directas de tiempo separadas por comas, espacios o saltos de línea.</li>
+<li><strong>Desviación Estándar del Proceso (<span class="math inline">\(\sigma\)</span>):</strong> Por defecto se calcula automáticamente a partir de los datos ingresados (<span class="math inline">\(s\)</span>), pero puede ingresar manualmente un <span class="math inline">\(\sigma\)</span> histórico conocido marcando la casilla correspondiente.</li>
+<li><strong>Nivel HDI:</strong> Seleccione el porcentaje de credibilidad deseado para el intervalo posterior.</li>
+</ol>
+<div class="widget-box">
+
+
+  <style>
+    .widget-box {
+      font-family: sans-serif;
+    }
+
+    .widget-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-bottom: 20px;
+    }
+
+    .controls h3 {
+      margin-bottom: 8px;
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+
+    .input-group {
+      margin-bottom: 10px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.9em;
+      margin-bottom: 3px;
+    }
+
+    .widget-box input[type=number],
+    .widget-box textarea {
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+
+    .widget-box textarea {
+      height: 75px;
+      resize: vertical;
+    }
+
+    .widget-box input[type=range] {
+      width: 70%;
+      vertical-align: middle;
+    }
+
+    .alert-box {
+      display: none;
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 10px 15px;
+      border: 1px solid #f5c6cb;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      font-size: 0.9em;
+    }
+
+    .stats-panel {
+      background-color: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 4px;
+      padding: 12px;
+      margin-top: 15px;
+      font-size: 0.9em;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      text-align: center;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 5px;
+      font-size: 0.85em;
+    }
+  </style>
+
+
+
+
+<div class="widget-container">
+
+  <div id="alertBox" class="alert-box"></div>
+
+  <div class="controls">
+
+    <div>
+      <h3 class="anchored">Previa (Experto)</h3>
+      <div class="input-group">
+        <label for="mu0">Media esperada (μ<sub>0</sub>):</label>
+        <input type="number" id="mu0" value="45" step="any" oninput="calcular();">
+      </div>
+      <div class="input-group">
+        <label for="sigma0">Desviación estándar (σ<sub>0</sub>):</label>
+        <input type="number" id="sigma0" value="10" min="0.0001" step="any" oninput="calcular();">
+      </div>
+    </div>
+
+    <div>
+      <h3 class="anchored">Muestra (Datos Crudos)</h3>
+      <div class="input-group">
+        <label for="rawData">Observaciones (separadas por coma, espacio o salto de línea):</label>
+        <textarea id="rawData" placeholder="Ej: 52, 48, 55, 50" oninput="calcular();">52, 48, 55, 51, 49</textarea>
+      </div>
+      
+      <div class="input-group">
+        <label for="sigmaProc">σ del proceso:</label>
+        <input type="number" id="sigmaProc" value="2.739" min="0.0001" step="any" oninput="calcular();" disabled="">
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="useManualSigma" onchange="toggleSigmaInput(); calcular();">
+        <label for="useManualSigma">Fijar σ manualmente (no usar s muestral)</label>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-bottom: 15px; background: #fafafa; padding: 10px; border-radius: 4px;">
+    <label for="credibilidad">
+      Nivel HDI (Credibilidad): <strong><span id="credibilidadval">95%</span></strong>
+    </label><br>
+    <input type="range" id="credibilidad" min="0.50" max="0.99" step="0.01" value="0.95" oninput="calcular();">
+  </div>
+
+  <div id="plot" style="width:100%; min-height:450px;"></div>
+
+  <div id="statsPanel" class="stats-panel">
+    <div class="stats-grid">
+      <div><strong>Media Posterior (μ<sub>p</sub>):</strong> <br><span id="resMuP" style="font-size: 1.1em;">-</span></div>
+      <div><strong>Desv. Est. Posterior (σ<sub>p</sub>):</strong> <br><span id="resSigmaP" style="font-size: 1.1em;">-</span></div>
+      <div><strong>HDI Posterior:</strong> <br>[<span id="resHdiLow">-</span>, <span id="resHdiHigh">-</span>]</div>
+    </div>
+  </div>
+
+<script>
+// Carga de Plotly.js en entornos Quarto
+
+(function loadPlotly() {
+  if (window.Plotly) return;
+  const script = document.createElement("script");
+  script.src = "https://cdn.plot.ly/plotly-2.29.1.min.js";
+  script.onload = () => { if (typeof calcular === "function") calcular(); };
+  document.head.appendChild(script);
+})();
+
+const N_POINTS = 600;
+
+function normalDensity(x, mu, sigma) {
+  if (sigma <= 0 || isNaN(sigma)) return 0;
+  return Math.exp(-0.5 * ((x - mu) / sigma) ** 2) / (sigma * Math.sqrt(2 * Math.PI));
+}
+
+// Inversa de la CDF normal estándar corregida
+function getZScore(p) {
+  if (p <= 0 || p >= 1) return 0;
+  // Para la cola superior de un intervalo simétrico:
+  const q = p > 0.5 ? 1 - p : p;
+  const t = Math.sqrt(-2 * Math.log(q));
+  
+  const c0 = 2.515517, c1 = 0.802853, c2 = 0.010328;
+  const d1 = 1.432788, d2 = 0.189269, d3 = 0.001308;
+  
+  let z = t - ((c2 * t + c1) * t + c0) / (((d3 * t + d2) * t + d1) * t + 1);
+  return p > 0.5 ? z : -z;
+}
+
+function showAlert(message) {
+  const alert = document.getElementById("alertBox");
+  alert.textContent = message;
+  alert.style.display = "block";
+}
+
+function hideAlert() {
+  const alert = document.getElementById("alertBox");
+  alert.style.display = "none";
+}
+
+function toggleSigmaInput() {
+  const manual = document.getElementById("useManualSigma").checked;
+  document.getElementById("sigmaProc").disabled = !manual;
+}
+
+function parseRawData(text) {
+  if (!text) return [];
+  const tokens = text.replace(/,/g, '.').split(/[\s;\n\t]+/);
+  const numbers = [];
+  for (let t of tokens) {
+    if (t.trim() !== "") {
+      const val = parseFloat(t);
+      if (!isNaN(val) && isFinite(val)) {
+        numbers.push(val);
+      }
+    }
+  }
+  return numbers;
+}
+
+function calcular() {
+  hideAlert();
+
+  // Previa
+  const mu0 = parseFloat(document.getElementById("mu0").value);
+  const sigma0 = parseFloat(document.getElementById("sigma0").value);
+
+  if (isNaN(mu0) || isNaN(sigma0) || sigma0 <= 0) {
+    showAlert("Alerta: Ingrese valores válidos para la Media y Desviación de la Previa (σ₀ > 0).");
+    return;
+  }
+
+  // Datos Crudos
+  const rawText = document.getElementById("rawData").value;
+  const data = parseRawData(rawText);
+  const n = data.length;
+
+  if (n === 0) {
+    showAlert("Alerta: Ingrese al menos una observación numérica válida.");
+    return;
+  }
+
+  const xbar = data.reduce((a, b) => a + b, 0) / n;
+
+  // Desviación muestral
+  let sMuestral = 0;
+  if (n > 1) {
+    const variance = data.reduce((acc, val) => acc + (val - xbar) ** 2, 0) / (n - 1);
+    sMuestral = Math.sqrt(variance);
+  } else {
+    sMuestral = sigma0;
+  }
+
+  const useManual = document.getElementById("useManualSigma").checked;
+  let sigma = useManual ? parseFloat(document.getElementById("sigmaProc").value) : sMuestral;
+
+  if (!useManual) {
+    document.getElementById("sigmaProc").value = sMuestral.toFixed(3);
+  }
+
+  if (isNaN(sigma) || sigma <= 0) {
+    showAlert("Alerta: La desviación estándar del proceso debe ser estrictamente mayor a 0.");
+    return;
+  }
+
+  // Cálculos Bayesianos
+  const credibilidad = parseFloat(document.getElementById("credibilidad").value);
+  document.getElementById("credibilidadval").textContent = Math.round(credibilidad * 100) + "%";
+
+  const sigmaSE = sigma / Math.sqrt(n);
+  const precisionPrior = 1 / (sigma0 ** 2);
+  const precisionData = 1 / (sigmaSE ** 2);
+  const precisionPosterior = precisionPrior + precisionData;
+
+  const varPosterior = 1 / precisionPosterior;
+  const sigmaPosterior = Math.sqrt(varPosterior);
+  const muPosterior = varPosterior * (precisionPrior * mu0 + precisionData * xbar);
+
+  // Cálculo corregido del HDI (cuantil 1 - alpha/2)
+const alpha = 1 - credibilidad;
+const z = getZScore(1 - alpha / 2); // z positivo correcto (ej. 1.645 para 90%)
+
+const hdiLow = muPosterior - z * sigmaPosterior;
+const hdiHigh = muPosterior + z * sigmaPosterior;
+
+  // Despliegue numérico exclusivo de la posterior
+  document.getElementById("resMuP").textContent = muPosterior.toFixed(3);
+  document.getElementById("resSigmaP").textContent = sigmaPosterior.toFixed(3);
+  document.getElementById("resHdiLow").textContent = hdiLow.toFixed(3);
+  document.getElementById("resHdiHigh").textContent = hdiHigh.toFixed(3);
+
+  // Dominio dinámico adaptado
+  const minDomain = Math.min(mu0 - 3.5 * sigma0, xbar - 3.5 * sigmaSE, muPosterior - 3.5 * sigmaPosterior);
+  const maxDomain = Math.max(mu0 + 3.5 * sigma0, xbar + 3.5 * sigmaSE, muPosterior + 3.5 * sigmaPosterior);
+  const dx = (maxDomain - minDomain) / N_POINTS;
+
+  const x = [];
+  const yPrior = [];
+  const yData = [];
+  const yPosterior = [];
+
+  for (let i = 0; i <= N_POINTS; i++) {
+    const xi = minDomain + i * dx;
+    x.push(xi);
+    yPrior.push(normalDensity(xi, mu0, sigma0));
+    yData.push(normalDensity(xi, xbar, sigmaSE));
+    yPosterior.push(normalDensity(xi, muPosterior, sigmaPosterior));
+  }
+
+  // Traza del área HDI
+  const xHdi = [hdiLow];
+  const yHdi = [0];
+  const stepHdi = (hdiHigh - hdiLow) / 100;
+  
+  for (let i = 0; i <= 100; i++) {
+    const xi = hdiLow + i * stepHdi;
+    xHdi.push(xi);
+    yHdi.push(normalDensity(xi, muPosterior, sigmaPosterior));
+  }
+  xHdi.push(hdiHigh);
+  yHdi.push(0);
+
+  const traces = [
+    {
+      x: xHdi,
+      y: yHdi,
+      fill: "tozeroy",
+      fillcolor: "rgba(51, 17, 20, 0.15)",
+      line: { color: "transparent" },
+      name: `HDI (${Math.round(credibilidad * 100)}%)`,
+      hoverinfo: "none"
+    },
+    {
+      x: x,
+      y: yPrior,
+      name: "Previa (Experto)",
+      mode: "lines",
+      line: { color: "#9BA1AB", width: 2 }
+    },
+    {
+      x: x,
+      y: yData,
+      name: "Verosimilitud (Muestra)",
+      mode: "lines",
+      line: { color: "#9BA1AB", width: 2, dash: "dot" }
+    },
+    {
+      x: x,
+      y: yPosterior,
+      name: "Posterior",
+      mode: "lines",
+      line: { color: "#331114", width: 3 }
+    }
+  ];
+
+  const layout = {
+    title: { text: "Actualización Bayesiana de Tiempos Estándar" },
+    xaxis: { title: "Tiempo (minutos)" },
+    yaxis: { title: "Densidad de Probabilidad" },
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: "rgba(0,0,0,0)",
+    margin: { t: 50, b: 40, l: 50, r: 20 },
+    legend: { orientation: "h", y: -0.25 }
+  };
+
+  if (window.Plotly) {
+    Plotly.react("plot", traces, layout);
+  }
+}
+
+// Inicialización diferida
+if (document.readyState === "complete" || document.readyState === "interactive") {
+  setTimeout(calcular, 200);
+} else {
+  document.addEventListener("DOMContentLoaded", () => setTimeout(calcular, 200));
+}
+</script>
+
+      <footer style="margin-top: 2em; font-size: 0.8em; text-align: center; color: gray;">
+      Creado por Steven García Goñi <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-01.png" width="20" style="vertical-align:middle; margin-right:6px;">· Para la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Actualizado: Agosto 2026
+    </footer>
+
+</div>
+
+</div>
+
+
+
+</section>
+
+</main> <!-- /main -->
+<script data-goatcounter="https://stevenggoni.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Creado con <a href="https://quarto.org"><iconify-icon role="img" inline="" icon="simple-icons:quarto" aria-label="Quarto Logo" title="Quarto Logo"></iconify-icon> Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
