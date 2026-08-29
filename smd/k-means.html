@@ -563,6 +563,7 @@ let iteration = 0;
 let isConverged = false;
 let stepPhase = 'ASSIGN';
 let centroidHistory = [];
+const RANDOM_RESTARTS = 10;
 
 // Animación
 let isPlaying = false;
@@ -807,16 +808,133 @@ function resetKMeans() {
 
     if (initMode === 'kmeans++') {
         initKMeansPlusPlus();
+        centroidHistory.push(JSON.parse(JSON.stringify(centroids)));
+        updateUIStatus("Centroides inicializados. Haz clic en 'Paso a Paso' o 'Animar'.");
     } else {
-        initRandomCentroids();
+        // Para la inicialización aleatoria se ejecutan 10 reinicios completos
+        // y se conserva la solución convergente con menor WCSS.
+        runBestOfRandomRestarts();
     }
 
-    centroidHistory.push(JSON.parse(JSON.stringify(centroids)));
-
-    updateUIStatus("Centroides inicializados. Haz clic en 'Paso a Paso' o 'Animar'.");
     updateStatsUI();
     drawCanvas();
     updateClusterTable();
+}
+
+function runBestOfRandomRestarts() {
+    if (processedData.length === 0) return;
+
+    const originalK = K;
+    let bestResult = null;
+
+    updateUIStatus(`Probando ${RANDOM_RESTARTS} reinicios aleatorios...`);
+
+    for (let run = 0; run < RANDOM_RESTARTS; run++) {
+        // Nueva inicialización aleatoria para este reinicio.
+        initRandomCentroids();
+        let tempCentroids = JSON.parse(JSON.stringify(centroids));
+        let tempAssignments = new Array(processedData.length).fill(-1);
+        let tempHistory = [JSON.parse(JSON.stringify(tempCentroids))];
+        let tempIteration = 0;
+        let converged = false;
+
+        for (let iter = 0; iter < 50; iter++) {
+            // Paso de asignación.
+            processedData.forEach((p, idx) => {
+                let minDist = Infinity;
+                let bestCluster = 0;
+
+                tempCentroids.forEach((c, cIdx) => {
+                    const d = euclideanDistSq(p, c);
+                    if (d < minDist) {
+                        minDist = d;
+                        bestCluster = cIdx;
+                    }
+                });
+
+                tempAssignments[idx] = bestCluster;
+            });
+
+            // Paso de actualización.
+            const newCentroids = [];
+            let maxMovement = 0;
+
+            for (let k = 0; k < K; k++) {
+                const clusterPoints = processedData.filter((_, idx) => tempAssignments[idx] === k);
+
+                if (clusterPoints.length === 0) {
+                    // Mantiene la misma estrategia de la versión original.
+                    const randP = processedData[Math.floor(Math.random() * processedData.length)];
+                    newCentroids.push({ ...randP });
+                } else {
+                    const newC = {};
+                    selectedFeatures.forEach(feat => {
+                        newC[feat] = clusterPoints.reduce((acc, p) => acc + p[feat], 0) / clusterPoints.length;
+                    });
+
+                    const moveDist = Math.sqrt(euclideanDistSq(tempCentroids[k], newC));
+                    if (moveDist > maxMovement) maxMovement = moveDist;
+                    newCentroids.push(newC);
+                }
+            }
+
+            tempCentroids = newCentroids;
+            tempIteration++;
+            tempHistory.push(JSON.parse(JSON.stringify(tempCentroids)));
+
+            if (maxMovement < 1e-4) {
+                converged = true;
+                break;
+            }
+        }
+
+        // Reasignar una última vez con los centroides finales para que el WCSS
+        // corresponda exactamente a la solución que vamos a conservar.
+        tempAssignments = new Array(processedData.length).fill(-1);
+        processedData.forEach((p, idx) => {
+            let minDist = Infinity;
+            let bestCluster = 0;
+
+            tempCentroids.forEach((c, cIdx) => {
+                const d = euclideanDistSq(p, c);
+                if (d < minDist) {
+                    minDist = d;
+                    bestCluster = cIdx;
+                }
+            });
+
+            tempAssignments[idx] = bestCluster;
+        });
+
+        let wcss = 0;
+        processedData.forEach((p, idx) => {
+            wcss += euclideanDistSq(p, tempCentroids[tempAssignments[idx]]);
+        });
+
+        if (bestResult === null || wcss < bestResult.wcss) {
+            bestResult = {
+                centroids: JSON.parse(JSON.stringify(tempCentroids)),
+                assignments: [...tempAssignments],
+                history: tempHistory,
+                iteration: tempIteration,
+                wcss,
+                converged
+            };
+        }
+    }
+
+    // Restaurar la mejor de las 10 soluciones.
+    K = originalK;
+    centroids = bestResult.centroids;
+    assignments = bestResult.assignments;
+    centroidHistory = bestResult.history;
+    iteration = bestResult.iteration;
+    isConverged = bestResult.converged || iteration >= 50;
+    stepPhase = 'ASSIGN';
+
+    updateUIStatus(
+        `Mejor solución de ${RANDOM_RESTARTS} reinicios aleatorios: WCSS ${bestResult.wcss.toFixed(3)} en ${iteration} iteraciones.`
+    );
 }
 
 function initRandomCentroids() {
