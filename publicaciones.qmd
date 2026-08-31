@@ -48,18 +48,18 @@ A continuación se presentan algunas de mis contribuciones en investigación y c
 # Trabajos Finales de Graduación dirigidos
 
 ::: {.publication-item}
-<span>{{< iconify fa6-solid:file-lines >}}</span> V. Prieto Moreno, M. Acosta Sánchez, M. Solano Rosales. (2024). **Rediseño del sistema de control de la calidad de procesos para la identificación y control de los principales factores de variación en una planta productora de pan**. *Repositorio SIBDI*.  
-[[Link](https://repositorio.sibdi.ucr.ac.cr/items/e0fccb39-9a3d-4cad-ae0f-43865b3592d0){target="_blank"}]{.btn-pub}
-:::
-
-::: {.publication-item}
 <span>{{< iconify fa6-solid:file-lines >}}</span> A. Campos Calvo, M. F. Castillo Vega,
 F. Mora Mora. (2026). **Rediseño del sistema de planificación y asignación de recurso humano para la Central de Esterilización y Equipo del Hospital Nacional de Niños**. *Repositorio SIBDI*.  
 [[Link pendiente](){target="_blank"}]{.btn-pub}
 :::
 
 ::: {.publication-item}
-<span>{{< iconify fa6-solid:file-lines >}}</span> M. Echadi Sáenz, R. Hernández Vega,
+<span>{{< iconify fa6-solid:file-lines >}}</span> M. Echandi Sáenz, R. Hernández Vega,
 M. Lara Fernández. (2026). **Rediseño del proceso de control de calidad del cobro de servicio del acueducto municipal de la Municipalidad de Belén**. *Repositorio SIBDI*.  
 [[Link pendiente](){target="_blank"}]{.btn-pub}
+:::
+
+::: {.publication-item}
+<span>{{< iconify fa6-solid:file-lines >}}</span> V. Prieto Moreno, M. Acosta Sánchez, M. Solano Rosales. (2024). **Rediseño del sistema de control de la calidad de procesos para la identificación y control de los principales factores de variación en una planta productora de pan**. *Repositorio SIBDI*.  
+[[Link](https://repositorio.sibdi.ucr.ac.cr/items/e0fccb39-9a3d-4cad-ae0f-43865b3592d0){target="_blank"}]{.btn-pub}
 :::
