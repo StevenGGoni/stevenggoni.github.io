@@ -1130,25 +1130,33 @@ Cada barra en un histograma representa la frecuencia tabulada en cada intervalo/
 ::: {.column width="50%"}
 ```{r}
 
-gh <- histograma %>% 
-  ggplot(aes(Datos)) +
-  geom_histogram(bins = 5, color = "#C18A00", fill = "#263247") +
-  labs(x = "Intervalos",
-       y = "Frecuencia") +
-  theme_bw()
+df_bins <- histograma %>%
+  dplyr::mutate(Clase = cut(Datos, 
+                            breaks = seq(73.8, 77.2, by = 0.68), 
+                            include.lowest = TRUE, 
+                            right = FALSE)) %>%
+  dplyr::count(Clase, .drop = FALSE) %>%
+  dplyr::mutate(EjeX = c("73.8-74.5", "74.5-75.2", 
+                         "75.2-75.8", "75.8-76.5", "76.5-77.2"))
 
-plotly::ggplotly(gh, height = 600, width = 850) %>% 
-  plotly::layout(paper_bgcolor = "#F1F5F5",
+plotly::plot_ly(data = df_bins,
+                x = ~EjeX,
+                y = ~n,
+                type = "bar",
+                marker = list(color = "#263247",
+                              line = list(color = "#C18A00", width = 1.5)),
+                height = 600,
+                width = 850) %>%
+  plotly::layout(bargap = 0, 
+                 paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 25),
-                 xaxis = list(
-                   title = list(font = list(size = 25)),
-                   tickfont = list(size = 20)),
-                 yaxis = list(title = list(font = list(size = 25)),
+                 xaxis = list(title = "Intervalos",
+                              titlefont = list(size = 25),
                               tickfont = list(size = 20)),
-                 legend = list(title = list(font = list(size = 25)),
-                               font = list(size = 20),
-                               bgcolor = "#F1F5F5"))
+                 yaxis = list(title = "Frecuencia",
+                              titlefont = list(size = 25),
+                              tickfont = list(size = 20)))
 
 ```
 :::
