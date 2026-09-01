@@ -1068,15 +1068,20 @@ histograma %>%
 ## ¿Cómo se construye una tabla de frecuencias? {.bloques}
 
 :::: columns
-::: {.column width="100%"}
+
+::: {.column style="font-size: 0.85em;"}
+
 | Clases | LI | LS | $f_a$ | $f_r$ | $F_a$ | $F_r$ |
-|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
-| 1 | $[Min$ | $LI_1 + h[$ | Conteo | $\frac{f_{a1}}{n}$ | $f_{a1}$ | $\frac{F_{a1}}{n}$ |
-| 2 | $[LS_1$ | $LI_2 + h[$ | … | $\frac{f_{a2}}{n}$ | $f_{a1}+f_{a2}$ | … |
-| 3 | $[LS_2$ | $LI_3 + h[$ | … | … | … | … |
-| 4 | \[…\] | …\[ | … | … | … | … |
-| 5 | \[…\] | $Max]$ | … | … | $f_{a1}+f_{a2}+…+f_{a5}=n$ | $\frac{F_{a5}}{n}=1$ |
+|:---:|:---|:---|:---:|:---:|:---:|:---:|
+| 1 | $LI_1=[Min$ | $LS_1=LI_1 + h[$ | Conteo | $\frac{f_{a1}}{n}$ | $f_{a1}$ | $\frac{F_{a1}}{n}$ |
+| 2 | $[LI_2 = LS_1$ | $LS_2 = LI_2 + h[$ | … | $\frac{f_{a2}}{n}$ | $f_{a1}+f_{a2}$ | … |
+| 3 | $[LI_3 = LS_2$ | $LS_3 = LI_3 + h[$ | … | … | … | … |
+| 4 | $[LI_4 = LS_3$ | $LS_4 = LI_4 + h[$ | … | … | … | … |
+| 5 | $[LI_5 = LS_4$ | $LS_5 = LI_5 + h = Max]$ | … | … | $f_{a1}+\dots+f_{a5}=n$ | $\frac{F_{a5}}{n}=1$ |
+
+
 :::
+
 ::::
 
 ## Ejemplo {.bloques}
@@ -1088,7 +1093,8 @@ histograma %>%
 histograma %>%
   dplyr::mutate(Clase = cut(Datos, 
                             breaks = seq(min(Datos), max(Datos) + 1e-8, by=0.68), 
-                            include.lowest = TRUE)) %>%
+                            include.lowest = TRUE, 
+                            right = FALSE)) %>%
   dplyr::count(Clase) %>%
   dplyr::mutate(fr = n / sum(n),
                 Fa = cumsum(n),
