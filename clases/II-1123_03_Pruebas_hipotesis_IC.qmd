@@ -1590,7 +1590,7 @@ $$ n = \left\lceil\left(\frac{z_{\frac{\alpha}{2}}}{e}\right)^2 \cdot p \cdot (1
 
 * Importante: El cálculo de $n$ debe dar un resultado [adimensional]{.hi}, por lo que las unidades de $\sigma$ y $e$ deben estar en la misma dimensión. 
 
-* Naturalmente, en el caso de proporciones, $p$ y $e$ deben estar en unidades de proporcioens (o porcentajes).
+* Naturalmente, en el caso de proporciones, $p$ y $e$ deben estar en unidades de proporciones (o porcentajes).
 
 ## Tamaño de muestra {.bloques}
 
@@ -1598,7 +1598,7 @@ $$ n = \left\lceil\left(\frac{z_{\frac{\alpha}{2}}}{e}\right)^2 \cdot p \cdot (1
 
   * ¿Qué es $e$? ¿Cómo escojo $\alpha$?
   
-  * Es el máximo error permitido por la persona investigadora que tiene un [IMPACTO]{.hi} sobre el contexto en el que se enmarca el muestreo. Lo mismo con $\alpha$, de[pende del contexto]{.hi}.
+  * Es el máximo error permitido por la persona investigadora que tiene un [IMPACTO]{.hi} sobre el contexto en el que se enmarca el muestreo. Lo mismo con $\alpha$, [depende del contexto]{.hi}.
   
 * Por ejemplo, la estimación del tiempo que se tarda en completar una tarea no puede ser diferente al valor real en [a lo sumo X segundos]{.hi}, con una confianza igual $(1-\alpha)$ porque esto es importante para el [contexto particular]{.hi} en el que se enmarca la estimación del tiempo. 
 
@@ -1749,6 +1749,19 @@ Con estos valores se va calcular el tamaño de muestra necesario, para detectar,
 * También se le hace entrega de un [listado de ejercicios](https://stevenggoni.github.io/clases/data/II_1123_03 Ejercicios adicionales PH.pdf){target="_blank"}, independientes a la asignación anterior, para que practique a modo de estudio.  No se le brinda la solución pero si las respuestas. 
 
 * La solución en R de todos los ejercicios de esta sesión también está disponible en este [enlace](https://stevenggoni.github.io/tutoriales_R/Pruebas_hipotesis.html){target="_blank"}. Ese documento también incluye la forma para calcular el tamaño de muestra vía potencia estadística del ejemplo desarrollado.
+
+## Bibliografía {.bloques}
+
+:::: columns
+::: {.column width="100%" style="font-size: 1.2em;"}
+
+-   Walpole, R.; Myers, R.; Myers, S. y Ye, K. Probabilidad y estadística para ingeniería y ciencias (9na Edición).
+    -   Capítulo 9 y 10
+* Montgomery, D; Runger, G. Applied Statistics and Probability for Engineers (5th Edition)
+  * **Capítulo 7, 8, 9 (excepto 9.9) y 10**
+
+:::
+::::
 
 ## Pruebas de hipótesis e Intervalos de confianza <br> II-1123 Estadística para Ingeniería Industrial II {.center}
 
