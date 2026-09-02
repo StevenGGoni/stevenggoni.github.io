@@ -1087,7 +1087,7 @@ histograma %>%
 ## Ejemplo {.bloques}
 
 :::: columns
-::: {.column width="100%"}
+::: {.column style="font-size: 1.5em;"}
 ```{r}
 
 histograma %>%
@@ -1112,15 +1112,17 @@ histograma %>%
 
 ::::: columns
 ::: {.column width="70%"}
-Los histogramas ayudan a dar una estimación de [dónde se concentran los valores, cuáles son los extremos y si hay vacíos o valores inusuales]{.hi}.
 
-También son útiles para dar una visión aproximada de la distribución de probabilidad.
+* Los histogramas ayudan a dar una estimación de [dónde se concentran los valores, cuáles son los extremos y si hay vacíos o valores inusuales]{.hi}.
 
-Cada barra en un histograma representa la frecuencia tabulada en cada intervalo/bin. El área total del histograma es igual al número de datos, cuando se grafica en frecuencia absoluta.
+* También son útiles para dar una visión aproximada de la distribución de probabilidad.
+
+* Cada barra en un histograma representa la frecuencia tabulada en cada intervalo/bin. El área total del histograma es igual al número de datos, cuando se grafica en frecuencia absoluta.
+
 :::
 
-::: {.column .img-fit width="30%"}
-![](img/histograma.svg)
+::: {.column .img-fit}
+![](img/histograma.png)
 :::
 :::::
 
@@ -1184,7 +1186,8 @@ plotly::plot_ly(data = df_bins,
 ## Valores atípicos {.bloques}
 
 :::: columns
-::: {.column"}
+::: {.column}
+
 -   Son valores dentro del conjunto de datos que difieren de forma “considerable” de los otros valores.
 -   [Importante]{.hi}: los datos atípicos se estudian, pero NO se eliminan sin justificación válida.
 -   Los gráficos de cajas y bigotes son una herramienta visual para la detección de datos “atípicos”.
@@ -1197,7 +1200,7 @@ plotly::plot_ly(data = df_bins,
 
 ::::: columns
 ::: {.column .img-fit width="30%"}
-![](img/boxplot_espanol.svg)
+![](img/boxplot_espanol.png)
 :::
 
 ::: {.column width="70%"}
