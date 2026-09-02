@@ -1054,8 +1054,8 @@ $$
 ::: {.column width="50%" style="font-size: 0.8em;"}
 ```{r}
 
-histograma <- data.frame(Datos = c(73.8, 74.2, 75.1, 75.3, 75.5, 
-                                   75.7, 76.5, 76.9, 77.1, 77.2, 77.2, 77.2))
+histograma <- data.frame(Datos = c(73.8, 74.2, 75.1, 75.3, 75.5, 75.7, 
+                                   76.5, 76.9, 77.1, 77.2, 77.2, 77.2))
 
 histograma %>% 
   knitr::kable(format = "html") %>%
@@ -1092,8 +1092,8 @@ histograma %>%
 
 histograma %>%
   dplyr::mutate(Clase = cut(Datos, 
-                            breaks = seq(min(Datos), max(Datos) + 1e-8, by=0.68), 
-                            include.lowest = TRUE, 
+                            breaks = seq(min(Datos), max(Datos), by=0.68), 
+                            include.lowest = TRUE, dig.lab = 10,
                             right = FALSE)) %>%
   dplyr::count(Clase) %>%
   dplyr::mutate(fr = n / sum(n),
@@ -1136,8 +1136,8 @@ df_bins <- histograma %>%
                             include.lowest = TRUE, 
                             right = FALSE)) %>%
   dplyr::count(Clase, .drop = FALSE) %>%
-  dplyr::mutate(EjeX = c("73.8-74.5", "74.5-75.2", 
-                         "75.2-75.8", "75.8-76.5", "76.5-77.2"))
+  dplyr::mutate(EjeX = c("[73.8-74.48)", "[74.48-75.16)", 
+                         "[75.16-75.84)", "[75.84-76.52)", "[76.5-77.20]"))
 
 plotly::plot_ly(data = df_bins,
                 x = ~EjeX,
@@ -1168,6 +1168,8 @@ plotly::plot_ly(data = df_bins,
     -   La curtosis y asimetría
     -   La variabilidad de los datos
 
+* Tome en cuenta que `()` se interpreta como intervalo abierto y `[]` como cerrado. 
+
 :::
 
 ::::
@@ -1182,7 +1184,7 @@ plotly::plot_ly(data = df_bins,
 ## Valores atípicos {.bloques}
 
 :::: columns
-::: {.column width="100%"}
+::: {.column"}
 -   Son valores dentro del conjunto de datos que difieren de forma “considerable” de los otros valores.
 -   [Importante]{.hi}: los datos atípicos se estudian, pero NO se eliminan sin justificación válida.
 -   Los gráficos de cajas y bigotes son una herramienta visual para la detección de datos “atípicos”.
