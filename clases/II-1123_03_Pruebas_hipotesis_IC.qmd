@@ -1406,7 +1406,7 @@ $$\nu = n - 1$$
 
 * Una máquina llena latas con una bebida gaseosa y el fabricante desea obtener una estimación de intervalo de confianza de la varianza del volumen de llenado (si la varianza es demasiado grande, un alto porcentaje de las latas se llenarán con un volumen del producto que es menor que la cantidad nominal [355 ml]).
 
-* $\bar{x} = 355.0170, \quad s = 0.5199$
+* $\bar{x} = 355.0170, \quad s = 0.5199 \quad s^2=0.2703$
 
 :::
 
@@ -1441,9 +1441,9 @@ matrix(ej09, ncol = 2) |>
 
 * Realice este contraste de hipótesis:
 
-  * $H_o: \sigma^2=0.5$
-  * $H_i \sigma < 0.5$
-  * Valor P = 0.0540
+  * $H_o: \sigma^2 = 0.5$
+  * $H_i: \sigma^2 < 0.5$
+  * Valor P = 0.05407
   
 ## Dos varianzas {.bloques}
 
