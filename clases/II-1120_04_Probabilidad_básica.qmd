@@ -882,6 +882,7 @@ diabetes %>%
   * Esta regla se usa cuando ya ocurrió un evento y queremos actualizar la probabilidad de una “causa”. 
 
 ## Ejemplo {.bloques}
+
 :::::: {.columns}
 
 ::: {.column}
@@ -927,12 +928,13 @@ $$
 :::
 
 ::: {.column width="50%"}
+
 * El teorema de Bayes, como se observa en la fórmula, integra los conceptos de la Ley de la suma (el denominador) y la Ley de la multiplicación (el numerador). 
 
-$$
-P(A|B)= \frac{P(A\cap B)}{P(B)} = \frac{P(B|A)\cdot P(A)}{\sum_{i=1}^{k}P(B|A_i)P(A_i)}
-$$
+$P(A|B)= \frac{P(A\cap B)}{P(B)} = \frac{P(B|A)\cdot P(A)}{\sum_{i=1}^{k}P(B|A_i)P(A_i)}$
+
 * Donde: 
+
   * $P(A)$: es también conocida como probabilidad a priori
   * $P(A|B)$: recibe el nombre de probabilidad a posteriori
 

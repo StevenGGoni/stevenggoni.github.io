@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Actualización Bayesiana para Estimación de Tiempos – Steven García Goñi Estadística e Ingeniería</title>
+<title>Actualización bayesiana para estimación de tiempos – Steven García Goñi Estadística e Ingeniería</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -111,7 +111,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -390,14 +390,27 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a>
+  <ul class="collapse">
+  <li><a href="#el-modelo-conjugado-normal-normal" id="toc-el-modelo-conjugado-normal-normal" class="nav-link" data-scroll-target="#el-modelo-conjugado-normal-normal">El modelo conjugado Normal-Normal</a></li>
+  <li><a href="#intervalo-de-máxima-densidad-posterior-hdi" id="toc-intervalo-de-máxima-densidad-posterior-hdi" class="nav-link" data-scroll-target="#intervalo-de-máxima-densidad-posterior-hdi">Intervalo de Máxima Densidad Posterior (HDI)</a></li>
+  </ul></li>
+  <li><a href="#instrucciones-de-uso" id="toc-instrucciones-de-uso" class="nav-link" data-scroll-target="#instrucciones-de-uso">Instrucciones de uso</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Actualización Bayesiana para Estimación de Tiempos</h1>
+<h1 class="title">Actualización bayesiana para estimación de tiempos</h1>
 </div>
 
 
@@ -405,12 +418,6 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Fecha de publicación</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">26 de agosto de 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -423,7 +430,7 @@ window.Quarto = {
 <section id="introducción" class="level2">
 <h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
 <p>En contextos de producción de alta variedad y bajo volumen (<strong>HMLV</strong>, por sus siglas en inglés) o en etapas tempranas de diseño de procesos, la recolección masiva de datos mediante muestreo de tiempos tradicional resulta costosa o inviable.</p>
-<p>Frecuentemente, los métodos estadísticos clásicos demandan tamaños muestrales considerables para ofrecer estimaciones estables. En su lugar, la estadística bayesiana ofrece un marco riguroso para incorporar la <strong>incertidumbre epistémica</strong> mediante el uso del criterio experto o información de procesos análogos (<strong>distribución previa</strong> o <em>prior</em>), combinándolo de forma óptima con unas cuantas observaciones empíricas (<strong>verosimilitud</strong>).</p>
+<p>Frecuentemente, los métodos estadísticos clásicos-frecuentistas demandan tamaños muestrales considerables para ofrecer estimaciones estables (ley de los grandes números, TLC, entre otros). En su lugar, la estadística bayesiana ofrece un marco riguroso para incorporar la <strong>incertidumbre epistémica</strong> mediante el uso del criterio experto o información de procesos análogos (<strong>distribución previa</strong> o <em>prior</em>), combinándolo de forma óptima con unas cuantas observaciones empíricas (<strong>verosimilitud</strong>).</p>
 <section id="el-modelo-conjugado-normal-normal" class="level3">
 <h3 class="anchored" data-anchor-id="el-modelo-conjugado-normal-normal">El modelo conjugado Normal-Normal</h3>
 <p>Cuando el tiempo de ciclo <span class="math inline">\(X\)</span> posee una variabilidad de proceso <span class="math inline">\(\sigma^2\)</span> conocida (o estimada empíricamente de la muestra), y el tiempo promedio esperado <span class="math inline">\(\mu\)</span> posee una creencia previa descrita por una distribución Normal, la distribución posterior se resuelve de forma analítica exacta:</p>

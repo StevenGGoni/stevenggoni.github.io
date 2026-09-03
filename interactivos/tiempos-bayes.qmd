@@ -1,13 +1,18 @@
 ---
-title: "Actualización Bayesiana para Estimación de Tiempos"
-date: today
+title: "Actualización bayesiana para estimación de tiempos"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-expand: true
+    code-fold: false
 ---
 
 ## Introducción
 
 En contextos de producción de alta variedad y bajo volumen (**HMLV**, por sus siglas en inglés) o en etapas tempranas de diseño de procesos, la recolección masiva de datos mediante muestreo de tiempos tradicional resulta costosa o inviable. 
 
-Frecuentemente, los métodos estadísticos clásicos demandan tamaños muestrales considerables para ofrecer estimaciones estables. En su lugar, la estadística bayesiana ofrece un marco riguroso para incorporar la **incertidumbre epistémica** mediante el uso del criterio experto o información de procesos análogos (**distribución previa** o *prior*), combinándolo de forma óptima con unas cuantas observaciones empíricas (**verosimilitud**).
+Frecuentemente, los métodos estadísticos clásicos-frecuentistas demandan tamaños muestrales considerables para ofrecer estimaciones estables (ley de los grandes números, TLC, entre otros). En su lugar, la estadística bayesiana ofrece un marco riguroso para incorporar la **incertidumbre epistémica** mediante el uso del criterio experto o información de procesos análogos (**distribución previa** o *prior*), combinándolo de forma óptima con unas cuantas observaciones empíricas (**verosimilitud**).
 
 ### El modelo conjugado Normal-Normal
 

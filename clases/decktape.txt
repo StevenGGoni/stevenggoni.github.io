@@ -4,7 +4,7 @@ decktape reveal --size="1920x1080" --page-load-timeout 60000 --load-pause 2000 I
 
 decktape reveal --size="1920x1080" II-1120_03_Fundamentos_muestreo.html II-1120_03_Fundamentos_muestreo.pdf
 
-decktape reveal --size="1920x1080" II-1120_04_Probabilidad_básica.html II-1120_04_Probabilidad_básica.pdf
+decktape reveal --size="1920x1080" --page-load-timeout 60000 --load-pause 2000 II-1120_04_Probabilidad_básica.html II-1120_04_Probabilidad_básica.pdf
 
 decktape reveal --size="1920x1080" II-1120_05_Variables_aleatorias.html II-1120_05_Variables_aleatorias.pdf
 
