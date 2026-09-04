@@ -1,0 +1,62 @@
+---
+title: "Diseño factorial completo, bloqueado y confundido $2^{k-p}$"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1125_02_Bloqueo_Confusion.pdf) <br> II-1125 Estadística para Ingeniería Industrial III"
+date: today
+format: revealjs
+---
+
+```{r}
+
+library(tidyverse)
+
+```
+
+
+## Agenda {.bloques}
+
+* Repaso
+
+* Utilidad del bloqueo y confusión
+
+* Nomenclatura y generadores
+
+* Confusión y estructuras de confusión 
+
+## Recordatorio - Bloqueo {.bloques}
+
+* A menudo, el bloqueo se utiliza para reducir o eliminar la variabilidad transmitida por factores de ruido, es decir, [factores que pueden influir en la respuesta experimental, pero en los que no se está directamente interesado]{.hi}.
+
+* Por definición, cualquier factor de bloqueo debe estar altamente relacionado con la variable de respuesta pero NO debe interactuar con otros factores de bloqueo u otros factores.
+  
+## Recordatorio - Bloqueo {.bloques}
+
+* En resumen, el bloqueo es un efecto adcional ficticio, [que no es de interés]{.hi}, que se introduce para mejorar la capacidad resolutiva del modelo. 
+  
+* El bloqueo tiene un costo: grados de libertad.
+  
+* Los grados de libertad se relacionan directamente con la potencia estadística, menos GL, menos potencia. 
+  
+## Recordatorio - Bloqueo {.bloques}
+
+* Cuando abordamos el tema de Diseños factoriales completos $2^k$ bloqueados, establecimos una regla: 
+
+* Los factoriales son ortogonales y para garantizar que eso siga siendo así, cada bloque debe estar conformado por exactamente una réplica.
+
+  * Excepciones a esta regla serán abordadas en clases posteriores.
+
+* [Hemos llegado a esas clases posteriores]. La excepción está dada por la técnica de confusión, que garantiza la ortogonalidad con bloques más pequeños que una réplica. 
+
+# Bloqueo y confusión {.bloques}
+
+## ¿Cuándo y por qué?  {.bloques}
+
+* Cuando [es necesario bloquear]{.hi}, pero [no alcanzan los recursos]{.hi} para hacer un bloque por réplica. 
+
+* Suponga un ejemplo sencillo, en un experimento $2^4$ se usa tela como material experimental, se usa la tela que sobra del proceso de maquila para abaratar los costos.
+
+## ¿Cuándo y por qué?  {.bloques}
+
+* La tela que sobra, alcanza para al menos 10 corridas experimentales y se usa material que viene de diferentes proveedores de telas por lo que indefectiblemente hay que bloquear. 
+
+* Pero con 16 tratamientos, no me alcanza la tela para cubrir ni una réplica. 
+  * ¿Puedo hacer algo? ¿Cómo hago el experimento?

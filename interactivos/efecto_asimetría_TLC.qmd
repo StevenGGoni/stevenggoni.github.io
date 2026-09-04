@@ -1,0 +1,147 @@
+---
+title: "Mitos Estadísticos: El tamaño muestral en el TLC"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-expand: false
+    code-fold: false
+    collapse-sections: true
+    collapse-open: false
+---
+
+# Efecto de la asimetría sobre la convergencia del TLC
+
+Existe un mito fuertemente arraigado en la enseñanza de la estadística que asume que un tamaño muestral de $n \ge 30$ garantiza por sí solo la aplicabilidad del Teorema del Límite Central (TLC). Sin embargo, la velocidad de convergencia de la distribución de la media muestral hacia la normalidad depende fundamentalmente del grado de asimetría ($\gamma_1$) de la población de origen.
+
+Inspirado en la literatura sobre la tasa de convergencia en el TLC (por ejemplo, [Influencia de la asimetría en el tamaño de la muestra para el cumplimiento del teorema central del límite en distribuciones continuas](https://revistas.utp.edu.co/index.php/revistaciencia/article/view/9325){target="_blank"}), en esta simulación interactiva se evalúa cómo varía la tasa de aceptación de normalidad según el tamaño muestral ($n$) para distintos niveles de asimetría teórica ($\gamma_1 \in \{0, 0.5, 1.0, 2.0\}$) derivados de la distribución Gamma y Normal de control. A través de la prueba de hipótesis de Shapiro-Wilk sobre las medias muestrales, se evidencia que un $n=30$ resulta insuficiente a medida que la asimetría poblacional aumenta.
+
+# ¿Por qué ocurre esto? El efecto de la corrección de Edgeworth
+
+El TLC es un resultado asintótico ($n \to \infty$). Para un $n$ finito, la **expansión de Edgeworth** aproxima la verdadera distribución de la media muestral estandarizada $F_n(z)$ agregando términos de corrección a la Normal estándar $\Phi(z)$:
+
+$$F_n(z) \approx \Phi(z) + \frac{\gamma_1}{6\sqrt{n}} (1 - z^2) \phi(z)$$
+
+De este resultado matemático se derivan dos implicaciones fundamentales:
+
+1. **Impacto de la asimetría ($\gamma_1$):** El sesgo o error de la aproximación normal es directamente proporcional a $\gamma_1$. Si la población de origen es simétrica ($\gamma_1 = 0$), el término principal de error desaparece y la convergencia a la normalidad es casi inmediata.
+2. **Efecto del tamaño muestral ($n$):** El error decrece a una tasa de $1/\sqrt{n}$. Esto significa que para reducir el error a la mitad en presencia de asimetría, no basta con duplicar el tamaño de muestra: **es necesario cuadruplicarlo ($4n$)**. Por ende, la muestra requerida escala de forma cuadrática respecto a la asimetría ($n \propto \gamma_1^2$).
+
+# Principales conclusiones que muestra el gráfico
+
+1. **Impacto directo de $\gamma_1$:** Con asimetría alta ($\gamma_1 = 2.0$), la tasa de aceptación a $n = 30$ suele ser inferior al 60–70 %, necesitando $n \ge 120$ para rondar el nivel nominal del 95 %.
+
+2. **Respuesta no lineal:** La tasa a la cual la distribución de la media alcanza la normalidad no escala de forma lineal respecto a $n$, sino en relación directa con la magnitud de la asimetría de la distribución madre (efecto de la corrección de Edgeworth).
+
+3. **El caso de control:** La distribución simétrica ($\text{Normal}, \gamma_1 = 0$) sirve como validación del experimento, manteniendo la tasa de aceptación cercana al nivel nominal ($\approx 95\%$) a lo largo de todo el espectro de $n$.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+library(nortest)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(plotly)
+```
+
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE, message=FALSE}
+
+#| warning: false
+#| message: false
+
+set.seed(42)
+n_evals <- seq(5, 200, by = 5)
+B_sim <- 500       # Número de simulación de p-valores
+M_muestras <- 200 # Tamaño muestral para la media
+
+# Definición de escenarios de asimetría (\gamma_1)
+escenarios <- list("Normal (Simétrica, γ₁ = 0)" = function(n) rnorm(n),
+                   "Gamma (Asimetría leve, γ₁ = 0.5)" = function(n) rgamma(n, 
+                                                                           shape = 16, 
+                                                                           rate = 1),
+                   "Gamma (Asimetría mod., γ₁ = 1.0)" = function(n) rgamma(n, 
+                                                                           shape = 4, 
+                                                                           rate = 1),
+                   "Exponencial (Asimetría alta, γ₁ = 2.0)" = function(n) rexp(n, 
+                                                                               rate = 1))
+
+# Función de evaluación vectorizada
+evaluar_escenario <- function(gen_func, n_sizes) {
+  sapply(n_sizes, function(n) {
+    p_vals <- replicate(B_sim, {
+      mat_muestras <- matrix(gen_func(n * M_muestras), 
+                             nrow = n, 
+                             ncol = M_muestras)
+      medias <- colMeans(mat_muestras)
+      shapiro.test(medias)$p.value})
+    mean(p_vals > 0.05)})
+}
+
+# Ejecución del experimento
+res_list <- lapply(names(escenarios), function(nombre) {
+  tasas <- evaluar_escenario(escenarios[[nombre]], n_evals)
+  data.frame(n = n_evals, Tasa_Aceptacion = tasas, Escenario = nombre)
+})
+
+df_resultados <- bind_rows(res_list)
+
+saveRDS(df_resultados, file = "interactivos/asimetria_TLC.rds")
+
+```
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+#| warning: false
+#| message: false
+
+df_resultados <- readRDS("asimetria_TLC.rds")
+
+# Paleta de colores consistente
+colores <- c("Normal (Simétrica, γ₁ = 0)" = "#8CB369",
+             "Gamma (Asimetría leve, γ₁ = 0.5)" = "#F4E285",
+             "Gamma (Asimetría mod., γ₁ = 1.0)" = "#F4A259",
+             "Exponencial (Asimetría alta, γ₁ = 2.0)" = "#BC4B51")
+
+# Gráfico base en ggplot2
+p <- ggplot(df_resultados, 
+            aes(x = n, y = Tasa_Aceptacion, 
+                color = Escenario, group = Escenario)) +
+  geom_line(size = 0.9) +
+  geom_point(size = 1.4, 
+             aes(text = paste0("<b>Escenario:</b> ", Escenario,
+                               "<br><b>Muestra (n):</b> ", n,
+                               "<br><b>Aceptación H0:</b> ", 
+                               round(Tasa_Aceptacion * 100, 1), "%"))) +
+  geom_hline(yintercept = 0.95, linetype = "dashed", 
+             color = "gray40", alpha = 0.7) +
+  geom_vline(xintercept = 30, linetype = "dotted", 
+             color = "black", alpha = 0.8) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1), 
+                     limits = c(0, 1)) +
+  scale_x_continuous(breaks = seq(0, 250, by = 25)) +
+  scale_color_manual(values = colores) +
+  labs(title = "Efecto de la asimetría sobre la velocidad de convergencia del TLC - Prueba de SW",
+       subtitle = "Prueba de Shapiro-Wilk sobre la media muestral",
+       x = "Tamaño de muestra (n)",
+       y = "Tasa de aceptación de normalidad (p > 0.05)",
+       color = "Asimetría") +
+  theme_minimal(base_family = "sans") +
+  theme(legend.position = "bottom",
+        panel.grid.minor = element_blank())
+
+# Conversión a Plotly interactivo para el browser
+p_interactivo <- ggplotly(p, tooltip = "text") %>%
+  layout(annotations = list(
+    x = 31, y = 0.2, 
+    text = "Mito popular:\n n = 30", 
+    showarrow = TRUE, 
+    arrowhead = 2,
+    ax = 40, ay = -20))
+
+p_interactivo
+
+```
+

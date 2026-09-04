@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xml:lang="es-ES"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Mitos Estadísticos: El tamaño muestral en el TLC – Steven García Goñi Estadística e Ingeniería</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-53ccac5bf6d5e6640b46cd35981ed5da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-328d1cbd98b1d2c79f3537d7d6c4fd96.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-53ccac5bf6d5e6640b46cd35981ed5da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<script src="https://cdn.userway.org/widget.js" data-account="AJmG8zlfIo"></script>
+<link href="../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="../site_libs/plotly-binding-4.12.0/plotly.js"></script>
+
+<script src="../site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="../site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+<link href="../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+<link href="../site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="../site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="Logo de un cuervo" class="navbar-logo light-content">
+    <img src="../images/logo.png" alt="Logo de un cuervo" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Steven García Goñi <span class="navbar-subtitle">Estadística e Ingeniería</span></span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../publicaciones.html"> 
+<span class="menu-text">Publicaciones</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-recursos-académicos" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Recursos académicos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-recursos-académicos">    
+        <li>
+    <a class="dropdown-item" href="../infografias.html">
+ <span class="dropdown-text">Infografías</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../interactivos.html">
+ <span class="dropdown-text">Simulaciones y visualizadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../recursos_graficos.html">
+ <span class="dropdown-text">Construcción de gráficos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutoriales_R.html">
+ <span class="dropdown-text">Tutoriales en R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../clases.html">
+ <span class="dropdown-text">Material de clases</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sobre-mí" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sobre mí</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sobre-mí">    
+        <li>
+    <a class="dropdown-item" href="../resume.pdf" target="_blank">
+ <span class="dropdown-text">Currículum</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../logo.html">
+ <span class="dropdown-text">Identidad visual</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="mailto:steven.garciagoni@ucr.ac.cr"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-solid:envelope" aria-label="Icon envelope from fa6-solid Iconify.design set." title="Correo electrónico"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/StevenGGoni"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:github" aria-label="Icon github from mdi Iconify.design set." title="GitHub"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/sggoni/"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:linkedin" aria-label="Icon linkedin from mdi Iconify.design set." title="LinkedIn"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=X_3YTJ0AAAAJ&amp;hl=es"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:google-scholar" aria-label="Icon google-scholar from fa6-brands Iconify.design set." title="Google Académico"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://orcid.org/0000-0002-1822-5465"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="simple-icons:orcid" aria-label="Icon orcid from simple-icons Iconify.design set." title="Orcid"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.scopus.com/authid/detail.uri?authorId=58504295000"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="simple-icons:scopus" aria-label="Icon scopus from simple-icons Iconify.design set." title="Scopus"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.researchgate.net/profile/Steven-Garcia-Goni"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="academicons:researchgate-square" aria-label="Icon researchgate-square from academicons Iconify.design set." title="ResearchGate"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://stevenggoni.github.io/resume.pdf"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="academicons:cv-square" aria-label="Icon cv-square from academicons Iconify.design set." title="CV"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#efecto-de-la-asimetría-sobre-la-convergencia-del-tlc" id="toc-efecto-de-la-asimetría-sobre-la-convergencia-del-tlc" class="nav-link active" data-scroll-target="#efecto-de-la-asimetría-sobre-la-convergencia-del-tlc">Efecto de la asimetría sobre la convergencia del TLC</a></li>
+  <li><a href="#por-qué-ocurre-esto-el-efecto-de-la-corrección-de-edgeworth" id="toc-por-qué-ocurre-esto-el-efecto-de-la-corrección-de-edgeworth" class="nav-link" data-scroll-target="#por-qué-ocurre-esto-el-efecto-de-la-corrección-de-edgeworth">¿Por qué ocurre esto? El efecto de la corrección de Edgeworth</a></li>
+  <li><a href="#principales-conclusiones-que-muestra-el-gráfico" id="toc-principales-conclusiones-que-muestra-el-gráfico" class="nav-link" data-scroll-target="#principales-conclusiones-que-muestra-el-gráfico">Principales conclusiones que muestra el gráfico</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Mitos Estadísticos: El tamaño muestral en el TLC</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">4 de septiembre de 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="efecto-de-la-asimetría-sobre-la-convergencia-del-tlc" class="level1">
+<h1>Efecto de la asimetría sobre la convergencia del TLC</h1>
+<p>Existe un mito fuertemente arraigado en la enseñanza de la estadística que asume que un tamaño muestral de <span class="math inline">\(n \ge 30\)</span> garantiza por sí solo la aplicabilidad del Teorema del Límite Central (TLC). Sin embargo, la velocidad de convergencia de la distribución de la media muestral hacia la normalidad depende fundamentalmente del grado de asimetría (<span class="math inline">\(\gamma_1\)</span>) de la población de origen.</p>
+<p>Inspirado en la literatura sobre la tasa de convergencia en el TLC (por ejemplo, <a href="https://revistas.utp.edu.co/index.php/revistaciencia/article/view/9325" target="_blank">Influencia de la asimetría en el tamaño de la muestra para el cumplimiento del teorema central del límite en distribuciones continuas</a>), en esta simulación interactiva se evalúa cómo varía la tasa de aceptación de normalidad según el tamaño muestral (<span class="math inline">\(n\)</span>) para distintos niveles de asimetría teórica (<span class="math inline">\(\gamma_1 \in \{0, 0.5, 1.0, 2.0\}\)</span>) derivados de la distribución Gamma y Normal de control. A través de la prueba de hipótesis de Shapiro-Wilk sobre las medias muestrales, se evidencia que un <span class="math inline">\(n=30\)</span> resulta insuficiente a medida que la asimetría poblacional aumenta.</p>
+</section>
+<section id="por-qué-ocurre-esto-el-efecto-de-la-corrección-de-edgeworth" class="level1">
+<h1>¿Por qué ocurre esto? El efecto de la corrección de Edgeworth</h1>
+<p>El TLC es un resultado asintótico (<span class="math inline">\(n \to \infty\)</span>). Para un <span class="math inline">\(n\)</span> finito, la <strong>expansión de Edgeworth</strong> aproxima la verdadera distribución de la media muestral estandarizada <span class="math inline">\(F_n(z)\)</span> agregando términos de corrección a la Normal estándar <span class="math inline">\(\Phi(z)\)</span>:</p>
+<p><span class="math display">\[F_n(z) \approx \Phi(z) + \frac{\gamma_1}{6\sqrt{n}} (1 - z^2) \phi(z)\]</span></p>
+<p>De este resultado matemático se derivan dos implicaciones fundamentales:</p>
+<ol type="1">
+<li><strong>Impacto de la asimetría (<span class="math inline">\(\gamma_1\)</span>):</strong> El sesgo o error de la aproximación normal es directamente proporcional a <span class="math inline">\(\gamma_1\)</span>. Si la población de origen es simétrica (<span class="math inline">\(\gamma_1 = 0\)</span>), el término principal de error desaparece y la convergencia a la normalidad es casi inmediata.</li>
+<li><strong>Efecto del tamaño muestral (<span class="math inline">\(n\)</span>):</strong> El error decrece a una tasa de <span class="math inline">\(1/\sqrt{n}\)</span>. Esto significa que para reducir el error a la mitad en presencia de asimetría, no basta con duplicar el tamaño de muestra: <strong>es necesario cuadruplicarlo (<span class="math inline">\(4n\)</span>)</strong>. Por ende, la muestra requerida escala de forma cuadrática respecto a la asimetría (<span class="math inline">\(n \propto \gamma_1^2\)</span>).</li>
+</ol>
+</section>
+<section id="principales-conclusiones-que-muestra-el-gráfico" class="level1">
+<h1>Principales conclusiones que muestra el gráfico</h1>
+<ol type="1">
+<li><p><strong>Impacto directo de <span class="math inline">\(\gamma_1\)</span>:</strong> Con asimetría alta (<span class="math inline">\(\gamma_1 = 2.0\)</span>), la tasa de aceptación a <span class="math inline">\(n = 30\)</span> suele ser inferior al 60–70 %, necesitando <span class="math inline">\(n \ge 120\)</span> para rondar el nivel nominal del 95 %.</p></li>
+<li><p><strong>Respuesta no lineal:</strong> La tasa a la cual la distribución de la media alcanza la normalidad no escala de forma lineal respecto a <span class="math inline">\(n\)</span>, sino en relación directa con la magnitud de la asimetría de la distribución madre (efecto de la corrección de Edgeworth).</p></li>
+<li><p><strong>El caso de control:</strong> La distribución simétrica (<span class="math inline">\(\text{Normal}, \gamma_1 = 0\)</span>) sirve como validación del experimento, manteniendo la tasa de aceptación cercana al nivel nominal (<span class="math inline">\(\approx 95\%\)</span>) a lo largo de todo el espectro de <span class="math inline">\(n\)</span>.</p></li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-53d9ada556d74a65be01" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-53d9ada556d74a65be01">{"x":{"data":[{"x":[5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200],"y":[0,0.114,0.28399999999999997,0.35999999999999999,0.45000000000000001,0.56599999999999995,0.60199999999999998,0.628,0.63400000000000001,0.69999999999999996,0.73999999999999999,0.77200000000000002,0.77600000000000002,0.82199999999999995,0.78400000000000003,0.81799999999999995,0.83399999999999996,0.81599999999999995,0.82199999999999995,0.82199999999999995,0.85399999999999998,0.85999999999999999,0.84599999999999997,0.86799999999999999,0.83799999999999997,0.85799999999999998,0.87,0.872,0.85999999999999999,0.874,0.86599999999999999,0.86799999999999999,0.89400000000000002,0.878,0.89400000000000002,0.89000000000000001,0.90400000000000003,0.85999999999999999,0.90600000000000003,0.89000000000000001],"text":"","type":"scatter","mode":"lines","line":{"width":3.4015748031496069,"color":"rgba(188,75,81,1)","dash":"solid"},"hoveron":"points","name":"Exponencial (Asimetría alta, γ₁ = 2.0)","legendgroup":"Exponencial (Asimetría alta, γ₁ = 2.0)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200],"y":[0.78400000000000003,0.87,0.91000000000000003,0.91800000000000004,0.91800000000000004,0.90600000000000003,0.93400000000000005,0.93600000000000005,0.91800000000000004,0.94799999999999995,0.92800000000000005,0.94599999999999995,0.93400000000000005,0.93600000000000005,0.94599999999999995,0.93999999999999995,0.94999999999999996,0.94599999999999995,0.96399999999999997,0.95599999999999996,0.95399999999999996,0.92600000000000005,0.95399999999999996,0.93999999999999995,0.93400000000000005,0.95599999999999996,0.93400000000000005,0.95999999999999996,0.95199999999999996,0.93600000000000005,0.95799999999999996,0.95399999999999996,0.94599999999999995,0.94599999999999995,0.95399999999999996,0.95799999999999996,0.94399999999999995,0.96599999999999997,0.94199999999999995,0.91800000000000004],"text":"","type":"scatter","mode":"lines","line":{"width":3.4015748031496069,"color":"rgba(244,226,133,1)","dash":"solid"},"hoveron":"points","name":"Gamma (Asimetría leve, γ₁ = 0.5)","legendgroup":"Gamma (Asimetría leve, γ₁ = 0.5)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200],"y":[0.35399999999999998,0.63800000000000001,0.70799999999999996,0.79800000000000004,0.85799999999999998,0.876,0.88200000000000001,0.89400000000000002,0.878,0.90800000000000003,0.91000000000000003,0.90600000000000003,0.93000000000000005,0.90400000000000003,0.90400000000000003,0.91200000000000003,0.91000000000000003,0.90000000000000002,0.90800000000000003,0.92200000000000004,0.94599999999999995,0.90800000000000003,0.90800000000000003,0.91400000000000003,0.94799999999999995,0.91800000000000004,0.95199999999999996,0.94599999999999995,0.94399999999999995,0.92800000000000005,0.93799999999999994,0.93400000000000005,0.92200000000000004,0.92400000000000004,0.94599999999999995,0.92400000000000004,0.93600000000000005,0.94799999999999995,0.93600000000000005,0.94799999999999995],"text":"","type":"scatter","mode":"lines","line":{"width":3.4015748031496069,"color":"rgba(244,162,89,1)","dash":"solid"},"hoveron":"points","name":"Gamma (Asimetría mod., γ₁ = 1.0)","legendgroup":"Gamma (Asimetría mod., γ₁ = 1.0)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200],"y":[0.95599999999999996,0.94599999999999995,0.94199999999999995,0.92600000000000005,0.95799999999999996,0.95799999999999996,0.95399999999999996,0.94999999999999996,0.94599999999999995,0.95199999999999996,0.96199999999999997,0.93000000000000005,0.95999999999999996,0.94199999999999995,0.95799999999999996,0.93999999999999995,0.96199999999999997,0.95199999999999996,0.94399999999999995,0.94799999999999995,0.95799999999999996,0.93799999999999994,0.95599999999999996,0.95199999999999996,0.95799999999999996,0.94399999999999995,0.95999999999999996,0.95399999999999996,0.95399999999999996,0.96199999999999997,0.93400000000000005,0.96399999999999997,0.94799999999999995,0.93600000000000005,0.93200000000000005,0.94799999999999995,0.95799999999999996,0.95399999999999996,0.93200000000000005,0.94799999999999995],"text":"","type":"scatter","mode":"lines","line":{"width":3.4015748031496069,"color":"rgba(140,179,105,1)","dash":"solid"},"hoveron":"points","name":"Normal (Simétrica, γ₁ = 0)","legendgroup":"Normal (Simétrica, γ₁ = 0)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200],"y":[0,0.114,0.28399999999999997,0.35999999999999999,0.45000000000000001,0.56599999999999995,0.60199999999999998,0.628,0.63400000000000001,0.69999999999999996,0.73999999999999999,0.77200000000000002,0.77600000000000002,0.82199999999999995,0.78400000000000003,0.81799999999999995,0.83399999999999996,0.81599999999999995,0.82199999999999995,0.82199999999999995,0.85399999999999998,0.85999999999999999,0.84599999999999997,0.86799999999999999,0.83799999999999997,0.85799999999999998,0.87,0.872,0.85999999999999999,0.874,0.86599999999999999,0.86799999999999999,0.89400000000000002,0.878,0.89400000000000002,0.89000000000000001,0.90400000000000003,0.85999999999999999,0.90600000000000003,0.89000000000000001],"text":["<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 5<br><b>Aceptación H0:<\/b> 0%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 10<br><b>Aceptación H0:<\/b> 11.4%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 15<br><b>Aceptación H0:<\/b> 28.4%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 20<br><b>Aceptación H0:<\/b> 36%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 25<br><b>Aceptación H0:<\/b> 45%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 30<br><b>Aceptación H0:<\/b> 56.6%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 35<br><b>Aceptación H0:<\/b> 60.2%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 40<br><b>Aceptación H0:<\/b> 62.8%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 45<br><b>Aceptación H0:<\/b> 63.4%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 50<br><b>Aceptación H0:<\/b> 70%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 55<br><b>Aceptación H0:<\/b> 74%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 60<br><b>Aceptación H0:<\/b> 77.2%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 65<br><b>Aceptación H0:<\/b> 77.6%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 70<br><b>Aceptación H0:<\/b> 82.2%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 75<br><b>Aceptación H0:<\/b> 78.4%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 80<br><b>Aceptación H0:<\/b> 81.8%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 85<br><b>Aceptación H0:<\/b> 83.4%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 90<br><b>Aceptación H0:<\/b> 81.6%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 95<br><b>Aceptación H0:<\/b> 82.2%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 100<br><b>Aceptación H0:<\/b> 82.2%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 105<br><b>Aceptación H0:<\/b> 85.4%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 110<br><b>Aceptación H0:<\/b> 86%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 115<br><b>Aceptación H0:<\/b> 84.6%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 120<br><b>Aceptación H0:<\/b> 86.8%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 125<br><b>Aceptación H0:<\/b> 83.8%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 130<br><b>Aceptación H0:<\/b> 85.8%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 135<br><b>Aceptación H0:<\/b> 87%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 140<br><b>Aceptación H0:<\/b> 87.2%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 145<br><b>Aceptación H0:<\/b> 86%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 150<br><b>Aceptación H0:<\/b> 87.4%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 155<br><b>Aceptación H0:<\/b> 86.6%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 160<br><b>Aceptación H0:<\/b> 86.8%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 165<br><b>Aceptación H0:<\/b> 89.4%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 170<br><b>Aceptación H0:<\/b> 87.8%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 175<br><b>Aceptación H0:<\/b> 89.4%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 180<br><b>Aceptación H0:<\/b> 89%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 185<br><b>Aceptación H0:<\/b> 90.4%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 190<br><b>Aceptación H0:<\/b> 86%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 195<br><b>Aceptación H0:<\/b> 90.6%","<b>Escenario:<\/b> Exponencial (Asimetría alta, γ₁ = 2.0)<br><b>Muestra (n):<\/b> 200<br><b>Aceptación H0:<\/b> 89%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(188,75,81,1)","opacity":1,"size":5.2913385826771648,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(188,75,81,1)"}},"hoveron":"points","name":"Exponencial (Asimetría alta, γ₁ = 2.0)","legendgroup":"Exponencial (Asimetría alta, γ₁ = 2.0)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200],"y":[0.78400000000000003,0.87,0.91000000000000003,0.91800000000000004,0.91800000000000004,0.90600000000000003,0.93400000000000005,0.93600000000000005,0.91800000000000004,0.94799999999999995,0.92800000000000005,0.94599999999999995,0.93400000000000005,0.93600000000000005,0.94599999999999995,0.93999999999999995,0.94999999999999996,0.94599999999999995,0.96399999999999997,0.95599999999999996,0.95399999999999996,0.92600000000000005,0.95399999999999996,0.93999999999999995,0.93400000000000005,0.95599999999999996,0.93400000000000005,0.95999999999999996,0.95199999999999996,0.93600000000000005,0.95799999999999996,0.95399999999999996,0.94599999999999995,0.94599999999999995,0.95399999999999996,0.95799999999999996,0.94399999999999995,0.96599999999999997,0.94199999999999995,0.91800000000000004],"text":["<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 5<br><b>Aceptación H0:<\/b> 78.4%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 10<br><b>Aceptación H0:<\/b> 87%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 15<br><b>Aceptación H0:<\/b> 91%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 20<br><b>Aceptación H0:<\/b> 91.8%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 25<br><b>Aceptación H0:<\/b> 91.8%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 30<br><b>Aceptación H0:<\/b> 90.6%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 35<br><b>Aceptación H0:<\/b> 93.4%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 40<br><b>Aceptación H0:<\/b> 93.6%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 45<br><b>Aceptación H0:<\/b> 91.8%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 50<br><b>Aceptación H0:<\/b> 94.8%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 55<br><b>Aceptación H0:<\/b> 92.8%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 60<br><b>Aceptación H0:<\/b> 94.6%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 65<br><b>Aceptación H0:<\/b> 93.4%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 70<br><b>Aceptación H0:<\/b> 93.6%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 75<br><b>Aceptación H0:<\/b> 94.6%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 80<br><b>Aceptación H0:<\/b> 94%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 85<br><b>Aceptación H0:<\/b> 95%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 90<br><b>Aceptación H0:<\/b> 94.6%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 95<br><b>Aceptación H0:<\/b> 96.4%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 100<br><b>Aceptación H0:<\/b> 95.6%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 105<br><b>Aceptación H0:<\/b> 95.4%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 110<br><b>Aceptación H0:<\/b> 92.6%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 115<br><b>Aceptación H0:<\/b> 95.4%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 120<br><b>Aceptación H0:<\/b> 94%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 125<br><b>Aceptación H0:<\/b> 93.4%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 130<br><b>Aceptación H0:<\/b> 95.6%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 135<br><b>Aceptación H0:<\/b> 93.4%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 140<br><b>Aceptación H0:<\/b> 96%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 145<br><b>Aceptación H0:<\/b> 95.2%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 150<br><b>Aceptación H0:<\/b> 93.6%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 155<br><b>Aceptación H0:<\/b> 95.8%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 160<br><b>Aceptación H0:<\/b> 95.4%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 165<br><b>Aceptación H0:<\/b> 94.6%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 170<br><b>Aceptación H0:<\/b> 94.6%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 175<br><b>Aceptación H0:<\/b> 95.4%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 180<br><b>Aceptación H0:<\/b> 95.8%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 185<br><b>Aceptación H0:<\/b> 94.4%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 190<br><b>Aceptación H0:<\/b> 96.6%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 195<br><b>Aceptación H0:<\/b> 94.2%","<b>Escenario:<\/b> Gamma (Asimetría leve, γ₁ = 0.5)<br><b>Muestra (n):<\/b> 200<br><b>Aceptación H0:<\/b> 91.8%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(244,226,133,1)","opacity":1,"size":5.2913385826771648,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(244,226,133,1)"}},"hoveron":"points","name":"Gamma (Asimetría leve, γ₁ = 0.5)","legendgroup":"Gamma (Asimetría leve, γ₁ = 0.5)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200],"y":[0.35399999999999998,0.63800000000000001,0.70799999999999996,0.79800000000000004,0.85799999999999998,0.876,0.88200000000000001,0.89400000000000002,0.878,0.90800000000000003,0.91000000000000003,0.90600000000000003,0.93000000000000005,0.90400000000000003,0.90400000000000003,0.91200000000000003,0.91000000000000003,0.90000000000000002,0.90800000000000003,0.92200000000000004,0.94599999999999995,0.90800000000000003,0.90800000000000003,0.91400000000000003,0.94799999999999995,0.91800000000000004,0.95199999999999996,0.94599999999999995,0.94399999999999995,0.92800000000000005,0.93799999999999994,0.93400000000000005,0.92200000000000004,0.92400000000000004,0.94599999999999995,0.92400000000000004,0.93600000000000005,0.94799999999999995,0.93600000000000005,0.94799999999999995],"text":["<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 5<br><b>Aceptación H0:<\/b> 35.4%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 10<br><b>Aceptación H0:<\/b> 63.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 15<br><b>Aceptación H0:<\/b> 70.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 20<br><b>Aceptación H0:<\/b> 79.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 25<br><b>Aceptación H0:<\/b> 85.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 30<br><b>Aceptación H0:<\/b> 87.6%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 35<br><b>Aceptación H0:<\/b> 88.2%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 40<br><b>Aceptación H0:<\/b> 89.4%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 45<br><b>Aceptación H0:<\/b> 87.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 50<br><b>Aceptación H0:<\/b> 90.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 55<br><b>Aceptación H0:<\/b> 91%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 60<br><b>Aceptación H0:<\/b> 90.6%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 65<br><b>Aceptación H0:<\/b> 93%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 70<br><b>Aceptación H0:<\/b> 90.4%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 75<br><b>Aceptación H0:<\/b> 90.4%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 80<br><b>Aceptación H0:<\/b> 91.2%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 85<br><b>Aceptación H0:<\/b> 91%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 90<br><b>Aceptación H0:<\/b> 90%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 95<br><b>Aceptación H0:<\/b> 90.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 100<br><b>Aceptación H0:<\/b> 92.2%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 105<br><b>Aceptación H0:<\/b> 94.6%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 110<br><b>Aceptación H0:<\/b> 90.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 115<br><b>Aceptación H0:<\/b> 90.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 120<br><b>Aceptación H0:<\/b> 91.4%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 125<br><b>Aceptación H0:<\/b> 94.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 130<br><b>Aceptación H0:<\/b> 91.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 135<br><b>Aceptación H0:<\/b> 95.2%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 140<br><b>Aceptación H0:<\/b> 94.6%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 145<br><b>Aceptación H0:<\/b> 94.4%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 150<br><b>Aceptación H0:<\/b> 92.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 155<br><b>Aceptación H0:<\/b> 93.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 160<br><b>Aceptación H0:<\/b> 93.4%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 165<br><b>Aceptación H0:<\/b> 92.2%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 170<br><b>Aceptación H0:<\/b> 92.4%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 175<br><b>Aceptación H0:<\/b> 94.6%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 180<br><b>Aceptación H0:<\/b> 92.4%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 185<br><b>Aceptación H0:<\/b> 93.6%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 190<br><b>Aceptación H0:<\/b> 94.8%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 195<br><b>Aceptación H0:<\/b> 93.6%","<b>Escenario:<\/b> Gamma (Asimetría mod., γ₁ = 1.0)<br><b>Muestra (n):<\/b> 200<br><b>Aceptación H0:<\/b> 94.8%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(244,162,89,1)","opacity":1,"size":5.2913385826771648,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(244,162,89,1)"}},"hoveron":"points","name":"Gamma (Asimetría mod., γ₁ = 1.0)","legendgroup":"Gamma (Asimetría mod., γ₁ = 1.0)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200],"y":[0.95599999999999996,0.94599999999999995,0.94199999999999995,0.92600000000000005,0.95799999999999996,0.95799999999999996,0.95399999999999996,0.94999999999999996,0.94599999999999995,0.95199999999999996,0.96199999999999997,0.93000000000000005,0.95999999999999996,0.94199999999999995,0.95799999999999996,0.93999999999999995,0.96199999999999997,0.95199999999999996,0.94399999999999995,0.94799999999999995,0.95799999999999996,0.93799999999999994,0.95599999999999996,0.95199999999999996,0.95799999999999996,0.94399999999999995,0.95999999999999996,0.95399999999999996,0.95399999999999996,0.96199999999999997,0.93400000000000005,0.96399999999999997,0.94799999999999995,0.93600000000000005,0.93200000000000005,0.94799999999999995,0.95799999999999996,0.95399999999999996,0.93200000000000005,0.94799999999999995],"text":["<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 5<br><b>Aceptación H0:<\/b> 95.6%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 10<br><b>Aceptación H0:<\/b> 94.6%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 15<br><b>Aceptación H0:<\/b> 94.2%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 20<br><b>Aceptación H0:<\/b> 92.6%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 25<br><b>Aceptación H0:<\/b> 95.8%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 30<br><b>Aceptación H0:<\/b> 95.8%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 35<br><b>Aceptación H0:<\/b> 95.4%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 40<br><b>Aceptación H0:<\/b> 95%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 45<br><b>Aceptación H0:<\/b> 94.6%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 50<br><b>Aceptación H0:<\/b> 95.2%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 55<br><b>Aceptación H0:<\/b> 96.2%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 60<br><b>Aceptación H0:<\/b> 93%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 65<br><b>Aceptación H0:<\/b> 96%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 70<br><b>Aceptación H0:<\/b> 94.2%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 75<br><b>Aceptación H0:<\/b> 95.8%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 80<br><b>Aceptación H0:<\/b> 94%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 85<br><b>Aceptación H0:<\/b> 96.2%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 90<br><b>Aceptación H0:<\/b> 95.2%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 95<br><b>Aceptación H0:<\/b> 94.4%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 100<br><b>Aceptación H0:<\/b> 94.8%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 105<br><b>Aceptación H0:<\/b> 95.8%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 110<br><b>Aceptación H0:<\/b> 93.8%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 115<br><b>Aceptación H0:<\/b> 95.6%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 120<br><b>Aceptación H0:<\/b> 95.2%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 125<br><b>Aceptación H0:<\/b> 95.8%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 130<br><b>Aceptación H0:<\/b> 94.4%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 135<br><b>Aceptación H0:<\/b> 96%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 140<br><b>Aceptación H0:<\/b> 95.4%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 145<br><b>Aceptación H0:<\/b> 95.4%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 150<br><b>Aceptación H0:<\/b> 96.2%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 155<br><b>Aceptación H0:<\/b> 93.4%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 160<br><b>Aceptación H0:<\/b> 96.4%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 165<br><b>Aceptación H0:<\/b> 94.8%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 170<br><b>Aceptación H0:<\/b> 93.6%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 175<br><b>Aceptación H0:<\/b> 93.2%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 180<br><b>Aceptación H0:<\/b> 94.8%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 185<br><b>Aceptación H0:<\/b> 95.8%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 190<br><b>Aceptación H0:<\/b> 95.4%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 195<br><b>Aceptación H0:<\/b> 93.2%","<b>Escenario:<\/b> Normal (Simétrica, γ₁ = 0)<br><b>Muestra (n):<\/b> 200<br><b>Aceptación H0:<\/b> 94.8%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(140,179,105,1)","opacity":1,"size":5.2913385826771648,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(140,179,105,1)"}},"hoveron":"points","name":"Normal (Simétrica, γ₁ = 0)","legendgroup":"Normal (Simétrica, γ₁ = 0)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-4.75,209.75],"y":[0.94999999999999996,0.94999999999999996],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(102,102,102,0.7)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[30,30],"y":[-0.050000000000000003,1.05],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,0.8)","dash":"dot"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":40.840182648401829,"r":7.3059360730593621,"b":37.260273972602747,"l":48.949771689497723},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"sans","size":14.611872146118724},"title":{"text":"Efecto de la asimetría sobre la velocidad de convergencia del TLC - Prueba de SW","font":{"color":"rgba(0,0,0,1)","family":"sans","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-4.75,209.75],"tickmode":"array","ticktext":["0","25","50","75","100","125","150","175","200"],"tickvals":[0,25,50.000000000000007,75,100,125,150,175,200],"categoryorder":"array","categoryarray":["0","25","50","75","100","125","150","175","200"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"sans","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Tamaño de muestra (n)","font":{"color":"rgba(0,0,0,1)","family":"sans","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.050000000000000003,1.05],"tickmode":"array","ticktext":["0%","25%","50%","75%","100%"],"tickvals":[0,0.25,0.5,0.75,1],"categoryorder":"array","categoryarray":["0%","25%","50%","75%","100%"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"sans","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Tasa de aceptación de normalidad (p > 0.05)","font":{"color":"rgba(0,0,0,1)","family":"sans","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"sans","size":11.68949771689498},"orientation":"h","x":0.5,"y":-0.14999999999999999,"xanchor":"center","yanchor":"top","title":{"text":"Asimetría","font":{"color":"rgba(0,0,0,1)","family":"sans","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative","annotations":[{"x":31,"y":0.20000000000000001,"text":"Mito popular:<br /> n = 30","showarrow":true,"arrowhead":2,"ax":40,"ay":-20}]},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"38502ba848ed":{"x":{},"y":{},"colour":{},"type":"scatter"},"385041344fcb":{"x":{},"y":{},"colour":{},"text":{}},"385046af1f3c":{"yintercept":{}},"38502e5756b":{"xintercept":{}}},"cur_data":"38502ba848ed","visdat":{"38502ba848ed":["function (y) ","x"],"385041344fcb":["function (y) ","x"],"385046af1f3c":["function (y) ","x"],"38502e5756b":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script data-goatcounter="https://stevenggoni.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Creado con <a href="https://quarto.org"><iconify-icon role="img" inline="" icon="simple-icons:quarto" aria-label="Quarto Logo" title="Quarto Logo"></iconify-icon> Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

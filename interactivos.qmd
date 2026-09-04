@@ -43,7 +43,7 @@ Este visualizador interactivo permite explorar cómo se combinan dos variables a
 
 ## Teorema del Límite Central y Pruebas de hipótesis
 
-* [Efecto de la asimetría sobre el TLC](https://rpubs.com/SGGoni){target="_blank"}
+* [Efecto de la asimetría sobre el TLC](interactivos/efecto_asimetría_TLC.html){target="_blank"}
 
 Inspirado en algunas publicaciones científicas, aquí podrá encontrar como la asimetría juega un papel ponderante en el cumplimiento del teorema del límite central (TLC). Con este, busco ayudar a "derrumbar" el mito de que el TLC siempre se cumple con $n=30$.
 
