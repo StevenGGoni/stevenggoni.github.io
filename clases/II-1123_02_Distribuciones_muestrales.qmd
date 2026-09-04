@@ -293,7 +293,7 @@ src="diagramas/distribucion_muestral.html" frameborder="0">
 
 ## Teorema del Límite Central (TLC) {.bloques}
 
-* El siguiente [enlace](https://rpubs.com/SGGoni){target="_blank"} contiene una serie de demostraciones computacionales que demuestran la dependencia del TLC de la asimetría. La línea rosada en los gráficos representa a partir de donde se considera que los datos siguen la distribución normal. 
+* El siguiente [enlace](https://stevenggoni.github.io/interactivos/efecto_asimetr%C3%ADa_TLC.html){target="_blank"} demuestra la dependencia del TLC en la asimetría poblacional. 
 
 * Note cómo a mayor asimetría, mayor tamaño de muestra se necesita para que se siga la distribución normal. 
 
