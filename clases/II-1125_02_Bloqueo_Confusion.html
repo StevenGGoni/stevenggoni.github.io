@@ -158,7 +158,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">3 de septiembre de 2026</p>
+  <p class="date">9 de septiembre de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
@@ -215,6 +215,114 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li>¿Puedo hacer algo? ¿Cómo hago el experimento?</li>
 </ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Entonces</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>El bloqueo se utiliza como agente posibilitador de la ejecución del experimento, cuando no se pueden realizar todas las corridas en condiciones homogéneas.</p></li>
+<li><p>La práctica usual es hacer bloques por réplica, como aprendió en la clase pasada; pero no en todas las ocasiones esto es posible, pues no alcanzan los recursos para hacerlo.</p></li>
+<li><p>Es en esta situación en la que se utiliza la <span class="hi">confusión</span>.</p></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/confusion.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Todo tiene un costo</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/pago_GL.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Qué se sacrifica?</h2>
+<ul>
+<li><p>Bloqueo y confusión es todo un arte; pues requiere de la pericia de la persona investigadora para saber cual efecto sacrificar.</p></li>
+<li><p>Por lo general se recomienda recurrir a jerarquía y dispersión de efectos.</p></li>
+<li><p>En simple:</p>
+<ul>
+<li><p>El modelo está dominado por efectos de orden inferior, es decir que las interacciones de orden superior son las que menos interesan.</p></li>
+<li><p>Por ejemplo, en un experimento <span class="math inline">2^3</span> el efecto que menos interesa es el asociado con <span class="math inline">ABC</span>.</p>
+<ul>
+<li>Nota: El efecto de interación mayor de un experimento suele llamarse la palabra. En un <span class="math inline">2^4</span> la palabra es <span class="math inline">ABCD</span></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>En resumen</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Del principio de jerarquía y de dispersión de efectos concluimos que conviene confundir los efectos de orden superior.</p></li>
+<li><p>Pues se presume que estos no son importantes.</p></li>
+<li><p>En la imagen de la derecha se muestra la confusión de un experimento <span class="math inline">2^3</span>.</p></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/bloques_confusion.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Nomenclatura</h2>
+<ul>
+<li><p>El experimetno se escribe como:</p></li>
+<li><p><span class="math display">2^{k-p}</span></p></li>
+<li><p>donde:</p>
+<ul>
+<li><span class="math inline">2</span>: cantidad de niveles</li>
+<li><span class="math inline">k</span>: cantidad de factores</li>
+<li><span class="math inline">p</span>: cantidad de generadores</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Generadores</h2>
+<ul>
+<li><p>Son las piezas de información que son necesarias para generar los bloques.</p></li>
+<li><p>El número de bloques solo puede ser potencia de <span class="math inline">2</span>.</p>
+<ul>
+<li><p>Cantidad de bloques: <span class="math inline">2^p</span>.</p></li>
+<li><p>Cantidad de tratamientos por bloque: <span class="math inline">2^{(k-p)}</span>.</p></li>
+<li><p>Cantidad de tratamientos totales: <span class="math inline">2^k</span>.</p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diferencias entre bloqueo y bloqueo y confusión</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>En bloqueo y confusión el bloque siempre es MENOR al tamaño de una réplica (o sea, a la cantidad de tratamientos).</p></li>
+<li><p>Este detalle es relevante, pues toda confusión es un bloqueo, pero no todo bloqueo es una confusión.</p></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/bloqueo_vs_confusion.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Qué es confusión?</h2>
+<ul>
+<li><p>En simple, que no se puede distinguir el efecto del bloque del efecto confundido.</p></li>
+<li><p>Es decir, estos se van a encontrar aliados (más adelante estudiaremos la estructura de ALIAS).</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Qué es confusión?</h2>
+<ul>
+<li><p>Por ejemplo, en un experimento <span class="math inline">2^{3-1}</span> se obtendrían:</p>
+<ul>
+<li>8 tratamientos</li>
+<li>2 bloques</li>
+<li>4 corridas por bloque</li>
+</ul></li>
+<li><p>¿Qué se confunde?</p>
+<ul>
+<li>Bloque + ABC</li>
+</ul></li>
+<li><p>Cualquier efecto confundido se pierde, por eso que se dice que se paga con información, además de con grados de libertad.</p></li>
 </ul>
 
 
