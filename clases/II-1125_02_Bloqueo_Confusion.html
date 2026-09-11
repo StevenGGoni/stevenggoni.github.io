@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Steven García Goñi steven.garciagoni@ucr.ac.cr">
-  <title>Diseño factorial completo, bloqueado y confundido 2^{k-p}</title>
+  <title>Diseño factorial completo, bloqueado y confundido 2^{k} en 2^p bloques</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -141,13 +141,17 @@
       margin-right: 0; 
     }
   </style>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section class="quarto-title-block center">
-  <h1 class="title">Diseño factorial completo, bloqueado y confundido <span class="math inline">2^{k-p}</span></h1>
+  <h1 class="title">Diseño factorial completo, bloqueado y confundido <span class="math inline">2^{k}</span> en <span class="math inline">2^p</span> bloques</h1>
   <p class="subtitle"><a href="https://stevenggoni.github.io/clases/II-1125_02_Bloqueo_Confusion.pdf">Versión PDF</a> <br> II-1125 Estadística para Ingeniería Industrial III</p>
 
 <div class="quarto-title-authors">
@@ -158,7 +162,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">9 de septiembre de 2026</p>
+  <p class="date">10 de septiembre de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
@@ -170,18 +174,41 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </ul>
 </section>
 <section class="slide level2 bloques">
-<h2>Recordatorio - Bloqueo</h2>
+<h2>Objetivos de aprendizaje</h2>
 <ul>
-<li><p>A menudo, el bloqueo se utiliza para reducir o eliminar la variabilidad transmitida por factores de ruido, es decir, <span class="hi">factores que pueden influir en la respuesta experimental, pero en los que no se está directamente interesado</span>.</p></li>
-<li><p>Por definición, cualquier factor de bloqueo debe estar altamente relacionado con la variable de respuesta pero NO debe interactuar con otros factores de bloqueo u otros factores.</p></li>
+<li><p>La idea es:</p>
+<ul>
+<li><p>Identificar las posibilidades del bloqueo y confusión, con argumentos prácticos, mediante la exploración de escenarios cercanos.</p></li>
+<li><p>Comprender el efecto del bloqueo y la confusión en un diseño experimental, con el propósito de que se reconozca la utilidad y consecuencias.</p></li>
+<li><p>Establecer una forma de actuación en el diseño de bloques y el análisis de resultados, para asegurar el correcto tratamiento de datos y el impacto en las conclusiones.</p></li>
+</ul></li>
+<li><p>Al final se espera que:</p>
+<ul>
+<li>Comprenda la utilidad y consecuencias del bloqueo y confusión en experimentos factoriales completos.</li>
+</ul></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
 <h2>Recordatorio - Bloqueo</h2>
 <ul>
-<li><p>En resumen, el bloqueo es un efecto adcional ficticio, <span class="hi">que no es de interés</span>, que se introduce para mejorar la capacidad resolutiva del modelo.</p></li>
-<li><p>El bloqueo tiene un costo: grados de libertad.</p></li>
-<li><p>Los grados de libertad se relacionan directamente con la potencia estadística, menos GL, menos potencia.</p></li>
+<li><p>A menudo, el bloqueo se utiliza para reducir o eliminar la variabilidad transmitida por factores de ruido, es decir, <span class="hi">factores que pueden influir en la respuesta experimental, pero en los que no se está directamente interesado</span>.</p></li>
+<li><p>Por definición, se asume que un factor de bloqueo no interactúa con los factores de tratamiento ni con otros bloques.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Recordatorio - Bloqueo</h2>
+<ul>
+<li><p>En el diseño experimental es indispensable mantener las condiciones homogéneas, cuando esto no se pueda lograr, se utiliza la técnica de bloqueo. No aplicar la técnica cuando era necesario, infla el error y esto reduce la precisión con la que se hacen las estimaciones.</p></li>
+<li><p>El bloqueo es una intervención, que introduce efectos adicionales. El uso adecuado del bloqueo es una solución “elegante” que posibilita la ejecución de algunos experimentos.</p></li>
+<li><p>Puede tener una o más variables de bloqueo, no pueden interactuar entre sí, porque no es posible medir el efecto de esta interacción, y “engrosa” el error de manera inadecuada, pues no es una valoración aleatoria, sino causal.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Recordatorio - Bloqueo</h2>
+<ul>
+<li><p>En resumen, el bloqueo es un efecto adicional, <span class="hi">que no es de interés</span>, que se introduce para mejorar la capacidad resolutiva del modelo.</p></li>
+<li><p>El bloqueo tiene un costo: grados de libertad (GL).</p></li>
+<li><p>Los grados de libertad se relacionan directamente con la potencia estadística, menos GL, menos potencia. Por ello, el bloqueo tampoco se debe aplicar indiscriminadamente: las variables de bloqueo tienen que estar muy relacionadas con la variable dependiente. Si la variable de bloqueo no está relacionada con la de respuesta, usted está sobredimensionando innecesariamente el modelo.</p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -192,7 +219,23 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li>Excepciones a esta regla serán abordadas en clases posteriores.</li>
 </ul></li>
-<li><p>[Hemos llegado a esas clases posteriores]. La excepción está dada por la técnica de confusión, que garantiza la ortogonalidad con bloques más pequeños que una réplica.</p></li>
+<li><p><span class="hi">Hemos llegado a esas clases posteriores</span>. La excepción está dada por la técnica de confusión, que garantiza la ortogonalidad con bloques más pequeños que una réplica.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Recordatorio - Bloqueo</h2>
+<ul>
+<li><p>Un requisito para aplicar la técnica de bloque, es que no se dé interacción entre los bloques y los tratamientos.</p></li>
+<li><p><em>Por ejemplo</em>, suponga que usted va a hacer un experimento sobre el diseño de un puesto de trabajo manual, en el que va a bloquear a las operarias: Ana y María, porque no es de interés medir el efecto del operador en la variable de respuesta.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Recordatorio - Bloqueo</h2>
+<ul>
+<li><p>Usted se asegura de que las dos personas tengan habilidades similares, que estén calificadas para el trabajo, que presenten condiciones de fatiga similares, etc., etc., pero resulta que <span class="hi">una de ellas es diestra y la otra es zurda</span>, y esa condición puede implicar que cuando las piezas están a un lado u otro del cuerpo de la operadora, el tiempo de ejecución se vea afectado.</p>
+<ul>
+<li>Este es un buen ejemplo, de una inadecuada aplicación de la técnica.</li>
+</ul></li>
 </ul>
 </section>
 <section>
@@ -202,18 +245,25 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </section>
 <section class="slide level2 bloques">
 <h2>¿Cuándo y por qué?</h2>
+<div class="columns">
+<div class="column" style="width:65%;">
 <ul>
 <li><p>Cuando <span class="hi">es necesario bloquear</span>, pero <span class="hi">no alcanzan los recursos</span> para hacer un bloque por réplica.</p></li>
-<li><p>Suponga un ejemplo sencillo, en un experimento <span class="math inline">2^4</span> se usa tela como material experimental, se usa la tela que sobra del proceso de maquila para abaratar los costos.</p></li>
+<li><p>Es decir, cuando es imposible efectuar todas las corridas bajo condiciones homogéneas.</p></li>
+<li><p>Suponga un ejemplo sencillo, en un experimento <span class="math inline">2^4</span> se usa tela como material experimental, se usa la tela que sobra del proceso de maquila (retazos) para abaratar los costos.</p></li>
 </ul>
+</div><div class="column img-fit">
+<p><img data-src="img/retazos.webp"></p>
+</div></div>
 </section>
 <section class="slide level2 bloques">
 <h2>¿Cuándo y por qué?</h2>
 <ul>
-<li><p>La tela que sobra, alcanza para al menos 10 corridas experimentales y se usa material que viene de diferentes proveedores de telas por lo que indefectiblemente hay que bloquear.</p></li>
-<li><p>Pero con 16 tratamientos, no me alcanza la tela para cubrir ni una réplica.</p>
+<li><p>La tela que sobra se agrupa por tipo, proveedor y color, entre otros, y cada grupo alcanza para al menos 10 corridas experimentales. Bajo estas características indefectiblemente hay que bloquear.</p></li>
+<li><p>Pero con 16 tratamientos, no me alcanza la tela para cubrir ni una réplica, es decir, solo podría hacer bloques incompletos.</p>
 <ul>
 <li>¿Puedo hacer algo? ¿Cómo hago el experimento?</li>
+<li>La alternativa directa es: hacer bloques incompletos que mantengan la ortogonalidad del diseño, es decir: emplear la técnica de la confusión.</li>
 </ul></li>
 </ul>
 </section>
@@ -222,8 +272,8 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="columns">
 <div class="column">
 <ul>
-<li><p>El bloqueo se utiliza como agente posibilitador de la ejecución del experimento, cuando no se pueden realizar todas las corridas en condiciones homogéneas.</p></li>
-<li><p>La práctica usual es hacer bloques por réplica, como aprendió en la clase pasada; pero no en todas las ocasiones esto es posible, pues no alcanzan los recursos para hacerlo.</p></li>
+<li><p><span class="hi">Repasando</span>: El bloqueo se utiliza como agente posibilitador de la ejecución del experimento, cuando no se pueden realizar todas las corridas en condiciones homogéneas.</p></li>
+<li><p>La práctica usual es hacer <span class="hi">bloques por réplica</span>, como aprendió en la clase de Factoriales Completos; pero no en todas las ocasiones esto es posible, pues no alcanzan los recursos para hacerlo, como aprendió en el ejemplo de la tela.</p></li>
 <li><p>Es en esta situación en la que se utiliza la <span class="hi">confusión</span>.</p></li>
 </ul>
 </div><div class="column img-fit">
@@ -240,15 +290,12 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>¿Qué se sacrifica?</h2>
 <ul>
-<li><p>Bloqueo y confusión es todo un arte; pues requiere de la pericia de la persona investigadora para saber cual efecto sacrificar.</p></li>
-<li><p>Por lo general se recomienda recurrir a jerarquía y dispersión de efectos.</p></li>
+<li><p>Bloqueo y confusión <span class="hi">es todo un arte</span>; pues requiere de la pericia de la persona investigadora para saber cuál efecto sacrificar. No es una receta de cocina, sino que se escoge con cautela en función del contexto.</p></li>
+<li><p>Por lo general, para tomar esa decisión, se recomienda recurrir a los principios de jerarquía y de dispersión de efectos.</p></li>
 <li><p>En simple:</p>
 <ul>
-<li><p>El modelo está dominado por efectos de orden inferior, es decir que las interacciones de orden superior son las que menos interesan.</p></li>
-<li><p>Por ejemplo, en un experimento <span class="math inline">2^3</span> el efecto que menos interesa es el asociado con <span class="math inline">ABC</span>.</p>
-<ul>
-<li>Nota: El efecto de interación mayor de un experimento suele llamarse la palabra. En un <span class="math inline">2^4</span> la palabra es <span class="math inline">ABCD</span></li>
-</ul></li>
+<li><p>El modelo está dominado por efectos de orden inferior, es decir que las interacciones de orden superior son las que <em>menos</em> interesan.</p></li>
+<li><p>Por ejemplo, en un experimento <span class="math inline">2^3</span> el efecto que menos interesa es el asociado con <span class="math inline">ABC</span>. Un detalle: el efecto de interacción mayor de un experimento suele llamarse la palabra. En un <span class="math inline">2^4</span> la palabra es <span class="math inline">ABCD</span>.</p></li>
 </ul></li>
 </ul>
 </section>
@@ -259,7 +306,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li><p>Del principio de jerarquía y de dispersión de efectos concluimos que conviene confundir los efectos de orden superior.</p></li>
 <li><p>Pues se presume que estos no son importantes.</p></li>
-<li><p>En la imagen de la derecha se muestra la confusión de un experimento <span class="math inline">2^3</span>.</p></li>
+<li><p>En la imagen de la derecha se muestra la confusión de un experimento <span class="math inline">2^{3}</span> en <span class="math inline">2^1</span> bloques, siendo el generador <span class="math inline">ABC</span>.</p></li>
 </ul>
 </div><div class="column img-fit">
 <p><img data-src="img/bloques_confusion.png"></p>
@@ -268,8 +315,8 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Nomenclatura</h2>
 <ul>
-<li><p>El experimetno se escribe como:</p></li>
-<li><p><span class="math display">2^{k-p}</span></p></li>
+<li><p>El experimento se escribe como:</p></li>
+<li><p><span class="math inline">2^{k}</span> en <span class="math inline">2^p</span> bloques</p></li>
 <li><p>donde:</p>
 <ul>
 <li><span class="math inline">2</span>: cantidad de niveles</li>
@@ -295,7 +342,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="columns">
 <div class="column">
 <ul>
-<li><p>En bloqueo y confusión el bloque siempre es MENOR al tamaño de una réplica (o sea, a la cantidad de tratamientos).</p></li>
+<li><p>En bloqueo y confusión el bloque siempre es <span class="hi">menor</span> al tamaño de una réplica (o sea, a la cantidad de tratamientos).</p></li>
 <li><p>Este detalle es relevante, pues toda confusión es un bloqueo, pero no todo bloqueo es una confusión.</p></li>
 </ul>
 </div><div class="column img-fit">
@@ -312,7 +359,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>¿Qué es confusión?</h2>
 <ul>
-<li><p>Por ejemplo, en un experimento <span class="math inline">2^{3-1}</span> se obtendrían:</p>
+<li><p>Por ejemplo, en un experimento <span class="math inline">2^{3}</span> en <span class="math inline">2^{1}</span> bloques se obtendrían:</p>
 <ul>
 <li>8 tratamientos</li>
 <li>2 bloques</li>
@@ -322,8 +369,206 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li>Bloque + ABC</li>
 </ul></li>
-<li><p>Cualquier efecto confundido se pierde, por eso que se dice que se paga con información, además de con grados de libertad.</p></li>
+<li><p>Cualquier efecto confundido se pierde (no se estima), por eso que se dice que <span class="hi">se paga con información, además de con grados de libertad</span>.</p></li>
 </ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Una analogía</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Suponga que usted tiene un herman@ con el que tiene que compartir un sandwich; pues “no alcanzan” los recursos para que cada uno se coma uno entero.</p></li>
+<li><p>La partición debe hacerse de forma justa, ¿correcto?</p></li>
+<li><p>Por lo general, en el acervo popular, se dice que el corte en diagonal, es mejor que el vertical; en el caso del bloqueo y confusión, si debe ser así, en diagonal (aunque usted esté de acuerdo o no), para conservar la ortogonalidad del diseño.</p></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/sandwich.jpg"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Una analogía</h2>
+<ul>
+<li><p>A modo de analogía, tome en cuenta que al cortar el sandwich, usted está perdiendo parte del mismo, pues se generan boronas o migajas, y la salsa y otros componentes del sandwich se quedan pegados al cuchillo.</p></li>
+<li><p>En bloqueo y confusión, ocurre lo mismo, el “corte” que se realiza sobre la geometría del diseño, hace que pierda información.</p></li>
+<li><p>Ahora, si se realiza el corte en la diagonal, <span class="hi">se pierde la información que da esa diagonal</span>. Como aprendió en la clase de Factoriales Completos, las diagonales se usan para estimar las <span class="hi">interacciones</span>.</p></li>
+<li><p>En el caso de esta analogía, siendo un experimento <span class="math inline">2^2</span>, se perdería la interacción <span class="math inline">AB</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Una analogía</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>De realizarse el corte sobre la <span class="hi">horizontal</span> o la <span class="hi">vertical</span>, se estaría perdiendo la información de un efecto principal <span class="math inline">A</span> o <span class="math inline">B</span>.</p>
+<ul>
+<li>Recuerde, de nuevo, que en la clase de Factoriales completos aprendió que las “caras” de la geometría del diseño se usa para estimar los efectos principales. En la imagen de la derecha, de realizarse el corte de manera vertical, perdería el efecto del Factor A.</li>
+</ul></li>
+<li><p>Por jerarquía y dispersión de efectos, sabe que es mejor “perder” una interacción que un efecto principal.</p></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/sandwich_factores.jpeg"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Generadores recomendados</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<p>Estos son los generadores recomendados, pero no son impuestos, ya que usted puede seleccionar otros generadores por conveniencia.</p>
+<p>Esa conveniencia se determina en función de la experiencia en: 1) El diseño de experimentos, 2) el proceso que se está estudiando.</p>
+</div><div class="column img-fit">
+<p><img data-src="img/generadores_confusion.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio</h2>
+<ul>
+<li><p>Suponga una réplica de un experimento factorial completo <span class="math inline">2^{3}</span> en <span class="math inline">2^1</span> bloques. En la tabla anterior puede observar los generadores sugeridos. En este caso será <span class="math inline">ABC</span>. Primero, generamos el experimento de interés y luego agregamos una columna adicional con el generador utilizado.</p></li>
+<li><p>Realice este ejercicio en conjunto con la persona docente.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/ejercicio_confusion.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li><p>Repita el ejercicio anterior, de forma autónoma, pero en esta ocasión utilice dos generadores.</p>
+<ul>
+<li>Es decir, con <span class="math inline">2^{3}</span> en <span class="math inline">2^2</span> bloques.</li>
+</ul></li>
+<li><p>Sirvase usar el espacio de la derecha, si gusta, para este fin. Agregue las columnas necesarias.</p></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Tipos de confusión</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Confusión parcial</h2>
+<ul>
+<li><p>Es la medida paliativa para la desventaja más grande de la confusión: <span class="hi">la pérdida de información</span>. Ocurre cuando en todas las réplicas <span class="hi">se confunden efectos diferentes</span>, de tal forma que la información que se pierde o confunde en una réplica, aparece en la réplica siguiente.</p>
+<ul>
+<li><p>Por ejemplo, se puede lograr realizando una réplica con un <span class="math inline">2^{5}</span> en <span class="math inline">2^1</span> bloques y otra con un <span class="math inline">2^{5}</span> en <span class="math inline">2^2</span> bloques, de tal forma que los generadores son diferentes. No es una opción usual.</p></li>
+<li><p>No obstante, también puede realizar una con un <span class="math inline">2^{5}</span> en <span class="math inline">2^1</span> bloques con ABCDE como generador y la otra en un <span class="math inline">2^{5}</span> en <span class="math inline">2^1</span> bloques pero con ABCD como generador. Esta opción es la preferida.</p></li>
+</ul></li>
+<li><p>De esta manera, la información perdida en una réplica se obtiene de otra réplica. Los efectos confundidos y “recuperados” se estiman con menor precisión (EE más altos).</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Confusión completa</h2>
+<ul>
+<li>Cuando se confunde siempre el mismo efecto en cada réplica, de tal manera que ese efecto no se recupera y queda “perdido” (o sea confundido) en todas las ocasiones.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Confusión</h2>
+<ul>
+<li><p>Siempre que sea posible, se recomienda el uso de confusión parcial.</p></li>
+<li><p>Esto NO implica que la confusión completa sea un error.</p></li>
+<li><p>En muchas situaciones pueden ser deseables los experimentos de una sola réplica y estos, si se usan con bloqueo y confusión tendrán confusión completa.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Confusión</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/tipos_confusion.jpg"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio</h2>
+<ul>
+<li><p>Resuelva de forma sincrónica o asincrónica, a juicio de la persona docente.</p></li>
+<li><p>Genere, en Excel, la matriz de diseño de un experimento factorial <span class="math inline">2^{5}</span> en <span class="math inline">2^p</span> bloques y posteriormente realice diseños con 2, 4 y 8 bloques. Utilice los generadores recomendados.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Cómo crear este experimento en R</h2>
+<ul>
+<li><p>En caso de que no quiera usar Minitab, por costo, licenciamiento u otras razones, se le provee de un tutorial en R para el diseño y análisis de experimentos factoriales completos, bloqueados y confundidos.</p></li>
+<li><p>Lo puede encontrar en este <a href="https://stevenggoni.github.io/tutoriales_R/bloqueo_confusion.html" target="_blank">enlace</a>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Bibliografía</h2>
+<div class="columns">
+<div class="column" style="font-size: 1.35em;">
+<ul>
+<li>Montgomery, D. C. (2020). Design and analysis of experiments (10.ª ed.). Wiley.
+<ul>
+<li>Capítulo 7.</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 center">
+<h2>Diseño factorial completo, bloqueado y confundido <span class="math inline">2^{k}</span> en <span class="math inline">2^p</span> bloques <br> II-1125 Estadística para Ingeniería Industrial III</h2>
+<h3 class="subtitle">Gracias por su atención <br> Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a></h3>
+<h3>Dudas o correcciones requeridas pueden solicitarse al correo</h3>
 
 
 </section></section>

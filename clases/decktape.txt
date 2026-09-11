@@ -32,4 +32,8 @@ decktape reveal --size="1920x1080" II-1123_08_Reductores_ruido.html II-1123_08_R
 
 decktape reveal --size="1920x1080" II-1125_01_Factorial_completo.html II-1125_01_Factorial_completo.pdf
 
+decktape reveal --size="1920x1080" --page-load-timeout 60000 II-1125_02_Bloqueo_Confusion.html II-1125_02_Bloqueo_Confusion.pdf
+
 decktape reveal --size="1920x1080" II-1125_07_RSM.html II-1125_07_RSM.pdf
+
+II-1125_02_Bloqueo_Confusion.pdf

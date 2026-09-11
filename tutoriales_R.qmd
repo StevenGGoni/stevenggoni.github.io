@@ -48,6 +48,16 @@ Una guía práctica para determinar el tamaño de muestra en modelos de regresi�
 y ANOVA. Cubre desde diseños balanceados y desbalanceados hasta experimentos factoriales 
 y reductores de ruido, utilizando el índice $f$ de Cohen y la librería `pwr` de R.
 
+## Diseño de experimentos 
+
+* [Experimento factorial completo $2^k$ en R](tutoriales_R/factorial_R.html){target="_blank"}
+
+Guía práctica para la construcción, aleatorización y análisis de experimentos factoriales completos de dos niveles sin y con réplicas. Cubre desde la formulación del modelo lineal en R hasta el diagnóstico de efectos y la selección de términos.
+
+* [Experimento factorial completo bloqueado y confundido $2^{k-p}$ en R](tutoriales_R/bloqueo_confusion_R.html){target="_blank"}
+
+Tutorial sobre la estructuración de diseños factoriales $2^k$ bajo restricciones de aleatorización. Muestra cómo aislar la variabilidad por bloques mediante la confusión de interacciones de alto orden ($ABCDE$) y cómo preservar la estructura del bloque en la selección del modelo.
+
 ## Ingeniería de Calidad `r fontawesome::fa("ruler-combined")`
 
 * [Diagrama de Pareto](tutoriales_R/diagrama_pareto.html){target="_blank"} 

@@ -1,0 +1,147 @@
+---
+title: "Diseño factorial completo $2^{5}$ en $2^{1}$ bloques en `R`"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    collapse-sections: true
+execute:
+  warning: false
+  message: false
+---
+
+# Librerías
+
+```{r}
+library(tidyverse)
+library(FrF2)
+library(broom)
+library(flextable)
+```
+
+# Introducción
+
+Para realizar un diseño factorial completo $2^5$ (32 combinaciones) dispuesto en bloques, podemos utilizar la interacción de mayor orden ($ABCDE$) como contraste definidor de bloqueo.
+
+Al confundir $ABCDE$ con los bloques, sacrificamos la estimación de esta interacción de 5 factores a cambio de aislar la variabilidad por bloques. En este ejemplo, replicamos el experimento 2 veces ($N = 64$ corridas) distribuidas en 4 bloques de tamaño 16.
+
+```{r}
+
+A <- B <- C <- D <- E <- c(-1, 1)
+
+# Base completa 2^5
+diseno_base <- tidyr::expand_grid(A, B, C, D, E)
+
+# Experimento replicado con confusión de ABCDE
+diseno <- diseno_base |> 
+  rbind(diseno_base) |> 
+  dplyr::mutate(ABCDE = A*B*C*D*E) |> 
+  dplyr::arrange(ABCDE) |> 
+  dplyr::mutate(Bloque = factor(c(rep(1, 16), 
+                                  rep(3, 16), 
+                                  rep(2, 16), 
+                                  rep(4, 16)))) |> 
+  dplyr::select(-ABCDE) # Se elimina el contraste tras asignar bloques
+
+diseno
+
+```
+
+Recuerde que el diseño se ejecuta en orden aleatorio, en este caso, intrabloque. 
+
+```{r}
+
+# Aleatorización intrabloque
+set.seed(123)
+diseno <- diseno |> 
+  dplyr::group_by(Bloque) |> 
+  dplyr::slice_sample(prop = 1) |> 
+  dplyr::ungroup()
+
+diseno
+
+```
+
+
+# Análisis del modelo
+
+Trabajemos con el diseño creado con `R base`, agreguemos una respuesta ficticia, solo a modo de ejemplo.
+
+```{r}
+
+R <- rnorm(64, 30, 2)
+
+resultados <- cbind(diseno, R)
+
+```
+
+Ajustamos el modelo saturado. Al estar Bloque definido como factor (3 GL), se absorbe la variación correspondiente a $ABCDE$, por lo que la interacción A:B:C:D:E resulta inestimable (aparece como NA / 0 GL), demostrando la confusión deseada.
+
+```{r}
+
+modelo1 <- lm(R ~ Bloque + A*B*C*D*E, 
+              data = resultados)
+
+broom::tidy(modelo1) |> 
+  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) |> 
+  flextable::flextable()
+
+broom::tidy(aov(modelo1)) %>% 
+  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) |>  
+  flextable::flextable()
+
+```
+
+Algunos resultados gráficos:
+
+```{r}
+# Modelo auxiliar sin el factor Bloque (solo los 5 factores de 2 niveles)
+# porque las funciones no dejan más de dos niveles
+modelo_graficos <- lm(R ~ A*B*C*D*E, data = resultados)
+
+FrF2::DanielPlot(modelo_graficos) # gráfico de daniel
+FrF2::MEPlot(modelo_graficos) # Efectos principales
+FrF2::IAPlot(modelo_graficos) # Efectos de interacción
+
+```
+
+Para un gráfico de Pareto
+
+```{r}
+
+efectos <- coef(modelo1)[-c(1, 2, 3, 4, 35)]  # quitamos intercepto, bloques y ABCDE
+df_efectos <- data.frame(
+  factor = names(efectos),
+  efecto = abs(efectos))
+
+ggplot(df_efectos, aes(x = reorder(factor, efecto), y = efecto)) +
+  geom_bar(stat = "identity", fill =  "darksalmon") +
+  coord_flip() +
+  labs(x = "Factor/Interacción", y = "Magnitud del efecto",
+       title = "Pareto de efectos factoriales") +
+  theme_bw()
+
+```
+
+¿Qué nos falta?
+
+Pues eliminar todo aquello que no aporte al modelo, esta es una forma de hacerlo automático, pero en DdE puede ser más valioso hacerlo paso a paso.
+
+```{r}
+#forzando que el bloque siempre sea parte del modelo
+modelo_final <- step(modelo1, 
+                     direction = "backward", 
+                     scope = list(lower = ~ Bloque, 
+                                  upper = formula(modelo1)), 
+                     trace = 0)
+
+broom::tidy(modelo_final) %>% 
+  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) %>% 
+  flextable::flextable()
+
+broom::tidy(aov(modelo_final)) %>% 
+  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) %>% 
+  flextable::flextable()
+
+```
