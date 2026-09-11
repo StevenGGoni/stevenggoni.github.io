@@ -312,7 +312,7 @@
     "href": "clases.html#ii-1125-estadística-para-ingeniería-industrial-iii",
     "title": "Material de clases",
     "section": "II-1125 Estadística para Ingeniería Industrial III",
-    "text": "II-1125 Estadística para Ingeniería Industrial III\n\nDiseño factorial completo \\(2^k\\)\nDiseño factorial completo, bloqueado y confundido \\(2^{k-p}\\)\n[Diseño factorial fraccionado]\nMetodología de Superficies de Respuesta (RSM)\n[Introducción a otros experimentos de alta complejidad]"
+    "text": "II-1125 Estadística para Ingeniería Industrial III\n\nDiseño factorial completo \\(2^k\\)\nDiseño factorial completo, bloqueado y confundido \\(2^{k}\\) en \\(2^p\\) bloques\n[Diseño factorial fraccionado \\(2^{k-p}_R\\)]\nMetodología de Superficies de Respuesta (RSM)\n[Introducción a otros experimentos de alta complejidad]"
   },
   {
     "objectID": "infografias.html",
@@ -732,6 +732,6 @@
     "href": "tutoriales_R.html#diseño-de-experimentos",
     "title": "Tutoriales en R",
     "section": "Diseño de experimentos",
-    "text": "Diseño de experimentos\n\nExperimento factorial completo \\(2^k\\) en R\n\nGuía práctica para la construcción, aleatorización y análisis de experimentos factoriales completos de dos niveles sin y con réplicas. Cubre desde la formulación del modelo lineal en R hasta el diagnóstico de efectos y la selección de términos.\n\nExperimento factorial completo bloqueado y confundido \\(2^{k-p}\\) en R\n\nTutorial sobre la estructuración de diseños factoriales \\(2^k\\) bajo restricciones de aleatorización. Muestra cómo aislar la variabilidad por bloques mediante la confusión de interacciones de alto orden (\\(ABCDE\\)) y cómo preservar la estructura del bloque en la selección del modelo."
+    "text": "Diseño de experimentos\n\nExperimento factorial completo \\(2^k\\)\n\nGuía práctica para la construcción, aleatorización y análisis de experimentos factoriales completos de dos niveles sin y con réplicas. Cubre desde la formulación del modelo lineal en R hasta el diagnóstico de efectos y la selección de términos.\n\nExperimento factorial completo bloqueado y confundido \\(2^{k}\\) en \\(2^p\\) bloques\n\nTutorial sobre la estructuración de diseños factoriales \\(2^k\\) bajo restricciones de aleatorización. Muestra cómo aislar la variabilidad por bloques mediante la confusión de interacciones de alto orden (\\(ABCDE\\)) y cómo preservar la estructura del bloque en la selección del modelo."
   }
 ]

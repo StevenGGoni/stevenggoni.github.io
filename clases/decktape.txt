@@ -20,7 +20,7 @@ decktape reveal --size="1920x1080" --page-load-timeout 60000 --load-pause 2000 I
 
 decktape reveal --size="1920x1080" --page-load-timeout 60000 --load-pause 2000 II-1123_03_Pruebas_hipotesis_IC.html II-1123_03_Pruebas_hipotesis_IC.pdf
 
-decktape reveal --size="1920x1080" II-1123_04_Bondad_ajuste.html II-1123_04_Bondad_ajuste.pdf
+decktape reveal --size="1920x1080" --page-load-timeout 60000 II-1123_04_Bondad_ajuste.html II-1123_04_Bondad_ajuste.pdf
 
 decktape reveal --size="1920x1080" II-1123_05_Est_no_paramétrica.html II-1123_05_Est_no_paramétrica.pdf
 
@@ -34,6 +34,4 @@ decktape reveal --size="1920x1080" II-1125_01_Factorial_completo.html II-1125_01
 
 decktape reveal --size="1920x1080" --page-load-timeout 60000 II-1125_02_Bloqueo_Confusion.html II-1125_02_Bloqueo_Confusion.pdf
 
-decktape reveal --size="1920x1080" II-1125_07_RSM.html II-1125_07_RSM.pdf
-
-II-1125_02_Bloqueo_Confusion.pdf
+decktape reveal --size="1920x1080" --page-load-timeout 60000 II-1125_04_RSM.html II-1125_04_RSM.pdf

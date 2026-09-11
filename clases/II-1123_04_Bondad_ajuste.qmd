@@ -30,7 +30,7 @@ library(plotly)
 ## ¿Qué es bondad de ajuste? {.bloques}
 
 -   Es el grado de acoplamiento que existe entre los datos originales y los valores teóricos.
--   Describe que tan bien se ajusta un conjunto de observaciones. Tales medidas, por lo general, describen o resumen la discrepancia entre los valores observados y los valores esperados en el modelo de estudio.
+-   Describe qué tan bien se ajusta un conjunto de observaciones. Tales medidas, por lo general, describen o resumen la discrepancia entre los valores observados y los valores esperados en el modelo de estudio.
 -   Para ello se emplean contrastes de hipótesis.
 -   La bondad de ajuste es un concepto estadístico que mide qué tan bien un conjunto de [datos observados]{.hi} se ajusta a una distribución de [probabilidad teórica]{.hi} específica.
 -   En otras palabras, evalúa si los datos podrían razonablemente provenir de una distribución determinada (por ejemplo, binomial, Poisson, normal, exponencial, etc.).
@@ -70,7 +70,7 @@ n <- 500
 datos_w <- data.frame(Datos = rweibull(n, 2, 2))
 
 
-g1 <- datos_w %>% 
+g1 <- datos_w |> 
   ggplot(aes(Datos, y=after_stat(density))) +
   geom_histogram(bins = round(1 + log2(n)), 
                  fill = "#263247", 
@@ -79,7 +79,7 @@ g1 <- datos_w %>%
   labs(y = "Densidad") +
   theme_bw()
 
-plotly::ggplotly(g1, height = 600, width = 550) %>% 
+plotly::ggplotly(g1, height = 600, width = 550) |> 
   plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 30),
@@ -96,26 +96,27 @@ plotly::ggplotly(g1, height = 600, width = 550) %>%
 -   Histograma (variables continuas)
     -   Puede agregar una “curva” teórica superpuesta para evaluar el ajuste.
 -   Gráfico de barras (Variables discretas)
-    -   Puede agregar puntos téoricos que le permitan evaluar el ajuste.
+    -   Puede agregar puntos teóricos que le permitan evaluar el ajuste.
 :::
 
 ::: {.column width="35%"}
+
 ### Variable discreta
 
 ```{r}
 
 datos_b <- data.frame(Datos = rbinom(n, 5, 0.4))
 
-g2 <- datos_b %>% 
-  dplyr::count(Datos) %>% 
-  dplyr::mutate(Masa = dbinom(0:5, 5, 0.4)) %>% 
+g2 <- datos_b |> 
+  dplyr::count(Datos) |> 
+  dplyr::mutate(Masa = dbinom(0:5, 5, 0.4)) |> 
   ggplot(aes(x = Datos, y = n/500)) +
   geom_col(fill = "#263247") +
   geom_point(aes(y = Masa), color = "#C18A00", size = 4) +
   labs(y = "Masa") +
   theme_bw()
 
-plotly::ggplotly(g2, height = 600, width = 550) %>% 
+plotly::ggplotly(g2, height = 600, width = 550) |> 
   plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 30),
@@ -163,21 +164,21 @@ sample_q <- sort(datos_w$Datos)
 
 fit <- lm(sample_q ~ theoretical)
 
-plot_ly(height = 400, width = 550) %>%
+plot_ly(height = 400, width = 550) |>
   plotly::add_ribbons(x = theoretical,
                       ymin = lower,
                       ymax = upper,
                       fillcolor = "rgba(38,50,71,0.15)",
                       line = list(color = "transparent"),
-                      showlegend = FALSE) %>% 
+                      showlegend = FALSE) |> 
   plotly::add_markers(x = theoretical,
                       y = sample_q,
                       marker = list(color = "#C18A00"),
-                      showlegend = FALSE) %>%
+                      showlegend = FALSE) |>
   plotly::add_lines(x = theoretical,
                     y = fitted(fit),
                     line = list(color = "#263247"),
-                    showlegend = FALSE) %>%
+                    showlegend = FALSE) |>
   plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 25),
@@ -216,21 +217,21 @@ theoretical2 <- qnorm(ppoints(n))
 sample_q2 <- sort(x2)
 fit2 <- lm(sample_q2 ~ theoretical2)
 
-plotly::plot_ly(height = 400, width = 550) %>%
+plotly::plot_ly(height = 400, width = 550) |>
   plotly::add_ribbons(x = theoretical2,
                       ymin = lower,
                       ymax = upper,
                       fillcolor = "rgba(38,50,71,0.15)",
                       line = list(color = "transparent"),
-                      showlegend = FALSE) %>% 
+                      showlegend = FALSE) |> 
   plotly::add_markers(x = theoretical2,
                       y = sample_q2,
                       marker = list(color = "#C18A00"),
-                      showlegend = FALSE) %>%
+                      showlegend = FALSE) |>
   plotly::add_lines(x = theoretical2,
                     y = fitted(fit2),
                     line = list(color = "#263247"),
-                    showlegend = FALSE) %>%
+                    showlegend = FALSE) |>
   plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 30),
@@ -281,21 +282,21 @@ sample_q <- sort(datos_w$Datos)
 
 fit <- lm(sample_q ~ theoretical_w)
 
-plotly::plot_ly(height = 600, width = 850) %>%
+plotly::plot_ly(height = 600, width = 850) |>
   plotly::add_ribbons(x = theoretical_w,
                       ymin = lower,
                       ymax = upper,
                       fillcolor = "rgba(38,50,71,0.15)",
                       line = list(color = "transparent"),
-                      showlegend = FALSE) %>% 
+                      showlegend = FALSE) |> 
   plotly::add_markers(x = theoretical_w,
                       y = sample_q,
                       marker = list(color = "#C18A00"),
-                      showlegend = FALSE) %>%
+                      showlegend = FALSE) |>
   plotly::add_lines(x = theoretical_w,
                     y = fitted(fit),
                     line = list(color = "#263247"),
-                    showlegend = FALSE) %>%
+                    showlegend = FALSE) |>
   plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 25),
@@ -317,7 +318,7 @@ plotly::plot_ly(height = 600, width = 850) %>%
 ::: {.column width="70%"}
 -   Este tipo de gráficos [se utilizan]{.hi} con frecuencia y de forma simultánea [con pruebas estadísticas formales]{.hi} para contrastar la hipótesis de que un dato siga una distribución particular.
 
--   También es relevante para saber que tipo de prueba de hipótesis realizar.
+-   También es relevante para saber qué tipo de prueba de hipótesis realizar.
 
 -   ¿Tiene sentido aplicarle una prueba de normalidad a estos datos?
 
@@ -338,7 +339,7 @@ set.seed(123)
 
 datos_e <- data.frame(Datos = rexp(n, 2))
 
-g3 <- datos_e %>% 
+g3 <- datos_e |> 
   ggplot(aes(Datos, y = after_stat(density))) +
   geom_histogram(bins = round(1 + log2(n)), 
                  fill = "#263247", 
@@ -347,7 +348,7 @@ g3 <- datos_e %>%
   labs(y = "Densidad") +
   theme_bw()
 
-plotly::ggplotly(g3, height = 600, width = 500) %>% 
+plotly::ggplotly(g3, height = 600, width = 500) |> 
   plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 30),
@@ -361,7 +362,7 @@ plotly::ggplotly(g3, height = 600, width = 500) %>%
 :::
 :::::
 
-## Improtancia de la visualización {.bloques}
+## Importancia de la visualización {.bloques}
 
 :::::: columns
 ::: {.column width="24%"}
@@ -394,21 +395,21 @@ sample_q <- sort(datos_e$Datos)
 
 fit <- lm(sample_q ~ theoretical_e)
 
-plotly::plot_ly(height = 600, width = 650) %>%
+plotly::plot_ly(height = 600, width = 650) |>
   plotly::add_ribbons(x = theoretical_e,
                       ymin = lower,
                       ymax = upper,
                       fillcolor = "rgba(38,50,71,0.15)",
                       line = list(color = "transparent"),
-                      showlegend = FALSE) %>% 
+                      showlegend = FALSE) |> 
   plotly::add_markers(x = theoretical_e,
                       y = sample_q,
                       marker = list(color = "#C18A00"),
-                      showlegend = FALSE) %>%
+                      showlegend = FALSE) |>
   plotly::add_lines(x = theoretical_e,
                     y = fitted(fit),
                     line = list(color = "#263247"),
-                    showlegend = FALSE) %>%
+                    showlegend = FALSE) |>
   plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 25),
@@ -448,21 +449,21 @@ sample_q <- sort(datos_e$Datos)
 
 fit <- lm(sample_q ~ theoretical_ln)
 
-plotly::plot_ly(height = 600, width = 650) %>%
+plotly::plot_ly(height = 600, width = 650) |>
   plotly::add_ribbons(x = theoretical_ln,
                       ymin = lower,
                       ymax = upper,
                       fillcolor = "rgba(38,50,71,0.15)",
                       line = list(color = "transparent"),
-                      showlegend = FALSE) %>%
+                      showlegend = FALSE) |>
   plotly::add_markers(x = theoretical_ln,
                       y = sample_q,
                       marker = list(color = "#C18A00"),
-                      showlegend = FALSE) %>%
+                      showlegend = FALSE) |>
   plotly::add_lines(x = theoretical_ln,
-                    y = theoretical_ln,
+                    y = fitted(fit),
                     line = list(color = "#263247"),
-                    showlegend = FALSE) %>%
+                    showlegend = FALSE) |>
   plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 25),
@@ -490,13 +491,13 @@ plotly::plot_ly(height = 600, width = 650) %>%
 
 ::::: columns
 ::: {.column width="50%"}
--   El valor P es una probabilidad que [mide la evidencia en contra de la hipótesis nula]{.hi}. [Entre más bajo este valor, más fuerte será la evidencia en contra]{.underline}.
+-   El valor P es una probabilidad que [mide la evidencia en contra de la hipótesis nula]{.hi}. [Cuanto más bajo sea este valor, más fuerte será la evidencia en contra]{.underline}.
 
     -   Se compara contra el nivel de significancia ($\alpha$).
 
 -   Formalmente: un valor P es la probabilidad bajo un modelo estadístico especificado que un resumen estadístico de los datos sería igual o más extremo que su valor observado.
 
--   Consulte esta [infografía](https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf){target="_blank"} para ampliar estos conceptos.
+-   Consulte esta [infografía](https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf){target="_blank"}, si es necesario, para repasar estos conceptos.
 :::
 
 ::: {.column .img-fit width="50%"}
@@ -508,39 +509,15 @@ plotly::plot_ly(height = 600, width = 650) %>%
 
 -   El valor P [no es el protagonista]{.hi}, es solo una medida estadística adicional, que [se interpreta en conjunto]{.hi} con las demás medidas.
 
--   En síntesis $\alpha$ y valor p están íntimamente relacionados, pues el primero marca el límite de decisión con base en el segundo.
+    -   **Evidencias externas** del contexto (diseño del estudio, calidad de mediciones, fiabilidad del muestreo).
+    
+    -   **Evidencias internas** (otros estadísticos como la estimación del intervalo de confianza).
+
+-   En síntesis $\alpha$ y valor P están íntimamente relacionados, pues el primero marca el límite de decisión con base en el segundo.
 
 -   El nivel de significancia ($\alpha$) se va a usar frecuentemente, este valor hay que escogerlo [cuidadosamente]{.hi} en función del contexto, [nunca es una medida genérica]{.hi}.
 
     -   Como por ejemplo, usar $\alpha=0.05$ para todo sin importar el contexto es un error. Estos valores siempre deben justificarse.
-
-## Valores P {.bloques}
-
--   Por otro lado, en ocasiones nos vemos tentados a emplear terminología incorrecta como:
-  
-  * Es [MUY significativo]{.hi}, cuando un valor P es muy bajo.
-
--   Es importante aclarar que la significancia estadística es un límite: **solo se puede ser o no ser significativo**.
--   [No puedo ser muy o poco significativo]{.hi}, pues los valores P, como bien se indica en la [infografía](https://stevenggoni.github.io/infografias/Comprendiendo%20el%20valor%20P.pdf){target="_blank"} no mide el tamaño de un efecto ni la importancia de un resultado.
-
-## Valores P {.bloques}
-
-::::: columns
-::: {.column style="font-size: 0.85em;"}
--   Piénselo de esta manera:
--   ¿Yo soy [“más tico”]{.hi} por nacer en San José que alguien que nació en Los Chiles?
-    -   ¿Verdad que no?
--   Con base en esta analogía, tampoco puedo ser más significativo con base en un valor P.
-    -   Así como cualquier nacimiento dentro de las fronteras costarricenses producen un "tico", cualquier valor por debajo del nivel de significancia ($\alpha$) es un resultado significativo, aún cuando ese umbral se supere ampliamente.
--   Lo que puedo estar es más o menos seguro de que “soy tico” y para ello es relevante [analizar el valor P en conjunto]{.hi} con:
-    -   **Evidencias externas** del contexto (diseño del estudio, calidad de mediciones, fiabilidad del muestreo).
-    -   **Evidencias internas** (otros estadísticos como la estimación del intervalo de confianza).
-:::
-
-::: {.column .img-fit width="30%"}
-![](img/mapa_cr.jpg)
-:::
-:::::
 
 # Test de $\chi^2$ {.bloques}
 
@@ -548,7 +525,7 @@ plotly::plot_ly(height = 600, width = 650) %>%
 
 -   Se emplea para la bondad de ajuste de [distribuciones discretas]{.hi}.
 -   Es un test estadístico que compara las frecuencias observadas con las frecuencias esperadas según la distribución teórica propuesta.
-    -   También conocida como prueba de Pearson.
+    -   También conocido como prueba de Pearson.
 -   Esta se usa porque es el caso más general y fácil de entender, aunque es importante señalar que es poco sensible en tamaños de muestra pequeños.
 -   También es relevante dar a conocer que existen otras pruebas que pueden usarse.
 
@@ -558,8 +535,8 @@ plotly::plot_ly(height = 600, width = 650) %>%
 ::: {.column width="100%"}
 -   Se define la prueba de hipótesis
 
-    -   $H_o:$ la distribución se ajusta a los datos
-    -   $H_i:$ la distribución *NO* se ajusta a los datos
+    -   $H_o:$ Los datos observados provienen de la distribución especificada $F_0(x)$.
+    -   $H_i:$ Los datos observados no provienen de la distribución especificada $F_0(x)$.
 
 -   Se calcula el estadístico $\chi^2$
 
@@ -599,9 +576,9 @@ ejemplo_01 <- openxlsx::read.xlsx("data/II-1123_02_Ejemplos y ejercicios resuelt
                                   sheet = "Ejemplo 01", 
                                   cols = 2)
 
-ejemplo_01 %>% 
-  dplyr::count(Lanzamiento, name = "Conteo (Observado)") %>% 
-  knitr::kable(format = "html") %>%
+ejemplo_01 |> 
+  dplyr::count(Lanzamiento, name = "Conteo (Observado)") |> 
+  knitr::kable(format = "html") |>
   kableExtra::kable_styling()
 
 ```
@@ -631,9 +608,9 @@ ejemplo_01 %>%
 
 ```{r}
 
-gej1 <- ejemplo_01 %>% 
-  dplyr::count(Lanzamiento) %>% 
-  dplyr::mutate(Esperado = (1/6)*120) %>% 
+gej1 <- ejemplo_01 |> 
+  dplyr::count(Lanzamiento) |> 
+  dplyr::mutate(Esperado = (1/6)*120) |> 
   ggplot(aes(x = Lanzamiento, y = n)) +
   geom_col(aes(fill = "Observado")) +
   geom_point(aes(y = Esperado, fill = "Esperado"), 
@@ -645,7 +622,7 @@ gej1 <- ejemplo_01 %>%
        fill = "") +
   theme_bw()
 
-plotly::ggplotly(gej1, height = 650, width = 850) %>% 
+plotly::ggplotly(gej1, height = 650, width = 850) |> 
   plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 30),
@@ -673,15 +650,15 @@ plotly::ggplotly(gej1, height = 650, width = 850) %>%
 
 ```{r}
 
-ejemplo_01 %>% 
-  dplyr::count(Dado = Lanzamiento, name = "Observado \\((O_i\\))") %>% 
+ejemplo_01 |> 
+  dplyr::count(Dado = Lanzamiento, name = "Observado \\((O_i\\))") |> 
   dplyr::mutate("P(Esperada)" = (1/6),
                 "Esperado \\((E_i\\))" = (1/6)*120, 
                 "\\(\\frac{(O_i-E_i)^2}{E_i}\\)" = 
-                  (`Observado \\((O_i\\))` - `Esperado \\((E_i\\))`)^2/`Esperado \\((E_i\\))`) %>% 
-  janitor::adorn_totals() %>% 
-  dplyr::mutate(across(2:5, ~ round(.x, 3))) %>% 
-  knitr::kable(format = "html", escape = FALSE) %>%
+                  (`Observado \\((O_i\\))` - `Esperado \\((E_i\\))`)^2/`Esperado \\((E_i\\))`) |> 
+  janitor::adorn_totals() |> 
+  dplyr::mutate(across(2:5, ~ round(.x, 3))) |> 
+  knitr::kable(format = "html", escape = FALSE) |>
   kableExtra::kable_styling()  
   
 
@@ -704,7 +681,7 @@ ejemplo_01 %>%
 
   * Forma corta: CHISQ.TEST($O_i$, $E_i$)
     
-  * Forma larga: 1-CHISQ.DIST($\chi^2$, $n-1$, TRUE)
+  * Forma larga: 1-CHISQ.DIST($\chi^2$, $k-1$, TRUE), siendo $k$ el número de categorías.
 
 * En R `chisq.test(x = c(21, 21, 15, 21, 18, 24), p = rep(1/6, 6))`
 
@@ -726,7 +703,7 @@ ejemplo_01 %>%
 
 ## Ejercicio 01 {.bloques}
 
-* Se ha recolectado 400 observaciones sobre la cantidad de personas que que se reciben cada minuto en una estación de tren de la capital. 
+* Se ha recolectado 400 observaciones sobre la cantidad de personas que se reciben cada minuto en una estación de tren de la capital. 
 
 * Por la naturaleza de este proceso, se sospecha que estos datos son una variable aleatoria que sigue la [distribución de Poisson]{.hi}. 
 
@@ -740,7 +717,7 @@ ejemplo_01 %>%
   * $\lambda=4.575$
   
 * Realice una rutina gráfica. 
-  * Recomendación: $E_i$ debe sumar 400 (es decir, las probabilidades siempre deben suma 1), por lo que quizá deba agregar datos en cero, por ejemplo: 
+  * Recomendación: $E_i$ debe sumar 400 (es decir, las probabilidades siempre deben sumar 1), por lo que quizá deba agregar datos en cero, por ejemplo: 
     * 15 personas observadas 0 veces, esperadas 0.03.
     * Salvo el cálculo de $\lambda$, resuelva con dos decimales. 
     
@@ -751,16 +728,16 @@ ejemplo_01 %>%
 ejercio_01 <- openxlsx::read.xlsx("data/II-1123_02_Ejemplos y ejercicios resueltos.xlsx",
                                   sheet = "Ejercicio 01")
 
-gej1 <- ejercio_01 %>% 
-  dplyr::count(Llegadas) %>% 
-  dplyr::mutate(Masa = dpois(0:11, lambda = 4.575)) %>% 
+gej1 <- ejercio_01  |>  
+  dplyr::count(Llegadas) |> 
+  dplyr::mutate(Masa = dpois(0:11, lambda = 4.575)) |> 
   ggplot(aes(x = Llegadas, y = n/400)) +
   geom_col(fill = "#263247") +
   geom_point(aes(y = Masa), color = "#C18A00", size = 4) +
   labs(y = "Masa") +
   theme_bw()
 
-plotly::ggplotly(gej1, height = 780, width = 1900) %>% 
+plotly::ggplotly(gej1, height = 780, width = 1900) |> 
   plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 30),
@@ -786,7 +763,7 @@ plotly::ggplotly(gej1, height = 780, width = 1900) %>%
 
   * Todos los $E_i \ge 3$ o $E_i \ge 5$
 
-* Por lo que estos valores deben agregarse. Para efectos de este curso usaremos $E_i \ge 5$ como una simplicación, la regla global es 1) Ningún $E_i < 1$ y al menos el 80% de los $E_i\ge 5$.
+* Por lo que estos valores deben agregarse. Para efectos de este curso usaremos $E_i \ge 5$ siempre, como una simplificación, la regla global es: [1)]{.hi} Ningún $E_i < 1$ y [2)]{.hi} al menos el 80% de los $E_i\ge 5$.
 
 :::
 
@@ -794,17 +771,19 @@ plotly::ggplotly(gej1, height = 780, width = 1900) %>%
 
 ```{r}
 
-ejercio_01 %>% 
-  dplyr::count(Llegadas, name = "Frecuencia") %>% 
-  dplyr::mutate(PEi = dpois(0:11, lambda = 4.575), 
+ejercio_01 |> 
+  dplyr::count(Llegadas, name = "Frecuencia") |> 
+  rbind(data.frame(Llegadas = ">12", Frecuencia = 0)) |> 
+  dplyr::mutate(PEi = c(dpois(0:11, lambda = 4.575), 
+                        1- ppois(11, lambda = 4.575)), 
                 Ei = PEi*400, 
-                chi = (Frecuencia - Ei)^2/Ei) %>% 
-  janitor::adorn_totals() %>% 
-  dplyr::mutate(across(2:5, ~round(.x, 3))) %>% 
+                chi = (Frecuencia - Ei)^2/Ei) |> 
+  janitor::adorn_totals() |> 
+  dplyr::mutate(across(2:5, ~round(.x, 2))) |> 
   setNames(c("Llegadas", "\\(O_i\\)", 
              "P(\\(E_i\\))", "\\(E_i\\)",
-             "\\(\\frac{(O_i-E_i)^2}{E_i}\\)")) %>% 
-  knitr::kable(format = "html", escape = FALSE) %>%
+             "\\(\\frac{(O_i-E_i)^2}{E_i}\\)")) |> 
+  knitr::kable(format = "html", escape = FALSE) |>
   kableExtra::kable_styling()  
 
 ```
@@ -819,22 +798,23 @@ ejercio_01 %>%
 
 :::::: {.columns}
 
-::: {.column style="font-size: 0.53em;"}
+::: {.column style="font-size: 0.7em;"}
 
 ```{r}
 
-ejercio_01 %>% 
-  dplyr::count(Llegadas, name = "Frecuencia") %>% 
-  dplyr::add_row(Llegadas = 12:16, Frecuencia = rep(0, 5)) %>% 
-  dplyr::mutate(PEi = dpois(0:16, lambda = 4.575), 
+ejercio_01 |> 
+  dplyr::count(Llegadas, name = "Frecuencia") |> 
+  rbind(data.frame(Llegadas = ">12", Frecuencia = 0)) |> 
+  dplyr::mutate(PEi = c(dpois(0:11, lambda = 4.575), 
+                        1- ppois(11, lambda = 4.575)), 
                 Ei = PEi*400, 
-                chi = (Frecuencia - Ei)^2/Ei) %>% 
-  janitor::adorn_totals() %>%
-  dplyr::mutate(across(3:5, ~round(.x, 4))) %>% 
+                chi = (Frecuencia - Ei)^2/Ei) |> 
+  janitor::adorn_totals() |>
+  dplyr::mutate(across(3:5, ~round(.x, 3))) |> 
   setNames(c("Llegadas", "\\(O_i\\)", 
              "P(\\(E_i\\))", "\\(E_i\\)",
-             "\\(\\frac{(O_i-E_i)^2}{E_i}\\)")) %>% 
-  knitr::kable(format = "html", escape = FALSE) %>%
+             "\\(\\frac{(O_i-E_i)^2}{E_i}\\)")) |> 
+  knitr::kable(format = "html", escape = FALSE) |>
   kableExtra::kable_styling() 
 
 ```
@@ -860,15 +840,15 @@ p <- p/sum(p)
 
 data.frame(Llegadas = c("0-1", 2, 3, 4, 5, 6, 7, 8, 9, ">=10"), 
            Frecuencia = c(18, 39, 69, 82, 68, 61, 33, 16, 5, 9),
-           PEi = p) %>% 
+           PEi = p) |> 
   dplyr::mutate(Ei = PEi*400, 
-                chi = (Frecuencia - Ei)^2/Ei) %>% 
-  janitor::adorn_totals() %>%
-  dplyr::mutate(across(3:5, ~round(.x, 4))) %>% 
+                chi = (Frecuencia - Ei)^2/Ei) |> 
+  janitor::adorn_totals() |>
+  dplyr::mutate(across(3:5, ~round(.x, 4))) |> 
   setNames(c("Llegadas", "\\(O_i\\)", 
              "P(\\(E_i\\))", "\\(E_i\\)",
-             "\\(\\frac{(O_i-E_i)^2}{E_i}\\)")) %>% 
-  knitr::kable(format = "html", escape = FALSE) %>%
+             "\\(\\frac{(O_i-E_i)^2}{E_i}\\)")) |> 
+  knitr::kable(format = "html", escape = FALSE) |>
   kableExtra::kable_styling() 
 
 
@@ -885,7 +865,7 @@ data.frame(Llegadas = c("0-1", 2, 3, 4, 5, 6, 7, 8, 9, ">=10"),
 * Debido a la forma en que se calcula el valor de $\chi^2$, es [extremadamente sensible al tamaño de la muestra]{.hi}: 
   
   * Cuando el tamaño de la muestra es demasiado grande (~500), casi cualquier pequeña diferencia parecerá estadísticamente significativa. 
-  * $\chi^2$ es sensible porque las diferencias pequeñas multiplicadas por n generan $E_i$ grandes, y el estadístico acumula discrepancias sistemáticas.
+  * $\chi^2$ es sensible porque con muestras grandes, la potencia del test aumenta tanto que convierte diferencias minúsculas (e irrelevantes en la práctica) en estadísticamente significativas.
 * Por tanto, debe analizarse con más cuidado, utilizando otras evidencias además del valor P. 
   
 # Pruebas de normalidad {.bloques}
@@ -912,7 +892,7 @@ data.frame(Llegadas = c("0-1", 2, 3, 4, 5, 6, 7, 8, 9, ">=10"),
 ## Introducción {.bloques}
   
 * En esta sesión de trabajo vamos a aprender qué características tienen las pruebas de normalidad, para que pueda escogerlas más adelante. 
-* Por *tradición* se suele usar `Minitab` para hacerlo, pero se nombraran otras que no están presentes en este software, pues no es el único que existe ni el que se usa en ambientes fabriles. 
+* Por *tradición* se suele usar `Minitab` para hacerlo, pero se nombrarán otras que no están presentes en este software, pues no es el único que existe ni el que se usa en ambientes fabriles. 
 
 ## Características {.bloques}
 
@@ -921,7 +901,7 @@ data.frame(Llegadas = c("0-1", 2, 3, 4, 5, 6, 7, 8, 9, ">=10"),
   * La distribución es asimétrica
   * Las colas son pesadas
 
-* Por lo que la selección de una prueba [debe ser concordante con el tipo de desviación que nos preocupe]{.hi}. Ya las pruebas, por lo general, suelen darle más importancia a uno de los dos motivos anteriores
+* Por lo que la selección de una prueba [debe ser concordante con el tipo de desviación que nos preocupe]{.hi}. Ya que las pruebas, por lo general, suelen darle más importancia a uno de los dos motivos anteriores
 
 ## Por ejemplo {.bloques}
 
@@ -950,7 +930,7 @@ like_ESM_reg <- function(a, g, l, m, beta0, beta1, beta2){
                gamma = exp(g),
                lambda = exp(l),
                mu = m)
-  -sum(log(veros)) %>%
+  -sum(log(veros)) |>
     suppressWarnings()
 }
 
@@ -994,11 +974,11 @@ coeficientes_regresion <- c(reg_100[5], # intercepto
                             reg_100[6], # X1
                             reg_100[7]) # X2
 
-par_aux <- c(reg_100[1] %>% exp(), # alpha
-             reg_100[2] %>% exp(), # gamma
-             reg_100[3] %>% exp()) # lambda
+par_aux <- c(reg_100[1] |> exp(), # alpha
+             reg_100[2] |> exp(), # gamma
+             reg_100[3] |> exp()) # lambda
 
-residuos <- data.frame(X1 =  X1, X2 = X2, y = y) %>% 
+residuos <- data.frame(X1 =  X1, X2 = X2, y = y) |> 
   dplyr::mutate(y_hat_lineal = drop(cbind(1, X1, X2) %*% coeficientes_regresion),
                 y_hat = exp(y_hat_lineal),
                 residuos_resp = y - y_hat,
@@ -1009,7 +989,7 @@ residuos <- data.frame(X1 =  X1, X2 = X2, y = y) %>%
                                        par_aux[2], par_aux[3], 0)), 
                 residuos_dev = signo*sqrt(2*(log_vero_sat - log_vero_obs)),
                 residuos_dev = if_else(is.nan(residuos_dev), 
-                                       0, residuos_dev)) %>% 
+                                       0, residuos_dev)) |> 
   suppressWarnings()
 
 texto_label <- paste(
@@ -1042,7 +1022,7 @@ p1 <- ggplot2::ggplot(qq_data,
 
 # histograma
 
-p2 <-  residuos %>%
+p2 <-  residuos |>
   ggplot2::ggplot(aes(residuos_dev)) +
   geom_histogram(bins = 7, color =  "#C18A00",
                  fill = "#263247") +
@@ -1053,7 +1033,7 @@ p2 <-  residuos %>%
 # ---- QQ plot interactivo  ----
 p1_plotly <- ggplotly(p1, source = "qq")
 
-p1_plotly <- p1_plotly %>%
+p1_plotly <- p1_plotly |>
   layout(annotations = list(x = -1.2,
                             y = 1.6,
                             text = texto_label,
@@ -1073,7 +1053,7 @@ fig <- subplot(p1_plotly,
                which_layout = 1)
 
 # ---- Ahora sí aplicar layout global y tamaño ----
-fig <- fig %>%
+fig <- fig |>
   layout(#height = 780,
          #width  = 850,
          paper_bgcolor = "#F1F5F5",
@@ -1162,14 +1142,14 @@ Con un 99 % de confianza, realice al menos tres pruebas de normalidad o con las 
 ejemplo_02 <- openxlsx::read.xlsx("data/II-1123_02_Ejemplos y ejercicios resueltos.xlsx", 
                                   sheet = "Ejemplo 02")
 
-gej02 <- ejemplo_02 %>% 
+gej02 <- ejemplo_02 |> 
   ggplot(aes(Normalidad)) +
   geom_histogram(bins = round(1+log2(140)), 
                  fill = "#263247", 
                  color = "#C18A00") +
   theme_bw()
 
-plotly::ggplotly(gej02, width = 850, height = 500) %>% 
+plotly::ggplotly(gej02, width = 850, height = 500) |> 
     plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 25),
@@ -1204,8 +1184,8 @@ plotly::ggplotly(gej02, width = 850, height = 500) %>%
 ```{r}
 
 data.frame(Prueba =  c("AD", "KS", "RJ"), 
-           "Valor p" = c(0.009, 0.013, 0.022)) %>% 
-  knitr::kable(format = "html") %>%
+           "Valor p" = c(0.009, 0.013, 0.022)) |> 
+  knitr::kable(format = "html") |>
   kableExtra::kable_styling()
 
 ```
@@ -1273,7 +1253,7 @@ data.frame(Prueba =  c("AD", "KS", "RJ"),
 # probamos varias distribuciones
 
 distribuciones <- c("weibull", "lnorm", "exp", # agregar más si es conveniente
-  "gamma", "unif", "logis", "norm") %>% 
+  "gamma", "unif", "logis", "norm") |> 
   purrr::map(function(x){
     fitdistrplus::fitdist(ejemplo_02$Normalidad, x)
     })
@@ -1282,9 +1262,9 @@ bondad_ajuste <- fitdistrplus::gofstat(distribuciones)
 
 data.frame(Distribución = c("Weibull", "Lognormal", "Exponencial",
                             "Gamma", "Uniforme", "Logística", "Normal"), 
-           "Valor p" = round(bondad_ajuste$chisqpvalue,3)) %>% 
-  tibble::remove_rownames() %>% 
-  knitr::kable(format = "html") %>%
+           "Valor p" = round(bondad_ajuste$chisqpvalue,3)) |> 
+  tibble::remove_rownames() |> 
+  knitr::kable(format = "html") |>
   kableExtra::kable_styling()
 ```
 

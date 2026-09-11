@@ -50,11 +50,11 @@ y reductores de ruido, utilizando el índice $f$ de Cohen y la librería `pwr` d
 
 ## Diseño de experimentos 
 
-* [Experimento factorial completo $2^k$ en R](tutoriales_R/factorial_R.html){target="_blank"}
+* [Experimento factorial completo $2^k$](tutoriales_R/factorial_R.html){target="_blank"}
 
 Guía práctica para la construcción, aleatorización y análisis de experimentos factoriales completos de dos niveles sin y con réplicas. Cubre desde la formulación del modelo lineal en R hasta el diagnóstico de efectos y la selección de términos.
 
-* [Experimento factorial completo bloqueado y confundido $2^{k-p}$ en R](tutoriales_R/bloqueo_confusion_R.html){target="_blank"}
+* [Experimento factorial completo bloqueado y confundido $2^{k}$ en $2^p$ bloques](tutoriales_R/bloqueo_confusion_R.html){target="_blank"}
 
 Tutorial sobre la estructuración de diseños factoriales $2^k$ bajo restricciones de aleatorización. Muestra cómo aislar la variabilidad por bloques mediante la confusión de interacciones de alto orden ($ABCDE$) y cómo preservar la estructura del bloque en la selección del modelo.
 
