@@ -45,20 +45,21 @@ library(plotly)
 
 -   Su ventaja principal es que la [vista humana es muy sensible para reconocer discrepancias]{.hi} que podrían pasar desapercibidas en un solo estadístico numérico.
 
-## Recuerde: Visualización {.bloques style="font-size: 1.2em;"}
+## Recuerde: Visualización {.bloques}
 
 -   Una buena visualización mostrará cosas que no se esperaban o hará surgir nuevas preguntas acerca de los datos. También puede dar pistas acerca de si se están haciendo las preguntas equivocadas o si necesitas recolectar datos diferentes.
 
 -   [“Un simple gráfico ha brindado más información a la mente del analista de datos que cualquier otro dispositivo”]{.hi} - *John Tukey*
 
-## Rutinas gráficas: Formalmente {.bloques style="font-size: 1.2em;"}
+## Rutinas gráficas: Formalmente {.bloques}
 
 -   Una rutina gráfica es un [conjunto de pasos estandarizados]{.hi} para elaborar y analizar gráficamente la relación entre los datos observados y una distribución teórica, de manera que se pueda evaluar visualmente la concordancia antes de realizar pruebas formales.
 
 ## ¿Cuáles gráficos usar? {.bloques}
 
 :::::: columns
-::: {.column width="35%"}
+
+::: {.column}
 ### Variable continua
 
 ```{r}
@@ -79,7 +80,7 @@ g1 <- datos_w |>
   labs(y = "Densidad") +
   theme_bw()
 
-plotly::ggplotly(g1, height = 600, width = 550) |> 
+plotly::ggplotly(g1, height = 600, width = 570) |> 
   plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 30),
@@ -90,16 +91,19 @@ plotly::ggplotly(g1, height = 600, width = 550) |>
                               tickfont = list(size = 25)))
 
 ```
+
 :::
 
-::: {.column width="30%" style="font-size: 0.90em;"}
--   Histograma (variables continuas)
+::: {.column width="20%" style="font-size: 0.90em;"}
+
+-   Histograma (Variables continuas)
     -   Puede agregar una “curva” teórica superpuesta para evaluar el ajuste.
 -   Gráfico de barras (Variables discretas)
     -   Puede agregar puntos teóricos que le permitan evaluar el ajuste.
+
 :::
 
-::: {.column width="35%"}
+::: {.column}
 
 ### Variable discreta
 
@@ -116,7 +120,7 @@ g2 <- datos_b |>
   labs(y = "Masa") +
   theme_bw()
 
-plotly::ggplotly(g2, height = 600, width = 550) |> 
+plotly::ggplotly(g2, height = 600, width = 570) |> 
   plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 30),
@@ -133,16 +137,28 @@ plotly::ggplotly(g2, height = 600, width = 550) |>
 ## ¿Cuáles gráficos usar? {.bloques}
 
 :::::: columns
-::: {.column width="28%" style="font-size: 0.88em;"}
+::: {.column}
 -   Puede usar un gráfico de probabilidad ([Probability plot]{.hi}) o un gráfico cuantil-cuantil ([QQ Plot]{.hi}).
 
     -   La idea que sigue este gráfico es que si los puntos se alinean a una recta (teórica), el ajuste es plausible, mientras que si hay desviaciones sistemáticas habría indicativos de mala concordancia.
+
 :::
 
-::: {.column width="36%"}
+::::::
+
+## ¿Cuáles gráficos usar? {.bloques}
+
+:::::: columns
+
+::: {.column}
+
 ### No normal
 
 Estos datos se desvían mucho de la distribución teórica [normal]{.hi}, lo que es indicativo de que no siguen la distribución normal.
+
+:::
+
+::: {.column}
 
 ```{r}
 
@@ -164,7 +180,7 @@ sample_q <- sort(datos_w$Datos)
 
 fit <- lm(sample_q ~ theoretical)
 
-plot_ly(height = 400, width = 550) |>
+plot_ly(height = 670, width = 850) |>
   plotly::add_ribbons(x = theoretical,
                       ymin = lower,
                       ymax = upper,
@@ -193,10 +209,21 @@ plot_ly(height = 400, width = 550) |>
 ```
 :::
 
-::: {.column width="36%"}
+::::::
+
+## ¿Cuáles gráficos usar? {.bloques}
+
+:::::: columns
+
+::: {.column}
+
 ### Normal
 
 Los puntos [siguen la línea teórica]{.hi}, lo que es indicativo que en este caso se sigue la distribución normal.
+
+:::
+
+::: {.column}
 
 ```{r}
 
@@ -217,7 +244,7 @@ theoretical2 <- qnorm(ppoints(n))
 sample_q2 <- sort(x2)
 fit2 <- lm(sample_q2 ~ theoretical2)
 
-plotly::plot_ly(height = 400, width = 550) |>
+plotly::plot_ly(height = 670, width = 850) |>
   plotly::add_ribbons(x = theoretical2,
                       ymin = lower,
                       ymax = upper,
