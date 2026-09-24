@@ -6,10 +6,10 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/quarto-contrib/videojs/video.min.js"></script>
 <link href="site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Steven García Goñi steven.garciagoni@ucr.ac.cr">
   <title>Probabilidad básica</title>
@@ -22,10 +22,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -169,12 +172,12 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a> 
+Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a>
 </div>
 </div>
 </div>
 
-  <p class="date">3 de septiembre de 2026</p>
+  <p class="date">23 de septiembre de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
@@ -1210,7 +1213,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <ul>
 <li><p>Estos ejercicios también pueden resolverse con tablas de contingencia.</p></li>
 <li><p>En la submuestra: <span class="math inline">P(A)\cdot P(B|A) = \frac{1}{16} = 0.0625</span></p></li>
-<li><p>En la submuestra: <span class="math inline">P(A)\cdot P(B|A) = \frac{177}{2403} = 0.0736579</span></p></li>
+<li><p>En la muestra: <span class="math inline">P(A)\cdot P(B|A) = \frac{177}{2403} = 0.0736579</span></p></li>
 </ul>
 </div><div class="column">
 <h3>En la submuestra</h3>
@@ -1379,16 +1382,16 @@ P(Buena|Pasó) = 0.878
 <section class="slide level2 bloques">
 <h2>Diagrama de árbol</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="font-size: 0.8em;">
 <ul>
 <li><p>Siga las ramas donde el resultado sea <span class="math inline">P(D=sí)</span>. En el numerador va la rama de interés (tener diabetes no controlada dado que se es hipertenso.) mientras que en el denominador va la probabilidad total de tener diabetes no controlada, tenga hipertensión o no. En este ejercicio particular es <span class="hi">casualidad</span> que las dos ramas tengan el mismo valor.</p></li>
 <li><p><span class="math inline">P(H=sí|D=sí) = \frac{P(H=sí \cap D =sí)}{P(D=sí)}</span></p></li>
 <li><p><span class="math inline">P(H=sí|D=sí) = \frac{0.0625}{0.0625 + 0.0625} = 0.5</span></p></li>
 </ul>
-</div><div class="column img-fit" style="width:100%;">
+</div><div class="column img-fit" style="width:70%;">
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-349adfa5d821dc44474b" style="width:900px;height:680px;"></div>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-349adfa5d821dc44474b" style="width:900px;height:650px;"></div>
 <script type="application/json" data-for="htmlwidget-349adfa5d821dc44474b">{"x":{"diagram":"\ndigraph {rankdir = LR\n  \n        node [shape = circle]\n      \n        Inicio -> Hsí [label = \"P(H=Sí) = 8/16 = 0.5\"]\n        Inicio -> Hno [label = \"P(H=No) = 8/16 = 0.5\"]\n      \n        Hsí -> 0.0625 [label = \"P(D = sí|H = sí) = 1/8 = 0.125\"]\n        Hsí -> 0.4375 [label = \"P(D = no|H = sí) = 7/8 = 0.875\"]\n      \n        Hno -> 0.06250 [label = \"P(D = sí|H = no) = 1/8 = 0.125\"]\n        Hno -> 0.43750 [label = \"P(D = no|H = no) = 7/8 = 0.875\"]}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>

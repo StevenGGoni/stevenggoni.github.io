@@ -76,7 +76,7 @@ FrF2::FrF2(nruns = 2^4,
 
 ```
 
-No obstante, este tipo de librarias, a título personal, no me encantan. ¿Pueden deducir por qué?
+No obstante, este tipo de librerias, a título personal, no me encantan. ¿Pueden deducir por qué?
 
 Trabajemos con el diseño creado con `R base`, agreguemos una respuesta ficticia, solo a modo de ejemplo.
 

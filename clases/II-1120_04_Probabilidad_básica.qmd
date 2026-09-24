@@ -813,7 +813,7 @@ digraph {rankdir = LR
 
 * En la submuestra: $P(A)\cdot P(B|A) = \frac{1}{16} = 0.0625$
 
-* En la submuestra: $P(A)\cdot P(B|A) = \frac{177}{2403} = 0.0736579$
+* En la muestra: $P(A)\cdot P(B|A) = \frac{177}{2403} = 0.0736579$
 
 :::
 
@@ -970,7 +970,7 @@ Esta es una explicación gráfica del Teorema de Bayes por [Akshay Pachaar](http
 
 :::::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="35%" style="font-size: 0.8em;"}
 
 * Siga las ramas donde el resultado sea $P(D=sí)$. En el numerador va la rama de interés (tener diabetes no controlada dado que se es hipertenso.) mientras que en el denominador va la probabilidad total de tener diabetes no controlada, tenga hipertensión o no. En este ejercicio particular es [casualidad]{.hi} que las dos ramas tengan el mismo valor. 
 
@@ -980,11 +980,11 @@ Esta es una explicación gráfica del Teorema de Bayes por [Akshay Pachaar](http
 
 :::
 
-::: {.column .img-fit width="100%"}
+::: {.column .img-fit width="70%"}
 
 ```{r}
 #| out-width: "900px"
-#| out-height: "680px"
+#| out-height: "650px"
 
 DiagrammeR:::grViz("
 digraph {rankdir = LR

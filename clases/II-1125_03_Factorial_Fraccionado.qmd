@@ -1,0 +1,77 @@
+---
+title: "Diseño factorial fraccionado $2^{k-p}_R$"
+subtitle: "[Versión PDF](https://stevenggoni.github.io/clases/II-1125_03_Factorial_Fraccionado.pdf) <br> II-1125 Estadística para Ingeniería Industrial III"
+date: today
+format: revealjs
+---
+
+```{r}
+
+library(tidyverse)
+
+```
+
+
+## Introducción al Factorial Fraccionado {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* Conforme aumenta el número de factores, el número de corridas necesarias para completar una réplica crece rápidamente, y por tanto la eficiencia del experimento decrece. 
+
+* Es este tipo de situaciones las que motiva el uso de experimentos factoriales fraccionados, donde se espera correr solo una parte del experimento para obtener información que permita orientar la toma de decisiones con mayor eficiencia que si se ejecutase completamente. 
+
+
+:::
+
+
+::: {.column}
+
+```{r}
+
+datos <- data.frame(k = 2:12) |> 
+  dplyr::mutate(Tratamientos = 2^(k))
+
+g1 <- datos |> 
+  ggplot2::ggplot(aes(x = k, y = Tratamientos)) + 
+  geom_line(color = "#C18A00", linewidth = 1.5) +
+  geom_point(color = "#263247", size = 5) +
+  scale_x_continuous(breaks = 2:12) +
+  theme_bw(base_size = 15)
+
+
+plotly::ggplotly(g1, height = 600, width = 850) |> 
+  plotly::layout(paper_bgcolor = "#F1F5F5",
+                 plot_bgcolor  = "#F1F5F5",
+                 font = list(size = 30),
+                 xaxis = list(
+                   title = list( font = list(size = 30)),
+                   tickfont = list(size = 25)),
+                 yaxis = list(title = list(font = list(size = 30)),
+                              tickfont = list(size = 25)))
+
+```
+
+
+:::
+
+::::::
+
+
+## Bibliografía {.bloques}
+
+:::: columns
+::: {.column width="100%" style="font-size: 1.35em;"}
+
+* Montgomery, D. C. (2020). Design and analysis of experiments (10.ª ed.). Wiley.
+  * Capítulo 8.
+
+:::
+::::
+
+## Diseño factorial fraccionado $2^{k-p}_R <br> II-1125 Estadística para Ingeniería Industrial III {.center}
+
+### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni\@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
+
+### Dudas o correcciones requeridas pueden solicitarse al correo

@@ -476,10 +476,12 @@ sample_q <- sort(datos_e$Datos)
 
 fit <- lm(sample_q ~ theoretical_ln)
 
+pred_conf <- predict(fit, interval = "confidence")
+
 plotly::plot_ly(height = 600, width = 650) |>
   plotly::add_ribbons(x = theoretical_ln,
-                      ymin = lower,
-                      ymax = upper,
+                      ymin = pred_conf[, "lwr"], # Límite inferior del modelo
+                      ymax = pred_conf[, "upr"], # Límite superior del modelo
                       fillcolor = "rgba(38,50,71,0.15)",
                       line = list(color = "transparent"),
                       showlegend = FALSE) |>
@@ -498,11 +500,10 @@ plotly::plot_ly(height = 600, width = 650) |>
                    title = list(text = "Cuantiles teóricos Lognormal(-1.24, 1.29)",
                                 font = list(size = 25)),
                    tickfont = list(size = 20)),
-                 yaxis = list(title = list(text = "Distribución Exponencial",
-                                           font = list(size = 25)),
+                 yaxis = list(title = list(text = "Datos Muestrales", # Etiqueta corregida
+                                            font = list(size = 25)),
                               range = c(0, 5),
                               tickfont = list(size = 20)))
-
 ```
 :::
 ::::::
