@@ -12,15 +12,15 @@ library(tidyverse)
 ```
 
 
-## Introducción al Factorial Fraccionado {.bloques}
+## Introducción al factorial fraccionado {.bloques}
 
 :::::: {.columns}
 
 ::: {.column}
 
-* Conforme aumenta el número de factores, el número de corridas necesarias para completar una réplica crece rápidamente, y por tanto la eficiencia del experimento decrece. 
+* Conforme aumenta el número de factores, [el número de corridas necesarias para completar una réplica crece rápidamente]{.hi}, y por tanto [la eficiencia del experimento decrece]{.hi}. 
 
-* Es este tipo de situaciones las que motiva el uso de experimentos factoriales fraccionados, donde se espera correr solo una parte del experimento para obtener información que permita orientar la toma de decisiones con mayor eficiencia que si se ejecutase completamente. 
+* Es este tipo de situaciones las que motiva el uso de [experimentos factoriales fraccionados]{.hi}, donde se espera correr [solo una parte del experimento]{.hi} para obtener información que permita orientar la toma de decisiones con [mayor eficiencia]{.hi} que si se ejecutase completamente. 
 
 
 :::
@@ -42,6 +42,7 @@ g1 <- datos |>
 
 
 plotly::ggplotly(g1, height = 600, width = 850) |> 
+  plotly::style(hoverlabel = list(font = list(size = 40))) |>
   plotly::layout(paper_bgcolor = "#F1F5F5",
                  plot_bgcolor  = "#F1F5F5",
                  font = list(size = 30),
@@ -58,6 +59,52 @@ plotly::ggplotly(g1, height = 600, width = 850) |>
 
 ::::::
 
+## Factorial fraccionado {.bloques}
+
+* Es lógico pensar que en presencia de muchos factores, realizar una réplica completa es una tarea casi imposible. Además de que , [solo una pequeña parte de los grados de libertad se usarían para estimar efectos de orden inferior]{.hi}.
+
+  * Todo esto bajo el ampara del principio de dispersión de efectos. 
+
+* Normalmente la persona investigadora puede asumir y de forma [muy razonable]{.hi}, que las interacciones de orden superior son despreciables o bien, no interesan. 
+
+* Bajo esta premisa, [los efectos principales y otros de orden inferior]{.hi} se pueden obtener corriendo solamente una (o unas pocas) fracción. 
+
+## Factorial fraccionado {.bloques}
+
+:::::: {.columns}
+
+::: {.column}
+
+* Frente a las ventajas anterioremente mencionadas, estos diseños presentan una desventaja: [carecen de la información completa]{.hi}
+
+* Haciendo la analogía con una mandarina, al tomar un gajo se puede encontrar que este [tenga o no semilla]{.hi}, y que con base en un solo gajo, se concluya sobre la cantidad de semillas en toda la mandarina.
+  * Esta generalización puede ser peligrosa. 
+
+:::
+
+::: {.column .img-fit}
+
+![](img/mandarina.webp)
+
+:::
+
+::::::
+
+# ¿Cuándo usarlos? {.bloques}
+
+## Utilidad {.bloques}
+
+* Existe una gran cantidad de factores de interés y se desean estudiar de manera simultánea, pero [con énfasis en los efectos principales y en las interacciones de orden inferior]{.hi}. 
+
+* En las primeras etapas de investigación, cuando es necesario caracterizar un proceso, encontrando aquellas variables (factores) que [tienen un impacto]{.hi} sobre la calidad o eficiencia. 
+
+## Utilidad {.bloques}
+
+* Con los experimentos exploratorios se pretende [reducir la cantidad de factores]{.hi} en estudio a solo aquellos que verdaderamente tengan una implicación en la variable de respuesta del estudio experimental. 
+
+* [Nunca]{.hi} se busca establecer el tamaño del efecto de esos factores, [solo si existe]{.hi} y si tiene implicaciones practicas sobre el contexto bajo el cual se desarrolla el experimento. 
+
+
 
 ## Bibliografía {.bloques}
 
@@ -70,7 +117,8 @@ plotly::ggplotly(g1, height = 600, width = 850) |>
 :::
 ::::
 
-## Diseño factorial fraccionado $2^{k-p}_R <br> II-1125 Estadística para Ingeniería Industrial III {.center}
+
+## Diseño factorial fraccionado $2^{k-p}_R$ <br> II-1125 Estadística para Ingeniería Industrial III {.center}
 
 ### Gracias por su atención <br> Steven García Goñi<br>[steven.garciagoni\@ucr.ac.cr](mailto:steven.garciagoni@ucr.ac.cr) {.subtitle}
 

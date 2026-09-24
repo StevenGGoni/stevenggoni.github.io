@@ -177,24 +177,68 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">22 de septiembre de 2026</p>
+  <p class="date">23 de septiembre de 2026</p>
 </section>
 <section class="slide level2 bloques">
-<h2>Introducción al Factorial Fraccionado</h2>
+<h2>Introducción al factorial fraccionado</h2>
 <div class="columns">
 <div class="column">
 <ul>
-<li><p>Conforme aumenta el número de factores, el número de corridas necesarias para completar una réplica crece rápidamente, y por tanto la eficiencia del experimento decrece.</p></li>
-<li><p>Es este tipo de situaciones las que motiva el uso de experimentos factoriales fraccionados, donde se espera correr solo una parte del experimento para obtener información que permita orientar la toma de decisiones con mayor eficiencia que si se ejecutase completamente.</p></li>
+<li><p>Conforme aumenta el número de factores, <span class="hi">el número de corridas necesarias para completar una réplica crece rápidamente</span>, y por tanto <span class="hi">la eficiencia del experimento decrece</span>.</p></li>
+<li><p>Es este tipo de situaciones las que motiva el uso de <span class="hi">experimentos factoriales fraccionados</span>, donde se espera correr <span class="hi">solo una parte del experimento</span> para obtener información que permita orientar la toma de decisiones con <span class="hi">mayor eficiencia</span> que si se ejecutase completamente.</p></li>
 </ul>
 </div><div class="column">
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-6ae402c2de7b057abfb2" style="width:850px;height:600px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6ae402c2de7b057abfb2">{"x":{"data":[{"x":[2,3,4,5,6,7,8,9,10,11,12],"y":[4,8,16,32,64,128,256,512,1024,2048,4096],"text":["k:  2<br />Tratamientos:    4","k:  3<br />Tratamientos:    8","k:  4<br />Tratamientos:   16","k:  5<br />Tratamientos:   32","k:  6<br />Tratamientos:   64","k:  7<br />Tratamientos:  128","k:  8<br />Tratamientos:  256","k:  9<br />Tratamientos:  512","k: 10<br />Tratamientos: 1024","k: 11<br />Tratamientos: 2048","k: 12<br />Tratamientos: 4096"],"type":"scatter","mode":"lines+markers","line":{"width":5.6692913385826778,"color":"rgba(193,138,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(38,50,71,1)","opacity":1,"size":18.897637795275593,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(38,50,71,1)"}},"frame":null}],"layout":{"margin":{"t":25.962640099626405,"r":9.9626400996264035,"b":50.809464508094649,"l":66.749688667496898},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":30},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.5,12.5],"tickmode":"array","ticktext":["2","3","4","5","6","7","8","9","10","11","12"],"tickvals":[2,3,4,5,6,7,8,9,10,11,12],"categoryorder":"array","categoryarray":["2","3","4","5","6","7","8","9","10","11","12"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":4.9813200498132018,"tickwidth":0.90569455451149117,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.90569455451149117,"zeroline":false,"anchor":"y","title":{"text":"k","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-200.60000000000002,4300.6000000000004],"tickmode":"array","ticktext":["0","1000","2000","3000","4000"],"tickvals":[0,999.99999999999989,2000,3000,4000.0000000000005],"categoryorder":"array","categoryarray":["0","1000","2000","3000","4000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":4.9813200498132018,"tickwidth":0.90569455451149117,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.90569455451149117,"zeroline":false,"anchor":"x","title":{"text":"Tratamientos","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"rgba(255,255,255,1)","line":{"color":"rgba(51,51,51,1)","width":0.90569455451149117,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":2.5769506084466713,"font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241}},"hovermode":"closest","width":850,"height":600,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"41a076e26a0f":{"x":{},"y":{},"type":"scatter"},"41a034bd5245":{"x":{},"y":{}}},"cur_data":"41a076e26a0f","visdat":{"41a076e26a0f":["function (y) ","x"],"41a034bd5245":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-484bbffc32fb824083e4" style="width:850px;height:600px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-484bbffc32fb824083e4">{"x":{"data":[{"x":[2,3,4,5,6,7,8,9,10,11,12],"y":[4,8,16,32,64,128,256,512,1024,2048,4096],"text":["k:  2<br />Tratamientos:    4","k:  3<br />Tratamientos:    8","k:  4<br />Tratamientos:   16","k:  5<br />Tratamientos:   32","k:  6<br />Tratamientos:   64","k:  7<br />Tratamientos:  128","k:  8<br />Tratamientos:  256","k:  9<br />Tratamientos:  512","k: 10<br />Tratamientos: 1024","k: 11<br />Tratamientos: 2048","k: 12<br />Tratamientos: 4096"],"type":"scatter","mode":"lines+markers","line":{"width":5.6692913385826778,"color":"rgba(193,138,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(38,50,71,1)","opacity":1,"size":18.897637795275593,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(38,50,71,1)"}},"frame":null,"hoverlabel":{"font":{"size":40}}}],"layout":{"margin":{"t":25.962640099626405,"r":9.9626400996264035,"b":50.809464508094649,"l":66.749688667496898},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":30},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.5,12.5],"tickmode":"array","ticktext":["2","3","4","5","6","7","8","9","10","11","12"],"tickvals":[2,3,4,5,6,7,8,9,10,11,12],"categoryorder":"array","categoryarray":["2","3","4","5","6","7","8","9","10","11","12"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":4.9813200498132018,"tickwidth":0.90569455451149117,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.90569455451149117,"zeroline":false,"anchor":"y","title":{"text":"k","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-200.60000000000002,4300.6000000000004],"tickmode":"array","ticktext":["0","1000","2000","3000","4000"],"tickvals":[0,999.99999999999989,2000,3000,4000.0000000000005],"categoryorder":"array","categoryarray":["0","1000","2000","3000","4000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":4.9813200498132018,"tickwidth":0.90569455451149117,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.90569455451149117,"zeroline":false,"anchor":"x","title":{"text":"Tratamientos","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"rgba(255,255,255,1)","line":{"color":"rgba(51,51,51,1)","width":0.90569455451149117,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":2.5769506084466713,"font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241}},"hovermode":"closest","width":850,"height":600,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"20bc3de1524c":{"x":{},"y":{},"type":"scatter"},"20bc2a259ca":{"x":{},"y":{}}},"cur_data":"20bc3de1524c","visdat":{"20bc3de1524c":["function (y) ","x"],"20bc2a259ca":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Factorial fraccionado</h2>
+<ul>
+<li><p>Es lógico pensar que en presencia de muchos factores, realizar una réplica completa es una tarea casi imposible. Además de que , <span class="hi">solo una pequeña parte de los grados de libertad se usarían para estimar efectos de orden inferior</span>.</p>
+<ul>
+<li>Todo esto bajo el ampara del principio de dispersión de efectos.</li>
+</ul></li>
+<li><p>Normalmente la persona investigadora puede asumir y de forma <span class="hi">muy razonable</span>, que las interacciones de orden superior son despreciables o bien, no interesan.</p></li>
+<li><p>Bajo esta premisa, <span class="hi">los efectos principales y otros de orden inferior</span> se pueden obtener corriendo solamente una (o unas pocas) fracción.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Factorial fraccionado</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Frente a las ventajas anterioremente mencionadas, estos diseños presentan una desventaja: <span class="hi">carecen de la información completa</span></p></li>
+<li><p>Haciendo la analogía con una mandarina, al tomar un gajo se puede encontrar que este <span class="hi">tenga o no semilla</span>, y que con base en un solo gajo, se concluya sobre la cantidad de semillas en toda la mandarina.</p>
+<ul>
+<li>Esta generalización puede ser peligrosa.</li>
+</ul></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/mandarina.webp"></p>
+</div></div>
+</section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>¿Cuándo usarlos?</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Utilidad</h2>
+<ul>
+<li><p>Existe una gran cantidad de factores de interés y se desean estudiar de manera simultánea, pero <span class="hi">con énfasis en los efectos principales y en las interacciones de orden inferior</span>.</p></li>
+<li><p>En las primeras etapas de investigación, cuando es necesario caracterizar un proceso, encontrando aquellas variables (factores) que <span class="hi">tienen un impacto</span> sobre la calidad o eficiencia.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Utilidad</h2>
+<ul>
+<li>Con los experimentos exploratorios se pretende <span class="hi">reducir la cantidad de factores</span> en estudio a solo aquellos que verdaderamente tengan una implicación en la variable de respuesta del estudio experimental.</li>
+</ul>
 </section>
 <section class="slide level2 bloques">
 <h2>Bibliografía</h2>
@@ -208,13 +252,13 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </ul>
 </div></div>
 </section>
-<section class="slide level2">
-<h2>Diseño factorial fraccionado $2^{k-p}_R <br> II-1125 Estadística para Ingeniería Industrial III {.center}</h2>
+<section class="slide level2 center">
+<h2>Diseño factorial fraccionado <span class="math inline">2^{k-p}_R</span> <br> II-1125 Estadística para Ingeniería Industrial III</h2>
 <h3 class="subtitle">Gracias por su atención <br> Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a></h3>
 <h3>Dudas o correcciones requeridas pueden solicitarse al correo</h3>
 
 
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

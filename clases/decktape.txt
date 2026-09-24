@@ -24,7 +24,7 @@ decktape reveal --size="1920x1080" --page-load-timeout 60000 II-1123_04_Bondad_a
 
 decktape reveal --size="1920x1080" II-1123_05_Est_no_paramétrica.html II-1123_05_Est_no_paramétrica.pdf
 
-decktape reveal --size="1920x1080" II-1123_06_Estadistica_multivariada.html II-1123_06_Estadistica_multivariada.pdf
+decktape reveal --size="1920x1080" --page-load-timeout 60000 --load-pause 2000 II-1123_06_Estadistica_multivariada.html II-1123_06_Estadistica_multivariada.pdf
 
 decktape reveal --size="1920x1080" II-1123_07_Fundamentos_DoE.html II-1123_07_Fundamentos_DoE.pdf
 

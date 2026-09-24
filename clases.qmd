@@ -52,7 +52,7 @@ Aquí encontrará las clases de los diferentes cursos del área de conocimiento 
 
 2. [Diseño factorial completo, bloqueado y confundido $2^{k}$ en $2^p$ bloques](clases/II-1125_02_Bloqueo_Confusion.html){target="_blank"}
 
-3. [Diseño factorial fraccionado $2^{k-p}_R$](clases/II-1125_03_Factorial_Fraccionado.html)
+3. [Diseño factorial fraccionado $2^{k-p}_R$](clases/II-1125_03_Factorial_Fraccionado.html){target="_blank"}
 
 4. [Metodología de Superficies de Respuesta (RSM)](clases/II-1125_04_RSM.html){target="_blank"}
 

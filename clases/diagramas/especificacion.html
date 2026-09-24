@@ -1,171 +1,238 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({ 
-            startOnLoad: true, 
-            theme: 'neutral',
-            flowchart: { 
-                useMaxWidth: true, 
-                htmlLabels: true,
-                curve: 'basis' 
-            }
-        });
-    </script>
-    <style>
-        body { 
-            margin: 0; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            background: #F1F5F5; 
-            font-family: 'Aller', sans-serif;
-            overflow: hidden;
-            position: relative; /* Necesario para el posicionamiento del footnote */
-        }
-        
-        .mermaid { 
-            width: 100%; 
-            margin: auto;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Especificación del modelo</title>
+<style>
+    :root {
+        --bg: #F1F5F5;
+        --text-muted: #556070;
+        --accent: #C18A00;
+    }
 
-        /* --- ESTILO DEL FOOTNOTE --- */
-        .footnote {
-            position: absolute;
-            bottom: 20px;
-            right: 30px;
-            font-size: 18px;
-            color: #556070;
-            font-style: italic;
-            opacity: 0.8;
-        }
+    * { box-sizing: border-box; }
 
-        .node .label, 
-        .node .label div, 
-        .node .label span,
-        .node text {
-            font-size: 24px !important; 
-            font-weight: 800 !important;
-            font-family: 'Aller', sans-serif !important;
-            color: inherit;
-            line-height: 1.1;
-        }
+    html, body {
+        height: 100%;
+        background-color: var(--bg) !important;
+    }
 
-        .edgeLabel, .edgeLabel span {
-            font-size: 30px !important; 
-            font-weight: bold !important;
-            background-color: #F1F5F5 !important;
-        }
+    body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: var(--bg);
+        font-family: 'Aller', system-ui, -apple-system, sans-serif;
+        padding: 30px 40px 20px;
+        overflow: hidden;
+    }
 
-        .subgraph-title, .subgraph-title span {
-            font-size: 36px !important;
-            font-weight: bold !important;
-        }
+    .diagram-wrap {
+        width: 100%;
+        max-width: 1900px;
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
 
-        .node rect, .node circle, .node polygon, .node path {
-            stroke-width: 3px !important;
-        }
-    </style>
+    .diagram-wrap svg {
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    svg text {
+        font-family: 'Aller-Bold', 'Aller', system-ui, sans-serif !important;
+    }
+
+    .footer-info {
+        width: 100%;
+        max-width: 1900px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 24px;
+        margin-top: 12px;
+        padding: 0 10px;
+        flex-shrink: 0;
+    }
+
+    .enlace-full, .footnote {
+        font-size: 18px;
+        color: var(--text-muted);
+        opacity: 0.9;
+    }
+
+    .enlace-full a {
+        color: var(--accent);
+        font-weight: bold;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(193, 138, 0, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .enlace-full a:hover {
+        border-bottom: 1px solid var(--accent);
+        opacity: 1;
+    }
+
+    .footnote {
+        font-style: italic;
+        text-align: right;
+        white-space: nowrap;
+    }
+</style>
 </head>
 <body>
 
-    <div class="mermaid">
-      flowchart LR
-      
-      classDef rectangulo fill:#fff,color:#000,stroke:#0F0F10
-      classDef rombo fill:#fff,color:#000,stroke:#333
-      classDef circulo fill:#fff,color:#000,stroke:#333
-      classDef importante fill:#263247,color:#F1F5F5
-      
-      A[Datos]
-      B[Teoría]
-      C[Especificación<br>del modelo]
-      D[Estimación<br>de parámetros]
-      E@{shape: diamond, label: "Verificación de la<br>adecuación del modelo"}
-      F@{shape: diamond, label: "Validación<br>del modelo"}
-      G@{shape: circ, label: "Uso del<br>modelo"}
-      
-      class G circulo
-      class A,B,C,D rectangulo
-      class E,F rombo
-      
-      subgraph todos[ ]
-          direction LR
-          
-          subgraph Contexto [ ]
-              direction TB
-              A a1@ o==o B
-          end
-      
-          subgraph spec [ ]
-              direction LR
-              C:::importante c1@ ==> D ==> E
-              E ==> |Sí| F
-              
-              E ==> |No| C
-              F ==> |No| C
-          end
-      
-          Contexto con1@ ==> spec
-          F == Sí ==> G 
-      end
-      
-      %% Animación 
-      c1@{ animate: true }
-      con1@{ animate: true }
-      
+<div class="diagram-wrap">
+    <svg width="100%" height="100%" viewBox="0 0 5906 2363" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+        <g transform="matrix(0.715292,0,0,0.815362,1669.998706,-377.229224)">
+            <ellipse cx="5221.97" cy="1439.943" rx="454.084" ry="398.354" style="fill:white;stroke:black;stroke-width:16.3px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,4624.899184,-45.521467)">
+            <text x="623.877px" y="797.617px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:83.333px;">Uso del</text>
+            <text x="628.544px" y="948.534px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:83.333px;">modelo</text>
+        </g>
+        <g transform="matrix(1,0,0,1,-9.661222,-799.168988)">
+            <g transform="matrix(1,-0,-0,1,9.661222,799.168988)">
+                <path d="M994.726,768.721L1032.226,796.846L994.726,824.971L994.726,768.721Z"/>
+                <path d="M699.472,570.146L869.523,570.146L865.849,796.846L1002.226,796.846" style="fill:none;stroke:black;stroke-width:12.5px;"/>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,-9.661222,-799.168988)">
+            <path d="M709.133,1838.297L875.51,1838.297L875.51,1596.015" style="fill:none;stroke:black;stroke-width:12.5px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-428.999084,-143.288079)">
+            <g transform="matrix(0.680628,0,0,0.5,197.982809,307.833833)">
+                <rect x="455.532" y="615.668" width="911.57" height="453.399" style="fill:white;stroke:black;stroke-width:20.93px;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,52.498722,0)">
+                <text x="655.544px" y="759.726px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:83.333px;">Datos</text>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,-34.780928,-630.09503)">
+            <g transform="matrix(1.358696,0,0,1.407104,-1441.286021,-713.306111)">
+                <path d="M3507.197,1215.824L3858.462,1525.32L3507.197,1834.816L3155.932,1525.32L3507.197,1215.824Z" style="fill:white;stroke:black;stroke-width:9.04px;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,2558.176439,648.598667)">
+                <g transform="matrix(83.333333,0,0,83.333333,637.126994,714.171395)">
+                </g>
+                <g transform="matrix(83.333333,0,0,83.333333,666.794135,714.171395)">
+                </g>
+                <text x="482.044px" y="714.171px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:83.333px;">V<tspan x="531.21px 578.044px " y="714.171px 714.171px ">er</tspan>iﬁcación de</text>
+                <text x="505.085px" y="815.088px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:83.333px;">la adecuación</text>
+                <text x="548.794px" y="916.005px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:83.333px;">del modelo</text>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,1124.658671,-620.549795)">
+            <g transform="matrix(1.358696,0,0,1.407104,-1441.286021,-713.306111)">
+                <path d="M3507.197,1215.824L3858.462,1525.32L3507.197,1834.816L3155.932,1525.32L3507.197,1215.824Z" style="fill:white;stroke:black;stroke-width:9.04px;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,2558.176439,590.611387)">
+                <text x="494.669px" y="822.617px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:83.333px;">V<tspan x="544.669px 588.169px " y="822.617px 822.617px ">al</tspan>idación del</text>
+                <text x="619.377px" y="923.534px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:83.333px;">modelo</text>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,524.19572,83.411263)">
+            <g transform="matrix(0.680628,0,0,0.5,197.982809,307.833833)">
+                <rect x="455.532" y="615.668" width="911.57" height="453.399" style="fill:rgb(38,50,71);stroke:black;stroke-width:20.93px;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,52.498722,0)">
+                <g transform="matrix(83.333333,0,0,83.333333,738.585328,709.267337)">
+                </g>
+                <g transform="matrix(83.333333,0,0,83.333333,768.252468,709.267337)">
+                </g>
+                <text x="494.752px" y="709.267px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:83.333px;fill:white;">Especiﬁcación</text>
+                <text x="548.794px" y="810.184px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:83.333px;fill:white;">del modelo</text>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,1474.901169,83.411263)">
+            <g transform="matrix(0.680628,0,0,0.5,197.982809,307.833833)">
+                <rect x="455.532" y="615.668" width="911.57" height="453.399" style="fill:white;stroke:black;stroke-width:20.93px;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,52.498722,0)">
+                <text x="499.044px" y="709.267px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:83.333px;">Estimación de</text>
+                <text x="545.835px" y="810.184px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:83.333px;">par<tspan x="671.252px " y="810.184px ">á</tspan>metr<tspan x="899.002px 947.335px " y="810.184px 810.184px ">os</tspan></text>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,-428.999084,310.110604)">
+            <g transform="matrix(0.680628,0,0,0.5,197.982809,307.833833)">
+                <rect x="455.532" y="615.668" width="911.57" height="453.399" style="fill:white;stroke:black;stroke-width:20.93px;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,52.498722,0)">
+                <text x="647.419px" y="759.726px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:83.333px;">T<tspan x="686.335px 733.169px " y="759.726px 759.726px ">eo</tspan>ría</text>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,-9.661222,-799.168988)">
+            <g transform="matrix(1,-0,-0,1,9.661222,799.168988)">
+                <path d="M1945.432,784.304L1982.932,812.429L1945.432,840.554L1945.432,784.304Z"/>
+                <path d="M1652.666,812.429L1952.932,812.429" style="fill:none;stroke:black;stroke-width:12.5px;"/>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,-9.661222,-799.168988)">
+            <g transform="matrix(1,-0,-0,1,9.661222,799.168988)">
+                <path d="M2774.386,784.304L2811.886,812.429L2774.386,840.554L2774.386,784.304Z"/>
+                <path d="M2603.372,812.429L2781.886,812.429" style="fill:none;stroke:black;stroke-width:12.5px;"/>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,-9.661222,-799.168988)">
+            <g transform="matrix(1,-0,-0,1,9.661222,799.168988)">
+                <path d="M1314.321,963.278L1342.446,925.778L1370.571,963.278L1314.321,963.278Z"/>
+                <path d="M3289.148,1238.376L3289.148,1559.128L1342.446,1559.128L1342.446,955.778" style="fill:none;stroke:black;stroke-width:12.5px;"/>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,-9.661222,-799.168988)">
+            <g transform="matrix(1,-0,-0,1,9.661222,799.168988)">
+                <path d="M3933.825,774.758L3971.325,802.883L3933.825,831.008L3933.825,774.758Z"/>
+                <path d="M3766.409,802.883L3941.325,802.883" style="fill:none;stroke:black;stroke-width:12.5px;"/>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,-9.661222,-799.168988)">
+            <g transform="matrix(1,-0,-0,1,9.661222,799.168988)">
+                <path d="M5040.015,784.304L5077.515,812.429L5040.015,840.554L5040.015,784.304Z"/>
+                <path d="M4925.849,812.429L5047.515,812.429" style="fill:none;stroke:black;stroke-width:12.5px;"/>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,-9.661222,-799.168988)">
+            <g transform="matrix(1,-0,-0,1,9.661222,799.168988)">
+                <path d="M1172.29,963.278L1200.415,925.778L1228.54,963.278L1172.29,963.278Z"/>
+                <path d="M4448.587,1247.921L4448.587,1994.814L1200.415,1994.814L1200.415,955.778" style="fill:none;stroke:black;stroke-width:12.5px;"/>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,-321.048097,-864.66734)">
+            <text x="3452.693px" y="2210.93px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:75px;">No</text>
+        </g>
+        <g transform="matrix(1,0,0,1,824.918714,-864.66734)">
+            <text x="3452.693px" y="2210.93px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:75px;">No</text>
+        </g>
+        <g transform="matrix(1,0,0,1,369.374704,-1485.055873)">
+            <text x="3467.355px" y="2210.93px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:75px;">Sí</text>
+        </g>
+        <g transform="matrix(1,0,0,1,1480.431665,-1485.055873)">
+            <text x="3467.355px" y="2210.93px" style="font-family:'Aller-Bold', 'Aller';font-weight:700;font-size:75px;">Sí</text>
+        </g>
+    </svg>
+</div>
+
+<div class="footer-info">
+    <div class="enlace-full">
+        Para ver el diagrama en pantalla completa, diríjase a este 
+        <a href="https://stevenggoni.github.io/clases/diagramas/especificacion.html" target="_blank">enlace</a>.
     </div>
-
-    <div class="footer-info">
-        <div class="enlace-full">
-            Para ver el diagrama en pantalla completa, diríjase a este 
-            <a href="https://stevenggoni.github.io/clases/diagramas/especificacion.html" target="_blank">enlace</a>.
-        </div>
-        <div class="footnote">
-            Tomado y adaptado de Montgomery et al. (2012).
-        </div>
+    <div class="footnote">
+        Tomado y adaptado de Montgomery et al. (2012).
     </div>
-
-    <style>
-        /* Estilos para el nuevo contenedor de información */
-        .footer-info {
-            position: absolute;
-            bottom: 20px;
-            width: 95%;
-            display: flex;
-            justify-content: space-between; /* El enlace a la izquierda, la cita a la derecha */
-            align-items: flex-end;
-            padding: 0 30px;
-            pointer-events: none; /* Permite que el mouse pase a través del contenedor si es necesario */
-        }
-
-        .enlace-full, .footnote {
-            pointer-events: auto; /* Activa los clics solo en el texto/enlace */
-            font-size: 20px;
-            color: #556070;
-            opacity: 0.9;
-        }
-
-        .enlace-full a {
-            color: #C18A00; /* El dorado de tu clase .hi */
-            font-weight: bold;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(193, 138, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .enlace-full a:hover {
-            border-bottom: 1px solid #C18A00;
-            opacity: 1;
-        }
-
-        .footnote {
-            font-style: italic;
-            text-align: right;
-        }
-    </style>
+</div>
 
 </body>
 </html>
