@@ -889,8 +889,9 @@ diabetes %>%
 
 ### Probabilidad conjunta
 
-* En una fábrica de tornillos, el 80 % de los producidos son de buena calidad, si un tornillo es de buena calidad, tiene una probabilidad del 90 % de ser aprobado en la inspección final. 
-La probabilidad de que un tornillo sea de buena calidad y pase la inspección final es de  $0.8\cdot 0.9=0.72$
+* En una fábrica de tornillos, el 80 % de los producidos son de buena calidad, si un tornillo es de buena calidad, tiene una probabilidad del 90 % de ser aprobado en la inspección final. Si es de mala calidad, tiene una probabilidad del 50 %.
+
+* La probabilidad de que un tornillo sea de buena calidad y pase la inspección final es de  $0.8\cdot 0.9=0.72$
 
 :::
 
