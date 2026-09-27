@@ -1,0 +1,120 @@
+---
+title: "Diseño factorial fraccionado $2^{k-p}_{R}$ en `R`"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    collapse-sections: true
+execute:
+  warning: false
+  message: false
+---
+
+# Librerías
+
+Al inicio de todas las clase se colocarán las librerías que se van a utilizar para el desarrollo de los casos.
+
+```{r}
+
+library(tidyverse)
+library(FrF2)
+library(broom)
+library(flextable)
+
+```
+
+# Introducción
+
+Un diseño factorial fraccionado de dos niveles permite estudiar muchos factores con un número reducido de corridas experimentales. En lugar de ejecutar todas las combinaciones ($2^k$), se toma una fracción que mantiene propiedades de ortogonalidad y resolución.
+
+# Diseño
+
+Vamos a diseñar el mismo experimento de la presentación
+
+$2^{6-3}_{III}$
+
+```{r}
+
+diseno <- FrF2::FrF2(nfactors = 6, nruns = 8, 
+                     generators = c("AB", "AC", "BC"), 
+                     randomize = FALSE)
+
+attr(diseno, "design.info")
+
+
+```
+
+# Análisis
+
+Podemos agregar una respuesta simulada
+
+```{r}
+
+R <- rnorm(8, 30, 2)
+
+resultados <- cbind(diseno, R)
+
+```
+
+Y analizarlo en consecuencia
+
+```{r}
+
+modelo1 <- lm(R ~ A*B*C*D*E*F, 
+              data = resultados)
+
+broom::tidy(modelo1) %>% 
+  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) %>% 
+  flextable::flextable()
+
+broom::tidy(aov(modelo1)) %>% 
+  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) %>% 
+  flextable::flextable()
+
+```
+
+Como se ve, no se estiman muchos efectos, no tenemos grados de libertad.
+
+Si queremos ver una salida más limpia, podemos hacer lo siguiente:
+
+```{r}
+
+broom::tidy(modelo1) %>% 
+  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) %>% 
+  tidyr::drop_na(estimate) %>% 
+  flextable::flextable()
+
+```
+
+Nótese que se está estimando C:D en lugar de A:F, estos detalles son importantes de revisar en la estructura de ALIAS.
+
+# Algunos gráficos
+
+```{r}
+
+FrF2::DanielPlot(modelo1) # gráfico de daniel
+FrF2::MEPlot(modelo1) # Efectos principales
+#FrF2::IAPlot(modelo1) # Efectos de interacción
+
+
+```
+
+Para un gráfico de Pareto
+
+```{r}
+
+efectos <- coef(modelo1)[-1]  # quitamos intercepto
+df_efectos <- data.frame(
+  factor = names(efectos),
+  efecto = abs(efectos)) %>% 
+  tidyr::drop_na()
+
+ggplot(df_efectos, aes(x = reorder(factor, efecto), y = efecto)) +
+  geom_bar(stat = "identity", fill =  "darksalmon") +
+  coord_flip() +
+  labs(x = "Factor/Interacción", y = "Magnitud del efecto",
+       title = "Pareto de efectos factoriales") +
+  theme_bw()
+
+```

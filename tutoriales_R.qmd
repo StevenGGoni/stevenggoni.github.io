@@ -58,6 +58,10 @@ Guía práctica para la construcción, aleatorización y análisis de experiment
 
 Tutorial sobre la estructuración de diseños factoriales $2^k$ bajo restricciones de aleatorización. Muestra cómo aislar la variabilidad por bloques mediante la confusión de interacciones de alto orden ($ABCDE$) y cómo preservar la estructura del bloque en la selección del modelo.
 
+* [Experimento factorial fraccionado $2^{k-p}_{R}$](tutoriales_R/factorial_fraccionado_R.html){target="_blank"}
+
+Esta es una guía para la construcción y análisis de diseños factoriales fraccionados $2^{k-p}_R$.
+
 ## Ingeniería de Calidad `r fontawesome::fa("ruler-combined")`
 
 * [Diagrama de Pareto](tutoriales_R/diagrama_pareto.html){target="_blank"} 

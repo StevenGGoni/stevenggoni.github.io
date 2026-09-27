@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xml:lang="es-ES"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Ejercicio integrador: Factorial fraccionado 2^{k-p}_{R} en R – Steven García Goñi &lt;span class='navbar-subtitle'&gt;Estadística e Ingeniería&lt;/span&gt;</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-49bdbb3bbcbc7e4cb45dff71d282ed88.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e19a5051f62fe97ce3ebdf917128c4a9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-49bdbb3bbcbc7e4cb45dff71d282ed88.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<script src="https://cdn.userway.org/widget.js" data-account="AJmG8zlfIo"></script>
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="Logo de un cuervo" class="navbar-logo light-content">
+    <img src="../images/logo.png" alt="Logo de un cuervo" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Steven García Goñi <span class="navbar-subtitle">Estadística e Ingeniería</span></span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../publicaciones.html"> 
+<span class="menu-text">Publicaciones</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-recursos-académicos" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Recursos académicos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-recursos-académicos">    
+        <li>
+    <a class="dropdown-item" href="../infografias.html">
+ <span class="dropdown-text">Infografías</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../interactivos.html">
+ <span class="dropdown-text">Simulaciones y visualizadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../recursos_graficos.html">
+ <span class="dropdown-text">Construcción de gráficos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutoriales_R.html">
+ <span class="dropdown-text">Tutoriales en R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../clases.html">
+ <span class="dropdown-text">Material de clases</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sobre-mí" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sobre mí</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sobre-mí">    
+        <li>
+    <a class="dropdown-item" href="../resume.pdf" target="_blank">
+ <span class="dropdown-text">Currículum</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../logo.html">
+ <span class="dropdown-text">Identidad visual</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="mailto:steven.garciagoni@ucr.ac.cr"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-solid:envelope" aria-label="Icon envelope from fa6-solid Iconify.design set." title="Correo electrónico"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/StevenGGoni"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:github" aria-label="Icon github from mdi Iconify.design set." title="GitHub"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/sggoni/"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:linkedin" aria-label="Icon linkedin from mdi Iconify.design set." title="LinkedIn"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=X_3YTJ0AAAAJ&amp;hl=es"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:google-scholar" aria-label="Icon google-scholar from fa6-brands Iconify.design set." title="Google Académico"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://orcid.org/0000-0002-1822-5465"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="simple-icons:orcid" aria-label="Icon orcid from simple-icons Iconify.design set." title="Orcid"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.scopus.com/authid/detail.uri?authorId=58504295000"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="simple-icons:scopus" aria-label="Icon scopus from simple-icons Iconify.design set." title="Scopus"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.researchgate.net/profile/Steven-Garcia-Goni"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="academicons:researchgate-square" aria-label="Icon researchgate-square from academicons Iconify.design set." title="ResearchGate"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://stevenggoni.github.io/resume.pdf"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="academicons:cv-square" aria-label="Icon cv-square from academicons Iconify.design set." title="CV"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen">Resumen</a>
+  <ul class="collapse">
+  <li><a href="#retomando-conceptos" id="toc-retomando-conceptos" class="nav-link" data-scroll-target="#retomando-conceptos">Retomando conceptos</a></li>
+  <li><a href="#factoriales-fraccionados" id="toc-factoriales-fraccionados" class="nav-link" data-scroll-target="#factoriales-fraccionados">Factoriales fraccionados</a>
+  <ul class="collapse">
+  <li><a href="#la-numeración-de-las-fracciones" id="toc-la-numeración-de-las-fracciones" class="nav-link" data-scroll-target="#la-numeración-de-las-fracciones">La numeración de las fracciones</a></li>
+  <li><a href="#experimentación-secuencial" id="toc-experimentación-secuencial" class="nav-link" data-scroll-target="#experimentación-secuencial">Experimentación secuencial</a></li>
+  <li><a href="#número-de-fracción" id="toc-número-de-fracción" class="nav-link" data-scroll-target="#número-de-fracción">Número de fracción</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#el-caso-de-interés" id="toc-el-caso-de-interés" class="nav-link" data-scroll-target="#el-caso-de-interés">El caso de interés</a>
+  <ul class="collapse">
+  <li><a href="#factores" id="toc-factores" class="nav-link" data-scroll-target="#factores">Factores</a></li>
+  <li><a href="#variables-controladas" id="toc-variables-controladas" class="nav-link" data-scroll-target="#variables-controladas">Variables controladas</a></li>
+  <li><a href="#variable-de-respuesta" id="toc-variable-de-respuesta" class="nav-link" data-scroll-target="#variable-de-respuesta">Variable de respuesta</a></li>
+  <li><a href="#experimento-seleccionado" id="toc-experimento-seleccionado" class="nav-link" data-scroll-target="#experimento-seleccionado">Experimento seleccionado</a></li>
+  <li><a href="#datos" id="toc-datos" class="nav-link" data-scroll-target="#datos">Datos</a></li>
+  </ul></li>
+  <li><a href="#preguntas" id="toc-preguntas" class="nav-link" data-scroll-target="#preguntas">Preguntas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Ejercicio integrador: Factorial fraccionado <span class="math inline">\(2^{k-p}_{R}\)</span> en <code>R</code></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">26 de septiembre de 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="resumen" class="level1">
+<h1>Resumen</h1>
+<section id="retomando-conceptos" class="level2">
+<h2 class="anchored" data-anchor-id="retomando-conceptos">Retomando conceptos</h2>
+<p>Un experimento es un estudio en el que el investigador manipula (en el buen sentido) las entradas o factores en estudio, en un ambiente controlado, con el fin de observar las variaciones resultantes sobre una o varias variables de repuesta. Una de las premisas más importantes de un estudio experimental es que supone que las asignaciones son aleatorias a los tratamientos, y que todas las unidades experimentales son iguales, <strong>excepto</strong> en el tratamiento que se les aplica.</p>
+<p>Es esta característica de los experimentos es la que los diferencia de los demás estudios y la que le brinda un potencial distintivo para generar evidencia de relaciones causales. En síntesis:</p>
+<p><em>Se considera que únicamente los diseños experimentales son los que se acercan más a dar evidencias de tipo causal.</em></p>
+</section>
+<section id="factoriales-fraccionados" class="level2">
+<h2 class="anchored" data-anchor-id="factoriales-fraccionados">Factoriales fraccionados</h2>
+<p>Como se ha observado a lo largo del desarrollo de este curso, conforme aumenta el número de factores, el número de corridas requeridas para completar una réplica crece rápidamente y la eficiencia del experimento decrece (ver Figura 1). Es lógico determinar que en presencia de muchos factores realizar una réplica completa es una tarea casi imposible, además, solo una pequeña cantidad de los grados de libertad se utilizan para estimar los efectos principales y aquellos de orden inferior (dispersión de efectos). Normalmente el experimentador puede asumir y de forma razonable, que las interacciones de orden superior son despreciables, es decir, no interesan.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ejercicio_integrador_FF_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Cantidad de corridas por réplica</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Bajo esta premisa, los efectos principales y los de las interacciones de orden inferior se pueden obtener corriendo solamente una <strong>fracción</strong> del experimento factorial completo. Esta estrategia es conocida como <strong>diseños factoriales fraccionados</strong>.</p>
+<p>Estos experimentos, amplificadores de señal, son seleccionados cuando existe una gran cantidad de factores y se desean estudiar de manera simultánea, pero con énfasis en las interacciones de orden inferior. Son utilizados en las primeras etapas de investigación, cuando es frecuente que interese estudiar varios factores a la vez y algunas de sus interacciones. ¿Qué significa esto? Qué con este experimento nunca se va a poder determinar el efecto conjunto de los factores, sino que solamente es capaz de determinar cuáles de los factores seleccionados tienen un impacto sobre la variable de respuesta, para luego ser estudiados con otro tipo de experimento, por ejemplo un factorial completo u otros diseños de mayor complejidad.</p>
+<p>A modo de analogía, piense que con los experimentos exploratorios se pretende reducir la cantidad de factores en estudio a solo aquellos que verdaderamente tengan una implicación (que sean significativos, pues, es decir, que <strong>NO sean cero</strong>) en la variable de respuesta del estudio experimental.</p>
+<p>Con un experimento factorial fraccionado se pretende generar evidencia de causalidad, es decir, si verdaderamente existe el efecto de determinado factor (o su interacción) sobre la variable de respuesta. Nunca busca establecer el tamaño de ese efecto, solo si existe y si tiene <strong>implicaciones prácticas</strong> sobre el contexto bajo el cual se desarrolla el experimento.</p>
+<p>Es decir, y de modo más simple, estos diseños responden a la pregunta: <em>¿Estos factores afectan mi variable de respuesta?</em> Si se hiciese la analogía con un experimento factorial completo, la pregunta sería: <em>¿Cuánto afectan estos factores a mi variable de respuesta?</em></p>
+<p>Para el desarrollo de un diseño factorial fraccionado se debe tomar en cuenta:</p>
+<ul>
+<li>El principio de dispersión de efectos</li>
+<li>La propiedad de proyección</li>
+<li>La experimentación secuencial</li>
+</ul>
+<p>Repase estos conceptos por cuenta propia con el material disponible en el aula virtual, inclyendo libros de texto.</p>
+<section id="la-numeración-de-las-fracciones" class="level3">
+<h3 class="anchored" data-anchor-id="la-numeración-de-las-fracciones">La numeración de las fracciones</h3>
+<p>Suponga un experimento <span class="math inline">\(2^{8-4}_{IV}\)</span> con los siguientes generadores:</p>
+<ul>
+<li><p><span class="math inline">\(E = BCD\)</span></p></li>
+<li><p><span class="math inline">\(F = ACD\)</span></p></li>
+<li><p><span class="math inline">\(G = ABC\)</span></p></li>
+<li><p><span class="math inline">\(H = ABD\)</span></p></li>
+</ul>
+<p>La nomenclatura es la misma que en confusión, con un ligero cambio:</p>
+<ul>
+<li><p><span class="math inline">\(2^k = 2^8 = 256\)</span>: Cantidad de tratamientos totales</p></li>
+<li><p><span class="math inline">\(2^p = 2^4 = 16\)</span>: Cantidad de fracciones (en confusión era cantidad de bloques)</p></li>
+<li><p><span class="math inline">\(2^{k-p} = 2^{8-4} = 2^4 = 16\)</span>: Tamaño de cada fracción. También se pueden obtener como <span class="math inline">\(\frac{256}{16} = 16\)</span>.</p></li>
+<li><p><span class="math inline">\(_{IV}\)</span>: resolución del experimento.</p></li>
+</ul>
+<p>Con base en los anteriores generadores se construye la relación definitoria, la cual es el conjunto total de términos que se mantienen constantes para definir la fracción en un diseño factorial fraccionado. Es importante porque con esta se calcula la estructura de ALIAS que describe la <strong>confusión</strong> existente en los diseños factoriales fraccionados.</p>
+<p>Por tanto, la relación definitoria es:</p>
+<p><span class="math display">\[I = BCDE = ACDF = ABCG = ABDH = ABC^2FE = AB^2C^2DEG = \cdots\]</span></p>
+<p>Recuerde que se sigue de la misma forma que en experimentos bloqueados y confundidos, que dados unos generadores, se confunden más efectos, por eso los <span class="math inline">\(\cdots\)</span>.</p>
+<blockquote class="blockquote">
+<p>Nota: I es una letra reservada para la relación definitoria, por tanto ningún factor debe codificarse como I.</p>
+</blockquote>
+<p>Por lo que finalmente, la estructura final de ALIAS es:</p>
+<p><img src="img/clipboard-1786407919.png" class="img-fluid"></p>
+<p>Y la estructura de ALIAS se obtiene tal qué, por ejemplo, se multiplica la relación definitoria por los efectos:</p>
+<p><span class="math display">\[A * (I = BCDE = ACDF = ABCG = ABDH = ABC^2FE = AB^2C^2DEG = \cdots)\]</span></p>
+<p>Note que <span class="math inline">\(A*I = A\)</span></p>
+<p><span class="math display">\[A = ABCDE = ABCDF = BCG = BDH = \cdots\]</span></p>
+<p>Y luego se ordena para que quede como la mostrada.</p>
+<p>Esto quiere decir, tomando el ejemplo de <span class="math inline">\(A\)</span> (segunda fila en la Figura anterior), que este efecto no se va a poder distinguir entre los efectos <span class="math inline">\(BCG, BDH, \cdots\)</span>. Por ello es importante recurrir a la experimentación secuencial y a los plegados, con el fin de de “destruir” aquellas estructuras de Alias que no sean beneficiosas.</p>
+<p>¿Cuándo no es beneficiosa? Cuando un efecto de interés potencial para el experimentador está aliado con otro efecto que también es de interés potencial para el experimentador.</p>
+<p>Por ejemplo, de forma ficticia, suponga que desde el estudio teórico realizado en la selección de los factores y niveles, se sabe o se sospecha que la interacción <span class="math inline">\(BCG\)</span> es potencialmente importante, entonces se debería recurrir a la experimentación secuencial para separar los Alias de <span class="math inline">\(BCG\)</span>, esto se conoce como <strong>aislar un efecto</strong>.</p>
+<p>Cuando se analiza la primera fracción en un experimento fraccionado se utiliza la información disponible para determinar cual(es) efecto(s) se desearían aislar (si aplica) y con base en eso seleccionar una fracción adicional. Este proceso es por lo general secuencial y no tiene un criterio de parada específico, sino que depende del experimentador.</p>
+</section>
+<section id="experimentación-secuencial" class="level3">
+<h3 class="anchored" data-anchor-id="experimentación-secuencial">Experimentación secuencial</h3>
+<p>El uso secuencial de diseños factoriales fraccionados es muy útil, lo que a menudo conduce a una gran economía y eficiencia en la experimentación. Esta aplicación de factoriales fraccionarios ocurre con frecuencia en situaciones de cribado de factor puro; es decir, hay relativamente muchos factores, pero se espera que solo unos pocos sean importantes. Generalmente, pero no exclusivamente, se emplean diseños de resolución <span class="math inline">\(III\)</span>.</p>
+<p>La combinación de fracciones en diseños factoriales fraccionados, en los que se han intercambiado signos, posibilita aislar de manera sistemática los efectos de interés potencial. Esto se conoce como doblez o plegado. Si se invierte el signo de un solo factor, entonces el diseño combinado producirá las estimaciones del efecto principal de ese factor y sus interacciones de dos factores.</p>
+<p>En un diseño de resolución III, si se agrega una segunda fracción con todos los generadores, excepto el último, con los signos invertidos, se conocería como plegado completo o reflexión. Rompe los vínculos de alias entre los factores principales y las interacciones de dos factores. La fracción que pliega a la fracción principal es fácil de encontrar, se puede hacer mediante el uso de la siguiente fórmula:</p>
+<p><span class="math display">\[\text{Fracción de plegado completo} = \frac{2^p}{2}+1 = 2^{p-1} + 1\]</span></p>
+<p>Si se invierte el signo de un solo factor, entonces el diseño combinado producirá las estimaciones del efecto principal de ese factor y sus interacciones de dos factores.</p>
+<p>Por ejemplo, si se quiere aislar los efectos de C, los generadores serían:</p>
+<ul>
+<li><p><span class="math inline">\(E = -BCD\)</span></p></li>
+<li><p><span class="math inline">\(F = -ACD\)</span></p></li>
+<li><p><span class="math inline">\(G = -ABC\)</span></p></li>
+<li><p><span class="math inline">\(H = ABD\)</span></p></li>
+</ul>
+<p>Note los negativos siempre que hay un <span class="math inline">\(C\)</span>. La fracción seleccionada sería: <span class="math inline">\(-1, -1, -1, +1\)</span>.</p>
+</section>
+<section id="número-de-fracción" class="level3">
+<h3 class="anchored" data-anchor-id="número-de-fracción">Número de fracción</h3>
+<p>Saber escoger el número de la fracción es muy importante para la experimentación secuencial. Para esto vamos a usar los generadores, como hay 4 generadores, vamos a encontrar el orden de las 16 fracciones:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="lightable-classic table caption-top table-sm table-striped small">
+<caption>Orden de las fracciones</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">E</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">F</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">G</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">H</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Orden</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right; font-weight: bold;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right; font-weight: bold;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right; font-weight: bold;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right; font-weight: bold;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right; font-weight: bold;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right; font-weight: bold;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right; font-weight: bold;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right; font-weight: bold;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right; font-weight: bold;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right; font-weight: bold;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right; font-weight: bold;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right; font-weight: bold;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right; font-weight: bold;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right; font-weight: bold;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right; font-weight: bold;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right; font-weight: bold;">16</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>La fracción que corresponde a todos los generadores positivos es la fracción principal; en este caso es la fracción 16.</p>
+<p>Para los generadores, puede usar los propuestos por Montgomery.</p>
+<p><img src="img/clipboard-3489094786.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="el-caso-de-interés" class="level1">
+<h1>El caso de interés</h1>
+<p>Si bien la situación que se describe es real y dicho experimento fue ejecutado como parte de un curso, en conjunto por estudiantes de la Sede Rodrigo Facio y la Sede Interuniversitaria de Alajuela, durante el I semestre 2017; los datos obtenidos y el fraccionamiento utilizado se adecuan mediante simulación estadística, para adaptarse a los propósitos de este trabajo.</p>
+<section id="factores" class="level2">
+<h2 class="anchored" data-anchor-id="factores">Factores</h2>
+<p>Los niveles, en orden de aparición son Alto (+) y Bajo (-). Nótese que ningún factor se codifica como I, esto se debe a que I es una letra reservada para la relación de definición.</p>
+<ul>
+<li>Estado de la chía (A):
+<ul>
+<li>Seca</li>
+<li>Hidratada</li>
+</ul></li>
+<li>Forma del troceado de las frutas (B)
+<ul>
+<li>Regular</li>
+<li>Irregular</li>
+</ul></li>
+<li>Velocidad de licuado (C)
+<ul>
+<li>Alta</li>
+<li>Baja</li>
+</ul></li>
+<li>Tiempo de licuado (D)
+<ul>
+<li>60 segundos</li>
+<li>30 segundos</li>
+</ul></li>
+<li>Orden de añadido (E)
+<ul>
+<li>Sólidos y líquidos</li>
+<li>Líquidos y sólidos</li>
+</ul></li>
+<li>Luminosidad en el almacenamiento (F)
+<ul>
+<li>Con luz</li>
+<li>Sin luz</li>
+</ul></li>
+<li>Tipo de sellado (G)
+<ul>
+<li>Solo tapa</li>
+<li>Plástico de cocina + tapa</li>
+</ul></li>
+<li>Marca de la miel (H)
+<ul>
+<li>Orgánica</li>
+<li>Api Rica</li>
+</ul></li>
+<li>Tipo de agua (J)
+<ul>
+<li>Doméstica</li>
+<li>Embotellada</li>
+</ul></li>
+<li>Posición de almacenamiento (K)
+<ul>
+<li>Horizontal</li>
+<li>Vertical (boca arriba)</li>
+</ul></li>
+<li>Marca de la chía (L)
+<ul>
+<li>Solo salud</li>
+<li>Real food</li>
+</ul></li>
+</ul>
+</section>
+<section id="variables-controladas" class="level2">
+<h2 class="anchored" data-anchor-id="variables-controladas">Variables controladas</h2>
+<ul>
+<li>Marca y modelo de la licuadora</li>
+<li>Marca y modelo del procesador de alimentos</li>
+<li>Material de los recipientes (vidrio)</li>
+<li>Tiempo de almacenamiento (5 días)</li>
+<li>Marca y modelo de la balanza de cocina</li>
+<li>Cantidad de refresco generado (500 ml)</li>
+</ul>
+</section>
+<section id="variable-de-respuesta" class="level2">
+<h2 class="anchored" data-anchor-id="variable-de-respuesta">Variable de respuesta</h2>
+<p>Este fue un experimento con dos variables de respuesta, pero no se toma en cuenta la primera para el desarrollo de este caso, la cual fue una medición del color en CIE-Lab. La segunda variable de respuesta del experimento exploratorio es la distancia de separación, medida en centímetros, entre la base y el cambio de fases del refresco natural, esto debido a que es un efecto que se desea evitar en los experimentos siguientes, con el fin de poder asegurar la integridad de la textura (una de las variables de respuesta de un experimento que se realizó seguido de este). Para la medición de dicha distancia se utilizó una escuadra con dos ángulos de 45° y uno de 90°, esta se coloca de modo que quedara perpendicular a la mesa, lo cual se logró con la ayuda del ángulo de 90°. Una vez colocada al lado del vaso se observaba de manera perpendicular, para evitar errores de lectura, y se determinaba la distancia, respecto a la base del recipiente, a la cual se encontraba la división de la fase, respetando la resolución del instrumento de medición.</p>
+</section>
+<section id="experimento-seleccionado" class="level2">
+<h2 class="anchored" data-anchor-id="experimento-seleccionado">Experimento seleccionado</h2>
+<p>Se selecciona un experimento factorial fraccionado <span class="math inline">\(2^{11-7}_{III}\)</span>. Esta nomenclatura lo que quiere decir es que:</p>
+<p><strong>Complete la información faltante</strong></p>
+<ul>
+<li><span class="math inline">\(III\)</span>: El experimento es de resolución _____.</li>
+<li><span class="math inline">\(2^{11}\)</span>: El experimento completo sería de _____ corridas para una sola réplica, con __ factores.</li>
+<li><span class="math inline">\(2^{7}\)</span>: Se está fraccionando el experimento en ___ partes, con __ generadores.</li>
+<li><span class="math inline">\(2^{11-7} = 2^{4}\)</span>: Cada fracción está compuesta de ___ corridas</li>
+</ul>
+<p>Los generadores son utilizados son los siguientes:</p>
+<p><span class="math display">\[E = ABC, \quad F = BCD, \quad G = ACD, \quad H = ABD, \quad J = ABCD, \quad K = AB, \quad L = AC\]</span></p>
+<p>Esto significa que utilizando un <span class="math inline">\(2^7\)</span>, de E hasta L se obtiene el número de las fracciones. En general por defecto se da como la fracción principal (la que tiene todos los signos positivos) a la última, la cual en este contexto es la 128. Para seleccionar esta u otra fracción, es importante conocer cuál es el orden que tienen. En este enlace pueden descargar el orden de las fracciones para este experimento (note que sigue el orden de Yates). Para el experimento a desarrollar en clases presenciales necesitan una tabla similar, por lo que conviene que estudien y practiquen la generación de la misma.</p>
+</section>
+<section id="datos" class="level2">
+<h2 class="anchored" data-anchor-id="datos">Datos</h2>
+<p>Los datos ya se encuentran aleatorizados, por lo que no requieren tratamiento adicional. Cada pestaña es una fracción.</p>
+<ul>
+<li><p><a href="datos/Datos_fraccionado.xlsx">Datos</a></p></li>
+<li><p><a href="datos/Orden de fracciones.xlsx">Orden fracciones</a></p></li>
+</ul>
+</section>
+</section>
+<section id="preguntas" class="level1">
+<h1>Preguntas</h1>
+<ol type="1">
+<li><p>Complete la información faltante de la sección [Experimento seleccionado].</p></li>
+<li><p>Seleccione y justifique un nivel de confianza para el caso descrito.</p></li>
+<li><p>Suponga quiere romper lo más posible la estructura de ALIAS de <span class="math inline">\(A\)</span>, ¿cuál sería la fracción seleccionada? ¿Qué número corresponde en el orden brindado?</p></li>
+<li><p>Analice la fracción principal y aplique el concepto de experimentación secuencial, con base en los datos brindados.</p>
+<ol type="1">
+<li><p>Seleccione y analice la primera fracción. Estudie la estructura de ALIAS. Nota: no es necesario, en este punto, revisar los supuestos de aplicación, ni darle grados de libertad al error.</p></li>
+<li><p>Con base en los resultados de la fracción anterior (guíese con Pareto, la <strong>estructura de Alias</strong> y su conocimiento <strong>no estadístico</strong> sobre el tema), seleccione una fracción adicional, justifique su selección, unifíquela con la anterior y analice nuevamente (es decir, analice las dos juntas).</p></li>
+</ol></li>
+<li><p>Con las fracciones que seleccionó y unificó:</p>
+<ol type="1">
+<li><p>Aplique simultáneamente los principios de parsimonia, jerarquía y dispersión de efectos para otorgar grados de libertad al error.</p></li>
+<li><p>Revise el cumplimiento de supuestos de ANOVA. R.</p></li>
+</ol></li>
+<li><p>Concluya sobre el estudio</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script data-goatcounter="https://stevenggoni.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Creado con <a href="https://quarto.org"><iconify-icon role="img" inline="" icon="simple-icons:quarto" aria-label="Quarto Logo" title="Quarto Logo"></iconify-icon> Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

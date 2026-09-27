@@ -160,6 +160,10 @@
 
   <script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -177,21 +181,21 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 </div>
 </div>
 
-  <p class="date">23 de septiembre de 2026</p>
+  <p class="date">26 de septiembre de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Introducción al factorial fraccionado</h2>
 <div class="columns">
 <div class="column">
 <ul>
-<li><p>Conforme aumenta el número de factores, <span class="hi">el número de corridas necesarias para completar una réplica crece rápidamente</span>, y por tanto <span class="hi">la eficiencia del experimento decrece</span>.</p></li>
-<li><p>Es este tipo de situaciones las que motiva el uso de <span class="hi">experimentos factoriales fraccionados</span>, donde se espera correr <span class="hi">solo una parte del experimento</span> para obtener información que permita orientar la toma de decisiones con <span class="hi">mayor eficiencia</span> que si se ejecutase completamente.</p></li>
+<li><p>Conforme aumenta el número de factores, <span class="hi">el número de corridas necesarias para completar una réplica crece rápidamente</span>, y, por tanto, <span class="hi">la eficiencia del experimento decrece</span>.</p></li>
+<li><p>Son este tipo de situaciones las que motivan el uso de <span class="hi">experimentos factoriales fraccionados</span>, en los que se espera ejecutar <span class="hi">solo una parte del experimento</span> para obtener información que permita orientar la toma de decisiones con <span class="hi">mayor eficiencia</span> que si se ejecutase completamente.</p></li>
 </ul>
 </div><div class="column">
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-484bbffc32fb824083e4" style="width:850px;height:600px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-484bbffc32fb824083e4">{"x":{"data":[{"x":[2,3,4,5,6,7,8,9,10,11,12],"y":[4,8,16,32,64,128,256,512,1024,2048,4096],"text":["k:  2<br />Tratamientos:    4","k:  3<br />Tratamientos:    8","k:  4<br />Tratamientos:   16","k:  5<br />Tratamientos:   32","k:  6<br />Tratamientos:   64","k:  7<br />Tratamientos:  128","k:  8<br />Tratamientos:  256","k:  9<br />Tratamientos:  512","k: 10<br />Tratamientos: 1024","k: 11<br />Tratamientos: 2048","k: 12<br />Tratamientos: 4096"],"type":"scatter","mode":"lines+markers","line":{"width":5.6692913385826778,"color":"rgba(193,138,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(38,50,71,1)","opacity":1,"size":18.897637795275593,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(38,50,71,1)"}},"frame":null,"hoverlabel":{"font":{"size":40}}}],"layout":{"margin":{"t":25.962640099626405,"r":9.9626400996264035,"b":50.809464508094649,"l":66.749688667496898},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":30},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.5,12.5],"tickmode":"array","ticktext":["2","3","4","5","6","7","8","9","10","11","12"],"tickvals":[2,3,4,5,6,7,8,9,10,11,12],"categoryorder":"array","categoryarray":["2","3","4","5","6","7","8","9","10","11","12"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":4.9813200498132018,"tickwidth":0.90569455451149117,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.90569455451149117,"zeroline":false,"anchor":"y","title":{"text":"k","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-200.60000000000002,4300.6000000000004],"tickmode":"array","ticktext":["0","1000","2000","3000","4000"],"tickvals":[0,999.99999999999989,2000,3000,4000.0000000000005],"categoryorder":"array","categoryarray":["0","1000","2000","3000","4000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":4.9813200498132018,"tickwidth":0.90569455451149117,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.90569455451149117,"zeroline":false,"anchor":"x","title":{"text":"Tratamientos","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"rgba(255,255,255,1)","line":{"color":"rgba(51,51,51,1)","width":0.90569455451149117,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":2.5769506084466713,"font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241}},"hovermode":"closest","width":850,"height":600,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"20bc3de1524c":{"x":{},"y":{},"type":"scatter"},"20bc2a259ca":{"x":{},"y":{}}},"cur_data":"20bc3de1524c","visdat":{"20bc3de1524c":["function (y) ","x"],"20bc2a259ca":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-20f23d322902cd7cbf3a" style="width:850px;height:600px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-20f23d322902cd7cbf3a">{"x":{"data":[{"x":[2,3,4,5,6,7,8,9,10,11,12],"y":[4,8,16,32,64,128,256,512,1024,2048,4096],"text":["k:  2<br />Tratamientos:    4","k:  3<br />Tratamientos:    8","k:  4<br />Tratamientos:   16","k:  5<br />Tratamientos:   32","k:  6<br />Tratamientos:   64","k:  7<br />Tratamientos:  128","k:  8<br />Tratamientos:  256","k:  9<br />Tratamientos:  512","k: 10<br />Tratamientos: 1024","k: 11<br />Tratamientos: 2048","k: 12<br />Tratamientos: 4096"],"type":"scatter","mode":"lines+markers","line":{"width":5.6692913385826778,"color":"rgba(193,138,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(38,50,71,1)","opacity":1,"size":18.897637795275593,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(38,50,71,1)"}},"frame":null,"hoverlabel":{"font":{"size":40}}}],"layout":{"margin":{"t":25.962640099626405,"r":9.9626400996264035,"b":50.809464508094649,"l":66.749688667496898},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":30},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.5,12.5],"tickmode":"array","ticktext":["2","3","4","5","6","7","8","9","10","11","12"],"tickvals":[2,3,4,5,6,7,8,9,10,11,12],"categoryorder":"array","categoryarray":["2","3","4","5","6","7","8","9","10","11","12"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":4.9813200498132018,"tickwidth":0.90569455451149117,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.90569455451149117,"zeroline":false,"anchor":"y","title":{"text":"k","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-200.60000000000002,4300.6000000000004],"tickmode":"array","ticktext":["0","1000","2000","3000","4000"],"tickvals":[0,999.99999999999989,2000,3000,4000.0000000000005],"categoryorder":"array","categoryarray":["0","1000","2000","3000","4000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":4.9813200498132018,"tickwidth":0.90569455451149117,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.90569455451149117,"zeroline":false,"anchor":"x","title":{"text":"Tratamientos","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"rgba(255,255,255,1)","line":{"color":"rgba(51,51,51,1)","width":0.90569455451149117,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":2.5769506084466713,"font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241}},"hovermode":"closest","width":850,"height":600,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"28944b05c90":{"x":{},"y":{},"type":"scatter"},"28942c731474":{"x":{},"y":{}}},"cur_data":"28944b05c90","visdat":{"28944b05c90":["function (y) ","x"],"28942c731474":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div></div>
@@ -199,12 +203,12 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Factorial fraccionado</h2>
 <ul>
-<li><p>Es lógico pensar que en presencia de muchos factores, realizar una réplica completa es una tarea casi imposible. Además de que , <span class="hi">solo una pequeña parte de los grados de libertad se usarían para estimar efectos de orden inferior</span>.</p>
+<li><p>Es lógico pensar que en presencia de muchos factores, realizar una réplica completa es una tarea casi imposible. Además de que <span class="hi">solo una pequeña parte de los grados de libertad se usaría para estimar efectos de orden inferior</span>.</p>
 <ul>
-<li>Todo esto bajo el ampara del principio de dispersión de efectos.</li>
+<li>Todo esto bajo el amparo del principio de escasez de efectos.</li>
 </ul></li>
-<li><p>Normalmente la persona investigadora puede asumir y de forma <span class="hi">muy razonable</span>, que las interacciones de orden superior son despreciables o bien, no interesan.</p></li>
-<li><p>Bajo esta premisa, <span class="hi">los efectos principales y otros de orden inferior</span> se pueden obtener corriendo solamente una (o unas pocas) fracción.</p></li>
+<li><p>Normalmente la persona investigadora puede asumir y de forma <span class="hi">muy razonable</span> que las interacciones de orden superior son despreciables o bien, no interesan.</p></li>
+<li><p>Bajo esta premisa, <span class="hi">los efectos principales y otros efectos de orden inferior</span> se pueden obtener corriendo solamente una (o unas pocas) fracción(es).</p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
@@ -212,15 +216,40 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <div class="columns">
 <div class="column">
 <ul>
-<li><p>Frente a las ventajas anterioremente mencionadas, estos diseños presentan una desventaja: <span class="hi">carecen de la información completa</span></p></li>
+<li><p>Frente a las ventajas anteriormente mencionadas, estos diseños presentan una desventaja: <span class="hi">carecen de la información completa</span></p></li>
 <li><p>Haciendo la analogía con una mandarina, al tomar un gajo se puede encontrar que este <span class="hi">tenga o no semilla</span>, y que con base en un solo gajo, se concluya sobre la cantidad de semillas en toda la mandarina.</p>
 <ul>
-<li>Esta generalización puede ser peligrosa.</li>
+<li>Esta generalización puede ser peligrosa. Un gajo contiene información sobre la mandarina, pero no toda la información. La utilidad del gajo depende de qué características queremos estudiar y de qué tan representativo sea respecto al conjunto.</li>
 </ul></li>
 </ul>
 </div><div class="column img-fit">
 <p><img data-src="img/mandarina.webp"></p>
 </div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Principios de los diseños fraccionados</h2>
+<ul>
+<li><p>El éxito en el uso de diseños factoriales fraccionados se fundamenta en tres ideas clave:</p></li>
+<li><p><strong>1. Principio de la escasez de efectos (<em>Sparsity of effects</em>):</strong></p>
+<ul>
+<li><p>Los sistemas o procesos suelen estar dominados principalmente por <span class="hi">pocos efectos</span> principales e interacciones de bajo orden.</p></li>
+<li><p>Esto implica que el sistema está dominado <span class="hi">por una pequeña fracción</span> del total de efectos posibles.</p></li>
+<li><p><strong>Ejemplo:</strong> En un diseño <span class="math inline">2^4</span> existen 15 efectos posibles, pero según el principio de escasez se espera que solo unos pocos (por ejemplo, entre 2 y 4) sean verdaderamente activos</p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Principios de los diseños fraccionados</h2>
+<ul>
+<li><strong>2. Propiedad de proyección (<em>The projection property</em>):</strong>
+<ul>
+<li>Los diseños factoriales fraccionados pueden <span class="hi">proyectarse en diseños completos y más potentes</span> enfocados en el subconjunto de factores significativos.</li>
+</ul></li>
+<li><strong>3. Experimentación secuencial (<em>Sequential experimentation</em>):</strong>
+<ul>
+<li>Permite <span class="hi">combinar las corridas de dos (o más) fracciones</span> de forma secuencial para construir un diseño mayor y estimar con precisión los efectos e interacciones de interés.</li>
+</ul></li>
+</ul>
 </section>
 <section>
 <section class="title-slide slide level1 bloques center">
@@ -230,14 +259,2048 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Utilidad</h2>
 <ul>
-<li><p>Existe una gran cantidad de factores de interés y se desean estudiar de manera simultánea, pero <span class="hi">con énfasis en los efectos principales y en las interacciones de orden inferior</span>.</p></li>
+<li><p>Existe una gran cantidad de factores de interés y se desea estudiar de manera simultánea, pero <span class="hi">con énfasis en los efectos principales y en las interacciones de orden inferior</span>.</p></li>
 <li><p>En las primeras etapas de investigación, cuando es necesario caracterizar un proceso, encontrando aquellas variables (factores) que <span class="hi">tienen un impacto</span> sobre la calidad o eficiencia.</p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
 <h2>Utilidad</h2>
 <ul>
-<li>Con los experimentos exploratorios se pretende <span class="hi">reducir la cantidad de factores</span> en estudio a solo aquellos que verdaderamente tengan una implicación en la variable de respuesta del estudio experimental.</li>
+<li><p>Con los experimentos exploratorios se pretende <span class="hi">reducir la cantidad de factores</span> en estudio a solo aquellos que verdaderamente tengan una implicación en la variable de respuesta del estudio experimental.</p></li>
+<li><p><span class="hi">No es usual que se usen</span> para establecer el <span class="hi">tamaño del efecto</span> de esos factores, <span class="hi">generalmente se usan para saber si el efecto existe</span> y si tiene implicaciones prácticas sobre el contexto bajo el cual se desarrolla el experimento.</p>
+<ul>
+<li>Esto para ser estudiado o investigado en posteriores experimentos.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>En simple</h2>
+<ul>
+<li><p>Con estos diseños se responde a la pregunta:</p>
+<ul>
+<li>¿Estos factores afectan a mi variable de respuesta?</li>
+</ul></li>
+<li><p>Para que compare, en cambio, en un experimento factorial completo la pregunta que se responde es:</p>
+<ul>
+<li>¿Cuánto afectan estos factores a mi variable de respuesta?</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>En resumen …</h2>
+<ul>
+<li><p>Son experimentos que se utilizan para determinar <span class="hi">cuáles de los factores estudiados</span> tienen un impacto sobre la variable de respuesta, para luego ser estudiados o abordados con otro tipo de experimento.</p></li>
+<li><p>Por lo general, los diseños factoriales fraccionados se utilizan para identificar factores importantes y orientar experimentos posteriores de caracterización, mejora u optimización.</p></li>
+<li><p>Esto es importante porque un diseño fraccionado puede formar parte de una estrategia de mejora:</p></li>
+<li><p><span class="math inline">Cribado \rightarrow Factorial completo \rightarrow RSM</span></p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>En resumen …</h2>
+<ul>
+<li><p>Por tanto, tampoco se buscan modelos con “excelente” capacidad resolutiva en términos de la bondad de ajuste, por ejemplo, un valor de <span class="math inline">R^2</span> alto puede ser engañoso.</p></li>
+<li><p>En diseños fraccionados con pocos grados de libertad, <span class="math inline">R^2</span> no debe utilizarse como criterio principal para identificar los efectos activos. La interpretación debe basarse en la estructura de alias, la jerarquía de efectos, la escasez de efectos y el análisis gráfico/estadístico apropiado</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>En resumen …</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Se utilizan:
+<ul>
+<li>Cuando se desea explorar <span class="hi">muchos</span> factores.</li>
+<li>Cuando el problema u objetivo son de tipo exploratorio.</li>
+<li>Cuando se pretende quitar aquellos factores que en principio no son significativos.</li>
+<li>Cuando los recursos no alcanzan para todas las corridas.</li>
+<li>Cuando los diseños completos no son eficientes.</li>
+</ul></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/tamizado.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>En resumen …</h2>
+<ul>
+<li><p>Los diseños factoriales fraccionados permiten estimar efectos con un número reducido de corridas. Sin embargo, algunos efectos se encuentran confundidos entre sí, por lo que la interpretación individual de los efectos depende de la estructura de alias y de los supuestos realizados.</p></li>
+<li><p>¿Qué factores parecen tener efectos importantes sobre la respuesta y cuáles requieren investigación adicional?</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Nomenclatura</h2>
+<ul>
+<li><p>El experimento se escribe como:</p></li>
+<li><p><span class="math display">2^{k-p}_R</span></p></li>
+<li><p>donde:</p>
+<ul>
+<li><span class="math inline">2:</span> Cantidad de niveles</li>
+<li><span class="math inline">k:</span> Cantidad de factores</li>
+<li><span class="math inline">p:</span> Cantidad de generadores</li>
+<li><span class="math inline">R:</span> Resolución, por lo general es <span class="math inline">III</span>, <span class="math inline">IV</span> y <span class="math inline">V</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Nomenclatura</h2>
+<ul>
+<li><p><span class="hi">Generadores <span class="math inline">p</span></span>: piezas de información que son necesarias para generar las fracciones (es la misma idea que en Bloqueo y confusión).</p></li>
+<li><p>El número de fracciones solo puede ser potencia de 2. Esto es importante que lo tenga presente cuando haga experimentación secuencial.</p>
+<ul>
+<li>Cantidad de fracciones: <span class="math inline">2^p</span></li>
+<li>Cantidad de tratamientos por fracción: <span class="math inline">2^{k-p}</span></li>
+<li>Cantidad de tratamientos totales: <span class="math inline">2^k</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Resolución de un diseño</h2>
+<ul>
+<li><p>Indica qué tan bien pueden estudiarse los efectos potencialmente importantes.</p></li>
+<li><p>Coloquialmente:</p>
+<ul>
+<li>Qué tan grande debe ser la fracción que necesito para llegar a conclusiones adecuadas.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Resolución de un diseño</h2>
+<ul>
+<li><p><strong>Definición formal:</strong> Un diseño es de resolución <span class="math inline">R</span> si ningún efecto de <span class="math inline">p</span> factores está confundido (aliado) con otro efecto que contenga menos de <span class="math inline">R - p</span> factores.</p></li>
+<li><p><strong>Notación estándar:</strong> Se utiliza un subíndice con números romanos; por ejemplo, la media fracción del diseño <span class="math inline">2^3</span> con relación definitoria <span class="math inline">I = ABC</span> es un diseño <span class="math inline">2_{III}^{3-1}</span>.</p></li>
+<li><p><strong>Regla práctica:</strong> La resolución de un diseño factorial fraccionado de dos niveles es igual al <span class="hi">número de letras de la palabra más corta</span> en la relación definitoria.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Tipos de Resolución: III y IV</h2>
+<ul>
+<li><strong>1. Diseños de Resolución III (<span class="math inline">2_{III}^{k-p}</span>):</strong>
+<ul>
+<li>Ningún efecto principal está confundido con otro efecto principal.</li>
+<li>Los efectos principales están confundidos con <span class="hi">interacciones de dos factores</span>.</li>
+<li><em>Ejemplo:</em> El diseño <span class="math inline">2^{3-1}_{III}</span> con <span class="math inline">I = ABC</span>.</li>
+</ul></li>
+<li><strong>2. Diseños de Resolución IV (<span class="math inline">2_{IV}^{k-p}</span>):</strong>
+<ul>
+<li>Ningún efecto principal está confundido con otro efecto principal <strong>ni</strong> con interacciones de dos factores.</li>
+<li>Las interacciones de dos factores están confundidas entre sí.</li>
+<li><em>Ejemplo:</em> El diseño <span class="math inline">2^{4-1}_{IV}</span> con <span class="math inline">I = ABCD</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Resolución V y Criterio de Elección</h2>
+<ul>
+<li><strong>3. Diseños de Resolución V (<span class="math inline">2_{V}^{k-p}</span>):</strong>
+<ul>
+<li>Ningún efecto principal o interacción de dos factores está confundido con otro efecto principal o interacción de dos factores.</li>
+<li>Las interacciones de dos factores se confunden con interacciones de tres factores.</li>
+<li><em>Ejemplo:</em> El diseño <span class="math inline">2^{5-1}_V</span> con <span class="math inline">I = ABCDE</span>.</li>
+</ul></li>
+<li><strong>Criterio de preferencia:</strong>
+<ul>
+<li>Se busca emplear diseños con la <span class="hi">mayor resolución posible</span> para el nivel de fraccionamiento requerido.</li>
+<li>Cuanto mayor es la resolución, <span class="hi">menos restrictivos</span> son los supuestos sobre qué interacciones deben considerarse despreciables.</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>¿Qué pasa con los supuestos?</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Supuestos</h2>
+<ul>
+<li><p>En diseños fraccionados puede no existir suficiente información para estimar el error experimental de forma independiente. Por ello, las pruebas formales de significancia y los diagnósticos de residuos deben interpretarse con cautela.</p></li>
+<li><p>Cuando se hace el análisis de fracciones individuales, recomiendo que se omita la comprobación de supuestos, hasta que incorpore más corridas mediante experimentación secuencial y/o tras seleccionar los efectos activos mediante el principio de parsimonia, enviando al error grados de libertad.</p></li>
+</ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>¿Cómo fraccionar?</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Fracciones</h2>
+<ul>
+<li><p>Sigue la misma idea de las estructuras de confusión.</p></li>
+<li><p>Un cambio <span class="hi">importante</span> de nomenclatura se da en la definición del generador, en el caso de un <span class="math inline">2^{3-1}</span> para bloqueo y confusión el generador se describía como <span class="math inline">ABC</span>, en fraccionamiento también se puede describir como <span class="math inline">C = AB</span>.</p>
+<ul>
+<li>Ambos enfoques son válidos, y generan el mismo diseño, pero con diferente secuencia de pasos. Los cuales se van a desarrollar en los slides a continuación.</li>
+</ul></li>
+<li><p>Esto se debe a que <span class="math inline">C\cdot C = A\cdot B \cdot C</span> es decir <span class="math inline">I =  ABC</span>.</p>
+<ul>
+<li>Donde <span class="math inline">I</span> es la columna identidad y <span class="math inline">I=ABC</span> es la relación definitoria.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Fracciones con <span class="math inline">I=ABC</span></h2>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">I</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ABC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(1)</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">c</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">b</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bc</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">a</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ac</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ab</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abc</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fracción</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">I</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ABC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(1)</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bc</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ac</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ab</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">c</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">b</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">a</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abc</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Fracciones con <span class="math inline">C = \pm AB</span></h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Para este caso se parte de un experimento factorial completo <span class="math inline">2^2</span> (pues es el resultado matemático del <span class="math inline">2^{3-1}</span>).</p></li>
+<li><p>La columna <span class="math inline">C</span> se obtiene del generador, en este caso <span class="math inline">C = \pm AB</span> (solo es un generador, pues viene del <span class="math inline">2^1</span>).</p></li>
+<li><p>Cuando <span class="math inline">C = -AB</span> se genera la fracción 1 anterior, y cuando es <span class="math inline">C = AB</span> se genera la fracción 2.</p></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Fracciones con <span class="math inline">C = \pm AB</span></h2>
+<div class="columns">
+<div class="column">
+<h3>Para la fracción 1</h3>
+<p><span class="math display">C = -AB</span></p>
+<p>Se le conoce como fracción <span class="hi">complementaria</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;">(1)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">bc</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">ac</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;">ab</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column">
+<h3>Para la fracción 2</h3>
+<p><span class="math display">C = AB</span></p>
+<p>Se le conoce como fracción <span class="hi">principal</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">c</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;">b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;">a</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">abc</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Fracciones</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/fraccion2^3.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Cómo fraccionar?</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>La cantidad de fracciones y por ende el tamaño de las mismas es una decisión de la persona investigadora con base en el contexto.</p></li>
+<li><p>¿Es mejor una fracción grande?</p></li>
+<li><p>¿O dos fracciones pequeñas?</p></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/frac_pie.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Cómo se escogen?</h2>
+<ul>
+<li>Generalmente el proceso inicia seleccionando la fracción principal.
+<ul>
+<li>Claramente esto no es un impedimento para seleccionar otras.</li>
+</ul></li>
+<li>Esta fracción es aquella que tiene todos sus generadores (<span class="math inline">I = ABC</span> o <span class="math inline">C = AB</span>, en este ejemplo) con signos positivos.</li>
+</ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Estructura de ALIAS</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Estructura de ALIAS</h2>
+<ul>
+<li><p>Cuando diseñe estos experimentos, revise la estructura de <span class="hi">ALIAS</span>, ahí notará cuáles efectos estarán confundidos y de esa forma podrá tomar decisiones sobre la siguiente fracción a analizar.</p></li>
+<li><p>En el ejemplo anterior, la estructura de ALIAS es la siguiente:</p></li>
+<li><p><span class="math inline">A + BC</span></p></li>
+<li><p><span class="math inline">B + AC</span></p></li>
+<li><p><span class="math inline">C + AB</span></p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Estructura de ALIAS - ¿Cómo se obtiene?</h2>
+<ul>
+<li><p>Se parte de la relación definitoria, en este caso <span class="math inline">I=ABC</span>. Se debe multiplicar cualquier efecto por la relación definitoria, entonces:</p>
+<ul>
+<li><span class="math inline">A\cdot I = A\cdot ABC</span> lo que se simplifica como: <span class="math inline">A=BC</span></li>
+</ul></li>
+<li><p>Ocurre de forma similar con los demás efectos, por tanto:</p></li>
+<li><p><span class="math inline">A + BC</span></p></li>
+<li><p><span class="math inline">B + AC</span></p></li>
+<li><p><span class="math inline">C + AB</span></p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Estructura de ALIAS</h2>
+<ul>
+<li><p>En consecuencia, como <span class="math inline">A + BC</span> es imposible de diferenciar <span class="math inline">A</span> de <span class="math inline">BC</span>, lo mismo ocurre con <span class="math inline">B</span> de <span class="math inline">AC</span> y de <span class="math inline">C</span> con <span class="math inline">AB</span>.</p>
+<ul>
+<li>¡La misma idea que en bloqueo y confusión!</li>
+</ul></li>
+<li><p>Entonces, aún cuando su nombre o nomenclatura es <span class="math inline">A</span>, lo que en realidad se está estimando es <span class="math inline">A+BC</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Cómo se interpreta?</h2>
+<ul>
+<li><p>Básicamente, es necesario suponer que <span class="hi">solo uno o muy pocos</span> en la cadena de ALIAS son responsables de estos efectos.</p></li>
+<li><p>Posteriormente en esta clase estudiaremos que como no podemos distinguir este efecto, por principios se asume que le pertenece a uno solo de los factores o interacciones (en este caso, a <span class="math inline">A</span>); y que podemos recurrir a estrategias para separar ese efecto, de tal forma que podamos observar si, por ejemplo, en <span class="math inline">A+BC</span> el efecto está dominado por <span class="math inline">A</span>, <span class="math inline">BC</span> o la combinación de ambos.</p></li>
+<li><p>Esto se realiza mediante <span class="hi">experimentación secuencial</span>, que consiste básicamente en escoger otra fracción que separa esa estructura aliada en particular.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<ul>
+<li><p>Suponga una situación en la que usted ignora cuáles de todas las variables independientes de un problema son los verdaderamente importantes.</p></li>
+<li><p>Usted identifica 6 factores y diseña un factorial fraccionado <span class="math inline">2^{6-3}_{III}</span>. Se elige iniciar con la fracción principal.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<ul>
+<li><p>Obtenga los generadores y a partir de ellos obtenga la relación definitoria (I).</p>
+<ul>
+<li>En la Tabla 8.14 de la 9na Edición del libro Design and Analysis of Experiments, de Douglas Montgomery se muestran los generadores recomendados.</li>
+<li>Para el ejemplo que tratamos corresponden a: <span class="math inline">D=AB</span>, <span class="math inline">E=AC</span> y <span class="math inline">F=BC</span>.</li>
+</ul></li>
+<li><p>Por tanto, la relación definitoria es:</p></li>
+<li><p><span class="math inline">I + ABD + ACE +BCF + A^2BCDE + AB^2CDF + ABC^2EF + A^2B^2DEF</span></p></li>
+<li><p><span class="math inline">I + ABD + ACE + BCF + DEF + ABEF + ACDF + BCDE</span></p>
+<ul>
+<li>Se suelen acomodar por jerarquía.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<ul>
+<li><p>Con base en esta relación definitoria <span class="math inline">(I)</span>, obtenga la estructura de ALIAS.</p></li>
+<li><p><span class="math inline">I + ABD + ACE + BCF + DEF + ABEF + ACDF + BCDE</span></p></li>
+<li><p><span class="math inline">A + BD + CE + ABCF + ADEF + BEF + CDF + ABCDE</span></p></li>
+<li><p><span class="math inline">B + AD + ABCE + CF + BDEF + AEF + ABCDF + CDE</span></p></li>
+<li><p><span class="math inline">Etc...</span> complete.</p></li>
+<li><p><span class="math inline">AF + ...</span></p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<ul>
+<li><p>¿Qué quiere decir esta estructura?</p>
+<ul>
+<li><p>Que solo es posible estimar 7 contrastes independientes de efectos, el de <span class="math inline">A</span>, <span class="math inline">B</span>, <span class="math inline">C</span>, <span class="math inline">D</span>, <span class="math inline">E</span>, <span class="math inline">F</span> y <span class="math inline">AF</span>, pero cada contraste puede representar una cadena de alias.</p></li>
+<li><p>En mucho software, estos son seleccionados por ser los primeros en orden alfabético (además del principio de jerarquía).</p></li>
+<li><p>Que para cada uno de esos efectos se supone que solo un factor o interacción (o unos pocos de ellos) es responsable. Por ejemplo, en <span class="math inline">A + BD + CE + … ABCDE</span>, se podría suponer que solo <span class="math inline">A</span> es el responsable.</p></li>
+<li><p>Si su hipótesis de trabajo es que <span class="math inline">A</span> no puede ser el responsable (o no el único) de ese efecto, sino que <span class="math inline">BD</span> está involucrado, puede recurrirse a la experimentación secuencial para separarlos y obtener la estimación individual de <span class="math inline">A</span> y una de <span class="math inline">BD</span>.</p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Generadores recomendados</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/tabla_fraccionados.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Para el ejemplo <span class="math inline">2^{6-3}</span>, genere la fracción principal (aquella que tenga todos los generadores positivos).</p></li>
+<li><p>Para ello, primero genere un diseño <span class="math inline">2^3</span> (el resultado de <span class="math inline">2^{6-3}</span>).</p></li>
+<li><blockquote>
+<p>Nota: Aunque se le presenta el paso a paso de la solución, se espera que usted la realice.</p>
+</blockquote></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(1)</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">c</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">b</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bc</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">a</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ac</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ab</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abc</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Ahora genere la fracción principal utilizando <span class="math inline">D = AB</span>, <span class="math inline">E =  AC</span> y <span class="math inline">F = BC</span></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">D</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">E</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo - Resuelto</h2>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">D</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">E</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">def</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cd</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">be</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bcf</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">af</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ace</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abd</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abcdef</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Experimentación secuencial en el contexto de los fraccionados</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentación secuencial</h2>
+<ul>
+<li><p>En fraccionados, la idea de la experimentación secuencial es no jugarse todos los recursos en una primera apuesta, sino que el conocimiento se vaya construyendo por etapas.</p></li>
+<li><p>En lugar de hacer un experimento muy grande y costoso desde el inicio, con los riesgos que esto puede conllevar, se puede hacer uno pequeño y con base en esa información, aumentar el diseño completando las corridas faltantes.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentación secuencial</h2>
+<ul>
+<li><p>Se utiliza para separar efectos potencialmente importantes que se encuentran confundidos con otros efectos.</p></li>
+<li><p>Se sigue la siguiente estrategia:</p>
+<ul>
+<li><p>Se ejecuta la primera fracción, por lo general la principal, al momento de analizarla se determina la necesidad de ejecutar una segunda fracción y cuál es esa fracción.</p></li>
+<li><p>Se sigue de esta manera hasta que el objetivo se haya completado.</p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentación secuencial</h2>
+<ul>
+<li><p>Por ejemplo, se utilizaría, si se desea saber si el efecto aliado de <span class="math inline">A + BC</span> pertenece a <span class="math inline">A</span> o pertenece a <span class="math inline">BC</span>, o una combinación de ambos.</p></li>
+<li><p>El uso secuencial de diseños factoriales fraccionados es muy útil, lo que a menudo conduce a <span class="hi">una gran economía y eficiencia</span> en la experimentación.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentación secuencial</h2>
+<ul>
+<li><p>Esta aplicación de factoriales fraccionados ocurre con frecuencia en situaciones de cribado de factores; es decir, hay relativamente muchos factores, pero se espera que solo unos pocos sean importantes.</p></li>
+<li><p>Generalmente, pero no exclusivamente, se emplean diseños de resolución <span class="math inline">III</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Plegado (<em>Fold Over</em>)</h2>
+<ul>
+<li><p>El plegado consiste en tomar la matriz de diseño de la fracción, generalmente la principal, y añadir un segundo diseño de corridas idénticas en magnitud pero donde se invierten los signos de todos los factores.</p></li>
+<li><p>Esto también se conoce como <span class="hi">plegado completo</span>, y la fracción resultante se le llama la <span class="hi">fracción complementaria</span>.</p></li>
+<li><p>En este tipo de plegado se aumenta la resolución del experimento, por ejemplo de <span class="math inline">III</span> a <span class="math inline">IV</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Cómo se construye para cualquier diseño?</h2>
+<ul>
+<li><p>Para encontrar la fracción plegada de un diseño factorial <span class="math inline">2^{k-p}</span>:</p>
+<ul>
+<li><p><strong>Paso 1:</strong> Genere la matriz de diseño de la fracción de interés (la principal por ejemplo).</p></li>
+<li><p><strong>Paso 2:</strong> Duplique esa matriz, pero multiplique cada columna por <span class="math inline">-1</span>.</p></li>
+<li><p><strong>Paso 3:</strong> La unión de la fracción original y su reflejo forma el <strong>diseño plegado</strong>.</p></li>
+</ul></li>
+<li><p><em>Es posible que haya diseños sin un plegado completo.</em></p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<ul>
+<li><p>Busque la fracción de plegado completo del diseño <span class="math inline">2^{6-3}_{III}</span> usado anteriormente. Utilice la fracción principal como la primera fracción.</p></li>
+<li><p>Como ya sabe, los generadores de la fracción principal son <span class="math inline">D=AB</span>, <span class="math inline">E=AC</span> y <span class="math inline">F=BC</span>.</p></li>
+<li><p>Al obtener la plegada notará que los nuevos generadores son estos: <span class="math inline">D = -AB</span>, <span class="math inline">E = -AC</span> y <span class="math inline">F = -BC</span>. Esto es importante, procure entenderlo a cabalidad.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<div class="columns">
+<div class="column">
+<h3>Fracción principal</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">D</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">E</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">def</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cd</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">be</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bcf</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">af</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ace</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abd</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abcdef</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column">
+<h3>Fracción plegada</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">D</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">E</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">abc</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abef</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">acdf</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ade</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bcde</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bdf</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cef</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(1)</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo - Diseño plegado completo</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.63em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">D</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">E</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">F</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Fracción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">def</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;">Principal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cd</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;">Principal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">be</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;">Principal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bcf</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;">Principal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">af</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;">Principal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ace</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;">Principal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abd</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;">Principal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abcdef</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;">Principal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abc</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;">Complementaria</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abef</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;">Complementaria</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">acdf</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;">Complementaria</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ade</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;">Complementaria</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bcde</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;">Complementaria</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bdf</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;">Complementaria</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cef</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;">Complementaria</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(1)</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;">Complementaria</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column" style="width:70%;">
+<ul>
+<li><p>El diseño completo se obtiene uniendo las dos fracciones. La idea que hay detrás de esta estrategia es que usted <span class="hi">ejecute y analice la fracción principal (u otra)</span> para luego <span class="hi">escoger una segunda fracción</span> que le permita obtener más información, pero de forma estratégica. En este caso, y para el ejemplo, esa fracción fue la complementaria.</p>
+<ul>
+<li>Note, además, que la matriz de la izquierda es una matriz espejo.</li>
+</ul></li>
+<li><p>No obstante, también <span class="hi">es totalmente plausible</span> que usted decida realizar un plegado sobre uno de los efectos de interés. Por ejemplo, plegar sobre <span class="math inline">A</span>. Lo cual vamos a desarrollar a continuación.</p></li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo - Plegado sobre <span class="math inline">A</span></h2>
+<ul>
+<li><p>Busque la fracción que pliega sobre <span class="math inline">A</span> en el diseño <span class="math inline">2^{6-3}_{III}</span>. Utilice la fracción principal como su primera fracción.</p></li>
+<li><p>Vamos a diseñar dicha fracción y vamos a invertir los signos de <span class="math inline">A</span>, para luego deducir los generadores del diseño.</p>
+<ul>
+<li>Adelanto: los generadores de ese diseño son <span class="math inline">D=-AB</span>, <span class="math inline">E=-AC</span> y <span class="math inline">F = BC</span>.</li>
+</ul></li>
+<li><p>Finalmente, se unen las dos fracciones y se analizan.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo - Plegado sobre <span class="math inline">A</span></h2>
+<div class="columns">
+<div class="column">
+<h3>Fracción principal</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">D</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">E</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">def</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cd</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">be</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bcf</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">af</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ace</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abd</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abcdef</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column">
+<h3>Fracción plegada sobre A</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">D</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">E</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">adef</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">acd</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abe</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abcf</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">f</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ce</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bd</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bcdef</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Plegado para separar una cadena de alias</h2>
+<ul>
+<li><p>El <span class="hi">plegado completo</span> consiste en agregar una segunda fracción en la que se invierten los signos de todos los factores. En un diseño de Resolución <span class="math inline">III</span>, un plegado completo permite separar los efectos principales de las interacciones de dos factores con las que estaban confundidos y produce un diseño combinado de Resolución <span class="math inline">IV</span>.</p></li>
+<li><p>Sin embargo, cuando se dispone de un diseño de Resolución <span class="math inline">IV</span>, los efectos principales ya están separados de las interacciones de dos factores. El problema puede estar ahora en que algunas interacciones de dos factores permanecen confundidos entre sí.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Plegado para separar una cadena de alias</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>En este caso, no necesariamente es conveniente realizar un <span class="hi">plegado completo</span>. Podemos construir una segunda fracción invirtiendo los signos de uno o más factores con el objetivo de romper cadenas de alias específicas.</p></li>
+<li><p>Por tanto, el plegado debe entenderse como una estrategia de <span class="hi">experimentación secuencial</span>:</p></li>
+</ul>
+<p><span class="math display">
+\text{Primer experimento}
+\rightarrow
+\text{identificación de alias de interés} \\
+\rightarrow
+\text{segundo experimento}
+\rightarrow
+\text{separación de efectos}.
+</span></p>
+<ul>
+<li>La elección de los factores cuyos signos se invierten depende de la estructura de alias del diseño y del objetivo del experimentador.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>¿Qué tipo de plegado necesito?</h2>
+<div class="columns">
+<div class="column">
+<table class="caption-top">
+<colgroup>
+<col style="width: 67%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situación</th>
+<th>Estrategia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Resolución III: principales confundidos con interacciones de dos factores</td>
+<td><em>Plegado completo</em></td>
+</tr>
+<tr class="even">
+<td>Resolución III: interés particular en un factor</td>
+<td><em>Plegado sobre un factor</em></td>
+</tr>
+<tr class="odd">
+<td>Resolución IV: interacciones de dos factores confundidas entre sí</td>
+<td><em>Plegado sobre uno o más factores</em></td>
+</tr>
+<tr class="even">
+<td>Solo algunas cadenas de alias son de interés</td>
+<td><em>Plegado parcial</em></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>El plegado no se realiza simplemente para “aumentar la resolución”. Se utiliza para obtener información adicional y romper determinadas estructuras de alias.</p>
+</blockquote>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentación secuencial</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>La mayoría de software ordena sus fracciones de esta manera:</p>
+<ul>
+<li>Tome el diseño <span class="math inline">2^{6-3}_{III}</span> y realice una matriz de Yates con sus generadores.</li>
+</ul></li>
+<li><p>Esto le puede servir para ubicar y generar fracciones más rápidamente. Tome en cuenta que esta construcción la hicimos bajo la premisa de que la primera fracción a ejecutar es la principal y que esto puede cambiar.</p></li>
+<li><p>En la tabla de la izquierda se presentan las fracciones que hemos encontrado en el desarrollo de estos ejemplos.</p></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">No</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">D</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">E</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">F</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Fracción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">(1)</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;">Complementaria</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">d</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">e</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">de</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">f</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;">Sobre A</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">df</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">ef</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">def</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;">Principal</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio</h2>
+<ul>
+<li><p>A realizarse de forma sincrónica o asincrónica, al juicio de la persona docente.</p></li>
+<li><p>Para el diseño <span class="math inline">2^{6-3}_{III}</span>, encuentre la fracción correspondiente al plegado sobre <span class="math inline">B</span> y sobre <span class="math inline">D</span>. Para cada caso, determine los nuevos generadores.</p>
+<ul>
+<li>En la tabla anterior, indique a cuál número de fracción corresponde cada fracción.</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Propiedad de la proyección</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Propiedad de la proyección</h2>
+<ul>
+<li><p>La <span class="hi">propiedad de la proyección</span> es una de las ideas clave para el uso exitoso de los diseños factoriales fraccionados.</p></li>
+<li><p>Consiste en la capacidad de un diseño fraccionado para “colapsar” o proyectarse en diseños factoriales completos (a veces con réplicas) cuando se consideran solo los subconjuntos de factores que resultan ser potencialmente activos.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Propiedad de la proyección</h2>
+<ul>
+<li><p>La capacidad de proyección de un diseño depende directamente de su resolución <span class="math inline">(R)</span></p></li>
+<li><p>Cualquier diseño factorial fraccionado de resolución <span class="math inline">R</span> contiene diseños factoriales completos en cualquier subconjunto de <span class="math inline">R-1</span> factores.</p></li>
+<li><p>Por ejemplo, un diseño <span class="math inline">2^{3−1}</span> de resolución <span class="math inline">III</span> se proyecta en un diseño factorial completo <span class="math inline">2^2</span> en cada subconjunto de dos factores.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Propiedad de la proyección</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>En los diseños de media fracción, la propiedad funciona de la siguiente manera:</p>
+<ul>
+<li><p>Se proyecta en un factorial completo en cualquier combinación de <span class="math inline">k-1</span> factores de los <span class="math inline">k</span> originales.</p></li>
+<li><p>Puede proyectarse en dos réplicas de un factorial completo en cualquier subconjunto de <span class="math inline">k-2</span> factores.</p></li>
+<li><p>Puede proyectarse en cuatro réplicas de un factorial completo en cualquier subconjunto de <span class="math inline">k-3</span> factores, y así sucesivamente</p></li>
+</ul></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/prop_proyeccion.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Propiedad de la proyección</h2>
+<ul>
+<li>En fracciones más pequeñas, como las de un cuarto <span class="math inline">2^{k-2}</span>, el diseño se proyecta en un factorial completo en cualquier subconjunto de factores <span class="math inline">r \le k-p</span>, siempre y cuando ese subconjunto de factores <span class="hi">no forme una palabra en la relación definitoria</span> del diseño.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Propiedad de la proyección</h2>
+<ul>
+<li><p>Esta propiedad es extremadamente valiosa en <span class="hi">experimentos de cribado</span> (<em>screening</em>).</p>
+<ul>
+<li>Generalmente, al inicio de un proyecto se investigan muchos factores, pero debido al <span class="hi">principio de escasez de efectos</span>, es probable que solo unos pocos sean “activos” o realmente importantes.</li>
+</ul></li>
+<li><p>La propiedad de proyección permite que, una vez identificados los factores potencialmente inactivos y eliminados del análisis, los datos restantes representen un experimento factorial completo en los factores retenidos.</p></li>
+<li><p>Cualquier diseño de Resolución <span class="math inline">R</span> se proyecta en un diseño factorial completo <span class="math inline">2^{R-1}</span> en cualesquiera <span class="math inline">R-1</span> factores.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Suponga que se ha diseñado un experimento factorial fraccionado <span class="math inline">2^{4-1}_{IV}</span> con <span class="math inline">I=ABCD</span>.</p></li>
+<li><p>Analice el experimento y genere un diagrama de Pareto de los efectos.</p></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yates</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">D</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Respuesta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(1)</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">45</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cd</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bd</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">45</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bc</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ad</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ac</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ab</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(180, 83, 73, 255) !important;">-1</span></td>
+<td style="text-align: right;">65</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abcd</td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: left;"><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(82, 121, 111, 255) !important;">1</span></td>
+<td style="text-align: right;">96</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio</h2>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Término</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Estimado</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">EE</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Valor T</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Valor P</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Intercepto</td>
+<td style="text-align: right;">70.75</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">9.50</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">7.00</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">8.25</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AB</td>
+<td style="text-align: right;">-0.50</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AC</td>
+<td style="text-align: right;">-9.25</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AD</td>
+<td style="text-align: right;">9.50</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-5d980c1c51eb8fa8b9ba" style="width:850px;height:600px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5d980c1c51eb8fa8b9ba">{"x":{"data":[{"orientation":"h","width":[0.90000000000000036,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.89999999999999991,0.90000000000000036,0.90000000000000036],"base":[0,0,0,0,0,0,0],"x":[9.5,0.75000000000000411,7.0000000000000107,8.2500000000000089,0.50000000000000544,9.2500000000000071,9.4999999999999947],"y":[7,2,3,4,1,5,6],"text":["factor: A<br />efecto: 9.50","factor: B<br />efecto: 0.75","factor: C<br />efecto: 7.00","factor: D<br />efecto: 8.25","factor: AB<br />efecto: 0.50","factor: AC<br />efecto: 9.25","factor: AD<br />efecto: 9.50"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(180,83,73,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null,"hoverlabel":{"font":{"size":40}}}],"layout":{"margin":{"t":61.16396845163969,"r":13.283520132835205,"b":67.745952677459542,"l":67.745952677459542},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":30},"title":{"text":"Pareto de efectos factoriales","font":{"color":"rgba(0,0,0,1)","family":"","size":31.880448318804483},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.47500000000000003,9.9749999999999996],"tickmode":"array","ticktext":["0.0","2.5","5.0","7.5"],"tickvals":[0,2.5,5,7.5],"categoryorder":"array","categoryarray":["0.0","2.5","5.0","7.5"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":6.6417600664176026,"tickwidth":1.2075927393486547,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":1.2075927393486547,"zeroline":false,"anchor":"y","title":{"text":"Magnitud","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,7.5999999999999996],"tickmode":"array","ticktext":["AB","B","C","D","AC","AD","A"],"tickvals":[1,2,3,4.0000000000000009,5,6,7],"categoryorder":"array","categoryarray":["AB","B","C","D","AC","AD","A"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":6.6417600664176026,"tickwidth":1.2075927393486547,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":1.2075927393486547,"zeroline":false,"anchor":"x","title":{"text":"Efecto","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"rgba(255,255,255,1)","line":{"color":"rgba(51,51,51,1)","width":1.2075927393486547,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":3.4359341445955631,"font":{"color":"rgba(0,0,0,1)","family":"","size":21.253632212536321}},"hovermode":"closest","width":850,"height":600,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"2894321e8a4":{"x":{},"y":{},"type":"bar"}},"cur_data":"2894321e8a4","visdat":{"2894321e8a4":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Como puede notar, el modelo está dominado por <span class="math inline">A</span>, <span class="math inline">C</span> y <span class="math inline">D</span>.</p></li>
+<li><p><span class="hi">Buenas noticias</span>, podemos proyectar el diseño en un factorial completo <span class="math inline">2^3</span> con una sola réplica.</p></li>
+<li><p>El diseño original, de resolución <span class="math inline">IV</span> se puede proyectar en un diseño completo <span class="math inline">4-1 = 3</span> factores, en este caso, de una sola réplica.</p></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Término</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Estimado</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">EE</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Valor T</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Valor P</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">70.75</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">9.50</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">7.00</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">8.25</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A:C</td>
+<td style="text-align: right;">-9.25</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A:D</td>
+<td style="text-align: right;">9.50</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C:D</td>
+<td style="text-align: right;">-0.50</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A:C:D</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+<td style="text-align: right;">*</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejercicio integrador</h2>
+<ul>
+<li>En este <a href="https://stevenggoni.github.io/tutoriales_R/ejercicio_integrador_FF.html" target="_blank">enlace</a> cuenta con un enunciado y datos para la realización de un ejercicio integrador para esta clase.</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Cómo crear y analizar este experimento en R</h2>
+<ul>
+<li><p>En caso de que no quiera usar Minitab, por costo, licenciamiento u otras razones, se le provee de un tutorial en R para el diseño y análisis de experimentos factoriales fraccionados</p></li>
+<li><p>Lo puede encontrar en este <a href="https://stevenggoni.github.io/tutoriales_R/factorial_fraccionado_R.html" target="_blank">enlace</a>.</p></li>
 </ul>
 </section>
 <section class="slide level2 bloques">
