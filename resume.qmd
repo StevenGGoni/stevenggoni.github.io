@@ -4,8 +4,8 @@ title: Ingeniero Industrial (II-38999) y M.Sc en Estadística
 format:
   classic-cv-pdf: default
 cvfooter:
-  left: "https://stevenggoni.github.io/"
-  right: "https://github.com/StevenGGoni"
+  left: "\\href{https://stevenggoni.github.io/}{https://stevenggoni.github.io/}"
+  right: "\\href{https://github.com/StevenGGoni}{https://github.com/StevenGGoni}"
 cvcolor: 161A21 #without `#`
 bgcolor: 9BA1AB
 cvfont: fetamont #texlive fonts like raleway,fetamont,gillius,comfortaa
@@ -15,10 +15,10 @@ cvmeta:
     right: San José, Costa Rica
   - title: Campo
     left: Ingeniería industrial, diseño de experimentos, estadística
-    right: https://stevenggoni.github.io/
+    right: "\\href{https://stevenggoni.github.io/}{https://stevenggoni.github.io/}"
   - title: Tecnologías
     left: R/RStudio, Excel, Minitab, Python
-    right: steven.garciagoni@ucr.ac.cr - 8774 8919
+    right: "\\href{mailto:steven.garciagoni@ucr.ac.cr}{steven.garciagoni@ucr.ac.cr} - 87748919"
 execute:
   echo: false
 ---
@@ -81,9 +81,11 @@ tibble::tribble(
   c("Docente del curso Tópicos de diseños experimentales"),
   
   "Instructor - Servicios profesionales (bajo demanda)", "School of Medical Devices (SMD)", "2024 - Actualidad", 
-  c("Desarrollo del material pedagógico formativo concerniente al curso Caracterización de Procesos con Diseño de Experimentos", 
+  c("Diseño de contenidos del programa Caracterización de Procesos con Diseño de Experimentos (Process Characterization with DoE)", 
+    "Diseño de contenidos del programa Machine Learning para la toma de decisiones",
     "Instructor del curso: Applied Statistics for Medical Device Industry", 
-    "Instructor del curso: Process Characterization with DoE"),
+    "Instructor del curso: Process Characterization with DoE",
+    "Instructor del curso: Machine Learning para la toma de decisiones"),
   
   "Servicios profesionales", "Universidad Fidélitas", "Set. 2024 - Oct. 2024", 
   c("Desarrollo de productos académicos para los cursos: Diseño de experimentos, Estadística descriptiva e inferencia y Estadística aplicada para la analítica de datos"),
@@ -101,7 +103,7 @@ tibble::tribble(
     "Mantenimiento de herramientas programadas"),
   
   "Miembro del CTN 061: Aeroespacial", "INTECO", "Mar. 2020 - Jun. 2023",
-  c("Desarrollo y revisión de los trabajos de normalización en el campo aeroespacial, incluyendo la adaptación de aproximadamente 21 normas internacionales"), 
+  c("Desarrollo y revisión de los trabajos de normalización en el campo aeroespacial, incluyendo la adaptación de 21 normas internacionales"), 
   
   "Consultor y analista de datos", "Dr. Max, Centro de Salud", "Dic. 2020 - May. 2021", 
   c("Analista de datos (R y RStudio)",
@@ -125,13 +127,7 @@ tibble::tribble(
   "Asistente de consultoría", "UCR | MIDEPLAN | PRONAMYPE", "Set. 2016 - Jul. 2017", 
   c("Evaluación del PRONAMYPE", 
     "Levantamiento de procesos", 
-    "Diseño y ejecución de instrumentos de medición (encuestas y grupos focales)"),
-  
-  "Asistente de cursos", "UCR - Escuela de Ingeniería Industrial", "Ago. 2017 - Dic. 2018", 
-  c("Curso Ingeniería de manufactura", 
-    "Curso Investigación de operaciones avanzada", 
-    "Curso Diseño de experimentos básico",
-    "Curso Distribución y localización de instalaciones")
+    "Diseño y ejecución de instrumentos de medición (encuestas y grupos focales)")
 ) |>
   cvevents(when = "dates", what = "role", where = "institution", details = "tasks")
 ```
