@@ -1568,7 +1568,7 @@ fig
 ::: {.column width="50%"}
 
 * Dado que hay algunas dudas sobre la normalidad, se procede a realizar pruebas analíticas. En este caso, en pos de la didáctica, se realizan 3 de ellas. ¿Cuál deberíamos analizar?
-* Con un 90 % de confianza, se puede rechazar la $H_o$ de que los residuos siguen la distribución normal. Tanto por la forma de los gráficos, como por la prueba SW.
+* Con un 90 % de confianza, se puede rechazar la $H_o$ de que los residuos siguen la distribución normal. Tanto por la forma de los gráficos, como por la prueba KS.
 
 :::
 
@@ -1686,7 +1686,7 @@ fig
 
 * Las más comunes son Box - Cox y Johnson. Con base en criterios de complejidad, se prefiere a la primera sobre la segunda. 
 
-* Aunque son son la alternativa más popular, pero no se deben aplicar a la ligera. 
+* Aunque son la alternativa más popular, pero no se deben aplicar a la ligera. 
   * Antes de aplicar una transformación que cambie la interpretación de los datos, es mejor plantearse usar el modelo correcto.
   * Antes de aplicar una transformación, debe someterse a juicio si los datos son intrínsecamente no normales o si devienen de un problema de muestreo, precisión de la medición, entre otros. 
 
