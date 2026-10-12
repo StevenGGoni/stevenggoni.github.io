@@ -418,7 +418,7 @@ $$
 \mathrm{V}(aX + b) &= a^2 \mathrm{V}(X) \\
 \mathrm{V}(aX) &= a^2 \mathrm{V}(X) \\
 \mathrm{V}(b) &= 0 \\
-\mathrm{V}(X + Y) &= \mathrm{V}(X) + \mathrm{Var}(Y) 
+\mathrm{V}(X + Y) &= \mathrm{V}(X) + \mathrm{V}(Y) 
 \quad \text{si } X \text{ e } Y \text{ son independientes} \\
 \mathrm{V}(aX + bY) &= a^2 \mathrm{V}(X) + b^2 \mathrm{V}(Y)
 \quad \text{si } X \text{ e } Y \text{ son independientes}

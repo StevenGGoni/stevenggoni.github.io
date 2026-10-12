@@ -182,7 +182,7 @@ Más bien los selecciona y los ajusta a la realidad, como un sastre ajusta una p
 
 ::::::  {.columns}
 
-::: {.column width="50%"}
+::: {.column width="50%" style="font-size: 0.90em;"}
 
 ### [Parámetros]{.hi}
 
@@ -200,7 +200,7 @@ $$
 
 :::
 
-::: {.column width="50%"}
+::: {.column width="50%" style="font-size: 0.90em;"}
 
 ### [Esperanza $E(x)$ y varianza $V(x)$]{.hi}
 
@@ -212,8 +212,7 @@ $$
 V(x|n) = \frac{n^2-1}{12}
 $$
 
-* Esta distribución es de “calentamiento”. Por su sencillez de aplicación. 
-* Recuerde que $x|n$ es una expresión condicional, que se lee como $x$ dado $n$.
+* Esta distribución es de “calentamiento”. Por su sencillez de aplicación. Recuerde que $x|n$ es una expresión condicional, que se lee como $x$ dado $n$.
 * $x = 1, 2, \dots, n$
 
 :::
@@ -284,7 +283,7 @@ Este mismo razonamiento es el que se usa para seleccionar una distribución de p
 
 ::::::  {.columns}
 
-::: {.column width="50%"}
+::: {.column width="50%" style="font-size: 0.90em;"}
 
 ### [Parámetros]{.hi}
 
@@ -303,7 +302,7 @@ $$
 
 :::
 
-::: {.column width="50%"}
+::: {.column width="50%" style="font-size: 0.90em;"}
 
 ### [Esperanza $E(x)$ y varianza $V(x)$]{.hi}
 
@@ -433,7 +432,7 @@ submuestra %>%
 
 ::::::  {.columns}
 
-::: {.column width="50%"}
+::: {.column width="50%" style="font-size: 0.90em;"}
 
 ### [Parámetros]{.hi}
 
@@ -452,7 +451,7 @@ $$
 
 :::
 
-::: {.column width="50%"}
+::: {.column width="50%" style="font-size: 0.90em;"}
 
 ### [Esperanza $E(x)$ y varianza $V(x)$]{.hi}
 
@@ -464,7 +463,7 @@ $$
 V(x|r, p) = \frac{r \cdot q}{p^2}
 $$
 
-* Esta distribución también se basa en ensayos de Bernoulli. Existen dos parametrizaciones comunes de la distribución binomial negativa. Aquí utilizamos la que modela el número de fracasos antes del r-ésimo éxito.
+* También se basa en ensayos Bernoulli. Existen dos parametrizaciones comunes de la distribución binomial negativa, se presenta la que modela el número de fracasos antes del *r-ésimo* éxito.
 
 * $x = 0, 1, 2, \dots$
 
@@ -542,7 +541,7 @@ Lo que si importa es cuántos fracasos suceden antes de que ocurra el segundo é
 
 ::::::  {.columns}
 
-::: {.column width="50%"}
+::: {.column width="50%" style="font-size: 0.90em;"}
 
 ### [Parámetros]{.hi}
 
@@ -560,7 +559,7 @@ $$
 
 :::
 
-::: {.column width="50%"}
+::: {.column width="50%" style="font-size: 0.90em;"}
 
 ### [Esperanza $E(x)$ y varianza $V(x)$]{.hi}
 
@@ -625,7 +624,7 @@ height="620"
 
 ::::::  {.columns}
 
-::: {.column width="50%"}
+::: {.column width="50%" style="font-size: 0.90em;"}
 
 ### [Parámetros]{.hi}
 
@@ -643,7 +642,7 @@ $$
 
 :::
 
-::: {.column width="50%"}
+::: {.column width="50%" style="font-size: 0.90em;"}
 
 ### [Esperanza $E(x)$ y varianza $V(x)$]{.hi}
 
@@ -747,7 +746,7 @@ ej04 %>%
 
 ## Consideraciones finales {.bloques}
 
-* En este sentido, ésta cátedra le recomienda [no depender de aplicaciones o software para calcular probabilidades]{.hi} en las distribuciones clásicas.
+* En este sentido, *ésta coordinación de área de conocimiento* le recomienda [no depender de aplicaciones o software para calcular probabilidades]{.hi} en las distribuciones clásicas.
 
 * Sino que [comprenda la base procedimental de cualquier distribución discreta]{.hi} para que pueda expandir o generalizar dicho conocimiento a otras distribuciones con mayor grado de especialización. 
 

@@ -6,8 +6,8 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Steven García Goñi steven.garciagoni@ucr.ac.cr">
   <title>Distribuciones de probabilidad discretas</title>
@@ -20,10 +20,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -157,12 +160,12 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a> 
+Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a>
 </div>
 </div>
 </div>
 
-  <p class="date">21 de agosto de 2026</p>
+  <p class="date">12 de octubre de 2026</p>
 </section>
 <section class="slide level2 bloques">
 <h2>Agenda</h2>
@@ -331,7 +334,7 @@ Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garc
 <section class="slide level2 bloques">
 <h2>Distribución uniforme discreta</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="font-size: 0.90em;">
 <h3><span class="hi">Parámetros</span></h3>
 <p><span class="math display">n = \text{cantidad de eventos}</span></p>
 <h3><span class="hi">Funciones</span></h3>
@@ -341,7 +344,7 @@ f(x|n) = \frac{1}{n}
 <p><span class="math display">
 F(x|n) = \sum_{i=1}^x \frac{1}{n} = \frac{x}{n}
 </span></p>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="font-size: 0.90em;">
 <h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
 <p><span class="math display">
 E(x|n) = \frac{n+1}{2}
@@ -350,8 +353,7 @@ E(x|n) = \frac{n+1}{2}
 V(x|n) = \frac{n^2-1}{12}
 </span></p>
 <ul>
-<li>Esta distribución es de “calentamiento”. Por su sencillez de aplicación.</li>
-<li>Recuerde que <span class="math inline">x|n</span> es una expresión condicional, que se lee como <span class="math inline">x</span> dado <span class="math inline">n</span>.</li>
+<li>Esta distribución es de “calentamiento”. Por su sencillez de aplicación. Recuerde que <span class="math inline">x|n</span> es una expresión condicional, que se lee como <span class="math inline">x</span> dado <span class="math inline">n</span>.</li>
 <li><span class="math inline">x = 1, 2, \dots, n</span></li>
 </ul>
 </div></div>
@@ -432,7 +434,7 @@ V(x|n) = \frac{n^2-1}{12}
 <section class="slide level2 bloques">
 <h2>Distribución binomial</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="font-size: 0.90em;">
 <h3><span class="hi">Parámetros</span></h3>
 <p><span class="math display">n = \text{cantidad de intentos}</span> <span class="math display">p = \text{probabilidad de éxito}</span></p>
 <h3><span class="hi">Funciones</span></h3>
@@ -442,7 +444,7 @@ f(x|n, p) = \binom{n}{x} p^x (1-p)^{n-x}
 <p><span class="math display">
 F(x|n,p) = \sum_{i=0}^x f(i|n,p)
 </span></p>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="font-size: 0.90em;">
 <h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
 <p><span class="math display">
 E(x|n, p) = n\cdot p
@@ -577,7 +579,7 @@ V(x|n, p) = n \cdot p \cdot q
 <section class="slide level2 bloques">
 <h2>Distribución binomial negativa</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="font-size: 0.90em;">
 <h3><span class="hi">Parámetros</span></h3>
 <p><span class="math display">r = \text{cantidad de éxitos}</span> <span class="math display">p = \text{probabilidad de éxito}</span></p>
 <h3><span class="hi">Funciones</span></h3>
@@ -587,7 +589,7 @@ f(x|r, p) = \binom{x+r-1}{r-1} p^r (1-p)^{x}
 <p><span class="math display">
 F(x|r,p) = \sum_{i=0}^x f(i|r,p)
 </span></p>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="font-size: 0.90em;">
 <h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
 <p><span class="math display">
 E(x|r, p) = \frac{r\cdot q}{p}
@@ -596,7 +598,7 @@ E(x|r, p) = \frac{r\cdot q}{p}
 V(x|r, p) = \frac{r \cdot q}{p^2}
 </span></p>
 <ul>
-<li><p>Esta distribución también se basa en ensayos de Bernoulli. Existen dos parametrizaciones comunes de la distribución binomial negativa. Aquí utilizamos la que modela el número de fracasos antes del r-ésimo éxito.</p></li>
+<li><p>También se basa en ensayos Bernoulli. Existen dos parametrizaciones comunes de la distribución binomial negativa, se presenta la que modela el número de fracasos antes del <em>r-ésimo</em> éxito.</p></li>
 <li><p><span class="math inline">x = 0, 1, 2, \dots</span></p></li>
 </ul>
 </div></div>
@@ -655,7 +657,7 @@ V(x|r, p) = \frac{r \cdot q}{p^2}
 <section class="slide level2 bloques">
 <h2>Distribución hipergeométrica</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="font-size: 0.90em;">
 <h3><span class="hi">Parámetros</span></h3>
 <ul>
 <li><span class="math inline">N = \text{tamaño de la población}</span></li>
@@ -668,7 +670,7 @@ f(x|n, M, N) = \frac{\binom{M}{x} \binom{N-M}{n-x}}{\binom{N}{n}}
 \\
 F(x|n, M, N) = \sum_{i=0}^x f(i|n, M, N)
 </span></p>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="font-size: 0.90em;">
 <h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
 <p><span class="math display">
 E(x|n, M, N) = n \cdot \frac{M}{N}
@@ -716,7 +718,7 @@ V(x|n, M, N) = \frac{N-n}{N-1} \cdot n \cdot \frac{M}{N} \cdot \bigg(1- \frac{M}
 <section class="slide level2 bloques">
 <h2>Distribución Poisson</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="font-size: 0.90em;">
 <h3><span class="hi">Parámetros</span></h3>
 <p><span class="math display">\lambda = \text{promedio de eventos}</span></p>
 <h3><span class="hi">Funciones</span></h3>
@@ -726,7 +728,7 @@ f(x|\lambda) = \frac{e^{-\lambda}\lambda^{x}}{x!}
 <p><span class="math display">
 F(x|\lambda) = \sum_{i=0}^x f(i|\lambda)
 </span></p>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="font-size: 0.90em;">
 <h3><span class="hi">Esperanza <span class="math inline">E(x)</span> y varianza <span class="math inline">V(x)</span></span></h3>
 <p><span class="math display">
 E(x|\lambda) = \lambda
@@ -856,7 +858,7 @@ V(x|\lambda) = \lambda
 <section class="slide level2 bloques">
 <h2>Consideraciones finales</h2>
 <ul>
-<li><p>En este sentido, ésta cátedra le recomienda <span class="hi">no depender de aplicaciones o software para calcular probabilidades</span> en las distribuciones clásicas.</p></li>
+<li><p>En este sentido, <em>ésta coordinación de área de conocimiento</em> le recomienda <span class="hi">no depender de aplicaciones o software para calcular probabilidades</span> en las distribuciones clásicas.</p></li>
 <li><p>Sino que <span class="hi">comprenda la base procedimental de cualquier distribución discreta</span> para que pueda expandir o generalizar dicho conocimiento a otras distribuciones con mayor grado de especialización.</p></li>
 <li><p>Nota: Esto no implica que se desaconseje el uso de la tecnología, solo se le insta a no depender de ello.</p></li>
 </ul>
