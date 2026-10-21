@@ -37,3 +37,5 @@ decktape reveal --size="1920x1080" --page-load-timeout 60000 II-1125_02_Bloqueo_
 decktape reveal --size="1920x1080" --page-load-timeout 60000 II-1125_03_Factorial_Fraccionado.html II-1125_03_Factorial_Fraccionado.pdf
 
 decktape reveal --size="1920x1080" --page-load-timeout 60000 II-1125_04_RSM.html II-1125_04_RSM.pdf
+
+decktape reveal --size="1920x1080" --page-load-timeout 60000 II-1125_05_Alta_complejidad.html II-1125_05_Alta_complejidad.pdf

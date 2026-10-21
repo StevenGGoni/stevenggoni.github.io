@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
+
+  <meta name="author" content="Steven García Goñi steven.garciagoni@ucr.ac.cr">
+  <title>Introducción a otros experimentos de alta complejidad</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link rel="stylesheet" href="custom.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+  <script src="site_libs/plotly-binding-4.12.0/plotly.js"></script>
+
+  <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+  <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+  <link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+  <script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+  <link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+
+  <script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section class="quarto-title-block center">
+  <h1 class="title">Introducción a otros experimentos de alta complejidad</h1>
+  <p class="subtitle"><a href="https://stevenggoni.github.io/clases/II-1125_05_Alta_complejidad.pdf">Versión PDF</a> <br> II-1125 Estadística para Ingeniería Industrial III</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a> 
+</div>
+</div>
+</div>
+
+  <p class="date">20 de octubre de 2026</p>
+</section>
+<section class="slide level2 bloques">
+<h2>Agenda</h2>
+<ul>
+<li>Introducción</li>
+<li>Experimentos <span class="math inline">3^k</span> y mixtos</li>
+<li>Experimentos jerárquicos</li>
+<li>Experimentos robustos (Taguchi)</li>
+<li>Experimentos de cribado</li>
+<li>Experimentos con mezclas</li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Introducción</h2>
+<ul>
+<li><p>Además de los experimentos que ya conoce, hay muchos otros tipos de diseño experimental.</p></li>
+<li><p>Con esta sesión se pretende describir algunos tipos de diseños experimentales de uso regular, pero que no se abarcaron en el curso ni en esta área de conocimiento, con el propósito de que la persona estudiante reconozca cuándo son aplicables y las ventajas y desventajas de utilizarlos.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Introducción</h2>
+<ul>
+<li><p>Algunos aspectos que influyen en la selección de un diseño de experimentos son:</p>
+<ul>
+<li><p>El objetivo.</p></li>
+<li><p>La cantidad de los factores a valorar.</p></li>
+<li><p>El número de niveles por factor.</p></li>
+<li><p>Los efectos que interesa estudiar (causa - efecto).</p></li>
+<li><p>El costo, el tiempo y precisión.</p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos <span class="math inline">3^k</span></h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Se utilizan cuando hay varios factores que <strong>naturalmente</strong> se encuentran en tres niveles. Si las variables son numéricas, este experimento resulta bastante ineficiente, en el tanto hay otras alternativas mejores.</p></li>
+<li><p>Preferiblemente se recomienda que no se usen más de 3 factores. Este diseño le permite estudiar si existe o no una curvatura en el modelo, pero solo le permite <strong>detectarla</strong>, no <strong>describirla</strong>.<br>
+</p></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-327283d4771923c70157" style="width:850px;height:600px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-327283d4771923c70157">{"x":{"data":[{"x":[2,3,4,5,6,7],"y":[4,8,16,32,64,128],"text":["k: 2<br />Tratamientos:    4<br />Tipo: 2^k","k: 3<br />Tratamientos:    8<br />Tipo: 2^k","k: 4<br />Tratamientos:   16<br />Tipo: 2^k","k: 5<br />Tratamientos:   32<br />Tipo: 2^k","k: 6<br />Tratamientos:   64<br />Tipo: 2^k","k: 7<br />Tratamientos:  128<br />Tipo: 2^k"],"type":"scatter","mode":"lines+markers","line":{"width":1.8897637795275593,"color":"rgba(193,138,0,1)","dash":"solid"},"hoveron":"points","name":"2^k","legendgroup":"2^k","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(193,138,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(193,138,0,1)"}},"frame":null,"hoverlabel":{"font":{"size":40}}},{"x":[2,3,4,5,6,7],"y":[9,27,81,243,729,2187],"text":["k: 2<br />Tratamientos:    9<br />Tipo: 3^k","k: 3<br />Tratamientos:   27<br />Tipo: 3^k","k: 4<br />Tratamientos:   81<br />Tipo: 3^k","k: 5<br />Tratamientos:  243<br />Tipo: 3^k","k: 6<br />Tratamientos:  729<br />Tipo: 3^k","k: 7<br />Tratamientos: 2187<br />Tipo: 3^k"],"type":"scatter","mode":"lines+markers","line":{"width":1.8897637795275593,"color":"rgba(38,50,71,1)","dash":"solid"},"hoveron":"points","name":"3^k","legendgroup":"3^k","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(38,50,71,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(38,50,71,1)"}},"frame":null,"hoverlabel":{"font":{"size":40}}}],"layout":{"margin":{"t":49.872976338729771,"r":9.9626400996264035,"b":50.809464508094649,"l":66.749688667496898},"plot_bgcolor":"#F1F5F5","paper_bgcolor":"#F1F5F5","font":{"color":"rgba(0,0,0,1)","family":"","size":30},"title":{"text":"Comparación entre un 2^k y un 3^k","font":{"color":"rgba(0,0,0,1)","family":"","size":23.910336239103366},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.75,7.25],"tickmode":"array","ticktext":["2","3","4","5","6","7"],"tickvals":[2,3,4,5,6,7],"categoryorder":"array","categoryarray":["2","3","4","5","6","7"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":4.9813200498132018,"tickwidth":0.90569455451149117,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.90569455451149117,"zeroline":false,"anchor":"y","title":{"text":"Cantidad de factores","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-105.15000000000001,2296.1500000000001],"tickmode":"array","ticktext":["0","500","1000","1500","2000"],"tickvals":[0,500,1000.0000000000001,1500,2000],"categoryorder":"array","categoryarray":["0","500","1000","1500","2000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":4.9813200498132018,"tickwidth":0.90569455451149117,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":25},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.90569455451149117,"zeroline":false,"anchor":"x","title":{"text":"Cantidad de tratamientos","font":{"color":"rgba(0,0,0,1)","family":"","size":30}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"rgba(255,255,255,1)","line":{"color":"rgba(51,51,51,1)","width":0.90569455451149117,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":2.5769506084466713,"font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241},"title":{"text":"Tipo","font":{"color":"rgba(0,0,0,1)","family":"","size":19.925280199252807}}},"hovermode":"closest","width":850,"height":600,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"462819fc7e54":{"x":{},"y":{},"colour":{},"type":"scatter"},"46282fc467f9":{"x":{},"y":{},"colour":{}}},"cur_data":"462819fc7e54","visdat":{"462819fc7e54":["function (y) ","x"],"46282fc467f9":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos <span class="math inline">3^k</span></h2>
+<ul>
+<li><p>Considera <span class="math inline">k</span> factores con tres niveles cada uno, por tanto, tienen <span class="math inline">3^k</span> tratamientos.</p></li>
+<li><p>Requiere al menos de dos réplicas, para que haya grados de libertad para el error.</p></li>
+<li><p>Por ejemplo, con un diseño <span class="math inline">3^2</span> se tendrían 9 tratamientos.</p></li>
+<li><p>Un <span class="hi">experimento es mixto</span> si una parte de los factores tiene una cantidad de niveles diferente a otras. Por ejemplo, en un experimento se decide probar dos niveles para los factores A y B y tres niveles para el C, de tal forma que el experimento sería un factorial <span class="math inline">2^2\cdot 3</span> y consistiría en 12 tratamientos.</p></li>
+</ul>
+</section>
+<section>
+<section class="title-slide slide level1 bloques center">
+<h1>Experimentos jerárquicos</h1>
+
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño anidado</h2>
+<div class="columns">
+<div class="column">
+<p>Sucede, cuando por ejemplo los niveles del factor B son similares, pero no idénticos para cada nivel del factor A.</p>
+<p><img data-src="img/nested_design.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño anidado</h2>
+<ul>
+<li><p>En este ejemplo, los <em>suplidores</em> son el segundo nivel y los <em>batches</em> el primer nivel.</p></li>
+<li><p>Los <em>batches</em> tienen la opción de ser un <span class="hi">factor aleatorio</span>, pues se encuentran anidados en los <em>suppliers</em>.</p></li>
+<li><p>En cambio, los <em>suppliers</em> solo pueden ser fijos, pues no se encuentran anidados en ningún otro nivel.</p></li>
+<li><p>Puede haber niveles con menos tratamientos/observaciones.</p></li>
+<li><p>Esto lo convierte en un diseño <span class="hi">no balanceado</span>.</p>
+<ul>
+<li>Lo que desde luego afecta la asignación de grados de libertad, y por ende, la definición de significancia estadística.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseño anidado</h2>
+<ul>
+<li><p>Se pueden anidar experimentos, factoriales completos, por ejemplo; dentro de relaciones de jerarquía.</p></li>
+<li><p>Por ejemplo, en 3 fábricas diferentes se aplica un experimento factorial <span class="math inline">2^4</span>.</p>
+<ul>
+<li>¿Quién es el nivel 2 y el nivel 1?</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Momento reflexión</h2>
+<ul>
+<li><p>Ahora bien, ¿en qué se diferencia una relación jerárquica con el bloqueo?</p></li>
+<li><p>Como ya ha aprendido, el bloque es una variable que no interesa, que tiene que estar muy relacionada con la variable de respuesta y que no puede interactuar con los otros factores.</p></li>
+<li><p>En clases anteriores se le mencionó que si la variable si interesa o si interactúa, que no debía ser un bloque, sino otro tipo de variable.</p>
+<ul>
+<li>Una opción es convertirse en una relación jerárquica.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseños de parcelas divididas</h2>
+<ul>
+<li><p>Ocurre cuando por, recursos generalmente, no es factible aleatorizar completamente el orden de las corridas.</p></li>
+<li><p>Es una generalización del experimento factorial, conocido como diseño de parcelas divididas (Split-plot design).</p></li>
+<li><p>¿Cuándo se usa?</p>
+<ul>
+<li>Cuando los factores (algunos) son difíciles de cambiar (<em>HTC: Hard-to-Change</em>).</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseños de parcelas divididas</h2>
+<ul>
+<li>Algunos factores clásicos que son difíciles de cambiar (HTC):
+<ul>
+<li>Temperatura</li>
+<li>Tiempo</li>
+<li>Posiciones</li>
+<li>Entre otros</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Diseños de parcelas divididas</h2>
+<div class="columns">
+<div class="column img-fit">
+<p><img data-src="img/split_plot.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos robustos</h2>
+<ul>
+<li><p>Fue originado por el ingeniero japonés Genichi Taguchi.</p></li>
+<li><p>No fue aceptado, sobre todo por sus pares de occidente, hasta el éxito en las industrias automotriz y electrónica de los japoneses.</p></li>
+<li><p>Es también conocido como diseño de parámetros o diseño robusto.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos robustos</h2>
+<ul>
+<li><p>Decimos que un <span class="hi">proceso o producto</span> es robusto cuando su funcionamiento es consistente al <span class="hi">exponerse a las condiciones cambiantes del medio</span>.</p></li>
+<li><p>El objetivo del diseño de parámetros robusto es lograr, como su nombre indica, productos y procesos robustos.</p></li>
+<li><p>Por parámetro se refiere a los parámetros del sistema, es decir, <span class="hi">son los factores o variables del proceso</span>.</p>
+<ul>
+<li>Vamos a entender como sinónimos los términos “factor” y “parámetro”.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos robustos</h2>
+<ul>
+<li><p>El experimento es un <span class="hi">diseño robusto</span> cuando consideran <span class="hi">factores de ruido</span>, con respecto a los cuales se quiere lograr un proceso o producto robusto.</p></li>
+<li><p>La robustez se refiere a hacer un producto o proceso insensible o resistente a factores de ruido que NO son controlables.</p></li>
+<li><p>La idea de Taguchi en simple es que en el DdE prácticamente <strong>todo</strong> se debe controlar, pero en la práctica los procesos y productos están sometidos a esas condiciones que se controlaron en el experimento.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<ul>
+<li><p>Los M&amp;M’s son pequeños trozos de chocolate que están revestidos con azúcar.</p></li>
+<li><p>El slogan de la marca es:</p>
+<ul>
+<li>“El chocolate se derrite en tu boca, no en tu mano”.</li>
+</ul></li>
+<li><p>La historia, sea real o no (no es el objetivo de esta sesión), dice que en la Guerra Civil Española los soldados recibían pastillas de chocolate recubiertas, idea que luego se convirtió en M&amp;M’s, para que:</p>
+<ul>
+<li>No se derritieran en las manos o las bolsas de los pantalones</li>
+<li>Se conservaran durante más tiempo, pues el azúcar absorbe humedad.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ejemplo</h2>
+<ul>
+<li><p>Con base en la promesa dada en el slogan, el producto debe hacerse <span class="hi">robusto</span> a una condición que NO puede controlarse:</p>
+<ul>
+<li>La temperatura</li>
+</ul></li>
+<li><p>Al recubrir el trozo de chocolate (cuyo punto de fusión se encuentra entre 50ºC y 55ºC) con azúcar (186 °C) <span class="hi">se hace que este producto sea “insensible” o “resistente” al factor de ruido temperatura</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos robustos</h2>
+<ul>
+<li><p>¿Recuerda los experimentos jerárquicos?</p></li>
+<li><p>Los experimentos de Taguchi con arreglo externo son experimentos jerárquicos:</p>
+<ul>
+<li><p>En el nivel 1: El arreglo interno (control)</p></li>
+<li><p>En el nivel 2: El arreglo externo (ruido)</p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Ventajas</h2>
+<ul>
+<li><p>El diseño clásico no considera la posibilidad de minimizar el efecto de un factor de ruido sin tener que controlarlo directamente.</p></li>
+<li><p>Con el diseño robusto es posible formular un proceso o producto que trabaje sobre el valor objetivo con la mínima variación, que sea insensible a los cambios de las condiciones de ruido externo, interno y/o deterioro.</p></li>
+<li><p>Su énfasis es buscar siempre minimizar la varianza y al mismo tiempo llevar la media a su valor nominal. El diseño clásico solo se centra en la media.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos de cribado</h2>
+<ul>
+<li><p>¿Qué es cribado?</p></li>
+<li><p>Usemos una definición coloquial:</p>
+<ul>
+<li>El tamizado, cribado o colado es un método de separación útil para separar dos sustancias sólidas cuyas partículas sean de distinto tamaño.</li>
+</ul></li>
+<li><p>Por ejemplo: cernir una harina, colar un refresco, etc.</p></li>
+<li><p>En un marco sanitario se refiere a la realización de pruebas diagnósticas a personas, en principio sanas, para distinguir aquellas que están enfermas.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos de cribado</h2>
+<ul>
+<li><p>En relación al DdE y haciendo la analogía con la definición en salud:</p>
+<ul>
+<li><p>Sería un método para separar efectos activos (personas enfermas) de los inactivos (personas sanas).</p></li>
+<li><p>En resumen, se utilizan para encontrar aquellos factores que tengan efectos que verdaderamente tengan un impacto sobre la variable de respuesta.</p></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Algunos diseños: Plackett - Burman</h2>
+<ul>
+<li><p>Para <span class="math inline">N = 12, 20, 24, 28, 36</span> resulta útil e interesante emplear diseños de Plackett – Burman. Se puede usar con otros valores de N.</p></li>
+<li><p>Nótese que estos N no son una potencia de 2.</p>
+<ul>
+<li>Si lo fuesen, sería lo mismo que un factorial fraccionado</li>
+</ul></li>
+<li><p>Dado que los diseños anteriores no pueden ser representados con cubos, se conocen también como diseños no geométricos.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Algunos diseños: Cribado definitivo</h2>
+<ul>
+<li><p>Son de resolución IV</p></li>
+<li><p>Se utilizan cuando interesan interacciones</p></li>
+<li><p>Incluyen puntos centrales</p></li>
+<li><p>Pueden estudiar curvaturas</p>
+<ul>
+<li>Suelen ser precuela de RSM</li>
+</ul></li>
+<li><p>Se utilizan con variables continuas</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos con mezclas</h2>
+<ul>
+<li><p>Son experimentos en los que se asume que la respuesta solo depende de las proporciones relativas de los ingredientes presentes en la cantidad de la mezcla.</p></li>
+<li><p>En un experimento con mezclas si el total permanece constante y el valor de la respuesta cambia cuando se introducen variaciones en las proporciones de los ingredientes, entonces el comportamiento de la respuesta se dice que es una función de la propiedad de la mezcla conjunta de los ingredientes.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos con mezclas</h2>
+<ul>
+<li><p>Son casos especiales de las RSM, donde los factores ahora son llamados <span class="hi">componentes</span> y no son independientes de los otros componentes.</p></li>
+<li><p>En un experimento factorial o en un diseño de superficies de respuesta convencional, se parte de que los niveles de cada factor son independientes de los niveles de los otros factores.</p></li>
+<li><p>Las proporciones tienen que encontrarse entre 0 y 1 y que la suma de ellas debe ser uno.</p></li>
+<li><p>Por tanto, si se aumenta la cantidad de un ingrediente, se debe reducir la participación de los componentes restantes en esa misma proporción.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos con mezclas</h2>
+<ul>
+<li><p>El objetivo del diseño de experimentos con mezclas es <span class="hi">cuantificar</span> la influencia que tienen los diferentes componentes sobre la respuesta, tanto en forma individual como en su acción conjunta con otros componentes.</p></li>
+<li><p>Los experimentos con mezclas trabajan bajo el supuesto de que las características de calidad de la mezcla dependen de las proporciones con las que participan los ingredientes y no de la cantidad absoluta de ellos .</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos con mezclas</h2>
+<ul>
+<li><p>Los diseños factoriales tradicionales no son aplicables, ya que su objetivo es medir el cambio en la respuesta cuando se varía el nivel de cada factor mientras que los otros niveles permanecen constantes (lo que no es posible en un experimento con mezclas).</p></li>
+<li><p>Además, porque los polinomios estándar no son adecuados pues algunos de sus parámetros carecen de sentido, así como su incapacidad para mantener la cantidad total fija.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Experimentos con mezclas</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Existen tres diseños principales:</p>
+<ul>
+<li>Simplex
+<ul>
+<li>Centroide</li>
+<li>Reticular</li>
+</ul></li>
+<li>Vértices extremos</li>
+</ul></li>
+</ul>
+</div><div class="column img-fit">
+<p><img data-src="img/simplex.png"></p>
+</div></div>
+</section>
+<section class="slide level2 bloques">
+<h2>Cierre de la sesión</h2>
+<ul>
+<li><p>La exposición es representativa de experimentos de uso común, interesa en esta ocasión que usted reconozca otras formas de experimentar y advierta si los reductores de ruido o factoriales en dos niveles no alcanzan para una situación particular, lo que implica estudiar o buscar asesoría, porque la selección inadecuada de un diseño puede llevarlo a resultados inexactos o confusos.</p></li>
+<li><p>Espero haya disfrutado este curso.</p></li>
+</ul>
+</section>
+<section class="slide level2 bloques">
+<h2>Bibliografía</h2>
+<div class="columns">
+<div class="column" style="font-size: 1.2em;">
+<ul>
+<li>Las fuentes son variadas y no se considera necesario ahondar en ellas.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2 center">
+<h2>Introducción a otros experimentos de alta complejidad <br> II-1125 Estadística para Ingeniería Industrial III</h2>
+<h3 class="subtitle">Gracias por su atención <br> Steven García Goñi<br><a href="mailto:steven.garciagoni@ucr.ac.cr">steven.garciagoni@ucr.ac.cr</a></h3>
+<h3>Dudas o correcciones requeridas pueden solicitarse al correo</h3>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p><span class="footer-text">© 2026 <a href="https://stevenggoni.github.io/">Steven García Goñi</a>| <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia CC BY NC 4.0</a></span> <img src="https://stevenggoni.github.io/images/Cuervos_SinFondo-02.png" class="footer-logo"></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: true,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.0e-2,
+
+        math: {
+          mathjax: '',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script data-goatcounter="https://stevenggoni.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copiado");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copiado");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
