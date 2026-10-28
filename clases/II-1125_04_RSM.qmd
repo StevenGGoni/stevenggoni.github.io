@@ -467,7 +467,7 @@ $$
 
 :::::: {.columns}
 
-::: {.column}
+::: {.column style="font-size: 0.9em;"}
 
 * Entonces el [punto estacionario]{.hi} es: 
 
@@ -495,7 +495,7 @@ $$
 
 :::
 
-::: {.column}
+::: {.column style="font-size: 0.9em;"}
 
 $$
 |\mathbf{B} - \lambda \mathbf{I}| = 0
@@ -695,7 +695,7 @@ rsm::ccd(basis = 2, randomize = FALSE, coding = list(x1 ~ A,
 
 * Es una familia de diseños eficientes de tres niveles utilizados para ajustar superficies de respuesta de segundo orden.
 
-* Se basa en la construcción de diseños de bloques incompletos balanceados (BIBD). Su lógica operativa consiste en combinar factoriales 22 para pares de variables mientras las demás se mantienen fijas en su nivel central (0).
+* Se basa en la construcción de diseños de bloques incompletos balanceados (BIBD). Su lógica operativa consiste en combinar factoriales $2^2$ para pares de variables mientras las demás se mantienen fijas en su nivel central (0).
 
 * A diferencia del Diseño Compuesto Central (DCC), el BBD no contiene puntos factoriales (vértices del cubo) ni puntos axiales. Todos sus puntos de diseño (excepto los centrales) son puntos medios de las aristas del espacio experimental.
 
