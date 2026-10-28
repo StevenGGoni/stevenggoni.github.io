@@ -732,7 +732,7 @@
     "href": "tutoriales_R.html#diseño-de-experimentos",
     "title": "Tutoriales en R",
     "section": "Diseño de experimentos",
-    "text": "Diseño de experimentos\n\nExperimento factorial completo \\(2^k\\)\n\nGuía práctica para la construcción, aleatorización y análisis de experimentos factoriales completos de dos niveles sin y con réplicas. Cubre desde la formulación del modelo lineal en R hasta el diagnóstico de efectos y la selección de términos.\n\nExperimento factorial completo bloqueado y confundido \\(2^{k}\\) en \\(2^p\\) bloques\n\nTutorial sobre la estructuración de diseños factoriales \\(2^k\\) bajo restricciones de aleatorización. Muestra cómo aislar la variabilidad por bloques mediante la confusión de interacciones de alto orden (\\(ABCDE\\)) y cómo preservar la estructura del bloque en la selección del modelo.\n\nExperimento factorial fraccionado \\(2^{k-p}_{R}\\)\n\nEsta es una guía para la construcción y análisis de diseños factoriales fraccionados \\(2^{k-p}_R\\)."
+    "text": "Diseño de experimentos\n\nExperimento factorial completo \\(2^k\\)\n\nGuía práctica para la construcción, aleatorización y análisis de experimentos factoriales completos de dos niveles sin y con réplicas. Cubre desde la formulación del modelo lineal en R hasta el diagnóstico de efectos y la selección de términos.\n\nExperimento factorial completo bloqueado y confundido \\(2^{k}\\) en \\(2^p\\) bloques\n\nTutorial sobre la estructuración de diseños factoriales \\(2^k\\) bajo restricciones de aleatorización. Muestra cómo aislar la variabilidad por bloques mediante la confusión de interacciones de alto orden (\\(ABCDE\\)) y cómo preservar la estructura del bloque en la selección del modelo.\n\nExperimento factorial fraccionado \\(2^{k-p}_{R}\\)\n\nEsta es una guía para la construcción y análisis de diseños factoriales fraccionados \\(2^{k-p}_R\\).\n\nDiseños de segundo orden para RSM\n\nEn este tutorial encontrará como se pueden diseñar y analizar experimentos de RSM de segundo orden, en particular el Diseño Central Compuesto (DCC) y el Diseño Box-Behnken (DBB)."
   },
   {
     "objectID": "tutoriales_R/factorial_fraccionado_R.html",
@@ -796,5 +796,19 @@
     "title": "Ejercicio integrador: Factorial fraccionado \\(2^{k-p}_{R}\\) en R",
     "section": "Datos",
     "text": "Datos\nLos datos ya se encuentran aleatorizados, por lo que no requieren tratamiento adicional. Cada pestaña es una fracción.\n\nDatos\nOrden fracciones"
+  },
+  {
+    "objectID": "tutoriales_R/RSM_R.html",
+    "href": "tutoriales_R/RSM_R.html",
+    "title": "Diseños de Superficies de Respuesta (Segundo Orden)",
+    "section": "",
+    "text": "Al inicio de todas las clase se colocarán las librerías que se van a utilizar para el desarrollo de los casos.\n\nlibrary(tidyverse)\nlibrary(rsm)\nlibrary(broom)\nlibrary(flextable)"
+  },
+  {
+    "objectID": "tutoriales_R/RSM_R.html#contexto",
+    "href": "tutoriales_R/RSM_R.html#contexto",
+    "title": "Diseños de Superficies de Respuesta (Segundo Orden)",
+    "section": "Contexto",
+    "text": "Contexto\nPara que un brazo robótico coloque una tapa en la posición correcta, se debe determinar el tiempo de espera de un servomotor y el tiempo que dura en el movimiento otro servomotor. La variable de respuesta es la distancia en mm que se aleja la tapa del centro de la botella donde debe colocarse. Por tanto, dicha respuesta debe minimizarse. No hay múltiple respuesta, pero igual la función de deseabilidad es aplicable, para encontrar la configuración que minimiza la respuesta.\n\nDiseño del experimento\n\nccd.pick(3)\n\n   n.c n0.c blks.c n.s n0.s bbr.c wbr.s bbr.s  N alpha.rot alpha.orth\n1    8    9      1   6    6     1     1     1 29  1.681793   1.680336\n2    8    2      1   6    1     1     1     1 17  1.681793   1.673320\n3    8    6      1   6    4     1     1     1 24  1.681793   1.690309\n4    8    5      1   6    3     1     1     1 22  1.681793   1.664101\n5    8   10      1   6    7     1     1     1 31  1.681793   1.699673\n6    8    8      1   6    5     1     1     1 27  1.681793   1.658312\n7    8    3      1   6    2     1     1     1 19  1.681793   1.705606\n8    8    7      1   6    5     1     1     1 26  1.681793   1.712698\n9    8    4      1   6    2     1     1     1 20  1.681793   1.632993\n10   8    4      1   6    3     1     1     1 21  1.681793   1.732051\n\ndcc &lt;- rsm::ccd(3, # factores\n                n0 = 3, # puntos centrales\n                alpha = \"rotatable\", \n                oneblock = TRUE,\n                randomize = FALSE)\n\n\n\nRecolección de datos\n\ndcc$y &lt;- 80 + 5*dcc$x1 - 3*dcc$x2 + 2*dcc$x3 -\n  4*dcc$x1^2 - 1*dcc$x2^2 - 2*dcc$x3^2 +\n  3*dcc$x1*dcc$x2 +\n  rnorm(nrow(dcc), 0, 1)  \n\n\n\nAjuste del modelo\n\nmod1 &lt;- rsm::rsm(y ~SO(x1, x2, x3), data = dcc)\n\nmod1 %&gt;% \n  broom::tidy() %&gt;%\n  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) %&gt;% \n  flextable::flextable()\n\ntermestimatestd.errorstatisticp.value(Intercept)79.970.28282.940.00x14.670.1924.910.00x2-2.940.19-15.680.00x32.040.1910.860.00x1:x22.510.2510.260.00x1:x30.060.250.230.83x2:x3-0.540.25-2.190.05x1^2-3.820.18-20.930.00x2^2-0.880.18-4.830.00x3^2-1.930.18-10.600.00\n\n\n\n\nGráficos de contorno y 3D\n\n# Contornos de dos factores a la vez\ncontour(mod1, ~ x1 + x2, image=TRUE)   # x1 vs x2\n\n\n\n\n\n\n\ncontour(mod1, ~ x1 + x3, image=TRUE)   # x1 vs x3\n\n\n\n\n\n\n\ncontour(mod1, ~ x2 + x3, image=TRUE)   # x2 vs x3\n\n\n\n\n\n\n\n# Superficie 3D\npersp(mod1, ~ x1 + x2, col=\"lightblue\")"
   }
 ]

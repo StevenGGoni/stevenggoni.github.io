@@ -62,6 +62,10 @@ Tutorial sobre la estructuración de diseños factoriales $2^k$ bajo restriccion
 
 Esta es una guía para la construcción y análisis de diseños factoriales fraccionados $2^{k-p}_R$.
 
+* [Diseños de segundo orden para RSM](tutoriales_R/RSM_R.html){target="_blank"}
+
+En este tutorial encontrará como se pueden diseñar y analizar experimentos de RSM de segundo orden, en particular el Diseño Central Compuesto (DCC) y el Diseño Box-Behnken (DBB).
+
 ## Ingeniería de Calidad `r fontawesome::fa("ruler-combined")`
 
 * [Diagrama de Pareto](tutoriales_R/diagrama_pareto.html){target="_blank"} 

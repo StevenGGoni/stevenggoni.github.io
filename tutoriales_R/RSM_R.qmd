@@ -1,0 +1,139 @@
+---
+title: "Diseños de Superficies de Respuesta (Segundo Orden)"
+author: "Steven García Goñi"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    collapse-sections: true
+execute:
+  warning: false
+  message: false
+---
+
+# Librerías
+
+Al inicio de todas las clase se colocarán las librerías que se van a utilizar para el desarrollo de los casos.
+
+```{r}
+
+library(tidyverse)
+library(rsm)
+library(broom)
+library(flextable)
+
+```
+
+# Diseño central compuesto (DCC)
+
+Datos proporcionados por la estudiante Loreli Rojas, para fines académicos con base en los resultados de un experimento para el curso II-0905 Ingeniería de Manufactura en el segundo ciclo 2022.
+
+## Contexto
+
+Para que un brazo robótico coloque una tapa en la posición correcta, se debe determinar el tiempo de espera de un servomotor y el tiempo que dura en el movimiento otro servomotor. La variable de respuesta es la distancia en mm que se aleja la tapa del centro de la botella donde debe colocarse. Por tanto, dicha respuesta debe minimizarse. No hay múltiple respuesta, pero igual la función de deseabilidad es aplicable, para encontrar la configuración que minimiza la respuesta.
+
+### Diseño del experimento
+
+```{r}
+
+ccd.pick(3)
+
+dcc <- rsm::ccd(3, # factores
+                n0 = 3, # puntos centrales
+                alpha = "rotatable", 
+                oneblock = TRUE,
+                randomize = FALSE)
+
+
+```
+
+### Recolección de datos
+
+```{r}
+
+dcc$y <- 80 + 5*dcc$x1 - 3*dcc$x2 + 2*dcc$x3 -
+  4*dcc$x1^2 - 1*dcc$x2^2 - 2*dcc$x3^2 +
+  3*dcc$x1*dcc$x2 +
+  rnorm(nrow(dcc), 0, 1)  
+
+```
+
+### Ajuste del modelo
+
+```{r}
+
+mod1 <- rsm::rsm(y ~SO(x1, x2, x3), data = dcc)
+
+mod1 %>% 
+  broom::tidy() %>%
+  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) %>% 
+  flextable::flextable()
+
+```
+
+### Gráficos de contorno y 3D
+
+```{r}
+
+# Contornos de dos factores a la vez
+contour(mod1, ~ x1 + x2, image=TRUE)   # x1 vs x2
+contour(mod1, ~ x1 + x3, image=TRUE)   # x1 vs x3
+contour(mod1, ~ x2 + x3, image=TRUE)   # x2 vs x3
+
+# Superficie 3D
+persp(mod1, ~ x1 + x2, col="lightblue")
+
+
+```
+
+# Diseño Box - Behnken
+
+### Diseño del experimento
+
+```{r}
+
+bb <- rsm::bbd(k = 3, 
+               n0 = 3)
+
+bb
+
+```
+
+### Recolección de datos
+
+```{r}
+
+bb$y <- 80 + 5*bb$x1 - 3*bb$x2 + 2*bb$x3 -
+  4*bb$x1^2 - 1*bb$x2^2 - 2*bb$x3^2 +
+  3*bb$x1*bb$x2 +
+  rnorm(nrow(bb), 0, 1)  
+
+```
+
+### Ajuste del modelo
+
+```{r}
+
+mod2 <- rsm::rsm(y ~SO(x1, x2, x3), data = bb)
+
+mod2 %>% 
+  broom::tidy() %>%
+  dplyr::mutate(across(where(is.numeric), ~ round(., 2))) %>% 
+  flextable::flextable()
+
+```
+
+### Gráficos de contorno y 3D
+
+```{r}
+
+# Contornos de dos factores a la vez
+contour(mod2, ~ x1 + x2, image=TRUE)   # x1 vs x2
+contour(mod2, ~ x1 + x3, image=TRUE)   # x1 vs x3
+contour(mod2, ~ x2 + x3, image=TRUE)   # x2 vs x3
+
+# Superficie 3D
+persp(mod2, ~ x1 + x2, col="lightblue")
+
+
+```

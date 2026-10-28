@@ -863,6 +863,12 @@ Ejemplo de construcción:
 * [G – optimalidad]{.hi}: busca minimizar la varianza máxima de predicción, $max \{d=x'(X'X)^{-1}x \}$, sobre un conjunto especificado de puntos de diseño. 
 
 * [V – optimalidad]{.hi}: busca minimizar el valor promedio de $d$ sobre un conjunto especificado de puntos de diseño. Es decir, lo que se quiere minimizar es el apalancamiento promedio.
+
+## Cómo crear y analizar  este experimento en R {.bloques}
+
+* En caso de que no quiera usar Minitab, por costo, licenciamiento u otras razones, se le provee de un tutorial en R para el diseño y análisis de experimentos factoriales fraccionados 
+
+* Lo puede encontrar en este [enlace](https://stevenggoni.github.io/tutoriales_R/RSM_R.html){target="_blank"}.
   
 ## Bibliografía {.bloques}
 
