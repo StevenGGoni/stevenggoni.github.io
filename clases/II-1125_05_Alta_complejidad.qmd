@@ -341,6 +341,25 @@ Sucede, cuando por ejemplo los niveles del factor B son similares, pero no idén
 
 * Espero haya disfrutado este curso. 
 
+## Creo que hay que resistir... {.bloques}
+
+:::: columns
+::: {.column width="75%" style="font-size: 1.6em;"}
+
+El ser humano sabe hacer de los obstáculos nuevos caminos porque a la vida le basta el espacio de una grieta para renacer.
+
+[Ernesto Sabato]{.hi} - *La resistencia*
+
+:::
+
+::: {.column .img-fit}
+
+![](img/Sabato.avif)
+
+:::
+
+::::
+
 ## Bibliografía {.bloques}
 
 :::: columns
